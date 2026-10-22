@@ -1,0 +1,19 @@
+{
+  "name": "dialog",
+  "version": "0.1.0",
+  "contract": "schema/dialog.json",
+  "files": [
+    {
+      "path": "dialog.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add dialog`. This file is yours.\n// Open with <Dialog.Trigger dialog=\"id\"> and close with <Dialog.Close dialog=\"id\">;\n// both work without JavaScript (invoker commands).\nexport { Dialog, type DialogProps } from \"@yourlib/react/dialog\";\n",
+      "hash": "sha256-ZyBvCnWtVFHpNk/PnXVp7oVpVXX3aXjcwhnb5F/MR6k="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}

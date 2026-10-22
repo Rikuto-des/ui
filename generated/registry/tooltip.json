@@ -1,0 +1,19 @@
+{
+  "name": "tooltip",
+  "version": "0.1.0",
+  "contract": "schema/tooltip.json",
+  "files": [
+    {
+      "path": "tooltip.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add tooltip`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Tooltip page of the design system.\nexport { Tooltip, type TooltipProps } from \"@yourlib/react/tooltip\";\n",
+      "hash": "sha256-uFk62AtxjD3Ap2PrOl/88VgCdVJqG1+x3CNhbsuv2G0="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}

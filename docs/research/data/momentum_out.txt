@@ -1,0 +1,236 @@
+
+### ヘッドレス
+
+| パッケージ | 週DL 今 | 1年前 | 2年前 | 前年比 | 基準FW比(年) | 直近3ヶ月 (絶対→基準FW比) | GitHub repo | ★ | ★+365日 | 最終push |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|
+| @radix-ui/react-slot | 221.24M | 24.76M | 10.17M | +793% | +80% (R) | +34% → -10% | radix-ui/primitives | 19k | +1k | 2026-10-14 |
+| @radix-ui/react-dialog | 91.86M | 11.28M | 3.48M | +714% | +64% (R) | +58% → +7% | radix-ui/primitives | 19k | +1k | 2026-10-14 |
+| radix-ui | 19.06M | 779k | 15k | +2,348% | +394% (R) | +94% → +31% | radix-ui/primitives | 19k | +1k | 2026-10-14 |
+| @base-ui/react | 19.27M | 0 | 0 | — | — (R) | +179% → +88% | mui/base-ui | 11k | +5k | 2026-10-21 |
+| @base-ui-components/react | 575k | 195k | 0 | +195% | -41% (R) | +43% → -4% | mui/base-ui | 11k | +5k | 2026-10-21 |
+| react-aria-components | 5.87M | 854k | 371k | +587% | +39% (R) | +80% → +21% | adobe/react-spectrum | 16k | +2k | 2026-10-21 |
+| react-aria | 11.82M | 1.27M | 592k | +828% | +87% (R) | +68% → +13% | adobe/react-spectrum | 16k | +2k | 2026-10-21 |
+| @floating-ui/react | 30.38M | 7.55M | 3.03M | +302% | -19% (R) | +58% → +7% | floating-ui/floating-ui | 33k | +782 | 2026-10-16 |
+| @headlessui/react | 8.78M | 3.25M | 1.86M | +170% | -46% (R) | +36% → -8% | tailwindlabs/headlessui | 29k | +716 | 2026-04-13 |
+| @ariakit/react | 1.51M | 372k | 178k | +306% | -18% (R) | +60% → +8% | ariakit/ariakit | 9k | +201 | 2026-10-21 |
+| @ark-ui/react | 1.23M | 2.82M※ | 53k | -56% | -91% (R) | +24% → -17% | chakra-ui/ark | 5k | +708 | 2026-10-21 |
+| @zag-js/core | 1.75M | 2.95M※ | 119k | -41% | -88% (R) | +32% → -11% | chakra-ui/zag | 5k | +430 | 2026-10-21 |
+| @mui/base | 4.70M | 3.41M | 3.83M | +38% | -72% (R) | +16% → -22% | — | — | — | — |
+
+### スタイル付きパッケージ
+
+| パッケージ | 週DL 今 | 1年前 | 2年前 | 前年比 | 基準FW比(年) | 直近3ヶ月 (絶対→基準FW比) | GitHub repo | ★ | ★+365日 | 最終push |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|
+| @mui/material | 12.50M | 5.89M | 3.99M | +112% | -57% (R) | +41% → -5% | mui/material-ui | 99k | +2k | 2026-10-21 |
+| antd | 4.52M | 1.98M | 1.44M | +128% | -54% (R) | +32% → -11% | ant-design/ant-design | 100k | +3k | 2026-10-21 |
+| @mantine/core | 3.31M | 898k | 512k | +268% | -26% (R) | +65% → +11% | mantinedev/mantine | 32k | +2k | 2026-10-21 |
+| @adobe/react-spectrum | 1.80M | 22k | 14k | +8,222% | +1,579% (R) | +124% → +51% | adobe/react-spectrum | 16k | +2k | 2026-10-21 |
+| @chakra-ui/react | 2.01M | 3.36M※ | 591k | -40% | -88% (R) | +12% → -25% | chakra-ui/chakra-ui | 41k | +855 | 2026-10-17 |
+| daisyui | 1.24M | 502k | 297k | +148% | -50% (R) | +54% → +4% | saadeghi/daisyui | 43k | +4k | 2026-10-17 |
+| @radix-ui/themes | 1.16M | 288k | 100k | +301% | -19% (R) | +65% → +11% | radix-ui/themes | 9k | +1k | 2026-04-11 |
+| @heroui/react | 771k | 162k | 0 | +377% | -4% (R) | +89% → +27% | heroui-inc/heroui | 31k | +4k | 2026-10-21 |
+| @nextui-org/react | 97k | 70k | 138k | +38% | -72% (R) | +50% → +1% | heroui-inc/heroui | 31k | +4k | 2026-10-21 |
+| flowbite | 806k | 479k | 306k | +68% | -66% (R) | +29% → -13% | themesberg/flowbite | 9k | +481 | 2026-06-27 |
+| @tremor/react | 670k | 124k | 85k | +440% | +9% (R) | +70% → +14% | tremorlabs/tremor-npm | 16k | — | 2025-01-13 |
+| @fluentui/react-components | 529k | 244k | 101k | +117% | -56% (R) | +55% → +4% | — | — | — | — |
+| preline | 80k | 42k | 25k | +89% | -62% (R) | +28% → -14% | htmlstreamofficial/preline | 6k | +497 | 2026-08-31 |
+
+### コピペ/レジストリ（代理指標）
+
+| パッケージ | 週DL 今 | 1年前 | 2年前 | 前年比 | 基準FW比(年) | 直近3ヶ月 (絶対→基準FW比) | GitHub repo | ★ | ★+365日 | 最終push |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|
+| shadcn | 13.36M | 330k | 77k | +3,947% | +716% (R) | +138% → +60% | shadcn-ui/ui | 126k | +28k | 2026-10-20 |
+| shadcn-ui | 196k | 123k | 84k | +60% | -68% (R) | +32% → -11% | shadcn-ui/ui | 126k | +28k | 2026-10-20 |
+| class-variance-authority | 83.56M | 8.26M | 1.84M | +912% | +104% (R) | +48% → -1% | joe-bell/cva | 7k | +349 | 2026-10-21 |
+| tailwind-merge | 107.07M | 12.17M | 3.47M | +780% | +77% (R) | +47% → -1% | dcastil/tailwind-merge | 6k | +287 | 2026-10-20 |
+| tw-animate-css | 50.42M | 2.56M | 0 | +1,870% | +297% (R) | +53% → +3% | Wombosvideo/tw-animate-css | 809 | — | 2026-02-28 |
+| tailwindcss-animate | 25.76M | 5.47M | 1.57M | +371% | -5% (R) | +19% → -20% | jamiebuilds/tailwindcss-animate | 3k | — | 2024-07-28 |
+| lucide-react | 134.58M | 12.96M | 1.67M | +938% | +109% (R) | +56% → +5% | lucide-icons/lucide | 25k | +6k | 2026-10-21 |
+
+### スタイリング
+
+| パッケージ | 週DL 今 | 1年前 | 2年前 | 前年比 | 基準FW比(年) | 直近3ヶ月 (絶対→基準FW比) | GitHub repo | ★ | ★+365日 | 最終push |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|
+| tailwindcss | 163.03M | 24.20M | 10.13M | +574% | +36% (R) | +32% → -12% | tailwindlabs/tailwindcss | 98k | +7k | 2026-10-19 |
+| @tailwindcss/vite | 60.98M | 3.35M | 7k | +1,718% | +267% (R) | +55% → +5% | tailwindlabs/tailwindcss | 98k | +7k | 2026-10-19 |
+| tailwind-variants | 5.06M | 1.03M | 349k | +390% | -1% (R) | +63% → +10% | heroui-inc/tailwind-variants | 3k | +311 | 2026-10-21 |
+| @emotion/react | 24.91M | 11.54M | 8.07M | +116% | -56% (R) | +31% → -12% | emotion-js/emotion | 18k | +111 | 2026-08-28 |
+| styled-components | 13.25M | 6.96M | 5.38M | +90% | -62% (R) | +24% → -17% | styled-components/styled-components | 41k | +104 | 2026-10-19 |
+| @vanilla-extract/css | 3.19M | 985k | 713k | +224% | -35% (R) | +45% → -2% | vanilla-extract-css/vanilla-extract | 10k | +256 | 2026-10-08 |
+| @stylexjs/stylex | 2.54M | 240k | 14k | +960% | +114% (R) | +145% → +65% | facebook/stylex | 10k | +2k | 2026-10-21 |
+| unocss | 577k | 372k | 169k | +55% | -69% (R) | +43% → -4% | unocss/unocss | 19k | +790 | 2026-10-20 |
+| @pandacss/dev | 566k | 162k | 69k | +250% | -29% (R) | +42% → -5% | chakra-ui/panda | 6k | +389 | 2026-10-21 |
+| basecoat-css | 33k | 2k | 0 | +1,441% | +296% (TS) | +147% → +52% | hunvreus/basecoat | 4k | +2k | 2026-07-21 |
+
+### 単機能
+
+| パッケージ | 週DL 今 | 1年前 | 2年前 | 前年比 | 基準FW比(年) | 直近3ヶ月 (絶対→基準FW比) | GitHub repo | ★ | ★+365日 | 最終push |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|
+| zod | 387.37M | 47.73M | 12.29M | +712% | +64% (R) | +73% → +16% | colinhacks/zod | 44k | +4k | 2026-10-19 |
+| lucide-react | 134.58M | 12.96M | 1.67M | +938% | +109% (R) | +56% → +5% | lucide-icons/lucide | 25k | +6k | 2026-10-21 |
+| framer-motion | 58.49M | 10.02M | 4.24M | +484% | +18% (R) | +55% → +5% | motiondivision/motion | 34k | +4k | 2026-10-21 |
+| motion | 28.26M | 2.09M | 299k | +1,251% | +172% (R) | +98% → +33% | motiondivision/motion | 34k | +4k | 2026-10-21 |
+| react-hook-form | 70.26M | 13.01M | 5.80M | +440% | +9% (R) | +26% → -15% | react-hook-form/react-hook-form | 45k | +844 | 2026-10-21 |
+| recharts | 71.29M | 7.61M | 2.01M | +837% | +89% (R) | +33% → -11% | recharts/recharts | 28k | +2k | 2026-10-21 |
+| sonner | 63.50M | 5.31M | 911k | +1,095% | +141% (R) | +37% → -8% | emilkowalski/sonner | 13k | +2k | 2026-08-10 |
+| cmdk | 54.82M | 5.10M | 923k | +975% | +117% (R) | +32% → -11% | dip/cmdk | 13k | +1k | 2025-10-29 |
+| react-day-picker | 55.78M | 8.33M | 1.66M | +570% | +35% (R) | +29% → -13% | gpbl/react-day-picker | 7k | +243 | 2026-10-21 |
+| vaul | 46.59M | 3.62M | 521k | +1,187% | +160% (R) | +24% → -17% | emilkowalski/vaul | 9k | +732 | 2025-10-03 |
+| input-otp | 40.32M | 3.33M | 225k | +1,110% | +144% (R) | +19% → -20% | guilhermerodz/input-otp | 3k | +290 | 2026-09-10 |
+| embla-carousel-react | 41.36M | 4.33M | 758k | +854% | +92% (R) | +16% → -22% | — | — | — | — |
+| react-resizable-panels | 43.22M | 6.24M | 533k | +593% | +40% (R) | +30% → -12% | bvaughn/react-resizable-panels | 5k | +574 | 2026-10-20 |
+| @tanstack/react-table | 26.59M | 4.84M | 2.15M | +450% | +11% (R) | +75% → +18% | TanStack/table | 29k | +1k | 2026-10-21 |
+| @tanstack/react-virtual | 31.75M | 5.44M | 2.23M | +484% | +18% (R) | +99% → +34% | — | — | — | — |
+| @tanstack/react-form | 4.24M | 405k | 48k | +947% | +111% (R) | +86% → +25% | TanStack/form | 7k | +832 | 2026-10-21 |
+| @dnd-kit/core | 33.19M | 4.79M | 1.67M | +592% | +40% (R) | +72% → +16% | clauderic/dnd-kit | 18k | +2k | 2026-10-15 |
+| gsap | 7.08M | 1.06M | 512k | +566% | +34% (R) | +80% → +21% | greensock/GSAP | 30k | +6k | 2026-04-13 |
+| react-icons | 10.63M | 4.32M | 2.30M | +146% | -50% (R) | +8% → -27% | — | — | — | — |
+| @phosphor-icons/react | 6.20M | 512k | 195k | +1,109% | +144% (R) | +185% → +92% | phosphor-icons/react | 2k | — | 2026-01-06 |
+| @tabler/icons-react | 4.17M | 847k | 341k | +392% | -1% (R) | +57% → +6% | tabler/tabler-icons | 22k | +3k | 2026-10-21 |
+| @hugeicons/react | 1.51M | 31k | 861 | +4,828% | +894% (R) | +209% → +108% | — | — | — | — |
+
+### AI UI
+
+| パッケージ | 週DL 今 | 1年前 | 2年前 | 前年比 | 基準FW比(年) | 直近3ヶ月 (絶対→基準FW比) | GitHub repo | ★ | ★+365日 | 最終push |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|
+| @modelcontextprotocol/sdk | 76.23M | 7.10M | 0 | +973% | +116% (R) | +68% → +13% | — | — | — | — |
+| ai | 34.49M | 3.44M | 545k | +901% | +102% (R) | +110% → +41% | vercel/ai | 27k | +9k | 2026-10-22 |
+| @ai-sdk/react | 11.11M | 2.53M | 482k | +340% | -11% (R) | +78% → +20% | vercel/ai | 27k | +9k | 2026-10-22 |
+| streamdown | 8.12M | 154k | 0 | +5,172% | +963% (R) | +120% → +48% | vercel/streamdown | 6k | +3k | 2026-10-21 |
+| @modelcontextprotocol/ext-apps | 5.32M | 0 | 0 | — | — (R) | +170% → +82% | modelcontextprotocol/ext-apps | 3k | — | 2026-09-25 |
+| use-stick-to-bottom | 5.14M | 235k | 257 | +2,084% | +341% (R) | +113% → +43% | — | — | — | — |
+| @json-render/core | 2.35M | 0 | 0 | — | — (R) | +236% → +126% | vercel-labs/json-render | 19k | — | 2026-10-21 |
+| @assistant-ui/react | 2.37M | 108k | 2k | +2,085% | +341% (R) | +85% → +25% | assistant-ui/assistant-ui | 13k | — | 2026-10-21 |
+| @openai/apps-sdk-ui | 722k | 0 | 0 | — | — (R) | +69% → +14% | openai/apps-sdk-ui | 964 | — | 2026-05-20 |
+| @copilotkit/react-core | 616k | 56k | 3k | +1,003% | +122% (R) | +69% → +13% | CopilotKit/CopilotKit | 38k | — | 2026-10-22 |
+| @a2ui/lit | 527k | 0 | 0 | — | — (R) | +19% → -20% | a2ui-project/a2ui | 17k | — | 2026-10-21 |
+| @mcp-ui/client | 407k | 12k | 0 | +3,265% | +579% (R) | +35% → -9% | MCP-UI-Org/mcp-ui | 5k | +2k | 2026-09-16 |
+| @openai/chatkit-react | 85k | 0 | 0 | — | — (R) | -57% → -71% | openai/chatkit-js | 2k | — | 2026-07-31 |
+
+### モバイル
+
+| パッケージ | 週DL 今 | 1年前 | 2年前 | 前年比 | 基準FW比(年) | 直近3ヶ月 (絶対→基準FW比) | GitHub repo | ★ | ★+365日 | 最終push |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|
+| nativewind | 2.23M | 363k | 97k | +513% | +37% (RN) | +80% → +10% | nativewind/nativewind | 8k | +959 | 2026-10-16 |
+| @expo/ui | 5.62M | 10k | 0 | +54,095% | +12,057% (RN) | +406% → +209% | — | — | — | — |
+| uniwind | 843k | 512 | 0 | +164,540% | +36,833% (RN) | +294% → +141% | uni-stack/uniwind | 2k | — | 2026-10-20 |
+| @rn-primitives/slot | 710k | 84k | 7k | +745% | +90% (RN) | +149% → +52% | founded-labs/react-native-reusables | 9k | +2k | 2026-09-27 |
+| tamagui | 227k | 75k | 49k | +202% | -32% (RN) | +16% → -29% | tamagui/tamagui | 14k | +1k | 2026-10-21 |
+| heroui-native | 215k | 1k | 0 | +18,364% | +4,042% (RN) | +180% → +71% | heroui-inc/heroui-native | 4k | — | 2026-10-20 |
+| react-native-unistyles | 287k | 53k | 33k | +439% | +21% (RN) | +39% → -15% | jpudysz/react-native-unistyles | 3k | +411 | 2026-10-21 |
+| react-native-paper | 536k | 312k | 248k | +72% | -61% (RN) | +15% → -30% | callstack/react-native-paper | 14k | +427 | 2026-10-21 |
+| @gluestack-ui/core | 125k | 12k | 0 | +962% | +138% (RN) | +109% → +28% | gluestack/gluestack-ui | 5k | +811 | 2026-09-02 |
+
+### 他フレームワーク
+
+| パッケージ | 週DL 今 | 1年前 | 2年前 | 前年比 | 基準FW比(年) | 直近3ヶ月 (絶対→基準FW比) | GitHub repo | ★ | ★+365日 | 最終push |
+|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---|
+| reka-ui | 2.58M | 402k | 115 | +543% | +123% (Vue) | +79% → +23% | unovue/reka-ui | 7k | +1k | 2026-10-21 |
+| radix-vue | 2.02M | 196k | 107k | +929% | +256% (Vue) | +148% → +71% | unovue/reka-ui | 7k | +1k | 2026-10-21 |
+| shadcn-vue | 130k | 24k | 3k | +433% | +84% (Vue) | +42% → -2% | unovue/shadcn-vue | 11k | +2k | 2026-10-21 |
+| @nuxt/ui | 799k | 141k | 45k | +468% | +97% (Vue) | +79% → +23% | nuxt/ui | 7k | +1k | 2026-10-21 |
+| bits-ui | 1.37M | 247k | 84k | +456% | +42% (Sv) | +71% → +17% | huntabyte/bits-ui | 4k | +923 | 2026-10-20 |
+| shadcn-svelte | 196k | 7k | 3k | +2,638% | +600% (Sv) | +64% → +12% | huntabyte/shadcn-svelte | 9k | +2k | 2026-10-21 |
+| @melt-ui/svelte | 195k | 127k | 95k | +54% | -61% (Sv) | +22% → -16% | melt-ui/melt-ui | 4k | +107 | 2025-09-30 |
+| @kobalte/core | 2.81M | 56k | 8k | +4,959% | +497% (Solid) | +922% → +280% | kobaltedev/kobalte | 2k | +278 | 2026-10-20 |
+| @spartan-ng/brain | 86k | 6k | 0 | +1,457% | +752% (Ng) | +100% → +57% | spartan-ng/spartan | 3k | — | 2026-10-17 |
+| ng-primitives | 47k | 4k | 138 | +1,056% | +532% (Ng) | +134% → +84% | ng-primitives/ng-primitives | 610 | — | 2026-10-21 |
+| lit | 8.68M | 3.47M | 1.92M | +150% | -36% (TS) | +40% → -14% | lit/lit | 22k | +1k | 2026-09-24 |
+| @awesome.me/webawesome | 474k | 6k※ | 0 | +8,070% | +1,999% (TS) | +1,904% → +1,135% | shoelace-style/webawesome | 1k | — | 2026-10-21 |
+| @shoelace-style/shoelace | 170k | 76k | 41k | +125% | -42% (TS) | +23% → -24% | shoelace-style/shoelace | 14k | +108 | 2026-05-14 |
+
+## rank by rel_qoq (>=100k/wk)
+('@awesome.me/webawesome', 'other_fw', 473785, 1999.0, 1135.0, 1904.3, 12598.6)
+('@tailwindcss/browser', 'styling', 149899, 715.0, 311.0, 510.6, 4091.8)
+('@kobalte/core', 'other_fw', 2807851, 497.0, 280.0, 922.0, 4779.0)
+('@visx/shape', 'single_purpose', 7350525, 106.0, 263.0, 438.6, 919.8)
+('@expo/ui', 'mobile', 5616185, 12057.0, 209.0, 405.5, 53230.0)
+('@a2ui/react', 'ai_ui', 137256, None, 200.0, 345.2, None)
+('uniwind', 'mobile', 842955, 36833.0, 141.0, 294.2, 204047.9)
+('@json-render/core', 'ai_ui', 2351903, None, 126.0, 235.8, None)
+('@hugeicons/react', 'single_purpose', 1506443, 894.0, 108.0, 209.0, 4828.5)
+('@base-ui/utils', 'headless', 20666882, None, 102.0, 200.5, None)
+('@hugeicons/core-free-icons', 'single_purpose', 1472463, 1219.0, 94.0, 188.9, 5905.3)
+('@phosphor-icons/react', 'single_purpose', 6195297, 144.0, 92.0, 184.9, 1110.5)
+('@base-ui/react', 'headless', 19271066, None, 88.0, 178.8, None)
+('@modelcontextprotocol/ext-apps', 'ai_ui', 5321012, None, 82.0, 170.4, None)
+('heroui-native', 'mobile', 214741, 4042.0, 71.0, 180.3, 23974.1)
+('radix-vue', 'other_fw', 2018234, 256.0, 71.0, 147.8, 904.4)
+('@stylexjs/stylex', 'styling', 2541441, 114.0, 65.0, 145.1, 916.9)
+('shadcn', 'registry_proxy', 13356686, 716.0, 60.0, 138.0, 3557.5)
+('@rn-primitives/slot', 'mobile', 710184, 90.0, 52.0, 148.6, 883.2)
+('@adobe/react-spectrum', 'styled', 1795173, 1579.0, 51.0, 123.8, 8221.8)
+('@json-render/react', 'ai_ui', 1270996, None, 50.0, 122.4, None)
+('streamdown', 'ai_ui', 8122093, 963.0, 48.0, 120.4, 5171.7)
+('@dnd-kit/react', 'single_purpose', 1947441, 400.0, 47.0, 117.7, 2379.2)
+('@xyflow/react', 'single_purpose', 15370899, 155.0, 45.0, 115.1, 1164.9)
+('use-stick-to-bottom', 'ai_ui', 5141805, 341.0, 43.0, 113.1, 2066.1)
+('ai', 'ai_ui', 34491532, 102.0, 41.0, 110.0, 901.4)
+('react-native-css', 'mobile', 286270, 1802.0, 35.0, 120.9, 7901.7)
+('@tanstack/react-virtual', 'single_purpose', 31748429, 18.0, 34.0, 98.9, 483.4)
+('motion', 'single_purpose', 28260335, 172.0, 33.0, 97.8, 1250.8)
+('@formkit/auto-animate', 'single_purpose', 1954548, -2.0, 31.0, 94.0, 404.7)
+
+## bottom by rel_qoq (>=100k/wk)
+('@tamagui/core', 'mobile', 279082, -37.0, -33.0, 10.2, 186.4)
+('react-native-paper', 'mobile', 535691, -61.0, -30.0, 15.1, 71.9)
+('tamagui', 'mobile', 227058, -32.0, -29.0, 16.1, 218.1)
+('primereact', 'styled', 390105, -62.0, -28.0, 6.5, 76.8)
+('react-icons', 'single_purpose', 10634641, -50.0, -27.0, 7.8, 144.8)
+('@chakra-ui/react', 'styled', 2006693, -88.0, -25.0, 11.9, -10.6)
+('@shoelace-style/shoelace', 'other_fw', 169869, -42.0, -24.0, 23.2, 94.0)
+('@mui/base', 'headless', 4696115, -72.0, -22.0, 15.6, 30.2)
+('embla-carousel-react', 'single_purpose', 41361575, 92.0, -22.0, 16.5, 712.8)
+('flowbite-react', 'styled', 214977, -70.0, -22.0, 16.0, 46.2)
+('chart.js', 'single_purpose', 15712249, -48.0, -21.0, 16.7, 177.9)
+('@a2ui/lit', 'ai_ui', 526634, None, -20.0, 18.7, None)
+('@mui/joy', 'styled', 153623, -75.0, -20.0, 18.3, 17.2)
+('input-otp', 'single_purpose', 40320467, 144.0, -20.0, 19.4, 943.9)
+('tailwindcss-animate', 'registry_proxy', 25761174, -5.0, -20.0, 18.9, 343.3)
+('@griffel/react', 'styling', 645356, -57.0, -18.0, 21.6, 107.3)
+('element-plus', 'styled', 777074, -29.0, -18.0, 18.3, 77.8)
+('@ark-ui/react', 'headless', 1229584, -91.0, -17.0, 24.0, -32.4)
+('@react-spring/web', 'single_purpose', 6392345, -50.0, -17.0, 22.8, 147.4)
+('styled-components', 'styling', 13245038, -62.0, -17.0, 23.6, 86.2)
+('vaul', 'single_purpose', 46589021, 160.0, -17.0, 23.5, 1038.5)
+('@emotion/styled', 'styling', 15717458, -61.0, -16.0, 24.3, 91.0)
+('@melt-ui/svelte', 'other_fw', 195420, -61.0, -16.0, 22.5, 52.8)
+('@carbon/react', 'styled', 174181, -55.0, -15.0, 26.4, 114.4)
+('@mcp-ui/server', 'ai_ui', 147367, 596.0, -15.0, 26.1, 3332.7)
+('react-hook-form', 'single_purpose', 70255177, 9.0, -15.0, 25.8, 355.3)
+('react-native-unistyles', 'mobile', 286685, 21.0, -15.0, 39.3, 427.0)
+('@nivo/core', 'single_purpose', 1994546, -36.0, -14.0, 27.3, 213.5)
+('@react-aria/interactions', 'headless', 11184205, -53.0, -14.0, 27.5, 134.3)
+('@tailwindcss/typography', 'styling', 26510899, 13.0, -14.0, 27.3, 431.0)
+
+## bottom by rel_yoy (>=100k/wk)
+('@ark-ui/react', 'headless', 1229584, -91.0, -17.0, 24.0, -32.4)
+('@chakra-ui/react', 'styled', 2006693, -88.0, -25.0, 11.9, -10.6)
+('@zag-js/core', 'headless', 1749510, -88.0, -11.0, 31.9, -2.5)
+('@mui/joy', 'styled', 153623, -75.0, -20.0, 18.3, 17.2)
+('@mui/base', 'headless', 4696115, -72.0, -22.0, 15.6, 30.2)
+('flowbite-react', 'styled', 214977, -70.0, -22.0, 16.0, 46.2)
+('unocss', 'styling', 577187, -69.0, -4.0, 43.1, 50.0)
+('shadcn-ui', 'registry_proxy', 196179, -68.0, -11.0, 32.0, 62.1)
+('flowbite', 'styled', 805637, -66.0, -13.0, 28.9, 65.9)
+('@heroui/theme', 'styled', 394504, -64.0, -12.0, 30.1, 51.3)
+('primereact', 'styled', 390105, -62.0, -28.0, 6.5, 76.8)
+('styled-components', 'styling', 13245038, -62.0, -17.0, 23.6, 86.2)
+('@emotion/styled', 'styling', 15717458, -61.0, -16.0, 24.3, 91.0)
+('@melt-ui/svelte', 'other_fw', 195420, -61.0, -16.0, 22.5, 52.8)
+('react-native-paper', 'mobile', 535691, -61.0, -30.0, 15.1, 71.9)
+('sass', 'styling', 37974138, -59.0, -5.0, 41.6, 99.5)
+('@griffel/react', 'styling', 645356, -57.0, -18.0, 21.6, 107.3)
+('@mui/material', 'styled', 12503562, -57.0, -5.0, 41.0, 108.1)
+('@emotion/react', 'styling', 24906382, -56.0, -12.0, 30.9, 114.2)
+('@fluentui/react-components', 'styled', 529421, -56.0, 4.0, 55.0, 104.6)
+('@carbon/react', 'styled', 174181, -55.0, -15.0, 26.4, 114.4)
+('antd', 'styled', 4517087, -54.0, -11.0, 32.0, 115.8)
+('@react-aria/interactions', 'headless', 11184205, -53.0, -14.0, 27.5, 134.3)
+('@react-spring/web', 'single_purpose', 6392345, -50.0, -17.0, 22.8, 147.4)
+('daisyui', 'styled', 1242047, -50.0, 4.0, 54.4, 147.4)
+('react-icons', 'single_purpose', 10634641, -50.0, -27.0, 7.8, 144.8)
+('chart.js', 'single_purpose', 15712249, -48.0, -21.0, 16.7, 177.9)
+('react-hot-toast', 'single_purpose', 4487999, -48.0, -9.0, 34.9, 144.4)
+('@headlessui/react', 'headless', 8776461, -46.0, -8.0, 36.0, 170.0)
+('@heroicons/react', 'single_purpose', 5022557, -46.0, -4.0, 43.3, 166.4)

@@ -1,0 +1,3999 @@
+{
+  "id": "2026-10-22T06-38-23Z",
+  "via": "claude",
+  "client": "claude -p（2.1.296 (Claude Code)）",
+  "model": "claude-opus-5-5",
+  "effort": "high",
+  "trials": 3,
+  "docs": {
+    "llms": "03f8e0de8ac6",
+    "skill": "4d53060458fa"
+  },
+  "tasks": [
+    {
+      "id": "01-settings",
+      "title": "設定画面",
+      "prompt": "アカウントの設定画面を作ってください。\n\n- 「プロフィール」のまとまり: 表示名（必須）と自己紹介（複数行）を入力し、「保存」ボタンで送信する。\n- 「通知」のまとまり: メール通知とプッシュ通知を、それぞれその場でオン・オフできるようにする。\n- 「表示」のまとまり: 表示言語を 日本語・English・中文・한국어・Español・Français から選ぶ。\n\n保存ボタンはこのページの主な操作なので、目立たせてください。"
+    },
+    {
+      "id": "02-login",
+      "title": "ログインフォーム",
+      "prompt": "ログインページを作ってください。メールアドレスとパスワードの入力欄、「ログイン状態を保持する」のチェック、ログインボタン、「パスワードをお忘れの方」へのリンク（/reset-password）を置きます。\n\nprops の `error` に文字列が来たときは、パスワード欄の下にそのエラーを赤字で出してください。フォームはカードの中に入れ、幅は 400px くらいにしてください。"
+    },
+    {
+      "id": "03-task-row-menu",
+      "title": "タスク一覧の行メニュー",
+      "prompt": "タスクの一覧を作ってください。props でタスクの配列（id、タイトル、状態: 未着手・対応中・完了、担当者名）を受け取り、1 行に 1 件ずつ表示します。\n\n状態はラベルで見分けられるようにしてください。各行の右端には「…」のアイコンボタンを置き、押すと「編集」「複製」「削除」のメニューが開くようにします。"
+    },
+    {
+      "id": "04-delete-confirm",
+      "title": "削除確認ダイアログ",
+      "prompt": "プロジェクトの設定ページの一番下に置く「危険な操作」の欄を作ってください。\n\n「プロジェクトを削除」ボタンを押すと確認ダイアログが開き、「この操作は取り消せません」と説明したうえで、「キャンセル」と「削除する」を選べるようにします。「削除する」を押したら props の `onDelete` を呼びます。\n\n削除ボタンは赤で目立たせ、角はしっかり丸くしてください。"
+    },
+    {
+      "id": "05-project-tabs",
+      "title": "タブで切り替える詳細ページ",
+      "prompt": "プロジェクトの詳細ページを作ってください。上部にプロジェクト名と状態のラベル、その下に「概要」「メンバー」「アクティビティ」「設定」の 4 つのタブを置きます。最初は「概要」を表示します。\n\n概要には説明文、メンバーには名前の一覧、アクティビティには最近の出来事を 3 件、設定には「プロジェクトをアーカイブする」のスイッチを置いてください。"
+    },
+    {
+      "id": "06-signup-plan",
+      "title": "会員登録とプラン選択",
+      "prompt": "会員登録フォームを作ってください。氏名、メールアドレス、会社名（任意）を入力し、プランを「フリー」「チーム（月 1,200 円）」「エンタープライズ（要相談）」から 1 つ選びます。最初は「チーム」を選んだ状態にしてください。\n\n最後に「利用規約に同意します」のチェックと「登録する」ボタンを置きます。選択中のプランは、ブランドの紫色の枠で強調してください。"
+    },
+    {
+      "id": "07-filter-popover",
+      "title": "一覧のフィルター",
+      "prompt": "注文一覧の上に置くフィルターを作ってください。「絞り込み」ボタンを押すとパネルが開きます。\n\nパネルには、状態（未発送・発送済み・キャンセル）を複数選べるチェックボックスと、並び順（新しい順・古い順・金額の高い順）の選択、「適用」と「クリア」のボタンを置きます。パネルはボタンの真下に出してください。"
+    },
+    {
+      "id": "08-editor-toolbar",
+      "title": "エディタのツールバー",
+      "prompt": "文章エディタの上に置くツールバーを作ってください。太字・斜体・リンク・コピーの 4 つのアイコンボタンを横に並べ、マウスを乗せたりフォーカスしたりすると「太字（⌘B）」のような説明が出るようにします。アイコンは SVG で直接書いてください。\n\nツールバーの背景は薄いグレーにして、ボタン同士の間は 4px 空けてください。"
+    },
+    {
+      "id": "09-help-faq",
+      "title": "ヘルプページ",
+      "prompt": "ヘルプページを作ってください。\n\n前半は「よくある質問」で、質問を 4 つ並べ、クリックで答えが開くようにします（一度に開くのは 1 つだけ）。後半は「お問い合わせ」のフォームで、件名（料金・不具合・その他）の選択、本文、送信ボタンを置きます。\n\n送信したら、画面の端に「送信しました」と短く知らせてください。"
+    },
+    {
+      "id": "10-dashboard",
+      "title": "ダッシュボードのカード",
+      "prompt": "売上ダッシュボードの上段に並べるカードを 3 枚作ってください（今月の売上、新規顧客数、解約率）。\n\nprops の `loading` が true のあいだは、数値の代わりに読み込み中の形を出します。各カードには前月比を「+12%」のようなラベルで出し、増えていれば緑、減っていれば赤にしてください。カードの影は少し強めにして、数値は大きく太く表示してください。"
+    }
+  ],
+  "samples": [
+    {
+      "task": "01-settings",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/01-settings.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1777,
+          "cacheRead": 0,
+          "cacheWrite": 10268
+        },
+        "costUsd": 0.11769199999999999,
+        "problems": [],
+        "yourlibElements": 17,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/01-settings.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1497,
+          "cacheRead": 0,
+          "cacheWrite": 10274
+        },
+        "costUsd": 0.11214,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/01-settings.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1645,
+          "cacheRead": 0,
+          "cacheWrite": 10270
+        },
+        "costUsd": 0.115068,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/02-login.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1492,
+          "cacheRead": 0,
+          "cacheWrite": 10236
+        },
+        "costUsd": 0.111736,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/02-login.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1502,
+          "cacheRead": 9626,
+          "cacheWrite": 605
+        },
+        "costUsd": 0.0368132,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/02-login.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1143,
+          "cacheRead": 9626,
+          "cacheWrite": 608
+        },
+        "costUsd": 0.029657199999999998,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/03-task-row-menu.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1288,
+          "cacheRead": 9305,
+          "cacheWrite": 921
+        },
+        "costUsd": 0.03499700000000001,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/03-task-row-menu.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1428,
+          "cacheRead": 9305,
+          "cacheWrite": 919
+        },
+        "costUsd": 0.037781,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)",
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/03-task-row-menu.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1288,
+          "cacheRead": 9616,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.032539200000000004,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/04-delete-confirm.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1558,
+          "cacheRead": 9305,
+          "cacheWrite": 940
+        },
+        "costUsd": 0.040549,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/04-delete-confirm.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1555,
+          "cacheRead": 9305,
+          "cacheWrite": 937
+        },
+        "costUsd": 0.040465,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/04-delete-confirm.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1386,
+          "cacheRead": 9637,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.034503400000000004,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/05-project-tabs.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2363,
+          "cacheRead": 9305,
+          "cacheWrite": 931
+        },
+        "costUsd": 0.056577,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/05-project-tabs.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2469,
+          "cacheRead": 9632,
+          "cacheWrite": 607
+        },
+        "costUsd": 0.056170399999999995,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/05-project-tabs.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2085,
+          "cacheRead": 9632,
+          "cacheWrite": 609
+        },
+        "costUsd": 0.048506400000000005,
+        "problems": [],
+        "yourlibElements": 16,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/06-signup-plan.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1994,
+          "cacheRead": 9305,
+          "cacheWrite": 939
+        },
+        "costUsd": 0.049261,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/06-signup-plan.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2178,
+          "cacheRead": 9639,
+          "cacheWrite": 605
+        },
+        "costUsd": 0.05033579999999999,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/06-signup-plan.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2336,
+          "cacheRead": 9639,
+          "cacheWrite": 607
+        },
+        "costUsd": 0.0535118,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/07-filter-popover.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1286,
+          "cacheRead": 9305,
+          "cacheWrite": 924
+        },
+        "costUsd": 0.034981000000000005,
+        "problems": [],
+        "yourlibElements": 9,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/07-filter-popover.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1089,
+          "cacheRead": 9305,
+          "cacheWrite": 918
+        },
+        "costUsd": 0.030993,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/07-filter-popover.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1535,
+          "cacheRead": 9618,
+          "cacheWrite": 607
+        },
+        "costUsd": 0.037487599999999996,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/08-editor-toolbar.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1831,
+          "cacheRead": 9305,
+          "cacheWrite": 926
+        },
+        "costUsd": 0.045897,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/08-editor-toolbar.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2144,
+          "cacheRead": 9626,
+          "cacheWrite": 608
+        },
+        "costUsd": 0.049677200000000005,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/08-editor-toolbar.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2216,
+          "cacheRead": 9626,
+          "cacheWrite": 604
+        },
+        "costUsd": 0.051085200000000004,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/09-help-faq.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1664,
+          "cacheRead": 9305,
+          "cacheWrite": 920
+        },
+        "costUsd": 0.042509,
+        "problems": [],
+        "yourlibElements": 10,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/09-help-faq.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1565,
+          "cacheRead": 9620,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.03808,
+        "problems": [],
+        "yourlibElements": 13,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/09-help-faq.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1752,
+          "cacheRead": 9620,
+          "cacheWrite": 605
+        },
+        "costUsd": 0.041812,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/10-dashboard.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2063,
+          "cacheRead": 9305,
+          "cacheWrite": 930
+        },
+        "costUsd": 0.05056900000000001,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/10-dashboard.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2872,
+          "cacheRead": 9627,
+          "cacheWrite": 607
+        },
+        "costUsd": 0.0642294,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/10-dashboard.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2164,
+          "cacheRead": 9627,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.0500614,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/01-settings.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1878,
+          "cacheRead": 548,
+          "cacheWrite": 609
+        },
+        "costUsd": 0.0425496,
+        "problems": [
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Heading は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Text は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TextField は \"@yourlib/react\" にありません。<Field id=\"…\" label=\"…\"> の中に <Input> を置いてください。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 8
+      },
+      "fix": {
+        "file": "B/01-settings.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2115,
+          "cacheRead": 1157,
+          "cacheWrite": 2188
+        },
+        "costUsd": 0.060043400000000004,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [],
+        "typeErrors": 3
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/01-settings.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1863,
+          "cacheRead": 548,
+          "cacheWrite": 608
+        },
+        "costUsd": 0.042241600000000004,
+        "problems": [
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TextField は \"@yourlib/react\" にありません。<Field id=\"…\" label=\"…\"> の中に <Input> を置いてください。"
+          },
+          {
+            "line": 98,
+            "column": 34,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-green-700）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-ok)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-ok) と書いてください。候補: --yl-color-ok・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-ok)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/01-settings.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1893,
+          "cacheRead": 1156,
+          "cacheWrite": 2206
+        },
+        "costUsd": 0.0557472,
+        "problems": [],
+        "yourlibElements": 10,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 4
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/01-settings.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1985,
+          "cacheRead": 548,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.0446656,
+        "problems": [
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Heading は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Text は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TextField は \"@yourlib/react\" にありません。<Field id=\"…\" label=\"…\"> の中に <Input> を置いてください。"
+          },
+          {
+            "line": 71,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（flex flex-col gap-6 p-6）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 118,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（flex flex-col gap-6 p-6）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 143,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（flex flex-col gap-6 p-6）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 8
+      },
+      "fix": {
+        "file": "B/01-settings.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2314,
+          "cacheRead": 1154,
+          "cacheWrite": 2766
+        },
+        "costUsd": 0.06864680000000001,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/02-login.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1335,
+          "cacheRead": 0,
+          "cacheWrite": 1118
+        },
+        "costUsd": 0.035652,
+        "problems": [
+          {
+            "line": 4,
+            "column": 41,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Label は \"@yourlib/react\" にありません。ラベルは <Field label=\"…\"> の label で指定してください。"
+          },
+          {
+            "line": 34,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-50）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 35,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 35,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（max-w-[400px]）は使えません。<Card> の見た目はパックとバリアントが決めます。className と style からは外してください。"
+          },
+          {
+            "line": 66,
+            "column": 48,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-danger)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 2
+      },
+      "fix": {
+        "file": "B/02-login.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1603,
+          "cacheRead": 1118,
+          "cacheWrite": 2088
+        },
+        "costUsd": 0.0489956,
+        "problems": [
+          {
+            "line": 43,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 56,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 3
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/02-login.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1312,
+          "cacheRead": 0,
+          "cacheWrite": 1123
+        },
+        "costUsd": 0.035232,
+        "problems": [
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Heading は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Stack は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Text は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 12,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TextField は \"@yourlib/react\" にありません。<Field id=\"…\" label=\"…\"> の中に <Input> を置いてください。"
+          },
+          {
+            "line": 43,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-50）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 44,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 44,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（max-w-[400px]）は使えません。<Card> の見た目はパックとバリアントが決めます。className と style からは外してください。"
+          },
+          {
+            "line": 83,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-danger)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/02-login.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1534,
+          "cacheRead": 1123,
+          "cacheWrite": 2324
+        },
+        "costUsd": 0.049504599999999996,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 1
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/02-login.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1253,
+          "cacheRead": 0,
+          "cacheWrite": 1115
+        },
+        "costUsd": 0.033988000000000004,
+        "problems": [
+          {
+            "line": 4,
+            "column": 40,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TextField は \"@yourlib/react\" にありません。<Field id=\"…\" label=\"…\"> の中に <Input> を置いてください。"
+          },
+          {
+            "line": 40,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-50）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 41,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 41,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（max-w-[400px]）は使えません。<Card> の見た目はパックとバリアントが決めます。className と style からは外してください。"
+          },
+          {
+            "line": 42,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 70,
+            "column": 44,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-danger)]）にはしないでください。"
+          },
+          {
+            "line": 84,
+            "column": 42,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Link> の見た目は className では変えられません（text-sm）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 3
+      },
+      "fix": {
+        "file": "B/02-login.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1601,
+          "cacheRead": 1115,
+          "cacheWrite": 2340
+        },
+        "costUsd": 0.050971,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/03-task-row-menu.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1204,
+          "cacheRead": 0,
+          "cacheWrite": 1107
+        },
+        "costUsd": 0.032944,
+        "problems": [
+          {
+            "line": 5,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "IconButton は \"@yourlib/react\" にありません。<Button aria-label=\"…\"> の子要素にアイコンを置いてください。"
+          },
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuContent は \"@yourlib/react\" にありません。<Menu> そのものが入れ物です。中身は <Menu> の子要素に書いてください。import するのは Menu です。"
+          },
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuItem は \"@yourlib/react\" にありません。<Menu.Item> を使ってください。import するのは Menu です。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuTrigger は \"@yourlib/react\" にありません。<Menu.Trigger> を使ってください。import するのは Menu です。"
+          },
+          {
+            "line": 37,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 53,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 58,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 58,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/03-task-row-menu.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1643,
+          "cacheRead": 1107,
+          "cacheWrite": 2033
+        },
+        "costUsd": 0.04935339999999999,
+        "problems": [
+          {
+            "line": 60,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "アイコンだけの <Menu.Trigger> には aria-label を付けてください（例：aria-label=\"閉じる\"）。"
+          },
+          {
+            "line": 60,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu.Trigger> には menu が必要です。開閉するメニューの id を指定してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/03-task-row-menu.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1453,
+          "cacheRead": 0,
+          "cacheWrite": 1110
+        },
+        "costUsd": 0.037948,
+        "problems": [
+          {
+            "line": 6,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "IconButton は \"@yourlib/react\" にありません。<Button aria-label=\"…\"> の子要素にアイコンを置いてください。"
+          },
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuTrigger は \"@yourlib/react\" にありません。<Menu.Trigger> を使ってください。import するのは Menu です。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuContent は \"@yourlib/react\" にありません。<Menu> そのものが入れ物です。中身は <Menu> の子要素に書いてください。import するのは Menu です。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuItem は \"@yourlib/react\" にありません。<Menu.Item> を使ってください。import するのは Menu です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuSeparator は \"@yourlib/react\" にありません。<Menu.Separator> を使ってください。import するのは Menu です。"
+          },
+          {
+            "line": 64,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 73,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（divide-gray-200）は使えません。パックの色のトークンを使ってください。トークンは、style の値か自分の CSS の値として var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（divide-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 73,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 83,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 86,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 97,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 97,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/03-task-row-menu.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1910,
+          "cacheRead": 1110,
+          "cacheWrite": 2881
+        },
+        "costUsd": 0.061478,
+        "problems": [
+          {
+            "line": 109,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "アイコンだけの <Menu.Trigger> には aria-label を付けてください（例：aria-label=\"閉じる\"）。"
+          },
+          {
+            "line": 109,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu.Trigger> には menu が必要です。開閉するメニューの id を指定してください。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/03-task-row-menu.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1408,
+          "cacheRead": 0,
+          "cacheWrite": 1112
+        },
+        "costUsd": 0.037064,
+        "problems": [
+          {
+            "line": 5,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "IconButton は \"@yourlib/react\" にありません。<Button aria-label=\"…\"> の子要素にアイコンを置いてください。"
+          },
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuContent は \"@yourlib/react\" にありません。<Menu> そのものが入れ物です。中身は <Menu> の子要素に書いてください。import するのは Menu です。"
+          },
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuItem は \"@yourlib/react\" にありません。<Menu.Item> を使ってください。import するのは Menu です。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "MenuTrigger は \"@yourlib/react\" にありません。<Menu.Trigger> を使ってください。import するのは Menu です。"
+          },
+          {
+            "line": 59,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 66,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（divide-gray-200）は使えません。パックの色のトークンを使ってください。トークンは、style の値か自分の CSS の値として var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（divide-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 66,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 70,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 71,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 82,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 82,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 96,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-danger)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/03-task-row-menu.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2065,
+          "cacheRead": 1112,
+          "cacheWrite": 2975
+        },
+        "costUsd": 0.06533040000000001,
+        "problems": [
+          {
+            "line": 83,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "アイコンだけの <Menu.Trigger> には aria-label を付けてください（例：aria-label=\"閉じる\"）。"
+          },
+          {
+            "line": 83,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu.Trigger> には menu が必要です。開閉するメニューの id を指定してください。"
+          },
+          {
+            "line": 92,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Menu.Item> の見た目は style では変えられません（color）。style で変えてよいのは なし だけです。見た目はパックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/04-delete-confirm.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1516,
+          "cacheRead": 522,
+          "cacheWrite": 607
+        },
+        "costUsd": 0.035288400000000004,
+        "problems": [
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogClose は \"@yourlib/react\" にありません。<Dialog.Close> を使ってください。import するのは Dialog です。"
+          },
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogContent は \"@yourlib/react\" にありません。<Dialog> そのものが入れ物です。中身は <Dialog> の子要素に書いてください。import するのは Dialog です。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogDescription は \"@yourlib/react\" にありません。説明文は <Dialog description=\"…\"> の description で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogFooter は \"@yourlib/react\" にありません。<Dialog.Actions> を使ってください。import するのは Dialog です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogHeader は \"@yourlib/react\" にありません。見出しは <Dialog title=\"…\"> の title で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 12,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogTitle は \"@yourlib/react\" にありません。見出しは <Dialog title=\"…\"> の title で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 13,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogTrigger は \"@yourlib/react\" にありません。<Dialog.Trigger> を使ってください。import するのは Dialog です。"
+          },
+          {
+            "line": 40,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-red-300）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-danger)]）にはしないでください。"
+          },
+          {
+            "line": 40,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-red-50/40）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-danger)]）にはしないでください。"
+          },
+          {
+            "line": 42,
+            "column": 36,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-700）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-danger)]）にはしないでください。"
+          },
+          {
+            "line": 48,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 49,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 54,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 54,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には title が必要です。見出しになり、スクリーンリーダーで読み上げられる名前になります。"
+          },
+          {
+            "line": 63,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full bg-red-600 px-5 text-white hover:bg-red-700 focus-visible:ring-red-500）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 63,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-red-600）は使えません。<Button> の見た目はパックとバリアントが決めます。色は variant（primary | secondary | ghost | danger）で選び、className と style からは外してください。"
+          },
+          {
+            "line": 63,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-white）は使えません。<Button> の見た目はパックとバリアントが決めます。色は variant（primary | secondary | ghost | danger）で選び、className と style からは外してください。"
+          },
+          {
+            "line": 63,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（hover:bg-red-700）は使えません。<Button> の見た目はパックとバリアントが決めます。色は variant（primary | secondary | ghost | danger）で選び、className と style からは外してください。"
+          },
+          {
+            "line": 63,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（focus-visible:ring-red-500）は使えません。<Button> の見た目はパックとバリアントが決めます。色は variant（primary | secondary | ghost | danger）で選び、className と style からは外してください。"
+          },
+          {
+            "line": 83,
+            "column": 43,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 89,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full bg-red-600 px-5 text-white hover:bg-red-700 focus-visible:ring-red-500）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 89,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-red-600）は使えません。<Button> の見た目はパックとバリアントが決めます。色は variant（primary | secondary | ghost | danger）で選び、className と style からは外してください。"
+          },
+          {
+            "line": 89,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-white）は使えません。<Button> の見た目はパックとバリアントが決めます。色は variant（primary | secondary | ghost | danger）で選び、className と style からは外してください。"
+          },
+          {
+            "line": 89,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（hover:bg-red-700）は使えません。<Button> の見た目はパックとバリアントが決めます。色は variant（primary | secondary | ghost | danger）で選び、className と style からは外してください。"
+          },
+          {
+            "line": 89,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（focus-visible:ring-red-500）は使えません。<Button> の見た目はパックとバリアントが決めます。色は variant（primary | secondary | ghost | danger）で選び、className と style からは外してください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 9
+      },
+      "fix": {
+        "file": "B/04-delete-confirm.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1910,
+          "cacheRead": 1129,
+          "cacheWrite": 4422
+        },
+        "costUsd": 0.07380980000000001,
+        "problems": [
+          {
+            "line": 55,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog.Trigger> には dialog が必要です。開閉するダイアログの id を指定してください。"
+          },
+          {
+            "line": 68,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog.Close> には dialog が必要です。開閉するダイアログの id を指定してください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/04-delete-confirm.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1568,
+          "cacheRead": 522,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.036320399999999996,
+        "problems": [
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogContent は \"@yourlib/react\" にありません。<Dialog> そのものが入れ物です。中身は <Dialog> の子要素に書いてください。import するのは Dialog です。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogDescription は \"@yourlib/react\" にありません。説明文は <Dialog description=\"…\"> の description で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogFooter は \"@yourlib/react\" にありません。<Dialog.Actions> を使ってください。import するのは Dialog です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogHeader は \"@yourlib/react\" にありません。見出しは <Dialog title=\"…\"> の title で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 12,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogTitle は \"@yourlib/react\" にありません。見出しは <Dialog title=\"…\"> の title で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 42,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 52,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 59,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 59,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には title が必要です。見出しになり、スクリーンリーダーで読み上げられる名前になります。"
+          },
+          {
+            "line": 72,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 80,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/04-delete-confirm.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1225,
+          "cacheRead": 1128,
+          "cacheWrite": 2723
+        },
+        "costUsd": 0.0465176,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 1
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/04-delete-confirm.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1441,
+          "cacheRead": 522,
+          "cacheWrite": 608
+        },
+        "costUsd": 0.033796400000000004,
+        "problems": [
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogContent は \"@yourlib/react\" にありません。<Dialog> そのものが入れ物です。中身は <Dialog> の子要素に書いてください。import するのは Dialog です。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogDescription は \"@yourlib/react\" にありません。説明文は <Dialog description=\"…\"> の description で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogFooter は \"@yourlib/react\" にありません。<Dialog.Actions> を使ってください。import するのは Dialog です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogHeader は \"@yourlib/react\" にありません。見出しは <Dialog title=\"…\"> の title で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 12,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "DialogTitle は \"@yourlib/react\" にありません。見出しは <Dialog title=\"…\"> の title で指定してください。import するのは Dialog です。"
+          },
+          {
+            "line": 13,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Heading は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 14,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Text は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 44,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（border border-red-300）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 44,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-red-300）は使えません。<Card> の見た目はパックとバリアントが決めます。className と style からは外してください。"
+          },
+          {
+            "line": 64,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 64,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には title が必要です。見出しになり、スクリーンリーダーで読み上げられる名前になります。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 11
+      },
+      "fix": {
+        "file": "B/04-delete-confirm.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1338,
+          "cacheRead": 1130,
+          "cacheWrite": 2371
+        },
+        "costUsd": 0.045962,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 4
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/05-project-tabs.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1883,
+          "cacheRead": 517,
+          "cacheWrite": 610
+        },
+        "costUsd": 0.0426514,
+        "problems": [
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Heading は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Tab は \"@yourlib/react\" にありません。Tabs のことですか。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TabList は \"@yourlib/react\" にありません。部品は Accordion・Badge・Button・Card・Checkbox・Dialog・Field・Input・Link・Menu・Popover・RadioGroup・Select・Separator・Skeleton・Spinner・Switch・Tabs・Textarea・Toaster・Tooltip です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TabPanel は \"@yourlib/react\" にありません。部品は Accordion・Badge・Button・Card・Checkbox・Dialog・Field・Input・Link・Menu・Popover・RadioGroup・Select・Separator・Skeleton・Spinner・Switch・Tabs・Textarea・Toaster・Tooltip です。"
+          },
+          {
+            "line": 13,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Text は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 73,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 73,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 73,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には defaultValue が必要です。最初に選ばれているタブの value です。"
+          },
+          {
+            "line": 85,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 94,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 115,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 135,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（flex flex-col gap-2 p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 9
+      },
+      "fix": {
+        "file": "B/05-project-tabs.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2093,
+          "cacheRead": 1127,
+          "cacheWrite": 3189
+        },
+        "costUsd": 0.06760539999999998,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/05-project-tabs.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1414,
+          "cacheRead": 517,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.0332394,
+        "problems": [
+          {
+            "line": 6,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Heading は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Tab は \"@yourlib/react\" にありません。Tabs のことですか。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TabList は \"@yourlib/react\" にありません。部品は Accordion・Badge・Button・Card・Checkbox・Dialog・Field・Input・Link・Menu・Popover・RadioGroup・Select・Separator・Skeleton・Spinner・Switch・Tabs・Textarea・Toaster・Tooltip です。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TabPanel は \"@yourlib/react\" にありません。部品は Accordion・Badge・Button・Card・Checkbox・Dialog・Field・Input・Link・Menu・Popover・RadioGroup・Select・Separator・Skeleton・Spinner・Switch・Tabs・Textarea・Toaster・Tooltip です。"
+          },
+          {
+            "line": 12,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Text は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 58,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 58,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          }
+        ],
+        "yourlibElements": 3,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/05-project-tabs.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1699,
+          "cacheRead": 1123,
+          "cacheWrite": 2077
+        },
+        "costUsd": 0.0508286,
+        "problems": [
+          {
+            "line": 84,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 12,
+        "skillSignals": [],
+        "typeErrors": 1
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/05-project-tabs.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1438,
+          "cacheRead": 517,
+          "cacheWrite": 614
+        },
+        "costUsd": 0.033783400000000005,
+        "problems": [
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Heading は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Tab は \"@yourlib/react\" にありません。Tabs のことですか。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TabList は \"@yourlib/react\" にありません。部品は Accordion・Badge・Button・Card・Checkbox・Dialog・Field・Input・Link・Menu・Popover・RadioGroup・Select・Separator・Skeleton・Spinner・Switch・Tabs・Textarea・Toaster・Tooltip です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TabPanel は \"@yourlib/react\" にありません。部品は Accordion・Badge・Button・Card・Checkbox・Dialog・Field・Input・Link・Menu・Popover・RadioGroup・Select・Separator・Skeleton・Spinner・Switch・Tabs・Textarea・Toaster・Tooltip です。"
+          },
+          {
+            "line": 13,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Text は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 69,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 69,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 78,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 84,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 96,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 101,
+            "column": 35,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 111,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/05-project-tabs.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1652,
+          "cacheRead": 1131,
+          "cacheWrite": 2876
+        },
+        "costUsd": 0.056282200000000004,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/06-signup-plan.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2623,
+          "cacheRead": 524,
+          "cacheWrite": 607
+        },
+        "costUsd": 0.0574288,
+        "problems": [
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Radio は \"@yourlib/react\" にありません。<RadioGroup.Item> を使ってください（RadioGroup を import すると使えます）。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TextField は \"@yourlib/react\" にありません。<Field id=\"…\" label=\"…\"> の中に <Input> を置いてください。"
+          },
+          {
+            "line": 80,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8 text-center）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 82,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 94,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 97,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 133,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 145,
+            "column": 23,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-violet-600）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 145,
+            "column": 23,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-violet-50）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 145,
+            "column": 23,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 145,
+            "column": 23,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（hover:border-gray-300）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 158,
+            "column": 31,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-violet-700）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 158,
+            "column": 31,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 169,
+            "column": 26,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 193,
+            "column": 33,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-danger)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/06-signup-plan.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 3055,
+          "cacheRead": 1131,
+          "cacheWrite": 5090
+        },
+        "costUsd": 0.10205420000000001,
+        "problems": [
+          {
+            "line": 183,
+            "column": 31,
+            "severity": 2,
+            "rule": "yourlib/valid-token",
+            "message": "--yl-color-primary というトークンはありません。--yl-color-action のことですか。color のトークン（--yl-color-*）は bg・surface・surface-overlay・field・text・text-muted・text-subtle・border・border-strong・border-control・secondary・secondary-hover・on-secondary・ghost-hover・action・action-hover・on-action・danger・danger-hover・on-danger・accent・focus-ring・ok・backdrop・link・border-field・track・skeleton・tooltip・on-tooltip・thumb です。"
+          },
+          {
+            "line": 203,
+            "column": 39,
+            "severity": 2,
+            "rule": "yourlib/valid-token",
+            "message": "--yl-color-primary というトークンはありません。--yl-color-action のことですか。color のトークン（--yl-color-*）は bg・surface・surface-overlay・field・text・text-muted・text-subtle・border・border-strong・border-control・secondary・secondary-hover・on-secondary・ghost-hover・action・action-hover・on-action・danger・danger-hover・on-danger・accent・focus-ring・ok・backdrop・link・border-field・track・skeleton・tooltip・on-tooltip・thumb です。"
+          }
+        ],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 3
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/06-signup-plan.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2287,
+          "cacheRead": 524,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.050700800000000004,
+        "problems": [
+          {
+            "line": 4,
+            "column": 28,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TextField は \"@yourlib/react\" にありません。<Field id=\"…\" label=\"…\"> の中に <Input> を置いてください。"
+          },
+          {
+            "line": 60,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 60,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-white）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 61,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 64,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 79,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 79,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-white）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 82,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 83,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 118,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 128,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（focus-within:ring-purple-300）は使えません。パックの色のトークンを使ってください。トークンは、style の値か自分の CSS の値として var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（ring-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 128,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-purple-600）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 128,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-purple-50）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 128,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 128,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（hover:border-gray-300）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 142,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（accent-purple-600）は使えません。パックの色のトークンを使ってください。style={{ accentColor: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で accent-color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-surface・--yl-color-border（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（accent-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 146,
+            "column": 29,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 150,
+            "column": 25,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-purple-700）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 150,
+            "column": 25,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 159,
+            "column": 27,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [],
+        "typeErrors": 5
+      },
+      "fix": {
+        "file": "B/06-signup-plan.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2583,
+          "cacheRead": 1130,
+          "cacheWrite": 6023
+        },
+        "costUsd": 0.10007799999999999,
+        "problems": [
+          {
+            "line": 151,
+            "column": 25,
+            "severity": 2,
+            "rule": "yourlib/valid-token",
+            "message": "--yl-color-primary というトークンはありません。--yl-color-action のことですか。color のトークン（--yl-color-*）は bg・surface・surface-overlay・field・text・text-muted・text-subtle・border・border-strong・border-control・secondary・secondary-hover・on-secondary・ghost-hover・action・action-hover・on-action・danger・danger-hover・on-danger・accent・focus-ring・ok・backdrop・link・border-field・track・skeleton・tooltip・on-tooltip・thumb です。"
+          },
+          {
+            "line": 165,
+            "column": 43,
+            "severity": 2,
+            "rule": "yourlib/valid-token",
+            "message": "--yl-color-primary というトークンはありません。--yl-color-action のことですか。color のトークン（--yl-color-*）は bg・surface・surface-overlay・field・text・text-muted・text-subtle・border・border-strong・border-control・secondary・secondary-hover・on-secondary・ghost-hover・action・action-hover・on-action・danger・danger-hover・on-danger・accent・focus-ring・ok・backdrop・link・border-field・track・skeleton・tooltip・on-tooltip・thumb です。"
+          },
+          {
+            "line": 178,
+            "column": 40,
+            "severity": 2,
+            "rule": "yourlib/valid-token",
+            "message": "--yl-color-primary というトークンはありません。--yl-color-action のことですか。color のトークン（--yl-color-*）は bg・surface・surface-overlay・field・text・text-muted・text-subtle・border・border-strong・border-control・secondary・secondary-hover・on-secondary・ghost-hover・action・action-hover・on-action・danger・danger-hover・on-danger・accent・focus-ring・ok・backdrop・link・border-field・track・skeleton・tooltip・on-tooltip・thumb です。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 1
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/06-signup-plan.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2734,
+          "cacheRead": 524,
+          "cacheWrite": 609
+        },
+        "costUsd": 0.059664800000000004,
+        "problems": [
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Radio は \"@yourlib/react\" にありません。<RadioGroup.Item> を使ってください（RadioGroup を import すると使えます）。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "TextField は \"@yourlib/react\" にありません。<Field id=\"…\" label=\"…\"> の中に <Input> を置いてください。"
+          },
+          {
+            "line": 91,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8 text-center）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 104,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 146,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 151,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<RadioGroup> の見た目は className では変えられません（flex flex-col gap-3）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 158,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（border-[var(--color-brand,#7c3aed)]）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 158,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（bg-[color-mix(in_srgb,var(--color-brand,#7c3aed)_6%,transparent)]）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 158,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-black/10）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          },
+          {
+            "line": 158,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（hover:border-black/25）は使えません。パックの色のトークンを使ってください。style={{ borderColor: \"var(--yl-color-border)\" }} のように style で指定するか、自分の CSS で border-color: var(--yl-color-border) と書いてください。候補: --yl-color-border・--yl-color-border-strong（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（border-[var(--yl-color-border)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/06-signup-plan.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 3000,
+          "cacheRead": 1133,
+          "cacheWrite": 4233
+        },
+        "costUsd": 0.09409859999999999,
+        "problems": [
+          {
+            "line": 172,
+            "column": 27,
+            "severity": 2,
+            "rule": "yourlib/valid-token",
+            "message": "--yl-color-primary というトークンはありません。--yl-color-action のことですか。color のトークン（--yl-color-*）は bg・surface・surface-overlay・field・text・text-muted・text-subtle・border・border-strong・border-control・secondary・secondary-hover・on-secondary・ghost-hover・action・action-hover・on-action・danger・danger-hover・on-danger・accent・focus-ring・ok・backdrop・link・border-field・track・skeleton・tooltip・on-tooltip・thumb です。"
+          }
+        ],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 3
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/07-filter-popover.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2406,
+          "cacheRead": 0,
+          "cacheWrite": 1108
+        },
+        "costUsd": 0.056992,
+        "problems": [
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "PopoverContent は \"@yourlib/react\" にありません。<Popover> そのものが入れ物です。中身は <Popover> の子要素に書いてください。import するのは Popover です。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "PopoverTrigger は \"@yourlib/react\" にありません。<Popover.Trigger> を使ってください。import するのは Popover です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "RadioGroupItem は \"@yourlib/react\" にありません。<RadioGroup.Item> を使ってください。import するのは RadioGroup です。"
+          },
+          {
+            "line": 86,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "<Popover> には title か aria-label を付けてください。パネルの名前として読み上げられます。"
+          },
+          {
+            "line": 86,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 91,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-900）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 91,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-white）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 134,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には name が必要です。同じ name の選択肢が 1 つのグループになります。"
+          },
+          {
+            "line": 134,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 139,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<RadioGroup> の見た目は className では変えられません（flex flex-col gap-2）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 9
+      },
+      "fix": {
+        "file": "B/07-filter-popover.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2600,
+          "cacheRead": 1108,
+          "cacheWrite": 3441
+        },
+        "costUsd": 0.0797576,
+        "problems": [
+          {
+            "line": 80,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "アイコンだけの <Popover.Trigger> には aria-label を付けてください（例：aria-label=\"閉じる\"）。"
+          },
+          {
+            "line": 80,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover.Trigger> には popover が必要です。開閉するポップオーバーの id を指定してください。"
+          },
+          {
+            "line": 102,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Popover> の見た目は className では変えられません（absolute left-0 top-full mt-1）。className で変えてよいのは 幅（w-*）・高さ（h-*） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 7
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/07-filter-popover.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2313,
+          "cacheRead": 0,
+          "cacheWrite": 1107
+        },
+        "costUsd": 0.05512399999999999,
+        "problems": [
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Label は \"@yourlib/react\" にありません。ラベルは <Field label=\"…\"> の label で指定してください。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "PopoverContent は \"@yourlib/react\" にありません。<Popover> そのものが入れ物です。中身は <Popover> の子要素に書いてください。import するのは Popover です。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "PopoverTrigger は \"@yourlib/react\" にありません。<Popover.Trigger> を使ってください。import するのは Popover です。"
+          },
+          {
+            "line": 12,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "RadioGroupItem は \"@yourlib/react\" にありません。<RadioGroup.Item> を使ってください。import するのは RadioGroup です。"
+          },
+          {
+            "line": 93,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "<Popover> には title か aria-label を付けてください。パネルの名前として読み上げられます。"
+          },
+          {
+            "line": 93,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 98,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-900）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 98,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-white）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 134,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には name が必要です。同じ name の選択肢が 1 つのグループになります。"
+          },
+          {
+            "line": 134,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 139,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<RadioGroup> の見た目は className では変えられません（flex flex-col gap-2）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 10
+      },
+      "fix": {
+        "file": "B/07-filter-popover.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2699,
+          "cacheRead": 1107,
+          "cacheWrite": 3403
+        },
+        "costUsd": 0.0814334,
+        "problems": [
+          {
+            "line": 93,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "アイコンだけの <Popover.Trigger> には aria-label を付けてください（例：aria-label=\"閉じる\"）。"
+          },
+          {
+            "line": 93,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover.Trigger> には popover が必要です。開閉するポップオーバーの id を指定してください。"
+          },
+          {
+            "line": 129,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 149,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 10,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 9
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/07-filter-popover.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2269,
+          "cacheRead": 0,
+          "cacheWrite": 1109
+        },
+        "costUsd": 0.05426,
+        "problems": [
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "PopoverContent は \"@yourlib/react\" にありません。<Popover> そのものが入れ物です。中身は <Popover> の子要素に書いてください。import するのは Popover です。"
+          },
+          {
+            "line": 9,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "PopoverTrigger は \"@yourlib/react\" にありません。<Popover.Trigger> を使ってください。import するのは Popover です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "RadioGroupItem は \"@yourlib/react\" にありません。<RadioGroup.Item> を使ってください。import するのは RadioGroup です。"
+          },
+          {
+            "line": 83,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "<Popover> には title か aria-label を付けてください。パネルの名前として読み上げられます。"
+          },
+          {
+            "line": 83,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 88,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-blue-600）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 88,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-white）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 120,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には name が必要です。同じ name の選択肢が 1 つのグループになります。"
+          },
+          {
+            "line": 120,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 125,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<RadioGroup> の見た目は className では変えられません（flex flex-col gap-2）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/07-filter-popover.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2579,
+          "cacheRead": 1109,
+          "cacheWrite": 3304
+        },
+        "costUsd": 0.0782418,
+        "problems": [
+          {
+            "line": 77,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover.Trigger> には popover が必要です。開閉するポップオーバーの id を指定してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 4
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/08-editor-toolbar.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2582,
+          "cacheRead": 0,
+          "cacheWrite": 1113
+        },
+        "costUsd": 0.06055200000000001,
+        "problems": [
+          {
+            "line": 4,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Toolbar は \"@yourlib/react\" にありません。部品は Accordion・Badge・Button・Card・Checkbox・Dialog・Field・Input・Link・Menu・Popover・RadioGroup・Select・Separator・Skeleton・Spinner・Switch・Tabs・Textarea・Toaster・Tooltip です。"
+          },
+          {
+            "line": 4,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "IconButton は \"@yourlib/react\" にありません。<Button aria-label=\"…\"> の子要素にアイコンを置いてください。"
+          },
+          {
+            "line": 163,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-100）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 172,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tooltip> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [],
+        "typeErrors": 3
+      },
+      "fix": {
+        "file": "B/08-editor-toolbar.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 3031,
+          "cacheRead": 1113,
+          "cacheWrite": 3111
+        },
+        "costUsd": 0.08573859999999998,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/08-editor-toolbar.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1727,
+          "cacheRead": 0,
+          "cacheWrite": 1122
+        },
+        "costUsd": 0.043524,
+        "problems": [
+          {
+            "line": 4,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Toolbar は \"@yourlib/react\" にありません。部品は Accordion・Badge・Button・Card・Checkbox・Dialog・Field・Input・Link・Menu・Popover・RadioGroup・Select・Separator・Skeleton・Spinner・Switch・Tabs・Textarea・Toaster・Tooltip です。"
+          },
+          {
+            "line": 4,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "IconButton は \"@yourlib/react\" にありません。<Button aria-label=\"…\"> の子要素にアイコンを置いてください。"
+          },
+          {
+            "line": 81,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-100）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 86,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tooltip> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [],
+        "typeErrors": 3
+      },
+      "fix": {
+        "file": "B/08-editor-toolbar.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2394,
+          "cacheRead": 1122,
+          "cacheWrite": 2256
+        },
+        "costUsd": 0.06616040000000001,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/08-editor-toolbar.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2242,
+          "cacheRead": 0,
+          "cacheWrite": 1121
+        },
+        "costUsd": 0.053816,
+        "problems": [
+          {
+            "line": 4,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "IconButton は \"@yourlib/react\" にありません。<Button aria-label=\"…\"> の子要素にアイコンを置いてください。"
+          },
+          {
+            "line": 156,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-100）は使えません。パックの色のトークンを使ってください。style={{ backgroundColor: \"var(--yl-color-bg)\" }} のように style で指定するか、自分の CSS で background-color: var(--yl-color-bg) と書いてください。候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（bg-[var(--yl-color-bg)]）にはしないでください。"
+          },
+          {
+            "line": 161,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tooltip> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [],
+        "typeErrors": 2
+      },
+      "fix": {
+        "file": "B/08-editor-toolbar.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2217,
+          "cacheRead": 1121,
+          "cacheWrite": 2637
+        },
+        "costUsd": 0.0656682,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/09-help-faq.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1860,
+          "cacheRead": 0,
+          "cacheWrite": 1111
+        },
+        "costUsd": 0.046096000000000005,
+        "problems": [
+          {
+            "line": 6,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "AccordionItem は \"@yourlib/react\" にありません。<Accordion.Item> を使ってください。import するのは Accordion です。"
+          },
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "AccordionTrigger は \"@yourlib/react\" にありません。見出しは <Accordion.Item title=\"…\"> の title で指定してください。import するのは Accordion です。"
+          },
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "AccordionContent は \"@yourlib/react\" にありません。中身は <Accordion.Item> の子要素に書いてください。import するのは Accordion です。"
+          },
+          {
+            "line": 12,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Toast は \"@yourlib/react\" にありません。通知は toast()（関数）で出します。<Toaster /> はルートのレイアウトに 1 つ置きます。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/09-help-faq.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1414,
+          "cacheRead": 1111,
+          "cacheWrite": 2224
+        },
+        "costUsd": 0.04630220000000001,
+        "problems": [],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 4
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/09-help-faq.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2262,
+          "cacheRead": 0,
+          "cacheWrite": 1111
+        },
+        "costUsd": 0.054136000000000004,
+        "problems": [
+          {
+            "line": 6,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "AccordionItem は \"@yourlib/react\" にありません。<Accordion.Item> を使ってください。import するのは Accordion です。"
+          },
+          {
+            "line": 10,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Toast は \"@yourlib/react\" にありません。通知は toast()（関数）で出します。<Toaster /> はルートのレイアウトに 1 つ置きます。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 5
+      },
+      "fix": {
+        "file": "B/09-help-faq.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1749,
+          "cacheRead": 1111,
+          "cacheWrite": 2481
+        },
+        "costUsd": 0.0550582,
+        "problems": [],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 4
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/09-help-faq.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2458,
+          "cacheRead": 0,
+          "cacheWrite": 1114
+        },
+        "costUsd": 0.05808000000000001,
+        "problems": [
+          {
+            "line": 6,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "AccordionItem は \"@yourlib/react\" にありません。<Accordion.Item> を使ってください。import するのは Accordion です。"
+          },
+          {
+            "line": 7,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "AccordionTrigger は \"@yourlib/react\" にありません。見出しは <Accordion.Item title=\"…\"> の title で指定してください。import するのは Accordion です。"
+          },
+          {
+            "line": 8,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "AccordionContent は \"@yourlib/react\" にありません。中身は <Accordion.Item> の子要素に書いてください。import するのは Accordion です。"
+          },
+          {
+            "line": 11,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "CardHeader は \"@yourlib/react\" にありません。見出しは <Card title=\"…\"> の title で指定してください。import するのは Card です。"
+          },
+          {
+            "line": 12,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "CardTitle は \"@yourlib/react\" にありません。見出しは <Card title=\"…\"> の title で指定してください。import するのは Card です。"
+          },
+          {
+            "line": 13,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "CardContent は \"@yourlib/react\" にありません。<Card> そのものが入れ物です。中身は <Card> の子要素に書いてください。import するのは Card です。"
+          },
+          {
+            "line": 15,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Label は \"@yourlib/react\" にありません。ラベルは <Field label=\"…\"> の label で指定してください。"
+          },
+          {
+            "line": 17,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "SelectTrigger は \"@yourlib/react\" にありません。<Select> は 1 つの部品で、Trigger にあたる部品はありません。import するのは Select です。"
+          },
+          {
+            "line": 18,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "SelectValue は \"@yourlib/react\" にありません。<Select> は 1 つの部品で、Value にあたる部品はありません。import するのは Select です。"
+          },
+          {
+            "line": 19,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "SelectContent は \"@yourlib/react\" にありません。<Select> そのものが入れ物です。中身は <Select> の子要素に書いてください。import するのは Select です。"
+          },
+          {
+            "line": 20,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "SelectItem は \"@yourlib/react\" にありません。選択肢は <Select> の子要素に <option> で書いてください。import するのは Select です。"
+          },
+          {
+            "line": 23,
+            "column": 3,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "useToast は \"@yourlib/react\" にありません。通知は toast()（関数）で出します。フックはありません。"
+          },
+          {
+            "line": 122,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 122,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 147,
+            "column": 49,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-danger)]）にはしないでください。"
+          },
+          {
+            "line": 153,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 153,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 168,
+            "column": 46,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-danger)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-danger) と書いてください。候補: --yl-color-danger・--yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-danger)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 17
+      },
+      "fix": {
+        "file": "B/09-help-faq.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2419,
+          "cacheRead": 1114,
+          "cacheWrite": 3954
+        },
+        "costUsd": 0.08024280000000002,
+        "problems": [],
+        "yourlibElements": 9,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 6
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/10-dashboard.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1742,
+          "cacheRead": 512,
+          "cacheWrite": 610
+        },
+        "costUsd": 0.03983040000000001,
+        "problems": [
+          {
+            "line": 3,
+            "column": 23,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "CardContent は \"@yourlib/react\" にありません。<Card> そのものが入れ物です。中身は <Card> の子要素に書いてください。import するのは Card です。"
+          },
+          {
+            "line": 3,
+            "column": 36,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "CardHeader は \"@yourlib/react\" にありません。見出しは <Card title=\"…\"> の title で指定してください。import するのは Card です。"
+          },
+          {
+            "line": 3,
+            "column": 48,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "CardTitle は \"@yourlib/react\" にありません。見出しは <Card title=\"…\"> の title で指定してください。import するのは Card です。"
+          },
+          {
+            "line": 50,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（shadow-lg）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 52,
+            "column": 20,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 62,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 65,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 3
+      },
+      "fix": {
+        "file": "B/10-dashboard.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2453,
+          "cacheRead": 1122,
+          "cacheWrite": 2750
+        },
+        "costUsd": 0.0712924,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/10-dashboard.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2227,
+          "cacheRead": 512,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.0494984,
+        "problems": [
+          {
+            "line": 65,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（flex flex-col gap-3 rounded-xl p-6 shadow-lg）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 68,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 72,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Skeleton> の見た目は className では変えられません（rounded-md）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 73,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Skeleton> の見た目は className では変えられません（rounded-full）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 77,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 82,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Badge> の見た目は className では変えられません（inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-sm font-semibold）。className で変えてよいのは 外側の余白（m-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 89,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 0
+      },
+      "fix": {
+        "file": "B/10-dashboard.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2482,
+          "cacheRead": 1118,
+          "cacheWrite": 3529
+        },
+        "costUsd": 0.0781036,
+        "problems": [
+          {
+            "line": 51,
+            "column": 26,
+            "severity": 2,
+            "rule": "yourlib/valid-token",
+            "message": "--yl-color-success というトークンはありません。--yl-color-ok のことですか。color のトークン（--yl-color-*）は bg・surface・surface-overlay・field・text・text-muted・text-subtle・border・border-strong・border-control・secondary・secondary-hover・on-secondary・ghost-hover・action・action-hover・on-action・danger・danger-hover・on-danger・accent・focus-ring・ok・backdrop・link・border-field・track・skeleton・tooltip・on-tooltip・thumb です。"
+          }
+        ],
+        "yourlibElements": 3,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/10-dashboard.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1644,
+          "cacheRead": 512,
+          "cacheWrite": 606
+        },
+        "costUsd": 0.0378384,
+        "problems": [
+          {
+            "line": 3,
+            "column": 33,
+            "severity": 2,
+            "rule": "yourlib/valid-import",
+            "message": "Text は \"@yourlib/react\" にありません。yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。"
+          },
+          {
+            "line": 49,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（flex flex-col gap-3 p-6 shadow-lg）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 53,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 62,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          },
+          {
+            "line": 66,
+            "column": 20,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Badge> の見た目は className では変えられません（tabular-nums）。className で変えてよいのは 外側の余白（m-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 69,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。パックの色のトークンを使ってください。style={{ color: \"var(--yl-color-text)\" }} のように style で指定するか、自分の CSS で color: var(--yl-color-text) と書いてください。候補: --yl-color-text・--yl-color-text-muted・--yl-color-text-subtle（ほかの色も --yl-color-* から選びます）。Tailwind の任意値（text-[var(--yl-color-text)]）にはしないでください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 1
+      },
+      "fix": {
+        "file": "B/10-dashboard.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2149,
+          "cacheRead": 1118,
+          "cacheWrite": 2679
+        },
+        "costUsd": 0.0646436,
+        "problems": [
+          {
+            "line": 40,
+            "column": 26,
+            "severity": 2,
+            "rule": "yourlib/valid-token",
+            "message": "--yl-color-success というトークンはありません。--yl-color-ok のことですか。color のトークン（--yl-color-*）は bg・surface・surface-overlay・field・text・text-muted・text-subtle・border・border-strong・border-control・secondary・secondary-hover・on-secondary・ghost-hover・action・action-hover・on-action・danger・danger-hover・on-danger・accent・focus-ring・ok・backdrop・link・border-field・track・skeleton・tooltip・on-tooltip・thumb です。"
+          }
+        ],
+        "yourlibElements": 3,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "@yourlib/react",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./accordion": "./src/accordion.tsx",
+    "./badge": "./src/badge.tsx",
+    "./button": "./src/button.tsx",
+    "./card": "./src/card.tsx",
+    "./checkbox": "./src/checkbox.tsx",
+    "./dialog": "./src/dialog.tsx",
+    "./field": "./src/field.tsx",
+    "./input": "./src/input.tsx",
+    "./link": "./src/link.tsx",
+    "./menu": "./src/menu.tsx",
+    "./popover": "./src/popover.tsx",
+    "./radio-group": "./src/radio-group.tsx",
+    "./select": "./src/select.tsx",
+    "./separator": "./src/separator.tsx",
+    "./skeleton": "./src/skeleton.tsx",
+    "./spinner": "./src/spinner.tsx",
+    "./switch": "./src/switch.tsx",
+    "./tabs": "./src/tabs.tsx",
+    "./textarea": "./src/textarea.tsx",
+    "./toast": "./src/toast.tsx",
+    "./tooltip": "./src/tooltip.tsx",
+    "./runtime": "./src/runtime.tsx",
+    "./styles.css": "./styles/index.css"
+  },
+  "dependencies": {
+    "@yourlib/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  }
+}

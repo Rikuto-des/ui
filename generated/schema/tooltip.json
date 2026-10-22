@@ -1,0 +1,147 @@
+{
+  "name": "tooltip",
+  "tier": 2,
+  "summary": "A short description shown on hover and keyboard focus: popover=\"hint\" opened through interestfor.",
+  "use": [
+    "Naming or describing an icon button",
+    "A keyboard shortcut hint"
+  ],
+  "avoid": [
+    {
+      "case": "Anything interactive or essential",
+      "instead": "popover"
+    },
+    {
+      "case": "Long explanations",
+      "instead": "popover"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "popover=hint",
+      "anchor-positioning"
+    ],
+    "enhances": [
+      {
+        "feature": "interestfor",
+        "fallback": "@yourlib/core tooltip behavior (loaded by <YourlibRuntime />)"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Tooltip",
+      "slot": "tooltip",
+      "element": "div",
+      "description": "The tooltip (role=tooltip, popover=hint).",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. The trigger references it."
+          },
+          "side": {
+            "default": "top",
+            "type": "string",
+            "enum": [
+              "top",
+              "bottom",
+              "start",
+              "end"
+            ]
+          },
+          "align": {
+            "default": "center",
+            "type": "string",
+            "enum": [
+              "start",
+              "center",
+              "end"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "Tooltip.Trigger",
+      "slot": "tooltip-trigger",
+      "element": "button",
+      "description": "A Button that shows the tooltip on hover and focus and is described by it.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "tooltip": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the tooltip.",
+            "x-idref": "tooltip"
+          },
+          "variant": {
+            "default": "secondary",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "description": "Control height. Density comes from the pack, not from this prop.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "tooltip"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "open"
+  ],
+  "a11y": {
+    "keyboard": {
+      "Focus": "shows the tooltip",
+      "Escape": "hides it"
+    },
+    "rules": [
+      "The trigger still needs its own name (aria-label for icon buttons); the tooltip only describes it.",
+      "Never put links or buttons in a tooltip."
+    ]
+  },
+  "tokens": [
+    "color.text",
+    "color.bg",
+    "radius.control",
+    "motion.fast"
+  ],
+  "examples": [
+    {
+      "title": "Icon button",
+      "code": "<Tooltip.Trigger tooltip=\"tip-copy\" aria-label=\"コピー\" variant=\"ghost\">⧉</Tooltip.Trigger>\n<Tooltip id=\"tip-copy\">クリップボードにコピー（⌘C）</Tooltip>"
+    }
+  ]
+}

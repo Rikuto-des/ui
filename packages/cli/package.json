@@ -1,0 +1,11 @@
+{
+  "name": "@yourlib/cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": { "yourlib": "./src/bin.ts" },
+  "dependencies": {
+    "@yourlib/contract": "workspace:*",
+    "@yourlib/tokens": "workspace:*"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "field",
+  "version": "0.1.0",
+  "contract": "schema/field.json",
+  "files": [
+    {
+      "path": "field.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add field`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Field page of the design system.\nexport { Field, type FieldProps } from \"@yourlib/react/field\";\n",
+      "hash": "sha256-0CZc1FwjVpLAy7MWd73mvcIjKzsm41dHk8+4T1XE3c8="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}

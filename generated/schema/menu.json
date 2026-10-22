@@ -1,0 +1,212 @@
+{
+  "name": "menu",
+  "tier": 3,
+  "summary": "A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.",
+  "use": [
+    "Secondary actions on an item (編集・複製・削除)"
+  ],
+  "avoid": [
+    {
+      "case": "Choosing a value",
+      "instead": "select"
+    },
+    {
+      "case": "Navigation",
+      "instead": "link"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "popover",
+      "anchor-positioning"
+    ],
+    "enhances": [
+      {
+        "feature": "@yourlib/core menu behavior",
+        "fallback": "items are reachable with Tab"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Menu",
+      "slot": "menu",
+      "element": "div",
+      "description": "The menu popover (role=menu).",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. The trigger references it."
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required accessible name of the menu."
+          },
+          "side": {
+            "default": "bottom",
+            "type": "string",
+            "enum": [
+              "top",
+              "bottom",
+              "start",
+              "end"
+            ]
+          },
+          "align": {
+            "default": "start",
+            "type": "string",
+            "enum": [
+              "start",
+              "center",
+              "end"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "label"
+        ]
+      },
+      "overrides": [
+        "width"
+      ]
+    },
+    {
+      "jsx": "Menu.Trigger",
+      "slot": "menu-trigger",
+      "element": "button",
+      "description": "A Button that toggles the menu (aria-haspopup=menu).",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "menu": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the menu.",
+            "x-idref": "menu"
+          },
+          "variant": {
+            "default": "secondary",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "description": "Control height. Density comes from the pack, not from this prop.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "menu"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
+      "jsx": "Menu.Item",
+      "slot": "menu-item",
+      "element": "button",
+      "description": "An action (role=menuitem). Activating it closes the menu.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "variant": {
+            "default": "default",
+            "type": "string",
+            "enum": [
+              "default",
+              "danger"
+            ]
+          }
+        }
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "Menu.Link",
+      "slot": "menu-link",
+      "element": "a",
+      "description": "A navigation item (role=menuitem).",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "href"
+        ]
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "Menu.Separator",
+      "slot": "menu-separator",
+      "element": "div",
+      "description": "A rule between groups of items.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {}
+      },
+      "overrides": []
+    }
+  ],
+  "states": [
+    "open"
+  ],
+  "a11y": {
+    "apg": "menu button",
+    "keyboard": {
+      "↑ / ↓": "move between items",
+      "Home / End": "first / last item",
+      "Letters": "jump to the next item starting with them",
+      "Escape": "close and return focus to the trigger",
+      "Tab": "close"
+    },
+    "rules": [
+      "Items are verbs (編集, 複製, 削除).",
+      "Put destructive items last, after a Menu.Separator."
+    ]
+  },
+  "tokens": [
+    "color.surface-overlay",
+    "shadow.overlay",
+    "radius.overlay",
+    "color.ghost-hover",
+    "color.danger"
+  ],
+  "examples": [
+    {
+      "title": "Row actions",
+      "code": "<Menu.Trigger menu=\"row-actions\" variant=\"ghost\" aria-label=\"操作\">…</Menu.Trigger>\n<Menu id=\"row-actions\" label=\"タスクの操作\">\n  <Menu.Item>編集</Menu.Item>\n  <Menu.Item>複製</Menu.Item>\n  <Menu.Separator />\n  <Menu.Item variant=\"danger\">削除</Menu.Item>\n</Menu>"
+    }
+  ]
+}

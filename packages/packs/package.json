@@ -1,0 +1,12 @@
+{
+  "name": "@yourlib/packs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": ["*.css"],
+  "exports": {
+    "./graphite.css": "./generated/graphite.css",
+    "./lucent.css": "./generated/lucent.css",
+    "./all.css": "./generated/all.css"
+  }
+}

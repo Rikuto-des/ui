@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デザイン提案 v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap">
+<style>
+/* This page has no <script>. Direction and typeface switching use :has() on
+   radio inputs; dialogs and popovers are native (invoker commands, popover,
+   anchor positioning). */
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+
+/* Typeface candidates ------------------------------------------------------ */
+:root {
+  --f-noto: "Noto Sans JP", "Hiragino Sans", system-ui, sans-serif;
+  --f-zen: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
+  --f-plex: "IBM Plex Sans JP", "Hiragino Sans", system-ui, sans-serif;
+  --f-hiragino: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", system-ui, sans-serif;
+  --f-mono: ui-monospace, "SF Mono", "Menlo", monospace;
+  --font-ui: var(--f-noto);
+}
+:root:has(#font-zen:checked) { --font-ui: var(--f-zen); }
+:root:has(#font-plex:checked) { --font-ui: var(--f-plex); }
+:root:has(#font-hiragino:checked) { --font-ui: var(--f-hiragino); }
+
+/* Proposal bar (review tool, not part of the design) ----------------------- */
+.review {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 24px;
+  padding: 10px 24px;
+  background: #1c1c1f;
+  color: #e9e9ec;
+  font: 13px/1.4 var(--f-hiragino);
+}
+.review b { font-weight: 600; color: #fff; }
+.review fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 0; padding: 0; border: 0; }
+.review legend { float: left; margin-right: 8px; color: #9c9ca3; }
+.review input { position: absolute; opacity: 0; pointer-events: none; }
+.review label {
+  padding: 5px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #c9c9cf;
+}
+.review label:hover { background: rgb(255 255 255 / 0.08); }
+.review input:checked + label { background: #fff; color: #1c1c1f; }
+.review input:focus-visible + label { outline: 2px solid #7aa2ff; outline-offset: 2px; }
+.review .note { margin-left: auto; color: #9c9ca3; }
+
+/* Directions (design tokens) ---------------------------------------------- */
+.site, .t-graphite {
+  --canvas: #f3f3f1;
+  --surface: #ffffff;
+  --surface-overlay: #ffffff;
+  --ink: #1c1c1f;
+  --ink-2: #66666c;
+  --ink-3: #8e8e94;
+  --line: rgb(28 28 31 / 0.08);
+  --line-strong: rgb(28 28 31 / 0.16);
+  --accent: #2b59ff;
+  --danger: #c93b32;
+  --ok: #2f8a5b;
+  --primary-bg: #1c1c1f;
+  --primary-hover: #34343a;
+  --primary-fg: #fafaf9;
+  --primary-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 1px 2px rgb(0 0 0 / 0.2);
+  --secondary-bg: #ffffff;
+  --secondary-hover: #f6f6f4;
+  --secondary-line: rgb(28 28 31 / 0.14);
+  --secondary-shadow: 0 1px 0 rgb(28 28 31 / 0.04);
+  --ghost-hover: rgb(28 28 31 / 0.05);
+  --danger-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 1px 2px rgb(150 30 20 / 0.25);
+  --field-bg: #ffffff;
+  --code-bg: #1c1c1f;
+  --code-fg: #e7e7ea;
+  --code-dim: #8e8e96;
+  --h: 34px; --px: 14px; --h-sm: 28px; --px-sm: 10px;
+  --fs-ctl: 13.5px; --fw-ctl: 500;
+  --r-ctl: 8px; --r-panel: 12px; --r-pop: 10px; --r-dialog: 14px; --r-cb: 4px;
+  --shadow-panel: 0 0 0 1px rgb(28 28 31 / 0.06), 0 1px 2px rgb(28 28 31 / 0.04);
+  --shadow-pop: 0 0 0 1px rgb(28 28 31 / 0.05), 0 12px 28px -10px rgb(28 28 31 / 0.22), 0 2px 6px -2px rgb(28 28 31 / 0.08);
+  --shadow-dialog: 0 0 0 1px rgb(28 28 31 / 0.05), 0 24px 48px -16px rgb(28 28 31 / 0.32);
+  --backdrop: rgb(28 28 31 / 0.32);
+  --backdrop-blur: 0px;
+  --glass: 0px;
+  --hero-field: none;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur: 140ms;
+  --enter-scale: 0.98;
+}
+.t-lucent, :root:has(#dir-lucent:checked) .site {
+  --canvas: #eceef2;
+  --surface: rgb(255 255 255 / 0.7);
+  --surface-overlay: rgb(255 255 255 / 0.84);
+  --ink: #17181b;
+  --ink-2: #5f6168;
+  --ink-3: #8c8e95;
+  --line: rgb(23 24 27 / 0.07);
+  --line-strong: rgb(23 24 27 / 0.15);
+  --accent: #0e9a95;
+  --danger: #e5484d;
+  --ok: #30a46c;
+  --primary-bg: #0e9a95;
+  --primary-hover: #0b8984;
+  --primary-fg: #ffffff;
+  --primary-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 4px 14px -4px rgb(14 154 149 / 0.55);
+  --secondary-bg: rgb(255 255 255 / 0.62);
+  --secondary-hover: rgb(255 255 255 / 0.9);
+  --secondary-line: rgb(255 255 255 / 0.85);
+  --secondary-shadow: 0 1px 2px rgb(23 24 27 / 0.08), inset 0 0 0 0.5px rgb(23 24 27 / 0.08);
+  --ghost-hover: rgb(23 24 27 / 0.05);
+  --danger-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), 0 4px 14px -4px rgb(229 72 77 / 0.5);
+  --field-bg: rgb(255 255 255 / 0.75);
+  --code-bg: rgb(23 24 27 / 0.86);
+  --code-fg: #eef0f3;
+  --code-dim: #9a9ca3;
+  --h: 36px; --px: 16px; --h-sm: 30px; --px-sm: 12px;
+  --fs-ctl: 14px; --fw-ctl: 600;
+  --r-ctl: 12px; --r-panel: 22px; --r-pop: 18px; --r-dialog: 28px; --r-cb: 5px;
+  --shadow-panel: inset 0 1px 0 rgb(255 255 255 / 0.8), 0 0 0 0.5px rgb(23 24 27 / 0.08), 0 10px 30px -12px rgb(23 24 27 / 0.18);
+  --shadow-pop: inset 0 1px 0 rgb(255 255 255 / 0.9), 0 0 0 0.5px rgb(23 24 27 / 0.1), 0 18px 40px -12px rgb(23 24 27 / 0.28);
+  --shadow-dialog: inset 0 1px 0 rgb(255 255 255 / 0.9), 0 0 0 0.5px rgb(23 24 27 / 0.1), 0 30px 70px -20px rgb(23 24 27 / 0.4);
+  --backdrop: rgb(23 24 27 / 0.16);
+  --backdrop-blur: 8px;
+  --glass: 28px;
+  --hero-field:
+    radial-gradient(40% 50% at 20% 30%, #a6e6dd 0%, transparent 70%),
+    radial-gradient(35% 45% at 80% 15%, #bcd5ff 0%, transparent 70%),
+    radial-gradient(45% 55% at 75% 95%, #ffdcca 0%, transparent 70%);
+  --ease: cubic-bezier(0.34, 1.3, 0.64, 1);
+  --dur: 260ms;
+  --enter-scale: 0.95;
+}
+@supports (corner-shape: squircle) {
+  .t-lucent, :root:has(#dir-lucent:checked) .site { --r-ctl: 16px; --r-panel: 30px; --r-pop: 24px; --r-dialog: 36px; }
+  .t-lucent :is(.btn, .panel, .popover, .dialog),
+  :root:has(#dir-lucent:checked) .site :is(.btn, .panel, .popover, .dialog) { corner-shape: squircle; }
+}
+
+/* Site --------------------------------------------------------------------- */
+.site {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  line-break: strict;
+  text-autospace: normal;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 32px; }
+.nav { display: flex; align-items: center; gap: 28px; padding-block: 20px; font-size: 14px; }
+.wordmark { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+.wordmark small { margin-left: 6px; font-weight: 400; font-size: 12px; color: var(--ink-3); }
+.nav-links { display: flex; gap: 22px; color: var(--ink-2); }
+.nav-links a { color: inherit; text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+.nav .btn { margin-left: auto; }
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 56px;
+  align-items: center;
+  padding-block: 72px 96px;
+}
+.hero h1 {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: 0;
+  font-feature-settings: "palt";
+  word-break: auto-phrase;
+}
+.lede { margin: 24px 0 0; max-width: 32em; font-size: 16.5px; color: var(--ink-2); line-height: 1.9; text-wrap: pretty; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.install {
+  margin-top: 20px;
+  display: inline-flex; align-items: center; gap: 10px;
+  font: 13px/1 var(--f-mono);
+  color: var(--ink-2);
+}
+.install::before { content: "$"; color: var(--ink-3); }
+
+.demo { position: relative; }
+.demo::before {
+  content: "";
+  position: absolute;
+  inset: -48px -32px;
+  z-index: 0;
+  background: var(--hero-field);
+  filter: blur(24px);
+  pointer-events: none;
+}
+.demo > * { position: relative; z-index: 1; }
+.demo-caption { margin: 14px 4px 0; font-size: 12.5px; color: var(--ink-3); }
+
+/* Components ----------------------------------------------------------------- */
+.panel {
+  background: var(--surface);
+  border-radius: var(--r-panel);
+  box-shadow: var(--shadow-panel);
+  -webkit-backdrop-filter: blur(var(--glass)) saturate(1.8);
+  backdrop-filter: blur(var(--glass)) saturate(1.8);
+}
+.btn {
+  appearance: none;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: var(--h);
+  padding: 0 var(--px);
+  border-radius: var(--r-ctl);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: var(--fs-ctl);
+  font-weight: var(--fw-ctl);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 120ms, box-shadow 120ms, scale 120ms var(--ease);
+}
+.btn:active { scale: 0.98; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn-primary { background: var(--primary-bg); color: var(--primary-fg); box-shadow: var(--primary-shadow); }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-secondary { background: var(--secondary-bg); border-color: var(--secondary-line); box-shadow: var(--secondary-shadow); -webkit-backdrop-filter: blur(var(--glass)); backdrop-filter: blur(var(--glass)); }
+.btn-secondary:hover { background: var(--secondary-hover); }
+.btn-ghost { background: transparent; }
+.btn-ghost:hover { background: var(--ghost-hover); }
+.btn-danger { background: var(--danger); color: #fff; box-shadow: var(--danger-shadow); }
+.btn-sm { height: var(--h-sm); padding: 0 var(--px-sm); font-size: calc(var(--fs-ctl) - 1px); }
+
+.cb {
+  width: 16px; height: 16px; flex: none;
+  border-radius: var(--r-cb);
+  border: 1px solid var(--line-strong);
+  background: var(--field-bg);
+  display: inline-grid; place-items: center;
+}
+.cb.on { background: var(--accent); border-color: var(--accent); }
+.cb.on::after { content: ""; width: 8px; height: 4px; border: 1.75px solid #fff; border-top: 0; border-right: 0; rotate: -45deg; translate: 0 -1px; }
+
+/* Native popover, positioned with CSS anchor positioning */
+.popover {
+  inset: auto;
+  margin: 0;
+  position-area: block-end span-inline-end;
+  position-try-fallbacks: flip-block, flip-inline;
+  margin-block-start: 8px;
+  width: 240px;
+  padding: 14px;
+  border: 0;
+  border-radius: var(--r-pop);
+  background: var(--surface-overlay);
+  color: var(--ink);
+  box-shadow: var(--shadow-pop);
+  -webkit-backdrop-filter: blur(var(--glass)) saturate(1.8);
+  backdrop-filter: blur(var(--glass)) saturate(1.8);
+  font-size: 13.5px;
+  line-height: 1.6;
+  opacity: 0;
+  scale: var(--enter-scale);
+  transition: opacity var(--dur) var(--ease), scale var(--dur) var(--ease), display var(--dur) allow-discrete, overlay var(--dur) allow-discrete;
+}
+.popover:popover-open { opacity: 1; scale: 1; display: grid; gap: 10px; }
+@starting-style { .popover:popover-open { opacity: 0; scale: var(--enter-scale); } }
+.popover-title { font-size: 12.5px; color: var(--ink-2); font-weight: 500; }
+.opt { display: flex; align-items: center; gap: 10px; }
+.opt .count { margin-left: auto; color: var(--ink-3); font-variant-numeric: tabular-nums; font-size: 12px; }
+
+/* Native modal dialog */
+.dialog {
+  width: min(100% - 32px, 400px);
+  padding: 24px;
+  border: 0;
+  border-radius: var(--r-dialog);
+  background: var(--surface-overlay);
+  color: var(--ink);
+  box-shadow: var(--shadow-dialog);
+  -webkit-backdrop-filter: blur(var(--glass)) saturate(1.8);
+  backdrop-filter: blur(var(--glass)) saturate(1.8);
+  opacity: 0;
+  scale: var(--enter-scale);
+  transition: opacity var(--dur) var(--ease), scale var(--dur) var(--ease), display var(--dur) allow-discrete, overlay var(--dur) allow-discrete;
+}
+.dialog[open] { opacity: 1; scale: 1; }
+@starting-style { .dialog[open] { opacity: 0; scale: var(--enter-scale); } }
+.dialog::backdrop {
+  background: var(--backdrop);
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  backdrop-filter: blur(var(--backdrop-blur));
+  opacity: 0;
+  transition: opacity var(--dur), display var(--dur) allow-discrete, overlay var(--dur) allow-discrete;
+}
+.dialog[open]::backdrop { opacity: 1; }
+@starting-style { .dialog[open]::backdrop { opacity: 0; } }
+.dialog h3 { margin: 0 0 8px; font-size: 17px; font-weight: 700; line-height: 1.5; font-feature-settings: "palt"; word-break: auto-phrase; text-wrap: balance; }
+.dialog p { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.8; }
+.dialog .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px; }
+:root:has(.dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
+@media (prefers-reduced-motion: reduce) {
+  .popover, .dialog { scale: 1 !important; }
+}
+
+/* Mini app inside the hero */
+.app-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 20px 22px 16px; }
+.app-title { margin: 0; font-size: 18px; font-weight: 700; font-feature-settings: "palt"; line-height: 1.4; }
+.app-meta { margin: 2px 0 0; font-size: 12.5px; color: var(--ink-2); }
+.toolbar { display: flex; gap: 8px; }
+.rows { list-style: none; margin: 0; padding: 0 0 6px; }
+.row {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 48px 78px;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 22px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.row .title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row.done .title { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--line-strong); }
+.due { color: var(--ink-2); font-variant-numeric: tabular-nums; font-size: 13px; }
+.status { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--ink-2); white-space: nowrap; }
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--s, var(--line-strong)); }
+.status[data-s="doing"] { --s: var(--accent); }
+.status[data-s="late"] { --s: var(--danger); color: var(--danger); }
+.status[data-s="done"] { --s: var(--ok); }
+
+/* Proof sections */
+.proofs { padding-block: 24px 120px; display: grid; gap: 112px; }
+.proof { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 56px; align-items: start; }
+.proof h2 {
+  margin: 0 0 14px;
+  font-size: 26px;
+  line-height: 1.4;
+  font-weight: 700;
+  font-feature-settings: "palt";
+  word-break: auto-phrase;
+}
+.proof p { margin: 0; color: var(--ink-2); max-width: 30em; text-wrap: pretty; }
+.proof .fine { margin-top: 14px; font-size: 12.5px; color: var(--ink-3); }
+
+.bars { padding: 28px; display: grid; gap: 22px; }
+.bar { display: grid; gap: 8px; font-size: 13.5px; }
+.bar-head { display: flex; justify-content: space-between; gap: 12px; }
+.bar-head b { font-weight: 600; }
+.bar-head span { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.bar-track { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: inherit; background: var(--ink-3); width: var(--w); }
+.bar.ours .bar-fill { background: var(--accent); min-width: 6px; }
+.bar.ours .bar-head span { color: var(--ink); font-weight: 600; }
+
+.packs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pack-tile { padding: 20px; border-radius: var(--r-panel); background: var(--canvas); font-family: var(--font-ui); color: var(--ink); display: grid; gap: 14px; }
+.t-lucent.pack-tile { background: radial-gradient(60% 70% at 30% 20%, #bfeee6, transparent 70%), radial-gradient(60% 70% at 90% 90%, #ffe1d2, transparent 70%), var(--canvas); }
+.pack-tile .panel { padding: 18px; display: grid; gap: 12px; }
+.pack-tile h4 { margin: 0; font-size: 15px; font-weight: 700; font-feature-settings: "palt"; }
+.pack-tile p { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.7; }
+.pack-tile .line { display: flex; gap: 8px; flex-wrap: wrap; }
+.pack-name { font-size: 12px; color: var(--ink-2); }
+
+.code {
+  margin: 0;
+  padding: 20px 22px;
+  border-radius: var(--r-panel);
+  background: var(--code-bg);
+  color: var(--code-fg);
+  font: 13px/1.75 var(--f-mono);
+  overflow-x: auto;
+  white-space: pre;
+  -webkit-backdrop-filter: blur(var(--glass));
+  backdrop-filter: blur(var(--glass));
+}
+.code .dim { color: var(--code-dim); }
+.code .hl { color: #ffd38a; }
+.code .bad { color: #ff9a92; text-decoration: underline wavy #ff6b61; text-underline-offset: 4px; }
+.code .good { color: #8fe0b5; }
+.lint {
+  margin-top: 12px;
+  padding: 16px 18px;
+  border-radius: var(--r-panel);
+  background: var(--surface);
+  box-shadow: var(--shadow-panel);
+  font-size: 13.5px;
+  line-height: 1.75;
+  display: grid;
+  gap: 6px;
+}
+.lint-rule { font: 12px/1 var(--f-mono); color: var(--danger); }
+.lint .fix { color: var(--ink-2); }
+.lint .fix code { font: 12.5px var(--f-mono); color: var(--ink); background: var(--line); padding: 1px 6px; border-radius: 4px; }
+
+.type-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.type-sample { padding: 22px 24px; display: grid; gap: 10px; align-content: start; }
+.type-label { font-size: 12px; color: var(--ink-3); }
+.type-sample h4 { margin: 0; font-size: 21px; font-weight: 700; max-width: 11.5em; }
+.type-sample p { margin: 0; font-size: 14.5px; max-width: 22em; color: var(--ink); }
+.type-plain h4 { line-height: 1.3; font-feature-settings: normal; word-break: normal; }
+.type-plain p { line-height: 1.5; letter-spacing: 0; text-autospace: no-autospace; line-break: auto; }
+.type-ours h4 { line-height: 1.45; font-feature-settings: "palt"; word-break: auto-phrase; text-wrap: balance; }
+.type-ours p { line-height: 1.9; letter-spacing: 0.02em; text-autospace: normal; line-break: strict; text-wrap: pretty; }
+
+.foot { padding-block: 40px 64px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px; }
+
+@media (max-width: 900px) {
+  .hero, .proof { grid-template-columns: 1fr; gap: 32px; }
+  .hero { padding-block: 40px 64px; }
+  .packs, .type-compare { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .review .note { display: none; }
+}
+@media (max-width: 520px) {
+  .wrap { padding-inline: 16px; }
+  .row { grid-template-columns: 16px minmax(0, 1fr) 78px; }
+  .row .due { display: none; }
+}
+</style>
+</head>
+<body>
+
+<form class="review" aria-label="提案の切り替え">
+  <b>提案 v2</b>
+  <fieldset>
+    <legend>方向</legend>
+    <input type="radio" name="dir" id="dir-graphite" checked><label for="dir-graphite">A　Graphite</label>
+    <input type="radio" name="dir" id="dir-lucent"><label for="dir-lucent">C　Lucent</label>
+  </fieldset>
+  <fieldset>
+    <legend>書体</legend>
+    <input type="radio" name="font" id="font-noto" checked><label for="font-noto">Noto Sans JP</label>
+    <input type="radio" name="font" id="font-zen"><label for="font-zen">禅角ゴシック</label>
+    <input type="radio" name="font" id="font-plex"><label for="font-plex">IBM Plex Sans JP</label>
+    <input type="radio" name="font" id="font-hiragino"><label for="font-hiragino">ヒラギノ角ゴ</label>
+  </fieldset>
+  <span class="note">このページにスクリプトはありません</span>
+</form>
+
+<div class="site">
+  <div class="wrap">
+    <header class="nav">
+      <span class="wordmark">yourlib<small>仮称</small></span>
+      <nav class="nav-links" aria-label="サイト">
+        <a href="#proof-size">特長</a>
+        <a href="#proof-packs">パック</a>
+        <a href="#proof-type">日本語</a>
+      </nav>
+      <a class="btn btn-secondary btn-sm" href="#">GitHub</a>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">動きはブラウザに、見た目はパックに。</h1>
+        <p class="lede">ダイアログもポップオーバーも、ブラウザが持っている仕組みで動く React の UI ライブラリです。JavaScript はほとんど要りません。見た目はパックで丸ごと着せ替えられ、AI に書かせても崩れません。</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#">はじめる</a>
+          <a class="btn btn-ghost" href="#proof-size">何が違うのか</a>
+        </div>
+        <div class="install">npx yourlib init</div>
+      </div>
+
+      <div class="demo">
+        <div class="panel">
+          <div class="app-head">
+            <div>
+              <h2 class="app-title">秋のキャンペーン</h2>
+              <p class="app-meta">5 件のタスク、うち 1 件が期限切れ</p>
+            </div>
+            <div class="toolbar">
+              <button class="btn btn-secondary btn-sm" type="button" popovertarget="pop-filter" style="anchor-name: --pop-filter">フィルタ</button>
+              <button class="btn btn-danger btn-sm" type="button" commandfor="dlg-delete" command="show-modal">削除する</button>
+            </div>
+          </div>
+          <ul class="rows">
+            <li class="row"><span class="cb"></span><span class="title">告知メールの文面を確定する</span><span class="due">10/24</span><span class="status" data-s="doing">対応中</span></li>
+            <li class="row"><span class="cb"></span><span class="title">SNS 広告を入稿する</span><span class="due">10/21</span><span class="status" data-s="late">期限切れ</span></li>
+            <li class="row"><span class="cb"></span><span class="title">申し込みページの画像を差し替える</span><span class="due">10/25</span><span class="status">未着手</span></li>
+            <li class="row done"><span class="cb on"></span><span class="title">協賛企業へお礼状を送る</span><span class="due">10/18</span><span class="status" data-s="done">完了</span></li>
+          </ul>
+        </div>
+        <p class="demo-caption">「フィルタ」と「削除する」は押せます。どちらもスクリプトなしで動いています。</p>
+
+        <div class="popover" id="pop-filter" popover style="position-anchor: --pop-filter" role="dialog" aria-label="フィルタ">
+          <div class="popover-title">状態で絞り込む</div>
+          <label class="opt"><span class="cb on"></span>未着手<span class="count">1</span></label>
+          <label class="opt"><span class="cb on"></span>対応中<span class="count">1</span></label>
+          <label class="opt"><span class="cb"></span>完了<span class="count">1</span></label>
+        </div>
+
+        <dialog class="dialog" id="dlg-delete" closedby="any" aria-labelledby="dlg-delete-title">
+          <h3 id="dlg-delete-title">「秋のキャンペーン」を削除しますか？</h3>
+          <p>タスク 5 件とコメントがすべて消えます。この操作は取り消せません。</p>
+          <div class="acts">
+            <button class="btn btn-ghost" type="button" commandfor="dlg-delete" command="close" autofocus>キャンセル</button>
+            <button class="btn btn-danger" type="button" commandfor="dlg-delete" command="close">削除する</button>
+          </div>
+        </dialog>
+      </div>
+    </section>
+
+    <div class="proofs">
+      <section class="proof" id="proof-size" aria-labelledby="size-title">
+        <div>
+          <h2 id="size-title">ダイアログとポップオーバーで 1 KB</h2>
+          <p>開閉、フォーカスの閉じ込め、重なり順、位置合わせをブラウザに任せているので、同じ部品を数十分の一のコードで実装できます。表示が速く、Server Components のまま使え、JavaScript を読み込む前から動きます。</p>
+          <p class="fine">Dialog と Popover、minify と gzip 後、React 本体を除く。2026 年 10 月 22 日に同じ条件で実測。</p>
+        </div>
+        <div class="panel bars" role="img" aria-label="yourlib 0.99 KB、Radix 25.72 KB、Base UI 42.71 KB">
+          <div class="bar ours"><div class="bar-head"><b>yourlib</b><span>0.99 KB</span></div><div class="bar-track"><div class="bar-fill" style="--w: 2.3%"></div></div></div>
+          <div class="bar"><div class="bar-head"><b>Radix</b><span>25.72 KB</span></div><div class="bar-track"><div class="bar-fill" style="--w: 60.2%"></div></div></div>
+          <div class="bar"><div class="bar-head"><b>Base UI</b><span>42.71 KB</span></div><div class="bar-track"><div class="bar-fill" style="--w: 100%"></div></div></div>
+        </div>
+      </section>
+
+      <section class="proof" id="proof-packs" aria-labelledby="packs-title">
+        <div>
+          <h2 id="packs-title">同じコードのまま、ブランドごと着せ替える</h2>
+          <p>見た目はコードに焼き付けず、パックが当てます。属性を 1 つ変えるだけで、アプリ全体でも一部分だけでも切り替わります。顧客ごとにブランドが違う SaaS や、別の見た目の埋め込みウィジェットに向いています。</p>
+          <pre class="code" style="margin-top: 24px"><span class="dim">&lt;!-- 違うのはこの属性だけ --&gt;</span>
+&lt;section <span class="hl">data-pack="graphite"</span>&gt;…&lt;/section&gt;
+&lt;section <span class="hl">data-pack="lucent"</span>&gt;…&lt;/section&gt;</pre>
+        </div>
+        <div class="packs">
+          <div class="pack-tile t-graphite">
+            <span class="pack-name">data-pack="graphite"</span>
+            <div class="panel">
+              <h4>秋のオンライン説明会</h4>
+              <p>新サービスの使い方を 30 分で紹介します。</p>
+              <div class="line"><span class="btn btn-primary btn-sm">申し込む</span><span class="btn btn-secondary btn-sm">詳しく見る</span></div>
+            </div>
+          </div>
+          <div class="pack-tile t-lucent">
+            <span class="pack-name">data-pack="lucent"</span>
+            <div class="panel">
+              <h4>秋のオンライン説明会</h4>
+              <p>新サービスの使い方を 30 分で紹介します。</p>
+              <div class="line"><span class="btn btn-primary btn-sm">申し込む</span><span class="btn btn-secondary btn-sm">詳しく見る</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof" aria-labelledby="lint-title">
+        <div>
+          <h2 id="lint-title">AI に書かせても、デザインが崩れない</h2>
+          <p>部品ごとの契約から、型・lint・AI 向けの説明書を自動で作ります。色や角を直接書くとエラーになり、エラー文が直し方を伝えます。エージェントはそれを読んで、自分で直します。</p>
+        </div>
+        <div>
+          <pre class="code"><span class="dim">// エージェントが書いたコード</span>
+&lt;Button <span class="bad">className="bg-red-500 rounded-xl px-6"</span>&gt;
+  削除
+&lt;/Button&gt;</pre>
+          <div class="lint" role="note">
+            <span class="lint-rule">yourlib/no-visual-override</span>
+            <span>Button の色・角・余白は className では変えられません。</span>
+            <span class="fix">代わりに <code>variant="danger"</code> を使ってください。角と余白はパックが決めます。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof" aria-labelledby="update-title">
+        <div>
+          <h2 id="update-title">コピーして所有しても、更新を受け取れる</h2>
+          <p>手元にコピーされるのは薄いファイルだけ。入れたときの版とハッシュを記録しているので、自分で変えた箇所を残したまま新しい版を取り込めます。</p>
+          <p class="fine">diff は実装済み、update は次の段階で実装します。</p>
+        </div>
+        <pre class="code"><span class="dim">$</span> yourlib diff
+<span class="dim">変更なし</span>  components/ui/button.tsx
+<span class="hl">変更あり</span>  components/ui/dialog.tsx
+
+<span class="dim">$</span> yourlib update dialog
+dialog 0.1.0 → 0.2.0
+<span class="good">あなたの変更を残して更新しました</span></pre>
+      </section>
+
+      <section class="proof" id="proof-type" aria-labelledby="type-title">
+        <div>
+          <h2 id="type-title">日本語が、最初から綺麗に組まれる</h2>
+          <p>約物の詰め、禁則、文節での改行、和文と英数字のあいだの空き、日本語に合った行間を標準にしています。英語を前提にしたライブラリでは、ここを毎回自分で整える必要があります。</p>
+        </div>
+        <div class="type-compare">
+          <div class="panel type-sample type-plain">
+            <span class="type-label">一般的な既定値</span>
+            <h4>「秋のキャンペーン」の申し込みを受け付けています</h4>
+            <p>Webhookの設定は管理画面の「連携」から行えます。APIキーは発行から1時間で失効します。</p>
+          </div>
+          <div class="panel type-sample type-ours">
+            <span class="type-label">yourlib</span>
+            <h4>「秋のキャンペーン」の申し込みを受け付けています</h4>
+            <p>Webhookの設定は管理画面の「連携」から行えます。APIキーは発行から1時間で失効します。</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="foot">デザイン提案 v2。上のバーで方向と書体を切り替えて比べてください。</footer>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{
+  "name": "input",
+  "tier": 1,
+  "summary": "A native single-line <input> styled by the pack.",
+  "use": [
+    "Short free text, email, numbers, dates, search"
+  ],
+  "avoid": [
+    {
+      "case": "Several lines of text",
+      "instead": "textarea"
+    },
+    {
+      "case": "Picking from a known list",
+      "instead": "select"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      ":user-invalid"
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Input",
+      "slot": "input",
+      "element": "input",
+      "description": "The input. All native attributes (type, name, required, pattern…) pass through.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "size": {
+            "default": "md",
+            "description": "Control height, matching Button sizes.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          },
+          "invalid": {
+            "default": false,
+            "description": "Shows the error style and sets aria-invalid.",
+            "type": "boolean"
+          }
+        }
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "focus-visible",
+    "invalid",
+    "user-invalid",
+    "disabled",
+    "read-only"
+  ],
+  "a11y": {
+    "rules": [
+      "Wrap in Field so it has a label.",
+      "Use the right type and autocomplete for the data."
+    ]
+  },
+  "tokens": [
+    "color.field",
+    "color.border-strong",
+    "color.accent",
+    "radius.control",
+    "control.*"
+  ],
+  "examples": [
+    {
+      "title": "Email",
+      "code": "<Field id=\"email\" label=\"メールアドレス\"><Input type=\"email\" name=\"email\" autoComplete=\"email\" /></Field>"
+    }
+  ]
+}

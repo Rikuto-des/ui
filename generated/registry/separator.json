@@ -1,0 +1,19 @@
+{
+  "name": "separator",
+  "version": "0.1.0",
+  "contract": "schema/separator.json",
+  "files": [
+    {
+      "path": "separator.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add separator`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Separator page of the design system.\nexport { Separator, type SeparatorProps } from \"@yourlib/react/separator\";\n",
+      "hash": "sha256-DL6249jwzDB9MyttZuYB6TH1GJz7ERvRAPImw/9UoFE="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}

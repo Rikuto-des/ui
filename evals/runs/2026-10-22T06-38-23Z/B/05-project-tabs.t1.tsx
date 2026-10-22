@@ -1,0 +1,148 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Badge,
+  Card,
+  Heading,
+  Switch,
+  Tab,
+  TabList,
+  TabPanel,
+  Tabs,
+  Text,
+} from "@yourlib/react";
+
+type Member = {
+  id: string;
+  name: string;
+  role: string;
+};
+
+type Activity = {
+  id: string;
+  description: string;
+  timestamp: string;
+};
+
+const project = {
+  name: "ウェブサイトリニューアル",
+  status: "進行中",
+  description:
+    "コーポレートサイトのデザインと情報設計を刷新するプロジェクトです。アクセシビリティの改善、表示速度の向上、コンテンツ管理の効率化を目標とし、2026 年度第 4 四半期の公開を予定しています。",
+};
+
+const members: Member[] = [
+  { id: "m1", name: "佐藤 花子", role: "プロジェクトマネージャー" },
+  { id: "m2", name: "鈴木 一郎", role: "デザイナー" },
+  { id: "m3", name: "高橋 健太", role: "フロントエンドエンジニア" },
+  { id: "m4", name: "田中 美咲", role: "コンテンツ編集" },
+];
+
+const activities: Activity[] = [
+  {
+    id: "a1",
+    description: "鈴木 一郎さんがトップページのデザイン案をアップロードしました",
+    timestamp: "2026-10-21 16:42",
+  },
+  {
+    id: "a2",
+    description: "高橋 健太さんが「ナビゲーションの実装」を完了にしました",
+    timestamp: "2026-10-20 11:05",
+  },
+  {
+    id: "a3",
+    description: "佐藤 花子さんがマイルストーン「β 公開」の期限を更新しました",
+    timestamp: "2026-10-18 09:30",
+  },
+];
+
+export function ProjectDetailScreen() {
+  const [selectedTab, setSelectedTab] = useState("overview");
+  const [archived, setArchived] = useState(false);
+
+  return (
+    <main className="mx-auto flex max-w-3xl flex-col gap-6 p-6">
+      <header className="flex flex-wrap items-center gap-3">
+        <Heading level={1}>{project.name}</Heading>
+        <Badge variant={archived ? "neutral" : "success"}>
+          {archived ? "アーカイブ済み" : project.status}
+        </Badge>
+      </header>
+
+      <Tabs
+        selectedKey={selectedTab}
+        onSelectionChange={(key) => setSelectedTab(String(key))}
+      >
+        <TabList aria-label="プロジェクトの詳細">
+          <Tab id="overview">概要</Tab>
+          <Tab id="members">メンバー</Tab>
+          <Tab id="activity">アクティビティ</Tab>
+          <Tab id="settings">設定</Tab>
+        </TabList>
+
+        <TabPanel id="overview" className="pt-4">
+          <Card className="p-4">
+            <Heading level={2} className="mb-2">
+              プロジェクトの説明
+            </Heading>
+            <Text>{project.description}</Text>
+          </Card>
+        </TabPanel>
+
+        <TabPanel id="members" className="pt-4">
+          <Card className="p-4">
+            <Heading level={2} className="mb-3">
+              メンバー（{members.length} 名）
+            </Heading>
+            <ul className="flex flex-col divide-y">
+              {members.map((member) => (
+                <li
+                  key={member.id}
+                  className="flex items-center justify-between py-2"
+                >
+                  <Text>{member.name}</Text>
+                  <Text size="sm" color="muted">
+                    {member.role}
+                  </Text>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </TabPanel>
+
+        <TabPanel id="activity" className="pt-4">
+          <Card className="p-4">
+            <Heading level={2} className="mb-3">
+              最近のアクティビティ
+            </Heading>
+            <ol className="flex flex-col gap-3">
+              {activities.map((activity) => (
+                <li key={activity.id} className="flex flex-col gap-0.5">
+                  <Text>{activity.description}</Text>
+                  <Text size="sm" color="muted">
+                    <time dateTime={activity.timestamp.replace(" ", "T")}>
+                      {activity.timestamp}
+                    </time>
+                  </Text>
+                </li>
+              ))}
+            </ol>
+          </Card>
+        </TabPanel>
+
+        <TabPanel id="settings" className="pt-4">
+          <Card className="flex flex-col gap-2 p-4">
+            <Heading level={2}>設定</Heading>
+            <Switch isSelected={archived} onChange={setArchived}>
+              プロジェクトをアーカイブする
+            </Switch>
+            <Text size="sm" color="muted">
+              アーカイブすると、プロジェクトは読み取り専用になります。
+            </Text>
+          </Card>
+        </TabPanel>
+      </Tabs>
+    </main>
+  );
+}

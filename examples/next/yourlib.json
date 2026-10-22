@@ -1,0 +1,5 @@
+{
+  "components": "components/ui",
+  "pack": "graphite",
+  "registry": "../../generated/registry"
+}

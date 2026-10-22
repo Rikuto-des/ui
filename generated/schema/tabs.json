@@ -1,0 +1,153 @@
+{
+  "name": "tabs",
+  "tier": 2,
+  "summary": "Switches between panels of equal weight. Server-rendered; the runtime adds clicking and arrow keys.",
+  "use": [
+    "Views of the same object (概要・設定・履歴)"
+  ],
+  "avoid": [
+    {
+      "case": "Steps of a process",
+      "instead": "stepper (planned)"
+    },
+    {
+      "case": "Content most people skip",
+      "instead": "accordion"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [],
+    "enhances": [
+      {
+        "feature": "@yourlib/core tabs behavior",
+        "fallback": "only the default panel is reachable"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Tabs",
+      "slot": "tabs",
+      "element": "div",
+      "description": "The root. Generates the ids that link tabs and panels.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. Prefix for the tab and panel ids."
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required accessible name of the tab list."
+          },
+          "defaultValue": {
+            "type": "string",
+            "description": "Required value of the tab selected initially."
+          },
+          "orientation": {
+            "default": "horizontal",
+            "type": "string",
+            "enum": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "defaultValue"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
+      "jsx": "Tabs.List",
+      "slot": "tabs-list",
+      "element": "div",
+      "description": "role=tablist; holds the Tabs.Tab elements.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {}
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "Tabs.Tab",
+      "slot": "tabs-tab",
+      "element": "button",
+      "description": "role=tab.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Required; matches a Tabs.Panel value."
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "Tabs.Panel",
+      "slot": "tabs-panel",
+      "element": "div",
+      "description": "role=tabpanel.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Required; matches a Tabs.Tab value."
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "overrides": []
+    }
+  ],
+  "states": [
+    "selected"
+  ],
+  "a11y": {
+    "apg": "tabs (automatic activation)",
+    "keyboard": {
+      "← / →": "move to and select the previous / next tab",
+      "Home / End": "first / last tab",
+      "Tab": "moves into the selected panel"
+    },
+    "rules": [
+      "Tabs.Tab and Tabs.Panel must be direct children of Tabs.List and Tabs."
+    ]
+  },
+  "tokens": [
+    "color.text",
+    "color.text-muted",
+    "color.border",
+    "color.action"
+  ],
+  "examples": [
+    {
+      "title": "Project views",
+      "code": "<Tabs id=\"project\" label=\"プロジェクト\" defaultValue=\"overview\">\n  <Tabs.List>\n    <Tabs.Tab value=\"overview\">概要</Tabs.Tab>\n    <Tabs.Tab value=\"settings\">設定</Tabs.Tab>\n  </Tabs.List>\n  <Tabs.Panel value=\"overview\">…</Tabs.Panel>\n  <Tabs.Panel value=\"settings\">…</Tabs.Panel>\n</Tabs>"
+    }
+  ]
+}

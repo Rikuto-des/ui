@@ -1,0 +1,49 @@
+{
+  "name": "yourlib-monorepo",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.14.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "gen": "node packages/cli/src/bin.ts build",
+    "dev": "pnpm --filter playground dev",
+    "build:playground": "pnpm --filter playground build",
+    "static": "tsx scripts/render-static.tsx",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "test": "node --test packages/*/test/*.test.ts",
+    "test:e2e": "playwright test",
+    "size": "node scripts/size.ts",
+    "ds": "tsx scripts/design-system.tsx",
+    "ds:check": "node scripts/ds-preview-check.ts",
+    "shots": "node scripts/shots.ts",
+    "test:next": "pnpm --filter next-example build && playwright test -c playwright.next.config.ts",
+    "test:visual": "playwright test -c playwright.visual.config.ts",
+    "test:visual:update": "playwright test -c playwright.visual.config.ts --update-snapshots",
+    "verify": "pnpm gen && pnpm typecheck && pnpm test && pnpm lint && pnpm static && pnpm test:e2e && pnpm test:next"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@yourlib/cli": "workspace:*",
+    "@yourlib/contract": "workspace:*",
+    "@yourlib/core": "workspace:*",
+    "@yourlib/eslint-plugin": "workspace:*",
+    "@yourlib/react": "workspace:*",
+    "@yourlib/tokens": "workspace:*",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.13.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tsx": "^4.23.15",
+    "typescript": "6.0.3",
+    "typescript-eslint": "^8.72.0",
+    "zod": "^4.6.7"
+  }
+}

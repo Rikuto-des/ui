@@ -1,0 +1,104 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Button,
+  Card,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  Heading,
+  Text,
+} from "@yourlib/react";
+
+export type DangerZoneSectionProps = {
+  /** 削除対象のプロジェクト名（ダイアログ内の説明に表示） */
+  projectName?: string;
+  /** 「削除する」が押されたときに呼ばれる */
+  onDelete: () => void | Promise<void>;
+};
+
+const DELETE_DIALOG_ID = "delete-project-dialog";
+
+export function DangerZoneSection({ projectName, onDelete }: DangerZoneSectionProps) {
+  const [open, setOpen] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
+  const dialogTitle = projectName
+    ? `「${projectName}」を削除しますか？`
+    : "プロジェクトを削除しますか？";
+
+  const handleConfirm = async () => {
+    try {
+      setDeleting(true);
+      await onDelete();
+      setOpen(false);
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  return (
+    <section aria-labelledby="danger-zone-heading" className="mt-12">
+      <Card variant="outline" tone="danger">
+        <div className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-1">
+            <Heading id="danger-zone-heading" level={2} size="md">
+              危険な操作
+            </Heading>
+            <Text tone="muted" size="sm">
+              プロジェクトを削除すると、関連するすべてのデータが完全に削除されます。
+            </Text>
+          </div>
+
+          <Button
+            variant="danger"
+            radius="lg"
+            aria-haspopup="dialog"
+            aria-controls={DELETE_DIALOG_ID}
+            onClick={() => setOpen(true)}
+          >
+            プロジェクトを削除
+          </Button>
+        </div>
+      </Card>
+
+      <Dialog
+        id={DELETE_DIALOG_ID}
+        title={dialogTitle}
+        open={open}
+        onOpenChange={(next: boolean) => {
+          if (!deleting) setOpen(next);
+        }}
+      >
+        <DialogContent role="alertdialog">
+          <DialogDescription>
+            この操作は取り消せません。プロジェクトとそのすべてのデータが完全に削除されます。
+          </DialogDescription>
+
+          <DialogFooter>
+            <Button
+              variant="secondary"
+              radius="lg"
+              onClick={() => setOpen(false)}
+              disabled={deleting}
+              autoFocus
+            >
+              キャンセル
+            </Button>
+            <Button
+              variant="danger"
+              radius="lg"
+              onClick={handleConfirm}
+              loading={deleting}
+              disabled={deleting}
+            >
+              削除する
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </section>
+  );
+}

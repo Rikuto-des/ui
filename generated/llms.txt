@@ -1,0 +1,31 @@
+# yourlib
+
+> Native-first React UI components with machine-readable contracts and runtime-switchable style packs.
+
+## Components
+
+- [Accordion](docs/accordion.md): Collapsible sections built on native <details>/<summary>; a shared name makes them exclusive.
+- [Badge](docs/badge.md): A short status or count label.
+- [Button](docs/button.md): A native <button> that runs or confirms an action.
+- [Card](docs/card.md): A surface that groups related content, with an optional title, description and footer.
+- [Checkbox](docs/checkbox.md): A native checkbox with its own label.
+- [Dialog](docs/dialog.md): A modal native <dialog> that interrupts the user for a confirmation or a short task.
+- [Field](docs/field.md): Labels a single form control and links its description and error message to it.
+- [Input](docs/input.md): A native single-line <input> styled by the pack.
+- [Link](docs/link.md): A native <a> that navigates to another page or place.
+- [Menu](docs/menu.md): A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.
+- [Popover](docs/popover.md): A non-modal panel in the top layer (native `popover`), positioned against its trigger with CSS anchor positioning.
+- [RadioGroup](docs/radio-group.md): A <fieldset> of native radio buttons: exactly one choice, arrow keys move between them.
+- [Select](docs/select.md): A native <select>; with appearance: base-select its picker follows the pack.
+- [Separator](docs/separator.md): A thin rule between groups of content.
+- [Skeleton](docs/skeleton.md): A placeholder shape shown while content loads.
+- [Spinner](docs/spinner.md): An indeterminate progress indicator with a status message for screen readers.
+- [Switch](docs/switch.md): A native checkbox with role="switch" for settings that take effect immediately.
+- [Tabs](docs/tabs.md): Switches between panels of equal weight. Server-rendered; the runtime adds clicking and arrow keys.
+- [Textarea](docs/textarea.md): A native <textarea> that grows with its content (field-sizing).
+- [Toaster](docs/toast.md): Brief notifications about the result of an action. Place one <Toaster /> per page and call toast() from client code.
+- [Tooltip](docs/tooltip.md): A short description shown on hover and keyboard focus: popover="hint" opened through interestfor.
+
+## Agent rules
+
+- [SKILL.md](SKILL.md): composition rules enforced by @yourlib/eslint-plugin

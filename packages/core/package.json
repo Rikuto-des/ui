@@ -1,0 +1,16 @@
+{
+  "name": "@yourlib/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "./src/auto.ts"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./closedby": "./src/closedby.ts",
+    "./toast": "./src/toast.ts",
+    "./runtime": "./src/runtime.ts",
+    "./auto": "./src/auto.ts"
+  }
+}

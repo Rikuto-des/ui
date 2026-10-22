@@ -1,0 +1,19 @@
+{
+  "name": "tabs",
+  "version": "0.1.0",
+  "contract": "schema/tabs.json",
+  "files": [
+    {
+      "path": "tabs.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add tabs`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Tabs page of the design system.\nexport { Tabs, type TabsProps } from \"@yourlib/react/tabs\";\n",
+      "hash": "sha256-rF3ndw23rpPoyzK3et9oxXe9vcekF7yYsuqwe41XtpI="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}

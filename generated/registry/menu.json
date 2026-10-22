@@ -1,0 +1,19 @@
+{
+  "name": "menu",
+  "version": "0.1.0",
+  "contract": "schema/menu.json",
+  "files": [
+    {
+      "path": "menu.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add menu`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Menu page of the design system.\nexport { Menu, type MenuProps } from \"@yourlib/react/menu\";\n",
+      "hash": "sha256-tN/KZv1jeOA9/DWBz/4lWHyrETUqfGJ0X21Cz/94Tdk="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}

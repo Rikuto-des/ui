@@ -1,0 +1,123 @@
+{
+  "name": "radio-group",
+  "tier": 1,
+  "summary": "A <fieldset> of native radio buttons: exactly one choice, arrow keys move between them.",
+  "use": [
+    "Choosing exactly one of two to six visible options"
+  ],
+  "avoid": [
+    {
+      "case": "Many options or a long list",
+      "instead": "select"
+    },
+    {
+      "case": "Any number of choices",
+      "instead": "checkbox"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "appearance: none"
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "RadioGroup",
+      "slot": "radio-group",
+      "element": "fieldset",
+      "description": "The fieldset with its legend. Gives every RadioGroup.Item the group's name.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required form field name shared by the items."
+          },
+          "legend": {
+            "description": "Required visible question or label for the group.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "defaultValue": {
+            "description": "Value of the item checked initially.",
+            "type": "string"
+          },
+          "orientation": {
+            "default": "vertical",
+            "type": "string",
+            "enum": [
+              "vertical",
+              "horizontal"
+            ]
+          },
+          "required": {
+            "default": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "legend"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
+      "jsx": "RadioGroup.Item",
+      "slot": "radio",
+      "element": "label",
+      "description": "One option: a <label> around a native radio input.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "Required submitted value."
+          },
+          "description": {
+            "description": "Supporting text under the option label.",
+            "x-ts-type": "React.ReactNode"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "overrides": []
+    }
+  ],
+  "states": [
+    "checked",
+    "focus-visible",
+    "disabled"
+  ],
+  "a11y": {
+    "apg": "radio group (native)",
+    "keyboard": {
+      "Arrow keys": "move and select",
+      "Tab": "enters at the checked option"
+    },
+    "rules": [
+      "legend is required; it is the group's accessible name."
+    ]
+  },
+  "tokens": [
+    "color.accent",
+    "color.field",
+    "color.border-strong"
+  ],
+  "examples": [
+    {
+      "title": "Plan",
+      "code": "<RadioGroup name=\"plan\" legend=\"プラン\" defaultValue=\"team\">\n  <RadioGroup.Item value=\"free\">無料</RadioGroup.Item>\n  <RadioGroup.Item value=\"team\" description=\"5 人まで\">チーム</RadioGroup.Item>\n</RadioGroup>"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "name": "button",
+  "tier": 1,
+  "summary": "A native <button> that runs or confirms an action.",
+  "use": [
+    "Submitting a form",
+    "Confirming a dialog",
+    "Opening a dialog or popover through `command`"
+  ],
+  "avoid": [
+    {
+      "case": "Navigating to another page",
+      "instead": "link"
+    },
+    {
+      "case": "Toggling a setting on and off",
+      "instead": "switch"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "invoker-commands"
+    ],
+    "enhances": [
+      {
+        "feature": "corner-shape",
+        "fallback": "border-radius only"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Button",
+      "slot": "button",
+      "element": "button",
+      "description": "The button itself. Defaults to type=\"button\" so it never submits by accident.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "variant": {
+            "default": "secondary",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "description": "Control height. Density comes from the pack, not from this prop.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          },
+          "loading": {
+            "default": false,
+            "description": "While true the button reports aria-disabled, ignores activation and never submits a form.",
+            "type": "boolean"
+          },
+          "command": {
+            "description": "Invoker command (HTML `command` attribute). Works without JavaScript.",
+            "type": "string",
+            "enum": [
+              "show-modal",
+              "close",
+              "request-close",
+              "toggle-popover",
+              "show-popover",
+              "hide-popover"
+            ]
+          },
+          "commandfor": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the dialog or popover the command targets (HTML `commandfor`).",
+            "x-idref": true
+          }
+        }
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "disabled",
+    "loading",
+    "hover",
+    "active",
+    "focus-visible"
+  ],
+  "a11y": {
+    "apg": "button",
+    "keyboard": {
+      "Enter": "activate",
+      "Space": "activate"
+    },
+    "rules": [
+      "An icon-only button needs aria-label.",
+      "Use at most one primary button per view.",
+      "Loading buttons stay focusable (aria-disabled), they are never natively disabled."
+    ]
+  },
+  "tokens": [
+    "color.action",
+    "color.secondary",
+    "color.danger",
+    "radius.control",
+    "control.*",
+    "motion.fast"
+  ],
+  "examples": [
+    {
+      "title": "Primary action",
+      "code": "<Button variant=\"primary\" type=\"submit\">Save</Button>"
+    },
+    {
+      "title": "Open a dialog without JavaScript",
+      "code": "<Button command=\"show-modal\" commandfor=\"confirm\">Delete</Button>"
+    }
+  ]
+}

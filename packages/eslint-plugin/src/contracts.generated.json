@@ -1,0 +1,1292 @@
+{
+  "Accordion": {
+    "contract": "accordion",
+    "slot": "accordion",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "name"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Accordion.Item": {
+    "contract": "accordion",
+    "slot": "accordion-item",
+    "element": "details",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title"
+    ],
+    "props": [
+      "title",
+      "defaultOpen"
+    ],
+    "attributes": [
+      "name"
+    ],
+    "omits": []
+  },
+  "Badge": {
+    "contract": "badge",
+    "slot": "badge",
+    "element": "span",
+    "overrides": [
+      "margin",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "tone": [
+        "neutral",
+        "accent",
+        "ok",
+        "danger"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "tone",
+      "dot"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Button": {
+    "contract": "button",
+    "slot": "button",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "command": [
+        "show-modal",
+        "close",
+        "request-close",
+        "toggle-popover",
+        "show-popover",
+        "hide-popover"
+      ]
+    },
+    "idrefs": {
+      "commandfor": null
+    },
+    "provides": null,
+    "required": [],
+    "props": [
+      "variant",
+      "size",
+      "loading",
+      "command",
+      "commandfor"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Card": {
+    "contract": "card",
+    "slot": "card",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "height",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "headingLevel": [
+        "h2",
+        "h3",
+        "h4"
+      ],
+      "padding": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "title",
+      "description",
+      "footer",
+      "headingLevel",
+      "padding"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Checkbox": {
+    "contract": "checkbox",
+    "slot": "checkbox",
+    "element": "label",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "description",
+      "invalid"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "size",
+      "src",
+      "step",
+      "value",
+      "width"
+    ],
+    "omits": []
+  },
+  "Dialog": {
+    "contract": "dialog",
+    "slot": "dialog",
+    "element": "dialog",
+    "overrides": [
+      "width"
+    ],
+    "enums": {
+      "dismissible": [
+        "any",
+        "closerequest",
+        "none"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": "dialog",
+    "required": [
+      "id",
+      "title"
+    ],
+    "props": [
+      "id",
+      "title",
+      "description",
+      "dismissible",
+      "size"
+    ],
+    "attributes": [
+      "onCancel",
+      "onClose"
+    ],
+    "omits": []
+  },
+  "Dialog.Trigger": {
+    "contract": "dialog",
+    "slot": "dialog-trigger",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "dialog": "dialog"
+    },
+    "provides": null,
+    "required": [
+      "dialog"
+    ],
+    "props": [
+      "dialog",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Dialog.Close": {
+    "contract": "dialog",
+    "slot": "dialog-close",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "dialog": "dialog"
+    },
+    "provides": null,
+    "required": [
+      "dialog"
+    ],
+    "props": [
+      "dialog",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Dialog.Actions": {
+    "contract": "dialog",
+    "slot": "dialog-actions",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [],
+    "attributes": [],
+    "omits": []
+  },
+  "Field": {
+    "contract": "field",
+    "slot": "field",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": "field",
+    "required": [
+      "id",
+      "label"
+    ],
+    "props": [
+      "id",
+      "label",
+      "description",
+      "error",
+      "required",
+      "hideLabel"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Input": {
+    "contract": "input",
+    "slot": "input",
+    "element": "input",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "size",
+      "invalid"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "src",
+      "step",
+      "type",
+      "value",
+      "width"
+    ],
+    "omits": []
+  },
+  "Link": {
+    "contract": "link",
+    "slot": "link",
+    "element": "a",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "inline",
+        "standalone"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "href"
+    ],
+    "props": [
+      "href",
+      "variant",
+      "external"
+    ],
+    "attributes": [
+      "download",
+      "hrefLang",
+      "media",
+      "ping",
+      "referrerPolicy",
+      "target",
+      "type"
+    ],
+    "omits": []
+  },
+  "Menu": {
+    "contract": "menu",
+    "slot": "menu",
+    "element": "div",
+    "overrides": [
+      "width"
+    ],
+    "enums": {
+      "side": [
+        "top",
+        "bottom",
+        "start",
+        "end"
+      ],
+      "align": [
+        "start",
+        "center",
+        "end"
+      ]
+    },
+    "idrefs": {},
+    "provides": "menu",
+    "required": [
+      "id",
+      "label"
+    ],
+    "props": [
+      "id",
+      "label",
+      "side",
+      "align"
+    ],
+    "attributes": [],
+    "omits": [
+      "popover",
+      "role"
+    ]
+  },
+  "Menu.Trigger": {
+    "contract": "menu",
+    "slot": "menu-trigger",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "menu": "menu"
+    },
+    "provides": null,
+    "required": [
+      "menu"
+    ],
+    "props": [
+      "menu",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Menu.Item": {
+    "contract": "menu",
+    "slot": "menu-item",
+    "element": "button",
+    "overrides": [],
+    "enums": {
+      "variant": [
+        "default",
+        "danger"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "variant"
+    ],
+    "attributes": [
+      "command",
+      "commandfor",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": [
+      "role"
+    ]
+  },
+  "Menu.Link": {
+    "contract": "menu",
+    "slot": "menu-link",
+    "element": "a",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "href"
+    ],
+    "props": [
+      "href"
+    ],
+    "attributes": [
+      "download",
+      "hrefLang",
+      "media",
+      "ping",
+      "referrerPolicy",
+      "target",
+      "type"
+    ],
+    "omits": [
+      "role"
+    ]
+  },
+  "Menu.Separator": {
+    "contract": "menu",
+    "slot": "menu-separator",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [],
+    "attributes": [],
+    "omits": [
+      "children",
+      "role"
+    ]
+  },
+  "Popover": {
+    "contract": "popover",
+    "slot": "popover",
+    "element": "div",
+    "overrides": [
+      "width",
+      "height"
+    ],
+    "enums": {
+      "side": [
+        "top",
+        "bottom",
+        "start",
+        "end"
+      ],
+      "align": [
+        "start",
+        "center",
+        "end"
+      ],
+      "mode": [
+        "auto",
+        "manual"
+      ]
+    },
+    "idrefs": {},
+    "provides": "popover",
+    "required": [
+      "id"
+    ],
+    "props": [
+      "id",
+      "title",
+      "side",
+      "align",
+      "mode"
+    ],
+    "attributes": [],
+    "omits": [
+      "popover",
+      "role"
+    ]
+  },
+  "Popover.Trigger": {
+    "contract": "popover",
+    "slot": "popover-trigger",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "popover": "popover"
+    },
+    "provides": null,
+    "required": [
+      "popover"
+    ],
+    "props": [
+      "popover",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Popover.Close": {
+    "contract": "popover",
+    "slot": "popover-close",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "popover": "popover"
+    },
+    "provides": null,
+    "required": [
+      "popover"
+    ],
+    "props": [
+      "popover",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "RadioGroup": {
+    "contract": "radio-group",
+    "slot": "radio-group",
+    "element": "fieldset",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "orientation": [
+        "vertical",
+        "horizontal"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "name",
+      "legend"
+    ],
+    "props": [
+      "name",
+      "legend",
+      "defaultValue",
+      "orientation",
+      "required"
+    ],
+    "attributes": [
+      "disabled",
+      "form"
+    ],
+    "omits": []
+  },
+  "RadioGroup.Item": {
+    "contract": "radio-group",
+    "slot": "radio",
+    "element": "label",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "value"
+    ],
+    "props": [
+      "value",
+      "description"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "size",
+      "src",
+      "step",
+      "width"
+    ],
+    "omits": []
+  },
+  "Select": {
+    "contract": "select",
+    "slot": "select",
+    "element": "select",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "size",
+      "invalid",
+      "placeholder"
+    ],
+    "attributes": [
+      "autoComplete",
+      "disabled",
+      "form",
+      "multiple",
+      "name",
+      "required",
+      "value"
+    ],
+    "omits": []
+  },
+  "Separator": {
+    "contract": "separator",
+    "slot": "separator",
+    "element": "hr",
+    "overrides": [
+      "margin",
+      "width",
+      "height",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "orientation",
+      "decorative"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Skeleton": {
+    "contract": "skeleton",
+    "slot": "skeleton",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "height",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "shape": [
+        "block",
+        "text",
+        "circle"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "shape",
+      "lines"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Spinner": {
+    "contract": "spinner",
+    "slot": "spinner",
+    "element": "span",
+    "overrides": [
+      "margin",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "label",
+      "size"
+    ],
+    "attributes": [],
+    "omits": [
+      "children"
+    ]
+  },
+  "Switch": {
+    "contract": "switch",
+    "slot": "switch",
+    "element": "label",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "description"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "size",
+      "src",
+      "step",
+      "value",
+      "width"
+    ],
+    "omits": []
+  },
+  "Tabs": {
+    "contract": "tabs",
+    "slot": "tabs",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "idrefs": {},
+    "provides": "tabs",
+    "required": [
+      "id",
+      "label",
+      "defaultValue"
+    ],
+    "props": [
+      "id",
+      "label",
+      "defaultValue",
+      "orientation"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Tabs.List": {
+    "contract": "tabs",
+    "slot": "tabs-list",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [],
+    "attributes": [],
+    "omits": []
+  },
+  "Tabs.Tab": {
+    "contract": "tabs",
+    "slot": "tabs-tab",
+    "element": "button",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "value"
+    ],
+    "props": [
+      "value"
+    ],
+    "attributes": [
+      "command",
+      "commandfor",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "name",
+      "type"
+    ],
+    "omits": []
+  },
+  "Tabs.Panel": {
+    "contract": "tabs",
+    "slot": "tabs-panel",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "value"
+    ],
+    "props": [
+      "value"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Textarea": {
+    "contract": "textarea",
+    "slot": "textarea",
+    "element": "textarea",
+    "overrides": [
+      "margin",
+      "width",
+      "height",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "rows",
+      "autoResize",
+      "invalid"
+    ],
+    "attributes": [
+      "autoComplete",
+      "cols",
+      "dirName",
+      "disabled",
+      "form",
+      "maxLength",
+      "minLength",
+      "name",
+      "placeholder",
+      "readOnly",
+      "required",
+      "value",
+      "wrap"
+    ],
+    "omits": []
+  },
+  "Toaster": {
+    "contract": "toast",
+    "slot": "toaster",
+    "element": "section",
+    "overrides": [],
+    "enums": {
+      "position": [
+        "bottom-end",
+        "bottom-center",
+        "top-end"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "label",
+      "position"
+    ],
+    "attributes": [],
+    "omits": [
+      "children",
+      "popover"
+    ]
+  },
+  "Tooltip": {
+    "contract": "tooltip",
+    "slot": "tooltip",
+    "element": "div",
+    "overrides": [],
+    "enums": {
+      "side": [
+        "top",
+        "bottom",
+        "start",
+        "end"
+      ],
+      "align": [
+        "start",
+        "center",
+        "end"
+      ]
+    },
+    "idrefs": {},
+    "provides": "tooltip",
+    "required": [
+      "id"
+    ],
+    "props": [
+      "id",
+      "side",
+      "align"
+    ],
+    "attributes": [],
+    "omits": [
+      "popover",
+      "role"
+    ]
+  },
+  "Tooltip.Trigger": {
+    "contract": "tooltip",
+    "slot": "tooltip-trigger",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "tooltip": "tooltip"
+    },
+    "provides": null,
+    "required": [
+      "tooltip"
+    ],
+    "props": [
+      "tooltip",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  }
+}

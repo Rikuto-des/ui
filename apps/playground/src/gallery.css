@@ -1,0 +1,264 @@
+/* Component gallery layout. Like app.css: layout only, values from pack tokens. */
+.g-layout {
+  display: grid;
+  grid-template-columns: 188px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  padding-block-end: 120px;
+}
+
+.g-index {
+  position: sticky;
+  inset-block-start: 64px;
+  display: grid;
+  gap: 22px;
+  max-block-size: calc(100dvh - 88px);
+  overflow-y: auto;
+  padding-block: 8px 24px;
+  font-size: 13.5px;
+  scrollbar-width: thin;
+}
+.g-index p {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--yl-color-text-subtle);
+}
+.g-index ul {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.g-index a {
+  display: block;
+  padding: 4px 10px;
+  margin-inline: -10px;
+  border-radius: var(--yl-radius-control);
+  color: var(--yl-color-text-muted);
+  text-decoration: none;
+}
+.g-index a:hover {
+  color: var(--yl-color-text);
+  background-color: var(--yl-color-ghost-hover);
+}
+.g-index a:focus-visible {
+  outline: var(--yl-focus-ring-width) solid var(--yl-color-focus-ring);
+  outline-offset: 0;
+}
+
+.g-intro {
+  padding-block: 8px 40px;
+}
+.g-intro h1 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 40px);
+  line-height: 1.25;
+  font-weight: 700;
+  font-feature-settings: "palt";
+}
+.g-intro .lede {
+  margin-block-start: 14px;
+  font-size: 15.5px;
+}
+
+.g-section {
+  scroll-margin-block-start: 56px;
+  padding-block: 40px;
+  border-block-start: 1px solid var(--yl-color-border);
+}
+.g-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 272px;
+  gap: 6px 32px;
+  margin-block-end: 20px;
+}
+.g-head h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+.g-summary {
+  grid-column: 1;
+  margin: 0;
+  max-inline-size: 38em;
+  color: var(--yl-color-text-muted);
+  font-size: 14px;
+  line-height: 1.8;
+  text-wrap: pretty;
+}
+/* What the component is made of: the point of the library, so it stays visible. */
+.g-facts {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.g-facts div {
+  display: grid;
+  grid-template-columns: 76px auto;
+  gap: 8px;
+}
+.g-facts dt {
+  color: var(--yl-color-text-subtle);
+}
+.g-facts dd {
+  margin: 0;
+  color: var(--yl-color-text-muted);
+}
+.g-facts dd[data-needs] {
+  color: var(--yl-color-text);
+  font-weight: 500;
+}
+.g-facts code {
+  font: 12px/1.5 ui-monospace, "SF Mono", Menlo, monospace;
+  color: var(--yl-color-text);
+  white-space: nowrap;
+}
+
+.g-stage {
+  position: relative;
+  display: grid;
+  border-radius: var(--yl-radius-panel);
+  background-color: color-mix(in oklab, var(--yl-color-text) 2.5%, var(--yl-color-bg));
+  box-shadow: inset 0 0 0 1px var(--yl-color-border);
+  overflow: clip;
+  isolation: isolate;
+}
+/* Translucent packs need something behind the glass. */
+:root[data-pack="lucent"] .g-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 80% at 12% 0%, color-mix(in oklab, var(--yl-color-accent) 16%, transparent), transparent 70%),
+    radial-gradient(50% 70% at 100% 100%, color-mix(in oklab, var(--yl-color-danger) 9%, transparent), transparent 70%);
+}
+@supports (corner-shape: squircle) {
+  .g-stage {
+    corner-shape: var(--yl-corner-shape);
+    border-radius: var(--yl-radius-squircle-panel);
+  }
+}
+.g-example {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin: 0;
+  padding: 24px 28px;
+}
+.g-example + .g-example {
+  border-block-start: 1px solid var(--yl-color-border);
+}
+.g-example figcaption {
+  padding-block-start: 7px;
+  font-size: 12.5px;
+  color: var(--yl-color-text-muted);
+}
+.g-demo {
+  min-inline-size: 0;
+}
+
+.g-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.g-row-fill > * {
+  flex: 1 1 140px;
+}
+.g-row-label {
+  flex: 1;
+  font-size: 14px;
+}
+.g-stack {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+}
+.g-form {
+  display: grid;
+  gap: 18px;
+  max-inline-size: 380px;
+}
+.g-dialog-form {
+  display: grid;
+  gap: 18px;
+}
+.g-prose {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.g-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.g-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.g-card-grid p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--yl-color-text-muted);
+}
+.g-stat {
+  font-variant-numeric: tabular-nums;
+}
+.g-stat b {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--yl-color-text);
+  letter-spacing: -0.02em;
+}
+.g-skeleton {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  max-inline-size: 380px;
+}
+.g-skeleton-text {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
+  .g-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .g-index {
+    display: none;
+  }
+  .g-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .g-facts {
+    grid-column: 1;
+    grid-row: auto;
+    margin-block-start: 8px;
+  }
+}
+@media (max-width: 560px) {
+  .g-example {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 18px 16px;
+  }
+  .g-example figcaption {
+    padding-block-start: 0;
+  }
+}

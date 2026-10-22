@@ -1,0 +1,101 @@
+category,package,week_now,week_1y,week_2y,yoy_pct,baseline,rel_yoy_vs_baseline_pct,qoq28_pct,rel_qoq_vs_baseline_pct,robust_yoy_pct,rel_robust_yoy_pct,spike_1y,repo,stars,stars_365d,pushed,archived
+ヘッドレス,@radix-ui/react-slot,221243902,24764067,10166990,793.4,react,80.0,33.7,-10.0,771.2,76.0,0.99,radix-ui/primitives,19415,1393,2026-10-14,False
+ヘッドレス,@radix-ui/react-dialog,91859169,11284008,3478406,714.1,react,64.0,58.5,7.0,658.3,53.0,0.97,radix-ui/primitives,19415,1393,2026-10-14,False
+ヘッドレス,radix-ui,19064097,778606,14540,2348.5,react,394.0,94.4,31.0,2380.9,400.0,1.01,radix-ui/primitives,19415,1393,2026-10-14,False
+ヘッドレス,@base-ui/react,19271066,0,0,,react,,178.8,88.0,,,,mui/base-ui,11203,5136,2026-10-21,False
+ヘッドレス,@base-ui-components/react,575284,195225,0,194.7,react,-41.0,42.6,-4.0,176.4,-44.0,1.0,mui/base-ui,11203,5136,2026-10-21,False
+ヘッドレス,react-aria-components,5869802,854446,370874,587.0,react,39.0,79.8,21.0,587.0,39.0,1.0,adobe/react-spectrum,15974,1513,2026-10-21,False
+ヘッドレス,react-aria,11815854,1273491,592420,827.8,react,87.0,67.7,13.0,829.7,88.0,1.0,adobe/react-spectrum,15974,1513,2026-10-21,False
+ヘッドレス,@floating-ui/react,30376922,7549112,3028606,302.4,react,-19.0,58.3,7.0,302.4,-19.0,1.0,floating-ui/floating-ui,32760,782,2026-10-16,False
+ヘッドレス,@headlessui/react,8776461,3253288,1860420,169.8,react,-46.0,36.0,-8.0,170.0,-46.0,1.0,tailwindlabs/headlessui,28788,716,2026-04-13,False
+ヘッドレス,@ariakit/react,1507994,371620,178448,305.8,react,-18.0,60.4,8.0,301.0,-19.0,0.99,ariakit/ariakit,8629,201,2026-10-21,False
+ヘッドレス,@ark-ui/react,1229584,2822285,52724,-56.4,react,-91.0,24.0,-17.0,-32.4,-86.0,1.71,chakra-ui/ark,5428,708,2026-10-21,False
+ヘッドレス,@zag-js/core,1749510,2953834,118914,-40.8,react,-88.0,31.9,-11.0,-2.5,-80.0,1.65,chakra-ui/zag,5237,430,2026-10-21,False
+ヘッドレス,@mui/base,4696115,3406734,3832807,37.8,react,-72.0,15.6,-22.0,30.2,-74.0,0.97,,,,,
+スタイル付きパッケージ,@mui/material,12503562,5891529,3994944,112.2,react,-57.0,41.0,-5.0,108.1,-58.0,0.98,mui/material-ui,99258,2429,2026-10-21,False
+スタイル付きパッケージ,antd,4517087,1981082,1440713,128.0,react,-54.0,32.0,-11.0,115.8,-56.0,0.95,ant-design/ant-design,99836,3423,2026-10-21,False
+スタイル付きパッケージ,@mantine/core,3305015,897548,511713,268.2,react,-26.0,64.6,11.0,268.2,-26.0,1.0,mantinedev/mantine,31852,1952,2026-10-21,False
+スタイル付きパッケージ,@adobe/react-spectrum,1795173,21572,13972,8221.8,react,1579.0,123.8,51.0,8221.8,1579.0,1.0,adobe/react-spectrum,15974,1513,2026-10-21,False
+スタイル付きパッケージ,@chakra-ui/react,2006693,3363871,590878,-40.3,react,-88.0,11.9,-25.0,-10.6,-82.0,1.55,chakra-ui/chakra-ui,40698,855,2026-10-17,False
+スタイル付きパッケージ,daisyui,1242047,501602,297463,147.6,react,-50.0,54.4,4.0,147.4,-50.0,1.0,saadeghi/daisyui,42651,3576,2026-10-17,False
+スタイル付きパッケージ,@radix-ui/themes,1156016,288028,99929,301.4,react,-19.0,64.9,11.0,290.2,-21.0,0.97,radix-ui/themes,8783,1123,2026-04-11,False
+スタイル付きパッケージ,@heroui/react,770905,161754,0,376.6,react,-4.0,88.7,27.0,296.0,-20.0,0.83,heroui-inc/heroui,30974,3957,2026-10-21,False
+スタイル付きパッケージ,@nextui-org/react,96723,69933,137959,38.3,react,-72.0,49.5,1.0,38.3,-72.0,1.0,heroui-inc/heroui,30974,3957,2026-10-21,False
+スタイル付きパッケージ,flowbite,805637,479163,306066,68.1,react,-66.0,28.9,-13.0,65.9,-67.0,1.06,themesberg/flowbite,9365,481,2026-06-27,False
+スタイル付きパッケージ,@tremor/react,670072,124015,84766,440.3,react,9.0,70.0,14.0,423.4,6.0,1.04,tremorlabs/tremor-npm,16474,,2025-01-13,False
+スタイル付きパッケージ,@fluentui/react-components,529421,243766,100548,117.2,react,-56.0,55.0,4.0,104.6,-59.0,0.95,,,,,
+スタイル付きパッケージ,preline,79870,42225,25121,89.2,react,-62.0,28.2,-14.0,79.2,-64.0,0.98,htmlstreamofficial/preline,6498,497,2026-08-31,False
+コピペ/レジストリ（代理指標）,shadcn,13356686,330073,77125,3946.6,react,716.0,138.0,60.0,3557.5,638.0,0.9,shadcn-ui/ui,126149,27997,2026-10-20,False
+コピペ/レジストリ（代理指標）,shadcn-ui,196179,122548,83978,60.1,react,-68.0,32.0,-11.0,62.1,-67.0,1.01,shadcn-ui/ui,126149,27997,2026-10-20,False
+コピペ/レジストリ（代理指標）,class-variance-authority,83559474,8257024,1835048,912.0,react,104.0,47.5,-1.0,842.6,90.0,1.0,joe-bell/cva,6905,349,2026-10-21,False
+コピペ/レジストリ（代理指標）,tailwind-merge,107067280,12174256,3467155,779.5,react,77.0,47.2,-1.0,735.4,69.0,1.0,dcastil/tailwind-merge,5693,287,2026-10-20,False
+コピペ/レジストリ（代理指標）,tw-animate-css,50423046,2559441,0,1870.1,react,297.0,53.4,3.0,1715.0,266.0,1.0,Wombosvideo/tw-animate-css,809,,2026-02-28,False
+コピペ/レジストリ（代理指標）,tailwindcss-animate,25761174,5471840,1566838,370.8,react,-5.0,18.9,-20.0,343.3,-11.0,1.0,jamiebuilds/tailwindcss-animate,3014,,2024-07-28,False
+コピペ/レジストリ（代理指標）,lucide-react,134583738,12964687,1667494,938.1,react,109.0,55.6,5.0,872.3,96.0,0.98,lucide-icons/lucide,25195,5769,2026-10-21,False
+スタイリング,tailwindcss,163032225,24196178,10126901,573.8,react,36.0,31.5,-12.0,573.2,36.0,1.0,tailwindlabs/tailwindcss,97960,7250,2026-10-19,False
+スタイリング,@tailwindcss/vite,60982905,3354561,6596,1717.9,react,267.0,55.4,5.0,1592.6,241.0,1.0,tailwindlabs/tailwindcss,97960,7250,2026-10-19,False
+スタイリング,tailwind-variants,5059788,1033311,349492,389.7,react,-1.0,63.2,10.0,379.9,-3.0,0.98,heroui-inc/tailwind-variants,3320,311,2026-10-21,False
+スタイリング,@emotion/react,24906382,11537310,8071794,115.9,react,-56.0,30.9,-12.0,114.2,-57.0,0.99,emotion-js/emotion,18019,111,2026-08-28,False
+スタイリング,styled-components,13245038,6956502,5375270,90.4,react,-62.0,23.6,-17.0,86.2,-62.0,0.98,styled-components/styled-components,41063,104,2026-10-19,False
+スタイリング,@vanilla-extract/css,3193302,985420,713087,224.1,react,-35.0,45.3,-2.0,237.6,-32.0,1.04,vanilla-extract-css/vanilla-extract,10437,256,2026-10-08,False
+スタイリング,@stylexjs/stylex,2541441,239735,14287,960.1,react,114.0,145.1,65.0,916.9,105.0,1.0,facebook/stylex,10425,1677,2026-10-21,False
+スタイリング,unocss,577187,372484,169207,55.0,react,-69.0,43.1,-4.0,50.0,-70.0,0.97,unocss/unocss,18984,790,2026-10-20,False
+スタイリング,@pandacss/dev,565899,161814,68706,249.7,react,-29.0,41.8,-5.0,249.7,-29.0,1.0,chakra-ui/panda,6231,389,2026-10-21,False
+スタイリング,basecoat-css,32977,2140,0,1441.0,typescript,296.0,146.7,52.0,1843.3,399.0,1.26,hunvreus/basecoat,4383,1505,2026-07-21,False
+単機能,zod,387371526,47725494,12290647,711.7,react,64.0,73.0,16.0,711.7,64.0,1.0,colinhacks/zod,44169,3754,2026-10-19,False
+単機能,lucide-react,134583738,12964687,1667494,938.1,react,109.0,55.6,5.0,872.3,96.0,0.98,lucide-icons/lucide,25195,5769,2026-10-21,False
+単機能,framer-motion,58492608,10018176,4236829,483.9,react,18.0,55.3,5.0,459.9,13.0,0.96,motiondivision/motion,34420,4331,2026-10-21,False
+単機能,motion,28260335,2092130,298748,1250.8,react,172.0,97.8,33.0,1250.8,172.0,1.0,motiondivision/motion,34420,4331,2026-10-21,False
+単機能,react-hook-form,70255177,13014569,5799924,439.8,react,9.0,25.8,-15.0,355.3,-8.0,0.9,react-hook-form/react-hook-form,44874,844,2026-10-21,False
+単機能,recharts,71292254,7612052,2009029,836.6,react,89.0,32.7,-11.0,738.6,69.0,0.95,recharts/recharts,27647,1556,2026-10-21,False
+単機能,sonner,63500483,5312381,911390,1095.3,react,141.0,37.0,-8.0,1016.2,125.0,1.0,emilkowalski/sonner,13063,1698,2026-08-10,False
+単機能,cmdk,54820725,5099786,922769,975.0,react,117.0,31.6,-11.0,888.9,99.0,1.0,dip/cmdk,13030,1230,2025-10-29,False
+単機能,react-day-picker,55780991,8330690,1655692,569.6,react,35.0,28.7,-13.0,554.1,32.0,1.06,gpbl/react-day-picker,6861,243,2026-10-21,False
+単機能,vaul,46589021,3621030,520694,1186.6,react,160.0,23.5,-17.0,1038.5,130.0,1.0,emilkowalski/vaul,8646,732,2025-10-03,False
+単機能,input-otp,40320467,3331641,225054,1110.2,react,144.0,19.4,-20.0,943.9,111.0,0.97,guilhermerodz/input-otp,3268,290,2026-09-10,False
+単機能,embla-carousel-react,41361575,4334544,758080,854.2,react,92.0,16.5,-22.0,712.8,64.0,0.95,,,,,
+単機能,react-resizable-panels,43220136,6237034,532683,593.0,react,40.0,30.3,-12.0,525.8,26.0,1.02,bvaughn/react-resizable-panels,5419,574,2026-10-20,False
+単機能,@tanstack/react-table,26587277,4837658,2146376,449.6,react,11.0,75.0,18.0,449.6,11.0,1.0,TanStack/table,28507,1360,2026-10-21,False
+単機能,@tanstack/react-virtual,31748429,5437306,2234923,483.9,react,18.0,98.9,34.0,483.4,18.0,1.0,,,,,
+単機能,@tanstack/react-form,4236975,404752,47552,946.8,react,111.0,85.7,25.0,946.8,111.0,1.0,TanStack/form,6740,832,2026-10-21,False
+単機能,@dnd-kit/core,33192659,4793470,1673943,592.5,react,40.0,72.1,16.0,592.5,40.0,1.0,clauderic/dnd-kit,17738,1834,2026-10-15,False
+単機能,gsap,7084295,1062880,511825,566.5,react,34.0,79.5,21.0,563.4,34.0,1.0,greensock/GSAP,29591,6431,2026-04-13,False
+単機能,react-icons,10634641,4320774,2304707,146.1,react,-50.0,7.8,-27.0,144.8,-51.0,0.99,,,,,
+単機能,@phosphor-icons/react,6195297,512247,194911,1109.4,react,144.0,184.9,92.0,1110.5,144.0,1.0,phosphor-icons/react,1777,,2026-01-06,False
+単機能,@tabler/icons-react,4168768,847095,340808,392.1,react,-1.0,57.4,6.0,392.1,-1.0,1.0,tabler/tabler-icons,22406,2703,2026-10-21,False
+単機能,@hugeicons/react,1506443,30566,861,4828.5,react,894.0,209.0,108.0,4828.5,894.0,1.0,,,,,
+AI UI,@modelcontextprotocol/sdk,76226448,7103166,0,973.1,react,116.0,68.3,13.0,905.9,103.0,0.94,,,,,
+AI UI,ai,34491532,3444266,545115,901.4,react,102.0,110.0,41.0,901.4,102.0,1.0,vercel/ai,27439,8766,2026-10-22,False
+AI UI,@ai-sdk/react,11114399,2528061,481833,339.6,react,-11.0,77.8,20.0,343.2,-11.0,1.01,vercel/ai,27439,8766,2026-10-22,False
+AI UI,streamdown,8122093,154071,0,5171.7,react,963.0,120.4,48.0,5171.7,963.0,1.0,vercel/streamdown,5718,2896,2026-10-21,False
+AI UI,@modelcontextprotocol/ext-apps,5321012,0,0,,react,,170.4,82.0,,,,modelcontextprotocol/ext-apps,2992,,2026-09-25,False
+AI UI,use-stick-to-bottom,5141805,235372,257,2084.5,react,341.0,113.1,43.0,2066.1,337.0,0.99,,,,,
+AI UI,@json-render/core,2351903,0,0,,react,,235.8,126.0,,,,vercel-labs/json-render,18749,,2026-10-21,False
+AI UI,@assistant-ui/react,2367302,108346,2238,2084.9,react,341.0,85.4,25.0,2040.1,332.0,0.98,assistant-ui/assistant-ui,12660,,2026-10-21,False
+AI UI,@openai/apps-sdk-ui,722379,0,0,,react,,69.4,14.0,,,,openai/apps-sdk-ui,964,,2026-05-20,False
+AI UI,@copilotkit/react-core,616293,55881,3151,1002.9,react,122.0,68.6,13.0,996.9,121.0,1.07,CopilotKit/CopilotKit,38163,,2026-10-22,False
+AI UI,@a2ui/lit,526634,0,0,,react,,18.7,-20.0,,,,a2ui-project/a2ui,16768,,2026-10-21,False
+AI UI,@mcp-ui/client,406878,12092,0,3264.9,react,579.0,35.2,-9.0,2955.7,516.0,1.0,MCP-UI-Org/mcp-ui,5227,2245,2026-09-16,False
+AI UI,@openai/chatkit-react,84870,0,0,,react,,-56.7,-71.0,,,,openai/chatkit-js,1965,,2026-07-31,False
+モバイル,nativewind,2225450,363246,97086,512.7,react-native,37.0,79.5,10.0,489.6,36.0,0.96,nativewind/nativewind,8117,959,2026-10-16,False
+モバイル,@expo/ui,5616185,10363,0,54094.6,react-native,12057.0,405.5,209.0,53230.0,12212.0,0.98,,,,,
+モバイル,uniwind,842955,512,0,164539.6,react-native,36833.0,294.2,141.0,204047.9,47030.0,1.0,uni-stack/uniwind,1738,,2026-10-20,False
+モバイル,@rn-primitives/slot,710184,84062,6980,744.8,react-native,90.0,148.6,52.0,883.2,127.0,0.95,founded-labs/react-native-reusables,8699,1524,2026-09-27,False
+モバイル,tamagui,227058,75306,49079,201.5,react-native,-32.0,16.1,-29.0,218.1,-27.0,1.0,tamagui/tamagui,14269,1042,2026-10-21,False
+モバイル,heroui-native,214741,1163,0,18364.4,react-native,4042.0,180.3,71.0,23974.1,5458.0,1.3,heroui-inc/heroui-native,3695,,2026-10-20,False
+モバイル,react-native-unistyles,286685,53224,33461,438.6,react-native,21.0,39.3,-15.0,427.0,22.0,1.0,jpudysz/react-native-unistyles,2970,411,2026-10-21,False
+モバイル,react-native-paper,535691,311600,247657,71.9,react-native,-61.0,15.1,-30.0,71.9,-60.0,1.0,callstack/react-native-paper,14477,427,2026-10-21,False
+モバイル,@gluestack-ui/core,124867,11754,0,962.3,react-native,138.0,108.9,28.0,881.5,127.0,1.0,gluestack/gluestack-ui,5327,811,2026-09-02,False
+他フレームワーク,reka-ui,2583012,401721,115,543.0,vue,123.0,78.9,23.0,555.5,129.0,1.03,unovue/reka-ui,6896,1205,2026-10-21,False
+他フレームワーク,radix-vue,2018234,196141,106784,929.0,vue,256.0,147.8,71.0,904.4,251.0,0.98,unovue/reka-ui,6896,1205,2026-10-21,False
+他フレームワーク,shadcn-vue,130301,24467,2632,432.6,vue,84.0,42.4,-2.0,425.9,84.0,1.0,unovue/shadcn-vue,10712,2273,2026-10-21,False
+他フレームワーク,@nuxt/ui,799093,140706,45393,467.9,vue,97.0,79.1,23.0,499.7,109.0,1.06,nuxt/ui,7024,1369,2026-10-21,False
+他フレームワーク,bits-ui,1373291,246981,84427,456.0,svelte,42.0,71.4,17.0,456.0,41.0,1.0,huntabyte/bits-ui,3622,923,2026-10-20,False
+他フレームワーク,shadcn-svelte,196434,7174,2574,2638.1,svelte,600.0,64.4,12.0,2805.8,639.0,1.06,huntabyte/shadcn-svelte,9203,1586,2026-10-21,False
+他フレームワーク,@melt-ui/svelte,195420,126685,95080,54.3,svelte,-61.0,22.5,-16.0,52.8,-61.0,1.03,melt-ui/melt-ui,4199,107,2025-09-30,False
+他フレームワーク,@kobalte/core,2807851,55500,7562,4959.2,solid-js,497.0,922.0,280.0,4779.0,476.0,0.96,kobaltedev/kobalte,1880,278,2026-10-20,False
+他フレームワーク,@spartan-ng/brain,86451,5551,0,1457.4,@angular/core,752.0,99.6,57.0,1466.4,792.0,1.01,spartan-ng/spartan,2952,,2026-10-17,False
+他フレームワーク,ng-primitives,47359,4096,138,1056.2,@angular/core,532.0,133.5,84.0,1000.9,527.0,1.06,ng-primitives/ng-primitives,610,,2026-10-21,False
+他フレームワーク,lit,8679253,3473778,1918865,149.9,typescript,-36.0,40.3,-14.0,145.9,-37.0,1.0,lit/lit,21861,1410,2026-09-24,False
+他フレームワーク,@awesome.me/webawesome,473785,5799,0,8070.1,typescript,1999.0,1904.3,1135.0,12598.6,3162.0,1.55,shoelace-style/webawesome,1372,,2026-10-21,False
+他フレームワーク,@shoelace-style/shoelace,169869,75535,41332,124.9,typescript,-42.0,23.2,-24.0,94.0,-50.0,1.02,shoelace-style/shoelace,13822,108,2026-05-14,True

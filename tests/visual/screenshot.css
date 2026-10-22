@@ -1,0 +1,20 @@
+/* Added once to every page before the first screenshot, and left in place,
+   rather than per screenshot (toHaveScreenshot's stylePath / caret: "hide"),
+   so taking a screenshot never repaints the page. */
+
+/* The playground's review bar is sticky; keep it from covering a section. */
+.review {
+  position: static !important;
+}
+
+/* A focused input (the open dialog) would show a blinking caret. */
+* {
+  caret-color: transparent !important;
+}
+
+/* Spinners and the skeleton shimmer loop forever: freeze them on their first frame. */
+[data-slot="spinner-ring"],
+[data-slot="button-spinner"],
+[data-slot="skeleton"] {
+  animation: none !important;
+}

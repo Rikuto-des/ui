@@ -1,0 +1,71 @@
+{
+  "name": "badge",
+  "tier": 1,
+  "summary": "A short status or count label.",
+  "use": [
+    "Status of an item (対応中, 完了)",
+    "A count next to a label"
+  ],
+  "avoid": [
+    {
+      "case": "An action",
+      "instead": "button"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Badge",
+      "slot": "badge",
+      "element": "span",
+      "description": "The badge. Its text carries the meaning; tone only reinforces it.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "tone": {
+            "default": "neutral",
+            "type": "string",
+            "enum": [
+              "neutral",
+              "accent",
+              "ok",
+              "danger"
+            ]
+          },
+          "dot": {
+            "default": false,
+            "description": "Shows a small status dot before the text.",
+            "type": "boolean"
+          }
+        }
+      },
+      "overrides": [
+        "margin",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [],
+  "a11y": {
+    "rules": [
+      "Never rely on tone alone; the text states the status."
+    ]
+  },
+  "tokens": [
+    "color.accent",
+    "color.ok",
+    "color.danger",
+    "color.text-muted"
+  ],
+  "examples": [
+    {
+      "title": "Status",
+      "code": "<Badge tone=\"danger\" dot>期限切れ</Badge>"
+    }
+  ]
+}

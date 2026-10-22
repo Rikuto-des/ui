@@ -1,0 +1,19 @@
+{
+  "name": "toast",
+  "version": "0.1.0",
+  "contract": "schema/toast.json",
+  "files": [
+    {
+      "path": "toast.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add toast`. Render <Toaster /> once per page and call toast() from client code.\nexport { Toaster, toast, type ToasterProps } from \"@yourlib/react/toast\";\n",
+      "hash": "sha256-zItenqsS5VhA+Jzrco2rSnjwO3DsnmBdQGkPPXXbp9g="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}

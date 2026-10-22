@@ -1,0 +1,3151 @@
+{
+  "id": "2026-10-22T06-18-03Z",
+  "via": "claude",
+  "client": "claude -p（2.1.296 (Claude Code)）",
+  "model": "claude-opus-5-5",
+  "effort": "high",
+  "trials": 3,
+  "docs": {
+    "llms": "03f8e0de8ac6",
+    "skill": "435c80e1d2f5"
+  },
+  "tasks": [
+    {
+      "id": "01-settings",
+      "title": "設定画面",
+      "prompt": "アカウントの設定画面を作ってください。\n\n- 「プロフィール」のまとまり: 表示名（必須）と自己紹介（複数行）を入力し、「保存」ボタンで送信する。\n- 「通知」のまとまり: メール通知とプッシュ通知を、それぞれその場でオン・オフできるようにする。\n- 「表示」のまとまり: 表示言語を 日本語・English・中文・한국어・Español・Français から選ぶ。\n\n保存ボタンはこのページの主な操作なので、目立たせてください。"
+    },
+    {
+      "id": "02-login",
+      "title": "ログインフォーム",
+      "prompt": "ログインページを作ってください。メールアドレスとパスワードの入力欄、「ログイン状態を保持する」のチェック、ログインボタン、「パスワードをお忘れの方」へのリンク（/reset-password）を置きます。\n\nprops の `error` に文字列が来たときは、パスワード欄の下にそのエラーを赤字で出してください。フォームはカードの中に入れ、幅は 400px くらいにしてください。"
+    },
+    {
+      "id": "03-task-row-menu",
+      "title": "タスク一覧の行メニュー",
+      "prompt": "タスクの一覧を作ってください。props でタスクの配列（id、タイトル、状態: 未着手・対応中・完了、担当者名）を受け取り、1 行に 1 件ずつ表示します。\n\n状態はラベルで見分けられるようにしてください。各行の右端には「…」のアイコンボタンを置き、押すと「編集」「複製」「削除」のメニューが開くようにします。"
+    },
+    {
+      "id": "04-delete-confirm",
+      "title": "削除確認ダイアログ",
+      "prompt": "プロジェクトの設定ページの一番下に置く「危険な操作」の欄を作ってください。\n\n「プロジェクトを削除」ボタンを押すと確認ダイアログが開き、「この操作は取り消せません」と説明したうえで、「キャンセル」と「削除する」を選べるようにします。「削除する」を押したら props の `onDelete` を呼びます。\n\n削除ボタンは赤で目立たせ、角はしっかり丸くしてください。"
+    },
+    {
+      "id": "05-project-tabs",
+      "title": "タブで切り替える詳細ページ",
+      "prompt": "プロジェクトの詳細ページを作ってください。上部にプロジェクト名と状態のラベル、その下に「概要」「メンバー」「アクティビティ」「設定」の 4 つのタブを置きます。最初は「概要」を表示します。\n\n概要には説明文、メンバーには名前の一覧、アクティビティには最近の出来事を 3 件、設定には「プロジェクトをアーカイブする」のスイッチを置いてください。"
+    },
+    {
+      "id": "06-signup-plan",
+      "title": "会員登録とプラン選択",
+      "prompt": "会員登録フォームを作ってください。氏名、メールアドレス、会社名（任意）を入力し、プランを「フリー」「チーム（月 1,200 円）」「エンタープライズ（要相談）」から 1 つ選びます。最初は「チーム」を選んだ状態にしてください。\n\n最後に「利用規約に同意します」のチェックと「登録する」ボタンを置きます。選択中のプランは、ブランドの紫色の枠で強調してください。"
+    },
+    {
+      "id": "07-filter-popover",
+      "title": "一覧のフィルター",
+      "prompt": "注文一覧の上に置くフィルターを作ってください。「絞り込み」ボタンを押すとパネルが開きます。\n\nパネルには、状態（未発送・発送済み・キャンセル）を複数選べるチェックボックスと、並び順（新しい順・古い順・金額の高い順）の選択、「適用」と「クリア」のボタンを置きます。パネルはボタンの真下に出してください。"
+    },
+    {
+      "id": "08-editor-toolbar",
+      "title": "エディタのツールバー",
+      "prompt": "文章エディタの上に置くツールバーを作ってください。太字・斜体・リンク・コピーの 4 つのアイコンボタンを横に並べ、マウスを乗せたりフォーカスしたりすると「太字（⌘B）」のような説明が出るようにします。アイコンは SVG で直接書いてください。\n\nツールバーの背景は薄いグレーにして、ボタン同士の間は 4px 空けてください。"
+    },
+    {
+      "id": "09-help-faq",
+      "title": "ヘルプページ",
+      "prompt": "ヘルプページを作ってください。\n\n前半は「よくある質問」で、質問を 4 つ並べ、クリックで答えが開くようにします（一度に開くのは 1 つだけ）。後半は「お問い合わせ」のフォームで、件名（料金・不具合・その他）の選択、本文、送信ボタンを置きます。\n\n送信したら、画面の端に「送信しました」と短く知らせてください。"
+    },
+    {
+      "id": "10-dashboard",
+      "title": "ダッシュボードのカード",
+      "prompt": "売上ダッシュボードの上段に並べるカードを 3 枚作ってください（今月の売上、新規顧客数、解約率）。\n\nprops の `loading` が true のあいだは、数値の代わりに読み込み中の形を出します。各カードには前月比を「+12%」のようなラベルで出し、増えていれば緑、減っていれば赤にしてください。カードの影は少し強めにして、数値は大きく太く表示してください。"
+    }
+  ],
+  "samples": [
+    {
+      "task": "01-settings",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/01-settings.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1621,
+          "cacheRead": 6956,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0381992,
+        "problems": [],
+        "yourlibElements": 13,
+        "skillSignals": [
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/01-settings.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1043,
+          "cacheRead": 6956,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.026631200000000004,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/01-settings.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1143,
+          "cacheRead": 6956,
+          "cacheWrite": 401
+        },
+        "costUsd": 0.028623199999999998,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/02-login.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 924,
+          "cacheRead": 6919,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.024190800000000002,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/02-login.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1297,
+          "cacheRead": 6919,
+          "cacheWrite": 404
+        },
+        "costUsd": 0.0307039,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/02-login.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1033,
+          "cacheRead": 6919,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.025489900000000003,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/03-task-row-menu.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1245,
+          "cacheRead": 6909,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0297199,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/03-task-row-menu.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1506,
+          "cacheRead": 6909,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.0349424,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/03-task-row-menu.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1253,
+          "cacheRead": 6909,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0299044,
+        "problems": [],
+        "yourlibElements": 9,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/04-delete-confirm.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1138,
+          "cacheRead": 6930,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.027514700000000003,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/04-delete-confirm.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1233,
+          "cacheRead": 6930,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.029533700000000003,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/04-delete-confirm.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1097,
+          "cacheRead": 6930,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.026702700000000003,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "data-pack",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/05-project-tabs.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1750,
+          "cacheRead": 6925,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.039816700000000003,
+        "problems": [],
+        "yourlibElements": 16,
+        "skillSignals": [
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/05-project-tabs.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1744,
+          "cacheRead": 6925,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.039690199999999995,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/05-project-tabs.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1673,
+          "cacheRead": 6925,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0382752,
+        "problems": [],
+        "yourlibElements": 16,
+        "skillSignals": [
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/06-signup-plan.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1453,
+          "cacheRead": 6932,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.033890300000000005,
+        "problems": [],
+        "yourlibElements": 13,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/06-signup-plan.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1663,
+          "cacheRead": 6932,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0380193,
+        "problems": [],
+        "yourlibElements": 13,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/06-signup-plan.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1674,
+          "cacheRead": 6932,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0382393,
+        "problems": [],
+        "yourlibElements": 12,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/07-filter-popover.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1309,
+          "cacheRead": 6911,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.030936000000000005,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/07-filter-popover.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 946,
+          "cacheRead": 6911,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.023676000000000003,
+        "problems": [],
+        "yourlibElements": 11,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/07-filter-popover.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1387,
+          "cacheRead": 6911,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.032496,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/08-editor-toolbar.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2211,
+          "cacheRead": 6919,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.04903089999999999,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)",
+          "data-pack"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/08-editor-toolbar.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1975,
+          "cacheRead": 6919,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.044336900000000005,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/08-editor-toolbar.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1684,
+          "cacheRead": 6919,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.038506399999999996,
+        "problems": [],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "Trigger の dialog/menu/popover/tooltip で id を指す",
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/09-help-faq.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1529,
+          "cacheRead": 6913,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0354571,
+        "problems": [],
+        "yourlibElements": 10,
+        "skillSignals": [
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/09-help-faq.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1638,
+          "cacheRead": 6913,
+          "cacheWrite": 404
+        },
+        "costUsd": 0.037701099999999994,
+        "problems": [],
+        "yourlibElements": 13,
+        "skillSignals": [
+          "YourlibRuntime"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/09-help-faq.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1554,
+          "cacheRead": 6913,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0359996,
+        "problems": [],
+        "yourlibElements": 14,
+        "skillSignals": [
+          "YourlibRuntime",
+          "Card の headingLevel"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "A",
+      "trial": 1,
+      "first": {
+        "file": "A/10-dashboard.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2557,
+          "cacheRead": 6920,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.055957700000000006,
+        "problems": [],
+        "yourlibElements": 3,
+        "skillSignals": [
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "A",
+      "trial": 2,
+      "first": {
+        "file": "A/10-dashboard.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2033,
+          "cacheRead": 6920,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.045528200000000005,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "A",
+      "trial": 3,
+      "first": {
+        "file": "A/10-dashboard.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2210,
+          "cacheRead": 6920,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0490227,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "Card の headingLevel",
+          "Badge の tone"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/01-settings.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1934,
+          "cacheRead": 548,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0421649,
+        "problems": [
+          {
+            "line": 95,
+            "column": 34,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-green-700）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 114,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 8
+      },
+      "fix": {
+        "file": "B/01-settings.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1822,
+          "cacheRead": 951,
+          "cacheWrite": 2142
+        },
+        "costUsd": 0.0537742,
+        "problems": [
+          {
+            "line": 97,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-success)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 117,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-subtle)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 8
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/01-settings.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1878,
+          "cacheRead": 548,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0410949,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 7
+      }
+    },
+    {
+      "task": "01-settings",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/01-settings.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1899,
+          "cacheRead": 548,
+          "cacheWrite": 404
+        },
+        "costUsd": 0.0414729,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 12
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/02-login.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1474,
+          "cacheRead": 0,
+          "cacheWrite": 914
+        },
+        "costUsd": 0.0369401,
+        "problems": [
+          {
+            "line": 39,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-50）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 40,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 40,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（max-w-[400px]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 76,
+            "column": 44,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 101,
+            "column": 42,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Link> の見た目は className では変えられません（text-sm）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 0
+      },
+      "fix": {
+        "file": "B/02-login.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1657,
+          "cacheRead": 914,
+          "cacheWrite": 2034
+        },
+        "costUsd": 0.04960280000000001,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 0
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/02-login.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1266,
+          "cacheRead": 0,
+          "cacheWrite": 914
+        },
+        "costUsd": 0.0329136,
+        "problems": [
+          {
+            "line": 44,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-50）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 45,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（max-w-[400px]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 78,
+            "column": 50,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 99,
+            "column": 44,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Link> の見た目は className では変えられません（text-sm）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 5
+      },
+      "fix": {
+        "file": "B/02-login.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1784,
+          "cacheRead": 914,
+          "cacheWrite": 1680
+        },
+        "costUsd": 0.0493108,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 5
+      }
+    },
+    {
+      "task": "02-login",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/02-login.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1375,
+          "cacheRead": 0,
+          "cacheWrite": 912
+        },
+        "costUsd": 0.0350911,
+        "problems": [
+          {
+            "line": 45,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-50）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 46,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 46,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（max-w-[400px]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 79,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 105,
+            "column": 42,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Link> の見た目は className では変えられません（text-sm）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 4
+      },
+      "fix": {
+        "file": "B/02-login.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1707,
+          "cacheRead": 912,
+          "cacheWrite": 1935
+        },
+        "costUsd": 0.04981039999999999,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 4
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/03-task-row-menu.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1296,
+          "cacheRead": 0,
+          "cacheWrite": 904
+        },
+        "costUsd": 0.0333776,
+        "problems": [
+          {
+            "line": 59,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 68,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（divide-gray-200）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 68,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 73,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 74,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 85,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 85,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "Badge の tone"
+        ],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/03-task-row-menu.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1302,
+          "cacheRead": 904,
+          "cacheWrite": 1799
+        },
+        "costUsd": 0.04062079999999999,
+        "problems": [
+          {
+            "line": 59,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-subtle)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 68,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（divide-[var(--yl-color-border)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 68,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（border-[var(--yl-color-border)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 76,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 79,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-subtle)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Badge の tone"
+        ],
+        "typeErrors": 5
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/03-task-row-menu.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1357,
+          "cacheRead": 0,
+          "cacheWrite": 905
+        },
+        "costUsd": 0.034616600000000004,
+        "problems": [
+          {
+            "line": 48,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 55,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（divide-gray-200）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 55,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 62,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 63,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 72,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 72,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/03-task-row-menu.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1179,
+          "cacheRead": 905,
+          "cacheWrite": 1860
+        },
+        "costUsd": 0.03864900000000001,
+        "problems": [
+          {
+            "line": 48,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 55,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（divide-[var(--yl-color-border)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 55,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（border-[var(--yl-color-border)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 62,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 65,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 5
+      }
+    },
+    {
+      "task": "03-task-row-menu",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/03-task-row-menu.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1385,
+          "cacheRead": 0,
+          "cacheWrite": 904
+        },
+        "costUsd": 0.0351676,
+        "problems": [
+          {
+            "line": 59,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 71,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 78,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 78,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Menu> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "Badge の tone"
+        ],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/03-task-row-menu.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1185,
+          "cacheRead": 904,
+          "cacheWrite": 1695
+        },
+        "costUsd": 0.0374488,
+        "problems": [
+          {
+            "line": 59,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 74,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Badge の tone"
+        ],
+        "typeErrors": 5
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/04-delete-confirm.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1445,
+          "cacheRead": 522,
+          "cacheWrite": 404
+        },
+        "costUsd": 0.032495100000000006,
+        "problems": [
+          {
+            "line": 61,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 61,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には title が必要です。見出しになり、スクリーンリーダーで読み上げられる名前になります。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 12
+      },
+      "fix": {
+        "file": "B/04-delete-confirm.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1197,
+          "cacheRead": 926,
+          "cacheWrite": 1634
+        },
+        "costUsd": 0.0372052,
+        "problems": [],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 11
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/04-delete-confirm.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1540,
+          "cacheRead": 522,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.034281099999999995,
+        "problems": [
+          {
+            "line": 40,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 45,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（border border-red-200）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 45,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-red-200）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 49,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 56,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full px-6）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 64,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 64,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には title が必要です。見出しになり、スクリーンリーダーで読み上げられる名前になります。"
+          },
+          {
+            "line": 85,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full px-6）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          },
+          {
+            "line": 93,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Button> の見た目は className では変えられません（rounded-full px-6）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/04-delete-confirm.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1444,
+          "cacheRead": 925,
+          "cacheWrite": 2509
+        },
+        "costUsd": 0.04914500000000001,
+        "problems": [
+          {
+            "line": 49,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-danger)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 58,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 4
+      }
+    },
+    {
+      "task": "04-delete-confirm",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/04-delete-confirm.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1476,
+          "cacheRead": 522,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0331026,
+        "problems": [
+          {
+            "line": 61,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 61,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Dialog> には title が必要です。見出しになり、スクリーンリーダーで読み上げられる名前になります。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 12
+      },
+      "fix": {
+        "file": "B/04-delete-confirm.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1221,
+          "cacheRead": 925,
+          "cacheWrite": 1665
+        },
+        "costUsd": 0.037933,
+        "problems": [],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 10
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/05-project-tabs.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1604,
+          "cacheRead": 517,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.03563859999999999,
+        "problems": [
+          {
+            "line": 68,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 68,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 68,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には defaultValue が必要です。最初に選ばれているタブの value です。"
+          },
+          {
+            "line": 77,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 83,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 95,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 99,
+            "column": 35,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 110,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/05-project-tabs.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1531,
+          "cacheRead": 920,
+          "cacheWrite": 2484
+        },
+        "costUsd": 0.05068400000000001,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 6
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/05-project-tabs.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1600,
+          "cacheRead": 517,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.035524599999999996,
+        "problems": [
+          {
+            "line": 70,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 70,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 79,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 85,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 101,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 116,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/05-project-tabs.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1513,
+          "cacheRead": 919,
+          "cacheWrite": 2368
+        },
+        "costUsd": 0.04939580000000001,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 6
+      }
+    },
+    {
+      "task": "05-project-tabs",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/05-project-tabs.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1642,
+          "cacheRead": 517,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0363951,
+        "problems": [
+          {
+            "line": 61,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 61,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tabs> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 70,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 79,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 94,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 112,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-4）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/05-project-tabs.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1677,
+          "cacheRead": 920,
+          "cacheWrite": 2410
+        },
+        "costUsd": 0.05301199999999999,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 6
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/06-signup-plan.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2546,
+          "cacheRead": 524,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0544712,
+        "problems": [
+          {
+            "line": 82,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 86,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 97,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 101,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 135,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 140,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<RadioGroup> の見た目は className では変えられません（space-y-3）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 160,
+            "column": 27,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-purple-700）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 160,
+            "column": 27,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 9
+      },
+      "fix": {
+        "file": "B/06-signup-plan.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2728,
+          "cacheRead": 927,
+          "cacheWrite": 3369
+        },
+        "costUsd": 0.08170539999999998,
+        "problems": [
+          {
+            "line": 85,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 100,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 159,
+            "column": 31,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-brand)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 159,
+            "column": 31,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 9
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/06-signup-plan.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2482,
+          "cacheRead": 524,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.053213199999999995,
+        "problems": [
+          {
+            "line": 82,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 97,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-8）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 101,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 135,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 140,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<RadioGroup> の見た目は className では変えられません（flex flex-col gap-3）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 159,
+            "column": 25,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-purple-700）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 159,
+            "column": 25,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-700）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 166,
+            "column": 52,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [],
+        "typeErrors": 9
+      },
+      "fix": {
+        "file": "B/06-signup-plan.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2794,
+          "cacheRead": 927,
+          "cacheWrite": 3310
+        },
+        "costUsd": 0.0825534,
+        "problems": [
+          {
+            "line": 97,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 155,
+            "column": 27,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-brand)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 155,
+            "column": 27,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 166,
+            "column": 25,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 5,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 9
+      }
+    },
+    {
+      "task": "06-signup-plan",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/06-signup-plan.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2718,
+          "cacheRead": 524,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.0579397,
+        "problems": [
+          {
+            "line": 78,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 78,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-white）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 80,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 81,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 93,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 94,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 129,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 153,
+            "column": 27,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 161,
+            "column": 41,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-purple-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 172,
+            "column": 25,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 189,
+            "column": 34,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-red-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [],
+        "typeErrors": 5
+      },
+      "fix": {
+        "file": "B/06-signup-plan.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2753,
+          "cacheRead": 927,
+          "cacheWrite": 3501
+        },
+        "costUsd": 0.0832614,
+        "problems": [
+          {
+            "line": 78,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（border-[var(--yl-color-border)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 78,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（bg-[var(--yl-color-surface)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 80,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 83,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 95,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 96,
+            "column": 10,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-muted)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 131,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 157,
+            "column": 27,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 170,
+            "column": 31,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（bg-[var(--yl-color-brand)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 184,
+            "column": 25,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-subtle)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 203,
+            "column": 34,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-danger)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 2,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 5
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/07-filter-popover.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2075,
+          "cacheRead": 0,
+          "cacheWrite": 905
+        },
+        "costUsd": 0.0488898,
+        "problems": [
+          {
+            "line": 78,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "<Popover> には title か aria-label を付けてください。パネルの名前として読み上げられます。"
+          },
+          {
+            "line": 78,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 83,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-blue-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 83,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-white）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 107,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には name が必要です。同じ name の選択肢が 1 つのグループになります。"
+          },
+          {
+            "line": 107,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 121,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（border-gray-200）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/07-filter-popover.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1930,
+          "cacheRead": 905,
+          "cacheWrite": 2550
+        },
+        "costUsd": 0.059189000000000005,
+        "problems": [
+          {
+            "line": 93,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（bg-[var(--yl-color-accent)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 93,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-on-accent)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 132,
+            "column": 18,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（border-[var(--yl-color-border)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 6
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/07-filter-popover.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1925,
+          "cacheRead": 0,
+          "cacheWrite": 908
+        },
+        "costUsd": 0.0459138,
+        "problems": [
+          {
+            "line": 83,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "<Popover> には title か aria-label を付けてください。パネルの名前として読み上げられます。"
+          },
+          {
+            "line": 83,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 92,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-200）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 116,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には name が必要です。同じ name の選択肢が 1 つのグループになります。"
+          },
+          {
+            "line": 116,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 6
+      },
+      "fix": {
+        "file": "B/07-filter-popover.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1763,
+          "cacheRead": 908,
+          "cacheWrite": 2275
+        },
+        "costUsd": 0.0536496,
+        "problems": [
+          {
+            "line": 94,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（bg-[var(--yl-color-surface-subtle)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 94,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-default)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 6
+      }
+    },
+    {
+      "task": "07-filter-popover",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/07-filter-popover.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2259,
+          "cacheRead": 0,
+          "cacheWrite": 906
+        },
+        "costUsd": 0.0525778,
+        "problems": [
+          {
+            "line": 97,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/accessible-name",
+            "message": "<Popover> には title か aria-label を付けてください。パネルの名前として読み上げられます。"
+          },
+          {
+            "line": 97,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Popover> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 102,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 102,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-white）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 138,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には name が必要です。同じ name の選択肢が 1 つのグループになります。"
+          },
+          {
+            "line": 138,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<RadioGroup> には legend が必要です。選択肢のグループの名前として読み上げられます。"
+          },
+          {
+            "line": 144,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<RadioGroup> の見た目は className では変えられません（flex flex-col gap-2）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 7
+      },
+      "fix": {
+        "file": "B/07-filter-popover.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2124,
+          "cacheRead": 906,
+          "cacheWrite": 2818
+        },
+        "costUsd": 0.0652132,
+        "problems": [],
+        "yourlibElements": 6,
+        "skillSignals": [],
+        "typeErrors": 7
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/08-editor-toolbar.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 3011,
+          "cacheRead": 0,
+          "cacheWrite": 914
+        },
+        "costUsd": 0.0677441,
+        "problems": [
+          {
+            "line": 174,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-100）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 181,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tooltip> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [],
+        "typeErrors": 2
+      },
+      "fix": {
+        "file": "B/08-editor-toolbar.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2758,
+          "cacheRead": 914,
+          "cacheWrite": 3209
+        },
+        "costUsd": 0.0810228,
+        "problems": [
+          {
+            "line": 175,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（bg-[var(--yl-color-bg-subtle)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 1
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/08-editor-toolbar.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2434,
+          "cacheRead": 0,
+          "cacheWrite": 913
+        },
+        "costUsd": 0.0562161,
+        "problems": [
+          {
+            "line": 117,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-100）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 120,
+            "column": 9,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tooltip> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [],
+        "typeErrors": 2
+      },
+      "fix": {
+        "file": "B/08-editor-toolbar.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2168,
+          "cacheRead": 913,
+          "cacheWrite": 2632
+        },
+        "costUsd": 0.06460659999999999,
+        "problems": [
+          {
+            "line": 118,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（bg-[var(--yl-color-surface-subtle)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 1
+      }
+    },
+    {
+      "task": "08-editor-toolbar",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/08-editor-toolbar.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2429,
+          "cacheRead": 0,
+          "cacheWrite": 914
+        },
+        "costUsd": 0.056140100000000005,
+        "problems": [
+          {
+            "line": 125,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（bg-gray-100）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 130,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Tooltip> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [],
+        "typeErrors": 2
+      },
+      "fix": {
+        "file": "B/08-editor-toolbar.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2156,
+          "cacheRead": 914,
+          "cacheWrite": 2627
+        },
+        "costUsd": 0.06432679999999999,
+        "problems": [
+          {
+            "line": 126,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（bg-[var(--yl-color-surface-subtle)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 1,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 1
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/09-help-faq.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2135,
+          "cacheRead": 0,
+          "cacheWrite": 908
+        },
+        "costUsd": 0.0502285,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 7
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/09-help-faq.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2072,
+          "cacheRead": 0,
+          "cacheWrite": 908
+        },
+        "costUsd": 0.04899900000000001,
+        "problems": [
+          {
+            "line": 115,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 115,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          },
+          {
+            "line": 134,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 134,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には label が必要です。入力欄やタブ一覧の名前として読み上げられます。"
+          }
+        ],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 17
+      },
+      "fix": {
+        "file": "B/09-help-faq.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1989,
+          "cacheRead": 908,
+          "cacheWrite": 2351
+        },
+        "costUsd": 0.05877759999999999,
+        "problems": [],
+        "yourlibElements": 8,
+        "skillSignals": [],
+        "typeErrors": 14
+      }
+    },
+    {
+      "task": "09-help-faq",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/09-help-faq.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1988,
+          "cacheRead": 0,
+          "cacheWrite": 908
+        },
+        "costUsd": 0.047348,
+        "problems": [
+          {
+            "line": 110,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-6）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 112,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          },
+          {
+            "line": 128,
+            "column": 15,
+            "severity": 2,
+            "rule": "yourlib/required-props",
+            "message": "<Field> には id が必要です。トリガーや閉じるボタンが、この id で参照します。"
+          }
+        ],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 14
+      },
+      "fix": {
+        "file": "B/09-help-faq.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1879,
+          "cacheRead": 908,
+          "cacheWrite": 2313
+        },
+        "costUsd": 0.05627360000000001,
+        "problems": [],
+        "yourlibElements": 7,
+        "skillSignals": [],
+        "typeErrors": 12
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "B",
+      "trial": 1,
+      "first": {
+        "file": "B/10-dashboard.t1.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1869,
+          "cacheRead": 512,
+          "cacheWrite": 403
+        },
+        "costUsd": 0.040934599999999995,
+        "problems": [
+          {
+            "line": 60,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（flex flex-col gap-3 p-6 shadow-lg）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 64,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 74,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 78,
+            "column": 20,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Badge> の見た目は className では変えられません（font-semibold）。className で変えてよいのは 外側の余白（m-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。文字の太さや字間はパックが決めます。"
+          },
+          {
+            "line": 82,
+            "column": 19,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 0
+      },
+      "fix": {
+        "file": "B/10-dashboard.t1.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 2031,
+          "cacheRead": 915,
+          "cacheWrite": 2427
+        },
+        "costUsd": 0.060226999999999996,
+        "problems": [
+          {
+            "line": 71,
+            "column": 13,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-secondary)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 83,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-primary)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 92,
+            "column": 17,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-secondary)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "トークン var(--yl-…)",
+          "Badge の tone"
+        ],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "B",
+      "trial": 2,
+      "first": {
+        "file": "B/10-dashboard.t2.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1922,
+          "cacheRead": 512,
+          "cacheWrite": 402
+        },
+        "costUsd": 0.04200910000000001,
+        "problems": [
+          {
+            "line": 57,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（shadow-lg）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 2
+      },
+      "fix": {
+        "file": "B/10-dashboard.t2.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1743,
+          "cacheRead": 914,
+          "cacheWrite": 2152
+        },
+        "costUsd": 0.0522668,
+        "problems": [],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 2
+      }
+    },
+    {
+      "task": "10-dashboard",
+      "condition": "B",
+      "trial": 3,
+      "first": {
+        "file": "B/10-dashboard.t3.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1806,
+          "cacheRead": 512,
+          "cacheWrite": 404
+        },
+        "costUsd": 0.0396851,
+        "problems": [
+          {
+            "line": 51,
+            "column": 7,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Badge> の見た目は className では変えられません（font-semibold）。className で変えてよいのは 外側の余白（m-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。文字の太さや字間はパックが決めます。"
+          },
+          {
+            "line": 69,
+            "column": 11,
+            "severity": 2,
+            "rule": "yourlib/no-visual-override",
+            "message": "<Card> の見た目は className では変えられません（p-6 shadow-lg）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・高さ（h-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。見た目を変えたいときは、パックのトークンかバリアントで表してください。"
+          },
+          {
+            "line": 71,
+            "column": 12,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-600）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 80,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-900）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 85,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-500）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          },
+          {
+            "line": 89,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "パレットの色（text-gray-400）は使えません。色はパックのトークン（var(--yl-color-…)）で指定してください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [],
+        "typeErrors": 0
+      },
+      "fix": {
+        "file": "B/10-dashboard.t3.fix.tsx",
+        "stopReason": "end_turn",
+        "usage": {
+          "input": 2,
+          "output": 1958,
+          "cacheRead": 916,
+          "cacheWrite": 2417
+        },
+        "costUsd": 0.058687199999999995,
+        "problems": [
+          {
+            "line": 66,
+            "column": 12,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-secondary)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 80,
+            "column": 16,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-primary)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 85,
+            "column": 21,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-secondary)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          },
+          {
+            "line": 91,
+            "column": 14,
+            "severity": 2,
+            "rule": "yourlib/no-raw-color",
+            "message": "任意の値（text-[var(--yl-color-text-disabled)]）は使えません。決められた段階（yl-space-* など）か、パックのトークンを使ってください。"
+          }
+        ],
+        "yourlibElements": 4,
+        "skillSignals": [
+          "トークン var(--yl-…)"
+        ],
+        "typeErrors": 2
+      }
+    }
+  ]
+}

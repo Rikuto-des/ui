@@ -1,0 +1,19 @@
+{
+  "name": "popover",
+  "version": "0.1.0",
+  "contract": "schema/popover.json",
+  "files": [
+    {
+      "path": "popover.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add popover`. This file is yours.\n// <Popover.Trigger popover=\"id\"> toggles and anchors <Popover id=\"id\">.\nexport { Popover, type PopoverProps } from \"@yourlib/react/popover\";\n",
+      "hash": "sha256-BFH5Gg4TIklGf7JYOtQK/T/Hw4Mf6fVtxxbhfs/zNig="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}

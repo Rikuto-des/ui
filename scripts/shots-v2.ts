@@ -1,0 +1,35 @@
+import { chromium } from "@playwright/test";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
+await page.goto("http://localhost:5173/proposals/v2.html", { waitUntil: "networkidle" });
+await page.waitForTimeout(600);
+const scripts = await page.locator("script").count();
+console.log("scripts:", scripts);
+await page.screenshot({ path: "docs/design/v2-graphite-hero.png" });
+await page.screenshot({ path: "docs/design/v2-graphite-full.png", fullPage: true });
+await page.getByRole("button", { name: "フィルタ" }).click();
+await page.waitForTimeout(300);
+await page.screenshot({ path: "docs/design/v2-graphite-popover.png" });
+await page.keyboard.press("Escape");
+await page.getByRole("button", { name: "削除する" }).first().click();
+await page.waitForTimeout(400);
+console.log("dialog open:", await page.locator("#dlg-delete").evaluate((d) => (d as HTMLDialogElement).open));
+await page.screenshot({ path: "docs/design/v2-graphite-dialog.png" });
+await page.keyboard.press("Escape");
+await page.locator('label[for="dir-lucent"]').click();
+await page.waitForTimeout(300);
+await page.screenshot({ path: "docs/design/v2-lucent-hero.png" });
+await page.screenshot({ path: "docs/design/v2-lucent-full.png", fullPage: true });
+await page.getByRole("button", { name: "削除する" }).first().click();
+await page.waitForTimeout(400);
+await page.screenshot({ path: "docs/design/v2-lucent-dialog.png" });
+await page.keyboard.press("Escape");
+for (const f of ["zen", "plex", "hiragino"]) {
+  await page.locator(`label[for="font-${f}"]`).click();
+  await page.waitForTimeout(300);
+  await page.locator(".hero").screenshot({ path: `docs/design/v2-font-${f}.png` });
+}
+await page.locator('label[for="font-noto"]').click();
+await page.waitForTimeout(300);
+await page.locator(".hero").screenshot({ path: `docs/design/v2-font-noto.png` });
+await browser.close();

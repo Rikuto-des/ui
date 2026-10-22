@@ -1,0 +1,92 @@
+{
+  "name": "select",
+  "tier": 2,
+  "summary": "A native <select>; with appearance: base-select its picker follows the pack.",
+  "use": [
+    "Choosing one option from a list of about 5 to 15"
+  ],
+  "avoid": [
+    {
+      "case": "Two to five visible options",
+      "instead": "radio-group"
+    },
+    {
+      "case": "Actions",
+      "instead": "menu"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [],
+    "enhances": [
+      {
+        "feature": "appearance: base-select",
+        "fallback": "the platform's own picker"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Select",
+      "slot": "select",
+      "element": "select",
+      "description": "The select. Children are native <option> and <optgroup> elements.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "size": {
+            "default": "md",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          },
+          "invalid": {
+            "default": false,
+            "type": "boolean"
+          },
+          "placeholder": {
+            "description": "Adds a disabled first option shown until a choice is made.",
+            "type": "string"
+          }
+        }
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "open",
+    "focus-visible",
+    "invalid",
+    "disabled"
+  ],
+  "a11y": {
+    "keyboard": {
+      "Arrow keys": "move",
+      "Enter": "choose"
+    },
+    "rules": [
+      "Wrap in Field so it has a label."
+    ]
+  },
+  "tokens": [
+    "color.field",
+    "color.surface-overlay",
+    "shadow.overlay",
+    "radius.control"
+  ],
+  "examples": [
+    {
+      "title": "Assignee",
+      "code": "<Field id=\"owner\" label=\"担当\"><Select name=\"owner\" placeholder=\"選択してください\"><option>山田</option><option>佐藤</option></Select></Field>"
+    }
+  ]
+}

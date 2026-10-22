@@ -1,0 +1,107 @@
+[
+  {
+    "name": "accordion",
+    "version": "0.1.0",
+    "summary": "Collapsible sections built on native <details>/<summary>; a shared name makes them exclusive."
+  },
+  {
+    "name": "badge",
+    "version": "0.1.0",
+    "summary": "A short status or count label."
+  },
+  {
+    "name": "button",
+    "version": "0.1.0",
+    "summary": "A native <button> that runs or confirms an action."
+  },
+  {
+    "name": "card",
+    "version": "0.1.0",
+    "summary": "A surface that groups related content, with an optional title, description and footer."
+  },
+  {
+    "name": "checkbox",
+    "version": "0.1.0",
+    "summary": "A native checkbox with its own label."
+  },
+  {
+    "name": "dialog",
+    "version": "0.1.0",
+    "summary": "A modal native <dialog> that interrupts the user for a confirmation or a short task."
+  },
+  {
+    "name": "field",
+    "version": "0.1.0",
+    "summary": "Labels a single form control and links its description and error message to it."
+  },
+  {
+    "name": "input",
+    "version": "0.1.0",
+    "summary": "A native single-line <input> styled by the pack."
+  },
+  {
+    "name": "link",
+    "version": "0.1.0",
+    "summary": "A native <a> that navigates to another page or place."
+  },
+  {
+    "name": "menu",
+    "version": "0.1.0",
+    "summary": "A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead."
+  },
+  {
+    "name": "popover",
+    "version": "0.1.0",
+    "summary": "A non-modal panel in the top layer (native `popover`), positioned against its trigger with CSS anchor positioning."
+  },
+  {
+    "name": "radio-group",
+    "version": "0.1.0",
+    "summary": "A <fieldset> of native radio buttons: exactly one choice, arrow keys move between them."
+  },
+  {
+    "name": "select",
+    "version": "0.1.0",
+    "summary": "A native <select>; with appearance: base-select its picker follows the pack."
+  },
+  {
+    "name": "separator",
+    "version": "0.1.0",
+    "summary": "A thin rule between groups of content."
+  },
+  {
+    "name": "skeleton",
+    "version": "0.1.0",
+    "summary": "A placeholder shape shown while content loads."
+  },
+  {
+    "name": "spinner",
+    "version": "0.1.0",
+    "summary": "An indeterminate progress indicator with a status message for screen readers."
+  },
+  {
+    "name": "switch",
+    "version": "0.1.0",
+    "summary": "A native checkbox with role=\"switch\" for settings that take effect immediately."
+  },
+  {
+    "name": "tabs",
+    "version": "0.1.0",
+    "summary": "Switches between panels of equal weight. Server-rendered; the runtime adds clicking and arrow keys."
+  },
+  {
+    "name": "textarea",
+    "version": "0.1.0",
+    "summary": "A native <textarea> that grows with its content (field-sizing)."
+  },
+  {
+    "name": "toast",
+    "version": "0.1.0",
+    "summary": "Brief notifications about the result of an action. Place one <Toaster /> per page and call toast() from client code."
+  },
+  {
+    "name": "tooltip",
+    "version": "0.1.0",
+    "summary": "A short description shown on hover and keyboard focus: popover=\"hint\" opened through interestfor."
+  }
+]

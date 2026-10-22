@@ -1,0 +1,88 @@
+{
+  "name": "card",
+  "tier": 1,
+  "summary": "A surface that groups related content, with an optional title, description and footer.",
+  "use": [
+    "A self-contained group of content or settings"
+  ],
+  "avoid": [
+    {
+      "case": "Wrapping every block on a page (use spacing instead)",
+      "instead": "separator"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Card",
+      "slot": "card",
+      "element": "div",
+      "description": "The surface. Header and footer render only when given.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Heading of the card.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "description": {
+            "description": "Supporting text under the title.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "footer": {
+            "description": "Actions or meta at the bottom.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "headingLevel": {
+            "default": "h3",
+            "description": "Keeps the page's heading outline correct.",
+            "type": "string",
+            "enum": [
+              "h2",
+              "h3",
+              "h4"
+            ]
+          },
+          "padding": {
+            "default": "md",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        }
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "height",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [],
+  "a11y": {
+    "rules": [
+      "Pick headingLevel so headings stay in order on the page."
+    ]
+  },
+  "tokens": [
+    "color.surface",
+    "shadow.panel",
+    "radius.panel",
+    "space.*"
+  ],
+  "examples": [
+    {
+      "title": "Settings card",
+      "code": "<Card title=\"通知\" description=\"受け取る通知を選びます。\" footer={<Button>保存</Button>}>…</Card>"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "name": "separator",
+  "tier": 1,
+  "summary": "A thin rule between groups of content.",
+  "use": [
+    "Separating groups when spacing alone is not enough"
+  ],
+  "avoid": [
+    {
+      "case": "Decorating every block",
+      "instead": "card"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Separator",
+      "slot": "separator",
+      "element": "hr",
+      "description": "<hr> (horizontal) or a vertical separator.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "orientation": {
+            "default": "horizontal",
+            "type": "string",
+            "enum": [
+              "horizontal",
+              "vertical"
+            ]
+          },
+          "decorative": {
+            "default": false,
+            "description": "Hide from assistive technology when it only decorates.",
+            "type": "boolean"
+          }
+        }
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "height",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [],
+  "a11y": {
+    "rules": [
+      "Use decorative when the rule adds no structure."
+    ]
+  },
+  "tokens": [
+    "color.border"
+  ],
+  "examples": [
+    {
+      "title": "Between groups",
+      "code": "<Separator />"
+    }
+  ]
+}

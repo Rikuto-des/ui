@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+}
+.page {
+  display: grid;
+  gap: var(--yl-space-5);
+  max-inline-size: 720px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+.page h1 {
+  margin: 0;
+  font-size: 32px;
+  font-feature-settings: var(--yl-font-features-title);
+}
+.muted {
+  margin: 0;
+  color: var(--yl-color-text-muted);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--yl-space-3);
+}
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--yl-space-3);
+}
+.form {
+  display: grid;
+  gap: var(--yl-space-5);
+}

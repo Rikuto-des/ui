@@ -1,0 +1,19 @@
+{
+  "name": "badge",
+  "version": "0.1.0",
+  "contract": "schema/badge.json",
+  "files": [
+    {
+      "path": "badge.tsx",
+      "target": "components",
+      "content": "// Installed by `yourlib add badge`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Badge page of the design system.\nexport { Badge, type BadgeProps } from \"@yourlib/react/badge\";\n",
+      "hash": "sha256-GkP19axlz/E20ayhD2BWVsH6WPaioVAiqkgSOkO+IQ0="
+    }
+  ],
+  "dependencies": {
+    "@yourlib/react": "^0.1.0"
+  },
+  "css": [
+    "@yourlib/react/styles.css"
+  ]
+}
