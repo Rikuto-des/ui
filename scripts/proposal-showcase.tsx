@@ -9,7 +9,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { Badge, Button, Card, Checkbox, Dialog, Field, Input, Link, Popover, RadioGroup, Switch } from "@yourlib/react";
+import { Badge, Button, Card, Checkbox, Dialog, Field, Input, Link, Popover, RadioGroup, Switch } from "@urushi/react";
 
 const root = join(import.meta.dirname, "..");
 const out = join(root, "apps/playground/public/proposals");
@@ -376,36 +376,36 @@ const pageCss = `
    A column pinned with data-selection keeps its color whatever the bar says. */
 [data-selection="accent"] :is([data-slot="checkbox-input"], [data-slot="radio-input"]):is(:checked, :indeterminate),
 [data-selection="accent"] [data-slot="switch-input"]:checked {
-  background-color: var(--yl-color-accent);
+  background-color: var(--ur-color-accent);
 }
 .cmp-stage[data-selection="action"] :is([data-slot="checkbox-input"], [data-slot="radio-input"]):is(:checked, :indeterminate),
 .cmp-stage[data-selection="action"] [data-slot="switch-input"]:checked {
-  background-color: var(--yl-color-action);
+  background-color: var(--ur-color-action);
 }
 .review .seg span { padding: 5px 4px 5px 11px; color: #8e8e95; }
 .cmp-head { padding-block: 40px 8px; }
 .cmp-head h1 { margin: 0; font-size: 30px; font-weight: 700; font-feature-settings: "palt"; }
 .cmp-head .lede { margin-block-start: 12px; font-size: 15px; }
-.cmp-item { padding-block: 36px; border-block-start: 1px solid var(--yl-color-border); }
+.cmp-item { padding-block: 36px; border-block-start: 1px solid var(--ur-color-border); }
 .cmp-item:first-of-type { border: 0; }
 .cmp-item h2 { margin: 0; font-size: 19px; font-weight: 700; }
-.cmp-where { margin: 4px 0 0; font-size: 13px; color: var(--yl-color-text-muted); }
+.cmp-where { margin: 4px 0 0; font-size: 13px; color: var(--ur-color-text-muted); }
 .cmp-changes { margin: 14px 0 20px; padding-inline-start: 1.2em; font-size: 14px; line-height: 1.8; max-inline-size: 46em; }
 .cmp-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 20px; }
 .cmp-col { margin: 0; display: grid; gap: 8px; align-content: start; }
-.cmp-col figcaption { font-size: 12.5px; font-weight: 500; color: var(--yl-color-text-muted); }
+.cmp-col figcaption { font-size: 12.5px; font-weight: 500; color: var(--ur-color-text-muted); }
 .cmp-stage {
-  position: relative; isolation: isolate; padding: 24px; border-radius: var(--yl-radius-panel);
-  background: color-mix(in oklab, var(--yl-color-text) 2.5%, var(--yl-color-bg));
-  box-shadow: inset 0 0 0 1px var(--yl-color-border);
+  position: relative; isolation: isolate; padding: 24px; border-radius: var(--ur-radius-panel);
+  background: color-mix(in oklab, var(--ur-color-text) 2.5%, var(--ur-color-bg));
+  box-shadow: inset 0 0 0 1px var(--ur-color-border);
 }
 .cmp-stage[data-narrow] > * { max-inline-size: 380px; }
 .cmp-stage .cta { margin: 0; }
 :root[data-pack="lucent"] .cmp-stage::before {
   content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
   background:
-    radial-gradient(60% 80% at 12% 0%, color-mix(in oklab, var(--yl-color-accent) 16%, transparent), transparent 70%),
-    radial-gradient(50% 70% at 100% 100%, color-mix(in oklab, var(--yl-color-danger) 9%, transparent), transparent 70%);
+    radial-gradient(60% 80% at 12% 0%, color-mix(in oklab, var(--ur-color-accent) 16%, transparent), transparent 70%),
+    radial-gradient(50% 70% at 100% 100%, color-mix(in oklab, var(--ur-color-danger) 9%, transparent), transparent 70%);
 }
 @media (max-width: 980px) { .cmp-pair { grid-template-columns: minmax(0, 1fr); } }
 `;

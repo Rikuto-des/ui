@@ -1,0 +1,19 @@
+{
+  "name": "empty",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/empty.json",
+  "files": [
+    {
+      "path": "empty.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add empty`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Empty page of the design system.\nexport { Empty, type EmptyProps } from \"@urushi/react/empty\";\n",
+      "hash": "sha256-w01DlSIWIrPV6nGZxZXtxmVPvsQnlKidQB2lfVr+tAM="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/empty.css"
+  ]
+}

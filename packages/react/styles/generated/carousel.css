@@ -1,0 +1,226 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  [data-slot="carousel-viewport"] {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+  }
+  [data-slot="carousel-item"] {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-slot="carousel-viewport"] {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+  [data-slot="carousel"] {
+    position: relative;
+    display: grid;
+    gap: var(--ur-space-3);
+    min-inline-size: 0;
+    anchor-scope: --ur-carousel;
+  }
+  [data-slot="carousel-viewport"] {
+    display: flex;
+    gap: var(--ur-space-4);
+    overflow-x: auto;
+    border-radius: var(--ur-radius-panel);
+    scrollbar-width: thin;
+  }
+  [data-slot="carousel-viewport"]:focus-visible {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: var(--ur-focus-ring-offset);
+  }
+  [data-slot="carousel-item"] {
+    flex: 0 0 100%;
+    min-inline-size: 0;
+  }
+  @supports selector(::scroll-marker) {
+    [data-slot="carousel-viewport"] {
+      anchor-name: --ur-carousel;
+      scroll-marker-group: after;
+      scrollbar-width: none;
+    }
+    [data-slot="carousel-viewport"]::scroll-marker-group {
+      display: flex;
+      justify-content: center;
+      gap: var(--ur-space-3);
+      padding-block-start: var(--ur-space-3);
+    }
+    [data-slot="carousel-item"]::scroll-marker {
+      content: "" / attr(aria-label);
+      inline-size: 8px;
+      block-size: 8px;
+      border-radius: 50%;
+      background-color: color-mix(in oklab, var(--ur-color-text) 24%, transparent);
+      cursor: pointer;
+    }
+    [data-slot="carousel-item"]::scroll-marker:target-current {
+      background-color: var(--ur-color-text);
+    }
+    [data-slot="carousel-item"]::scroll-marker:focus-visible {
+      outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+      outline-offset: 2px;
+    }
+    [data-slot="carousel-viewport"]::scroll-button(*) {
+      position: absolute;
+      position-anchor: --ur-carousel;
+      top: anchor(center);
+      translate: 0 -50%;
+      inline-size: var(--ur-control-md);
+      block-size: var(--ur-control-md);
+      border: 0;
+      border-radius: 50%;
+      background-color: var(--ur-color-surface-overlay);
+      box-shadow: var(--ur-shadow-overlay);
+      color: var(--ur-color-text);
+      font: inherit;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    [data-slot="carousel-viewport"]::scroll-button(inline-start) {
+      content: "←" / "前のスライド";
+      inset-inline-start: calc(anchor(start) + var(--ur-space-3));
+    }
+    [data-slot="carousel-viewport"]::scroll-button(inline-end) {
+      content: "→" / "次のスライド";
+      inset-inline-end: calc(anchor(end) + var(--ur-space-3));
+    }
+    [data-slot="carousel-viewport"]::scroll-button(*):disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+    [data-slot="carousel-viewport"]::scroll-button(*):focus-visible {
+      outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+@layer urushi.components {
+
+  [data-slot="carousel-controls"][hidden] { display:none; }
+  [data-slot="carousel-controls"] { display:flex; align-items:center; gap:12px; }
+  [data-slot="carousel-positions"] { display:flex; flex:1; flex-wrap:wrap; justify-content:center; gap:2px; min-inline-size:0; }
+  [data-slot="carousel-controls"] button { display:grid; place-items:center; flex:none; padding:0; border:1px solid var(--ur-color-border); border-radius:50%; inline-size:36px; block-size:36px; background:var(--ur-color-surface); color:var(--ur-color-text); cursor:pointer; transition:background-color 150ms,scale 150ms; }
+  [data-slot="carousel-controls"] button:focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:2px; }
+  [data-slot="carousel-controls"] button[aria-disabled="true"] { opacity:.4; cursor:default; }
+  [data-slot="carousel-controls"] button:not([aria-disabled="true"]):active { scale:.94; }
+  [data-slot="carousel-controls"] button:dir(rtl) > svg { rotate:180deg; }
+  [data-slot="carousel-positions"] [data-slot="carousel-position"] { border:0; background:transparent; inline-size:28px; block-size:32px; }
+  [data-slot="carousel-position"] > span { inline-size:5px; block-size:5px; border-radius:4px; background:var(--ur-color-border-control); transition:inline-size 220ms,background-color 150ms; }
+  [data-slot="carousel-position"][aria-current="true"] > span { inline-size:20px; background:var(--ur-color-text); }
+  [data-slot="carousel-count"] { font-size:11px; color:var(--ur-color-text-muted); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  [data-slot="carousel"][data-enhanced] > [data-slot="carousel-viewport"] { scroll-marker-group:none; scrollbar-width:none; }
+  [data-slot="carousel"][data-enhanced] > [data-slot="carousel-viewport"]::scroll-button(*) { content:none; }
+  [data-slot="carousel"][data-enhanced] [data-slot="carousel-item"]::scroll-marker { content:none; }
+  @media(hover:hover) { [data-slot="carousel-controls"] button:not([aria-disabled="true"]):hover { background:var(--ur-color-ghost-hover); } }
+  @media(pointer:coarse) { [data-slot="carousel-controls"] button { min-inline-size:44px; min-block-size:44px; } }
+  @media(prefers-reduced-motion:reduce) {
+    [data-slot="carousel-position"] > span, [data-slot="carousel-controls"] button { transition:none; }
+  }
+  @media(forced-colors:active) {
+    [data-slot="carousel-position"][aria-current="true"] { outline:1px solid Highlight; }
+  }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) {
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}

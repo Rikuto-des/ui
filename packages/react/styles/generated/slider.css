@@ -1,0 +1,164 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+  [data-slot="slider"] {
+    display: block;
+    inline-size: 100%;
+    margin: 0;
+    accent-color: var(--ur-color-accent);
+    cursor: pointer;
+  }
+  [data-slot="slider"]:focus-visible {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: var(--ur-focus-ring-offset);
+    border-radius: var(--ur-radius-control);
+  }
+  [data-slot="slider"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+    [data-slot="slider"] { accent-color: Highlight; }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+@layer urushi.components {
+
+  [data-slot="slider-control"] { position:relative; min-inline-size:0; inline-size:100%; padding-block:4px; }
+  [data-slot="slider-control"][data-show-value] { padding-block-start:36px; }
+  [data-slot="slider-value"] { position:absolute; inset-block-start:0; inset-inline-start:clamp(24px,var(--ur-slider-progress),calc(100% - 24px)); translate:-50% 0; min-inline-size:32px; box-sizing:border-box; padding:3px 7px; border:1px solid var(--ur-color-border); border-radius:6px; background:var(--ur-color-surface); color:var(--ur-color-text); box-shadow:var(--ur-shadow-control); text-align:center; font-size:11px; font-variant-numeric:tabular-nums; pointer-events:none; visibility:hidden; transition:scale 150ms,box-shadow 150ms; }
+  [data-slot="slider-value"]:dir(rtl) { translate:50% 0; }
+  [data-slot="slider-control"][data-enhanced] [data-slot="slider-value"] { visibility:visible; }
+  [data-slot="slider-control"]:has(input:active,input:focus-visible) [data-slot="slider-value"] { scale:1.08; box-shadow:var(--ur-shadow-overlay); }
+  [data-slot="slider-control"] > [data-slot="slider"] { --_slider-direction:to right; appearance:none; display:block; inline-size:100%; block-size:24px; margin:0; padding:0; background:transparent; cursor:pointer; }
+  [data-slot="slider-control"] > [data-slot="slider"]:dir(rtl) { --_slider-direction:to left; }
+  [data-slot="slider-control"] > [data-slot="slider"]::-webkit-slider-runnable-track { block-size:4px; border-radius:4px; background:linear-gradient(var(--_slider-direction),var(--ur-color-accent) 0 var(--ur-slider-progress),var(--ur-color-track) var(--ur-slider-progress) 100%); }
+  [data-slot="slider-control"] > [data-slot="slider"]::-webkit-slider-thumb { appearance:none; block-size:18px; inline-size:18px; margin-block-start:-7px; border:2px solid var(--ur-color-accent); border-radius:50%; background:var(--ur-color-surface); box-shadow:var(--ur-shadow-control); transition:scale 140ms; }
+  [data-slot="slider-control"] > [data-slot="slider"]::-moz-range-track { block-size:4px; border-radius:4px; background:var(--ur-color-track); }
+  [data-slot="slider-control"] > [data-slot="slider"]::-moz-range-progress { block-size:4px; background:var(--ur-color-accent); border-radius:4px; }
+  [data-slot="slider-control"] > [data-slot="slider"]::-moz-range-thumb { block-size:14px; inline-size:14px; border:2px solid var(--ur-color-accent); border-radius:50%; background:var(--ur-color-surface); box-shadow:var(--ur-shadow-control); transition:scale 140ms; }
+  [data-slot="slider-control"] > [data-slot="slider"]:active::-webkit-slider-thumb { scale:1.15; }
+  [data-slot="slider-control"] > [data-slot="slider"]:active::-moz-range-thumb { scale:1.15; }
+  [data-slot="slider-marks"] { position:relative; block-size:38px; margin-inline:9px; }
+  [data-slot="slider-mark"] { position:absolute; inset-block-start:0; inset-inline-start:var(--ur-slider-mark); translate:-50% 0; min-block-size:36px; min-inline-size:28px; padding:12px 4px 4px; border:0; background:transparent; color:var(--ur-color-text-muted); font:inherit; font-size:10px; white-space:nowrap; cursor:pointer; }
+  [data-slot="slider-mark"]:dir(rtl) { translate:50% 0; }
+  [data-slot="slider-mark"]::before { content:""; position:absolute; inset-block-start:3px; inset-inline-start:50%; inline-size:1px; block-size:4px; background:var(--ur-color-border-control); }
+  [data-slot="slider-mark"][data-edge="start"] { translate:0 0; padding-inline-start:0; }
+  [data-slot="slider-mark"][data-edge="end"] { translate:-100% 0; padding-inline-end:0; }
+  [data-slot="slider-mark"][data-edge="end"]:dir(rtl) { translate:100% 0; }
+  [data-slot="slider-mark"][data-edge="start"]::before { inset-inline-start:0; }
+  [data-slot="slider-mark"][data-edge="end"]::before { inset-inline-start:auto; inset-inline-end:0; }
+  [data-slot="slider-mark"][aria-pressed="true"] { color:var(--ur-color-text); font-weight:600; }
+  [data-slot="slider-mark"]:focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:1px; border-radius:4px; }
+  [data-slot="slider-control"][data-disabled] { opacity:.5; }
+  [data-slot="slider-control"][data-disabled] [data-slot="slider"] { opacity:1; }
+  [data-slot="slider-mark"]:disabled { cursor:default; }
+  [data-slot="slider-control"]:not([data-enhanced]) > [data-slot="slider"]::-webkit-slider-runnable-track { background:var(--ur-color-track); }
+  @media(hover:hover) { [data-slot="slider-mark"]:enabled:hover { color:var(--ur-color-text); } }
+  @media(pointer:coarse) { [data-slot="slider-mark"] { min-block-size:44px; } [data-slot="slider-marks"] { block-size:46px; } }
+  @media(prefers-reduced-motion:reduce) {
+    [data-slot="slider-value"] { transition:none; }
+    [data-slot="slider-control"]:has(input:active,input:focus-visible) [data-slot="slider-value"] { scale:1; }
+    [data-slot="slider-control"] > [data-slot="slider"]:active::-webkit-slider-thumb { scale:1; }
+    [data-slot="slider-control"] > [data-slot="slider"]:active::-moz-range-thumb { scale:1; }
+  }
+  @media(forced-colors:active) {
+    [data-slot="slider-control"] > [data-slot="slider"] { appearance:auto; accent-color:Highlight; }
+  }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) {
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}

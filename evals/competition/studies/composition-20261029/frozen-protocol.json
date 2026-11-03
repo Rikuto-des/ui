@@ -1,0 +1,56 @@
+{
+  "authorizedBy": "User explicitly requested additional AI comparisons, analysis and improvements on 2026-10-29. Same prior fictional-data scope and existing Codex provider.",
+  "maxAdditionalRequests": 48,
+  "libraries": [
+    "urushi",
+    "base"
+  ],
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "trialsPerLibraryAndModel": 3,
+  "humanCalibration": "composition-calibration-v5",
+  "sourceChangesBeforeFreeze": [
+    "Combobox query/onQueryChange/manual filtering and retained committed labels",
+    "Dialog nested cancel/close event isolation"
+  ],
+  "files": [
+    {
+      "path": "evals/competition/composition-run.ts",
+      "sha256": "afabd40eb745876080474505118f0a5bd98374164b0160ced0a392b41c31761e"
+    },
+    {
+      "path": "evals/competition/composition-task.ts",
+      "sha256": "20652d4186f7a8789cf7516164a22d75e36ca294b5b0901fbc003c92aee1ec76"
+    },
+    {
+      "path": "evals/competition/composition-guide.ts",
+      "sha256": "74e2e8314b71e54aa82f86b9e6730ce8239e6489580f5e68ba149751acf4ec31"
+    },
+    {
+      "path": "evals/competition/guides.ts",
+      "sha256": "191fb7bea497f1edadb525ec3831a823ac0bee625581ca377402283099ad8d2b"
+    },
+    {
+      "path": "evals/competition/composition-workflows.spec.ts",
+      "sha256": "28096f774bb9b49765c75361d78e2a9dbd4b7f3a511ee1cbb54412da092e41eb"
+    },
+    {
+      "path": "evals/competition/composition-playwright.config.ts",
+      "sha256": "bb6faab005a5f3f081c1fcef37bc2750a854e543c66d677fdb41e58968dc9d69"
+    },
+    {
+      "path": "evals/competition/composition.css",
+      "sha256": "b1322dcc3168f6edac95cffd226f102ea027dd892255520b6fcb3161ca76b2b6"
+    },
+    {
+      "path": "evals/competition/package.json",
+      "sha256": "650084847f6ac2e18a0c135d9fa4a157b4998e9d5e1395a7265e5484d29645b9"
+    },
+    {
+      "path": "evals/competition/pnpm-lock.yaml",
+      "sha256": "b5e0c5dc958a4a6181cf01a742c56539501a40ec3ce72a80a320d5f1db0e49dd"
+    }
+  ]
+}

@@ -16,6 +16,34 @@ const tsTester = new RuleTester({
 });
 const rules = plugin.rules;
 
+tester.run("visual overrides resolve imports and lexical scope", rules["no-visual-override"], {
+  valid: [
+    'import { Button } from "other-ui"; const x = <Button className="rounded-xl">Save</Button>;',
+    'function Button() { return null; } const x = <Button className="rounded-xl">Save</Button>;',
+    'import { Button } from "@urushi/react"; function Screen(Button) { return <Button className="rounded-xl" />; }',
+  ],
+  invalid: [
+    { code: 'import { Button as Action } from "@urushi/react"; const x = <Action className="rounded-xl">Save</Action>;', errors: [{ messageId: "className" }] },
+    { code: 'import * as ui from "@urushi/react"; const x = <ui.Button style={{ borderRadius: 99 }}>Save</ui.Button>;', errors: [{ messageId: "style" }] },
+    { code: 'import { Button as Action } from "@/components/ui/button"; const x = <Action className="rounded-xl">Save</Action>;', errors: [{ messageId: "className" }] },
+  ],
+});
+
+tester.run("required props resolve aliases", rules["required-props"], {
+  valid: ['import { Dialog } from "other-ui"; const x = <Dialog />;'],
+  invalid: [{ code: 'import { Dialog as Modal } from "@urushi/react"; const x = <Modal id="a" />;', errors: [{ messageId: "missing" }] }],
+});
+
+tester.run("accessible names resolve namespace imports", rules["accessible-name"], {
+  valid: ['import * as ui from "other-ui"; const x = <ui.Button><svg /></ui.Button>;'],
+  invalid: [{ code: 'import * as ui from "@urushi/react"; const x = <ui.Button><svg /></ui.Button>;', errors: [{ messageId: "iconOnly" }] }],
+});
+
+tester.run("nested tabs own their values", rules["tabs-match"], {
+  valid: ['<Tabs id="outer" label="Outer" defaultValue="a"><Tabs.List><Tabs.Tab value="a">A</Tabs.Tab></Tabs.List><Tabs.Panel value="a"><Tabs id="inner" label="Inner" defaultValue="b"><Tabs.List><Tabs.Tab value="b">B</Tabs.Tab></Tabs.List><Tabs.Panel value="b">Body</Tabs.Panel></Tabs></Tabs.Panel></Tabs>'],
+  invalid: [{ code: 'import { Tabs as T } from "@urushi/react"; const x = <T id="t" label="Tabs" defaultValue="a"><T.List><T.Tab value="a">A</T.Tab></T.List></T>;', errors: [{ messageId: "noPanel" }] }],
+});
+
 tester.run("no-visual-override", rules["no-visual-override"], {
   valid: [
     `<Button variant="danger">削除</Button>`,
@@ -77,7 +105,7 @@ tester.run("no-visual-override", rules["no-visual-override"], {
 tester.run("no-raw-color", rules["no-raw-color"], {
   valid: [
     `<div className="grid gap-4" />`,
-    `<p style={{ color: "var(--yl-color-text-muted)" }} />`,
+    `<p style={{ color: "var(--ur-color-text-muted)" }} />`,
     `<div className={["grid gap-4", isOpen && "mt-2"].join(" ")} />`,
     `<div className={\`p-4 \${isOpen ? "mt-2" : ""}\`} />`,
     // Outside className, only strings that read as a class list are checked: not ids, prose, CSS values or token names.
@@ -92,32 +120,32 @@ tester.run("no-raw-color", rules["no-raw-color"], {
     // A token inside a Tailwind arbitrary value is still an arbitrary value; the message
     // gives the same token in style and in CSS, with the property filled in.
     {
-      code: `<p className="text-sm text-[var(--yl-color-text-muted)]" />`,
-      errors: [{ message: /style=\{\{ color: "var\(--yl-color-text-muted\)" \}\}.*color: var\(--yl-color-text-muted\)/ }],
+      code: `<p className="text-sm text-[var(--ur-color-text-muted)]" />`,
+      errors: [{ message: /style=\{\{ color: "var\(--ur-color-text-muted\)" \}\}.*color: var\(--ur-color-text-muted\)/ }],
     },
-    { code: `<div className="bg-(--yl-color-surface)" />`, errors: [{ message: /style=\{\{ backgroundColor: "var\(--yl-color-surface\)" \}\}/ }] },
-    { code: `<div className="border-t-[var(--yl-color-border)]" />`, errors: [{ message: /borderTopColor: "var\(--yl-color-border\)"/ }] },
-    { code: `<p className="text-[length:var(--yl-font-size-small)]" />`, errors: [{ message: /fontSize: "var\(--yl-font-size-small\)"/ }] },
+    { code: `<div className="bg-(--ur-color-surface)" />`, errors: [{ message: /style=\{\{ backgroundColor: "var\(--ur-color-surface\)" \}\}/ }] },
+    { code: `<div className="border-t-[var(--ur-color-border)]" />`, errors: [{ message: /borderTopColor: "var\(--ur-color-border\)"/ }] },
+    { code: `<p className="text-[length:var(--ur-font-size-small)]" />`, errors: [{ message: /fontSize: "var\(--ur-font-size-small\)"/ }] },
     // A `:` inside the brackets is part of the value, not a variant.
-    { code: `<p className="text-[color:var(--yl-color-text-muted)]" />`, errors: [{ messageId: "arbitraryToken" }] },
-    { code: `<p className="md:[color:var(--yl-color-text)]" />`, errors: [{ message: /color: "var\(--yl-color-text\)"/ }] },
+    { code: `<p className="text-[color:var(--ur-color-text-muted)]" />`, errors: [{ messageId: "arbitraryToken" }] },
+    { code: `<p className="md:[color:var(--ur-color-text)]" />`, errors: [{ message: /color: "var\(--ur-color-text\)"/ }] },
     // Palette colors name the tokens to use instead, never an arbitrary value to write.
-    { code: `<p className="text-gray-500" />`, errors: [{ message: /style=\{\{ color: "var\(--yl-color-text\)" \}\}.*--yl-color-text-muted/ }] },
-    { code: `<p className="hover:text-red-600" />`, errors: [{ message: /color: "var\(--yl-color-danger\)"/ }] },
+    { code: `<p className="text-gray-500" />`, errors: [{ message: /style=\{\{ color: "var\(--ur-color-text\)" \}\}.*--ur-color-text-muted/ }] },
+    { code: `<p className="hover:text-red-600" />`, errors: [{ message: /color: "var\(--ur-color-danger\)"/ }] },
     { code: `<div className="w-[400px]" />`, errors: [{ message: /w-96/ }] },
-    { code: `<div className="bg-[#f5f5f5]" />`, errors: [{ message: /backgroundColor: "var\(--yl-color-bg\)"/ }] },
-    { code: `<p className="[color:#666]" />`, errors: [{ message: /style=\{\{ color: "var\(--yl-color-text\)" \}\}.*\[color:var\(--yl-color-text\)\]/ }] },
-    { code: `<p style={{ color: "#6b7280" }} />`, errors: [{ message: /color: "var\(--yl-color-text\)"/ }] },
+    { code: `<div className="bg-[#f5f5f5]" />`, errors: [{ message: /backgroundColor: "var\(--ur-color-bg\)"/ }] },
+    { code: `<p className="[color:#666]" />`, errors: [{ message: /style=\{\{ color: "var\(--ur-color-text\)" \}\}.*\[color:var\(--ur-color-text\)\]/ }] },
+    { code: `<p style={{ color: "#6b7280" }} />`, errors: [{ message: /color: "var\(--ur-color-text\)"/ }] },
     // On a component, the fix is the variant, not style.
     {
       code: `<Button className="bg-red-500">削除</Button>`,
       errors: [{ message: /<Button> の見た目はパックとバリアントが決めます。色は variant（primary \| secondary \| ghost \| danger）で選び/ }],
     },
-    { code: `<Badge className="bg-[var(--yl-color-ok)]">完了</Badge>`, errors: [{ message: /色は tone（/ }] },
+    { code: `<Badge className="bg-[var(--ur-color-ok)]">完了</Badge>`, errors: [{ message: /色は tone（/ }] },
     { code: `<Card className="bg-gray-50">…</Card>`, errors: [{ message: /^(?!.*variant).*<Card> の色はパックが決めます/ }] },
     // className built from arrays and template literals.
     {
-      code: `<div className={["rounded-lg p-4", isSelected ? "border-[var(--yl-color-action)]" : "border-gray-200"].join(" ")} />`,
+      code: `<div className={["rounded-lg p-4", isSelected ? "border-[var(--ur-color-action)]" : "border-gray-200"].join(" ")} />`,
       errors: [{ messageId: "arbitraryToken" }, { messageId: "palette" }],
     },
     { code: `<div className={["p-4", isOpen && "bg-slate-100"].filter(Boolean).join(" ")} />`, errors: [{ messageId: "palette" }] },
@@ -125,23 +153,23 @@ tester.run("no-raw-color", rules["no-raw-color"], {
     // Blue and purple are emphasis: accent (selection, in progress) first, then action (the primary action).
     {
       code: `<div className="border-purple-600" />`,
-      errors: [{ message: /borderColor: "var\(--yl-color-accent\)".*候補: --yl-color-accent・--yl-color-action・--yl-color-border・.*飾りには使いません.*主な操作の色なら --yl-color-action/ }],
+      errors: [{ message: /borderColor: "var\(--ur-color-accent\)".*候補: --ur-color-accent・--ur-color-action・--ur-color-border・.*飾りには使いません.*主な操作の色なら --ur-color-action/ }],
     },
-    { code: `<p className="text-blue-600" />`, errors: [{ message: /color: "var\(--yl-color-accent\)"/ }] },
+    { code: `<p className="text-blue-600" />`, errors: [{ message: /color: "var\(--ur-color-accent\)"/ }] },
     // A light tint behind content is a surface: the hue's tokens come after the surfaces.
-    { code: `<div className="bg-purple-50" />`, errors: [{ message: /backgroundColor: "var\(--yl-color-bg\)".*候補: --yl-color-bg・--yl-color-surface・--yl-color-secondary・--yl-color-accent・--yl-color-action/ }] },
-    { code: `<div className="bg-red-50" />`, errors: [{ message: /backgroundColor: "var\(--yl-color-bg\)".*--yl-color-danger/ }] },
-    { code: `<div className="bg-red-600" />`, errors: [{ message: /backgroundColor: "var\(--yl-color-danger\)"/ }] },
+    { code: `<div className="bg-purple-50" />`, errors: [{ message: /backgroundColor: "var\(--ur-color-bg\)".*候補: --ur-color-bg・--ur-color-surface・--ur-color-secondary・--ur-color-accent・--ur-color-action/ }] },
+    { code: `<div className="bg-red-50" />`, errors: [{ message: /backgroundColor: "var\(--ur-color-bg\)".*--ur-color-danger/ }] },
+    { code: `<div className="bg-red-600" />`, errors: [{ message: /backgroundColor: "var\(--ur-color-danger\)"/ }] },
     // A class list outside className: a function or variable that holds the classes.
     {
       code: `function changeClass(n) { return n > 0 ? "bg-green-100 text-green-700" : "text-gray-600"; }`,
       errors: [
-        { message: /^パレットの色（bg-green-100）.*backgroundColor: "var\(--yl-color-bg\)"/ },
-        { message: /^パレットの色（text-green-700）.*color: "var\(--yl-color-ok\)"/ },
+        { message: /^パレットの色（bg-green-100）.*backgroundColor: "var\(--ur-color-bg\)"/ },
+        { message: /^パレットの色（text-green-700）.*color: "var\(--ur-color-ok\)"/ },
         { message: /^パレットの色（text-gray-600）/ },
       ],
     },
-    { code: `const cls = \`px-2 \${active ? "bg-blue-600" : ""} text-white\`;`, errors: [{ message: /--yl-color-accent/ }, { message: /^パレットの色（text-white）/ }] },
+    { code: `const cls = \`px-2 \${active ? "bg-blue-600" : ""} text-white\`;`, errors: [{ message: /--ur-color-accent/ }, { message: /^パレットの色（text-white）/ }] },
     { code: `const TONES = { up: "p-[13px]", "bg-slate-100": true };`, errors: [{ messageId: "arbitrary" }, { messageId: "palette" }] },
     // When the file passes it to the className of a part, the fix is the part's variant.
     {
@@ -156,12 +184,13 @@ tester.run("no-raw-color", rules["no-raw-color"], {
       errors: [{ message: /colorClass は <Badge> の className に使われています。.*tone/ }, { message: /colorClass は <Badge>/ }],
     },
     // On the app's own element, the fix stays the token.
-    { code: `const tone = "text-green-700"; const x = <span className={tone}>+3%</span>;`, errors: [{ message: /color: "var\(--yl-color-ok\)"/ }] },
+    { code: `const tone = "text-green-700"; const x = <span className={tone}>+3%</span>;`, errors: [{ message: /color: "var\(--ur-color-ok\)"/ }] },
   ],
 });
 
 tester.run("valid-idref", rules["valid-idref"], {
   valid: [
+    `<><Tabs.Activate tabs="t" value="a">Open</Tabs.Activate><Tabs id="t" label="表示" defaultValue="a" /></>`,
     `<><Dialog.Trigger dialog="confirm">削除</Dialog.Trigger><Dialog id="confirm" title="t" /></>`,
     `<><Popover.Trigger popover="f">フィルタ</Popover.Trigger><Popover id="f" title="t" /></>`,
     `<><Button command="show-modal" commandfor="x">開く</Button><dialog id="x" /></>`,
@@ -170,6 +199,8 @@ tester.run("valid-idref", rules["valid-idref"], {
     `<><Tooltip.Trigger tooltip="t">保存</Tooltip.Trigger><Tooltip id="t">⌘S</Tooltip></>`,
   ],
   invalid: [
+    { code: `<Tabs.Activate tabs="missing" value="a">Open</Tabs.Activate>`, errors: [{ messageId: "missing" }] },
+    { code: `<><Tabs.Activate tabs="d" value="a">Open</Tabs.Activate><Dialog id="d" title="t" /></>`, errors: [{ messageId: "wrongKind" }] },
     { code: `<Dialog.Trigger dialog="confrim">削除</Dialog.Trigger>`, errors: [{ messageId: "missing" }] },
     {
       code: `<><Dialog.Trigger dialog="f">開く</Dialog.Trigger><Popover id="f" title="t" /></>`,
@@ -208,6 +239,8 @@ tester.run("accessible-name", rules["accessible-name"], {
     `<Button aria-label="閉じる"><XIcon /></Button>`,
     `<Button><XIcon /> 閉じる</Button>`,
     `<Button>{label}</Button>`,
+    `<Toggle name="bold" aria-label="太字"><BoldIcon /></Toggle>`,
+    `<ToggleGroup.Item value="board">ボード</ToggleGroup.Item>`,
   ],
   invalid: [
     { code: `<Popover id="p" />`, errors: [{ messageId: "popover" }] },
@@ -215,16 +248,24 @@ tester.run("accessible-name", rules["accessible-name"], {
     { code: `<Popover.Close popover="p"><svg /></Popover.Close>`, errors: [{ messageId: "iconOnly" }] },
     { code: `<Tooltip.Trigger tooltip="t"><CopyIcon /></Tooltip.Trigger>`, errors: [{ messageId: "iconOnly" }] },
     { code: `<Menu.Trigger menu="m"><MoreIcon /></Menu.Trigger>`, errors: [{ messageId: "iconOnly" }] },
+    { code: `<Toggle name="bold"><BoldIcon /></Toggle>`, errors: [{ messageId: "iconOnly" }] },
+    { code: `<ToggleGroup.Item value="left"><AlignLeftIcon /></ToggleGroup.Item>`, errors: [{ messageId: "iconOnly" }] },
   ],
 });
 
 tester.run("tabs-match", rules["tabs-match"], {
   valid: [
+    `<><Tabs.Activate tabs="t" value="a">Open</Tabs.Activate><Tabs id="t" label="表示" defaultValue="a"><Tabs.List><Tabs.Tab value="a">A</Tabs.Tab></Tabs.List><Tabs.Panel value="a" /></Tabs></>`,
+    `<><Tabs.Activate tabs="t" value="a">Open</Tabs.Activate><Tabs id="t" label="表示" defaultValue="a"><Tabs.List>{items.map((i) => <Tabs.Tab value={i}>{i}</Tabs.Tab>)}</Tabs.List></Tabs></>`,
     `<Tabs id="t" label="表示" defaultValue="a"><Tabs.List><Tabs.Tab value="a">A</Tabs.Tab><Tabs.Tab value="b">B</Tabs.Tab></Tabs.List><Tabs.Panel value="a" /><Tabs.Panel value="b" /></Tabs>`,
     // Values built at runtime cannot be checked statically.
     `<Tabs id="t" label="表示" defaultValue="a"><Tabs.List>{items.map((i) => <Tabs.Tab value={i}>{i}</Tabs.Tab>)}</Tabs.List></Tabs>`,
   ],
   invalid: [
+    {
+      code: `<><Tabs.Activate tabs="t" value="typo">Open</Tabs.Activate><Tabs id="t" label="表示" defaultValue="a"><Tabs.List><Tabs.Tab value="a">A</Tabs.Tab></Tabs.List><Tabs.Panel value="a" /></Tabs></>`,
+      errors: [{ messageId: "badActivation" }],
+    },
     {
       code: `<Tabs id="t" label="表示" defaultValue="a"><Tabs.List><Tabs.Tab value="a">A</Tabs.Tab><Tabs.Tab value="b">B</Tabs.Tab></Tabs.List><Tabs.Panel value="a" /></Tabs>`,
       errors: [{ messageId: "noPanel" }],
@@ -243,96 +284,97 @@ tester.run("prefer-native", rules["prefer-native"], {
 
 tester.run("valid-token", rules["valid-token"], {
   valid: [
-    `<p style={{ color: "var(--yl-color-text-muted)" }} />`,
-    `<p style={{ color: \`var(--yl-color-\${tone})\` }} />`,
-    `<p style={{ color: "var(--yl-color-" + tone + ")" }} />`,
-    `<div className="gap-(--yl-space-3)" />`,
+    `<p style={{ color: "var(--ur-color-text-muted)" }} />`,
+    `<p style={{ color: \`var(--ur-color-\${tone})\` }} />`,
+    `<p style={{ color: "var(--ur-color-" + tone + ")" }} />`,
+    `<div className="gap-(--ur-space-3)" />`,
     // Defining a custom property or naming an anchor does not read a token.
-    `<style>{\`.row { anchor-name: --yl-selected-row; --yl-local: 4px; }\`}</style>`,
+    `<style>{\`.row { anchor-name: --ur-selected-row; --ur-local: 4px; }\`}</style>`,
     // A stylesheet outside JSX may define its own custom properties (scripts/design-system.tsx).
-    `const css = \`.ink { fill: var(--yl-brand-graphite); }\`;`,
+    `const css = \`.ink { fill: var(--ur-brand-graphite); }\`;`,
   ],
   invalid: [
-    { code: `<p style={{ color: "var(--yl-color-brand)" }} />`, errors: [{ message: /--yl-color-brand というトークンはありません。--yl-color-action・--yl-color-accent のことですか。.*text-muted/ }] },
-    { code: `<div style={{ background: "var(--yl-color-surface-muted)" }} />`, errors: [{ message: /--yl-color-surface・/ }] },
-    { code: `<div className="text-[var(--yl-color-on-accent)]" />`, errors: [{ message: /--yl-color-on-action/ }] },
-    { code: `<div className="bg-(--yl-color-card)" />`, errors: [{ message: /--yl-color-surface のことですか/ }] },
-    { code: `<div style={{ padding: "var(--yl-spacing-4)" }} />`, errors: [{ message: /--yl-space-4 のことですか/ }] },
-    { code: `<p style={{ color: \`var(--yl-colour-\${tone})\` }} />`, errors: [{ messageId: "unknownPrefix" }] },
-    { code: `<style>{\`.price { color: var(--yl-color-primary); }\`}</style>`, errors: [{ message: /--yl-color-action のことですか/ }] },
+    { code: `<p style={{ color: "var(--ur-color-brand)" }} />`, errors: [{ message: /--ur-color-brand というトークンはありません。--ur-color-action・--ur-color-accent のことですか。.*text-muted/ }] },
+    { code: `<div style={{ background: "var(--ur-color-surface-muted)" }} />`, errors: [{ message: /--ur-color-surface・/ }] },
+    { code: `<div className="text-[var(--ur-color-on-accent)]" />`, errors: [{ message: /--ur-color-on-action/ }] },
+    { code: `<div className="bg-(--ur-color-card)" />`, errors: [{ message: /--ur-color-surface のことですか/ }] },
+    { code: `<div style={{ padding: "var(--ur-spacing-4)" }} />`, errors: [{ message: /--ur-space-4 のことですか/ }] },
+    { code: `<p style={{ color: \`var(--ur-colour-\${tone})\` }} />`, errors: [{ messageId: "unknownPrefix" }] },
+    { code: `<style>{\`.price { color: var(--ur-color-primary); }\`}</style>`, errors: [{ message: /--ur-color-action のことですか/ }] },
     // A single CSS value is checked outside JSX too.
-    { code: `function tone(change) { return change > 0 ? "var(--yl-color-success)" : "var(--yl-color-danger)"; }`, errors: [{ message: /--yl-color-ok のことですか/ }] },
-    { code: `const box = { borderColor: \`var(--yl-color-brand)\` };`, errors: [{ messageId: "unknown" }] },
+    { code: `function tone(change) { return change > 0 ? "var(--ur-color-success)" : "var(--ur-color-danger)"; }`, errors: [{ message: /--ur-color-ok のことですか/ }] },
+    { code: `const box = { borderColor: \`var(--ur-color-brand)\` };`, errors: [{ messageId: "unknown" }] },
   ],
 });
 
 tester.run("valid-import", rules["valid-import"], {
   valid: [
-    `import { Button, Dialog, Tabs } from "@yourlib/react";`,
-    `import { YourlibRuntime } from "@yourlib/react/runtime";`,
-    `import { Dialog } from "@yourlib/react/dialog";`,
-    `import "@yourlib/react/styles.css";`,
-    `import * as yl from "@yourlib/react";`,
+    `import { Button, Dialog, Tabs } from "@urushi/react";`,
+    `import { UrushiRuntime } from "@urushi/react/runtime";`,
+    `import { Dialog } from "@urushi/react/dialog";`,
+    `import "@urushi/react/styles.css";`,
+    `import * as yl from "@urushi/react";`,
     `import { TabsTrigger } from "@radix-ui/react-tabs";`,
-    `import { Tabs } from "@yourlib/react"; const x = <Tabs.Tab value="a">A</Tabs.Tab>;`,
+    `import { Tabs } from "@urushi/react"; const x = <Tabs.Tab value="a">A</Tabs.Tab>;`,
   ],
   invalid: [
-    { code: `import { TabsTrigger } from "@yourlib/react";`, errors: [{ message: /TabsTrigger は "@yourlib\/react" にありません。<Tabs\.Tab value="…"> を使ってください。import するのは Tabs です。/ }] },
-    { code: `import { TabsContent } from "@yourlib/react";`, errors: [{ message: /<Tabs\.Panel value="…">/ }] },
+    { code: `import { TabsTrigger } from "@urushi/react";`, errors: [{ message: /TabsTrigger は "@urushi\/react" にありません。<Tabs\.Tab value="…"> を使ってください。import するのは Tabs です。/ }] },
+    { code: `import { TabsContent } from "@urushi/react";`, errors: [{ message: /<Tabs\.Panel value="…">/ }] },
     {
-      code: `import { DialogContent, DialogFooter, DialogTitle } from "@yourlib/react";`,
+      code: `import { DialogContent, DialogFooter, DialogTitle } from "@urushi/react";`,
       errors: [{ message: /<Dialog id="…" title="…"> そのものが入れ物です/ }, { message: /<Dialog\.Actions>/ }, { message: /<Dialog id="…" title="…"> の title/ }],
     },
     // Suggestions carry the props the part requires, so the fix does not trade this error for required-props.
-    { code: `import { DropdownMenuTrigger } from "@yourlib/react";`, errors: [{ message: /<Menu\.Trigger menu="…"> を使ってください。/ }] },
-    { code: `import { TextField } from "@yourlib/react";`, errors: [{ message: /<Field id="…" label="…"> の中に <Input>/ }] },
-    { code: `import { Radio } from "@yourlib/react";`, errors: [{ message: /<RadioGroup name="…" legend="…"> の中に <RadioGroup\.Item value="…">/ }] },
-    { code: `import { Modal } from "@yourlib/react";`, errors: [{ message: /<Dialog id="…" title="…"> を使ってください。開くボタンは <Dialog\.Trigger dialog="…">/ }] },
-    { code: `import { MenuSub } from "@yourlib/react";`, errors: [{ message: /<Menu id="…" label="…">・<Menu\.Trigger menu="…">・<Menu\.Item>・<Menu\.Link href="…">・<Menu\.Separator>/ }] },
-    { code: `import { CardHeader, CardFooter } from "@yourlib/react";`, errors: [{ message: /<Card title="…">/ }, { message: /<Card footer=\{…\}>/ }] },
-    { code: `import { AccordionTrigger } from "@yourlib/react";`, errors: [{ message: /<Accordion\.Item title="…">/ }] },
-    { code: `import { DropdownMenuItem } from "@yourlib/react";`, errors: [{ message: /<Menu\.Item>.*import するのは Menu です/ }] },
-    { code: `import { SelectItem } from "@yourlib/react";`, errors: [{ message: /<option>/ }] },
-    { code: `import { TextArea } from "@yourlib/react";`, errors: [{ message: /Textarea のことですか/ }] },
-    { code: `import { TextField, Stack } from "@yourlib/react";`, errors: [{ message: /<Field id="…" label="…"> の中に <Input>/ }, { message: /HTML の要素/ }] },
-    { code: `import { YourlibRuntime } from "@yourlib/react";`, errors: [{ message: /"@yourlib\/react\/runtime" から import/ }] },
-    { code: `import { Avatar } from "@yourlib/react";`, errors: [{ message: /部品は Accordion・Badge・Button/ }] },
-    { code: `import { Tab, TabList, TabPanel } from "@yourlib/react";`, errors: [{ message: /<Tabs\.Tab value="…">/ }, { message: /<Tabs\.List>/ }, { message: /<Tabs\.Panel value="…">/ }] },
-    { code: `import { Tabs } from "@yourlib/react"; const x = <Tabs.Trigger value="a">A</Tabs.Trigger>;`, errors: [{ message: /<Tabs\.Trigger> はありません。<Tabs\.Tab value="…"> を使ってください。/ }] },
-    { code: `import { Dialog as D } from "@yourlib/react"; const x = <D.Content />;`, errors: [{ message: /<D\.Content> はありません。<Dialog id="…" title="…"> そのものが入れ物です/ }] },
+    { code: `import { DropdownMenuTrigger } from "@urushi/react";`, errors: [{ message: /<Menu\.Trigger menu="…"> を使ってください。/ }] },
+    { code: `import { TextField } from "@urushi/react";`, errors: [{ message: /<Field id="…" label="…"> の中に <Input>/ }] },
+    { code: `import { Radio } from "@urushi/react";`, errors: [{ message: /<RadioGroup name="…" legend="…"> の中に <RadioGroup\.Item value="…">/ }] },
+    { code: `import { Modal } from "@urushi/react";`, errors: [{ message: /<Dialog id="…" title="…"> を使ってください。開くボタンは <Dialog\.Trigger dialog="…">/ }] },
+    { code: `import { MenuSub } from "@urushi/react";`, errors: [{ message: /<Menu id="…" label="…">・<Menu\.Trigger menu="…">・<Menu\.Item>・<Menu\.Link href="…">・<Menu\.Separator>/ }] },
+    { code: `import { CardHeader, CardFooter } from "@urushi/react";`, errors: [{ message: /<Card title="…">/ }, { message: /<Card footer=\{…\}>/ }] },
+    { code: `import { AccordionTrigger } from "@urushi/react";`, errors: [{ message: /<Accordion\.Item title="…">/ }] },
+    { code: `import { DropdownMenuItem } from "@urushi/react";`, errors: [{ message: /<Menu\.Item>.*import するのは Menu です/ }] },
+    { code: `import { SelectItem } from "@urushi/react";`, errors: [{ message: /<option>/ }] },
+    { code: `import { TextArea } from "@urushi/react";`, errors: [{ message: /Textarea のことですか/ }] },
+    { code: `import { TextField, Stack } from "@urushi/react";`, errors: [{ message: /<Field id="…" label="…"> の中に <Input>/ }, { message: /HTML の要素/ }] },
+    { code: `import { UrushiRuntime } from "@urushi/react";`, errors: [{ message: /"@urushi\/react\/runtime" から import/ }] },
+    { code: `import { Calendar } from "@urushi/react";`, errors: [{ message: /コンポーネントは Accordion・AlertDialog・Alert/ }] },
+    { code: `import { Tab, TabList, TabPanel } from "@urushi/react";`, errors: [{ message: /<Tabs\.Tab value="…">/ }, { message: /<Tabs\.List>/ }, { message: /<Tabs\.Panel value="…">/ }] },
+    { code: `import { Tabs } from "@urushi/react"; const x = <Tabs.Trigger value="a">A</Tabs.Trigger>;`, errors: [{ message: /<Tabs\.Trigger> はありません。<Tabs\.Tab value="…"> を使ってください。/ }] },
+    { code: `import { Dialog as D } from "@urushi/react"; const x = <D.Content />;`, errors: [{ message: /<D\.Content> はありません。<Dialog id="…" title="…"> そのものが入れ物です/ }] },
     // When one part replaces the element, the props written on it are checked as that part, in the same report.
     {
-      code: `import { DropdownMenuItem } from "@yourlib/react"; const x = <><DropdownMenuItem onSelect={edit}>編集</DropdownMenuItem><DropdownMenuItem onSelect={remove}>削除</DropdownMenuItem></>;`,
+      code: `import { DropdownMenuItem } from "@urushi/react"; const x = <><DropdownMenuItem onSelect={edit}>編集</DropdownMenuItem><DropdownMenuItem onSelect={remove}>削除</DropdownMenuItem></>;`,
       errors: [
         {
           message:
-            /^(?!.*onSelect は使えません.*onSelect は使えません)DropdownMenuItem は "@yourlib\/react" にありません。<Menu\.Item> を使ってください。import するのは Menu です。<DropdownMenuItem> に書いた props も直してください。<Menu\.Item> の onSelect は使えません。.*押したときの処理は onClick に書きます。$/,
+            /^(?!.*onSelect は使えません.*onSelect は使えません)DropdownMenuItem は "@urushi\/react" にありません。<Menu\.Item> を使ってください。import するのは Menu です。<DropdownMenuItem> に書いた props も直してください。<Menu\.Item> の onSelect は使えません。.*押したときの処理は onClick に書きます。$/,
         },
       ],
     },
-    { code: `import { DropdownMenuItem } from "@yourlib/react"; const x = <DropdownMenuItem variant="destructive" onClick={f}>削除</DropdownMenuItem>;`, errors: [{ message: /<Menu\.Item> の variant に "destructive" はありません。.*variant="danger" のことですか。$/ }] },
-    { code: `import { DropdownMenuItem } from "@yourlib/react"; const x = <DropdownMenuItem onClick={f}>編集</DropdownMenuItem>;`, errors: [{ message: /import するのは Menu です。$/ }] },
-    { code: `import { DropdownMenuTrigger } from "@yourlib/react"; const x = <DropdownMenuTrigger asChild><Button>…</Button></DropdownMenuTrigger>;`, errors: [{ message: /<Menu\.Trigger> に asChild という props はありません。asChild はありません。<Menu\.Trigger> はそれ自体が <button> を描きます。/ }] },
-    { code: `import { DropdownMenu as Root } from "@yourlib/react"; const x = <Root open={open} onOpenChange={setOpen} />;`, errors: [{ message: /<Root> に書いた props も直してください。<Menu> に open という props はありません。開閉は <Menu\.Trigger menu="…">.*<Menu> に onOpenChange/ }] },
-    { code: `import { PopoverContent } from "@yourlib/react"; const x = <PopoverContent align="end" sideOffset={4} />;`, errors: [{ message: /そのものが入れ物です。.*<Popover> に sideOffset という props はありません。トリガーとの間隔はパックが決めます。$/ }] },
-    { code: `import { Loader } from "@yourlib/react"; const x = <Loader>読み込み中</Loader>;`, errors: [{ message: /<Spinner> は子要素を取りません。読み上げる文は label で指定します/ }] },
-    { code: `import { Tabs } from "@yourlib/react"; const x = <Tabs.Trigger value="a" asChild>A</Tabs.Trigger>;`, errors: [{ message: /<Tabs\.Tab value="…"> を使ってください。<Tabs\.Trigger> に書いた props も直してください。<Tabs\.Tab> に asChild/ }] },
+    { code: `import { DropdownMenuItem } from "@urushi/react"; const x = <DropdownMenuItem variant="destructive" onClick={f}>削除</DropdownMenuItem>;`, errors: [{ message: /<Menu\.Item> の variant に "destructive" はありません。.*variant="danger" のことですか。$/ }] },
+    { code: `import { DropdownMenuItem } from "@urushi/react"; const x = <DropdownMenuItem onClick={f}>編集</DropdownMenuItem>;`, errors: [{ message: /import するのは Menu です。$/ }] },
+    { code: `import { DropdownMenuTrigger } from "@urushi/react"; const x = <DropdownMenuTrigger asChild><Button>…</Button></DropdownMenuTrigger>;`, errors: [{ message: /<Menu\.Trigger> に asChild という props はありません。asChild はありません。<Menu\.Trigger> はそれ自体が <button> を描きます。/ }] },
+    { code: `import { DropdownMenu as Root } from "@urushi/react"; const x = <Root open={open} onOpenChange={setOpen} />;`, errors: [{ message: /<Root> に書いた props も直してください。<Menu> に open という props はありません。開閉は <Menu\.Trigger menu="…">.*<Menu> に onOpenChange/ }] },
+    { code: `import { PopoverContent } from "@urushi/react"; const x = <PopoverContent align="end" sideOffset={4} />;`, errors: [{ message: /そのものが入れ物です。.*<Popover> に sideOffset という props はありません。トリガーとの間隔はパックが決めます。$/ }] },
+    { code: `import { Loader } from "@urushi/react"; const x = <Loader>読み込み中</Loader>;`, errors: [{ message: /<Spinner> は子要素を取りません。読み上げる文は label で指定します/ }] },
+    { code: `import { Tabs } from "@urushi/react"; const x = <Tabs.Trigger value="a" asChild>A</Tabs.Trigger>;`, errors: [{ message: /<Tabs\.Tab value="…"> を使ってください。<Tabs\.Trigger> に書いた props も直してください。<Tabs\.Tab> に asChild/ }] },
     // When the props split between parts (TextField → Field and Input), they are left to valid-props after the fix.
-    { code: `import { TextField } from "@yourlib/react"; const x = <TextField label="メール" helperText="…" />;`, errors: [{ message: /^(?!.*に書いた props).*<Input>/ }] },
-    { code: `import yourlib from "@yourlib/react";`, errors: [{ messageId: "noDefault" }] },
-    { code: `import { Button } from "@yourlib/react/components/button";`, errors: [{ messageId: "unknownPath" }] },
+    { code: `import { TextField } from "@urushi/react"; const x = <TextField label="メール" helperText="…" />;`, errors: [{ message: /^(?!.*に書いた props).*<Input>/ }] },
+    { code: `import urushi from "@urushi/react";`, errors: [{ messageId: "noDefault" }] },
+    { code: `import { Button } from "@urushi/react/components/button";`, errors: [{ messageId: "unknownPath" }] },
   ],
 });
 
 tsTester.run("valid-import (TypeScript)", rules["valid-import"], {
-  valid: [`import { Button, type ButtonProps } from "@yourlib/react";`, `import type { DialogProps } from "@yourlib/react";`],
-  invalid: [{ code: `import type { DialogContentProps } from "@yourlib/react";`, errors: [{ messageId: "unknownName" }] }],
+  valid: [`import { Button, type ButtonProps } from "@urushi/react";`, `import type { DialogProps } from "@urushi/react";`],
+  invalid: [{ code: `import type { DialogContentProps } from "@urushi/react";`, errors: [{ messageId: "unknownName" }] }],
 });
 
 tester.run("valid-props", rules["valid-props"], {
   valid: [
     // Contract props, the HTML attributes of the element the props go to, key and ref.
     `<Button variant="danger" type="submit" disabled onClick={f} key="a" ref={r}>削除</Button>`,
+    `import { DataTable } from "@urushi/react"; const x = <DataTable key="table" rows={rows} columns={columns} getRowId={rowId} />;`,
     `<Switch name="notify" checked={on} onChange={(e) => setOn(e.currentTarget.checked)}>メール通知</Switch>`,
     `<Dialog id="d" title="t" dismissible="any" onClose={f} />`,
     `<Popover id="p" title="t" side="bottom" align="start" onToggle={f} />`,
@@ -347,12 +389,12 @@ tester.run("valid-props", rules["valid-props"], {
     // Another package's component with the same name, and the file's own component.
     `import { Dialog } from "@radix-ui/react-dialog"; const x = <Dialog open onOpenChange={f} />;`,
     `function Card({ elevated }) { return <div />; } const x = <Card elevated />;`,
-    // A component installed by `yourlib add` is checked like the one it re-exports.
+    // A component installed by `urushi add` is checked like the one it re-exports.
     `import { Button } from "@/components/ui/button"; const x = <Button variant="primary">保存</Button>;`,
     `import { Card } from "./app-card"; const x = <Card elevated />;`,
   ],
   invalid: [
-    // Props no part has, with the yourlib way to write them.
+    // Props no part has, with the urushi way to write them.
     {
       code: `<Dialog id="d" title="t" open={open} onOpenChange={setOpen} />`,
       errors: [
@@ -364,7 +406,7 @@ tester.run("valid-props", rules["valid-props"], {
     { code: `<Checkbox onCheckedChange={setChecked}>同意する</Checkbox>`, errors: [{ message: /onChange で受け取り、event\.currentTarget\.checked/ }] },
     { code: `<Select onValueChange={setValue} />`, errors: [{ message: /<select> と同じく onChange で受け取り、event\.currentTarget\.value/ }] },
     { code: `<RadioGroup name="p" legend="プラン" value={plan} onValueChange={setPlan} />`, errors: [{ message: /defaultValue/ }, { message: /onChange/ }] },
-    { code: `<Tabs id="t" label="表示" defaultValue="a" onValueChange={f} />`, errors: [{ message: /yl-tabs-change/ }] },
+    { code: `<Tabs id="t" label="表示" defaultValue="a" onValueChange={f} />`, errors: [{ message: /ur-tabs-change/ }] },
     {
       code: `<Accordion type="single" collapsible><Accordion.Item value="a" title="t" /></Accordion>`,
       errors: [{ message: /<Accordion name="…">/ }, { message: /collapsible は要りません/ }, { message: /defaultOpen/ }],
@@ -383,10 +425,10 @@ tester.run("valid-props", rules["valid-props"], {
     { code: `<Button isLoading>保存</Button>`, errors: [{ message: /loading と書きます/ }] },
     { code: `<Button classname="mt-2">保存</Button>`, errors: [{ message: /className と書きます（大文字と小文字が違います）/ }] },
     { code: `<Dialog id="d" title="t" dismissable="any" />`, errors: [{ message: /dismissible のことですか/ }] },
-    { code: `<Spinner elevated />`, errors: [{ message: /<Spinner> にある props は label・size（sm \| md \| lg）です（ほかは HTML の属性）。/ }] },
+    { code: `<Spinner elevated />`, errors: [{ message: /<Spinner> にある props は label・showLabel・size（sm \| md \| lg）です（ほかは HTML の属性）。/ }] },
     // Aliases and namespace imports resolve to the part.
-    { code: `import { Dialog as D } from "@yourlib/react"; const x = <D.Trigger dialogId="d">開く</D.Trigger>;`, errors: [{ message: /<D\.Trigger> に dialogId/ }] },
-    { code: `import * as yl from "@yourlib/react"; const x = <yl.Switch label="通知" />;`, errors: [{ messageId: "unknownProp" }] },
+    { code: `import { Dialog as D } from "@urushi/react"; const x = <D.Trigger dialogId="d">開く</D.Trigger>;`, errors: [{ message: /<D\.Trigger> に dialogId/ }] },
+    { code: `import * as yl from "@urushi/react"; const x = <yl.Switch label="通知" />;`, errors: [{ messageId: "unknownProp" }] },
     { code: `import { Switch } from "@/components/ui/switch"; const x = <Switch label="通知" />;`, errors: [{ messageId: "unknownProp" }] },
     // Values the contract does not list, with the closest one.
     { code: `<Toaster position="bottom-right" />`, errors: [{ message: /<Toaster> の position に "bottom-right" はありません。position は "bottom-end" \| "bottom-center" \| "top-end" のどれかです。position="bottom-end" のことですか。/ }] },
@@ -403,4 +445,9 @@ tester.run("valid-props", rules["valid-props"], {
     // Parts whose type takes no children.
     { code: `<Spinner>読み込み中</Spinner>`, errors: [{ message: /<Spinner> は子要素を取りません。読み上げる文は label で指定します/ }] },
   ],
+});
+
+tester.run("dialog focus references use the existing ID checks", rules["valid-idref"], {
+  valid: ['import {Dialog} from "@urushi/react";const x=<><button id="edit">Edit</button><Dialog id="d" title="Editor" initialFocus="name" returnFocus="edit"><input id="name"/></Dialog></>;'],
+  invalid: [{code:'import {Dialog} from "@urushi/react";const x=<Dialog id="d" title="Editor" initialFocus="missing"><input id="name"/></Dialog>;',errors:[{messageId:'missing'}]}],
 });

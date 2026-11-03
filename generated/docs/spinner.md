@@ -24,6 +24,7 @@ role="status" with a visually hidden label. Renders `<span data-slot="spinner">`
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `label` | `string` | `"読み込み中"` | Announced to screen readers. |
+| `showLabel` | `boolean` | `false` | Also display the status label next to the ring. |
 | `size` | `"sm" \| "md" \| "lg"` | `"md"` |  |
 
 className may only adjust: margin, layout, position.

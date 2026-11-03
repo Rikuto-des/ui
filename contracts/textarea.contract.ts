@@ -1,4 +1,4 @@
-import { defineContract, z } from "@yourlib/contract";
+import { defineContract, z } from "@urushi/contract";
 
 export default defineContract({
   name: "textarea",
@@ -17,6 +17,7 @@ export default defineContract({
       props: z.object({
         rows: z.number().int().min(1).default(3).describe("Minimum visible lines."),
         autoResize: z.boolean().default(true).describe("Grow with the content up to 12 lines."),
+        showCount: z.boolean().default(false).describe("Show a live length and optional maxLength budget with UrushiRuntime. Uses native UTF-16 length."),
         invalid: z.boolean().default(false),
       }),
       overrides: ["margin", "width", "height", "layout", "position"],

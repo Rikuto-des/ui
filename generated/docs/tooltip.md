@@ -5,7 +5,7 @@ A short description shown on hover and keyboard focus: popover="hint" opened thr
 - Tier: 2
 - Rendering: server
 - Requires: popover=hint, anchor-positioning
-- Enhances with interestfor (fallback: @yourlib/core tooltip behavior (loaded by <YourlibRuntime />))
+- Enhances with interestfor (fallback: @urushi/core tooltip behavior (loaded by <UrushiRuntime />))
 
 ## When to use
 

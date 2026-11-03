@@ -1,9 +1,10 @@
 import type { ESLint, Linter, Rule } from "eslint";
 import data from "./contracts.generated.json" with { type: "json" };
 import library from "./library.generated.json" with { type: "json" };
+import { noDeferredEventCurrentTarget } from "./deferred-event.ts";
 
 /**
- * @yourlib/eslint-plugin — enforces the component contracts.
+ * @urushi/eslint-plugin — enforces the component contracts.
  *
  * Every message says what is wrong and what to write instead, so a coding
  * agent can fix its own output from the lint report alone.
@@ -26,7 +27,7 @@ interface Part {
 }
 
 interface Library {
-  /** Every custom property the packs define (`--yl-color-text`, …). */
+  /** Every custom property the packs define (`--ur-color-text`, …). */
   tokens: string[];
   /** Module specifier → the names it exports, values and types. */
   modules: Record<string, string[]>;
@@ -59,6 +60,29 @@ function jsxName(name: Node): string | null {
     return object ? `${object}.${name.property.name}` : null;
   }
   return null;
+}
+
+/** Resolve imports in the actual lexical scope, including aliases and namespace imports. */
+function componentName(opening: Node, context: Rule.RuleContext): string | null {
+  const written = jsxName(opening?.name);
+  if (!written || (/^[a-z]/.test(written) && !written.includes("."))) return written;
+  const [first, ...rest] = written.split(".");
+  for (let scope = context.sourceCode.getScope(opening); scope; scope = scope.upper!) {
+    const variable = scope.set.get(first);
+    if (!variable) continue;
+    const def = variable.defs[0];
+    if (!def) return written;
+    if (def.type !== "ImportBinding") return null;
+    const spec = def.node as Node;
+    const source = String((def.parent as Node).source.value);
+    if (otherPackage(source)) return null;
+    const base = source.split("/").pop()!.replace(/\.[jt]sx?$/, "");
+    const name = spec.type === "ImportNamespaceSpecifier" ? rest.join(".") :
+      spec.type === "ImportSpecifier" ? [spec.imported.name ?? spec.imported.value, ...rest].join(".") : null;
+    if (!name) return null;
+    return source === REACT || source.startsWith(`${REACT}/`) || PARTS[name]?.contract === base ? name : null;
+  }
+  return written;
 }
 
 function attr(opening: Node, name: string): Node | undefined {
@@ -265,7 +289,7 @@ function hintFor(name: string, part: Part, changed: { text: string; look: Look }
 const noVisualOverride: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "Disallow restyling yourlib components through className or style; visuals come from packs and variants." },
+    docs: { description: "Disallow restyling urushi components through className or style; visuals come from packs and variants." },
     schema: [
       {
         type: "object",
@@ -287,7 +311,7 @@ const noVisualOverride: Rule.RuleModule = {
     const aliases = options.components ?? {};
     return {
       JSXOpeningElement(node: Node) {
-        const name = jsxName(node.name);
+        const name = componentName(node, context);
         if (!name) return;
         const part = PARTS[aliases[name] ?? name];
         if (!part) return;
@@ -346,11 +370,11 @@ const PALETTE =
 const RAW_COLOR = /#[0-9a-f]{3,8}\b|\b(rgba?|hsla?|oklch|oklab|lab|lch|color|hwb)\(/i;
 /** `p-[13px]`, `bg-[var(--x)]`, `[color:red]`, and Tailwind v4's `bg-(--x)`. */
 const ARBITRARY = /\[[^\]]+\]|\((?:[\w-]+:)?--[\w-]+\)/;
-const TOKEN_REF = /--yl-[\w-]+/;
+const TOKEN_REF = /--ur-[\w-]+/;
 
-/** `--yl-color-text-muted` → `color` */
+/** `--ur-color-text-muted` → `color` */
 function tokenGroup(name: string): string {
-  return name.slice("--yl-".length).split("-")[0];
+  return name.slice("--ur-".length).split("-")[0];
 }
 
 function camel(property: string): string {
@@ -394,17 +418,17 @@ function utilityProperty(utility: string, token: string): string | null {
   const border = /^border(?:-([trblxyse]))?$/.exec(utility);
   if (border) {
     const side = border[1] ? `-${SIDES[border[1]]}` : "";
-    return group === "color" ? `border${side}-color` : token === "--yl-border-width" ? `border${side}-width` : null;
+    return group === "color" ? `border${side}-color` : token === "--ur-border-width" ? `border${side}-width` : null;
   }
   switch (utility) {
     case "bg":
       return group === "color" ? "background-color" : null;
     case "text":
-      return group === "color" ? "color" : token.startsWith("--yl-font-size-") ? "font-size" : null;
+      return group === "color" ? "color" : token.startsWith("--ur-font-size-") ? "font-size" : null;
     case "outline":
-      return group === "color" ? "outline-color" : token === "--yl-focus-ring-width" ? "outline-width" : null;
+      return group === "color" ? "outline-color" : token === "--ur-focus-ring-width" ? "outline-width" : null;
     case "font":
-      return token.startsWith("--yl-font-family-") ? "font-family" : token.startsWith("--yl-font-weight-") ? "font-weight" : null;
+      return token.startsWith("--ur-font-family-") ? "font-family" : token.startsWith("--ur-font-weight-") ? "font-weight" : null;
   }
   return UTILITY_PROPERTIES[utility] ?? null;
 }
@@ -431,8 +455,8 @@ const COLOR_CANDIDATES: [RegExp, string[]][] = [
  * Hues → the tokens that carry the same meaning, the closest first.
  *
  * Blue and purple (and the hues next to them) are what screens use for emphasis: the
- * selected plan's border, the current step, a highlighted row. They get --yl-color-accent
- * first and --yl-color-action second. SKILL.md gives accent to "Focus, selection and
+ * selected plan's border, the current step, a highlighted row. They get --ur-color-accent
+ * first and --ur-color-action second. SKILL.md gives accent to "Focus, selection and
  * in-progress state" and action to "Fill of the primary action (one per screen)". This
  * advice is for the app's own elements (on a part it is the variant), and the primary
  * action's fill already comes from <Button variant="primary">, so a blue or purple element
@@ -446,7 +470,7 @@ const HUE_TOKENS: [RegExp, string[]][] = [
   [/^(sky|blue|indigo|violet|purple|fuchsia|cyan)$/, ["accent", "action"]],
 ];
 const ACCENT_NOTE =
-  "--yl-color-accent は選択中・フォーカス・進行中を示す色で、飾りには使いません（目立たせたいだけなら --yl-color-text や --yl-color-border-strong）。主な操作の色なら --yl-color-action です（1 画面に 1 つ）。";
+  "--ur-color-accent は選択中・フォーカス・進行中を示す色で、飾りには使いません（目立たせたいだけなら --ur-color-text や --ur-color-border-strong）。主な操作の色なら --ur-color-action です（1 画面に 1 つ）。";
 
 /** A light tint behind content (`bg-purple-50`) is a surface, not the signal: its hue's tokens go after the surfaces. */
 function isTint(utility: string, shade?: string): boolean {
@@ -458,7 +482,7 @@ function colorCandidates(utility: string, hue = "", shade?: string): string[] {
   const hueNames = HUE_TOKENS.filter(([re]) => re.test(hue)).flatMap(([, n]) => n);
   const general = COLOR_CANDIDATES.find(([re]) => re.test(utility))?.[1] ?? ["text", "surface", "border"];
   const names = isTint(utility, shade) ? [...general, ...hueNames] : [...hueNames, ...general];
-  return [...new Set(names)].map((n) => `--yl-color-${n}`).filter((n) => TOKENS.has(n));
+  return [...new Set(names)].map((n) => `--ur-color-${n}`).filter((n) => TOKENS.has(n));
 }
 
 /** `property`: set for an arbitrary property (`[color:#fff]`), which names the CSS property itself. `shade`: `500` of `bg-blue-500`. */
@@ -468,18 +492,18 @@ function colorAdvice(utility: string, hue?: string, property?: string, shade?: s
   const arbitrary = property ? `[${property}:var(${token})]` : `${utility}-[var(${token})]`;
   return (
     `パックの色のトークンを使ってください。${tokenAdvice(property ?? utilityProperty(utility, token), token)}` +
-    `候補: ${candidates.join("・")}（ほかの色も --yl-color-* から選びます）。` +
-    (candidates.includes("--yl-color-accent") ? ACCENT_NOTE : "") +
+    `候補: ${candidates.join("・")}（ほかの色も --ur-color-* から選びます）。` +
+    (candidates.includes("--ur-color-accent") ? ACCENT_NOTE : "") +
     `Tailwind の任意値（${arbitrary}）にはしないでください。`
   );
 }
 
 const SCALES: [RegExp, string, string | null][] = [
-  [/^(p|m)[trblxyse]?$|^gap(-[xy])?$|^space-[xy]$/, "p-4・gap-3", "--yl-space-4"],
+  [/^(p|m)[trblxyse]?$|^gap(-[xy])?$|^space-[xy]$/, "p-4・gap-3", "--ur-space-4"],
   [/^(min-|max-)?(w|h)$|^size$/, "w-96・max-w-md・h-10", null],
-  [/^text$/, "text-sm・text-base", "--yl-font-size-small"],
-  [/^rounded/, "rounded-md", "--yl-radius-panel"],
-  [/^shadow$/, "shadow-sm", "--yl-shadow-panel"],
+  [/^text$/, "text-sm・text-base", "--ur-font-size-small"],
+  [/^rounded/, "rounded-md", "--ur-radius-panel"],
+  [/^shadow$/, "shadow-sm", "--ur-shadow-panel"],
   [/^(grid-cols|grid-rows|col-span|row-span)$/, "grid-cols-3・col-span-2", null],
   [/^(leading|tracking)$/, "leading-6・tracking-wide", null],
 ];
@@ -489,13 +513,13 @@ function arbitraryAdvice(base: string): string {
   if (RAW_COLOR.test(base)) return colorAdvice(utility, undefined, /^\[([a-z-]+):/.exec(base)?.[1]);
   const scale = SCALES.find(([re]) => re.test(utility));
   if (!scale) {
-    return `Tailwind の決められた段階（p-4・w-96・text-sm など）を使うか、パックのトークンを style か自分の CSS で使ってください（例: style={{ padding: "var(--yl-space-4)" }}）。`;
+    return `Tailwind の決められた段階（p-4・w-96・text-sm など）を使うか、パックのトークンを style か自分の CSS で使ってください（例: style={{ padding: "var(--ur-space-4)" }}）。`;
   }
   const [, examples, token] = scale;
   return `Tailwind の決められた段階（${examples} など）を使ってください。${token ? `パックの値に合わせるなら、${tokenAdvice(utilityProperty(utility, token), token)}` : ""}`;
 }
 
-/** On a yourlib component, colors are not the element's to set: point at the variant instead. */
+/** On a urushi component, colors are not the element's to set: point at the variant instead. */
 function partAdvice(name: string, part: Part): string {
   const prop = ["variant", "tone"].find((p) => part.enums[p]);
   if (!prop) return `<${name}> の色はパックが決めます（<${name}> に色を選ぶ props はありません）。className と style からは外してください。`;
@@ -504,7 +528,7 @@ function partAdvice(name: string, part: Part): string {
 
 type ColorMessage = "palette" | "arbitraryToken" | "arbitrary";
 
-/** What no-raw-color reports in one class string; `onPart` replaces the fix when the classes go on a yourlib part. */
+/** What no-raw-color reports in one class string; `onPart` replaces the fix when the classes go on a urushi part. */
 function classProblems(text: string, onPart: string | null): { messageId: ColorMessage; data: Record<string, string> }[] {
   const out: { messageId: ColorMessage; data: Record<string, string> }[] = [];
   for (const cls of tokens(text)) {
@@ -548,12 +572,12 @@ function isClassList(text: string): boolean {
 }
 
 /*
- * A token inside a Tailwind arbitrary value (`text-[var(--yl-color-text-muted)]`,
- * `bg-(--yl-color-surface)`) is reported too, although it names a real token:
+ * A token inside a Tailwind arbitrary value (`text-[var(--ur-color-text-muted)]`,
+ * `bg-(--ur-color-surface)`) is reported too, although it names a real token:
  * - Tailwind cannot tell what a var() holds, so for `text-`, `border-` and the like
- *   it needs a type hint (`text-[length:var(--yl-font-size-small)]`). Without one the
+ *   it needs a type hint (`text-[length:var(--ur-font-size-small)]`). Without one the
  *   class can set the wrong property and silently do nothing.
- * - The Tailwind integration planned in the design draft (§3, `@yourlib/tailwind`)
+ * - The Tailwind integration planned in the design draft (§3, `@urushi/tailwind`)
  *   maps the tokens into `@theme`. Allowing arbitrary values now would leave two ways
  *   to write the same thing once it ships.
  * - `style` and the app's own CSS work with or without Tailwind.
@@ -562,7 +586,7 @@ function isClassList(text: string): boolean {
  * Outside className, a string that reads as a class list (isClassList) is checked too: a
  * function or variable that holds the classes (`return "bg-green-100 text-green-700"`,
  * `const tone = ok ? "bg-green-100" : "bg-red-100"`). When the file passes that function
- * or variable to the className of a yourlib part (`<Badge className={changeClass(n)}>`),
+ * or variable to the className of a urushi part (`<Badge className={changeClass(n)}>`),
  * the fix is the part's variant, as on the part itself.
  */
 const CLASS_ATTRIBUTE = /^(className|class)$/;
@@ -582,7 +606,7 @@ const noRawColor: Rule.RuleModule = {
   create(context) {
     /** Class lists outside className, with the names of the functions and variables they sit in, innermost first. */
     const outside: { node: Node; text: string; owners: string[] }[] = [];
-    /** A name used in the className of a yourlib part → that part. */
+    /** A name used in the className of a urushi part → that part. */
     const feeds = new Map<string, string>();
     const inClassName = (node: Node) =>
       context.sourceCode.getAncestors(node).some((a: Node) => a.type === "JSXAttribute" && CLASS_ATTRIBUTE.test(a.name?.name ?? ""));
@@ -604,7 +628,7 @@ const noRawColor: Rule.RuleModule = {
       },
       JSXAttribute(node: Node) {
         const name = node.name?.name;
-        const element = jsxName(node.parent?.name);
+        const element = componentName(node.parent, context);
         const part = element ? PARTS[element] : undefined;
         const onPart = part ? partAdvice(element!, part) : null;
         if (CLASS_ATTRIBUTE.test(name ?? "")) {
@@ -627,7 +651,7 @@ const noRawColor: Rule.RuleModule = {
       "JSXAttribute Identifier"(node: Node) {
         const attribute: Node = context.sourceCode.getAncestors(node).findLast((a: Node) => a.type === "JSXAttribute");
         if (!CLASS_ATTRIBUTE.test(attribute?.name?.name ?? "")) return;
-        const element = jsxName(attribute.parent?.name);
+        const element = componentName(attribute.parent, context);
         if (element && PARTS[element] && !feeds.has(node.name)) feeds.set(node.name, element);
       },
       "Program:exit"() {
@@ -660,7 +684,7 @@ const validIdref: Rule.RuleModule = {
     const refs: { node: Node; component: string; prop: string; id: string; target: string | null }[] = [];
     return {
       JSXOpeningElement(node: Node) {
-        const name = jsxName(node.name);
+        const name = componentName(node, context);
         if (!name) return;
         const id = staticString(attr(node, "id")?.value);
         const part = PARTS[name];
@@ -726,7 +750,7 @@ const requiredProps: Rule.RuleModule = {
     };
     return {
       JSXOpeningElement(node: Node) {
-        const name = jsxName(node.name);
+        const name = componentName(node, context);
         const part = name ? PARTS[name] : undefined;
         if (!part || hasSpread(node)) return;
         for (const prop of part.required) {
@@ -738,6 +762,8 @@ const requiredProps: Rule.RuleModule = {
 };
 
 const BUTTON_LIKE = new Set(Object.entries(PARTS).filter(([, p]) => p.element === "button").map(([n]) => n));
+/** Parts whose children are their name: buttons, and toggles drawn as buttons around a native input. */
+const ICON_LABELLED = new Set([...BUTTON_LIKE, "Toggle", "ToggleGroup.Item"]);
 
 function hasText(children: Node[]): boolean {
   return children.some(
@@ -761,11 +787,11 @@ const accessibleName: Rule.RuleModule = {
     return {
       JSXElement(node: Node) {
         const opening = node.openingElement;
-        const name = jsxName(opening.name);
+        const name = componentName(opening, context);
         if (!name || hasSpread(opening)) return;
         const named = attr(opening, "aria-label") || attr(opening, "aria-labelledby");
         if (name === "Popover" && !named && !attr(opening, "title")) context.report({ node: opening, messageId: "popover" });
-        if (BUTTON_LIKE.has(name) && !named && node.children.length > 0 && !hasText(node.children)) {
+        if (ICON_LABELLED.has(name) && !named && node.children.length > 0 && !hasText(node.children)) {
           context.report({ node: opening, messageId: "iconOnly", data: { component: name } });
         }
       },
@@ -779,13 +805,13 @@ const preferNative: Rule.RuleModule = {
     docs: { description: "Prefer native interactive elements over clickable divs and spans." },
     schema: [],
     messages: {
-      clickable: "<{{element}}> に onClick を付けて操作できる部品を作らないでください。キーボードで操作できる <Button> を使ってください。",
+      clickable: "<{{element}}> に onClick を付けて操作できるコンポーネントを作らないでください。キーボードで操作できる <Button> を使ってください。",
     },
   },
   create(context) {
     return {
       JSXOpeningElement(node: Node) {
-        const name = jsxName(node.name);
+        const name = componentName(node, context);
         if ((name === "div" || name === "span") && attr(node, "onClick") && !attr(node, "role")) {
           context.report({ node, messageId: "clickable", data: { element: name } });
         }
@@ -795,7 +821,7 @@ const preferNative: Rule.RuleModule = {
 };
 
 /** Collects the static values of Tabs.Tab and Tabs.Panel under a <Tabs>; null if any is dynamic. */
-function tabValues(children: Node[]): { tabs: Map<string, Node>; panels: Map<string, Node> } | null {
+function tabValues(children: Node[], context: Rule.RuleContext): { tabs: Map<string, Node>; panels: Map<string, Node> } | null {
   const tabs = new Map<string, Node>();
   const panels = new Map<string, Node>();
   const visit = (nodes: Node[]): boolean => {
@@ -807,7 +833,8 @@ function tabValues(children: Node[]): { tabs: Map<string, Node>; panels: Map<str
       }
       if (child.type !== "JSXElement") continue;
       const opening = child.openingElement;
-      const name = jsxName(opening.name);
+      const name = componentName(opening, context);
+      if (name === "Tabs") continue; // A nested Tabs owns its own values.
       if (name === "Tabs.Tab" || name === "Tabs.Panel") {
         const value = staticString(attr(opening, "value")?.value);
         if (value === null || hasSpread(opening)) return false;
@@ -829,15 +856,26 @@ const tabsMatch: Rule.RuleModule = {
       noPanel: "<Tabs.Tab value=\"{{value}}\"> に対応する <Tabs.Panel value=\"{{value}}\"> がありません。このタブを選ぶと何も表示されません。",
       noTab: "<Tabs.Panel value=\"{{value}}\"> に対応する <Tabs.Tab value=\"{{value}}\"> がありません。このパネルを表示する方法がありません。",
       badDefault: "defaultValue=\"{{value}}\" に一致する <Tabs.Tab> がありません。どのタブも選ばれず、パネルが 1 つも表示されません。value の綴りを確認してください（候補: {{candidates}}）。",
+      badActivation: "<Tabs.Activate tabs=\"{{id}}\" value=\"{{value}}\"> の参照先に、この値のタブがありません。value を {{candidates}} のいずれかにしてください。",
     },
   },
   create(context) {
+    const roots = new Map<string, Map<string, Node>>();
+    const activations: { node: Node; id: string; value: string }[] = [];
     return {
       JSXElement(node: Node) {
         const opening = node.openingElement;
-        if (jsxName(opening.name) !== "Tabs" || hasSpread(opening)) return;
-        const found = tabValues(node.children);
+        if (componentName(opening, context) === "Tabs.Activate" && !hasSpread(opening)) {
+          const id = staticString(attr(opening, "tabs")?.value);
+          const value = staticString(attr(opening, "value")?.value);
+          if (id !== null && value !== null) activations.push({ node: opening, id, value });
+          return;
+        }
+        if (componentName(opening, context) !== "Tabs" || hasSpread(opening)) return;
+        const found = tabValues(node.children, context);
         if (!found) return;
+        const id = staticString(attr(opening, "id")?.value);
+        if (id) roots.set(id, found.tabs);
         for (const [value, tab] of found.tabs) {
           if (!found.panels.has(value)) context.report({ node: tab, messageId: "noPanel", data: { value } });
         }
@@ -847,6 +885,12 @@ const tabsMatch: Rule.RuleModule = {
         const initial = staticString(attr(opening, "defaultValue")?.value);
         if (initial !== null && found.tabs.size > 0 && !found.tabs.has(initial)) {
           context.report({ node: opening, messageId: "badDefault", data: { value: initial, candidates: [...found.tabs.keys()].join("・") } });
+        }
+      },
+      "Program:exit"() {
+        for (const { node, id, value } of activations) {
+          const tabs = roots.get(id);
+          if (tabs && !tabs.has(value)) context.report({ node, messageId: "badActivation", data: { id, value, candidates: [...tabs.keys()].join("・") } });
         }
       },
     };
@@ -871,7 +915,7 @@ function distance(a: string, b: string): number {
 const TOKEN_GROUPS = new Map<string, string[]>();
 for (const name of LIBRARY.tokens) TOKEN_GROUPS.set(tokenGroup(name), [...(TOKEN_GROUPS.get(tokenGroup(name)) ?? []), name]);
 
-/** Token names from other libraries (shadcn, Material, Radix) → the yourlib tokens that play the part. */
+/** Token names from other libraries (shadcn, Material, Radix) → the urushi tokens that play the part. */
 const TOKEN_SYNONYMS: Record<string, string[]> = {
   "color-primary": ["color-action"],
   "color-primary-foreground": ["color-on-action"],
@@ -897,19 +941,19 @@ const GROUP_SYNONYMS: Record<string, string> = { colors: "color", spacing: "spac
 
 /** Up to three real tokens close to an unknown name. */
 function nearTokens(name: string): string[] {
-  let rest = name.slice("--yl-".length);
+  let rest = name.slice("--ur-".length);
   let group = tokenGroup(name);
   if (!TOKEN_GROUPS.has(group) && GROUP_SYNONYMS[group]) {
     rest = GROUP_SYNONYMS[group] + rest.slice(group.length);
     group = GROUP_SYNONYMS[group];
-    if (TOKENS.has(`--yl-${rest}`)) return [`--yl-${rest}`];
+    if (TOKENS.has(`--ur-${rest}`)) return [`--ur-${rest}`];
   }
   const known = TOKEN_GROUPS.has(group);
   const words = rest.split("-").slice(known ? 1 : 0);
-  const synonyms = (TOKEN_SYNONYMS[rest] ?? []).map((n) => `--yl-${n}`).filter((n) => TOKENS.has(n));
+  const synonyms = (TOKEN_SYNONYMS[rest] ?? []).map((n) => `--ur-${n}`).filter((n) => TOKENS.has(n));
   const scored = (TOKEN_GROUPS.get(group) ?? LIBRARY.tokens)
     .map((token) => {
-      const other = token.slice("--yl-".length);
+      const other = token.slice("--ur-".length);
       const otherWords = other.split("-").slice(known ? 1 : 0);
       return { token, shared: words.filter((w) => otherWords.includes(w)).length, d: distance(rest, other) };
     })
@@ -919,34 +963,34 @@ function nearTokens(name: string): string[] {
   return [...new Set([...synonyms, ...scored])].slice(0, 3);
 }
 
-/** `var(--yl-x`, and Tailwind v4's `bg-(--yl-x)` / `text-(color:--yl-x)`: places that read a token. */
-const TOKEN_READ = /(?:var\(|-\((?:[\w-]+:)?)\s*(--yl-[\w-]*)/g;
+/** `var(--ur-x`, and Tailwind v4's `bg-(--ur-x)` / `text-(color:--ur-x)`: places that read a token. */
+const TOKEN_READ = /(?:var\(|-\((?:[\w-]+:)?)\s*(--ur-[\w-]*)/g;
 
 /**
  * Checks the tokens a screen reads: every string in JSX (className, style and other
  * attribute values, `<style>{`…`}</style>`), and outside JSX every string that is a
- * single CSS value (`return "var(--yl-color-ok)"`, `{ color: "var(--yl-color-text)" }`).
+ * single CSS value (`return "var(--ur-color-ok)"`, `{ color: "var(--ur-color-text)" }`).
  * A stylesheet outside JSX (text with `{` or `;`) is skipped: a file may define its own
  * custom properties there, as scripts/design-system.tsx does. Only reads are checked:
- * defining a custom property (`--yl-x: …`) or naming an anchor (`anchor-name: --yl-x`)
+ * defining a custom property (`--ur-x: …`) or naming an anchor (`anchor-name: --ur-x`)
  * is not a token reference.
  */
 const validToken: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "Report var(--yl-*) references to tokens that no pack defines." },
+    docs: { description: "Report var(--ur-*) references to tokens that no pack defines." },
     schema: [],
     messages: {
-      unknown: "{{name}} というトークンはありません。{{near}}{{group}} のトークン（--yl-{{group}}-*）は {{list}} です。",
-      unknownGroup: "{{name}} というトークンはありません。{{near}}トークンの名前は --yl-{{groups}} のどれかで始まります。",
-      unknownPrefix: "{{name}} で始まるトークンはありません。トークンの名前は --yl-{{groups}} のどれかで始まります。",
+      unknown: "{{name}} というトークンはありません。{{near}}{{group}} のトークン（--ur-{{group}}-*）は {{list}} です。",
+      unknownGroup: "{{name}} というトークンはありません。{{near}}トークンの名前は --ur-{{groups}} のどれかで始まります。",
+      unknownPrefix: "{{name}} で始まるトークンはありません。トークンの名前は --ur-{{groups}} のどれかで始まります。",
     },
   },
   create(context) {
-    const groups = [...TOKEN_GROUPS.keys()].join("・--yl-");
+    const groups = [...TOKEN_GROUPS.keys()].join("・--ur-");
     const inJsx = (node: Node) => context.sourceCode.getAncestors(node).some((a: Node) => a.type === "JSXAttribute" || a.type === "JSXExpressionContainer");
     const cssValue = (text: string) => !/[{};]/.test(text);
-    /** `open`: a template literal part that an expression continues (`var(--yl-color-${tone})`). */
+    /** `open`: a template literal part that an expression continues (`var(--ur-color-${tone})`). */
     const check = (node: Node, text: string, open: boolean) => {
       for (const m of text.matchAll(TOKEN_READ)) {
         const name = m[1];
@@ -962,7 +1006,7 @@ const validToken: Rule.RuleModule = {
         const group = tokenGroup(name);
         const members = TOKEN_GROUPS.get(group);
         if (members) {
-          const list = members.map((t) => t.slice(`--yl-${group}-`.length)).join("・");
+          const list = members.map((t) => t.slice(`--ur-${group}-`.length)).join("・");
           context.report({ node, messageId: "unknown", data: { name, near: nearText, group, list } });
         } else {
           context.report({ node, messageId: "unknownGroup", data: { name, near: nearText, groups } });
@@ -981,7 +1025,7 @@ const validToken: Rule.RuleModule = {
   },
 };
 
-const REACT = "@yourlib/react";
+const REACT = "@urushi/react";
 const ROOTS = Object.keys(PARTS).filter((n) => !n.includes("."));
 
 function members(root: string): string[] {
@@ -1000,8 +1044,8 @@ function tag(name: string, extra: string[] = []): string {
   return `<${name}${props.map((p) => ` ${p}="…"`).join("")}>`;
 }
 
-/** Whole components other libraries have → what to write with yourlib. */
-const LAYOUT = "yourlib にはない部品です。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。";
+/** Whole components other libraries have → what to write with urushi. */
+const LAYOUT = "urushi にはないコンポーネントです。HTML の要素（p・h2・div・section など）と Tailwind のレイアウトのクラスで組んでください。";
 const dialogAlias = `${tag("Dialog")} を使ってください。開くボタンは ${tag("Dialog.Trigger")} です。`;
 const IMPORT_ALIASES: Record<string, string> = {
   TextField: `${tag("Field")} の中に <Input> を置いてください。`,
@@ -1026,11 +1070,11 @@ const IMPORT_ALIASES: Record<string, string> = {
     ["Text", "Heading", "Title", "Paragraph", "Typography", "Stack", "HStack", "VStack", "Box", "Flex", "Grid", "Container", "Section", "Page", "Layout", "Spacer"].map((n) => [n, LAYOUT]),
   ),
 };
-/** Prefixes other libraries use for what yourlib names differently (`DropdownMenuItem` → Menu + Item). */
+/** Prefixes other libraries use for what urushi names differently (`DropdownMenuItem` → Menu + Item). */
 const ROOT_ALIASES: Record<string, string> = { Tab: "Tabs", DropdownMenu: "Menu", ContextMenu: "Menu", AlertDialog: "Dialog", Sheet: "Dialog", Modal: "Dialog", Collapsible: "Accordion" };
-/** Part names in other libraries → the yourlib part that plays the role. */
+/** Part names in other libraries → the urushi part that plays the role. */
 const MEMBER_SYNONYMS: Record<string, string[]> = { Trigger: ["Tab"], Content: ["Panel"], Footer: ["Actions"] };
-/** The IMPORT_ALIASES that stand for one yourlib part, whose props are checked against it (not TextField: its props split between Field and Input). */
+/** The IMPORT_ALIASES that stand for one urushi part, whose props are checked against it (not TextField: its props split between Field and Input). */
 const IMPORT_PARTS: Record<string, string> = {
   Toggle: "Switch",
   Divider: "Separator",
@@ -1044,7 +1088,7 @@ const IMPORT_PARTS: Record<string, string> = {
   DropdownMenu: "Menu",
 };
 
-/** What to write instead, and `part` when that is one yourlib part to put in the element's place. */
+/** What to write instead, and `part` when that is one urushi part to put in the element's place. */
 interface Advice {
   fix: string;
   part?: string;
@@ -1073,8 +1117,8 @@ function memberAdvice(root: string, rest: string): Advice {
     // `<PopoverContent align="end">` becomes the <Popover> itself, so its props go there.
     return { fix: `${tag(root)} そのものが入れ物です。中身は <${root}> の子要素に書いてください。`, part: root };
   }
-  if (own.length === 0) return { fix: `<${root}> は 1 つの部品で、${rest} にあたる部品はありません。` };
-  return { fix: `${root} の部品は ${[root, ...own.map((m) => `${root}.${m}`)].map((n) => tag(n)).join("・")} です。` };
+  if (own.length === 0) return { fix: `<${root}> は 1 つのコンポーネントで、${rest} にあたるコンポーネントはありません。` };
+  return { fix: `${root} のコンポーネントは ${[root, ...own.map((m) => `${root}.${m}`)].map((n) => tag(n)).join("・")} です。` };
 }
 
 function exportAdvice(name: string, source: string): Advice {
@@ -1094,7 +1138,7 @@ function exportAdvice(name: string, source: string): Advice {
   }
   const near = names.filter((n) => distance(n.toLowerCase(), name.toLowerCase()) <= 2);
   if (near.length) return { fix: `${near.join("・")} のことですか。`, part: near.length === 1 && PARTS[near[0]] ? near[0] : undefined };
-  return { fix: `部品は ${ROOTS.join("・")} です。` };
+  return { fix: `コンポーネントは ${ROOTS.join("・")} です。` };
 }
 
 /**
@@ -1105,18 +1149,18 @@ function exportAdvice(name: string, source: string): Advice {
 const validImport: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "Report names that @yourlib/react does not export, and suggest the yourlib part to use instead." },
+    docs: { description: "Report names that @urushi/react does not export, and suggest the urushi part to use instead." },
     schema: [],
     messages: {
       unknownName: "{{name}} は \"{{source}}\" にありません。{{fix}}",
       unknownMember: "<{{name}}> はありません。{{fix}}",
-      unknownPath: "\"{{source}}\" というモジュールはありません。部品は \"" + REACT + "\" から import してください。",
+      unknownPath: "\"{{source}}\" というモジュールはありません。コンポーネントは \"" + REACT + "\" から import してください。",
       noDefault: "\"{{source}}\" には default export がありません。import { Button } from \"" + REACT + "\" のように、名前で import してください。",
     },
   },
   create(context) {
     const imported = new Map<string, string>(); // local name → exported name
-    /** Names @yourlib/react does not export, reported once the file's elements are known. */
+    /** Names @urushi/react does not export, reported once the file's elements are known. */
     const unknown: { spec: Node; name: string; source: string; local: string; advice: Advice }[] = [];
     /** Element name as written (`DropdownMenuItem`) → its opening elements. */
     const elements = new Map<string, Node[]>();
@@ -1162,9 +1206,9 @@ const validImport: Rule.RuleModule = {
   },
 };
 
-/** Everything a part takes: its contract props, the HTML attributes its type accepts, `key` and `ref`. */
+/** Contract props and accepted HTML attributes, plus React's intrinsic `key`. */
 const ACCEPTED = new Map(
-  Object.entries(PARTS).map(([name, part]) => [name, new Set([...part.props, ...part.attributes, ...LIBRARY.attributes.filter((n) => !part.omits.includes(n))])]),
+  Object.entries(PARTS).map(([name, part]) => [name, new Set(["key", ...part.props, ...part.attributes, ...LIBRARY.attributes.filter((n) => !part.omits.includes(n))])]),
 );
 
 const ID_KIND: Record<string, string> = { dialog: "ダイアログ", menu: "メニュー", popover: "ポップオーバー", tooltip: "ツールチップ" };
@@ -1210,7 +1254,7 @@ function valueAdvice(name: string): string | null {
     return "最初に選ぶ値は <RadioGroup> の defaultValue で指定します。選ばれたことは、それぞれの <RadioGroup.Item> の onChange で受け取り、event.currentTarget.value を読みます（<input type=\"radio\"> と同じ）。";
   }
   if (name === "Tabs") {
-    return "タブの切り替えは部品がします。最初に選ぶタブは defaultValue で指定します。切り替わったことは、Tabs の要素に届く yl-tabs-change イベント（event.detail.value）で知ります（ref で要素を受け取り、addEventListener します）。";
+    return "タブの切り替えはコンポーネントがします。最初に選ぶタブは defaultValue で指定します。切り替わったことは、Tabs の要素に届く ur-tabs-change イベント（event.detail.value）で知ります（ref で要素を受け取り、addEventListener します）。";
   }
   if (name === "Accordion" || name === "Accordion.Item") return openAdvice(name, "value");
   if (name.startsWith("Menu")) return "項目を押したときの処理は、それぞれの <Menu.Item> の onClick に書きます。";
@@ -1225,7 +1269,7 @@ function itemsAdvice(name: string): string | null {
 }
 
 /**
- * Props from other libraries (shadcn/Radix, MUI, Chakra, React Aria) → how yourlib does
+ * Props from other libraries (shadcn/Radix, MUI, Chakra, React Aria) → how urushi does
  * the same thing. Each returns null when it has nothing to say for this part.
  */
 const PROP_ADVICE: [RegExp, (name: string, prop: string) => string | null][] = [
@@ -1304,7 +1348,7 @@ const PROP_ADVICE: [RegExp, (name: string, prop: string) => string | null][] = [
     },
   ],
   [/^(sideOffset|alignOffset|offset|gutter)$/, () => "トリガーとの間隔はパックが決めます。"],
-  [/^(delayDuration|delay|openDelay|closeDelay|skipDelayDuration)$/, () => "表示するまでの時間は部品が決めます。"],
+  [/^(delayDuration|delay|openDelay|closeDelay|skipDelayDuration)$/, () => "表示するまでの時間はコンポーネントが決めます。"],
   [
     /^(icon|leftIcon|rightIcon|startIcon|endIcon|iconLeft|iconRight|startContent|endContent|leftSection|rightSection|prefixIcon|suffixIcon)$/,
     (name) => `アイコンは子要素に書きます（<${name}><PlusIcon aria-hidden="true" /> 追加</${name}>）。`,
@@ -1453,7 +1497,7 @@ function staticValues(value: Node): (string | number | boolean)[] {
   return [];
 }
 
-/** Is a module specifier another package (`@radix-ui/react-dialog`), rather than yourlib or a path (`./ui/button`, `@/components/ui/button`)? */
+/** Is a module specifier another package (`@radix-ui/react-dialog`), rather than urushi or a path (`./ui/button`, `@/components/ui/button`)? */
 function otherPackage(source: string): boolean {
   return source !== REACT && !source.startsWith(`${REACT}/`) && !/^(\.|\/|@\/|~\/|#)/.test(source);
 }
@@ -1517,7 +1561,7 @@ function propProblems(name: string, written: string, opening: Node): PropProblem
 }
 
 /**
- * The props written on `<written>` (a name yourlib does not have), checked as the part that
+ * The props written on `<written>` (a name urushi does not have), checked as the part that
  * replaces it, so that following valid-import's advice does not keep a prop that does not
  * work there: `<DropdownMenuItem onSelect>` → `<Menu.Item>`, where onSelect is never called.
  */
@@ -1532,57 +1576,28 @@ function replacementAdvice(part: string, written: string, openings: Node[]): str
 }
 
 /**
- * Checks each prop of a yourlib part against what its type accepts (the contract's props
+ * Checks each prop of a urushi part against what its type accepts (the contract's props
  * and the HTML attributes of the element it renders, from contracts.generated.json), and
  * enum values against the contract. Names other libraries use (`onOpenChange`,
- * `onCheckedChange`, `asChild`, `items`) get the yourlib way of doing the same thing.
+ * `onCheckedChange`, `asChild`, `items`) get the urushi way of doing the same thing.
  *
- * A name imported from another package, or declared in the file, is not a yourlib part
+ * A name imported from another package, or declared in the file, is not a urushi part
  * and is skipped. A name imported from a path counts as the part when the file is named
- * after its contract (`@/components/ui/button` — a component installed by `yourlib add`).
+ * after its contract (`@/components/ui/button` — a component installed by `urushi add`).
  */
 const validProps: Rule.RuleModule = {
   meta: {
     type: "problem",
-    docs: { description: "Report props a yourlib part does not take and values its contract does not list, with the yourlib way to write them." },
+    docs: { description: "Report props a urushi part does not take and values its contract does not list, with the urushi way to write them." },
     schema: [],
     messages: PROP_MESSAGES,
   },
   create(context) {
-    /** Local name → the yourlib name it stands for; null for another package's or the file's own; "*" for a namespace import. */
-    const bound = new Map<string, string | null>();
     return {
-      Program(program: Node) {
-        for (const statement of program.body) {
-          const exported = statement.type === "ExportNamedDeclaration" || statement.type === "ExportDefaultDeclaration";
-          const s = exported && statement.declaration ? statement.declaration : statement;
-          if (s.type === "ImportDeclaration") {
-            const source = String(s.source.value);
-            const base = source.split("/").pop()!.replace(/\.[jt]sx?$/, "");
-            for (const spec of s.specifiers) {
-              if (spec.type === "ImportNamespaceSpecifier") bound.set(spec.local.name, otherPackage(source) ? null : "*");
-              else if (spec.type === "ImportDefaultSpecifier") bound.set(spec.local.name, null);
-              else {
-                const name = spec.imported.type === "Identifier" ? spec.imported.name : String(spec.imported.value);
-                const yours = source === REACT || source.startsWith(`${REACT}/`) || (!otherPackage(source) && PARTS[name]?.contract === base);
-                bound.set(spec.local.name, yours ? name : null);
-              }
-            }
-          } else if ((s.type === "FunctionDeclaration" || s.type === "ClassDeclaration") && s.id) {
-            bound.set(s.id.name, null);
-          } else if (s.type === "VariableDeclaration") {
-            for (const d of s.declarations) if (d.id.type === "Identifier") bound.set(d.id.name, null);
-          }
-        }
-      },
       JSXOpeningElement(node: Node) {
         const written = jsxName(node.name);
-        if (!written) return;
-        const [first, ...rest] = written.split(".");
-        const target = bound.has(first) ? bound.get(first) : first;
-        if (target === null || target === undefined) return;
-        const name = target === "*" ? rest.join(".") : [target, ...rest].join(".");
-        if (!PARTS[name]) return;
+        const name = componentName(node, context);
+        if (!written || !name || !PARTS[name]) return;
         for (const problem of propProblems(name, written, node)) context.report(problem);
       },
     };
@@ -1590,7 +1605,7 @@ const validProps: Rule.RuleModule = {
 };
 
 const plugin = {
-  meta: { name: "@yourlib/eslint-plugin", version: "0.1.0" },
+  meta: { name: "@urushi/eslint-plugin", version: "0.1.0" },
   rules: {
     "no-visual-override": noVisualOverride,
     "no-raw-color": noRawColor,
@@ -1602,23 +1617,25 @@ const plugin = {
     "valid-token": validToken,
     "valid-import": validImport,
     "valid-props": validProps,
+    "no-deferred-event-current-target": noDeferredEventCurrentTarget,
   },
   configs: {} as Record<string, Linter.Config>,
 } satisfies ESLint.Plugin;
 
 plugin.configs.recommended = {
-  plugins: { yourlib: plugin },
+  plugins: { urushi: plugin },
   rules: {
-    "yourlib/no-visual-override": "error",
-    "yourlib/no-raw-color": "error",
-    "yourlib/valid-idref": "warn",
-    "yourlib/required-props": "error",
-    "yourlib/accessible-name": "error",
-    "yourlib/prefer-native": "warn",
-    "yourlib/tabs-match": "error",
-    "yourlib/valid-token": "error",
-    "yourlib/valid-import": "error",
-    "yourlib/valid-props": "error",
+    "urushi/no-visual-override": "error",
+    "urushi/no-raw-color": "error",
+    "urushi/valid-idref": "warn",
+    "urushi/required-props": "error",
+    "urushi/accessible-name": "error",
+    "urushi/prefer-native": "warn",
+    "urushi/tabs-match": "error",
+    "urushi/valid-token": "error",
+    "urushi/valid-import": "error",
+    "urushi/valid-props": "error",
+    "urushi/no-deferred-event-current-target": "error",
   },
 };
 

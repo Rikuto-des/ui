@@ -1,0 +1,82 @@
+{
+  "sourceCommit": "ab60022b174f45cce3723bbed04d055543af554a",
+  "status": "pass",
+  "order": [
+    {
+      "name": "@urushi/contract",
+      "file": "urushi-contract-0.1.0-beta.1.tgz",
+      "internalDependencies": {},
+      "publishConfig": {
+        "access": "public",
+        "tag": "beta",
+        "registry": "https://registry.npmjs.org/"
+      }
+    },
+    {
+      "name": "@urushi/tokens",
+      "file": "urushi-tokens-0.1.0-beta.1.tgz",
+      "internalDependencies": {},
+      "publishConfig": {
+        "access": "public",
+        "tag": "beta",
+        "registry": "https://registry.npmjs.org/"
+      }
+    },
+    {
+      "name": "@urushi/core",
+      "file": "urushi-core-0.1.0-beta.1.tgz",
+      "internalDependencies": {},
+      "publishConfig": {
+        "access": "public",
+        "tag": "beta",
+        "registry": "https://registry.npmjs.org/"
+      }
+    },
+    {
+      "name": "@urushi/packs",
+      "file": "urushi-packs-0.1.0-beta.1.tgz",
+      "internalDependencies": {},
+      "publishConfig": {
+        "access": "public",
+        "tag": "beta",
+        "registry": "https://registry.npmjs.org/"
+      }
+    },
+    {
+      "name": "@urushi/react",
+      "file": "urushi-react-0.1.0-beta.1.tgz",
+      "internalDependencies": {
+        "@urushi/core": "0.1.0-beta.1"
+      },
+      "publishConfig": {
+        "access": "public",
+        "tag": "beta",
+        "registry": "https://registry.npmjs.org/"
+      }
+    },
+    {
+      "name": "@urushi/eslint-plugin",
+      "file": "urushi-eslint-plugin-0.1.0-beta.1.tgz",
+      "internalDependencies": {},
+      "publishConfig": {
+        "access": "public",
+        "tag": "beta",
+        "registry": "https://registry.npmjs.org/"
+      }
+    },
+    {
+      "name": "@urushi/cli",
+      "file": "urushi-cli-0.1.0-beta.1.tgz",
+      "internalDependencies": {
+        "@urushi/contract": "0.1.0-beta.1",
+        "@urushi/eslint-plugin": "0.1.0-beta.1",
+        "@urushi/tokens": "0.1.0-beta.1"
+      },
+      "publishConfig": {
+        "access": "public",
+        "tag": "beta",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+import {defineConfig} from '@playwright/test';
+import {resolve} from 'node:path';
+export default defineConfig({testDir:'.',testMatch:'design.spec.ts',testIgnore:'**/runs/**',workers:4,timeout:20000,retries:0,outputDir:'/tmp/urushi-design-sweep',reporter:[['list'],['json',{outputFile:resolve(import.meta.dirname,'runs/design-v1/results.json')}]],use:{baseURL:'http://localhost:4491',reducedMotion:'reduce'},webServer:{command:'node scripts/serve-static.ts evals/navigation/runs 4491',cwd:resolve(import.meta.dirname,'../..'),url:'http://localhost:4491/design-v1/button.html',reuseExistingServer:false},projects:[{name:'chromium',use:{browserName:'chromium'}}]});

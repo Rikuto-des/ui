@@ -12,22 +12,48 @@ const themes = ["light", "dark"];
 const sections = [
   "button",
   "link",
+  "button-group",
+  "toggle",
+  "toggle-group",
   "menu",
   "field",
+  "input-group",
   "textarea",
   "select",
   "checkbox",
   "switch",
   "radio-group",
+  "slider",
+  "date-input",
+  "file-input",
+  "otp-input",
   "card",
   "badge",
+  "avatar",
+  "kbd",
+  "table",
   "tabs",
   "accordion",
+  "collapsible",
   "separator",
-  "skeleton",
+  "aspect-ratio",
+  "scroll-area",
+  "carousel",
+  "alert",
+  "progress",
+  "meter",
   "spinner",
+  "skeleton",
+  "empty",
+  "breadcrumb",
+  "pagination",
+  "steps",
+  "sidebar",
   "dialog",
+  "alert-dialog",
+  "sheet",
   "popover",
+  "hover-card",
   "tooltip",
   "toast",
 ];
@@ -38,7 +64,13 @@ type Box = { x: number; y: number; width: number; height: number };
 /** Waits until no transition or finite animation is running. Infinite ones are skipped. */
 async function settle(page: Page) {
   await page.waitForFunction(() =>
-    document.getAnimations().every((a) => a.playState !== "running" || a.effect?.getTiming().iterations === Infinity),
+    document.getAnimations().every(
+      (a) =>
+        a.playState !== "running" ||
+        a.effect?.getTiming().iterations === Infinity ||
+        // Firefox never advances transitions inside a closed <details>: they are not rendered.
+        !(((a.effect as KeyframeEffect | null)?.target as Element | null)?.checkVisibility() ?? true),
+    ),
   );
 }
 
@@ -143,11 +175,45 @@ for (const pack of packs) {
         await expect(page).toHaveScreenshot(["dialog", `${name}-open.png`], { clip });
       });
 
+      test("alert-dialog: open", async ({ page }) => {
+        const trigger = page.getByTestId("open-delete");
+        await center(trigger);
+        await trigger.click();
+        const dialog = page.getByTestId("delete-dialog");
+        await expect(dialog).toBeVisible();
+        await pointerAway(page);
+        await settle(page);
+        const clip = await around(page, [dialog], 40);
+        await expect(page).toHaveScreenshot(["alert-dialog", `${name}-open.png`], { clip });
+      });
+
+      test("sheet: open", async ({ page }) => {
+        const trigger = page.getByTestId("open-sheet");
+        await center(trigger);
+        await trigger.click();
+        await expect(page.getByTestId("task-sheet")).toBeVisible();
+        await pointerAway(page);
+        await settle(page);
+        // The whole viewport: the sheet runs from the top edge to the bottom.
+        await expect(page).toHaveScreenshot(["sheet", `${name}-open.png`]);
+      });
+
+      test("hover-card: open", async ({ page }) => {
+        const trigger = page.getByTestId("hc-trigger");
+        await center(trigger);
+        await trigger.hover();
+        const card = page.getByTestId("hc-card");
+        await expect(card).toBeVisible({ timeout: 3000 });
+        await settle(page);
+        const clip = await around(page, [page.locator("#hover-card .g-stage"), card]);
+        await expect(page).toHaveScreenshot(["hover-card", `${name}-open.png`], { clip });
+      });
+
       test("toast: open", async ({ page }) => {
         await center(page.locator("section#toast"));
         // duration: 0 keeps every toast up until the screenshot is taken.
         await page.evaluate(() => {
-          const toast = (window as unknown as { yourlibToast: ToastFn }).yourlibToast;
+          const toast = (window as unknown as { urushiToast: ToastFn }).urushiToast;
           toast("下書きを保存しました", { duration: 0 });
           toast("タスクを削除しました", { duration: 0, action: { label: "元に戻す", onClick: () => {} } });
           toast("タスクを元に戻しました", { duration: 0, tone: "ok" });

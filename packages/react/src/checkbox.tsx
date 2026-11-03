@@ -21,12 +21,12 @@ export type SwitchProps = SwitchOwnProps & Omit<InputAttrs, keyof SwitchOwnProps
 function renderCheck(
   slot: string,
   role: "switch" | undefined,
-  { children, description, className, style, invalid, ...input }: CheckboxProps,
+  { children, description, className, style, invalid, showState, ...input }: CheckboxProps & { showState?: boolean },
   generatedId: string,
 ) {
   const descriptionId = description ? `${input.id ?? generatedId}-description` : undefined;
   return (
-    <label className={className} style={style} data-slot={slot} data-invalid={invalid ? "" : undefined}>
+    <label className={className} style={style} data-slot={slot} data-invalid={invalid ? "" : undefined} data-state-marks={showState || undefined}>
       <input
         {...input}
         type="checkbox"
@@ -35,6 +35,10 @@ function renderCheck(
         aria-invalid={invalid || input["aria-invalid"] || undefined}
         aria-describedby={joinIds(input["aria-describedby"], descriptionId)}
       />
+      {slot === checkboxSlot && <svg data-slot="checkbox-indicator" aria-hidden="true" viewBox="0 0 16 16" fill="none">
+        <path data-slot="checkbox-mark" pathLength="1" d="m4.25 8.25 2.5 2.5 5-5.5" />
+        <path data-slot="checkbox-mixed" pathLength="1" d="M4.5 8h7" />
+      </svg>}
       {children || description ? (
         <span data-slot={`${slot}-text`}>
           {children ? <span data-slot={`${slot}-label`}>{children}</span> : null}

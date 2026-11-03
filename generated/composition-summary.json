@@ -1,0 +1,2047 @@
+{
+  "version": 2,
+  "measuredAt": "2026-10-29T03:30:24.237Z",
+  "libraries": [
+    {
+      "library": "urushi",
+      "requested": 6,
+      "n": 6,
+      "infrastructure": 0,
+      "generate": 4,
+      "afterRepair": 4,
+      "update": 3,
+      "final": 3,
+      "calls": 17,
+      "medianOutputTokens": 7351,
+      "medianInputTokens": 31573,
+      "medianFinalSourceBytes": 12696,
+      "referenceChars": 12196,
+      "passedSizes": [
+        {
+          "run": "composition-sol-v2",
+          "trial": 1,
+          "withReact": 86251,
+          "withoutReact": 17370,
+          "css": 4537,
+          "sharedCss": 743
+        },
+        {
+          "run": "composition-sol-v2",
+          "trial": 2,
+          "withReact": 86376,
+          "withoutReact": 17488,
+          "css": 4537,
+          "sharedCss": 743
+        },
+        {
+          "run": "composition-sol-v2",
+          "trial": 3,
+          "withReact": 86328,
+          "withoutReact": 17432,
+          "css": 4537,
+          "sharedCss": 743
+        }
+      ]
+    },
+    {
+      "library": "base",
+      "requested": 6,
+      "n": 6,
+      "infrastructure": 0,
+      "generate": 3,
+      "afterRepair": 3,
+      "update": 1,
+      "final": 3,
+      "calls": 20,
+      "medianOutputTokens": 11605,
+      "medianInputTokens": 77767.5,
+      "medianFinalSourceBytes": 18581.5,
+      "referenceChars": 49963,
+      "passedSizes": [
+        {
+          "run": "composition-sol-v2",
+          "trial": 1,
+          "withReact": 158065,
+          "withoutReact": 89726,
+          "css": 0,
+          "sharedCss": 743
+        },
+        {
+          "run": "composition-sol-v2",
+          "trial": 2,
+          "withReact": 158039,
+          "withoutReact": 89733,
+          "css": 0,
+          "sharedCss": 743
+        },
+        {
+          "run": "composition-sol-v2",
+          "trial": 3,
+          "withReact": 158169,
+          "withoutReact": 89831,
+          "css": 0,
+          "sharedCss": 743
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "model": "gpt-6-luna",
+      "libraries": [
+        {
+          "library": "urushi",
+          "requested": 3,
+          "n": 3,
+          "infrastructure": 0,
+          "generate": 1,
+          "afterRepair": 1,
+          "update": 0,
+          "final": 0,
+          "calls": 11,
+          "medianOutputTokens": 8344,
+          "medianInputTokens": 56301,
+          "medianFinalSourceBytes": 10491,
+          "referenceChars": 12196,
+          "passedSizes": []
+        },
+        {
+          "library": "base",
+          "requested": 3,
+          "n": 3,
+          "infrastructure": 0,
+          "generate": 0,
+          "afterRepair": 0,
+          "update": 0,
+          "final": 0,
+          "calls": 12,
+          "medianOutputTokens": 11217,
+          "medianInputTokens": 90176,
+          "medianFinalSourceBytes": 16678,
+          "referenceChars": 49963,
+          "passedSizes": []
+        }
+      ]
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "libraries": [
+        {
+          "library": "urushi",
+          "requested": 3,
+          "n": 3,
+          "infrastructure": 0,
+          "generate": 3,
+          "afterRepair": 3,
+          "update": 3,
+          "final": 3,
+          "calls": 6,
+          "medianOutputTokens": 6930,
+          "medianInputTokens": 23650,
+          "medianFinalSourceBytes": 14756,
+          "referenceChars": 12196,
+          "passedSizes": [
+            {
+              "run": "composition-sol-v2",
+              "trial": 1,
+              "withReact": 86251,
+              "withoutReact": 17370,
+              "css": 4537,
+              "sharedCss": 743
+            },
+            {
+              "run": "composition-sol-v2",
+              "trial": 2,
+              "withReact": 86376,
+              "withoutReact": 17488,
+              "css": 4537,
+              "sharedCss": 743
+            },
+            {
+              "run": "composition-sol-v2",
+              "trial": 3,
+              "withReact": 86328,
+              "withoutReact": 17432,
+              "css": 4537,
+              "sharedCss": 743
+            }
+          ]
+        },
+        {
+          "library": "base",
+          "requested": 3,
+          "n": 3,
+          "infrastructure": 0,
+          "generate": 3,
+          "afterRepair": 3,
+          "update": 1,
+          "final": 3,
+          "calls": 8,
+          "medianOutputTokens": 12658,
+          "medianInputTokens": 65154,
+          "medianFinalSourceBytes": 20726,
+          "referenceChars": 49963,
+          "passedSizes": [
+            {
+              "run": "composition-sol-v2",
+              "trial": 1,
+              "withReact": 158065,
+              "withoutReact": 89726,
+              "css": 0,
+              "sharedCss": 743
+            },
+            {
+              "run": "composition-sol-v2",
+              "trial": 2,
+              "withReact": 158039,
+              "withoutReact": 89733,
+              "css": 0,
+              "sharedCss": 743
+            },
+            {
+              "run": "composition-sol-v2",
+              "trial": 3,
+              "withReact": 158169,
+              "withoutReact": 89831,
+              "css": 0,
+              "sharedCss": 743
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "trials": [
+    {
+      "run": "composition-luna-v2",
+      "model": "gpt-6-luna",
+      "library": "urushi",
+      "trial": 1,
+      "infrastructure": false,
+      "referenceChars": 12196,
+      "referenceSha256": "92b930fb2c18b8e8b50cbcce7759e719d61416ec13ed3f33ad420d8ea1c60002",
+      "generatePass": true,
+      "initialPass": true,
+      "updatePass": false,
+      "finalPass": false,
+      "calls": 3,
+      "inputTokens": 39456,
+      "outputTokens": 7668,
+      "final": {
+        "phase": "update-repair",
+        "pass": false,
+        "infrastructureError": null,
+        "sourceBytes": 10130,
+        "sourceSha256": "25da7445da2f45c5894120e79f3a592a8bc8dbcbe2f52ee656ddb74bbd80ea0e",
+        "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+        "requestPromptSha256": "cde241b680bf939c1dabba07fdbce4f435d34c0ecc37feaeceb551f0998e2bb6",
+        "usage": {
+          "input_tokens": 16447,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2594,
+          "reasoning_output_tokens": 356
+        },
+        "elapsedMs": 26546,
+        "toolCalls": 0,
+        "browserPassed": 7,
+        "browserTotal": 9,
+        "failures": [
+          "tabs preserve draft and save all fields",
+          "validation pending protection and failure retry"
+        ],
+        "cssGzip": 4537,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 85761,
+        "totalWithoutReactGzip": 16869
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 7282,
+          "sourceSha256": "2d1559a2c942282932d7985080a92e47b60dc48ee5aaa50778eb10498c571e12",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 10532,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2164,
+            "reasoning_output_tokens": 516
+          },
+          "elapsedMs": 29898,
+          "toolCalls": 0,
+          "browserPassed": 6,
+          "browserTotal": 6,
+          "failures": [],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85346,
+          "totalWithoutReactGzip": 16431
+        },
+        {
+          "phase": "update",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 11995,
+          "sourceSha256": "2e5b74c13dbaa56ea8fc4de94eb6330858e52c7b9c56a9ce5857308c1fb64078",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "e45d62ea4bdb6cb1874753e6e048e927db0f27fe551388923aefbdd8ad24bd8b",
+          "usage": {
+            "input_tokens": 12477,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2910,
+            "reasoning_output_tokens": 300
+          },
+          "elapsedMs": 25500,
+          "toolCalls": 0,
+          "browserPassed": 3,
+          "browserTotal": 9,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "server ranking races retry and selection retention",
+            "dirty confirmation preserves tabs and isolates Escape"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85978,
+          "totalWithoutReactGzip": 17068
+        },
+        {
+          "phase": "update-repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 10130,
+          "sourceSha256": "25da7445da2f45c5894120e79f3a592a8bc8dbcbe2f52ee656ddb74bbd80ea0e",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "cde241b680bf939c1dabba07fdbce4f435d34c0ecc37feaeceb551f0998e2bb6",
+          "usage": {
+            "input_tokens": 16447,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2594,
+            "reasoning_output_tokens": 356
+          },
+          "elapsedMs": 26546,
+          "toolCalls": 0,
+          "browserPassed": 7,
+          "browserTotal": 9,
+          "failures": [
+            "tabs preserve draft and save all fields",
+            "validation pending protection and failure retry"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85761,
+          "totalWithoutReactGzip": 16869
+        }
+      ]
+    },
+    {
+      "run": "composition-luna-v2",
+      "model": "gpt-6-luna",
+      "library": "base",
+      "trial": 1,
+      "infrastructure": false,
+      "referenceChars": 49963,
+      "referenceSha256": "c97a156ba7e405fe2b0917e75b5729ca93d6d9f766ebd6a072106095d7fa8183",
+      "generatePass": false,
+      "initialPass": false,
+      "updatePass": false,
+      "finalPass": false,
+      "calls": 4,
+      "inputTokens": 92307,
+      "outputTokens": 11993,
+      "final": {
+        "phase": "update-repair",
+        "pass": false,
+        "infrastructureError": null,
+        "sourceBytes": 16984,
+        "sourceSha256": "45396e3ce012c5434366ecf263b68c574cda1a277b9d74706365e663493c49f4",
+        "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+        "requestPromptSha256": "fe7c481b649228b2557e552e0168ffbd01afcd131d928d37a0c1d547cc8b8779",
+        "usage": {
+          "input_tokens": 27711,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3512,
+          "reasoning_output_tokens": 0
+        },
+        "elapsedMs": 31409,
+        "toolCalls": 0,
+        "browserPassed": 7,
+        "browserTotal": 9,
+        "failures": [
+          "combobox disabled selection and nested Escape",
+          "server ranking races retry and selection retention"
+        ],
+        "cssGzip": 0,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 157663,
+        "totalWithoutReactGzip": 89360
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 11484,
+          "sourceSha256": "db3ed58e34dcaad32c5f930782b00921467fae393cb17ee1d95ea99a3034d06c",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 19083,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2458,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 21995,
+          "toolCalls": 0,
+          "browserPassed": 3,
+          "browserTotal": 6,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157172,
+          "totalWithoutReactGzip": 88885
+        },
+        {
+          "phase": "repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 11671,
+          "sourceSha256": "b652fa91aaf8e852e7ab0f61ea716e29b40d8ddd054b79fde38cb16684c29322",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "f4887f1acf5acad4489d01bc3743c2088d61e1cfc77e076c9b3bcc04ebf8cdce",
+          "usage": {
+            "input_tokens": 23640,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2497,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 26266,
+          "toolCalls": 0,
+          "browserPassed": 4,
+          "browserTotal": 6,
+          "failures": [
+            "row isolation and discard",
+            "combobox disabled selection and nested Escape"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157194,
+          "totalWithoutReactGzip": 88935
+        },
+        {
+          "phase": "update",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 17076,
+          "sourceSha256": "209be1b8e14eef682913909611d62fa45aeafc42f658b48c2ca800f7f4dcda93",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "a3abafdc62492de6b7bac13f57824bc91a3037d4e145e65ef652b47127b136d0",
+          "usage": {
+            "input_tokens": 21873,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3526,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 34956,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 9,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout",
+            "a closed editor cannot deliver results into the next editor",
+            "server ranking races retry and selection retention",
+            "dirty confirmation preserves tabs and isolates Escape"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157709,
+          "totalWithoutReactGzip": 89375
+        },
+        {
+          "phase": "update-repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 16984,
+          "sourceSha256": "45396e3ce012c5434366ecf263b68c574cda1a277b9d74706365e663493c49f4",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "fe7c481b649228b2557e552e0168ffbd01afcd131d928d37a0c1d547cc8b8779",
+          "usage": {
+            "input_tokens": 27711,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3512,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 31409,
+          "toolCalls": 0,
+          "browserPassed": 7,
+          "browserTotal": 9,
+          "failures": [
+            "combobox disabled selection and nested Escape",
+            "server ranking races retry and selection retention"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157663,
+          "totalWithoutReactGzip": 89360
+        }
+      ]
+    },
+    {
+      "run": "composition-luna-v2",
+      "model": "gpt-6-luna",
+      "library": "base",
+      "trial": 2,
+      "infrastructure": false,
+      "referenceChars": 49963,
+      "referenceSha256": "c97a156ba7e405fe2b0917e75b5729ca93d6d9f766ebd6a072106095d7fa8183",
+      "generatePass": false,
+      "initialPass": false,
+      "updatePass": false,
+      "finalPass": false,
+      "calls": 4,
+      "inputTokens": 90176,
+      "outputTokens": 11217,
+      "final": {
+        "phase": "update-repair",
+        "pass": false,
+        "infrastructureError": null,
+        "sourceBytes": 16103,
+        "sourceSha256": "8d8dafcc525c244fd0915d8ca25fde40a4f869f8058146abb1c976ee4cba53fd",
+        "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+        "requestPromptSha256": "49cdd20a320f7b7e0e2ff9c3a0aea4c06bf004bdfbc4979833b423afe01b9ac1",
+        "usage": {
+          "input_tokens": 25090,
+          "cached_input_tokens": 16640,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3269,
+          "reasoning_output_tokens": 0
+        },
+        "elapsedMs": 28415,
+        "toolCalls": 0,
+        "browserPassed": 8,
+        "browserTotal": 9,
+        "failures": [
+          "validation pending protection and failure retry"
+        ],
+        "cssGzip": 0,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 157489,
+        "totalWithoutReactGzip": 89179
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 11364,
+          "sourceSha256": "bcb671a5b54ec1e91ac5114b9d370fa0ce08cf9ce873b605fc2a5962a77d78be",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 19079,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2320,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 22046,
+          "toolCalls": 0,
+          "browserPassed": 2,
+          "browserTotal": 6,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157067,
+          "totalWithoutReactGzip": 88726
+        },
+        {
+          "phase": "repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 11305,
+          "sourceSha256": "b93a5bba25afc30a8d7d93a13804e2b9a663f0927819306e10ab281cf9336774",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "2ded9761ccdb3c2178a2d1f44b98a032fde06841782e4df72c69144db909d644",
+          "usage": {
+            "input_tokens": 24298,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2331,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 20825,
+          "toolCalls": 0,
+          "browserPassed": 4,
+          "browserTotal": 6,
+          "failures": [
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157075,
+          "totalWithoutReactGzip": 88761
+        },
+        {
+          "phase": "update",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 15895,
+          "sourceSha256": "7f146b13e0b34da4253897b2fa3029cdd04b0e8da1b38eacb14fce894eeec43c",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "ac1b699c23c6ff37c8065a93b8da188f8ddf5546efeba85bdf60c20d2780b0a0",
+          "usage": {
+            "input_tokens": 21709,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3297,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 25338,
+          "toolCalls": 0,
+          "browserPassed": 6,
+          "browserTotal": 9,
+          "failures": [
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "server ranking races retry and selection retention"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157539,
+          "totalWithoutReactGzip": 89205
+        },
+        {
+          "phase": "update-repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 16103,
+          "sourceSha256": "8d8dafcc525c244fd0915d8ca25fde40a4f869f8058146abb1c976ee4cba53fd",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "49cdd20a320f7b7e0e2ff9c3a0aea4c06bf004bdfbc4979833b423afe01b9ac1",
+          "usage": {
+            "input_tokens": 25090,
+            "cached_input_tokens": 16640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3269,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 28415,
+          "toolCalls": 0,
+          "browserPassed": 8,
+          "browserTotal": 9,
+          "failures": [
+            "validation pending protection and failure retry"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157489,
+          "totalWithoutReactGzip": 89179
+        }
+      ]
+    },
+    {
+      "run": "composition-luna-v2",
+      "model": "gpt-6-luna",
+      "library": "urushi",
+      "trial": 2,
+      "infrastructure": false,
+      "referenceChars": 12196,
+      "referenceSha256": "92b930fb2c18b8e8b50cbcce7759e719d61416ec13ed3f33ad420d8ea1c60002",
+      "generatePass": false,
+      "initialPass": false,
+      "updatePass": false,
+      "finalPass": false,
+      "calls": 4,
+      "inputTokens": 56301,
+      "outputTokens": 8787,
+      "final": {
+        "phase": "update-repair",
+        "pass": false,
+        "infrastructureError": null,
+        "sourceBytes": 11158,
+        "sourceSha256": "b3286aefc9674100252f8f68dc017dc29e2cbf118d5e13b9151af86852639504",
+        "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+        "requestPromptSha256": "ba3e7281dc81798c0afb5dda83020ee8e0ed372c5188ad213b6f1319966d692b",
+        "usage": {
+          "input_tokens": 17421,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2472,
+          "reasoning_output_tokens": 0
+        },
+        "elapsedMs": 25964,
+        "toolCalls": 0,
+        "browserPassed": 1,
+        "browserTotal": 9,
+        "failures": [
+          "row isolation and discard",
+          "tabs preserve draft and save all fields",
+          "combobox disabled selection and nested Escape",
+          "validation pending protection and failure retry",
+          "accessibility and narrow layout",
+          "a closed editor cannot deliver results into the next editor",
+          "server ranking races retry and selection retention",
+          "dirty confirmation preserves tabs and isolates Escape"
+        ],
+        "cssGzip": 4537,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 85898,
+        "totalWithoutReactGzip": 17027
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 7476,
+          "sourceSha256": "62626a6165a13355115b6fecfb9df98bf44f47848c69ab6e06f50fa9a6875262",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 10530,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1728,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 17639,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 6,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85429,
+          "totalWithoutReactGzip": 16520
+        },
+        {
+          "phase": "repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 7628,
+          "sourceSha256": "4ba9d402d27014a503b4c7b926eab59482c635a7a4291ce96d6406a63c0c4ad2",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "bc724bea6188238fe06bc8fba3a3e75a1831c3c3eeffc444fb5ce80a7b27435e",
+          "usage": {
+            "input_tokens": 15796,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1725,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 18167,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 6,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85429,
+          "totalWithoutReactGzip": 16505
+        },
+        {
+          "phase": "update",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 11109,
+          "sourceSha256": "3d0a0cf22ba33307a82c2b87c759f1416311fef3b1036595053dbf5105c5c584",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "822c63ffa1e9966917c69e3e42f008989489f78815ea51c27314e23118e9a9f1",
+          "usage": {
+            "input_tokens": 12554,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2862,
+            "reasoning_output_tokens": 407
+          },
+          "elapsedMs": 25702,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 9,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout",
+            "a closed editor cannot deliver results into the next editor",
+            "server ranking races retry and selection retention",
+            "dirty confirmation preserves tabs and isolates Escape"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85884,
+          "totalWithoutReactGzip": 17010
+        },
+        {
+          "phase": "update-repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 11158,
+          "sourceSha256": "b3286aefc9674100252f8f68dc017dc29e2cbf118d5e13b9151af86852639504",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "ba3e7281dc81798c0afb5dda83020ee8e0ed372c5188ad213b6f1319966d692b",
+          "usage": {
+            "input_tokens": 17421,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2472,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 25964,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 9,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout",
+            "a closed editor cannot deliver results into the next editor",
+            "server ranking races retry and selection retention",
+            "dirty confirmation preserves tabs and isolates Escape"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85898,
+          "totalWithoutReactGzip": 17027
+        }
+      ]
+    },
+    {
+      "run": "composition-luna-v2",
+      "model": "gpt-6-luna",
+      "library": "urushi",
+      "trial": 3,
+      "infrastructure": false,
+      "referenceChars": 12196,
+      "referenceSha256": "92b930fb2c18b8e8b50cbcce7759e719d61416ec13ed3f33ad420d8ea1c60002",
+      "generatePass": false,
+      "initialPass": false,
+      "updatePass": false,
+      "finalPass": false,
+      "calls": 4,
+      "inputTokens": 56568,
+      "outputTokens": 8344,
+      "final": {
+        "phase": "update-repair",
+        "pass": false,
+        "infrastructureError": null,
+        "sourceBytes": 10491,
+        "sourceSha256": "cda7b3d0ac4c84ddff09bed84d9e9d40a23c53121c699b8cf4f0ec09951c136b",
+        "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+        "requestPromptSha256": "4e649a0062c79cb9a4427f699721e05674dbc2ae4e859172497ecd48caa79360",
+        "usage": {
+          "input_tokens": 17567,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2262,
+          "reasoning_output_tokens": 0
+        },
+        "elapsedMs": 19747,
+        "toolCalls": 0,
+        "browserPassed": 1,
+        "browserTotal": 9,
+        "failures": [
+          "row isolation and discard",
+          "tabs preserve draft and save all fields",
+          "combobox disabled selection and nested Escape",
+          "validation pending protection and failure retry",
+          "accessibility and narrow layout",
+          "a closed editor cannot deliver results into the next editor",
+          "server ranking races retry and selection retention",
+          "dirty confirmation preserves tabs and isolates Escape"
+        ],
+        "cssGzip": 4537,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 85674,
+        "totalWithoutReactGzip": 16789
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 7646,
+          "sourceSha256": "8e05828c632ab8b8e959f716411f054dd639fd554213517e3250aa1643798072",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 10530,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1746,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 19029,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 6,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85325,
+          "totalWithoutReactGzip": 16423
+        },
+        {
+          "phase": "repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 7844,
+          "sourceSha256": "e4580ee28d789cf48abe26c6dea9a9e4afc15e503b01f96380b5d8d08e88395c",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "c350699e74b4cf1c9a364c55a6e345e02054cf8dbea6c5c0b13128f946343fb6",
+          "usage": {
+            "input_tokens": 15906,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1736,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 15899,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 6,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85338,
+          "totalWithoutReactGzip": 16407
+        },
+        {
+          "phase": "update",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 12255,
+          "sourceSha256": "c25fa47cab789dedeab18e7b8c798f38865c9479b0f424f10bb8d586b72c938d",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "63f88243baf5c51806681bd12a99856c3c31db787cb7031eb6b55f43343e26fe",
+          "usage": {
+            "input_tokens": 12565,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2600,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 25987,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 9,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout",
+            "a closed editor cannot deliver results into the next editor",
+            "server ranking races retry and selection retention",
+            "dirty confirmation preserves tabs and isolates Escape"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85791,
+          "totalWithoutReactGzip": 16866
+        },
+        {
+          "phase": "update-repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 10491,
+          "sourceSha256": "cda7b3d0ac4c84ddff09bed84d9e9d40a23c53121c699b8cf4f0ec09951c136b",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "4e649a0062c79cb9a4427f699721e05674dbc2ae4e859172497ecd48caa79360",
+          "usage": {
+            "input_tokens": 17567,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2262,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 19747,
+          "toolCalls": 0,
+          "browserPassed": 1,
+          "browserTotal": 9,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "validation pending protection and failure retry",
+            "accessibility and narrow layout",
+            "a closed editor cannot deliver results into the next editor",
+            "server ranking races retry and selection retention",
+            "dirty confirmation preserves tabs and isolates Escape"
+          ],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85674,
+          "totalWithoutReactGzip": 16789
+        }
+      ]
+    },
+    {
+      "run": "composition-luna-v2",
+      "model": "gpt-6-luna",
+      "library": "base",
+      "trial": 3,
+      "infrastructure": false,
+      "referenceChars": 49963,
+      "referenceSha256": "c97a156ba7e405fe2b0917e75b5729ca93d6d9f766ebd6a072106095d7fa8183",
+      "generatePass": false,
+      "initialPass": false,
+      "updatePass": false,
+      "finalPass": false,
+      "calls": 4,
+      "inputTokens": 89929,
+      "outputTokens": 11213,
+      "final": {
+        "phase": "update-repair",
+        "pass": false,
+        "infrastructureError": null,
+        "sourceBytes": 16678,
+        "sourceSha256": "4b17a0ca469b542ea782f30d1d44b6a77147bd2f628c6452c1f63c32ed6aff36",
+        "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+        "requestPromptSha256": "f18f4cbb5131e405f181e8daef75a740cfede728b7965947ae3dfdd5c1275dc9",
+        "usage": {
+          "input_tokens": 25676,
+          "cached_input_tokens": 16640,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3370,
+          "reasoning_output_tokens": 0
+        },
+        "elapsedMs": 28481,
+        "toolCalls": 0,
+        "browserPassed": 7,
+        "browserTotal": 9,
+        "failures": [
+          "combobox disabled selection and nested Escape",
+          "server ranking races retry and selection retention"
+        ],
+        "cssGzip": 0,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 157465,
+        "totalWithoutReactGzip": 89195
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 10927,
+          "sourceSha256": "d2dbbb0a1749a648c5b490194171be2572229afdb31322667c4ee35b58cc18e8",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 19079,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2260,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 22436,
+          "toolCalls": 0,
+          "browserPassed": 3,
+          "browserTotal": 6,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 156909,
+          "totalWithoutReactGzip": 88631
+        },
+        {
+          "phase": "repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 10779,
+          "sourceSha256": "cfec3b9f013965e5971bcd48e2861d3f198cedea083021b3f0663bdd2047ec66",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "1cbfac28f62f161d1d1374a8da335252b2997d2ea137767e1cf77b9d1ae8851c",
+          "usage": {
+            "input_tokens": 23539,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2255,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 24855,
+          "toolCalls": 0,
+          "browserPassed": 5,
+          "browserTotal": 6,
+          "failures": [
+            "combobox disabled selection and nested Escape"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 156910,
+          "totalWithoutReactGzip": 88648
+        },
+        {
+          "phase": "update",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 16369,
+          "sourceSha256": "2c68711004097baa79ef955131838d89539aca8d0105dc8cbd4a0de2c0a0d791",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "0108707fe2c141ee28747f35533674710ffd73e9593306c580fb260e23e34125",
+          "usage": {
+            "input_tokens": 21635,
+            "cached_input_tokens": 16640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3328,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 29364,
+          "toolCalls": 0,
+          "browserPassed": 5,
+          "browserTotal": 9,
+          "failures": [
+            "row isolation and discard",
+            "tabs preserve draft and save all fields",
+            "combobox disabled selection and nested Escape",
+            "server ranking races retry and selection retention"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157468,
+          "totalWithoutReactGzip": 89192
+        },
+        {
+          "phase": "update-repair",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 16678,
+          "sourceSha256": "4b17a0ca469b542ea782f30d1d44b6a77147bd2f628c6452c1f63c32ed6aff36",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "f18f4cbb5131e405f181e8daef75a740cfede728b7965947ae3dfdd5c1275dc9",
+          "usage": {
+            "input_tokens": 25676,
+            "cached_input_tokens": 16640,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3370,
+            "reasoning_output_tokens": 0
+          },
+          "elapsedMs": 28481,
+          "toolCalls": 0,
+          "browserPassed": 7,
+          "browserTotal": 9,
+          "failures": [
+            "combobox disabled selection and nested Escape",
+            "server ranking races retry and selection retention"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157465,
+          "totalWithoutReactGzip": 89195
+        }
+      ]
+    },
+    {
+      "run": "composition-sol-v2",
+      "model": "gpt-6.1-sol",
+      "library": "urushi",
+      "trial": 1,
+      "infrastructure": false,
+      "referenceChars": 12196,
+      "referenceSha256": "92b930fb2c18b8e8b50cbcce7759e719d61416ec13ed3f33ad420d8ea1c60002",
+      "generatePass": true,
+      "initialPass": true,
+      "updatePass": true,
+      "finalPass": true,
+      "calls": 2,
+      "inputTokens": 23642,
+      "outputTokens": 6389,
+      "final": {
+        "phase": "update",
+        "pass": true,
+        "infrastructureError": null,
+        "sourceBytes": 14234,
+        "sourceSha256": "4ae5c5a6226af4719c08a050930ac23a1112977373dd5e2d2f376d6912c8b38b",
+        "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+        "requestPromptSha256": "96881d8792f529a8b5d820f9bbeb83f098cad7031e6219b6b3833e0c4acad42e",
+        "usage": {
+          "input_tokens": 13110,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3678,
+          "reasoning_output_tokens": 492
+        },
+        "elapsedMs": 68236,
+        "toolCalls": 0,
+        "browserPassed": 9,
+        "browserTotal": 9,
+        "failures": [],
+        "cssGzip": 4537,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 86251,
+        "totalWithoutReactGzip": 17370
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 10044,
+          "sourceSha256": "f2baa66a6079c500a14d84e8cd3204b7aac479990a02344745ea2ac7385181f1",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 10532,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2711,
+            "reasoning_output_tokens": 426
+          },
+          "elapsedMs": 58002,
+          "toolCalls": 0,
+          "browserPassed": 6,
+          "browserTotal": 6,
+          "failures": [],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85758,
+          "totalWithoutReactGzip": 16865
+        },
+        {
+          "phase": "update",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 14234,
+          "sourceSha256": "4ae5c5a6226af4719c08a050930ac23a1112977373dd5e2d2f376d6912c8b38b",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "96881d8792f529a8b5d820f9bbeb83f098cad7031e6219b6b3833e0c4acad42e",
+          "usage": {
+            "input_tokens": 13110,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3678,
+            "reasoning_output_tokens": 492
+          },
+          "elapsedMs": 68236,
+          "toolCalls": 0,
+          "browserPassed": 9,
+          "browserTotal": 9,
+          "failures": [],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 86251,
+          "totalWithoutReactGzip": 17370
+        }
+      ]
+    },
+    {
+      "run": "composition-sol-v2",
+      "model": "gpt-6.1-sol",
+      "library": "base",
+      "trial": 1,
+      "infrastructure": false,
+      "referenceChars": 49963,
+      "referenceSha256": "c97a156ba7e405fe2b0917e75b5729ca93d6d9f766ebd6a072106095d7fa8183",
+      "generatePass": true,
+      "initialPass": true,
+      "updatePass": true,
+      "finalPass": true,
+      "calls": 2,
+      "inputTokens": 41153,
+      "outputTokens": 8368,
+      "final": {
+        "phase": "update",
+        "pass": true,
+        "infrastructureError": null,
+        "sourceBytes": 20726,
+        "sourceSha256": "6d96a3df0b648af5fd2aacb189fc21adf40d7709e35563ce11e85329490521d0",
+        "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+        "requestPromptSha256": "7ef88c73ac5630494e14fc492f5314c00cf6a71a9424cea8c185723414dc20a5",
+        "usage": {
+          "input_tokens": 22072,
+          "cached_input_tokens": 4864,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4953,
+          "reasoning_output_tokens": 803
+        },
+        "elapsedMs": 97829,
+        "toolCalls": 0,
+        "browserPassed": 9,
+        "browserTotal": 9,
+        "failures": [],
+        "cssGzip": 0,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 158065,
+        "totalWithoutReactGzip": 89726
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 12854,
+          "sourceSha256": "eb9d7a24bfecd0824307a84238b81feaff476d919c4347d251d8dc27a520ba8f",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 19081,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3415,
+            "reasoning_output_tokens": 717
+          },
+          "elapsedMs": 50752,
+          "toolCalls": 0,
+          "browserPassed": 6,
+          "browserTotal": 6,
+          "failures": [],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157267,
+          "totalWithoutReactGzip": 88943
+        },
+        {
+          "phase": "update",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 20726,
+          "sourceSha256": "6d96a3df0b648af5fd2aacb189fc21adf40d7709e35563ce11e85329490521d0",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "7ef88c73ac5630494e14fc492f5314c00cf6a71a9424cea8c185723414dc20a5",
+          "usage": {
+            "input_tokens": 22072,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4953,
+            "reasoning_output_tokens": 803
+          },
+          "elapsedMs": 97829,
+          "toolCalls": 0,
+          "browserPassed": 9,
+          "browserTotal": 9,
+          "failures": [],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 158065,
+          "totalWithoutReactGzip": 89726
+        }
+      ]
+    },
+    {
+      "run": "composition-sol-v2",
+      "model": "gpt-6.1-sol",
+      "library": "base",
+      "trial": 2,
+      "infrastructure": false,
+      "referenceChars": 49963,
+      "referenceSha256": "c97a156ba7e405fe2b0917e75b5729ca93d6d9f766ebd6a072106095d7fa8183",
+      "generatePass": true,
+      "initialPass": true,
+      "updatePass": false,
+      "finalPass": true,
+      "calls": 3,
+      "inputTokens": 65606,
+      "outputTokens": 13219,
+      "final": {
+        "phase": "update-repair",
+        "pass": true,
+        "infrastructureError": null,
+        "sourceBytes": 20787,
+        "sourceSha256": "7900e17169183dfe6beda088f44950ea03e789eb7aa250633c5deba2747d15a1",
+        "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+        "requestPromptSha256": "3ecfc65c0fa393ba0f334ae2f43b89a1eea7c187358f2abc0ac8138a43ee8727",
+        "usage": {
+          "input_tokens": 24583,
+          "cached_input_tokens": 4864,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4829,
+          "reasoning_output_tokens": 487
+        },
+        "elapsedMs": 83425,
+        "toolCalls": 0,
+        "browserPassed": 9,
+        "browserTotal": 9,
+        "failures": [],
+        "cssGzip": 0,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 158039,
+        "totalWithoutReactGzip": 89733
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 12518,
+          "sourceSha256": "de8a96511ebc322b2e3293f60ff037881233899ae2e0930874915759d4bd8de4",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 19079,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3084,
+            "reasoning_output_tokens": 516
+          },
+          "elapsedMs": 69836,
+          "toolCalls": 0,
+          "browserPassed": 6,
+          "browserTotal": 6,
+          "failures": [],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157165,
+          "totalWithoutReactGzip": 88831
+        },
+        {
+          "phase": "update",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 20334,
+          "sourceSha256": "a696842b459a044086b408e75c4725511311a9ea0b7f6e1fa4e77aff1bd9c701",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "4ff83b4e8c7f2be6fe4f52cd2e13792acbdfa9063f59006ee30c074769ebc80a",
+          "usage": {
+            "input_tokens": 21944,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 5306,
+            "reasoning_output_tokens": 1034
+          },
+          "elapsedMs": 98434,
+          "toolCalls": 0,
+          "browserPassed": 8,
+          "browserTotal": 9,
+          "failures": [
+            "a closed editor cannot deliver results into the next editor"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 158004,
+          "totalWithoutReactGzip": 89709
+        },
+        {
+          "phase": "update-repair",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 20787,
+          "sourceSha256": "7900e17169183dfe6beda088f44950ea03e789eb7aa250633c5deba2747d15a1",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "3ecfc65c0fa393ba0f334ae2f43b89a1eea7c187358f2abc0ac8138a43ee8727",
+          "usage": {
+            "input_tokens": 24583,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4829,
+            "reasoning_output_tokens": 487
+          },
+          "elapsedMs": 83425,
+          "toolCalls": 0,
+          "browserPassed": 9,
+          "browserTotal": 9,
+          "failures": [],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 158039,
+          "totalWithoutReactGzip": 89733
+        }
+      ]
+    },
+    {
+      "run": "composition-sol-v2",
+      "model": "gpt-6.1-sol",
+      "library": "urushi",
+      "trial": 2,
+      "infrastructure": false,
+      "referenceChars": 12196,
+      "referenceSha256": "92b930fb2c18b8e8b50cbcce7759e719d61416ec13ed3f33ad420d8ea1c60002",
+      "generatePass": true,
+      "initialPass": true,
+      "updatePass": true,
+      "finalPass": true,
+      "calls": 2,
+      "inputTokens": 23690,
+      "outputTokens": 7034,
+      "final": {
+        "phase": "update",
+        "pass": true,
+        "infrastructureError": null,
+        "sourceBytes": 14756,
+        "sourceSha256": "ce7268e0b19d536ab90649ed0a332f2445fe0a1ee460087c913d6fa4beba8d25",
+        "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+        "requestPromptSha256": "08697171da865307b38f9b45f6cad0fcf4502c581285b5fdf179406accaeceb3",
+        "usage": {
+          "input_tokens": 13158,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3881,
+          "reasoning_output_tokens": 516
+        },
+        "elapsedMs": 46670,
+        "toolCalls": 0,
+        "browserPassed": 9,
+        "browserTotal": 9,
+        "failures": [],
+        "cssGzip": 4537,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 86376,
+        "totalWithoutReactGzip": 17488
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 9930,
+          "sourceSha256": "28a2530b4f9f1a239cf6c5eb3a8a88f85a5ceefa58a51a9c4da347f0b2edaa39",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 10532,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3153,
+            "reasoning_output_tokens": 822
+          },
+          "elapsedMs": 79676,
+          "toolCalls": 0,
+          "browserPassed": 6,
+          "browserTotal": 6,
+          "failures": [],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85793,
+          "totalWithoutReactGzip": 16901
+        },
+        {
+          "phase": "update",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 14756,
+          "sourceSha256": "ce7268e0b19d536ab90649ed0a332f2445fe0a1ee460087c913d6fa4beba8d25",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "08697171da865307b38f9b45f6cad0fcf4502c581285b5fdf179406accaeceb3",
+          "usage": {
+            "input_tokens": 13158,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3881,
+            "reasoning_output_tokens": 516
+          },
+          "elapsedMs": 46670,
+          "toolCalls": 0,
+          "browserPassed": 9,
+          "browserTotal": 9,
+          "failures": [],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 86376,
+          "totalWithoutReactGzip": 17488
+        }
+      ]
+    },
+    {
+      "run": "composition-sol-v2",
+      "model": "gpt-6.1-sol",
+      "library": "urushi",
+      "trial": 3,
+      "infrastructure": false,
+      "referenceChars": 12196,
+      "referenceSha256": "92b930fb2c18b8e8b50cbcce7759e719d61416ec13ed3f33ad420d8ea1c60002",
+      "generatePass": true,
+      "initialPass": true,
+      "updatePass": true,
+      "finalPass": true,
+      "calls": 2,
+      "inputTokens": 23650,
+      "outputTokens": 6930,
+      "final": {
+        "phase": "update",
+        "pass": true,
+        "infrastructureError": null,
+        "sourceBytes": 15541,
+        "sourceSha256": "ea1d5969e09cc5a4bff449519d037ea1a553dc2aa9da3284253245e1b5c6ca64",
+        "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+        "requestPromptSha256": "589f46cf5f5a1315df28ccee2b6f19df556afe9cac86ac3f950ce20b5684b3ee",
+        "usage": {
+          "input_tokens": 13120,
+          "cached_input_tokens": 4864,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3876,
+          "reasoning_output_tokens": 516
+        },
+        "elapsedMs": 52480,
+        "toolCalls": 0,
+        "browserPassed": 9,
+        "browserTotal": 9,
+        "failures": [],
+        "cssGzip": 4537,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 86328,
+        "totalWithoutReactGzip": 17432
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 10145,
+          "sourceSha256": "e39bf1ff1fa7e19b9372eb09c19eac0074a34e31c9c698ff25b0f6e3845ff0e3",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 10530,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3054,
+            "reasoning_output_tokens": 763
+          },
+          "elapsedMs": 56783,
+          "toolCalls": 0,
+          "browserPassed": 6,
+          "browserTotal": 6,
+          "failures": [],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 85741,
+          "totalWithoutReactGzip": 16848
+        },
+        {
+          "phase": "update",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 15541,
+          "sourceSha256": "ea1d5969e09cc5a4bff449519d037ea1a553dc2aa9da3284253245e1b5c6ca64",
+          "requestSystemSha256": "6f1f2e193ece0cc7897aabbd9c8de9cfa2c02e5d8999eb587e4a92a5159860a5",
+          "requestPromptSha256": "589f46cf5f5a1315df28ccee2b6f19df556afe9cac86ac3f950ce20b5684b3ee",
+          "usage": {
+            "input_tokens": 13120,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3876,
+            "reasoning_output_tokens": 516
+          },
+          "elapsedMs": 52480,
+          "toolCalls": 0,
+          "browserPassed": 9,
+          "browserTotal": 9,
+          "failures": [],
+          "cssGzip": 4537,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 86328,
+          "totalWithoutReactGzip": 17432
+        }
+      ]
+    },
+    {
+      "run": "composition-sol-v2",
+      "model": "gpt-6.1-sol",
+      "library": "base",
+      "trial": 3,
+      "infrastructure": false,
+      "referenceChars": 49963,
+      "referenceSha256": "c97a156ba7e405fe2b0917e75b5729ca93d6d9f766ebd6a072106095d7fa8183",
+      "generatePass": true,
+      "initialPass": true,
+      "updatePass": false,
+      "finalPass": true,
+      "calls": 3,
+      "inputTokens": 65154,
+      "outputTokens": 12658,
+      "final": {
+        "phase": "update-repair",
+        "pass": true,
+        "infrastructureError": null,
+        "sourceBytes": 20179,
+        "sourceSha256": "eaed25d30d297ce1e95724c8ee95c8df06e129883a6f4c0cdaa5cc6569988c55",
+        "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+        "requestPromptSha256": "12c4b78c06d5f6d6713eb0c8ae2b9845c0a609643d3f38963af8bde5e429bf90",
+        "usage": {
+          "input_tokens": 24193,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4665,
+          "reasoning_output_tokens": 351
+        },
+        "elapsedMs": 46581,
+        "toolCalls": 0,
+        "browserPassed": 9,
+        "browserTotal": 9,
+        "failures": [],
+        "cssGzip": 0,
+        "sharedCssGzip": 743,
+        "totalWithReactGzip": 158169,
+        "totalWithoutReactGzip": 89831
+      },
+      "stages": [
+        {
+          "phase": "generate",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 12117,
+          "sourceSha256": "afdb54291ba6f08d89614bf4dc8a682f6b87d5e92ebb3309a09d5fc4e0c138e9",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "12fedc400b747cbe032ac37c477431c7c4fad54ebf3c72ec3db035ca0ecbb7ab",
+          "usage": {
+            "input_tokens": 19081,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3250,
+            "reasoning_output_tokens": 748
+          },
+          "elapsedMs": 50503,
+          "toolCalls": 0,
+          "browserPassed": 6,
+          "browserTotal": 6,
+          "failures": [],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 157199,
+          "totalWithoutReactGzip": 88875
+        },
+        {
+          "phase": "update",
+          "pass": false,
+          "infrastructureError": null,
+          "sourceBytes": 18255,
+          "sourceSha256": "3ca7a069e649a84f049270a78270853d4bb211923abeb93d420743ad6cdf1632",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "eb629fc02860a590b2bfdf84e3a46439e04859c17d898aec4bf1291e632cfbca",
+          "usage": {
+            "input_tokens": 21880,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4743,
+            "reasoning_output_tokens": 856
+          },
+          "elapsedMs": 92687,
+          "toolCalls": 0,
+          "browserPassed": 8,
+          "browserTotal": 9,
+          "failures": [
+            "a closed editor cannot deliver results into the next editor"
+          ],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 158012,
+          "totalWithoutReactGzip": 89672
+        },
+        {
+          "phase": "update-repair",
+          "pass": true,
+          "infrastructureError": null,
+          "sourceBytes": 20179,
+          "sourceSha256": "eaed25d30d297ce1e95724c8ee95c8df06e129883a6f4c0cdaa5cc6569988c55",
+          "requestSystemSha256": "9bd8f2bfddbd6b52358bcc3a1af0a6c465dd9909fe61cf59a90efbd7c0ddf681",
+          "requestPromptSha256": "12c4b78c06d5f6d6713eb0c8ae2b9845c0a609643d3f38963af8bde5e429bf90",
+          "usage": {
+            "input_tokens": 24193,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4665,
+            "reasoning_output_tokens": 351
+          },
+          "elapsedMs": 46581,
+          "toolCalls": 0,
+          "browserPassed": 9,
+          "browserTotal": 9,
+          "failures": [],
+          "cssGzip": 0,
+          "sharedCssGzip": 743,
+          "totalWithReactGzip": 158169,
+          "totalWithoutReactGzip": 89831
+        }
+      ]
+    }
+  ],
+  "pairedSizes": [
+    {
+      "model": "gpt-6.1-sol",
+      "trial": 1,
+      "urushi": 86251,
+      "base": 158065,
+      "reduction": 0.4543320785752697
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "trial": 2,
+      "urushi": 86376,
+      "base": 158039,
+      "reduction": 0.45345136327109137
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "trial": 3,
+      "urushi": 86328,
+      "base": 158169,
+      "reduction": 0.45420404756937205
+    }
+  ],
+  "audits": [
+    {
+      "run": "composition-luna-v2",
+      "protocol": {
+        "version": 2,
+        "model": "gpt-6-luna",
+        "effort": "medium",
+        "provider": "Codex CLI, tool-free frozen context",
+        "purpose": "Measure multi-component generation and specification change; distinguish pass rates, repair burden, output tokens and complete JS+CSS transfer.",
+        "trials": 3,
+        "modelCalls": "one generation, at most one repair, one update, at most one update repair; confirmation round: two libraries and two models, at most 48 new requests after 24 exploratory requests",
+        "commonGate": [
+          "strict TypeScript",
+          "all four assigned primitives",
+          "row isolation",
+          "tabs/draft preservation",
+          "combobox selection and dismissal",
+          "menu focus",
+          "async save protection and retry",
+          "axe and 390px layout",
+          "updated: server query races",
+          "updated: nested dirty confirmation"
+        ],
+        "decisionRule": "Report every trial. A lower shipping size is a size advantage only. Call authoring efficiency better only if final pass rate is no worse and median output tokens are at least 30% lower. A small sample does not establish general superiority. No resampling solely to obtain a win.",
+        "fairness": "Same prompt, model/effort, fixtures, tests, viewport, allowed helpers and maximum one repair per stage. Library-specific reference examples and types can differ; their input lengths are reported. Urushi lint is diagnostic feedback, not a common gate. Freeze all code, references, CSS and tests before model calls. No manual edits to model outputs.",
+        "limitations": [
+          "two models, three trials per library/model",
+          "one composition task and one update",
+          "Chromium common gate, not physical devices or assistive technologies",
+          "fixed neutral CSS; not a subjective design ranking",
+          "model wall time is exploratory, not a speed ranking",
+          "calibration references are human-authored and excluded from model scores"
+        ],
+        "libraries": [
+          "urushi",
+          "base"
+        ],
+        "startedAt": "2026-10-29T02:57:09.885Z",
+        "packageVersions": {
+          "@base-ui/react": "1.9.0",
+          "@tailwindcss/cli": "4.3.3",
+          "@types/react": "19.3.0",
+          "@types/react-dom": "19.3.0",
+          "class-variance-authority": "0.7.1",
+          "cn": "0.5.0",
+          "lucide-react": "1.61.0",
+          "radix-ui": "1.8.1",
+          "react": "19.3.1",
+          "react-dom": "19.3.1",
+          "tailwindcss": "4.3.3",
+          "tw-animate-css": "1.4.0"
+        },
+        "tasks": [
+          {
+            "id": "settings",
+            "prompt": "Build a compact project settings screen, default export App, React 19 strict TypeScript. This benchmark isolates UI composition. Embed these initial fictional projects: {id:\"atlas\",name:\"Atlas\",ownerId:\"mika\",email:\"atlas@example.com\",reviewed:false}, {id:\"beacon\",name:\"Beacon\",ownerId:\"kai\",email:\"beacon@example.com\",reviewed:false}. Initial owners are {value:\"mika\",label:\"Mika Sato\"}, {value:\"kai\",label:\"Kai Ito\"}, {value:\"ren\",label:\"Ren Aoki\",disabled:true}.\nUse ALL FOUR assigned-library primitives: Dialog, Tabs, Menu, and Combobox. Do not reimplement their behavior or use a different library. Ordinary HTML forms, labels, inputs and buttons are allowed. The visible h1 is \"Project settings\". Each project has its name, current owner label, current email, button \"Edit NAME\", and a Menu trigger \"Actions NAME\". The menu has \"Mark reviewed\" and disabled \"Delete project\". Mark reviewed changes only that project's local reviewed flag, displays \"Reviewed\" in its section, closes the menu and returns focus to its trigger. Never delete projects.\nEdit opens a modal dialog named \"Edit project\" described by \"Manage project settings\". Initially focus textbox \"Project name\". Use Tabs with \"General\" and \"Notifications\", General selected on every new edit. General contains Project name and a searchable single-select Combobox labelled \"Owner\", initially displaying the saved owner's label. Disabled owners cannot be selected. A search must match labels, Escape closes only the open Combobox popup and preserves its committed selection and the surrounding dialog. Selecting an owner changes only the draft and must not submit the form. Notifications contains textbox \"Notification email\". Both fields and the selected owner persist when switching tabs by pointer or keyboard. Switching rows must reset drafts from that row, not leak changes.\nButtons \"Cancel\" and \"Save changes\" are outside the tab panels. Cancel or Escape discards the draft and returns focus to that project's Edit button. Save validates a trimmed nonblank name and valid email; show \"Enter a project name\" or \"Enter a valid email\" without sending a request. PUT /api/projects/ID with the whole {id,name,ownerId,email,reviewed} draft. The response is the saved project. While pending, the save button may read \"Saving…\" or \"Saving...\"; disable Save changes and Cancel, block Escape/backdrop dismissal, and never submit duplicates. A non-2xx response leaves the dialog and draft intact and shows \"Could not save project\". Retrying success updates only that row, closes the dialog, focuses its (possibly renamed) Edit button and announces \"Project saved\".\nUse semantic labelled controls and accessible overlays. Fit a 390px viewport with no horizontal page overflow; dialogs must fit too. The harness supplies a neutral stylesheet with stack, row, modal, backdrop, menu, popup classes; use those for unstyled Base UI surfaces. It supplies Urushi's selected component CSS and Graphite pack. Do not import CSS, Tailwind, external assets or other packages. Allowed network calls are only the specified same-origin API endpoints.",
+            "update": "Preserve all behavior and add these two requirements.\n1. Replace the local owner filtering with server search GET /api/owners?q=ENCODED_QUERY as the user types (debounce at most 200ms). Results have {value,label,disabled?}. They are already filtered and ranked, including aliases that do not occur in their label; do not apply another substring filter. Keep the committed selected label when it is absent from current results. Show \"Loading owners\", \"No owners found\", or \"Could not load owners\" with button \"Retry owners\" for non-2xx. Retry uses the current query. An older request must never overwrite newer results/error/loading, even if abort is ignored. A request started in a closed/previous editor must not affect the next editor. Keep the assigned library's Combobox; do not replace it with a plain textbox and custom list.\n2. Closing a dirty editor with Cancel or Escape opens a second modal, named \"Discard changes?\", described by \"Your edits will be lost\". Initial focus is \"Keep editing\". That button or Escape closes only the confirmation, restores focus to the parent's Cancel button, and preserves its draft and active tab. \"Discard changes\" closes both dialogs, discards the draft, restores the original Edit trigger, and sends no PUT. A clean editor closes directly. Pending saves still cannot dismiss. The two nested dialogs and the Combobox must work together without leaked focus or cross-form submission."
+          }
+        ]
+      },
+      "harness": [
+        {
+          "name": "composition-run.ts",
+          "sha256": "fe814150241bbd129d53a8002e80e3fb3170c98314c49263f9853d134a8eee8d"
+        },
+        {
+          "name": "composition-task.ts",
+          "sha256": "0b2bcad2ccd8ab4bbea61b8309a20099b33e5701f0873c671552af03a5c41b18"
+        },
+        {
+          "name": "composition-guide.ts",
+          "sha256": "e008dde78094aa69e8c8e23f0a1685fa0b22f013d79273b9deab8341b03458a5"
+        },
+        {
+          "name": "guides.ts",
+          "sha256": "191fb7bea497f1edadb525ec3831a823ac0bee625581ca377402283099ad8d2b"
+        },
+        {
+          "name": "composition-workflows.spec.ts",
+          "sha256": "daf8044dcc917454734d25eceb7b3ee730c3018f70cf7a048a7dd76a4abd305e"
+        },
+        {
+          "name": "composition-playwright.config.ts",
+          "sha256": "bb6faab005a5f3f081c1fcef37bc2750a854e543c66d677fdb41e58968dc9d69"
+        },
+        {
+          "name": "composition.css",
+          "sha256": "b1322dcc3168f6edac95cffd226f102ea027dd892255520b6fcb3161ca76b2b6"
+        },
+        {
+          "name": "package.json",
+          "sha256": "650084847f6ac2e18a0c135d9fa4a157b4998e9d5e1395a7265e5484d29645b9"
+        },
+        {
+          "name": "pnpm-lock.yaml",
+          "sha256": "b5e0c5dc958a4a6181cf01a742c56539501a40ec3ce72a80a320d5f1db0e49dd"
+        }
+      ]
+    },
+    {
+      "run": "composition-sol-v2",
+      "protocol": {
+        "version": 2,
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "provider": "Codex CLI, tool-free frozen context",
+        "purpose": "Measure multi-component generation and specification change; distinguish pass rates, repair burden, output tokens and complete JS+CSS transfer.",
+        "trials": 3,
+        "modelCalls": "one generation, at most one repair, one update, at most one update repair; confirmation round: two libraries and two models, at most 48 new requests after 24 exploratory requests",
+        "commonGate": [
+          "strict TypeScript",
+          "all four assigned primitives",
+          "row isolation",
+          "tabs/draft preservation",
+          "combobox selection and dismissal",
+          "menu focus",
+          "async save protection and retry",
+          "axe and 390px layout",
+          "updated: server query races",
+          "updated: nested dirty confirmation"
+        ],
+        "decisionRule": "Report every trial. A lower shipping size is a size advantage only. Call authoring efficiency better only if final pass rate is no worse and median output tokens are at least 30% lower. A small sample does not establish general superiority. No resampling solely to obtain a win.",
+        "fairness": "Same prompt, model/effort, fixtures, tests, viewport, allowed helpers and maximum one repair per stage. Library-specific reference examples and types can differ; their input lengths are reported. Urushi lint is diagnostic feedback, not a common gate. Freeze all code, references, CSS and tests before model calls. No manual edits to model outputs.",
+        "limitations": [
+          "two models, three trials per library/model",
+          "one composition task and one update",
+          "Chromium common gate, not physical devices or assistive technologies",
+          "fixed neutral CSS; not a subjective design ranking",
+          "model wall time is exploratory, not a speed ranking",
+          "calibration references are human-authored and excluded from model scores"
+        ],
+        "libraries": [
+          "urushi",
+          "base"
+        ],
+        "startedAt": "2026-10-29T03:10:07.127Z",
+        "packageVersions": {
+          "@base-ui/react": "1.9.0",
+          "@tailwindcss/cli": "4.3.3",
+          "@types/react": "19.3.0",
+          "@types/react-dom": "19.3.0",
+          "class-variance-authority": "0.7.1",
+          "cn": "0.5.0",
+          "lucide-react": "1.61.0",
+          "radix-ui": "1.8.1",
+          "react": "19.3.1",
+          "react-dom": "19.3.1",
+          "tailwindcss": "4.3.3",
+          "tw-animate-css": "1.4.0"
+        },
+        "tasks": [
+          {
+            "id": "settings",
+            "prompt": "Build a compact project settings screen, default export App, React 19 strict TypeScript. This benchmark isolates UI composition. Embed these initial fictional projects: {id:\"atlas\",name:\"Atlas\",ownerId:\"mika\",email:\"atlas@example.com\",reviewed:false}, {id:\"beacon\",name:\"Beacon\",ownerId:\"kai\",email:\"beacon@example.com\",reviewed:false}. Initial owners are {value:\"mika\",label:\"Mika Sato\"}, {value:\"kai\",label:\"Kai Ito\"}, {value:\"ren\",label:\"Ren Aoki\",disabled:true}.\nUse ALL FOUR assigned-library primitives: Dialog, Tabs, Menu, and Combobox. Do not reimplement their behavior or use a different library. Ordinary HTML forms, labels, inputs and buttons are allowed. The visible h1 is \"Project settings\". Each project has its name, current owner label, current email, button \"Edit NAME\", and a Menu trigger \"Actions NAME\". The menu has \"Mark reviewed\" and disabled \"Delete project\". Mark reviewed changes only that project's local reviewed flag, displays \"Reviewed\" in its section, closes the menu and returns focus to its trigger. Never delete projects.\nEdit opens a modal dialog named \"Edit project\" described by \"Manage project settings\". Initially focus textbox \"Project name\". Use Tabs with \"General\" and \"Notifications\", General selected on every new edit. General contains Project name and a searchable single-select Combobox labelled \"Owner\", initially displaying the saved owner's label. Disabled owners cannot be selected. A search must match labels, Escape closes only the open Combobox popup and preserves its committed selection and the surrounding dialog. Selecting an owner changes only the draft and must not submit the form. Notifications contains textbox \"Notification email\". Both fields and the selected owner persist when switching tabs by pointer or keyboard. Switching rows must reset drafts from that row, not leak changes.\nButtons \"Cancel\" and \"Save changes\" are outside the tab panels. Cancel or Escape discards the draft and returns focus to that project's Edit button. Save validates a trimmed nonblank name and valid email; show \"Enter a project name\" or \"Enter a valid email\" without sending a request. PUT /api/projects/ID with the whole {id,name,ownerId,email,reviewed} draft. The response is the saved project. While pending, the save button may read \"Saving…\" or \"Saving...\"; disable Save changes and Cancel, block Escape/backdrop dismissal, and never submit duplicates. A non-2xx response leaves the dialog and draft intact and shows \"Could not save project\". Retrying success updates only that row, closes the dialog, focuses its (possibly renamed) Edit button and announces \"Project saved\".\nUse semantic labelled controls and accessible overlays. Fit a 390px viewport with no horizontal page overflow; dialogs must fit too. The harness supplies a neutral stylesheet with stack, row, modal, backdrop, menu, popup classes; use those for unstyled Base UI surfaces. It supplies Urushi's selected component CSS and Graphite pack. Do not import CSS, Tailwind, external assets or other packages. Allowed network calls are only the specified same-origin API endpoints.",
+            "update": "Preserve all behavior and add these two requirements.\n1. Replace the local owner filtering with server search GET /api/owners?q=ENCODED_QUERY as the user types (debounce at most 200ms). Results have {value,label,disabled?}. They are already filtered and ranked, including aliases that do not occur in their label; do not apply another substring filter. Keep the committed selected label when it is absent from current results. Show \"Loading owners\", \"No owners found\", or \"Could not load owners\" with button \"Retry owners\" for non-2xx. Retry uses the current query. An older request must never overwrite newer results/error/loading, even if abort is ignored. A request started in a closed/previous editor must not affect the next editor. Keep the assigned library's Combobox; do not replace it with a plain textbox and custom list.\n2. Closing a dirty editor with Cancel or Escape opens a second modal, named \"Discard changes?\", described by \"Your edits will be lost\". Initial focus is \"Keep editing\". That button or Escape closes only the confirmation, restores focus to the parent's Cancel button, and preserves its draft and active tab. \"Discard changes\" closes both dialogs, discards the draft, restores the original Edit trigger, and sends no PUT. A clean editor closes directly. Pending saves still cannot dismiss. The two nested dialogs and the Combobox must work together without leaked focus or cross-form submission."
+          }
+        ]
+      },
+      "harness": [
+        {
+          "name": "composition-run.ts",
+          "sha256": "fe814150241bbd129d53a8002e80e3fb3170c98314c49263f9853d134a8eee8d"
+        },
+        {
+          "name": "composition-task.ts",
+          "sha256": "0b2bcad2ccd8ab4bbea61b8309a20099b33e5701f0873c671552af03a5c41b18"
+        },
+        {
+          "name": "composition-guide.ts",
+          "sha256": "e008dde78094aa69e8c8e23f0a1685fa0b22f013d79273b9deab8341b03458a5"
+        },
+        {
+          "name": "guides.ts",
+          "sha256": "191fb7bea497f1edadb525ec3831a823ac0bee625581ca377402283099ad8d2b"
+        },
+        {
+          "name": "composition-workflows.spec.ts",
+          "sha256": "daf8044dcc917454734d25eceb7b3ee730c3018f70cf7a048a7dd76a4abd305e"
+        },
+        {
+          "name": "composition-playwright.config.ts",
+          "sha256": "bb6faab005a5f3f081c1fcef37bc2750a854e543c66d677fdb41e58968dc9d69"
+        },
+        {
+          "name": "composition.css",
+          "sha256": "b1322dcc3168f6edac95cffd226f102ea027dd892255520b6fcb3161ca76b2b6"
+        },
+        {
+          "name": "package.json",
+          "sha256": "650084847f6ac2e18a0c135d9fa4a157b4998e9d5e1395a7265e5484d29645b9"
+        },
+        {
+          "name": "pnpm-lock.yaml",
+          "sha256": "b5e0c5dc958a4a6181cf01a742c56539501a40ec3ce72a80a320d5f1db0e49dd"
+        }
+      ]
+    }
+  ],
+  "requestLedger": {
+    "total": 61,
+    "exploratory": 24,
+    "confirmation": 37,
+    "ceiling": 72
+  },
+  "decision": {
+    "metric": "Median total model output tokens across generation, repair, update and update repair per requested trial. All valid trials included, regardless of pass.",
+    "outputReduction": 0.3665661352865144,
+    "criterionMet": true,
+    "limitations": [
+      "Six trials per library across two models; this does not establish general success rates.",
+      "References differ by library and length; input-token differences are not a same-context model ranking.",
+      "Chromium common gate; physical devices and assistive technology were not measured.",
+      "Successful final outputs only for the size comparison; every failure remains in trials.",
+      "CSS, runtime, React and app code included; image/font/HTML size and startup time excluded.",
+      "Original exploratory diagnostics had harness errors; exploratory results are not pooled into confirmation."
+    ]
+  }
+}

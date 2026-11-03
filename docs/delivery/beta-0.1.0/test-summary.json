@@ -1,0 +1,58 @@
+{
+  "sourceCommit": "ab60022b174f45cce3723bbed04d055543af554a",
+  "runId": 41032607879,
+  "status": "pass",
+  "jobs": {
+    "quality": {
+      "passed": [
+        36,
+        39
+      ],
+      "skipped": 0,
+      "failed": 0,
+      "unitTests": 291
+    },
+    "components-chromium": {
+      "passed": [
+        174
+      ],
+      "skipped": 3,
+      "failed": 0
+    },
+    "components-firefox": {
+      "passed": [
+        173
+      ],
+      "skipped": 4,
+      "failed": 0
+    },
+    "components-webkit": {
+      "passed": [
+        172
+      ],
+      "skipped": 5,
+      "failed": 0
+    },
+    "site-chromium": {
+      "passed": [
+        190
+      ],
+      "skipped": 0,
+      "failed": 0
+    },
+    "site-firefox": {
+      "passed": [
+        190
+      ],
+      "skipped": 0,
+      "failed": 0
+    },
+    "site-webkit": {
+      "passed": [
+        190
+      ],
+      "skipped": 0,
+      "failed": 0
+    }
+  }
+}

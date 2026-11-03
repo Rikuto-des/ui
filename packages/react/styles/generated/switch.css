@@ -1,0 +1,224 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  :is([data-slot="checkbox"], [data-slot="switch"], [data-slot="radio"]) {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--ur-space-3);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  :is([data-slot="checkbox-text"], [data-slot="switch-text"], [data-slot="radio-text"]) {
+    display: grid;
+    gap: var(--ur-space-1);
+  }
+  :is([data-slot="checkbox-label"], [data-slot="switch-label"], [data-slot="radio-label"]) { font-weight: var(--ur-font-weight-control); }
+  :is([data-slot="checkbox-description"], [data-slot="switch-description"], [data-slot="radio-description"]) {
+    font-size: var(--ur-font-size-small);
+    color: var(--ur-color-text-muted);
+  }
+  :is([data-slot="checkbox-input"], [data-slot="switch-input"], [data-slot="radio-input"]) {
+    appearance: none;
+    flex: none;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    font: inherit;
+    line-height: inherit;
+    margin-block-start: calc((1lh - 16px) / 2);
+    inline-size: 16px;
+    block-size: 16px;
+    border: var(--ur-border-width) solid var(--ur-color-border-field);
+    background-color: var(--ur-color-field);
+    cursor: inherit;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: var(--ur-motion-duration-fast);
+    transition-timing-function: var(--ur-motion-ease-out);
+  }
+  :is([data-slot="checkbox-input"], [data-slot="switch-input"], [data-slot="radio-input"]):focus-visible {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: var(--ur-focus-ring-offset);
+  }
+  :is([data-slot="checkbox-input"], [data-slot="switch-input"], [data-slot="radio-input"]):is([aria-invalid="true"], :user-invalid):not(:checked) {
+    border-color: var(--ur-color-danger);
+  }
+  :is([data-slot="checkbox"], [data-slot="switch"], [data-slot="radio"]):has(input:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  [data-slot="switch-input"] {
+    --_knob: 14px;
+    margin-block-start: calc((1lh - 20px) / 2);
+    inline-size: 34px;
+    block-size: 20px;
+    border-radius: 999px;
+    background-color: var(--ur-color-track);
+  }
+  [data-slot="switch-input"]::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 2px;
+    inset-inline-start: 2px;
+    inline-size: var(--_knob);
+    block-size: var(--_knob);
+    border-radius: 999px;
+    background-color: var(--ur-color-thumb);
+    box-shadow: var(--ur-shadow-control);
+    transition-property: translate, background-color, inline-size;
+    transition-duration: var(--ur-motion-duration-overlay);
+    transition-timing-function: var(--ur-motion-ease-overlay);
+  }
+  [data-slot="switch"]:active [data-slot="switch-input"]::before {
+    inline-size: calc(var(--_knob) + 2px);
+  }
+  [data-slot="switch"]:active [data-slot="switch-input"]:checked::before {
+    translate: 12px 0;
+  }
+  [data-slot="switch"]:active [data-slot="switch-input"]:checked:dir(rtl)::before {
+    translate: -12px 0;
+  }
+  [data-slot="switch-input"]:checked {
+    background-color: var(--ur-color-accent);
+    border-color: transparent;
+  }
+  [data-slot="switch-input"]:checked::before {
+    translate: 14px 0;
+    background-color: var(--ur-color-on-action);
+  }
+  [data-slot="switch-input"]:checked:dir(rtl)::before {
+    translate: -14px 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-slot="switch-input"]::before { transition: none; }
+    [data-slot="switch"]:active [data-slot="switch-input"]::before {
+      inline-size: var(--_knob);
+    }
+    [data-slot="switch"]:active [data-slot="switch-input"]:checked::before {
+      translate: 14px 0;
+    }
+    [data-slot="switch"]:active [data-slot="switch-input"]:checked:dir(rtl)::before {
+      translate: -14px 0;
+    }
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"], [data-slot="switch-input"]) {
+      forced-color-adjust: none;
+      border-color: CanvasText;
+      background: Canvas;
+    }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"], [data-slot="switch-input"]):is(:checked, :indeterminate) {
+      border-color: Highlight;
+      background: Highlight;
+    }
+    [data-slot="switch-input"]:checked::before { background: HighlightText; }
+    [data-slot="switch-input"]::before { background: CanvasText; box-shadow: none; }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"], [data-slot="switch-input"]):disabled { border-color: GrayText; }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"], [data-slot="switch-input"]):disabled:is(:checked, :indeterminate) { background: GrayText; }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+
+@layer urushi.components {
+  [data-slot="switch"][data-state-marks] [data-slot="switch-input"]::after { content:""; position:absolute; inset-block-start:6px; inset-inline-end:5px; inline-size:6px; block-size:6px; border:1px solid var(--ur-color-text-muted); border-radius:50%; box-sizing:border-box; pointer-events:none; }
+  [data-slot="switch"][data-state-marks] [data-slot="switch-input"]:checked::after { inset-inline-end:auto; inset-inline-start:6px; inline-size:1px; border:0; border-radius:1px; background:var(--ur-color-on-action); }
+  @media(forced-colors:active) { [data-slot="switch"][data-state-marks] [data-slot="switch-input"]::after { border-color:CanvasText; } [data-slot="switch"][data-state-marks] [data-slot="switch-input"]:checked::after { background:HighlightText; } }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) {
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}

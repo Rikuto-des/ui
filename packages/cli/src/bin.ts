@@ -1,14 +1,25 @@
 #!/usr/bin/env node
 import { existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { add, diff, init, readConfig, readLock } from "./add.ts";
-import { build, defaultPaths } from "./build.ts";
+import { build, defaultPaths, REGISTRY_VERSION } from "./build.ts";
 import { conflictHelp, update } from "./update.ts";
 
-const HELP = `yourlib <command>
+const HELP = `urushi <command>
 
   build                     generate types, docs, lint data, skills and registry from contracts/
+  describe <component>      print its exact contract as JSON (offline)
+  css <component...>        emit selected component CSS (import pack CSS separately)
+  context <component...> [--compact]
+                            print contracts, design rules and tokens for AI authoring
+  check [--project <path>] [--json] [--strict]
+                            check contracts and types; return repair context to agents
+  verify --url <url> --scenario <json> --out <dir> [--browser chromium|firefox|webkit]
+                            replay browser operations; emit screenshots and repair context
+  workflow --config <json> --out <new-dir> [--repair]
+                            check, build and replay; opt in to bounded source-only agent repairs
   init [--registry <dir|url>] [--pack <name>] [--components <dir>]
   add <name...> [--overwrite]
   update [name...] [--dry-run] [--json]
@@ -23,18 +34,27 @@ function findRepoRoot(from: string): string {
     if (existsSync(join(dir, "pnpm-workspace.yaml")) && existsSync(join(dir, "contracts"))) return dir;
     dir = dirname(dir);
   }
-  throw new Error("`yourlib build` must run inside the yourlib repository");
+  throw new Error("`urushi build` must run inside the urushi repository");
 }
 
 async function main() {
   const { positionals, values } = parseArgs({
     allowPositionals: true,
     options: {
+      url: { type: "string" },
+      scenario: { type: "string" },
+      out: { type: "string" },
+      browser: { type: "string" },
+      config: { type: "string" },
+      repair: { type: "boolean", default: false },
       registry: { type: "string" },
       pack: { type: "string", default: "graphite" },
       components: { type: "string", default: "components/ui" },
       overwrite: { type: "boolean", default: false },
       "dry-run": { type: "boolean", default: false },
+      project: { type: "string" },
+      strict: { type: "boolean", default: false },
+      compact: { type: "boolean", default: false },
       json: { type: "boolean", default: false },
       cwd: { type: "string" },
       help: { type: "boolean", short: "h" },
@@ -44,23 +64,66 @@ async function main() {
   const cwd = resolve(values.cwd ?? process.cwd());
 
   switch (command) {
+    case "workflow": {
+      if(!values.config||!values.out)throw new Error("workflow requires --config and --out");
+      const {workflow}=await import("./workflow.ts");
+      const report=await workflow({cwd,config:values.config,out:values.out,repair:values.repair});
+      console.log(JSON.stringify(report,null,2));if(report.status!=="pass")process.exitCode=1;return;
+    }
+    case "verify": {
+      if (!values.url || !values.scenario || !values.out) throw new Error("verify requires --url, --scenario and --out");
+      const { verify } = await import("./verify.ts");
+      const report = await verify({url:values.url,scenario:resolve(cwd,values.scenario),out:resolve(cwd,values.out),browser:values.browser});
+      console.log(JSON.stringify(report,null,2));
+      if (report.status === "fail") process.exitCode = 1;
+      return;
+    }
+    case "css": {
+      const { readFile } = await import("node:fs/promises");
+      const { selectStyles } = await import("./styles.ts");
+      const { describe } = await import("./catalog.ts");
+      const { default: contracts } = await import("./catalog.generated.json", { with: { type: "json" } });
+      const source = await readFile(new URL("./styles.generated.css", import.meta.url), "utf8");
+      process.stdout.write(selectStyles(source, rest.map(name => describe(name).name), contracts));
+      return;
+    }
+    case "context": {
+      const { context } = await import("./catalog.ts");
+      console.log(JSON.stringify(context(rest, { compact: values.compact }), null, values.compact ? undefined : 2));
+      return;
+    }
+    case "describe": {
+      if (rest.length !== 1) throw new Error("describe needs one component name (e.g. dialog or Dialog.Trigger)");
+      const { describe } = await import("./catalog.ts");
+      console.log(JSON.stringify(describe(rest[0]), null, 2));
+      return;
+    }
+    case "check": {
+      if (rest.length) throw new Error("check reads a TypeScript project. Use --project <path>, not positional files.");
+      const { check, formatCheck } = await import("./check.ts");
+      const report = await check(cwd, { project: values.project, strict: values.strict });
+      if (report.status === "fail") process.exitCode = 1;
+      console.log(values.json ? JSON.stringify(report, null, 2) : formatCheck(report));
+      return;
+    }
     case "build": {
       const written = await build(defaultPaths(findRepoRoot(cwd)));
-      console.log(`yourlib build: wrote ${written.length} files`);
+      console.log(`urushi build: wrote ${written.length} files`);
       for (const f of written) console.log(`  ${f}`);
       return;
     }
     case "init": {
-      if (!values.registry) throw new Error("init needs --registry <dir|url>");
-      const config = await init(cwd, { registry: values.registry, pack: values.pack!, components: values.components! });
-      console.log(`created yourlib.json (pack: ${config.pack}, components: ${config.components})`);
+      const bundled = fileURLToPath(new URL("../registry", import.meta.url));
+      const registry = values.registry ?? (existsSync(bundled) ? bundled : join(findRepoRoot(cwd), "generated/registry"));
+      const config = await init(cwd, { registry, pack: values.pack!, components: values.components! });
+      console.log(`created urushi.json (pack: ${config.pack}, components: ${config.components})`);
       return;
     }
     case "add": {
       if (rest.length === 0) throw new Error("add needs at least one component name");
       const results = await add(cwd, rest, { overwrite: values.overwrite });
       const { pack } = await readConfig(cwd);
-      const deps = new Map<string, string>([["@yourlib/packs", "^0.1.0"]]);
+      const deps = new Map<string, string>([["@urushi/packs", REGISTRY_VERSION]]);
       const css = new Set<string>();
       for (const r of results) {
         for (const f of r.written) console.log(`  + ${f}  (${r.name}@${r.version})`);
@@ -69,7 +132,7 @@ async function main() {
         for (const c of r.css) css.add(c);
       }
       if (deps.size) console.log(`\nInstall: ${[...deps].map(([k, v]) => `${k}@${v}`).join(" ")}`);
-      css.add(`@yourlib/packs/${pack}.css`);
+      css.add(`@urushi/packs/${pack}.css`);
       console.log(`Import once: ${[...css].map((c) => `import "${c}"`).join("; ")}`);
       console.log(`Set the pack: <html data-pack="${pack}">`);
       return;
@@ -118,6 +181,6 @@ async function main() {
 }
 
 main().catch((error: unknown) => {
-  console.error(`yourlib: ${error instanceof Error ? error.message : String(error)}`);
+  console.error(`urushi: ${error instanceof Error ? error.message : String(error)}`);
   process.exitCode = 1;
 });

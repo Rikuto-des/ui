@@ -1,4 +1,4 @@
-import { defineContract, node, z } from "@yourlib/contract";
+import { defineContract, node, z } from "@urushi/contract";
 
 export default defineContract({
   name: "checkbox",

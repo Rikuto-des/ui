@@ -1,13 +1,25 @@
 import type * as React from "react";
-import { spinnerDefaults, spinnerSlot, type SpinnerOwnProps } from "./generated/spinner.ts";
+import {
+  spinnerDefaults,
+  spinnerSlot,
+  type SpinnerOwnProps,
+} from "./generated/spinner.ts";
 
-export type SpinnerProps = SpinnerOwnProps & Omit<React.ComponentPropsWithRef<"span">, keyof SpinnerOwnProps | "children">;
+export type SpinnerProps = SpinnerOwnProps &
+  Omit<React.ComponentPropsWithRef<"span">, keyof SpinnerOwnProps | "children">;
 
-export function Spinner({ label = spinnerDefaults.label, size = spinnerDefaults.size, ...rest }: SpinnerProps) {
+export function Spinner({
+  showLabel = false,
+  label = spinnerDefaults.label,
+  size = spinnerDefaults.size,
+  ...rest
+}: SpinnerProps) {
   return (
     <span {...rest} role="status" data-slot={spinnerSlot} data-size={size}>
       <span data-slot="spinner-ring" aria-hidden="true" />
-      <span data-slot="visually-hidden">{label}</span>
+      <span data-slot={showLabel ? "spinner-label" : "visually-hidden"}>
+        {label}
+      </span>
     </span>
   );
 }

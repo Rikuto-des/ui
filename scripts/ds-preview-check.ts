@@ -46,6 +46,13 @@ for (const comp of comps) {
     await page.waitForTimeout(300);
     const h = Number(/height=(\d+)/.exec(html)?.[1] ?? 200);
     await page.setViewportSize({ width: 960, height: h });
+    // An open dialog or popover must hold its own content (no clipped or spilling rows).
+    const spilled = await page.evaluate(() =>
+      [...document.querySelectorAll<HTMLElement>("dialog[open], [popover]:popover-open")]
+        .filter((el) => el.scrollHeight > el.clientHeight + 1)
+        .map((el) => el.id || el.tagName),
+    );
+    for (const id of spilled) errors.push(`${comp} (${theme}): #${id} is shorter than its content`);
     await page.screenshot({ path: join(outDir, `${comp}-${theme}.png`) });
   }
 }

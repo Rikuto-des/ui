@@ -1,107 +1,262 @@
 [
   {
     "name": "accordion",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "Collapsible sections built on native <details>/<summary>; a shared name makes them exclusive."
   },
   {
+    "name": "alert-dialog",
+    "version": "0.1.0-beta.1",
+    "summary": "A modal confirmation (role=alertdialog) that only its buttons can close."
+  },
+  {
+    "name": "alert",
+    "version": "0.1.0-beta.1",
+    "summary": "A callout in the page: a title, supporting text and an optional action, in a tone."
+  },
+  {
+    "name": "aspect-ratio",
+    "version": "0.1.0-beta.1",
+    "summary": "A box that keeps a ratio (CSS aspect-ratio); its media fills it."
+  },
+  {
+    "name": "avatar",
+    "version": "0.1.0-beta.1",
+    "summary": "A person's picture, or their initial when there is no picture or it fails to load."
+  },
+  {
     "name": "badge",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A short status or count label."
   },
   {
+    "name": "breadcrumb",
+    "version": "0.1.0-beta.1",
+    "summary": "Where the page sits in the site: a nav with an ordered list of links."
+  },
+  {
+    "name": "button-group",
+    "version": "0.1.0-beta.1",
+    "summary": "Buttons that belong together, joined into one shape (role=group)."
+  },
+  {
     "name": "button",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A native <button> that runs or confirms an action."
   },
   {
     "name": "card",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A surface that groups related content, with an optional title, description and footer."
   },
   {
+    "name": "carousel",
+    "version": "0.1.0-beta.1",
+    "summary": "Slides in a horizontal scroll-snap strip; where CSS ::scroll-button and ::scroll-marker exist, the browser adds the buttons and dots."
+  },
+  {
     "name": "checkbox",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A native checkbox with its own label."
   },
   {
+    "name": "collapsible",
+    "version": "0.1.0-beta.1",
+    "summary": "One section that opens and closes: a native <details>."
+  },
+  {
+    "name": "combobox",
+    "version": "0.1.0-beta.1",
+    "summary": "検索して候補を絞り込み、1つの値を選択します。"
+  },
+  {
+    "name": "command",
+    "version": "0.1.0-beta.1",
+    "summary": "コマンドを検索し、キーボードで実行するダイアログです。"
+  },
+  {
+    "name": "data-table",
+    "version": "0.1.0-beta.1",
+    "summary": "並び替え、ページ送り、行の選択に対応したテーブルです。"
+  },
+  {
+    "name": "date-input",
+    "version": "0.1.0-beta.1",
+    "summary": "A native date or time input with the browser's own picker, drawn like Input."
+  },
+  {
+    "name": "date-picker",
+    "version": "0.1.0-beta.1",
+    "summary": "日付を直接入力するか、カレンダーから選択します。"
+  },
+  {
     "name": "dialog",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A modal native <dialog> that interrupts the user for a confirmation or a short task."
   },
   {
+    "name": "empty",
+    "version": "0.1.0-beta.1",
+    "summary": "What a list or page shows when there is nothing in it yet, and how to start."
+  },
+  {
     "name": "field",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "Labels a single form control and links its description and error message to it."
   },
   {
+    "name": "file-input",
+    "version": "0.1.0-beta.1",
+    "summary": "A native <input type=\"file\">; the dropzone variant is a large target that files can be dropped on (no JavaScript)."
+  },
+  {
+    "name": "hover-card",
+    "version": "0.1.0-beta.1",
+    "summary": "A preview card for a link, shown on hover and keyboard focus (interestfor)."
+  },
+  {
+    "name": "input-group",
+    "version": "0.1.0-beta.1",
+    "summary": "An Input with fixed text or a button attached before or after it, drawn as one field."
+  },
+  {
     "name": "input",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A native single-line <input> styled by the pack."
   },
   {
+    "name": "kbd",
+    "version": "0.1.0-beta.1",
+    "summary": "A key or keyboard shortcut, in a native <kbd>."
+  },
+  {
     "name": "link",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A native <a> that navigates to another page or place."
   },
   {
     "name": "menu",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead."
   },
   {
+    "name": "meter",
+    "version": "0.1.0-beta.1",
+    "summary": "A measurement within a known range, in a native <meter> that colors itself by low / high / optimum."
+  },
+  {
+    "name": "navigation-menu",
+    "version": "0.1.0-beta.1",
+    "summary": "Site navigation with native disclosures, pointer-intent hover, collision-aware flyouts and responsive inline layout."
+  },
+  {
+    "name": "otp-input",
+    "version": "0.1.0-beta.1",
+    "summary": "A one-time code field: one native input drawn as separate boxes, with one-time-code autofill."
+  },
+  {
+    "name": "pagination",
+    "version": "0.1.0-beta.1",
+    "summary": "Links to the pages of a long list: previous, numbered pages with gaps, next."
+  },
+  {
     "name": "popover",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A non-modal panel in the top layer (native `popover`), positioned against its trigger with CSS anchor positioning."
   },
   {
+    "name": "progress",
+    "version": "0.1.0-beta.1",
+    "summary": "How far a task has got, in a native <progress> with a visible label."
+  },
+  {
     "name": "radio-group",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A <fieldset> of native radio buttons: exactly one choice, arrow keys move between them."
   },
   {
+    "name": "scroll-area",
+    "version": "0.1.0-beta.1",
+    "summary": "A scrolling region with pack-styled scrollbars, focusable and named so keyboards can scroll it."
+  },
+  {
     "name": "select",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A native <select>; with appearance: base-select its picker follows the pack."
   },
   {
     "name": "separator",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A thin rule between groups of content."
   },
   {
+    "name": "sheet",
+    "version": "0.1.0-beta.1",
+    "summary": "A modal <dialog> that slides in from an edge of the screen."
+  },
+  {
+    "name": "sidebar",
+    "version": "0.1.0-beta.1",
+    "summary": "An app's side navigation: groups of links, optionally collapsible with native <details>."
+  },
+  {
     "name": "skeleton",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A placeholder shape shown while content loads."
   },
   {
+    "name": "slider",
+    "version": "0.1.0-beta.1",
+    "summary": "A native range input with optional live value feedback and directly selectable labelled marks."
+  },
+  {
     "name": "spinner",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "An indeterminate progress indicator with a status message for screen readers."
   },
   {
+    "name": "steps",
+    "version": "0.1.0-beta.1",
+    "summary": "Where the user is in a fixed sequence: an ordered list with aria-current=\"step\"."
+  },
+  {
     "name": "switch",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A native checkbox with role=\"switch\" for settings that take effect immediately."
   },
   {
+    "name": "table",
+    "version": "0.1.0-beta.1",
+    "summary": "A native <table> styled by the pack. You write thead, tbody, th and td as usual."
+  },
+  {
     "name": "tabs",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "Switches between panels of equal weight. Server-rendered; the runtime adds clicking and arrow keys."
   },
   {
     "name": "textarea",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A native <textarea> that grows with its content (field-sizing)."
   },
   {
     "name": "toast",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "Brief notifications about the result of an action. Place one <Toaster /> per page and call toast() from client code."
   },
   {
+    "name": "toggle-group",
+    "version": "0.1.0-beta.1",
+    "summary": "A segmented control: native radios (one choice) or checkboxes (several) drawn as one row of buttons."
+  },
+  {
+    "name": "toggle",
+    "version": "0.1.0-beta.1",
+    "summary": "A button-looking on/off control. It is a native checkbox, so it works in forms and without JavaScript."
+  },
+  {
     "name": "tooltip",
-    "version": "0.1.0",
+    "version": "0.1.0-beta.1",
     "summary": "A short description shown on hover and keyboard focus: popover=\"hint\" opened through interestfor."
   }
 ]

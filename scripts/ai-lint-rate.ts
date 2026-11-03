@@ -1,5 +1,5 @@
 /**
- * Measures how often Claude writes yourlib screens that pass @yourlib/eslint-plugin.
+ * Measures how often Claude writes urushi screens that pass @urushi/eslint-plugin.
  *
  *   node scripts/ai-lint-rate.ts                    # run every task in both conditions
  *   node scripts/ai-lint-rate.ts --trials 3         # repeat each task to see the spread
@@ -76,8 +76,8 @@ interface Attempt {
   /** What Claude Code reports for the turn (`claude -p` only). */
   costUsd?: number | null;
   problems: Problem[];
-  /** JSX elements whose name is a yourlib part (Button, Dialog.Trigger, …). */
-  yourlibElements: number;
+  /** JSX elements whose name is a urushi part (Button, Dialog.Trigger, …). */
+  urushiElements: number;
   /** Ways of writing that only SKILL.md teaches; in condition B they would mean the docs leaked in. */
   skillSignals?: string[];
   typeErrors: number | null;
@@ -111,11 +111,11 @@ interface Run {
 // Prompts
 
 const BASE_SYSTEM = `You are a coding agent working in a React 19 + TypeScript app (Next.js App Router). Tailwind CSS is available.
-The app's UI component library is yourlib; import its components from "@yourlib/react".
+The app's UI component library is urushi; import its components from "@urushi/react".
 
 Write the screen the user asks for as one .tsx file.
-- Use yourlib components wherever one fits.
-- Import only from "react" and "@yourlib/react".
+- Use urushi components wherever one fits.
+- Import only from "react" and "@urushi/react".
 - Export the screen as a named export.
 - Reply with the complete file in a single \`\`\`tsx code block and nothing else.`;
 
@@ -142,7 +142,7 @@ function fixPrompt(attempt: Attempt): string {
   const report = attempt.problems
     .map((p) => `  ${p.line}:${p.column}  ${p.severity === 2 ? "error" : "warning"}  ${p.message}  ${p.rule === "parse-error" ? "" : p.rule}`.trimEnd())
     .join("\n");
-  return `Running eslint with @yourlib/eslint-plugin on your file reported:
+  return `Running eslint with @urushi/eslint-plugin on your file reported:
 
 ${report}
 
@@ -186,13 +186,13 @@ const PART_NAMES = new Set(Object.keys(parts));
 
 /**
  * Ways of writing that only SKILL.md (or the components' source) teaches. Condition B
- * gets no docs, so finding these in its replies would mean yourlib leaked in.
+ * gets no docs, so finding these in its replies would mean urushi leaked in.
  */
 const SKILL_ONLY: [string, RegExp][] = [
   ["Trigger の dialog/menu/popover/tooltip で id を指す", /<(Dialog|Menu|Popover|Tooltip)\.(Trigger|Close)\b[^>]*?\s(dialog|menu|popover|tooltip)=/],
-  ["トークン var(--yl-…)", /--yl-/],
+  ["トークン var(--ur-…)", /--ur-/],
   ["data-pack", /data-pack/],
-  ["YourlibRuntime", /YourlibRuntime/],
+  ["UrushiRuntime", /UrushiRuntime/],
   ["Card の headingLevel", /headingLevel=/],
   ["Badge の tone", /<Badge\b[^>]*?\stone=/],
 ];
@@ -200,7 +200,7 @@ const SKILL_ONLY: [string, RegExp][] = [
 async function lint(attempt: Attempt, runDir: string): Promise<void> {
   if (attempt.file === null) {
     attempt.problems = [];
-    attempt.yourlibElements = 0;
+    attempt.urushiElements = 0;
     attempt.skillSignals = [];
     return;
   }
@@ -214,7 +214,7 @@ async function lint(attempt: Attempt, runDir: string): Promise<void> {
     rule: m.ruleId ?? "parse-error",
     message: m.message,
   }));
-  attempt.yourlibElements = [...code.matchAll(/<([A-Z]\w*(?:\.[A-Z]\w*)*)[\s/>]/g)].filter((m) => PART_NAMES.has(m[1])).length;
+  attempt.urushiElements = [...code.matchAll(/<([A-Z]\w*(?:\.[A-Z]\w*)*)[\s/>]/g)].filter((m) => PART_NAMES.has(m[1])).length;
   attempt.skillSignals = SKILL_ONLY.filter(([, re]) => re.test(code)).map(([label]) => label);
 }
 
@@ -330,7 +330,7 @@ async function findClaude(): Promise<string> {
  * to one process, so the fix turn continues the same conversation.
  */
 async function claudeConversation(bin: string, run: Run, system: string): Promise<Conversation> {
-  const cwd = await mkdtemp(join(tmpdir(), "yourlib-ai-lint-"));
+  const cwd = await mkdtemp(join(tmpdir(), "urushi-ai-lint-"));
   // prettier-ignore
   const child = spawn(bin, [
     "-p", "--input-format", "stream-json", "--output-format", "stream-json", "--verbose",
@@ -421,7 +421,7 @@ async function save(reply: Reply, runDir: string, file: string): Promise<Attempt
     usage: reply.usage,
     costUsd: reply.costUsd,
     problems: [],
-    yourlibElements: 0,
+    urushiElements: 0,
     skillSignals: [],
     typeErrors: null,
   };
@@ -456,7 +456,7 @@ async function pool<T>(items: T[], size: number, fn: (item: T) => Promise<void>)
 // Report
 
 const LABEL: Record<Condition, string> = { A: "A: llms.txt と SKILL.md を渡す", B: "B: 何も渡さない" };
-const RULES = [...Object.keys(plugin.rules).map((r) => `yourlib/${r}`), "parse-error"];
+const RULES = [...Object.keys(plugin.rules).map((r) => `urushi/${r}`), "parse-error"];
 
 function ratio(n: number, total: number): string {
   return total === 0 ? "—" : `${n}/${total}（${Math.round((n / total) * 100)}%）`;
@@ -471,7 +471,7 @@ function breakdown(a: Attempt): string {
   if (a.problems.length === 0) return "0 件";
   const byRule = new Map<string, number>();
   for (const p of a.problems) byRule.set(p.rule, (byRule.get(p.rule) ?? 0) + 1);
-  const detail = [...byRule].map(([r, n]) => `${r.replace("yourlib/", "")} ${n}`).join("・");
+  const detail = [...byRule].map(([r, n]) => `${r.replace("urushi/", "")} ${n}`).join("・");
   return `${a.problems.length} 件（${detail}）`;
 }
 
@@ -501,14 +501,14 @@ function render(run: Run, runDir: string, reportPath: string): string {
       `渡した資料は llms.txt \`${run.docs.llms}\`・SKILL.md \`${run.docs.skill}\`（sha256 の先頭）。` +
       `出力したファイルは [\`${relative(root, runDir)}/\`](${relative(dirname(reportPath), runDir)}/)。`,
     "",
-    "| 条件 | 件数 | 1 回目で lint 0 件 | 1 回目で error 0 件 | 1 回直したあと lint 0 件 | 型エラー 0 件（1 回目 → 直したあと） | yourlib の部品の数（1 回目の平均） |",
+    "| 条件 | 件数 | 1 回目で lint 0 件 | 1 回目で error 0 件 | 1 回直したあと lint 0 件 | 型エラー 0 件（1 回目 → 直したあと） | urushi の部品の数（1 回目の平均） |",
     "|---|---|---|---|---|---|---|",
   );
   for (const c of conditions) {
     const samples = of(c);
     const n = samples.length;
     const typed = (pick: (s: Sample) => Attempt | undefined) => count(samples, (s) => pick(s)?.typeErrors === 0);
-    const elements = n === 0 ? 0 : samples.reduce((sum, s) => sum + s.first!.yourlibElements, 0) / n;
+    const elements = n === 0 ? 0 : samples.reduce((sum, s) => sum + s.first!.urushiElements, 0) / n;
     lines.push(
       `| ${LABEL[c]} | ${n} | **${ratio(count(samples, (s) => passes(s.first)), n)}** | ${ratio(count(samples, (s) => errorFree(s.first)), n)} | ` +
         `**${ratio(count(samples, (s) => passes(final(s))), n)}** | ${ratio(typed((s) => s.first), n)} → ${ratio(typed(final), n)} | ${elements.toFixed(1)} |`,
@@ -519,7 +519,7 @@ function render(run: Run, runDir: string, reportPath: string): string {
     const leaked = of("B").filter((s) => s.first!.skillSignals?.length);
     lines.push(
       "",
-      `条件 B の 1 回目で、SKILL.md にしか書いていない書き方（Trigger の \`dialog=\` などで id を指す、\`var(--yl-…)\`、\`data-pack\`、\`YourlibRuntime\`、Card の \`headingLevel\`、Badge の \`tone\`）が出たのは ${ratio(leaked.length, of("B").length)}` +
+      `条件 B の 1 回目で、SKILL.md にしか書いていない書き方（Trigger の \`dialog=\` などで id を指す、\`var(--ur-…)\`、\`data-pack\`、\`UrushiRuntime\`、Card の \`headingLevel\`、Badge の \`tone\`）が出たのは ${ratio(leaked.length, of("B").length)}` +
         (leaked.length ? `: ${leaked.map((s) => `${s.task}（${s.first!.skillSignals!.join("・")}）`).join("、")}。` : "。"),
     );
   }
@@ -529,7 +529,7 @@ function render(run: Run, runDir: string, reportPath: string): string {
     const counts = conditions.flatMap((c) =>
       [(s: Sample) => s.first, final].map((pick) => of(c).reduce((n, s) => n + (pick(s)?.problems.filter((p) => p.rule === rule).length ?? 0), 0)),
     );
-    const name = rule === "parse-error" ? "構文エラー（parse）" : `\`${rule.replace("yourlib/", "")}\``;
+    const name = rule === "parse-error" ? "構文エラー（parse）" : `\`${rule.replace("urushi/", "")}\``;
     lines.push(`| ${name} | ${counts.join(" | ")} |`);
   }
   const noCode = conditions.flatMap((c) => [(s: Sample) => s.first, final].map((pick) => count(of(c), (s) => pick(s)?.file === null)));

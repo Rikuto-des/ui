@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-30",
+  "reference": "https://ui.shadcn.com/docs/components",
+  "build": "passed",
+  "typecheck": "passed",
+  "lint": "passed",
+  "siteTests": 270,
+  "finalNavigationTests": 24,
+  "additionalUniqueNoJavaScriptTests": 3,
+  "uniquePassedTests": 273,
+  "manual": [
+    "desktop sidebar navigation",
+    "search and clear",
+    "mobile navigation and search",
+    "light and dark rendering",
+    "320px drawer"
+  ],
+  "physicalDevices": "not tested in this task",
+  "files": [
+    {
+      "path": "apps/site/components/docs-navigation.tsx",
+      "sha256": "42a3a5603ec159d1a25af301b613f269b21e736ee5bf6bb1c3779fd5261de19b"
+    },
+    {
+      "path": "apps/site/components/docs-shell.tsx",
+      "sha256": "39e36772b5cc8050bbc9c7c6982186a2e87e1b8c4e31ce80c2f3151794108615"
+    },
+    {
+      "path": "apps/site/app/site.css",
+      "sha256": "7793e07dd48da477a3df4f4ae7c6e2b5694131703feb1083c865fe07f3d1214c"
+    },
+    {
+      "path": "apps/site/lib/docs-navigation.ts",
+      "sha256": "2faa21ad96b587e39b4e36162433c848160b3d10a6182f23302b0a5eaf3af898"
+    },
+    {
+      "path": "tests/site/docs-navigation.spec.ts",
+      "sha256": "c72ac14d2ac94e67e2b4bf9084710314fb9caa7626debd0302caf1c2720a155b"
+    }
+  ]
+}

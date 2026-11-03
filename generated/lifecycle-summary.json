@@ -1,0 +1,1944 @@
+{
+  "schemaVersion": 1,
+  "measuredOn": "2026-10-27",
+  "protocol": {
+    "schemaVersion": 1,
+    "purpose": "Real dependency upgrades and CSS-inclusive measurements; no new model generation or hand edits to model output.",
+    "sourceRun": "evals/competition/runs/measured-v4",
+    "selection": "Every library/task/trial's terminal update-stage output, including failures; prefer update-repair when that file exists. No cherry-picking.",
+    "tasks": [
+      "dialog",
+      "tabs",
+      "menu"
+    ],
+    "trials": 2,
+    "libraries": [
+      "urushi",
+      "base",
+      "radix",
+      "shadcn"
+    ],
+    "before": {
+      "react": "19.3.0",
+      "react-dom": "19.3.0",
+      "@base-ui/react": "1.8.0",
+      "radix-ui": "1.7.0"
+    },
+    "after": {
+      "react": "19.3.1",
+      "react-dom": "19.3.1",
+      "@base-ui/react": "1.9.0",
+      "radix-ui": "1.8.1"
+    },
+    "controls": "Same exact TSX bytes, shadcn wrapper bytes, Urushi frozen source, shared CSS, TypeScript settings, browser tests and viewport in both environments. Each environment has an independently installed exact manifest and lockfile. shadcn is the Radix edition. React types are fixed at 19.3.0.",
+    "scoring": "Report before/after passes, retained passes and regressions separately. Existing baseline failures do not count as upgrade regressions. Typecheck plus four unchanged workflow checks in Chromium. No test edits or repair after seeing results.",
+    "css": "Additional Urushi selected-styles arm uses same post-upgrade source and full public Graphite token CSS. Common Tailwind stylesheet is copied byte-for-byte from measured-v4; no growing content scan. No DOM purging. Screenshots compare selected and full CSS across both packs, themes and states.",
+    "limitations": "Small fixed sample. Latest-generated code replayed on a prior version, not a longitudinal deployment. No Urushi published old/new release exists (private 0.0.0); only its React dependency changes. Registry source migrations and major-version upgrades are not covered. This is upgrade compatibility, not a fresh AI success-rate trial."
+  },
+  "sharedCssGzip": 11811,
+  "manifests": {
+    "before": {
+      "installed": {
+        "@base-ui/react": "1.8.0",
+        "@tailwindcss/cli": "4.3.3",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "class-variance-authority": "0.7.1",
+        "cn": "0.5.0",
+        "lucide-react": "1.61.0",
+        "radix-ui": "1.7.0",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "tailwindcss": "4.3.3",
+        "tw-animate-css": "1.4.0"
+      },
+      "lockSha256": "0f66b7d5af67e2f98b7eb3d66b301c3b552d438855fe87ce8278142cc768b1b2"
+    },
+    "after": {
+      "installed": {
+        "@base-ui/react": "1.9.0",
+        "@tailwindcss/cli": "4.3.3",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "class-variance-authority": "0.7.1",
+        "cn": "0.5.0",
+        "lucide-react": "1.61.0",
+        "radix-ui": "1.8.1",
+        "react": "19.3.1",
+        "react-dom": "19.3.1",
+        "tailwindcss": "4.3.3",
+        "tw-animate-css": "1.4.0"
+      },
+      "lockSha256": "b5e0c5dc958a4a6181cf01a742c56539501a40ec3ce72a80a320d5f1db0e49dd"
+    }
+  },
+  "libraries": [
+    {
+      "id": "urushi",
+      "label": "Urushi",
+      "n": 6,
+      "before": 6,
+      "after": 6,
+      "regressions": 0,
+      "afterTotalGzip": [
+        95479,
+        95877
+      ],
+      "afterJsGzip": [
+        72216,
+        72614
+      ]
+    },
+    {
+      "id": "base",
+      "label": "Base UI",
+      "n": 6,
+      "before": 4,
+      "after": 4,
+      "regressions": 0,
+      "afterTotalGzip": [
+        94558,
+        142480
+      ],
+      "afterJsGzip": [
+        82747,
+        130669
+      ]
+    },
+    {
+      "id": "radix",
+      "label": "Radix UI",
+      "n": 6,
+      "before": 6,
+      "after": 6,
+      "regressions": 0,
+      "afterTotalGzip": [
+        91221,
+        113572
+      ],
+      "afterJsGzip": [
+        79410,
+        101761
+      ]
+    },
+    {
+      "id": "shadcn",
+      "label": "shadcn/ui",
+      "n": 6,
+      "before": 6,
+      "after": 6,
+      "regressions": 0,
+      "afterTotalGzip": [
+        103399,
+        125191
+      ],
+      "afterJsGzip": [
+        91588,
+        113380
+      ]
+    }
+  ],
+  "css": {
+    "fullGzip": [
+      11452,
+      11452
+    ],
+    "selectedGzip": [
+      2839,
+      3021
+    ],
+    "selectedPasses": 6,
+    "fullTotalGzip": [
+      95479,
+      95877
+    ],
+    "selectedTotalGzip": [
+      86881,
+      87307
+    ]
+  },
+  "currentUrushi": {
+    "jsGzip": [
+      73028,
+      73442
+    ],
+    "cssGzip": [
+      2900,
+      3084
+    ],
+    "totalGzip": [
+      87739,
+      88189
+    ],
+    "withoutReactGzip": [
+      4182,
+      4574
+    ]
+  },
+  "rows": [
+    {
+      "id": "before-urushi-dialog-1",
+      "arm": "before",
+      "library": "urushi",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "8728b727c9ec86d023443435c0ad3f90540d6c9bfd2f05b2212ae131b337082b",
+      "errors": [],
+      "jsGzip": 72216,
+      "cssGzip": 11452,
+      "totalGzip": 95479,
+      "selectedNames": [
+        "dialog"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-base-dialog-1",
+      "arm": "before",
+      "library": "base",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "de61439db18d6726ff3ec1343e3c888b3ee95c2a1461b3dd70906979e81d0938",
+      "errors": [],
+      "jsGzip": 92457,
+      "cssGzip": 0,
+      "totalGzip": 104268,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-radix-dialog-1",
+      "arm": "before",
+      "library": "radix",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "329b143cda8eb67286f170a3930f2149fa6bb4f82ddfabc828464e451bbf5606",
+      "errors": [],
+      "jsGzip": 83665,
+      "cssGzip": 0,
+      "totalGzip": 95476,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-shadcn-dialog-1",
+      "arm": "before",
+      "library": "shadcn",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "932077fe4f41b408064b191a8c22d00ddcf4817c0484e3f035a0e411738ee857",
+      "errors": [],
+      "jsGzip": 98103,
+      "cssGzip": 0,
+      "totalGzip": 109914,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-base-tabs-1",
+      "arm": "before",
+      "library": "base",
+      "task": "tabs",
+      "sourceStage": "update-repair",
+      "sourceSha256": "477f2874647c0144cebc91f89206bd5f82291055cfb856b44bcd6c8bbff606b0",
+      "errors": [],
+      "jsGzip": 82607,
+      "cssGzip": 0,
+      "totalGzip": 94418,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": false
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": false
+    },
+    {
+      "id": "before-radix-tabs-1",
+      "arm": "before",
+      "library": "radix",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "e3b9925c276a589c13110c6568d1f1951de1f5e2e80a881a0928097c1d24ec12",
+      "errors": [],
+      "jsGzip": 78964,
+      "cssGzip": 0,
+      "totalGzip": 90775,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-shadcn-tabs-1",
+      "arm": "before",
+      "library": "shadcn",
+      "task": "tabs",
+      "sourceStage": "update-repair",
+      "sourceSha256": "ea4de5056bb781e8dce0c9c0e8bd3e3b7e5cded0f314ee4677cee8c614791d22",
+      "errors": [],
+      "jsGzip": 91168,
+      "cssGzip": 0,
+      "totalGzip": 102979,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-urushi-tabs-1",
+      "arm": "before",
+      "library": "urushi",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "5a4824410be848065a10964ea77339c8515cfc0383adac19b99a44a7bcec660d",
+      "errors": [],
+      "jsGzip": 72614,
+      "cssGzip": 11452,
+      "totalGzip": 95877,
+      "selectedNames": [
+        "tabs"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-radix-menu-1",
+      "arm": "before",
+      "library": "radix",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "05f73c39ad3be2339af44a4916d997af90a36aed969a3257a627dd203b988296",
+      "errors": [],
+      "jsGzip": 101273,
+      "cssGzip": 0,
+      "totalGzip": 113084,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-shadcn-menu-1",
+      "arm": "before",
+      "library": "shadcn",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "fb2391bd53a5ed073e7c633e26c24af355c4521810c7c73b49d080cde805ff8a",
+      "errors": [],
+      "jsGzip": 112929,
+      "cssGzip": 0,
+      "totalGzip": 124740,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-urushi-menu-1",
+      "arm": "before",
+      "library": "urushi",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "3e8ee0866b0724d206b2e0ef781696df875fc4fd68e292272a26f7ae1c566359",
+      "errors": [],
+      "jsGzip": 72295,
+      "cssGzip": 11452,
+      "totalGzip": 95558,
+      "selectedNames": [
+        "menu"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-base-menu-1",
+      "arm": "before",
+      "library": "base",
+      "task": "menu",
+      "sourceStage": "update-repair",
+      "sourceSha256": "3bd4d39ac3de2559e2ef37603abfe36191f46b3b10e2b634f0582b4c547b249a",
+      "errors": [],
+      "jsGzip": 121252,
+      "cssGzip": 0,
+      "totalGzip": 133063,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-base-dialog-2",
+      "arm": "before",
+      "library": "base",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "cc8624f5c3b20bc07bd8cd54baf3631af55e80827e5dbb3e59638834e15483f3",
+      "errors": [],
+      "jsGzip": 92458,
+      "cssGzip": 0,
+      "totalGzip": 104269,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-radix-dialog-2",
+      "arm": "before",
+      "library": "radix",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "0f15a3c813ac4d1817d376a707a9a101d08d9bcdc5e8b1800e2a1803da70d02c",
+      "errors": [],
+      "jsGzip": 83645,
+      "cssGzip": 0,
+      "totalGzip": 95456,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-shadcn-dialog-2",
+      "arm": "before",
+      "library": "shadcn",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "28a797e868cc2e3b99818109bdc5047599b89d5d65f2c4afd517512e291c1ed3",
+      "errors": [],
+      "jsGzip": 98089,
+      "cssGzip": 0,
+      "totalGzip": 109900,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-urushi-dialog-2",
+      "arm": "before",
+      "library": "urushi",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "687a3311d19b81a590690806a8870356540884f62228000b1fe7acb80ab2d733",
+      "errors": [],
+      "jsGzip": 72267,
+      "cssGzip": 11452,
+      "totalGzip": 95530,
+      "selectedNames": [
+        "dialog"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-radix-tabs-2",
+      "arm": "before",
+      "library": "radix",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "70594dd1dec9422092bd7a9b638a2237b5439fa1c635a699cc73b572744fab1d",
+      "errors": [],
+      "jsGzip": 78947,
+      "cssGzip": 0,
+      "totalGzip": 90758,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-shadcn-tabs-2",
+      "arm": "before",
+      "library": "shadcn",
+      "task": "tabs",
+      "sourceStage": "update-repair",
+      "sourceSha256": "8762dd7077979c19ed981790aa1ab18c7ecdb2e4bfa51e58b831f4243e732bb1",
+      "errors": [],
+      "jsGzip": 91138,
+      "cssGzip": 0,
+      "totalGzip": 102949,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-urushi-tabs-2",
+      "arm": "before",
+      "library": "urushi",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "cc90c46c980541490a58c33322b4c18832ebe22f3794ef05880900d79a959c45",
+      "errors": [],
+      "jsGzip": 72601,
+      "cssGzip": 11452,
+      "totalGzip": 95864,
+      "selectedNames": [
+        "tabs"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-base-tabs-2",
+      "arm": "before",
+      "library": "base",
+      "task": "tabs",
+      "sourceStage": "update-repair",
+      "sourceSha256": "9b134081d07277296816096575c4dd3c4d4ea316d52e91d2c74bd94dcad4e74d",
+      "errors": [],
+      "jsGzip": 82706,
+      "cssGzip": 0,
+      "totalGzip": 94517,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": false
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": false
+    },
+    {
+      "id": "before-shadcn-menu-2",
+      "arm": "before",
+      "library": "shadcn",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "a34043f020c8df74ad56d5caa139ceae7cc3fafd0e10d0a0ae3896178402512d",
+      "errors": [],
+      "jsGzip": 112899,
+      "cssGzip": 0,
+      "totalGzip": 124710,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-urushi-menu-2",
+      "arm": "before",
+      "library": "urushi",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "911b57305f41e45ac897d3b6d32ab6e8ae58ab67d9fe21868e4318b9840e47d3",
+      "errors": [],
+      "jsGzip": 72245,
+      "cssGzip": 11452,
+      "totalGzip": 95508,
+      "selectedNames": [
+        "menu"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-base-menu-2",
+      "arm": "before",
+      "library": "base",
+      "task": "menu",
+      "sourceStage": "update-repair",
+      "sourceSha256": "e3d1fd8278565b6bff1fb3851ce7e28cdba662055474eca0ab56842420c37c67",
+      "errors": [],
+      "jsGzip": 121299,
+      "cssGzip": 0,
+      "totalGzip": 133110,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "before-radix-menu-2",
+      "arm": "before",
+      "library": "radix",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "adcf7e554435e51552ef73829195f570bdb4142166dbc9f0e1fba2ccc00d184f",
+      "errors": [],
+      "jsGzip": 101190,
+      "cssGzip": 0,
+      "totalGzip": 113001,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-urushi-dialog-1",
+      "arm": "after",
+      "library": "urushi",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "8728b727c9ec86d023443435c0ad3f90540d6c9bfd2f05b2212ae131b337082b",
+      "errors": [],
+      "jsGzip": 72216,
+      "cssGzip": 11452,
+      "totalGzip": 95479,
+      "selectedNames": [
+        "dialog"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-base-dialog-1",
+      "arm": "after",
+      "library": "base",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "de61439db18d6726ff3ec1343e3c888b3ee95c2a1461b3dd70906979e81d0938",
+      "errors": [],
+      "jsGzip": 92824,
+      "cssGzip": 0,
+      "totalGzip": 104635,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-radix-dialog-1",
+      "arm": "after",
+      "library": "radix",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "329b143cda8eb67286f170a3930f2149fa6bb4f82ddfabc828464e451bbf5606",
+      "errors": [],
+      "jsGzip": 83733,
+      "cssGzip": 0,
+      "totalGzip": 95544,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-shadcn-dialog-1",
+      "arm": "after",
+      "library": "shadcn",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "932077fe4f41b408064b191a8c22d00ddcf4817c0484e3f035a0e411738ee857",
+      "errors": [],
+      "jsGzip": 98138,
+      "cssGzip": 0,
+      "totalGzip": 109949,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-base-tabs-1",
+      "arm": "after",
+      "library": "base",
+      "task": "tabs",
+      "sourceStage": "update-repair",
+      "sourceSha256": "477f2874647c0144cebc91f89206bd5f82291055cfb856b44bcd6c8bbff606b0",
+      "errors": [],
+      "jsGzip": 82747,
+      "cssGzip": 0,
+      "totalGzip": 94558,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": false
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": false
+    },
+    {
+      "id": "after-radix-tabs-1",
+      "arm": "after",
+      "library": "radix",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "e3b9925c276a589c13110c6568d1f1951de1f5e2e80a881a0928097c1d24ec12",
+      "errors": [],
+      "jsGzip": 79441,
+      "cssGzip": 0,
+      "totalGzip": 91252,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-shadcn-tabs-1",
+      "arm": "after",
+      "library": "shadcn",
+      "task": "tabs",
+      "sourceStage": "update-repair",
+      "sourceSha256": "ea4de5056bb781e8dce0c9c0e8bd3e3b7e5cded0f314ee4677cee8c614791d22",
+      "errors": [],
+      "jsGzip": 91650,
+      "cssGzip": 0,
+      "totalGzip": 103461,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-urushi-tabs-1",
+      "arm": "after",
+      "library": "urushi",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "5a4824410be848065a10964ea77339c8515cfc0383adac19b99a44a7bcec660d",
+      "errors": [],
+      "jsGzip": 72614,
+      "cssGzip": 11452,
+      "totalGzip": 95877,
+      "selectedNames": [
+        "tabs"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-radix-menu-1",
+      "arm": "after",
+      "library": "radix",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "05f73c39ad3be2339af44a4916d997af90a36aed969a3257a627dd203b988296",
+      "errors": [],
+      "jsGzip": 101761,
+      "cssGzip": 0,
+      "totalGzip": 113572,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-shadcn-menu-1",
+      "arm": "after",
+      "library": "shadcn",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "fb2391bd53a5ed073e7c633e26c24af355c4521810c7c73b49d080cde805ff8a",
+      "errors": [],
+      "jsGzip": 113380,
+      "cssGzip": 0,
+      "totalGzip": 125191,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-urushi-menu-1",
+      "arm": "after",
+      "library": "urushi",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "3e8ee0866b0724d206b2e0ef781696df875fc4fd68e292272a26f7ae1c566359",
+      "errors": [],
+      "jsGzip": 72295,
+      "cssGzip": 11452,
+      "totalGzip": 95558,
+      "selectedNames": [
+        "menu"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-base-menu-1",
+      "arm": "after",
+      "library": "base",
+      "task": "menu",
+      "sourceStage": "update-repair",
+      "sourceSha256": "3bd4d39ac3de2559e2ef37603abfe36191f46b3b10e2b634f0582b4c547b249a",
+      "errors": [],
+      "jsGzip": 130645,
+      "cssGzip": 0,
+      "totalGzip": 142456,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-base-dialog-2",
+      "arm": "after",
+      "library": "base",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "cc8624f5c3b20bc07bd8cd54baf3631af55e80827e5dbb3e59638834e15483f3",
+      "errors": [],
+      "jsGzip": 92837,
+      "cssGzip": 0,
+      "totalGzip": 104648,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-radix-dialog-2",
+      "arm": "after",
+      "library": "radix",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "0f15a3c813ac4d1817d376a707a9a101d08d9bcdc5e8b1800e2a1803da70d02c",
+      "errors": [],
+      "jsGzip": 83703,
+      "cssGzip": 0,
+      "totalGzip": 95514,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-shadcn-dialog-2",
+      "arm": "after",
+      "library": "shadcn",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "28a797e868cc2e3b99818109bdc5047599b89d5d65f2c4afd517512e291c1ed3",
+      "errors": [],
+      "jsGzip": 98127,
+      "cssGzip": 0,
+      "totalGzip": 109938,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-urushi-dialog-2",
+      "arm": "after",
+      "library": "urushi",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "687a3311d19b81a590690806a8870356540884f62228000b1fe7acb80ab2d733",
+      "errors": [],
+      "jsGzip": 72267,
+      "cssGzip": 11452,
+      "totalGzip": 95530,
+      "selectedNames": [
+        "dialog"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-radix-tabs-2",
+      "arm": "after",
+      "library": "radix",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "70594dd1dec9422092bd7a9b638a2237b5439fa1c635a699cc73b572744fab1d",
+      "errors": [],
+      "jsGzip": 79410,
+      "cssGzip": 0,
+      "totalGzip": 91221,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-shadcn-tabs-2",
+      "arm": "after",
+      "library": "shadcn",
+      "task": "tabs",
+      "sourceStage": "update-repair",
+      "sourceSha256": "8762dd7077979c19ed981790aa1ab18c7ecdb2e4bfa51e58b831f4243e732bb1",
+      "errors": [],
+      "jsGzip": 91588,
+      "cssGzip": 0,
+      "totalGzip": 103399,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-urushi-tabs-2",
+      "arm": "after",
+      "library": "urushi",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "cc90c46c980541490a58c33322b4c18832ebe22f3794ef05880900d79a959c45",
+      "errors": [],
+      "jsGzip": 72601,
+      "cssGzip": 11452,
+      "totalGzip": 95864,
+      "selectedNames": [
+        "tabs"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-base-tabs-2",
+      "arm": "after",
+      "library": "base",
+      "task": "tabs",
+      "sourceStage": "update-repair",
+      "sourceSha256": "9b134081d07277296816096575c4dd3c4d4ea316d52e91d2c74bd94dcad4e74d",
+      "errors": [],
+      "jsGzip": 82851,
+      "cssGzip": 0,
+      "totalGzip": 94662,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": false
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": false
+    },
+    {
+      "id": "after-shadcn-menu-2",
+      "arm": "after",
+      "library": "shadcn",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "a34043f020c8df74ad56d5caa139ceae7cc3fafd0e10d0a0ae3896178402512d",
+      "errors": [],
+      "jsGzip": 113334,
+      "cssGzip": 0,
+      "totalGzip": 125145,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-urushi-menu-2",
+      "arm": "after",
+      "library": "urushi",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "911b57305f41e45ac897d3b6d32ab6e8ae58ab67d9fe21868e4318b9840e47d3",
+      "errors": [],
+      "jsGzip": 72245,
+      "cssGzip": 11452,
+      "totalGzip": 95508,
+      "selectedNames": [
+        "menu"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-base-menu-2",
+      "arm": "after",
+      "library": "base",
+      "task": "menu",
+      "sourceStage": "update-repair",
+      "sourceSha256": "e3d1fd8278565b6bff1fb3851ce7e28cdba662055474eca0ab56842420c37c67",
+      "errors": [],
+      "jsGzip": 130669,
+      "cssGzip": 0,
+      "totalGzip": 142480,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "after-radix-menu-2",
+      "arm": "after",
+      "library": "radix",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "adcf7e554435e51552ef73829195f570bdb4142166dbc9f0e1fba2ccc00d184f",
+      "errors": [],
+      "jsGzip": 101642,
+      "cssGzip": 0,
+      "totalGzip": 113453,
+      "selectedNames": [],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "selected-urushi-dialog-1",
+      "arm": "selected",
+      "library": "urushi",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "8728b727c9ec86d023443435c0ad3f90540d6c9bfd2f05b2212ae131b337082b",
+      "errors": [],
+      "jsGzip": 72231,
+      "cssGzip": 2839,
+      "totalGzip": 86881,
+      "selectedNames": [
+        "dialog"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "selected-urushi-tabs-1",
+      "arm": "selected",
+      "library": "urushi",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "5a4824410be848065a10964ea77339c8515cfc0383adac19b99a44a7bcec660d",
+      "errors": [],
+      "jsGzip": 72622,
+      "cssGzip": 2874,
+      "totalGzip": 87307,
+      "selectedNames": [
+        "tabs"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "selected-urushi-menu-1",
+      "arm": "selected",
+      "library": "urushi",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "3e8ee0866b0724d206b2e0ef781696df875fc4fd68e292272a26f7ae1c566359",
+      "errors": [],
+      "jsGzip": 72322,
+      "cssGzip": 3021,
+      "totalGzip": 87154,
+      "selectedNames": [
+        "menu"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "selected-urushi-dialog-2",
+      "arm": "selected",
+      "library": "urushi",
+      "task": "dialog",
+      "sourceStage": "update",
+      "sourceSha256": "687a3311d19b81a590690806a8870356540884f62228000b1fe7acb80ab2d733",
+      "errors": [],
+      "jsGzip": 72282,
+      "cssGzip": 2839,
+      "totalGzip": 86932,
+      "selectedNames": [
+        "dialog"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "selected-urushi-tabs-2",
+      "arm": "selected",
+      "library": "urushi",
+      "task": "tabs",
+      "sourceStage": "update",
+      "sourceSha256": "cc90c46c980541490a58c33322b4c18832ebe22f3794ef05880900d79a959c45",
+      "errors": [],
+      "jsGzip": 72610,
+      "cssGzip": 2874,
+      "totalGzip": 87295,
+      "selectedNames": [
+        "tabs"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "selected-urushi-menu-2",
+      "arm": "selected",
+      "library": "urushi",
+      "task": "menu",
+      "sourceStage": "update",
+      "sourceSha256": "911b57305f41e45ac897d3b6d32ab6e8ae58ab67d9fe21868e4318b9840e47d3",
+      "errors": [],
+      "jsGzip": 72263,
+      "cssGzip": 3021,
+      "totalGzip": 87095,
+      "selectedNames": [
+        "menu"
+      ],
+      "checks": [
+        {
+          "name": "keyboard",
+          "pass": true
+        },
+        {
+          "name": "state and update",
+          "pass": true
+        },
+        {
+          "name": "accessibility",
+          "pass": true
+        },
+        {
+          "name": "mobile",
+          "pass": true
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

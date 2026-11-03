@@ -11,7 +11,7 @@ import { join } from "node:path";
 import type { ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { build } from "esbuild";
-import { Accordion, Button, Checkbox, RadioGroup, Switch, Tabs } from "@yourlib/react";
+import { Accordion, Button, Checkbox, RadioGroup, Switch, Tabs } from "@urushi/react";
 
 const root = join(import.meta.dirname, "..");
 const out = join(root, "apps/playground/public/proposals");
@@ -242,19 +242,19 @@ const proposedCss = `
   scale: 1;
   opacity: 1;
   clip-path: inset(0 100% 0 0);
-  transition: clip-path var(--yl-motion-duration-fast) var(--yl-motion-ease-out);
+  transition: clip-path var(--ur-motion-duration-fast) var(--ur-motion-ease-out);
 }
 [data-proposed] [data-slot="checkbox-input"]:is(:checked, :indeterminate)::before {
   clip-path: inset(0 0 0 0);
-  transition-duration: calc(var(--yl-motion-duration-overlay) * 1.4);
+  transition-duration: calc(var(--ur-motion-duration-overlay) * 1.4);
   transition-delay: 40ms;
 }
 
 /* 2. Switch: the knob stretches while pressed. */
 [data-proposed] [data-slot="switch-input"]::before {
   transition-property: translate, background-color, inline-size;
-  transition-duration: var(--yl-motion-duration-overlay);
-  transition-timing-function: var(--yl-motion-ease-overlay);
+  transition-duration: var(--ur-motion-duration-overlay);
+  transition-timing-function: var(--ur-motion-ease-overlay);
 }
 [data-proposed] [data-slot="switch"]:active [data-slot="switch-input"]::before {
   inline-size: calc(var(--_knob) + 5px);
@@ -267,7 +267,7 @@ const proposedCss = `
 [data-proposed] [data-slot="radio-input"]::before {
   scale: 0;
   opacity: 1;
-  transition: scale var(--yl-motion-duration-overlay) var(--yl-motion-ease-overlay);
+  transition: scale var(--ur-motion-duration-overlay) var(--ur-motion-ease-overlay);
 }
 [data-proposed] [data-slot="radio-input"]:checked::before {
   scale: 1;
@@ -277,27 +277,27 @@ const proposedCss = `
 [data-proposed] [data-slot="tabs-list"] {
   position: relative;
   isolation: isolate;
-  anchor-scope: --yl-selected-tab;
+  anchor-scope: --ur-selected-tab;
 }
 [data-proposed] [data-slot="tabs-tab"][aria-selected="true"] {
-  anchor-name: --yl-selected-tab;
+  anchor-name: --ur-selected-tab;
   background-color: transparent;
   box-shadow: none;
 }
 [data-proposed] [data-slot="tabs-indicator"] {
   position: absolute;
-  position-anchor: --yl-selected-tab;
+  position-anchor: --ur-selected-tab;
   top: anchor(top);
   right: anchor(right);
   bottom: anchor(bottom);
   left: anchor(left);
   z-index: -1;
-  border-radius: calc(var(--yl-radius-control) - 3px);
-  background-color: var(--yl-color-field);
-  box-shadow: var(--yl-shadow-control);
+  border-radius: calc(var(--ur-radius-control) - 3px);
+  background-color: var(--ur-color-field);
+  box-shadow: var(--ur-shadow-control);
   transition-property: top, right, bottom, left;
-  transition-duration: var(--yl-motion-duration-overlay);
-  transition-timing-function: var(--yl-motion-ease-overlay);
+  transition-duration: var(--ur-motion-duration-overlay);
+  transition-timing-function: var(--ur-motion-ease-overlay);
 }
 
 /* 5. Toast: the leaving toast slides out sideways; where heights can animate
@@ -322,15 +322,15 @@ const proposedCss = `
   [data-proposed] [data-slot="toast"][data-state="closing"] {
     block-size: 0;
     padding-block: 0;
-    margin-block-start: calc(-1 * var(--yl-space-3));
+    margin-block-start: calc(-1 * var(--ur-space-3));
   }
 }
 
 /* 6. Button: the spinner fades and grows in. */
 [data-proposed] [data-slot="button-spinner"] {
   transition-property: opacity, scale;
-  transition-duration: var(--yl-motion-duration-overlay);
-  transition-timing-function: var(--yl-motion-ease-overlay);
+  transition-duration: var(--ur-motion-duration-overlay);
+  transition-timing-function: var(--ur-motion-ease-overlay);
 }
 @starting-style {
   [data-proposed] [data-slot="button-spinner"] {
@@ -361,7 +361,7 @@ const proposedCss = `
     clip-path: none;
     scale: 1;
     opacity: 0;
-    transition: opacity var(--yl-motion-duration-fast);
+    transition: opacity var(--ur-motion-duration-fast);
   }
   [data-proposed] :is([data-slot="checkbox-input"]:is(:checked, :indeterminate), [data-slot="radio-input"]:checked)::before {
     opacity: 1;
@@ -381,31 +381,31 @@ const pageCss = `
 .m-head { padding-block: 40px 8px; }
 .m-head h1 { margin: 0; font-size: 30px; font-weight: 700; font-feature-settings: "palt"; }
 .m-head .lede { margin-block-start: 12px; font-size: 15px; }
-.m-item { padding-block: 36px; border-block-start: 1px solid var(--yl-color-border); }
+.m-item { padding-block: 36px; border-block-start: 1px solid var(--ur-color-border); }
 .m-item:first-of-type { border: 0; }
 .m-item h2 { margin: 0; font-size: 19px; font-weight: 700; }
 .m-notes { display: grid; gap: 4px; margin: 14px 0 20px; font-size: 14px; line-height: 1.75; max-inline-size: 48em; }
 .m-notes div { display: grid; grid-template-columns: 5em 1fr; gap: 12px; }
-.m-notes dt { color: var(--yl-color-text-muted); }
+.m-notes dt { color: var(--ur-color-text-muted); }
 .m-notes dd { margin: 0; }
 .m-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .m-col { margin: 0; display: grid; gap: 8px; align-content: start; }
-.m-col figcaption { font-size: 12.5px; font-weight: 500; color: var(--yl-color-text-muted); }
+.m-col figcaption { font-size: 12.5px; font-weight: 500; color: var(--ur-color-text-muted); }
 .m-stage {
-  position: relative; isolation: isolate; padding: 24px; border-radius: var(--yl-radius-panel);
-  background: color-mix(in oklab, var(--yl-color-text) 2.5%, var(--yl-color-bg));
-  box-shadow: inset 0 0 0 1px var(--yl-color-border);
+  position: relative; isolation: isolate; padding: 24px; border-radius: var(--ur-radius-panel);
+  background: color-mix(in oklab, var(--ur-color-text) 2.5%, var(--ur-color-bg));
+  box-shadow: inset 0 0 0 1px var(--ur-color-border);
 }
-.m-stage[data-proposed] { box-shadow: inset 0 0 0 1px var(--yl-color-border-strong); }
+.m-stage[data-proposed] { box-shadow: inset 0 0 0 1px var(--ur-color-border-strong); }
 :root[data-pack="lucent"] .m-stage::before {
   content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
   background:
-    radial-gradient(60% 80% at 12% 0%, color-mix(in oklab, var(--yl-color-accent) 16%, transparent), transparent 70%),
-    radial-gradient(50% 70% at 100% 100%, color-mix(in oklab, var(--yl-color-danger) 9%, transparent), transparent 70%);
+    radial-gradient(60% 80% at 12% 0%, color-mix(in oklab, var(--ur-color-accent) 16%, transparent), transparent 70%),
+    radial-gradient(50% 70% at 100% 100%, color-mix(in oklab, var(--ur-color-danger) 9%, transparent), transparent 70%);
 }
 .m-stack { display: grid; justify-items: start; gap: 14px; }
 .m-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.m-note { font-size: 12.5px; color: var(--yl-color-text-muted); }
+.m-note { font-size: 12.5px; color: var(--ur-color-text-muted); }
 .m-p { margin: 0; font-size: 14px; line-height: 1.8; }
 .m-toasts { justify-items: stretch; }
 .m-toasts [data-slot="toast-list"] { min-block-size: 0; }
@@ -413,8 +413,8 @@ const pageCss = `
 @media (max-width: 860px) { .m-pair { grid-template-columns: minmax(0, 1fr); } }
 
 /* Slow motion: every token duration, five times longer. */
-:root[data-slow][data-pack="graphite"] { --yl-motion-duration-fast: 600ms; --yl-motion-duration-overlay: 700ms; }
-:root[data-slow][data-pack="lucent"] { --yl-motion-duration-fast: 800ms; --yl-motion-duration-overlay: 1300ms; }
+:root[data-slow][data-pack="graphite"] { --ur-motion-duration-fast: 600ms; --ur-motion-duration-overlay: 700ms; }
+:root[data-slow][data-pack="lucent"] { --ur-motion-duration-fast: 800ms; --ur-motion-duration-overlay: 1300ms; }
 .review .seg span { padding: 5px 4px 5px 11px; color: #8e8e95; }
 `;
 
@@ -422,8 +422,8 @@ const pageCss = `
 const bundled = await build({
   stdin: {
     contents: `
-import { installRuntime } from "@yourlib/core/runtime";
-import { dismiss } from "@yourlib/core/toast";
+import { installRuntime } from "@urushi/core/runtime";
+import { dismiss } from "@urushi/core/toast";
 installRuntime();
 const html = document.documentElement;
 const templates = new Map();

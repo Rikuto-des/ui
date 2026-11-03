@@ -1,0 +1,89 @@
+{
+  "lockfileVersion": 1,
+  "items": {
+    "accordion": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/accordion.tsx": "sha256-kY2VFhLHj+tSjVSXzmsJu46jO3YswI/0ObRnfkDi77M="
+      }
+    },
+    "badge": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/badge.tsx": "sha256-DXzNWn9+kFgAN+hS738SohIXEY3xLBeHtqxKxMFQRvs="
+      }
+    },
+    "button": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/button.tsx": "sha256-f75gCmBiQQ18qUSCQPdMWAUV4YTJpJzFff3yo0Q1u2k="
+      }
+    },
+    "card": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/card.tsx": "sha256-rcMBQ/QUtQFS/WOY3y3jr2ZCS8O4/WI6FcZFL58nA5o="
+      }
+    },
+    "checkbox": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/checkbox.tsx": "sha256-MSCkcOO6l+yDF8Xf9QmUj7/CXptUUK+0VC7q+LZR5eE="
+      }
+    },
+    "dialog": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/dialog.tsx": "sha256-PrgSa/LKADcfvkmjwv9ppGG2gncnFj+yAsOllI233VQ="
+      }
+    },
+    "field": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/field.tsx": "sha256-INgTkO+iMaySSJzaC/vDrIXYrEWYPRGEDJNHQvtPccQ="
+      }
+    },
+    "input": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/input.tsx": "sha256-YitzC1I5F9k1rpEbUATzNTrcCObUYU5xRY1LQ2tqYwI="
+      }
+    },
+    "menu": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/menu.tsx": "sha256-3hE/6zGHol8V2dumv88nxs6C560uwExJzOnTL4fVHxY="
+      }
+    },
+    "popover": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/popover.tsx": "sha256-yktjYVSuyX2tkzXgrUTlT2Ls1mQxbMWnz05nqBsPDTc="
+      }
+    },
+    "switch": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/switch.tsx": "sha256-lhh2olSooFtEzx2aDXkdtMdu3S18vtIAHaKGNgblSIg="
+      }
+    },
+    "tabs": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/tabs.tsx": "sha256-wU2lMC3OsjLnHc+xcQ+zMpfvPRFCcZSACUXQsecSViM="
+      }
+    },
+    "toast": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/toast.tsx": "sha256-pTMjhe7jh5b74+PyqyWkf+FzX95d5eLGhOyW7a50bvs="
+      }
+    },
+    "tooltip": {
+      "version": "0.1.0",
+      "files": {
+        "components/ui/tooltip.tsx": "sha256-+djDur5R41z+Byu4/kUo+hoUsQkLV3mxq1fXMiusXKI="
+      }
+    }
+  }
+}

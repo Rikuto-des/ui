@@ -1,0 +1,19 @@
+{
+  "name": "file-input",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/file-input.json",
+  "files": [
+    {
+      "path": "file-input.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add file-input`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the FileInput page of the design system.\nexport { FileInput, type FileInputProps } from \"@urushi/react/file-input\";\n",
+      "hash": "sha256-hMc7s7R1SjmPsm3QR+BSNl2cRHLS94ziAQ9LGviS/LY="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/file-input.css"
+  ]
+}

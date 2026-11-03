@@ -1,0 +1,74 @@
+{
+  "name": "toggle",
+  "tier": 1,
+  "summary": "A button-looking on/off control. It is a native checkbox, so it works in forms and without JavaScript.",
+  "use": [
+    "Formatting in a toolbar (太字)",
+    "Showing or hiding something in place"
+  ],
+  "avoid": [
+    {
+      "case": "A setting that applies at once in a list of settings",
+      "instead": "switch"
+    },
+    {
+      "case": "One of several exclusive options",
+      "instead": "toggle-group"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Toggle",
+      "slot": "toggle",
+      "element": "input",
+      "description": "A <label> drawn as a button around a checkbox. Other props go to the checkbox.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "size": {
+            "default": "md",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        }
+      },
+      "overrides": [
+        "margin",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "checked"
+  ],
+  "a11y": {
+    "keyboard": {
+      "Space": "toggle"
+    },
+    "rules": [
+      "Icon-only toggles need aria-label.",
+      "It is exposed as a checkbox (checked / not checked)."
+    ]
+  },
+  "tokens": [
+    "color.ghost-hover",
+    "color.text",
+    "radius.control"
+  ],
+  "examples": [
+    {
+      "title": "Bold",
+      "code": "<Toggle aria-label=\"太字\"><BoldIcon /></Toggle>"
+    }
+  ]
+}

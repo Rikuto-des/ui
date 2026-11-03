@@ -1,0 +1,19 @@
+{
+  "name": "date-picker",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/date-picker.json",
+  "files": [
+    {
+      "path": "date-picker.tsx",
+      "target": "components",
+      "content": "// Installed by urushi add date-picker. This wrapper belongs to your application.\nexport { DatePicker, type DatePickerProps } from \"@urushi/react/date-picker\";\n",
+      "hash": "sha256-opxCUGZAGS02u95Z9vrJGMxBLZtFrPP/qDimmDAXEqo="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/date-picker.css"
+  ]
+}

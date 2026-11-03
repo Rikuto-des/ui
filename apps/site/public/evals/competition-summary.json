@@ -1,0 +1,797 @@
+{
+  "schemaVersion": 1,
+  "measuredOn": "2026-10-27",
+  "kind": "exploratory development evaluation",
+  "runs": [
+    {
+      "id": "measured-v1",
+      "startedAt": "2026-10-27T06:39:27.543Z",
+      "protocol": {
+        "version": 1,
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "provider": "Codex CLI 0.160.0 via ChatGPT login",
+        "maxSecondsPerResponse": 240,
+        "trials": 2,
+        "libraries": [
+          "urushi",
+          "base",
+          "radix",
+          "shadcn"
+        ],
+        "generationAttempts": 1,
+        "repairAttempts": 1,
+        "updateAttempts": 1,
+        "updateRepairAttempts": 1,
+        "commonGate": [
+          "TypeScript strict",
+          "required library primitive usage",
+          "keyboard and state behavior",
+          "axe WCAG A/AA",
+          "320px overflow"
+        ],
+        "secondary": [
+          "wall time",
+          "reported tokens and cost",
+          "bundle gzip",
+          "authored source bytes",
+          "library-specific diagnostics"
+        ],
+        "ordering": "rotated library order per task and trial; at most 4 simultaneous requests",
+        "context": "same task and system template; version-specific API references per library; no tools, no prior history; repair gets code and diagnostic output",
+        "scoring": "all common gates must pass; failures and missing responses remain in denominator; internal library lint is additional repair feedback, never a competitor scoring rule",
+        "updateMeaning": "application specification change; no claim about real dependency-version migrations",
+        "limitations": [
+          "one model",
+          "three small workflows",
+          "no free browsing or tool use by model",
+          "authored reference extracts",
+          "no screen reader user study",
+          "no subjective design superiority score"
+        ],
+        "startedAt": "2026-10-27T06:39:27.543Z",
+        "packageVersions": {
+          "@base-ui/react": "1.9.0",
+          "@tailwindcss/cli": "4.3.3",
+          "@types/react": "19.3.0",
+          "@types/react-dom": "19.3.0",
+          "class-variance-authority": "0.7.1",
+          "cn": "0.5.0",
+          "lucide-react": "1.61.0",
+          "radix-ui": "1.8.1",
+          "react": "19.3.1",
+          "react-dom": "19.3.1",
+          "tailwindcss": "4.3.3",
+          "tw-animate-css": "1.4.0"
+        },
+        "tasks": [
+          {
+            "id": "dialog",
+            "prompt": "Build a project deletion screen. Export default App. The page has h1 \"Projects\", a paragraph \"Atlas project\", and a button \"Delete Atlas\". Clicking it opens a modal dialog named \"Delete project\" with a description, a Cancel button and a \"Confirm delete\" button. Focus Cancel first. Escape and Cancel close it, preserve the project and return focus to Delete Atlas. Confirm removes Atlas and closes the dialog; announce \"Project deleted\" in role=status. There must be exactly one deletion per confirmation. Use the assigned library's dialog primitive. Support keyboard and a 320px screen. Do not implement your own dialog, focus trap or tab primitive.",
+            "update": "Update this screen without losing any existing behavior: confirmation now simulates a server request of 1200ms. While pending, show \"Deleting…\", disable duplicate confirmation and cancellation, and prevent Escape or backdrop dismissal. The first attempt fails: keep the modal open, announce \"Deletion failed\" with role=alert and retain Atlas. A second confirmation succeeds, closes the modal and announces Project deleted. Cancel outside a pending request still works. This is an application specification update, not a dependency-version migration."
+          },
+          {
+            "id": "tabs",
+            "prompt": "Build an account screen. Export default App. h1 \"Account\". Use the assigned library's tabs with an accessible tablist named \"Account sections\", tabs Profile, Security, Billing. Profile starts active and contains a labelled textbox \"Display name\" initially Alex. Security contains text \"Security settings\". Billing is disabled. ArrowRight from Profile selects Security, skips Billing and wraps to Profile. Store the display name so editing it, visiting Security and returning to Profile retains the edit. A button \"Refresh\" outside the tabs increments a visible \"Refresh count: N\" without changing the active tab or the name. Support a 320px screen, keyboard and accessible names. Do not recreate tab behavior with raw HTML.",
+            "update": "Preserve all behavior. Add a button \"Open security\" outside the tablist that selects Security. Add a button \"Open profile\" outside the tablist that selects Profile. These must work repeatedly even after the user has changed tabs by clicking and using arrows. Add \"Save name\" to Profile: it announces \"Saved: <current display name>\" with role=status without resetting selection or input. Billing remains disabled. This is an application specification update."
+          },
+          {
+            "id": "menu",
+            "prompt": "Build a task list. Export default App. h1 \"Tasks\". Two rows contain text \"Atlas task\" and \"Boreal task\". Each has a button named \"Actions for Atlas\" or \"Actions for Boreal\" opening the assigned library's menu. Menu items: \"Rename\" (disabled) and \"Archive\". Arrow keys skip disabled Rename; Escape closes and returns focus to the opening button. Archive removes only the corresponding row, closes the menu and announces \"Archived Atlas\" or \"Archived Boreal\" in role=status. Keep the other row unchanged. Use the library's menu primitive, not a custom menu. Support a 320px screen, keyboard and accessible names.",
+            "update": "Preserve all behavior. After archiving, show a button \"Undo archive\" outside the menu that restores the most recently archived task to its original row position and announces \"Restored Atlas\" or \"Restored Boreal\" in role=status. The restored row's menu must work again, by keyboard as well as pointer. A second archive then undo must also work. Hide Undo archive when nothing can be undone. This is an application specification update."
+          }
+        ]
+      },
+      "sharedCssGzip": 11677,
+      "resultSha256": "5d185d54d8324b9818916fbbc505995f75d9b69f8f1936efd244e587d58a93f8",
+      "libraries": [
+        {
+          "id": "urushi",
+          "label": "Urushi",
+          "n": 6,
+          "generate": 6,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": 0,
+          "internalCleanFinal": 0,
+          "jsGzip": [
+            72239,
+            72429
+          ],
+          "excludingReactGzip": [
+            3392,
+            3555
+          ],
+          "libraryCssGzip": [
+            11448,
+            11448
+          ],
+          "assetGzip": [
+            95364,
+            95554
+          ],
+          "sourceBytes": [
+            2686,
+            3567
+          ],
+          "calls": 12,
+          "inputTokens": 119972,
+          "outputTokens": 9570,
+          "elapsedMs": 321787
+        },
+        {
+          "id": "base",
+          "label": "Base UI",
+          "n": 6,
+          "generate": 2,
+          "repaired": 2,
+          "update": 2,
+          "final": 2,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            82877,
+            130694
+          ],
+          "excludingReactGzip": [
+            14573,
+            62267
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            94554,
+            142371
+          ],
+          "sourceBytes": [
+            2805,
+            4855
+          ],
+          "calls": 16,
+          "inputTokens": 185493,
+          "outputTokens": 15359,
+          "elapsedMs": 422988
+        },
+        {
+          "id": "radix",
+          "label": "Radix UI",
+          "n": 6,
+          "generate": 4,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            79253,
+            101808
+          ],
+          "excludingReactGzip": [
+            10342,
+            32883
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            90930,
+            113485
+          ],
+          "sourceBytes": [
+            2528,
+            4150
+          ],
+          "calls": 14,
+          "inputTokens": 120070,
+          "outputTokens": 10360,
+          "elapsedMs": 288198
+        },
+        {
+          "id": "shadcn",
+          "label": "shadcn/ui",
+          "n": 6,
+          "generate": 2,
+          "repaired": 6,
+          "update": 5,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            91594,
+            113345
+          ],
+          "excludingReactGzip": [
+            22445,
+            44158
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            103271,
+            125022
+          ],
+          "sourceBytes": [
+            2476,
+            4633
+          ],
+          "calls": 17,
+          "inputTokens": 154437,
+          "outputTokens": 13048,
+          "elapsedMs": 354288
+        }
+      ]
+    },
+    {
+      "id": "measured-v2",
+      "startedAt": "2026-10-27T06:57:53.477Z",
+      "protocol": {
+        "version": 1,
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "provider": "Codex CLI 0.160.0 via ChatGPT login",
+        "maxSecondsPerResponse": 240,
+        "trials": 2,
+        "libraries": [
+          "urushi"
+        ],
+        "generationAttempts": 1,
+        "repairAttempts": 1,
+        "updateAttempts": 1,
+        "updateRepairAttempts": 1,
+        "commonGate": [
+          "TypeScript strict",
+          "required library primitive usage",
+          "keyboard and state behavior",
+          "axe WCAG A/AA",
+          "320px overflow"
+        ],
+        "secondary": [
+          "wall time",
+          "reported tokens and cost",
+          "bundle gzip",
+          "authored source bytes",
+          "library-specific diagnostics"
+        ],
+        "ordering": "rotated library order per task and trial; at most 4 simultaneous requests",
+        "context": "same task and system template; version-specific API references per library; no tools, no prior history; repair gets code and diagnostic output",
+        "scoring": "all common gates must pass; failures and missing responses remain in denominator; internal library lint is additional repair feedback, never a competitor scoring rule",
+        "updateMeaning": "application specification change; no claim about real dependency-version migrations",
+        "limitations": [
+          "one model",
+          "three small workflows",
+          "no free browsing or tool use by model",
+          "authored reference extracts",
+          "no screen reader user study",
+          "no subjective design superiority score"
+        ],
+        "startedAt": "2026-10-27T06:57:53.477Z",
+        "packageVersions": {
+          "@base-ui/react": "1.9.0",
+          "@tailwindcss/cli": "4.3.3",
+          "@types/react": "19.3.0",
+          "@types/react-dom": "19.3.0",
+          "class-variance-authority": "0.7.1",
+          "cn": "0.5.0",
+          "lucide-react": "1.61.0",
+          "radix-ui": "1.8.1",
+          "react": "19.3.1",
+          "react-dom": "19.3.1",
+          "tailwindcss": "4.3.3",
+          "tw-animate-css": "1.4.0"
+        },
+        "tasks": [
+          {
+            "id": "dialog",
+            "prompt": "Build a project deletion screen. Export default App. The page has h1 \"Projects\", a paragraph \"Atlas project\", and a button \"Delete Atlas\". Clicking it opens a modal dialog named \"Delete project\" with a description, a Cancel button and a \"Confirm delete\" button. Focus Cancel first. Escape and Cancel close it, preserve the project and return focus to Delete Atlas. Confirm removes Atlas and closes the dialog; announce \"Project deleted\" in role=status. There must be exactly one deletion per confirmation. Use the assigned library's dialog primitive. Support keyboard and a 320px screen. Do not implement your own dialog, focus trap or tab primitive.",
+            "update": "Update this screen without losing any existing behavior: confirmation now simulates a server request of 1200ms. While pending, show \"Deleting…\", disable duplicate confirmation and cancellation, and prevent Escape or backdrop dismissal. The first attempt fails: keep the modal open, announce \"Deletion failed\" with role=alert and retain Atlas. A second confirmation succeeds, closes the modal and announces Project deleted. Cancel outside a pending request still works. This is an application specification update, not a dependency-version migration."
+          },
+          {
+            "id": "tabs",
+            "prompt": "Build an account screen. Export default App. h1 \"Account\". Use the assigned library's tabs with an accessible tablist named \"Account sections\", tabs Profile, Security, Billing. Profile starts active and contains a labelled textbox \"Display name\" initially Alex. Security contains text \"Security settings\". Billing is disabled. ArrowRight from Profile selects Security, skips Billing and wraps to Profile. Store the display name so editing it, visiting Security and returning to Profile retains the edit. A button \"Refresh\" outside the tabs increments a visible \"Refresh count: N\" without changing the active tab or the name. Support a 320px screen, keyboard and accessible names. Do not recreate tab behavior with raw HTML.",
+            "update": "Preserve all behavior. Add a button \"Open security\" outside the tablist that selects Security. Add a button \"Open profile\" outside the tablist that selects Profile. These must work repeatedly even after the user has changed tabs by clicking and using arrows. Add \"Save name\" to Profile: it announces \"Saved: <current display name>\" with role=status without resetting selection or input. Billing remains disabled. This is an application specification update."
+          },
+          {
+            "id": "menu",
+            "prompt": "Build a task list. Export default App. h1 \"Tasks\". Two rows contain text \"Atlas task\" and \"Boreal task\". Each has a button named \"Actions for Atlas\" or \"Actions for Boreal\" opening the assigned library's menu. Menu items: \"Rename\" (disabled) and \"Archive\". Arrow keys skip disabled Rename; Escape closes and returns focus to the opening button. Archive removes only the corresponding row, closes the menu and announces \"Archived Atlas\" or \"Archived Boreal\" in role=status. Keep the other row unchanged. Use the library's menu primitive, not a custom menu. Support a 320px screen, keyboard and accessible names.",
+            "update": "Preserve all behavior. After archiving, show a button \"Undo archive\" outside the menu that restores the most recently archived task to its original row position and announces \"Restored Atlas\" or \"Restored Boreal\" in role=status. The restored row's menu must work again, by keyboard as well as pointer. A second archive then undo must also work. Hide Undo archive when nothing can be undone. This is an application specification update."
+          }
+        ]
+      },
+      "sharedCssGzip": 11677,
+      "resultSha256": "9f82d987484b64c4362753fecb4fb68ab8a5b7546ec75756f14eac2c013bae7c",
+      "libraries": [
+        {
+          "id": "urushi",
+          "label": "Urushi",
+          "n": 6,
+          "generate": 5,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": 6,
+          "internalCleanFinal": 6,
+          "jsGzip": [
+            72238,
+            72622
+          ],
+          "excludingReactGzip": [
+            3386,
+            3762
+          ],
+          "libraryCssGzip": [
+            11448,
+            11448
+          ],
+          "assetGzip": [
+            95363,
+            95747
+          ],
+          "sourceBytes": [
+            2358,
+            2850
+          ],
+          "calls": 16,
+          "inputTokens": 225446,
+          "outputTokens": 11606,
+          "elapsedMs": 434720
+        }
+      ]
+    },
+    {
+      "id": "measured-v3",
+      "startedAt": "2026-10-27T07:04:05.809Z",
+      "protocol": {
+        "version": 2,
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "provider": "Codex CLI 0.160.0 via ChatGPT login",
+        "maxSecondsPerResponse": 240,
+        "trials": 2,
+        "libraries": [
+          "urushi",
+          "base",
+          "radix",
+          "shadcn"
+        ],
+        "generationAttempts": 1,
+        "repairAttempts": 1,
+        "updateAttempts": 1,
+        "updateRepairAttempts": 1,
+        "commonGate": [
+          "TypeScript strict",
+          "required library primitive usage",
+          "keyboard and state behavior",
+          "axe WCAG A/AA",
+          "320px overflow"
+        ],
+        "secondary": [
+          "wall time",
+          "reported tokens and cost",
+          "bundle gzip",
+          "authored source bytes",
+          "library-specific diagnostics"
+        ],
+        "ordering": "rotated library order per task and trial; at most 4 simultaneous requests",
+        "context": "same task and system template; version-specific API references per library; no tools, no prior history; repair gets code and diagnostic output",
+        "scoringRevision": "Wait for finite animations before axe; hidden rows count as removed; verify restored row order. Earlier outputs are rescored with the same tests. This is an exploratory development evaluation, not a preregistered benchmark.",
+        "scoring": "all common gates must pass; failures and missing responses remain in denominator; internal library lint is additional repair feedback, never a competitor scoring rule",
+        "updateMeaning": "application specification change; no claim about real dependency-version migrations",
+        "limitations": [
+          "one model",
+          "three small workflows",
+          "no free browsing or tool use by model",
+          "authored reference extracts",
+          "no screen reader user study",
+          "no subjective design superiority score"
+        ],
+        "startedAt": "2026-10-27T07:04:05.809Z",
+        "packageVersions": {
+          "@base-ui/react": "1.9.0",
+          "@tailwindcss/cli": "4.3.3",
+          "@types/react": "19.3.0",
+          "@types/react-dom": "19.3.0",
+          "class-variance-authority": "0.7.1",
+          "cn": "0.5.0",
+          "lucide-react": "1.61.0",
+          "radix-ui": "1.8.1",
+          "react": "19.3.1",
+          "react-dom": "19.3.1",
+          "tailwindcss": "4.3.3",
+          "tw-animate-css": "1.4.0"
+        },
+        "tasks": [
+          {
+            "id": "dialog",
+            "prompt": "Build a project deletion screen. Export default App. The page has h1 \"Projects\", a paragraph \"Atlas project\", and a button \"Delete Atlas\". Clicking it opens a modal dialog named \"Delete project\" with a description, a Cancel button and a \"Confirm delete\" button. Focus Cancel first. Escape and Cancel close it, preserve the project and return focus to Delete Atlas. Confirm removes Atlas and closes the dialog; announce \"Project deleted\" in role=status. There must be exactly one deletion per confirmation. Use the assigned library's dialog primitive. Support keyboard and a 320px screen. Do not implement your own dialog, focus trap or tab primitive.",
+            "update": "Update this screen without losing any existing behavior: confirmation now simulates a server request of 1200ms. While pending, show \"Deleting…\", disable duplicate confirmation and cancellation, and prevent Escape or backdrop dismissal. The first attempt fails: keep the modal open, announce \"Deletion failed\" with role=alert and retain Atlas. A second confirmation succeeds, closes the modal and announces Project deleted. Cancel outside a pending request still works. This is an application specification update, not a dependency-version migration."
+          },
+          {
+            "id": "tabs",
+            "prompt": "Build an account screen. Export default App. h1 \"Account\". Use the assigned library's tabs with an accessible tablist named \"Account sections\", tabs Profile, Security, Billing. Profile starts active and contains a labelled textbox \"Display name\" initially Alex. Security contains text \"Security settings\". Billing is disabled. ArrowRight from Profile selects Security, skips Billing and wraps to Profile. Store the display name so editing it, visiting Security and returning to Profile retains the edit. A button \"Refresh\" outside the tabs increments a visible \"Refresh count: N\" without changing the active tab or the name. Support a 320px screen, keyboard and accessible names. Do not recreate tab behavior with raw HTML.",
+            "update": "Preserve all behavior. Add a button \"Open security\" outside the tablist that selects Security. Add a button \"Open profile\" outside the tablist that selects Profile. These must work repeatedly even after the user has changed tabs by clicking and using arrows. Add \"Save name\" to Profile: it announces \"Saved: <current display name>\" with role=status without resetting selection or input. Billing remains disabled. This is an application specification update."
+          },
+          {
+            "id": "menu",
+            "prompt": "Build a task list. Export default App. h1 \"Tasks\". Two rows contain text \"Atlas task\" and \"Boreal task\". Each has a button named \"Actions for Atlas\" or \"Actions for Boreal\" opening the assigned library's menu. Menu items: \"Rename\" (disabled) and \"Archive\". Arrow keys skip disabled Rename; Escape closes and returns focus to the opening button. Archive removes only the corresponding row, closes the menu and announces \"Archived Atlas\" or \"Archived Boreal\" in role=status. Keep the other row unchanged. Use the library's menu primitive, not a custom menu. Support a 320px screen, keyboard and accessible names.",
+            "update": "Preserve all behavior. After archiving, show a button \"Undo archive\" outside the menu that restores the most recently archived task to its original row position and announces \"Restored Atlas\" or \"Restored Boreal\" in role=status. The restored row's menu must work again, by keyboard as well as pointer. A second archive then undo must also work. Hide Undo archive when nothing can be undone. This is an application specification update."
+          }
+        ]
+      },
+      "sharedCssGzip": 11698,
+      "resultSha256": "e88a0cdcfc535a315573afe10d9697b9214fa6f2b8f1ed299b6a9006c4b271af",
+      "libraries": [
+        {
+          "id": "urushi",
+          "label": "Urushi",
+          "n": 6,
+          "generate": 6,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": 6,
+          "internalCleanFinal": 6,
+          "jsGzip": [
+            72208,
+            72619
+          ],
+          "excludingReactGzip": [
+            3362,
+            3748
+          ],
+          "libraryCssGzip": [
+            11452,
+            11452
+          ],
+          "assetGzip": [
+            95358,
+            95769
+          ],
+          "sourceBytes": [
+            2266,
+            2892
+          ],
+          "calls": 12,
+          "inputTokens": 166744,
+          "outputTokens": 9248,
+          "elapsedMs": 333995
+        },
+        {
+          "id": "base",
+          "label": "Base UI",
+          "n": 6,
+          "generate": 2,
+          "repaired": 3,
+          "update": 2,
+          "final": 2,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            82810,
+            130597
+          ],
+          "excludingReactGzip": [
+            14500,
+            62175
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            94508,
+            142295
+          ],
+          "sourceBytes": [
+            2392,
+            4625
+          ],
+          "calls": 17,
+          "inputTokens": 197052,
+          "outputTokens": 15342,
+          "elapsedMs": 455321
+        },
+        {
+          "id": "radix",
+          "label": "Radix UI",
+          "n": 6,
+          "generate": 2,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            79388,
+            101736
+          ],
+          "excludingReactGzip": [
+            10472,
+            32793
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            91086,
+            113434
+          ],
+          "sourceBytes": [
+            2927,
+            4268
+          ],
+          "calls": 16,
+          "inputTokens": 138065,
+          "outputTokens": 11923,
+          "elapsedMs": 311918
+        },
+        {
+          "id": "shadcn",
+          "label": "shadcn/ui",
+          "n": 6,
+          "generate": 2,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            91641,
+            113345
+          ],
+          "excludingReactGzip": [
+            22472,
+            44156
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            103339,
+            125043
+          ],
+          "sourceBytes": [
+            2384,
+            3944
+          ],
+          "calls": 16,
+          "inputTokens": 143944,
+          "outputTokens": 11078,
+          "elapsedMs": 310068
+        }
+      ]
+    },
+    {
+      "id": "measured-v4",
+      "startedAt": "2026-10-27T07:24:26.341Z",
+      "protocol": {
+        "version": 2,
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "provider": "Codex CLI 0.160.0 via ChatGPT login",
+        "maxSecondsPerResponse": 240,
+        "trials": 2,
+        "libraries": [
+          "urushi",
+          "base",
+          "radix",
+          "shadcn"
+        ],
+        "generationAttempts": 1,
+        "repairAttempts": 1,
+        "updateAttempts": 1,
+        "updateRepairAttempts": 1,
+        "commonGate": [
+          "TypeScript strict",
+          "required library primitive usage",
+          "keyboard and state behavior",
+          "axe WCAG A/AA",
+          "320px overflow"
+        ],
+        "secondary": [
+          "wall time",
+          "reported tokens and cost",
+          "bundle gzip",
+          "authored source bytes",
+          "library-specific diagnostics"
+        ],
+        "ordering": "rotated library order per task and trial; at most 4 simultaneous requests",
+        "context": "same task and system template; version-specific API references per library; no tools, no prior history; repair gets code and diagnostic output",
+        "scoringRevision": "Wait for finite animations before axe; hidden rows count as removed; verify restored row order; wait for menu initial focus and two animation frames after arrow navigation before negative focus assertions. This is an exploratory development evaluation, not a preregistered benchmark. measured-v4 freezes these checks before every model response.",
+        "scoring": "all common gates must pass; failures and missing responses remain in denominator; internal library lint is additional repair feedback, never a competitor scoring rule",
+        "updateMeaning": "application specification change; no claim about real dependency-version migrations",
+        "limitations": [
+          "one model",
+          "three small workflows",
+          "no free browsing or tool use by model",
+          "authored reference extracts",
+          "no screen reader user study",
+          "no subjective design superiority score"
+        ],
+        "startedAt": "2026-10-27T07:24:26.341Z",
+        "packageVersions": {
+          "@base-ui/react": "1.9.0",
+          "@tailwindcss/cli": "4.3.3",
+          "@types/react": "19.3.0",
+          "@types/react-dom": "19.3.0",
+          "class-variance-authority": "0.7.1",
+          "cn": "0.5.0",
+          "lucide-react": "1.61.0",
+          "radix-ui": "1.8.1",
+          "react": "19.3.1",
+          "react-dom": "19.3.1",
+          "tailwindcss": "4.3.3",
+          "tw-animate-css": "1.4.0"
+        },
+        "tasks": [
+          {
+            "id": "dialog",
+            "prompt": "Build a project deletion screen. Export default App. The page has h1 \"Projects\", a paragraph \"Atlas project\", and a button \"Delete Atlas\". Clicking it opens a modal dialog named \"Delete project\" with a description, a Cancel button and a \"Confirm delete\" button. Focus Cancel first. Escape and Cancel close it, preserve the project and return focus to Delete Atlas. Confirm removes Atlas and closes the dialog; announce \"Project deleted\" in role=status. There must be exactly one deletion per confirmation. Use the assigned library's dialog primitive. Support keyboard and a 320px screen. Do not implement your own dialog, focus trap or tab primitive.",
+            "update": "Update this screen without losing any existing behavior: confirmation now simulates a server request of 1200ms. While pending, show \"Deleting…\", disable duplicate confirmation and cancellation, and prevent Escape or backdrop dismissal. The first attempt fails: keep the modal open, announce \"Deletion failed\" with role=alert and retain Atlas. A second confirmation succeeds, closes the modal and announces Project deleted. Cancel outside a pending request still works. This is an application specification update, not a dependency-version migration."
+          },
+          {
+            "id": "tabs",
+            "prompt": "Build an account screen. Export default App. h1 \"Account\". Use the assigned library's tabs with an accessible tablist named \"Account sections\", tabs Profile, Security, Billing. Profile starts active and contains a labelled textbox \"Display name\" initially Alex. Security contains text \"Security settings\". Billing is disabled. ArrowRight from Profile selects Security, skips Billing and wraps to Profile. Store the display name so editing it, visiting Security and returning to Profile retains the edit. A button \"Refresh\" outside the tabs increments a visible \"Refresh count: N\" without changing the active tab or the name. Support a 320px screen, keyboard and accessible names. Do not recreate tab behavior with raw HTML.",
+            "update": "Preserve all behavior. Add a button \"Open security\" outside the tablist that selects Security. Add a button \"Open profile\" outside the tablist that selects Profile. These must work repeatedly even after the user has changed tabs by clicking and using arrows. Add \"Save name\" to Profile: it announces \"Saved: <current display name>\" with role=status without resetting selection or input. Billing remains disabled. This is an application specification update."
+          },
+          {
+            "id": "menu",
+            "prompt": "Build a task list. Export default App. h1 \"Tasks\". Two rows contain text \"Atlas task\" and \"Boreal task\". Each has a button named \"Actions for Atlas\" or \"Actions for Boreal\" opening the assigned library's menu. Menu items: \"Rename\" (disabled) and \"Archive\". Arrow keys skip disabled Rename; Escape closes and returns focus to the opening button. Archive removes only the corresponding row, closes the menu and announces \"Archived Atlas\" or \"Archived Boreal\" in role=status. Keep the other row unchanged. Use the library's menu primitive, not a custom menu. Support a 320px screen, keyboard and accessible names.",
+            "update": "Preserve all behavior. After archiving, show a button \"Undo archive\" outside the menu that restores the most recently archived task to its original row position and announces \"Restored Atlas\" or \"Restored Boreal\" in role=status. The restored row's menu must work again, by keyboard as well as pointer. A second archive then undo must also work. Hide Undo archive when nothing can be undone. This is an application specification update."
+          }
+        ]
+      },
+      "sharedCssGzip": 11811,
+      "resultSha256": "df641ef961ba186577a9811613bc6ec2e038b7382acd4804944a6a66335eeb03",
+      "libraries": [
+        {
+          "id": "urushi",
+          "label": "Urushi",
+          "n": 6,
+          "generate": 6,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": 6,
+          "internalCleanFinal": 6,
+          "jsGzip": [
+            72216,
+            72614
+          ],
+          "excludingReactGzip": [
+            3370,
+            3740
+          ],
+          "libraryCssGzip": [
+            11452,
+            11452
+          ],
+          "assetGzip": [
+            95479,
+            95877
+          ],
+          "sourceBytes": [
+            2022,
+            2739
+          ],
+          "calls": 12,
+          "inputTokens": 166573,
+          "outputTokens": 8507,
+          "elapsedMs": 305366
+        },
+        {
+          "id": "base",
+          "label": "Base UI",
+          "n": 6,
+          "generate": 2,
+          "repaired": 4,
+          "update": 2,
+          "final": 4,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            82747,
+            130669
+          ],
+          "excludingReactGzip": [
+            14437,
+            62237
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            94558,
+            142480
+          ],
+          "sourceBytes": [
+            2797,
+            4565
+          ],
+          "calls": 20,
+          "inputTokens": 232755,
+          "outputTokens": 19487,
+          "elapsedMs": 612962
+        },
+        {
+          "id": "radix",
+          "label": "Radix UI",
+          "n": 6,
+          "generate": 3,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            79410,
+            101761
+          ],
+          "excludingReactGzip": [
+            10506,
+            32824
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            91221,
+            113572
+          ],
+          "sourceBytes": [
+            2607,
+            4087
+          ],
+          "calls": 15,
+          "inputTokens": 129619,
+          "outputTokens": 11541,
+          "elapsedMs": 325997
+        },
+        {
+          "id": "shadcn",
+          "label": "shadcn/ui",
+          "n": 6,
+          "generate": 2,
+          "repaired": 6,
+          "update": 4,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            91588,
+            113380
+          ],
+          "excludingReactGzip": [
+            22438,
+            44190
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            103399,
+            125191
+          ],
+          "sourceBytes": [
+            2456,
+            3947
+          ],
+          "calls": 18,
+          "inputTokens": 164093,
+          "outputTokens": 13139,
+          "elapsedMs": 362152
+        }
+      ]
+    }
+  ]
+}

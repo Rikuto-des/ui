@@ -4,21 +4,32 @@ import { expect, test, type Page } from "@playwright/test";
 const noWebFonts = (page: Page) => page.route(/fonts\.(googleapis|gstatic)\.com/, (route) => route.abort());
 const WCAG = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
+// A scan may include several axe passes. A cold Linux WebKit worker exceeded
+// 30 seconds while the same checks passed after warm-up. This is an audit
+// execution budget, not an increased UI assertion or interaction timeout.
+test.describe.configure({ timeout: 60_000 });
+
 /**
  * Waits until no transition or finite animation is running, so contrast is
  * measured on final colors. Spinners loop forever and are skipped.
  */
 async function settle(page: Page) {
   await page.waitForFunction(() =>
-    document.getAnimations().every((a) => a.playState !== "running" || a.effect?.getTiming().iterations === Infinity),
+    document.getAnimations().every(
+      (a) =>
+        a.playState !== "running" ||
+        a.effect?.getTiming().iterations === Infinity ||
+        // Firefox never advances transitions inside a closed <details>: they are not rendered.
+        !(((a.effect as KeyframeEffect | null)?.target as Element | null)?.checkVisibility() ?? true),
+    ),
   );
 }
 
 async function scan(page: Page, include?: string) {
-  await settle(page);
+  await test.step("wait for final rendered colors", () => settle(page));
   let builder = new AxeBuilder({ page }).withTags(WCAG);
   if (include) builder = builder.include(include);
-  const { violations } = await builder.analyze();
+  const { violations } = await test.step("scan WCAG rules with axe", () => builder.analyze());
   return violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`);
 }
 
@@ -87,14 +98,29 @@ for (const pack of ["graphite", "lucent"]) {
         expect(await scan(page, "#tip-copy")).toEqual([]);
       });
 
+      test("an open alert dialog, sheet and hover card have no violations", async ({ page }) => {
+        await page.getByTestId("open-delete").click();
+        await expect(page.getByTestId("delete-dialog")).toBeVisible();
+        expect(await scan(page, "dialog#g-delete")).toEqual([]);
+        await page.getByTestId("delete-cancel").click();
+        await page.getByTestId("open-sheet").click();
+        await expect(page.getByTestId("task-sheet")).toBeVisible();
+        expect(await scan(page, "dialog#g-task-sheet")).toEqual([]);
+        await page.keyboard.press("Escape");
+        await expect(page.getByTestId("task-sheet")).toBeHidden();
+        await page.getByTestId("hc-trigger").hover();
+        await expect(page.getByTestId("hc-card")).toBeVisible({ timeout: 3000 });
+        expect(await scan(page, "#g-person")).toEqual([]);
+      });
+
       test("toasts, including one above a modal, have no violations", async ({ page }) => {
         await page.getByTestId("toast-error").click();
         await page.getByTestId("toast-undo").click();
         await expect(page.locator('[data-slot="toast"]')).toHaveCount(2);
         expect(await scan(page, '[data-slot="toaster"]')).toEqual([]);
         await page.getByTestId("open-invite").click();
-        await page.evaluate(() => (window as unknown as { yourlibToast: (m: string) => void }).yourlibToast("ダイアログの上に出ます"));
-        await expect(page.locator("[data-yl-outlet]").getByText("ダイアログの上に出ます")).toBeVisible();
+        await page.evaluate(() => (window as unknown as { urushiToast: (m: string) => void }).urushiToast("ダイアログの上に出ます"));
+        await expect(page.locator("[data-ur-outlet]").getByText("ダイアログの上に出ます")).toBeVisible();
         expect(await scan(page, "dialog#g-invite")).toEqual([]);
       });
     });

@@ -1,0 +1,19 @@
+{
+  "name": "date-input",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/date-input.json",
+  "files": [
+    {
+      "path": "date-input.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add date-input`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the DateInput page of the design system.\nexport { DateInput, type DateInputProps } from \"@urushi/react/date-input\";\n",
+      "hash": "sha256-HbFLArDbAtXdMWQHsMAWVZKTHPcJcSbBJtju9v2aG3M="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/date-input.css"
+  ]
+}

@@ -1,7 +1,7 @@
 import type * as React from "react";
 import { toasterDefaults, toasterSlot, type ToasterOwnProps } from "./generated/toast.ts";
 
-export { dismiss, toast, type ToastOptions, type ToastTone } from "@yourlib/core/toast";
+export { dismiss, toast, type ToastOptions, type ToastUpdate, type ToastPromiseOptions, type ToastTone } from "@urushi/core/toast";
 
 export type ToasterProps = ToasterOwnProps & Omit<React.ComponentPropsWithRef<"section">, keyof ToasterOwnProps | "popover" | "children">;
 

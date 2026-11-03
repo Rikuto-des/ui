@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "ab60022b174f45cce3723bbed04d055543af554a",
+  "source": "local production build, not a CI download",
+  "file": "urushi-site-ab60022.zip",
+  "files": 464,
+  "bytes": 3083958,
+  "sha256": "1ec4020d6375bb24a45a28c4739e600c46e914d03ad1dd0cee0a27ed5292ae5e",
+  "deploymentStatus": "not_deployed",
+  "hosting": "Static files must be served at the origin root; preserve trailing slash routes and _next files.",
+  "builtFromCommit": "b41c1808b1aa37870a6e0fce7e82b1beaefabc65",
+  "changesSinceBuild": [
+    "tests/site/design-audit.spec.ts",
+    "tests/site/remaining-ux.spec.ts",
+    "tests/site/startup.spec.ts"
+  ],
+  "productionSourceUnchanged": true
+}

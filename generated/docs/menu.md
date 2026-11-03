@@ -5,7 +5,7 @@ A list of actions in a popover (menu button pattern). Opens without JavaScript; 
 - Tier: 3
 - Rendering: server
 - Requires: popover, anchor-positioning
-- Enhances with @yourlib/core menu behavior (fallback: items are reachable with Tab)
+- Enhances with @urushi/core menu behavior (fallback: items are reachable with Tab)
 
 ## When to use
 
@@ -50,6 +50,8 @@ An action (role=menuitem). Activating it closes the menu. Renders `<button data-
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `variant` | `"default" \| "danger"` | `"default"` |  |
+| `description` | `string` | — | Secondary explanation of the action. |
+| `shortcut` | `string` | — | Displayed hint; app registers the shortcut. |
 
 className may only adjust: nothing (visuals come from the pack).
 

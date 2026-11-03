@@ -30,6 +30,11 @@
           "description": {
             "description": "Supporting text under the label.",
             "x-ts-type": "React.ReactNode"
+          },
+          "showState": {
+            "default": false,
+            "description": "Adds on/off marks to the track so its state is also visible without relying on color.",
+            "type": "boolean"
           }
         }
       },

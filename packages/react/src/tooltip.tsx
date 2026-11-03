@@ -33,7 +33,7 @@ function TooltipTrigger({ tooltip, style, ...props }: TooltipTriggerProps) {
     ...props,
     interestfor: tooltip,
     "aria-describedby": joinIds(props["aria-describedby"], tooltip),
-    ...({ "data-yl-tooltip": tooltip } as object),
+    ...({ "data-ur-tooltip": tooltip } as object),
     style: { anchorName: anchorName(tooltip), ...style } as React.CSSProperties,
   });
 }

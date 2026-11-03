@@ -1,0 +1,19 @@
+{
+  "name": "combobox",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/combobox.json",
+  "files": [
+    {
+      "path": "combobox.tsx",
+      "target": "components",
+      "content": "// Installed by urushi add combobox. This wrapper belongs to your application.\nexport { Combobox, type ComboboxProps, type ComboboxOption } from \"@urushi/react/combobox\";\n",
+      "hash": "sha256-W3PX2Hy+XoDLuXtnioBDLhpg140UYPCB2Av9uNmjglE="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/combobox.css"
+  ]
+}

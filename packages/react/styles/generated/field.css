@@ -1,0 +1,162 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  [data-slot="field"] {
+    display: grid;
+    gap: var(--ur-space-2);
+    min-inline-size: 0;
+  }
+  [data-slot="field-label"] {
+    display: flex;
+    align-items: baseline;
+    gap: var(--ur-space-3);
+    font-size: var(--ur-font-size-control);
+    font-weight: 500;
+    line-height: var(--ur-font-line-height-title);
+  }
+  [data-slot="field-label"][data-hidden] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  [data-slot="field-required"] {
+    font-size: var(--ur-font-size-small);
+    font-weight: 400;
+    color: var(--ur-color-text-muted);
+  }
+  [data-slot="field-description"],
+  [data-slot="field-error"] {
+    margin: 0;
+    font-size: var(--ur-font-size-small);
+    line-height: var(--ur-font-line-height-body);
+    color: var(--ur-color-text-muted);
+    text-wrap: pretty;
+    word-break: auto-phrase;
+  }
+  [data-slot="field-label"] + [data-slot="field-description"] {
+    margin-block-start: calc(-1 * var(--ur-space-1));
+  }
+  [data-slot="field-error"] {
+    display: flex;
+    gap: var(--ur-space-2);
+    color: color-mix(in oklab, var(--ur-color-danger) 82%, var(--ur-color-text));
+  }
+  [data-slot="field-error"]::before {
+    content: "";
+    flex: none;
+    inline-size: 1em;
+    block-size: 1lh;
+    background-color: currentColor;
+    mask: /* phosphor:warning-circle */ url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M128%2C24A104%2C104%2C0%2C1%2C0%2C232%2C128%2C104.11%2C104.11%2C0%2C0%2C0%2C128%2C24Zm0%2C192a88%2C88%2C0%2C1%2C1%2C88-88A88.1%2C88.1%2C0%2C0%2C1%2C128%2C216Zm-8-80V80a8%2C8%2C0%2C0%2C1%2C16%2C0v56a8%2C8%2C0%2C0%2C1-16%2C0Zm20%2C36a12%2C12%2C0%2C1%2C1-12-12A12%2C12%2C0%2C0%2C1%2C140%2C172Z%22%2F%3E%3C%2Fsvg%3E") center / 1em no-repeat;
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+    [data-slot="field-error"]::before {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+}
+@layer urushi.components {
+  [data-slot="field-success"] { margin:0; color:var(--ur-color-text); font-size:var(--ur-font-size-small); line-height:1.6; }
+  @media (prefers-reduced-motion:no-preference) {
+    [data-slot="field-error"], [data-slot="field-success"] { animation:ur-context-enter 180ms ease-out; }
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}
+
+@layer urushi.components { [data-slot="field-success"]::before { content:""; display:inline-block; inline-size:14px; block-size:14px; vertical-align:-2px; margin-inline-end:6px; background-color:currentColor; mask:/* phosphor:check-circle */ url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M173.66%2C98.34a8%2C8%2C0%2C0%2C1%2C0%2C11.32l-56%2C56a8%2C8%2C0%2C0%2C1-11.32%2C0l-24-24a8%2C8%2C0%2C0%2C1%2C11.32-11.32L112%2C148.69l50.34-50.35A8%2C8%2C0%2C0%2C1%2C173.66%2C98.34ZM232%2C128A104%2C104%2C0%2C1%2C1%2C128%2C24%2C104.11%2C104.11%2C0%2C0%2C1%2C232%2C128Zm-16%2C0a88%2C88%2C0%2C1%2C0-88%2C88A88.1%2C88.1%2C0%2C0%2C0%2C216%2C128Z%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat; } }

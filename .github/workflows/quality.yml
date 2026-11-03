@@ -1,0 +1,106 @@
+name: Quality and distribution
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996 # v6
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - run: pnpm gen
+      - run: pnpm typecheck
+      - run: pnpm --filter studio typecheck
+      - run: pnpm test
+      - run: node scripts/workflow-smoke.ts
+      - run: pnpm lint
+      - run: pnpm proof:agent
+      - run: pnpm static
+        id: static
+      - run: pnpm test:next
+      - run: pnpm test:product
+        if: ${{ !cancelled() && steps.static.outcome == 'success' }}
+      - run: pnpm package:release
+        id: package
+        if: ${{ !cancelled() && steps.static.outcome == 'success' }}
+      - run: pnpm test:release
+        if: ${{ !cancelled() && steps.package.outcome == 'success' }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: verification-and-packages
+          path: |
+            test-results/
+            playwright-report/
+            dist/release/*.tgz
+            dist/release/manifest.json
+            evals/product/release/result.json
+          retention-days: 14
+  site:
+    name: Site (${{ matrix.browser }})
+    runs-on: ubuntu-latest
+    # The expanded gallery, theme and startup audits exceed 20 minutes on WebKit.
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996 # v6
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
+      - run: pnpm gen && pnpm proof:agent && pnpm --filter site build
+      - run: pnpm exec playwright test -c playwright.site.config.ts --project=${{ matrix.browser }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: site-${{ matrix.browser }}
+          path: test-results/site/
+          retention-days: 14
+  components:
+    name: Components (${{ matrix.browser }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996 # v6
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
+      - run: pnpm gen && pnpm static
+      - run: pnpm test:e2e --project=${{ matrix.browser }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: components-${{ matrix.browser }}
+          path: test-results/
+          retention-days: 14

@@ -18,7 +18,7 @@
 
 | | Dialog と Popover |
 |---|---|
-| **yourlib**（Button を含む） | **0.99 KB** |
+| **Urushi**（Button を含む） | **0.99 KB** |
 | Radix（shadcn の旧デフォルト） | 25.72 KB |
 | Base UI（shadcn の現デフォルト） | 42.71 KB |
 
@@ -71,9 +71,9 @@
 ### 4. コピーしても更新できる
 
 - コピーされる部品のファイルは薄い（振る舞いはパッケージ、見た目はパックにある）。
-- `yourlib.lock` に、インストールした版とハッシュを記録している。
-- `yourlib diff` で、自分が変えたファイルが分かる（実装済み）。
-- 3-way merge による `yourlib update` は Phase 2 で実装する。
+- `urushi.lock` に、インストールした版とハッシュを記録している。
+- `urushi diff` で、自分が変えたファイルが分かる（実装済み）。
+- 3-way merge による `urushi update` は Phase 2 で実装する。
 
 **利用者にとってのメリット**
 

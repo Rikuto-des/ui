@@ -1,0 +1,218 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+  :is([data-slot="toggle"], [data-slot="toggle-group-item"]) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ur-space-2);
+    box-sizing: border-box;
+    color: var(--ur-color-text-muted);
+    font-size: var(--ur-font-size-control);
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition-property: background-color, color, box-shadow;
+    transition-duration: var(--ur-motion-duration-fast);
+    transition-timing-function: var(--ur-motion-ease-out);
+  }
+  :is([data-slot="toggle-input"], [data-slot="toggle-group-input"]) {
+    appearance: none;
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    border-radius: inherit;
+    opacity: 0;
+    cursor: inherit;
+  }
+  :is([data-slot="toggle"], [data-slot="toggle-group-item"]):hover {
+    color: var(--ur-color-text);
+  }
+  :is([data-slot="toggle"], [data-slot="toggle-group-item"]):has(> input:focus-visible) {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: var(--ur-focus-ring-offset);
+  }
+  :is([data-slot="toggle"], [data-slot="toggle-group-item"]):has(> input:disabled) {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  [data-slot="toggle"] {
+    min-inline-size: var(--ur-control-md);
+    block-size: var(--ur-control-md);
+    padding-inline: var(--ur-space-3);
+    border-radius: var(--ur-radius-control);
+  }
+  [data-slot="toggle"][data-size="sm"] { min-inline-size: var(--ur-control-sm); block-size: var(--ur-control-sm); padding-inline: var(--ur-space-2); }
+  [data-slot="toggle"][data-size="lg"] { min-inline-size: var(--ur-control-lg); block-size: var(--ur-control-lg); }
+  [data-slot="toggle"]:hover {
+    background-color: var(--ur-color-ghost-hover);
+  }
+  [data-slot="toggle"]:has(> input:checked) {
+    background-color: color-mix(in oklab, var(--ur-color-text) 10%, transparent);
+    color: var(--ur-color-text);
+  }
+  [data-slot="toggle-group"] {
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  [data-slot="toggle-group-legend"] {
+    padding: 0;
+    margin-block-end: var(--ur-space-3);
+    font-size: var(--ur-font-size-control);
+    font-weight: 500;
+  }
+  [data-slot="toggle-group-legend"][data-hidden] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  [data-slot="toggle-group-items"] {
+    display: inline-flex;
+    gap: var(--ur-space-1);
+    max-inline-size: 100%;
+    padding: 3px;
+    border-radius: var(--ur-radius-control);
+    background-color: color-mix(in oklab, var(--ur-color-text) 6%, transparent);
+  }
+  [data-slot="toggle-group-item"] {
+    block-size: calc(var(--ur-control-md) - 6px);
+    padding-inline: var(--ur-space-4);
+    border-radius: calc(var(--ur-radius-control) - 3px);
+  }
+  [data-slot="toggle-group"][data-size="sm"] [data-slot="toggle-group-item"] {
+    block-size: calc(var(--ur-control-sm) - 6px);
+    padding-inline: var(--ur-space-3);
+  }
+  [data-slot="toggle-group-item"]:has(> input:checked) {
+    background-color: var(--ur-color-field);
+    color: var(--ur-color-text);
+    box-shadow: var(--ur-shadow-control);
+  }
+  @supports (corner-shape: squircle) {
+    [data-slot="toggle-group-items"] {
+      corner-shape: var(--ur-corner-shape);
+    }
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+    [data-slot="toggle"]:has(input:checked), [data-slot="toggle-group-item"]:has(input:checked) { outline: 2px solid Highlight; outline-offset: -2px; }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+
+  [data-slot="toggle-group-items"] { position:relative; isolation:isolate; }
+  [data-slot="toggle-group-indicator"] { display:none; position:absolute; pointer-events:none; border-radius:calc(var(--ur-radius-control) - 3px); background:var(--ur-color-field); box-shadow:var(--ur-shadow-control); }
+  [data-slot="toggle-group"][data-sliding] [data-slot="toggle-group-indicator"] { display:block; transition:left 260ms cubic-bezier(.22,.8,.25,1),top 260ms cubic-bezier(.22,.8,.25,1),width 260ms cubic-bezier(.22,.8,.25,1),height 260ms cubic-bezier(.22,.8,.25,1); }
+  [data-slot="toggle-group"][data-sliding] [data-slot="toggle-group-item"] { z-index:1; }
+  [data-slot="toggle-group"][data-sliding] [data-slot="toggle-group-item"]:has(> input:checked) { background:transparent; box-shadow:none; }
+  :is([data-slot="toggle-label"],[data-slot="toggle-group-label"]) { transition:scale 150ms ease; pointer-events:none; }
+  :is([data-slot="toggle"],[data-slot="toggle-group-item"]):active:not(:has(input:disabled)) > span { scale:.95; }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+  @media (prefers-reduced-motion:reduce) {
+    [data-slot="toggle-group"][data-sliding] [data-slot="toggle-group-indicator"], [data-slot="toggle-label"], [data-slot="toggle-group-label"] { transition:none; }
+  }
+  @media (forced-colors:active) {
+    [data-slot="toggle-group-indicator"] { border:1px solid Highlight; }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) {
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}

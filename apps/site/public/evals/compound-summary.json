@@ -1,0 +1,322 @@
+{
+  "version": 1,
+  "measuredAt": "2026-10-28T16:18:39.344Z",
+  "model": "gpt-6-luna",
+  "trialsPerLibrary": 1,
+  "task": "Existing-code change: nested owner picker, out-of-order HTTP search, independent preference form; all earlier project behavior preserved",
+  "calibration": {
+    "correctReference": "7/7 pass",
+    "staleResponseMutation": "detected",
+    "wrongFormEndpointMutation": "detected",
+    "correction": "Search input located by exact accessible label, accepting both text/search HTML inputs; wait for nested dialog focus before Escape. Initial raw run preserved. All samples re-evaluated with unchanged responses before repairs."
+  },
+  "commonGate": "Strict TypeScript plus 7 Chromium behavior/accessibility checks; same fixtures, model, effort and maximum one repair per library",
+  "libraries": [
+    {
+      "library": "urushi",
+      "initialPass": true,
+      "finalPass": true,
+      "modelResponses": 1,
+      "stages": [
+        {
+          "stage": "update",
+          "pass": true,
+          "checks": [
+            {
+              "name": "search selection and bulk",
+              "pass": true
+            },
+            {
+              "name": "edit save and focus",
+              "pass": true
+            },
+            {
+              "name": "failure retry and cancel",
+              "pass": true
+            },
+            {
+              "name": "accessibility and mobile",
+              "pass": true
+            },
+            {
+              "name": "async owner race and nested cancellation",
+              "pass": true
+            },
+            {
+              "name": "independent forms and whitespace validation",
+              "pass": true
+            },
+            {
+              "name": "async owner failure retry and nested accessibility",
+              "pass": true
+            }
+          ],
+          "sourceSha256": "4f3b53d82ae6dbabe750268cb9b5e21d7c7b8f19f2fc728dd247a3dd6b31648c",
+          "elapsedMs": 37794,
+          "usage": {
+            "input_tokens": 17905,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4325,
+            "reasoning_output_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "library": "base",
+      "initialPass": true,
+      "finalPass": true,
+      "modelResponses": 1,
+      "stages": [
+        {
+          "stage": "update",
+          "pass": true,
+          "checks": [
+            {
+              "name": "search selection and bulk",
+              "pass": true
+            },
+            {
+              "name": "edit save and focus",
+              "pass": true
+            },
+            {
+              "name": "failure retry and cancel",
+              "pass": true
+            },
+            {
+              "name": "accessibility and mobile",
+              "pass": true
+            },
+            {
+              "name": "async owner race and nested cancellation",
+              "pass": true
+            },
+            {
+              "name": "independent forms and whitespace validation",
+              "pass": true
+            },
+            {
+              "name": "async owner failure retry and nested accessibility",
+              "pass": true
+            }
+          ],
+          "sourceSha256": "8a728986bbdc6d5df83a89d1fb25e38e8d1883333a28fef75cdec733a96ad555",
+          "elapsedMs": 36418,
+          "usage": {
+            "input_tokens": 14699,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4196,
+            "reasoning_output_tokens": 82
+          }
+        }
+      ]
+    },
+    {
+      "library": "radix",
+      "initialPass": false,
+      "finalPass": false,
+      "modelResponses": 2,
+      "stages": [
+        {
+          "stage": "update",
+          "pass": false,
+          "checks": [
+            {
+              "name": "search selection and bulk",
+              "pass": true
+            },
+            {
+              "name": "edit save and focus",
+              "pass": true
+            },
+            {
+              "name": "failure retry and cancel",
+              "pass": false
+            },
+            {
+              "name": "accessibility and mobile",
+              "pass": true
+            },
+            {
+              "name": "async owner race and nested cancellation",
+              "pass": false
+            },
+            {
+              "name": "independent forms and whitespace validation",
+              "pass": true
+            },
+            {
+              "name": "async owner failure retry and nested accessibility",
+              "pass": false
+            }
+          ],
+          "sourceSha256": "69615b2cbd1dc815f71fbcaf8c32bc482da47e5072e5140b17e12b6211b4037b",
+          "elapsedMs": 32108,
+          "usage": {
+            "input_tokens": 11891,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3986,
+            "reasoning_output_tokens": 0
+          }
+        },
+        {
+          "stage": "update-repair",
+          "pass": false,
+          "checks": [
+            {
+              "name": "search selection and bulk",
+              "pass": true
+            },
+            {
+              "name": "edit save and focus",
+              "pass": true
+            },
+            {
+              "name": "failure retry and cancel",
+              "pass": false
+            },
+            {
+              "name": "accessibility and mobile",
+              "pass": true
+            },
+            {
+              "name": "async owner race and nested cancellation",
+              "pass": false
+            },
+            {
+              "name": "independent forms and whitespace validation",
+              "pass": true
+            },
+            {
+              "name": "async owner failure retry and nested accessibility",
+              "pass": false
+            }
+          ],
+          "sourceSha256": "8abae8e11f8c02b41a38c74fc0eddf78ea6e511d52d8fb6c3b51df6632d315ac",
+          "elapsedMs": 29834,
+          "usage": {
+            "input_tokens": 15468,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4037,
+            "reasoning_output_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "library": "shadcn",
+      "initialPass": false,
+      "finalPass": false,
+      "modelResponses": 2,
+      "stages": [
+        {
+          "stage": "update",
+          "pass": false,
+          "checks": [
+            {
+              "name": "search selection and bulk",
+              "pass": true
+            },
+            {
+              "name": "edit save and focus",
+              "pass": true
+            },
+            {
+              "name": "failure retry and cancel",
+              "pass": true
+            },
+            {
+              "name": "accessibility and mobile",
+              "pass": false
+            },
+            {
+              "name": "async owner race and nested cancellation",
+              "pass": false
+            },
+            {
+              "name": "independent forms and whitespace validation",
+              "pass": true
+            },
+            {
+              "name": "async owner failure retry and nested accessibility",
+              "pass": true
+            }
+          ],
+          "sourceSha256": "63fb9a5894d1a7b6fac3e520f142c6b1d5aa5fe7931e8820f86c2c9340060438",
+          "elapsedMs": 33521,
+          "usage": {
+            "input_tokens": 12546,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4959,
+            "reasoning_output_tokens": 0
+          }
+        },
+        {
+          "stage": "update-repair",
+          "pass": false,
+          "checks": [
+            {
+              "name": "search selection and bulk",
+              "pass": true
+            },
+            {
+              "name": "edit save and focus",
+              "pass": true
+            },
+            {
+              "name": "failure retry and cancel",
+              "pass": true
+            },
+            {
+              "name": "accessibility and mobile",
+              "pass": false
+            },
+            {
+              "name": "async owner race and nested cancellation",
+              "pass": false
+            },
+            {
+              "name": "independent forms and whitespace validation",
+              "pass": true
+            },
+            {
+              "name": "async owner failure retry and nested accessibility",
+              "pass": true
+            }
+          ],
+          "sourceSha256": "c9298fb7758d6bbd4aeb9fd75ce9b6eb28bf0ab89ca2f3e75b054b552bf4a6f6",
+          "elapsedMs": 40843,
+          "usage": {
+            "input_tokens": 15503,
+            "cached_input_tokens": 4864,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4992,
+            "reasoning_output_tokens": 0
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "One trial; no confidence interval or general rank",
+    "Starting files are each library’s actual prior trial 1 model response, not identical code",
+    "Not a dependency version update",
+    "No physical device or screen-reader outcome",
+    "No AI response was manually edited"
+  ],
+  "externalRequestBudget": {
+    "approvedMaximum": 64,
+    "priorAttempts": 54,
+    "newCompoundRequests": 6,
+    "newWorkflowRequests": 4,
+    "totalAttempts": 64,
+    "remaining": 0,
+    "solMissing": "No further sol samples; previous rate-limit gaps remain"
+  }
+}

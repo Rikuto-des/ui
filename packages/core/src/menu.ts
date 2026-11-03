@@ -28,8 +28,8 @@ export function installMenus(doc: Document = document): () => void {
     if (!(menu instanceof HTMLElement) || menu.dataset.slot !== "menu") return;
     if ((event as ToggleEvent).newState !== "open") return;
     const list = items(menu);
-    focusItem(list, menu.dataset.ylFocus === "last" ? list.length - 1 : 0);
-    delete menu.dataset.ylFocus;
+    focusItem(list, menu.dataset.urFocus === "last" ? list.length - 1 : 0);
+    delete menu.dataset.urFocus;
   };
 
   const onTriggerKey = (event: KeyboardEvent, trigger: HTMLElement) => {
@@ -41,7 +41,7 @@ export function installMenus(doc: Document = document): () => void {
       const list = items(menu);
       return focusItem(list, last ? list.length - 1 : 0);
     }
-    if (last) menu.dataset.ylFocus = "last";
+    if (last) menu.dataset.urFocus = "last";
     // `source` makes the trigger the invoker, so focus returns to it on close.
     menu.showPopover({ source: trigger } as ShowPopoverOptions);
   };

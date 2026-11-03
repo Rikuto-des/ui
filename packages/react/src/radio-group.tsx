@@ -35,7 +35,7 @@ function RadioGroupItem({ value, description, children, className, style, ...inp
     </label>
   );
 }
-RadioGroupItem.ylPart = "radio-group-item";
+RadioGroupItem.urPart = "radio-group-item";
 
 /**
  * A fieldset of native radios: arrow keys and form submission come from the
@@ -46,6 +46,7 @@ function RadioGroupRoot({
   legend,
   defaultValue,
   orientation = radioGroupDefaults.orientation,
+  variant = radioGroupDefaults.variant,
   required = radioGroupDefaults.required,
   children,
   ...rest
@@ -60,7 +61,7 @@ function RadioGroupRoot({
       : child,
   );
   return (
-    <fieldset {...rest} data-slot={radioGroupSlot} data-orientation={orientation}>
+    <fieldset {...rest} data-slot={radioGroupSlot} data-orientation={orientation} data-variant={variant}>
       <legend data-slot="radio-group-legend">{legend}</legend>
       <div data-slot="radio-group-items">{items}</div>
     </fieldset>

@@ -1,4 +1,4 @@
-import { defineContract, z } from "@yourlib/contract";
+import { defineContract, z } from "@urushi/contract";
 
 export default defineContract({
   name: "toast",
@@ -21,7 +21,7 @@ export default defineContract({
       overrides: [],
     },
   ],
-  states: ["closing"],
+  states: ["closing", "loading"],
   a11y: {
     rules: [
       "Messages are short and name the result in the same words as the action (保存 → 保存しました).",
@@ -29,5 +29,15 @@ export default defineContract({
     ],
   },
   tokens: ["color.surface-overlay", "shadow.overlay", "radius.overlay", "color.ok", "color.danger"],
-  examples: [{ title: "After saving", code: `toast("保存しました", { tone: "ok" })` }],
+  examples: [
+    { title: "After saving", code: `toast("保存しました", { tone: "ok" })` },
+    { title: "Follow an async operation", code: `toast.promise(saveProject(), {
+  loading: "保存しています…",
+  success: "保存しました",
+  error: "保存できませんでした",
+})` },
+    { title: "Update progress in place", code: `const id = toast("書き出しています…", { loading: true, progress: 0 })
+toast.update(id, { progress: 50 })
+toast.update(id, { message: "書き出しました", loading: false, progress: undefined, tone: "ok" })` },
+  ],
 });

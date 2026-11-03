@@ -35,7 +35,7 @@ await page.locator("#toast .g-stage").scrollIntoViewIfNeeded();
 await page.getByTestId("toast-save").click();
 await page.getByTestId("toast-error").click();
 await page.getByTestId("open-invite").click();
-await page.evaluate(() => (window as unknown as { yourlibToast: (m: string) => void }).yourlibToast("ダイアログの中にも出ます"));
+await page.evaluate(() => (window as unknown as { urushiToast: (m: string) => void }).urushiToast("ダイアログの中にも出ます"));
 await page.waitForTimeout(700);
 await page.screenshot({ path: `${out}/dialog-toast-lucent-dark.png` });
 await browser.close();

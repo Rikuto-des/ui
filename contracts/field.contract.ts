@@ -1,4 +1,4 @@
-import { defineContract, node, z } from "@yourlib/contract";
+import { defineContract, node, z } from "@urushi/contract";
 
 export default defineContract({
   name: "field",
@@ -21,6 +21,7 @@ export default defineContract({
         id: z.string().min(1).describe("Required. Becomes the control's id; the label points at it."),
         label: node("Required visible label."),
         description: node("Hint shown under the label, linked with aria-describedby.").optional(),
+        success: node("Confirmation text, hidden when error is present; linked to the control.").optional(),
         error: node("Error message; marks the control aria-invalid and links the message.").optional(),
         required: z.boolean().default(false).describe("Marks the control required and shows a visual marker."),
         hideLabel: z.boolean().default(false).describe("Keeps the label for screen readers only. Use sparingly."),

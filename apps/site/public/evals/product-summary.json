@@ -1,0 +1,200 @@
+{
+  "date": "2026-10-28",
+  "completeModel": "gpt-6-luna",
+  "partialModel": "gpt-6.1-sol",
+  "trials": 2,
+  "complete": [
+    {
+      "id": "urushi",
+      "label": "Urushi",
+      "n": 2,
+      "generate": 2,
+      "afterRepair": 2,
+      "update": 2,
+      "afterUpdateRepair": 2,
+      "sizes": [
+        {
+          "sample": "urushi-dialog-1",
+          "sourceSha256": "e2d1d474926a60b739afe96f4c3db3edf21a3f36b6bc42b41737a01007a3651e",
+          "pass": true,
+          "jsGzip": 77444,
+          "cssGzip": 3076,
+          "commonCssGzip": 12097,
+          "totalGzip": 92617,
+          "fullCssGzip": 13953,
+          "fullTotalGzip": 103464
+        },
+        {
+          "sample": "urushi-dialog-2",
+          "sourceSha256": "5940e60d8ed4a407a8d71341671d004563f673e0e80efd90c2b131cc92c604d7",
+          "pass": true,
+          "jsGzip": 77356,
+          "cssGzip": 3076,
+          "commonCssGzip": 12097,
+          "totalGzip": 92529,
+          "fullCssGzip": 13953,
+          "fullTotalGzip": 103367
+        }
+      ]
+    },
+    {
+      "id": "base",
+      "label": "Base UI",
+      "n": 2,
+      "generate": 2,
+      "afterRepair": 2,
+      "update": 2,
+      "afterUpdateRepair": 2,
+      "sizes": [
+        {
+          "sample": "base-dialog-1",
+          "sourceSha256": "45ae47a7d4b6d975f9f523ad5e5c6f6f194e20720e38be9fc50f5898397dbece",
+          "pass": true,
+          "jsGzip": 94293,
+          "cssGzip": 0,
+          "commonCssGzip": 12097,
+          "totalGzip": 106390,
+          "fullCssGzip": 0,
+          "fullTotalGzip": 106390
+        },
+        {
+          "sample": "base-dialog-2",
+          "sourceSha256": "e96ce82bab03439a21b53262250a95c3d7233acf045a5ff9abf8e8ba33787847",
+          "pass": true,
+          "jsGzip": 94116,
+          "cssGzip": 0,
+          "commonCssGzip": 12097,
+          "totalGzip": 106213,
+          "fullCssGzip": 0,
+          "fullTotalGzip": 106213
+        }
+      ]
+    },
+    {
+      "id": "radix",
+      "label": "Radix UI",
+      "n": 2,
+      "generate": 0,
+      "afterRepair": 0,
+      "update": 0,
+      "afterUpdateRepair": 1,
+      "sizes": [
+        {
+          "sample": "radix-dialog-1",
+          "sourceSha256": "b41f790d3ac28ff269510a398e89a44e38758e38e0fbcbb95e0377857dece222",
+          "pass": false,
+          "jsGzip": 84994,
+          "cssGzip": 0,
+          "commonCssGzip": 12097,
+          "totalGzip": 97091,
+          "fullCssGzip": 0,
+          "fullTotalGzip": 97091
+        },
+        {
+          "sample": "radix-dialog-2",
+          "sourceSha256": "bfac5e24648bf9988f665daf54f172ae568c1ab834d232b2c416d47dbc8855d5",
+          "pass": true,
+          "jsGzip": 85045,
+          "cssGzip": 0,
+          "commonCssGzip": 12097,
+          "totalGzip": 97142,
+          "fullCssGzip": 0,
+          "fullTotalGzip": 97142
+        }
+      ]
+    },
+    {
+      "id": "shadcn",
+      "label": "shadcn/ui",
+      "n": 2,
+      "generate": 1,
+      "afterRepair": 1,
+      "update": 1,
+      "afterUpdateRepair": 1,
+      "sizes": [
+        {
+          "sample": "shadcn-dialog-1",
+          "sourceSha256": "d79a5835cc0a888bb1fac4190cddd348bd2fc80ab2d7625203f368e53d8c2951",
+          "pass": false,
+          "jsGzip": 99698,
+          "cssGzip": 0,
+          "commonCssGzip": 12097,
+          "totalGzip": 111795,
+          "fullCssGzip": 0,
+          "fullTotalGzip": 111795
+        },
+        {
+          "sample": "shadcn-dialog-2",
+          "sourceSha256": "a5c901e31d359e882e97f7c9d50a4d70ad1d6ddf7ac9df71c91a9c6283a8b9af",
+          "pass": true,
+          "jsGzip": 99400,
+          "cssGzip": 0,
+          "commonCssGzip": 12097,
+          "totalGzip": 111497,
+          "fullCssGzip": 0,
+          "fullTotalGzip": 111497
+        }
+      ]
+    }
+  ],
+  "partial": [
+    {
+      "id": "urushi",
+      "label": "Urushi",
+      "planned": 2,
+      "responses": 1,
+      "pass": 1,
+      "missing": 1
+    },
+    {
+      "id": "base",
+      "label": "Base UI",
+      "planned": 2,
+      "responses": 2,
+      "pass": 2,
+      "missing": 0
+    },
+    {
+      "id": "radix",
+      "label": "Radix UI",
+      "planned": 2,
+      "responses": 1,
+      "pass": 1,
+      "missing": 1
+    },
+    {
+      "id": "shadcn",
+      "label": "shadcn/ui",
+      "planned": 2,
+      "responses": 1,
+      "pass": 0,
+      "missing": 1
+    }
+  ],
+  "modelCalls": [
+    {
+      "run": "product-sol-v1",
+      "attempts": 32,
+      "responses": 10,
+      "inputTokens": 135380,
+      "outputTokens": 33881
+    },
+    {
+      "run": "product-luna-v1",
+      "attempts": 22,
+      "responses": 22,
+      "inputTokens": 269505,
+      "outputTokens": 62802
+    }
+  ],
+  "commonCssSha256": "29f868b7a80c82daa92e3852c63beec63cdd2882776fa809529bfa230ee731d1",
+  "notes": [
+    "One project-management task, four libraries, two trials, generation then specification update; at most one repair per phase. This is not another dependency-version update.",
+    "Common gates: TypeScript, assigned primitive, search/filter/selection/bulk, save/focus, error/retry/cancel, automated axe, 390px page overflow. Chromium only for comparison. Urushi-specific lint is recorded separately, not included in common pass.",
+    "gpt-6.1-sol stopped yielding responses with HTTP 429. Missing responses are infrastructure-unavailable, not implementation failures. Initial selector/animation false failures were corrected by rescoring saved code in a new directory; original repair prompts are not comparable, so repaired sol results are excluded from primary comparison.",
+    "Both models were rescored with the final corrected harness; inference responses remain unchanged. Urushi and Base UI tie on all four generated/updated screens. Two trials of one task do not establish general superiority.",
+    "CSS comparison changes only Urushi's full CSS import to public dialog.css; complete runtime, full Graphite tokens, React and identical common CSS are included. No generated application source is edited. All four Urushi screens retain their passing gates. Other libraries keep original build inputs; failing final applications are labelled.",
+    "Recorded Radix failure: focus after Escape; shadcn failure: mobile document overflow. These are failures of these generated screens, not claims that the libraries cannot implement those behaviors.",
+    "Assistive-technology speech and actual phone touch verification remain unverified; automated axe and browser engines are different evidence."
+  ]
+}

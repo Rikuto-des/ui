@@ -1,0 +1,19 @@
+{
+  "name": "data-table",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/data-table.json",
+  "files": [
+    {
+      "path": "data-table.tsx",
+      "target": "components",
+      "content": "// Installed by urushi add data-table. This wrapper belongs to your application.\nexport { DataTable, type DataTableProps, type DataTableColumn } from \"@urushi/react/data-table\";\n",
+      "hash": "sha256-NUAgc2Y5yvuoGBGhY/7tdTY37tnMKZKdSxIbgShU+cw="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/data-table.css"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "steps",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/steps.json",
+  "files": [
+    {
+      "path": "steps.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add steps`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Steps page of the design system.\nexport { Steps, type StepsProps } from \"@urushi/react/steps\";\n",
+      "hash": "sha256-bzy7NCnhCjZfapXBAvfJ8A8vc3nu6QWhujfWDBRq+cY="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/steps.css"
+  ]
+}

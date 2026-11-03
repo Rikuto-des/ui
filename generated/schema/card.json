@@ -47,6 +47,11 @@
               "h4"
             ]
           },
+          "selected": {
+            "default": false,
+            "description": "Selection styling. Provide a real button, checkbox or radio to change selection.",
+            "type": "boolean"
+          },
           "padding": {
             "default": "md",
             "type": "string",

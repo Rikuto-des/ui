@@ -26,6 +26,7 @@ Wraps one control (its only child) and gives it id, aria-describedby, aria-inval
 | `id` | `string` | **required** | Required. Becomes the control's id; the label points at it. |
 | `label` | `React.ReactNode` | **required** | Required visible label. |
 | `description` | `React.ReactNode` | — | Hint shown under the label, linked with aria-describedby. |
+| `success` | `React.ReactNode` | — | Confirmation text, hidden when error is present; linked to the control. |
 | `error` | `React.ReactNode` | — | Error message; marks the control aria-invalid and links the message. |
 | `required` | `boolean` | `false` | Marks the control required and shows a visual marker. |
 | `hideLabel` | `boolean` | `false` | Keeps the label for screen readers only. Use sparingly. |

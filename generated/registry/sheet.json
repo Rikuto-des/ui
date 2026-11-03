@@ -1,0 +1,19 @@
+{
+  "name": "sheet",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/sheet.json",
+  "files": [
+    {
+      "path": "sheet.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add sheet`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Sheet page of the design system.\nexport { Sheet, type SheetProps } from \"@urushi/react/sheet\";\n",
+      "hash": "sha256-Szm5nXjiTYyIl+4PW6wMmLgPd5jE5SjpU+g1IbeeYjk="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/sheet.css"
+  ]
+}

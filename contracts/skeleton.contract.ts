@@ -1,4 +1,4 @@
-import { defineContract, z } from "@yourlib/contract";
+import { defineContract, z } from "@urushi/contract";
 
 export default defineContract({
   name: "skeleton",

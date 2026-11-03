@@ -1,0 +1,19 @@
+{
+  "name": "navigation-menu",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/navigation-menu.json",
+  "files": [
+    {
+      "path": "navigation-menu.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add navigation-menu`. Visuals come from the selected pack.\nexport { NavigationMenu, type NavigationMenuProps, type NavigationMenuGroupProps, type NavigationMenuLinkProps } from \"@urushi/react/navigation-menu\";\n",
+      "hash": "sha256-nc3z86lpe1roXM/ukdMumgxWKk9GQjL2ceG02m9VwGs="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/navigation-menu.css"
+  ]
+}

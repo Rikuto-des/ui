@@ -1,10 +1,11 @@
-import { defineContract, idref, z } from "@yourlib/contract";
+import { defineContract, idref, z } from "@urushi/contract";
 import { buttonProps } from "./button.contract.ts";
 
 const { variant, size } = buttonProps;
 
 export default defineContract({
   name: "tooltip",
+  styleDependencies: ["button"],
   tier: 2,
   summary: "A short description shown on hover and keyboard focus: popover=\"hint\" opened through interestfor.",
   use: ["Naming or describing an icon button", "A keyboard shortcut hint"],
@@ -15,7 +16,7 @@ export default defineContract({
   rendering: "server",
   platform: {
     requires: ["popover=hint", "anchor-positioning"],
-    enhances: [{ feature: "interestfor", fallback: "@yourlib/core tooltip behavior (loaded by <YourlibRuntime />)" }],
+    enhances: [{ feature: "interestfor", fallback: "@urushi/core tooltip behavior (loaded by <UrushiRuntime />)" }],
   },
   parts: [
     {

@@ -1,19 +1,19 @@
 {
   "name": "select",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "contract": "schema/select.json",
   "files": [
     {
       "path": "select.tsx",
       "target": "components",
-      "content": "// Installed by `yourlib add select`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Select page of the design system.\nexport { Select, type SelectProps } from \"@yourlib/react/select\";\n",
-      "hash": "sha256-qUJcEZoF9ND15YG/YiV5ZhkrS7k16Hp52smBpRksBMI="
+      "content": "// Installed by `urushi add select`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Select page of the design system.\nexport { Select, type SelectProps } from \"@urushi/react/select\";\n",
+      "hash": "sha256-hnRI5Jg1XOJTVY0XwgVYNP8ClOP1CyrmGOqMYRHQrgM="
     }
   ],
   "dependencies": {
-    "@yourlib/react": "^0.1.0"
+    "@urushi/react": "0.1.0-beta.1"
   },
   "css": [
-    "@yourlib/react/styles.css"
+    "@urushi/react/styles/select.css"
   ]
 }

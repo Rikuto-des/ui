@@ -1,0 +1,1019 @@
+{
+  "date": "2026-10-29",
+  "browserTests": [
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "date-input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "otp-input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "button-group: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "link: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "card: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "breadcrumb: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "sidebar: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "menu: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "alert-dialog: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "hover-card: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/catalog-preview.spec.ts",
+      "title": "every preview fits at 320px and desktop in both packs and themes, with no axe violations",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "tooltip: complete interaction and recovery",
+      "passed": true,
+      "log": "site-final.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "date-picker: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "data-table: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "command: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor catalog supports sizing, search, selection and saved-state silhouettes",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "date-input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "otp-input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "button-group: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "link: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "card: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "breadcrumb: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "sidebar: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "menu: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "alert-dialog: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — graphite/light",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "hover-card: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "tooltip: complete interaction and recovery",
+      "passed": true,
+      "log": "site-final.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "date-picker: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "data-table: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "command: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/catalog-preview.spec.ts",
+      "title": "every preview fits at 320px and desktop in both packs and themes, with no axe violations",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor catalog supports sizing, search, selection and saved-state silhouettes",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "date-input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "otp-input: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "button-group: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "link: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "card: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "breadcrumb: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "sidebar: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "menu: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "alert-dialog: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "hover-card: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "tooltip: complete interaction and recovery",
+      "passed": true,
+      "log": "site-final.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "date-picker: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "data-table: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "command: complete interaction and recovery",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — graphite/dark",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/catalog-preview.spec.ts",
+      "title": "every preview fits at 320px and desktop in both packs and themes, with no axe violations",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — lucent/light",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — graphite/light",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — graphite/light",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — lucent/dark",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "forced colors preserve selection marks and keyboard focus",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "reduced motion removes switch travel and spinner rotation; normal response has no delayed check",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor catalog supports sizing, search, selection and saved-state silhouettes",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — graphite/dark",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — graphite/dark",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — lucent/light",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — lucent/light",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — lucent/dark",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "forced colors preserve selection marks and keyboard focus",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "reduced motion removes switch travel and spinner rotation; normal response has no delayed check",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "all 52 detail previews: accessibility and reflow — lucent/dark",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "forced colors preserve selection marks and keyboard focus",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/design-audit.spec.ts",
+      "title": "reduced motion removes switch travel and spinner rotation; normal response has no delayed check",
+      "passed": true,
+      "log": "site-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "changed workflows fit narrow screens and remain accessible after interaction",
+      "passed": true,
+      "log": "site-final.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "changed workflows fit narrow screens and remain accessible after interaction",
+      "passed": true,
+      "log": "site-final.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/all-components-ux.spec.ts",
+      "title": "changed workflows fit narrow screens and remain accessible after interaction",
+      "passed": true,
+      "log": "site-final.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 320px in dark mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 320px in dark mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 320px in light mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 320px in light mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 1280px in dark mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 1280px in dark mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 1280px in light mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 1280px in light mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 320px in dark mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 320px in light mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 1280px in dark mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/site/icons.spec.ts",
+      "title": "Phosphor gallery is accessible at 1280px in light mode",
+      "passed": true,
+      "log": "icons-final.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "presets validate calendar dates and bounds, and restore trigger focus",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "command explores with arrows, matches all words and skips disabled commands",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "row expansion follows stable IDs across sorting and pagination",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "context motion is finite and respects reduced motion",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "textarea follows edits, React updates and native reset without eating composition",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "selected files are previewed and removing one changes real FormData and focus",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "card radios remain native and disclosure summaries retain entered content",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "runtime cleanup preserves native controls and hides stale feedback",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "progress shows true native values, checkpoint completion and a moving fill",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "new feedback fits a narrow screen and has no axe violations",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "selected segment moves through intermediate positions and respects reduced motion",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "segmented selection follows real geometry, keyboard, reset and RTL",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "server-rendered enhanced controls remain usable with JavaScript disabled",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "checkbox actually draws a stroke over time and retains native form behavior",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "slider marks update controlled React values; arrows and external updates agree",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "native reset and disabled fieldsets synchronize slider feedback and marks",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "reduced motion, RTL keyboard navigation and runtime cleanup remain usable",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "enhanced controls have no axe violations at a narrow viewport",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "chromium",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "carousel supports rapid navigation, direct positions, and keeps focus at an edge",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "presets validate calendar dates and bounds, and restore trigger focus",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "command explores with arrows, matches all words and skips disabled commands",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "context motion is finite and respects reduced motion",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "row expansion follows stable IDs across sorting and pagination",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "textarea follows edits, React updates and native reset without eating composition",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "selected files are previewed and removing one changes real FormData and focus",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "card radios remain native and disclosure summaries retain entered content",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "progress shows true native values, checkpoint completion and a moving fill",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "runtime cleanup preserves native controls and hides stale feedback",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "selected segment moves through intermediate positions and respects reduced motion",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "segmented selection follows real geometry, keyboard, reset and RTL",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "new feedback fits a narrow screen and has no axe violations",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "server-rendered enhanced controls remain usable with JavaScript disabled",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "slider marks update controlled React values; arrows and external updates agree",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "checkbox actually draws a stroke over time and retains native form behavior",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "native reset and disabled fieldsets synchronize slider feedback and marks",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "reduced motion, RTL keyboard navigation and runtime cleanup remain usable",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "enhanced controls have no axe violations at a narrow viewport",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "firefox",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "carousel supports rapid navigation, direct positions, and keeps focus at an edge",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "presets validate calendar dates and bounds, and restore trigger focus",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "command explores with arrows, matches all words and skips disabled commands",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "row expansion follows stable IDs across sorting and pagination",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/context-feedback.spec.ts",
+      "title": "context motion is finite and respects reduced motion",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "textarea follows edits, React updates and native reset without eating composition",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "selected files are previewed and removing one changes real FormData and focus",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "card radios remain native and disclosure summaries retain entered content",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "runtime cleanup preserves native controls and hides stale feedback",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "progress shows true native values, checkpoint completion and a moving fill",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "selected segment moves through intermediate positions and respects reduced motion",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "segmented selection follows real geometry, keyboard, reset and RTL",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "new feedback fits a narrow screen and has no axe violations",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/remaining-ux.spec.ts",
+      "title": "server-rendered enhanced controls remain usable with JavaScript disabled",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "slider marks update controlled React values; arrows and external updates agree",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "checkbox actually draws a stroke over time and retains native form behavior",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "native reset and disabled fieldsets synchronize slider feedback and marks",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "reduced motion, RTL keyboard navigation and runtime cleanup remain usable",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "carousel supports rapid navigation, direct positions, and keeps focus at an edge",
+      "passed": true,
+      "log": "core-recheck.log"
+    },
+    {
+      "browser": "webkit",
+      "file": "tests/e2e/tactile-ux.spec.ts",
+      "title": "enhanced controls have no axe violations at a narrow viewport",
+      "passed": true,
+      "log": "core-recheck.log"
+    }
+  ],
+  "browserSummary": {
+    "unique": 141,
+    "passed": 141,
+    "site": 84,
+    "components": 57
+  },
+  "unitSummary": {
+    "unique": 291,
+    "initialPassed": 290,
+    "initialFailed": 1,
+    "targetedRecheckPassed": 3,
+    "unresolved": 0
+  },
+  "manual": {
+    "environment": "Codex in-app browser; desktop and mobile-width viewports",
+    "physicalDevice": false,
+    "scenarios": [
+      "Icons: search, size, select, save fill toggle",
+      "FileInput: sample selection and removal",
+      "Tooltip: save and mute toggles, grouped mobile controls"
+    ]
+  },
+  "release": {
+    "typescriptCompiled": true,
+    "tarballsRebuilt": false,
+    "published": false
+  }
+}

@@ -8,3 +8,29 @@ playwright-report/
 .next/
 *.tsbuildinfo
 next-env.d.ts
+apps/site/out/
+
+# Local example application data
+apps/studio/data/*
+!apps/studio/data/.gitkeep
+
+# Evaluation outputs stay on the machine that ran them; reports, scripts and their inputs are tracked.
+evals/*/runs/
+evals/*/sources/
+evals/*/send-review/
+evals/*/release/
+evals/*/review*/*
+!evals/*/review*/README.md
+evals/design-review/*/*
+!evals/design-review/*/README.md
+evals/lifecycle/evals/
+evals/**/node_modules
+evals/**/*.png
+evals/**/*.mp4
+evals/**/*.zip
+evals/**/*.gz
+evals/**/*results.json
+evals/**/*result.json
+evals/**/*current.json
+evals/**/evidence-manifest.json
+evals/**/verification.json

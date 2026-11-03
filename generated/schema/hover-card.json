@@ -1,0 +1,128 @@
+{
+  "name": "hover-card",
+  "tier": 2,
+  "summary": "A preview card for a link, shown on hover and keyboard focus (interestfor).",
+  "use": [
+    "A person or page preview behind a link"
+  ],
+  "avoid": [
+    {
+      "case": "Information needed to act",
+      "instead": "popover"
+    },
+    {
+      "case": "A short label",
+      "instead": "tooltip"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "popover",
+      "anchor-positioning"
+    ],
+    "enhances": [
+      {
+        "feature": "interestfor",
+        "fallback": "@urushi/core hover-card behavior (loaded by <UrushiRuntime />)"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "HoverCard",
+      "slot": "hover-card",
+      "element": "div",
+      "description": "The card: an auto popover anchored to its link.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. The trigger references it."
+          },
+          "side": {
+            "default": "bottom",
+            "type": "string",
+            "enum": [
+              "top",
+              "bottom",
+              "start",
+              "end"
+            ]
+          },
+          "align": {
+            "default": "start",
+            "type": "string",
+            "enum": [
+              "start",
+              "center",
+              "end"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "HoverCard.Trigger",
+      "slot": "hover-card-trigger",
+      "element": "a",
+      "description": "The link that shows the card on hover and focus; it still navigates when clicked.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "hoverCard": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the hover card.",
+            "x-idref": "hover-card"
+          },
+          "href": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required link target."
+          }
+        },
+        "required": [
+          "hoverCard",
+          "href"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "open"
+  ],
+  "a11y": {
+    "keyboard": {
+      "Tab": "focusing the link shows the card",
+      "Escape": "hides it"
+    },
+    "rules": [
+      "Everything in the card is also reachable through the link's page."
+    ]
+  },
+  "tokens": [
+    "color.surface-overlay",
+    "shadow.overlay",
+    "radius.overlay"
+  ],
+  "examples": [
+    {
+      "title": "Person",
+      "code": "<HoverCard.Trigger hoverCard=\"sato\" href=\"/people/sato\">佐藤 美咲</HoverCard.Trigger>\n<HoverCard id=\"sato\">…</HoverCard>"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "runId": 41026730572,
+    "sourceCommit": "4d69a9247879ba59855c06194f7f7aa5954c3558",
+    "conclusion": "failure",
+    "findings": [
+      "Studio validation deferred focus could interrupt newer owner input in Firefox and WebKit.",
+      "Forced-colors input test called focus before the demo was enabled."
+    ],
+    "resolution": "Synchronous layout validation focus plus a delayed-frame regression; enabled/focused assertions before inspecting focus styles."
+  },
+  {
+    "runId": 41029504698,
+    "sourceCommit": "b41c1808b1aa37870a6e0fce7e82b1beaefabc65",
+    "conclusion": "failure",
+    "findings": [
+      "One WebKit site test sent Enter to the Alert demo before the disabled loading boundary became ready."
+    ],
+    "resolution": "Await each demo readiness in remaining UX tests; audit initial keyboard actions; add an Alert delayed-chunk first-input regression."
+  }
+]

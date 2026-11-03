@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "sources": [
+    "App.tsx"
+  ],
+  "build": [
+    "node",
+    "build.ts"
+  ],
+  "timeoutMs": 300000,
+  "checks": [
+    {
+      "name": "project-edit",
+      "url": "http://127.0.0.1:4492",
+      "scenario": "scenario.json"
+    }
+  ],
+  "repair": {
+    "command": [
+      "node",
+      "../replay-adapter.mjs"
+    ],
+    "maxAttempts": 2
+  }
+}

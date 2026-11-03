@@ -1,0 +1,84 @@
+{
+  "name": "breadcrumb",
+  "tier": 1,
+  "summary": "Where the page sits in the site: a nav with an ordered list of links.",
+  "use": [
+    "Pages more than two levels deep"
+  ],
+  "avoid": [
+    {
+      "case": "Steps of a process",
+      "instead": "steps"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Breadcrumb",
+      "slot": "breadcrumb",
+      "element": "nav",
+      "description": "The nav landmark and its list.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "label": {
+            "default": "パンくずリスト",
+            "description": "Names the nav landmark.",
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
+      "jsx": "Breadcrumb.Item",
+      "slot": "breadcrumb-item",
+      "element": "li",
+      "description": "One level: a link, or the current page (aria-current=\"page\").",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "href": {
+            "description": "Link target; leave out for the current page.",
+            "type": "string"
+          },
+          "current": {
+            "default": false,
+            "type": "boolean"
+          }
+        }
+      },
+      "overrides": []
+    }
+  ],
+  "states": [
+    "current"
+  ],
+  "a11y": {
+    "rules": [
+      "The last item is the current page.",
+      "Separators are drawn by CSS and not read."
+    ]
+  },
+  "tokens": [
+    "color.text-muted",
+    "color.link"
+  ],
+  "examples": [
+    {
+      "title": "Settings",
+      "code": "<Breadcrumb>\n  <Breadcrumb.Item href=\"/\">ホーム</Breadcrumb.Item>\n  <Breadcrumb.Item href=\"/settings\">設定</Breadcrumb.Item>\n  <Breadcrumb.Item current>通知</Breadcrumb.Item>\n</Breadcrumb>"
+    }
+  ]
+}

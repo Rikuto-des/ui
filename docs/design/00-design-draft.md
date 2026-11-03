@@ -1,6 +1,6 @@
 # 設計ドラフト v1（2026-10-22）
 
-> 議論用のたたき台。名前は未定なので、本文では仮に **`@yourlib`** / `yourlib` と書く。
+> 議論用のたたき台。名前は未定なので、本文では仮に **`@urushi`** / `urushi` と書く。
 > 前提にしている調査は [../research/00-summary.md](../research/00-summary.md)。
 
 ## 決定済みの方針
@@ -69,7 +69,7 @@
 | 実行時 | peerDependencies は `react` と `react-dom`（19 以上）だけ。それ以外はゼロ |
 | ビルド時 | zod（契約）、DTCG トークンの変換、TypeScript |
 | CSS | 素の CSS（入れ子、`@layer`、カスタムプロパティ）だけで書く。**Tailwind は不要** |
-| Tailwind | 任意で連携できるようにする。`@yourlib/tailwind` が `@theme` にトークンを対応させるので、アプリのレイアウトには Tailwind を使える |
+| Tailwind | 任意で連携できるようにする。`@urushi/tailwind` が `@theme` にトークンを対応させるので、アプリのレイアウトには Tailwind を使える |
 | アイコン | 同梱しない。部品は `icon` のスロットで受け取る |
 
 ## 4. 対応ブラウザ
@@ -113,14 +113,14 @@
 
 ### パッケージの構成
 
-- **`@yourlib/core`**: 素の TS で書いた小さな振る舞いの集まり。
+- **`@urushi/core`**: 素の TS で書いた小さな振る舞いの集まり。
   - roving focus（矢印キーでフォーカスを移す）
   - タイプアヘッド（文字を打つとその項目に飛ぶ）
   - 閉じる順番の管理（Esc で一番上のものから閉じる）
   - トーストの順番待ち
   - スクリーンリーダーへの読み上げ通知（live announcer）
   - フレームワークに依存せず、React 以外や htmx からも使える。
-- **`@yourlib/react`**
+- **`@urushi/react`**
   - 部品本体。`data-slot` と状態属性（`data-state`、`data-disabled` など）の仕様は自分たちで決める。
   - 組み合わせ方は compound components と `render` prop。
   - `asChild`（子要素を複製して props を流し込む方式）は使わない。
@@ -174,25 +174,25 @@ React Aria のチームは、2026-02 に「汎用ライブラリでは `<dialog>
 部品の TSX には意味だけを書き、見た目はパックの CSS が当てる。
 
 ```tsx
-// components/ui/button.tsx（`yourlib add` で手元にコピーされる。薄い）
-import { Button as Native } from "@yourlib/react/button";
+// components/ui/button.tsx（`urushi add` で手元にコピーされる。薄い）
+import { Button as Native } from "@urushi/react/button";
 export function Button({ variant = "secondary", size = "md", ...props }) {
   return <Native data-variant={variant} data-size={size} {...props} />;
 }
 ```
 
 ```css
-/* @yourlib/packs/ledger/button.css */
-@layer yourlib.pack {
+/* @urushi/packs/ledger/button.css */
+@layer urushi.pack {
   [data-slot="button"] {
-    block-size: var(--yl-control-md);
-    padding-inline: var(--yl-space-3);
-    border-radius: var(--yl-radius-control);
-    font: var(--yl-font-control);
+    block-size: var(--ur-control-md);
+    padding-inline: var(--ur-space-3);
+    border-radius: var(--ur-radius-control);
+    font: var(--ur-font-control);
   }
   [data-slot="button"][data-variant="primary"] {
-    background: var(--yl-color-action);
-    color: var(--yl-color-on-action);
+    background: var(--ur-color-action);
+    color: var(--ur-color-on-action);
   }
 }
 ```
@@ -228,7 +228,7 @@ export function Button({ variant = "secondary", size = "md", ...props }) {
 
 ```ts
 // contracts/dialog.contract.ts
-import { defineContract, z } from "@yourlib/contract";
+import { defineContract, z } from "@urushi/contract";
 
 export default defineContract({
   name: "dialog",
@@ -278,11 +278,11 @@ shadcn と互換にしないので、**最初から「後で更新できる」�
 
 | コマンド | 内容 |
 |---|---|
-| `yourlib init` | パック・密度・トークンの入力（基準色など）を選ぶ。`yourlib.json` を作る |
-| `yourlib add dialog` | 薄い TSX をコピーする。パックの CSS は「管理モード」（npm から import する）か「所有モード」（手元にコピーする）を選べる |
-| `yourlib diff` / `yourlib update` | lockfile に記録した「入れたときの版とハッシュ」を元にして、3-way merge で更新する。衝突したら、エージェントに渡す説明を出す |
-| `yourlib add-variant button brand` | 契約にバリアントを足し、パックの CSS の雛形を作る |
-| `yourlib info --json` | パック・導入済みの部品・バージョンを出力する（エージェント向け） |
+| `urushi init` | パック・密度・トークンの入力（基準色など）を選ぶ。`urushi.json` を作る |
+| `urushi add dialog` | 薄い TSX をコピーする。パックの CSS は「管理モード」（npm から import する）か「所有モード」（手元にコピーする）を選べる |
+| `urushi diff` / `urushi update` | lockfile に記録した「入れたときの版とハッシュ」を元にして、3-way merge で更新する。衝突したら、エージェントに渡す説明を出す |
+| `urushi add-variant button brand` | 契約にバリアントを足し、パックの CSS の雛形を作る |
+| `urushi info --json` | パック・導入済みの部品・バージョンを出力する（エージェント向け） |
 
 ### 配布する項目の形式（案）
 
@@ -293,18 +293,18 @@ shadcn と互換にしないので、**最初から「後で更新できる」�
   "contract": "dialog.contract.json",
   "files": [
     { "path": "components/ui/dialog.tsx", "owner": "user", "hash": "sha256-…" },
-    { "path": "styles/yourlib/ledger/dialog.css", "owner": "user|managed", "hash": "sha256-…" }
+    { "path": "styles/urushi/ledger/dialog.css", "owner": "user|managed", "hash": "sha256-…" }
   ],
-  "dependencies": { "@yourlib/react": "^0.3.0" }
+  "dependencies": { "@urushi/react": "^0.3.0" }
 }
 ```
 
-- lockfile（`yourlib.lock`）は Phase 0 から書き出している。3-way merge の `yourlib update` は Phase 1 で前倒しして実装した（`docs/phase1/README.md`）。
+- lockfile（`urushi.lock`）は Phase 0 から書き出している。3-way merge の `urushi update` は Phase 1 で前倒しして実装した（`docs/phase1/README.md`）。
 - **署名と来歴（provenance）**: npm provenance と、配布データへの署名を最初から入れる。調査で shadcn の PR にマルウェアが混入した事件があったことへの対策。
 
 ## 10. エージェント向けの仕組み
 
-### `@yourlib/eslint-plugin` のルール
+### `@urushi/eslint-plugin` のルール
 
 | ルール | 検出するもの | エラー文の例 |
 |---|---|---|
@@ -314,9 +314,9 @@ shadcn と互換にしないので、**最初から「後で更新できる」�
 | `a11y-contract` | 契約にある a11y ルールへの違反 | 例: アイコンだけのボタンに `aria-label` がない |
 | `prefer-native` | ネイティブ要素で済むところでの、`div` ＋ `onClick` などの自作 | — |
 
-実装では、`no-visual-override`・`no-raw-color`・`valid-idref`（id の参照先と種類）・`required-props`・`accessible-name`・`prefer-native`・`tabs-match`（Tabs.Tab と Tabs.Panel の value の対応）の 7 個になった（2026-10-22、Phase 1）。AI に画面を作らせる計測（`docs/phase1/ai-lint-rate.md`）のあとで、`valid-token`（どのパックにもないトークン名）と `valid-import`（`@yourlib/react` にない名前の import と部品。近い部品を示す）を足して 9 個にした。
+実装では、`no-visual-override`・`no-raw-color`・`valid-idref`（id の参照先と種類）・`required-props`・`accessible-name`・`prefer-native`・`tabs-match`（Tabs.Tab と Tabs.Panel の value の対応）の 7 個になった（2026-10-22、Phase 1）。AI に画面を作らせる計測（`docs/phase1/ai-lint-rate.md`）のあとで、`valid-token`（どのパックにもないトークン名）と `valid-import`（`@urushi/react` にない名前の import と部品。近い部品を示す）を足して 9 個にした。
 
-### Skill（`@yourlib/skills`）
+### Skill（`@urushi/skills`）
 
 - 組み合わせのルール、禁止事項、トークンの一覧、良い例と悪い例、パックごとの決まりごとを書く。
 - 生成を始める前の手順も含める: まずパックとトークンをどう使うか計画を立てる。
@@ -375,9 +375,9 @@ shadcn と互換にしないので、**最初から「後で更新できる」�
 
 | フェーズ | ゴール | 完了の条件 |
 |---|---|---|
-| **0. 実現性の確認** | **一番危ない部分（オーバーレイの a11y）がネイティブで成り立つか確かめる** | Button・Dialog・Popover の 3 つで、次の 6 点を満たす。①3 エンジン × スクリーンリーダーの検証表で重大な問題がない ②React Aria が挙げた 5 つの懸念それぞれに結論を出す ③契約から型・ドキュメント・lint・配布データを生成できる ④2 つのパックを実行時に切り替えられる ⑤`yourlib add` でサンプルアプリ（Next.js と Vite）に入る ⑥サイズを計測する |
+| **0. 実現性の確認** | **一番危ない部分（オーバーレイの a11y）がネイティブで成り立つか確かめる** | Button・Dialog・Popover の 3 つで、次の 6 点を満たす。①3 エンジン × スクリーンリーダーの検証表で重大な問題がない ②React Aria が挙げた 5 つの懸念それぞれに結論を出す ③契約から型・ドキュメント・lint・配布データを生成できる ④2 つのパックを実行時に切り替えられる ⑤`urushi add` でサンプルアプリ（Next.js と Vite）に入る ⑥サイズを計測する |
 | **1. MVP の公開** | 約 20 部品、3 パック、lint、Skill、lockfile、ドキュメント、デモ | 全部品が axe・キーボードテスト・見た目の回帰テストを通る。AI に画面を作らせたときに lint が通った割合を測って公開する |
-| **2. 拡張** | Menu の完成版（サブメニュー）、Combobox、DateField、MCP（`yourlib update` は Phase 1 で実装済み） | — |
+| **2. 拡張** | Menu の完成版（サブメニュー）、Combobox、DateField、MCP（`urushi update` は Phase 1 で実装済み） | — |
 | **3. AI ネイティブ化と複雑な部品** | 生成 UI のカタログ書き出し、MCP Apps のホストへの対応、Figma 連携、Tree、データグリッド | — |
 
 ## 14. リスク

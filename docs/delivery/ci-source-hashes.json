@@ -1,0 +1,105 @@
+{
+  "commit": "9453f53b7f58d1751a0262a58d9f5c4bebd2f724",
+  "files": [
+    {
+      "path": "packages/cli/src/workflow.ts",
+      "matchesCI": true,
+      "sha256": "3bbbd18b5aeeecf9cf7d4a4ba41d57ca0ae2278d106793f6593c634156070e40"
+    },
+    {
+      "path": "apps/studio/src/main.tsx",
+      "matchesCI": true,
+      "sha256": "e96759a98c3e98ac1e26d122ea129cdd2408e87277609bc1afa658f0f62b2fb4"
+    },
+    {
+      "path": "apps/studio/src/style.css",
+      "matchesCI": true,
+      "sha256": "326fd77edac14f8eec5304c562c472ed580b7be54a2a3043939ff3fed8de5c41"
+    },
+    {
+      "path": "apps/site/app/docs/comparison/page.tsx",
+      "matchesCI": true,
+      "sha256": "97c9bf7ba1ce1e374368f24d4822319c3fd06f8540721bfa9d5386e3bdf26691"
+    },
+    {
+      "path": ".github/workflows/quality.yml",
+      "matchesCI": true,
+      "sha256": "9cf7fc0ae3b95761000fb842fca148b42f92a69f20c297b8e495fb7842a4df79"
+    },
+    {
+      "path": "scripts/workflow-smoke.ts",
+      "matchesCI": true,
+      "sha256": "bd66eb0d19975a98c9a63f4e5e475f2ea769ca735c1127c4e9239667f364fd10"
+    },
+    {
+      "path": "tests/e2e/layout.ts",
+      "matchesCI": true,
+      "sha256": "5bc82093b2ffc553b60ef95849c8bdc887fe571dcde84a761b15e1c52a590962"
+    },
+    {
+      "path": "tests/e2e/runtime-regressions.spec.ts",
+      "matchesCI": true,
+      "sha256": "76306a3689e81b908b3c4ad159f78b4b8efbe8e8a205fd4a67f31886ad9a493d"
+    },
+    {
+      "path": "packages/eslint-plugin/src/index.ts",
+      "matchesCI": true,
+      "sha256": "0ea6ba0eb5b35475b7e1f699d9360d79a035d8f466cfb85c17975509be9be504"
+    },
+    {
+      "path": "examples/next/app/page.tsx",
+      "matchesCI": true,
+      "sha256": "3aa07f7b9110847cf5d293a6ac78263b22567ca3478465d2095c43d62f82bed6"
+    },
+    {
+      "path": "playwright.next.config.ts",
+      "matchesCI": true,
+      "sha256": "cfb529ec8f89f525c25db3c7ac09e5c76ae7f9a10c16139222cd7df10b11d764"
+    },
+    {
+      "path": "apps/site/components/component-catalog.tsx",
+      "matchesCI": true,
+      "sha256": "68b750189626d91d760f64b8098de143166193947937968aa6052d3eee136456"
+    },
+    {
+      "path": "apps/site/components/pack-switcher.tsx",
+      "matchesCI": true,
+      "sha256": "e14a08e00a4214bd5f9cf3f74e93f17330c341d35e18b3842ea5b18bd5c4757d"
+    },
+    {
+      "path": "tests/site/startup.spec.ts",
+      "matchesCI": true,
+      "sha256": "32e38c546b2a8d1276048f2e532cb9f5b627cd04fd986ea54bcb1fe5ca8ae067"
+    },
+    {
+      "path": "packages/core/src/runtime.ts",
+      "matchesCI": true,
+      "sha256": "20709ea4df68d3804b19930cdb0ef0651704ac7f929b4053d9f43e9e75349bc7"
+    },
+    {
+      "path": "apps/site/components/navigation-study.tsx",
+      "matchesCI": true,
+      "sha256": "67789538fe9938d29aa597d9b5c8b7d6afd7b6418980e4651ebeeaf6615c29d8"
+    },
+    {
+      "path": "packages/react/src/combobox.tsx",
+      "matchesCI": true,
+      "sha256": "aeb00577ade7fc18170fe979382a36e3bf2596447b253acc2f7f61317ab6da41"
+    },
+    {
+      "path": "tests/e2e/a11y.spec.ts",
+      "matchesCI": true,
+      "sha256": "0d32b0cfb86e438af0ee1456b734bb3d3333cfa7c5673ba4b96ea1ddd799133c"
+    },
+    {
+      "path": "tests/site/site.spec.ts",
+      "matchesCI": true,
+      "sha256": "fc8a205d10c2050a90c8a8b41a58cd9350d35568f3c4b05a9d9553d12351b966"
+    },
+    {
+      "path": "tests/site/navigation-menu.spec.ts",
+      "matchesCI": true,
+      "sha256": "a894b5c50a10a3283e86c1f812e5e730726a2cebe13154babfa9b90257308536"
+    }
+  ]
+}

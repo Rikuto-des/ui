@@ -1,0 +1,214 @@
+{
+  "name": "sheet",
+  "styleDependencies": [
+    "dialog"
+  ],
+  "tier": 2,
+  "summary": "A modal <dialog> that slides in from an edge of the screen.",
+  "use": [
+    "Details or a form next to a list",
+    "Navigation or filters on small screens"
+  ],
+  "avoid": [
+    {
+      "case": "A short confirmation",
+      "instead": "alert-dialog"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "dialog",
+      "invoker-commands"
+    ],
+    "enhances": [
+      {
+        "feature": "dialog-closedby",
+        "fallback": "@urushi/core/closedby (loaded by <UrushiRuntime />)"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Sheet",
+      "slot": "sheet",
+      "element": "dialog",
+      "description": "The <dialog>, pinned to one edge.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. Triggers and close buttons reference it."
+          },
+          "title": {
+            "description": "Required heading and accessible name.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "description": {
+            "description": "Optional supporting text.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "side": {
+            "default": "end",
+            "description": "The edge it slides from (start/end follow the writing direction).",
+            "type": "string",
+            "enum": [
+              "start",
+              "end",
+              "top",
+              "bottom"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          },
+          "dismissible": {
+            "default": "any",
+            "type": "string",
+            "enum": [
+              "any",
+              "closerequest",
+              "none"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ]
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "Sheet.Trigger",
+      "slot": "sheet-trigger",
+      "element": "button",
+      "description": "A Button that opens the sheet.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "sheet": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the sheet to open.",
+            "x-idref": "sheet"
+          },
+          "variant": {
+            "default": "secondary",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "description": "Control height. Density comes from the pack, not from this prop.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "sheet"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
+      "jsx": "Sheet.Close",
+      "slot": "sheet-close",
+      "element": "button",
+      "description": "A Button that closes the sheet.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "sheet": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the sheet to close.",
+            "x-idref": "sheet"
+          },
+          "variant": {
+            "default": "secondary",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "description": "Control height. Density comes from the pack, not from this prop.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "sheet"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "open",
+    "modal"
+  ],
+  "a11y": {
+    "apg": "dialog-modal",
+    "keyboard": {
+      "Escape": "close (unless dismissible=\"none\")",
+      "Tab": "moves focus within the sheet only"
+    },
+    "rules": [
+      "title is required.",
+      "Every trigger and close button references an existing Sheet id."
+    ]
+  },
+  "tokens": [
+    "color.surface-overlay",
+    "shadow.dialog",
+    "motion.overlay"
+  ],
+  "examples": [
+    {
+      "title": "Task details",
+      "code": "<Sheet.Trigger sheet=\"task\">詳細</Sheet.Trigger>\n<Sheet id=\"task\" title=\"告知メールの文面を確定する\">…</Sheet>"
+    }
+  ]
+}

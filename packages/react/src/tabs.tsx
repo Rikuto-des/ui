@@ -1,11 +1,14 @@
 import { Children, cloneElement, type ReactNode } from "react";
 import type * as React from "react";
+import { renderButton, type ButtonLikeProps } from "./button-base.tsx";
 import {
   tabsDefaults,
   tabsListSlot,
   tabsPanelSlot,
   tabsSlot,
   tabsTabSlot,
+  tabsActivateSlot,
+  type TabsActivateOwnProps,
   type TabsOwnProps,
   type TabsPanelOwnProps,
   type TabsTabOwnProps,
@@ -16,6 +19,7 @@ export type TabsProps = TabsOwnProps & Omit<React.ComponentPropsWithRef<"div">, 
 export type TabsListProps = React.ComponentPropsWithRef<"div">;
 export type TabsTabProps = TabsTabOwnProps & Omit<React.ComponentPropsWithRef<"button">, keyof TabsTabOwnProps>;
 export type TabsPanelProps = TabsPanelOwnProps & Omit<React.ComponentPropsWithRef<"div">, keyof TabsPanelOwnProps>;
+export type TabsActivateProps = TabsActivateOwnProps & Omit<ButtonLikeProps, keyof TabsActivateOwnProps>;
 
 /** What Tabs passes down to its parts (not part of the public API). */
 type Wiring = { __tabs?: { id: string; selected: string; label: string; orientation: string } };
@@ -40,7 +44,7 @@ function TabsTab({ value, __tabs, ...rest }: TabsTabProps & Wiring) {
     />
   );
 }
-TabsTab.ylPart = "tabs-tab";
+TabsTab.urPart = "tabs-tab";
 
 /**
  * The list also holds one background (`tabs-indicator`) that CSS anchors to
@@ -56,14 +60,14 @@ function TabsList({ children, __tabs, style, ...rest }: TabsListProps & Wiring) 
       aria-label={__tabs.label}
       aria-orientation={__tabs.orientation === "vertical" ? "vertical" : undefined}
       data-slot={tabsListSlot}
-      style={{ "--yl-tabs-anchor": anchorName(`${__tabs.id}-selected`), ...style } as React.CSSProperties}
+      style={{ "--ur-tabs-anchor": anchorName(`${__tabs.id}-selected`), ...style } as React.CSSProperties}
     >
       <span data-slot="tabs-indicator" aria-hidden="true" />
       {wire(children, __tabs)}
     </div>
   );
 }
-TabsList.ylPart = "tabs-list";
+TabsList.urPart = "tabs-list";
 
 function TabsPanel({ value, __tabs, ...rest }: TabsPanelProps & Wiring) {
   if (!__tabs) throw new Error("Tabs.Panel must be a direct child of Tabs");
@@ -79,7 +83,7 @@ function TabsPanel({ value, __tabs, ...rest }: TabsPanelProps & Wiring) {
     />
   );
 }
-TabsPanel.ylPart = "tabs-panel";
+TabsPanel.urPart = "tabs-panel";
 
 function wire(children: ReactNode, tabs: NonNullable<Wiring["__tabs"]>): ReactNode {
   return Children.map(children, (child) =>
@@ -91,12 +95,21 @@ function wire(children: ReactNode, tabs: NonNullable<Wiring["__tabs"]>): ReactNo
  * Server-rendered tabs: the selected tab and panel come from defaultValue,
  * and the runtime switches them on click and with the arrow keys.
  */
-function TabsRoot({ id, label, defaultValue, orientation = tabsDefaults.orientation, children, ...rest }: TabsProps) {
+function TabsRoot({ id, label, defaultValue, orientation = tabsDefaults.orientation, motion = "smooth", children, ...rest }: TabsProps) {
   return (
-    <div {...rest} id={id} data-slot={tabsSlot} data-orientation={orientation}>
+    <div {...rest} id={id} data-slot={tabsSlot} data-orientation={orientation} data-motion={motion}>
       {wire(children, { id, selected: defaultValue, label, orientation })}
     </div>
   );
 }
 
-export const Tabs = Object.assign(TabsRoot, { List: TabsList, Tab: TabsTab, Panel: TabsPanel });
+function TabsActivate({ tabs, value, ...props }: TabsActivateProps) {
+  return renderButton(`${tabsActivateSlot} button`, {
+    ...props,
+    "aria-controls": panelId(tabs, value),
+    "data-tabs-target": tabs,
+    "data-value": value,
+  } as ButtonLikeProps);
+}
+
+export const Tabs = Object.assign(TabsRoot, { List: TabsList, Tab: TabsTab, Panel: TabsPanel, Activate: TabsActivate });

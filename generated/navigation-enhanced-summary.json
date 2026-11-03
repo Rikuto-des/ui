@@ -1,0 +1,242 @@
+{
+  "measuredAt": "2026-10-28T06:44:23.849Z",
+  "run": "refinement-v1",
+  "sourceRun": "measured-v3",
+  "modelCalls": 0,
+  "humanEdits": false,
+  "commonCssGzip": 9703,
+  "commonCssSha256": "a7953dd54c15991f4e69e887303d654c38ad800f0f1bf74a32dbca71742b97fd",
+  "sameCommonCssAsOriginal": true,
+  "libraries": [
+    {
+      "id": "urushi",
+      "label": "Urushi",
+      "passed": 2,
+      "n": 2,
+      "withoutReactGzip": [
+        6875,
+        6903
+      ],
+      "cssGzip": [
+        2827,
+        2827
+      ],
+      "totalGzip": [
+        88285,
+        88295
+      ],
+      "sourceBytes": [
+        3154,
+        3323
+      ],
+      "samples": [
+        {
+          "id": "urushi-navigation-menu-1",
+          "sourceSha256": "a76c40257cf6f9c46f27095d3e9d593e5b7ba82a3ea78ad24e8f0d97c3bea4cf",
+          "sourceBytes": 3154,
+          "jsGzip": 75755,
+          "withoutReactGzip": 6875,
+          "cssGzip": 2827,
+          "totalGzip": 88285
+        },
+        {
+          "id": "urushi-navigation-menu-2",
+          "sourceSha256": "93dec16b04b8c71157d30d273a872d3f9512da445f16f847a6f55845f28878e6",
+          "sourceBytes": 3323,
+          "jsGzip": 75765,
+          "withoutReactGzip": 6903,
+          "cssGzip": 2827,
+          "totalGzip": 88295
+        }
+      ]
+    },
+    {
+      "id": "base",
+      "label": "Base UI",
+      "passed": 2,
+      "n": 2,
+      "withoutReactGzip": [
+        39952,
+        40091
+      ],
+      "cssGzip": [
+        0,
+        0
+      ],
+      "totalGzip": [
+        118008,
+        118163
+      ],
+      "sourceBytes": [
+        6459,
+        7006
+      ],
+      "samples": [
+        {
+          "id": "base-navigation-menu-1",
+          "sourceSha256": "196cd424bbf30bcb884008267da2f99a15088fffeafbe87fa55972d41c1c4d9d",
+          "sourceBytes": 7006,
+          "jsGzip": 108460,
+          "withoutReactGzip": 40091,
+          "cssGzip": 0,
+          "totalGzip": 118163
+        },
+        {
+          "id": "base-navigation-menu-2",
+          "sourceSha256": "b8dafbaaa1dedbb7fa29d499032bf79c454960f8f08d2c13a5e0f8f788c83790",
+          "sourceBytes": 6459,
+          "jsGzip": 108305,
+          "withoutReactGzip": 39952,
+          "cssGzip": 0,
+          "totalGzip": 118008
+        }
+      ]
+    },
+    {
+      "id": "radix",
+      "label": "Radix UI",
+      "passed": 2,
+      "n": 2,
+      "withoutReactGzip": [
+        14332,
+        14581
+      ],
+      "cssGzip": [
+        0,
+        0
+      ],
+      "totalGzip": [
+        92945,
+        93191
+      ],
+      "sourceBytes": [
+        5008,
+        5453
+      ],
+      "samples": [
+        {
+          "id": "radix-navigation-menu-1",
+          "sourceSha256": "8b7aba43b27a0de2d1eaac9aec0e84480db27b600128652ad4f7dfd6b12cb238",
+          "sourceBytes": 5008,
+          "jsGzip": 83242,
+          "withoutReactGzip": 14332,
+          "cssGzip": 0,
+          "totalGzip": 92945
+        },
+        {
+          "id": "radix-navigation-menu-2",
+          "sourceSha256": "99d4e72edc8ba0fce37167087b30a2a1503033867130e750e586432005b5d77a",
+          "sourceBytes": 5453,
+          "jsGzip": 83488,
+          "withoutReactGzip": 14581,
+          "cssGzip": 0,
+          "totalGzip": 93191
+        }
+      ]
+    },
+    {
+      "id": "shadcn",
+      "label": "shadcn/ui (Radix)",
+      "passed": 2,
+      "n": 2,
+      "withoutReactGzip": [
+        28003,
+        28058
+      ],
+      "cssGzip": [
+        0,
+        0
+      ],
+      "totalGzip": [
+        106718,
+        106783
+      ],
+      "sourceBytes": [
+        3682,
+        4482
+      ],
+      "samples": [
+        {
+          "id": "shadcn-navigation-menu-1",
+          "sourceSha256": "b8470a29d63831646a73a83805d826cf74b2c3ddfe1d111c2ed7782bb416743d",
+          "sourceBytes": 4482,
+          "jsGzip": 97080,
+          "withoutReactGzip": 28058,
+          "cssGzip": 0,
+          "totalGzip": 106783
+        },
+        {
+          "id": "shadcn-navigation-menu-2",
+          "sourceSha256": "042eb07c0fb4f0d77d11ad900600e810f141f51c118a9e4f48c8cf220d7acea1",
+          "sourceBytes": 3682,
+          "jsGzip": 97015,
+          "withoutReactGzip": 28003,
+          "cssGzip": 0,
+          "totalGzip": 106718
+        }
+      ]
+    }
+  ],
+  "previousUrushi": {
+    "id": "urushi",
+    "label": "Urushi",
+    "n": 2,
+    "generate": 2,
+    "generatedAfterRepair": 2,
+    "update": 2,
+    "final": 2,
+    "seededRepair": 2,
+    "internalClean": 2,
+    "sourceBytes": [
+      3154,
+      3323
+    ],
+    "jsGzip": [
+      73006,
+      73021
+    ],
+    "withoutReactGzip": [
+      4134,
+      4167
+    ],
+    "cssGzip": [
+      2414,
+      2414
+    ],
+    "totalGzip": [
+      85123,
+      85138
+    ],
+    "usage": {
+      "input": 65417,
+      "output": 4673,
+      "calls": 6
+    },
+    "samples": [
+      {
+        "id": "urushi-navigation-menu-1",
+        "stage": "update",
+        "sourceBytes": 3154,
+        "jsGzip": 73006,
+        "withoutReactGzip": 4134,
+        "cssGzip": 2414,
+        "totalGzip": 85123
+      },
+      {
+        "id": "urushi-navigation-menu-2",
+        "stage": "update",
+        "sourceBytes": 3323,
+        "jsGzip": 73021,
+        "withoutReactGzip": 4167,
+        "cssGzip": 2414,
+        "totalGzip": 85138
+      }
+    ]
+  },
+  "limitations": [
+    "Rebuild of eight saved, previously passing AI outputs. No new generation, repair or model success-rate comparison.",
+    "The common workflow suite covers keyboard, links, updates, axe and 320px. These apps do not exercise nested flyouts or hover; those have separate three-browser regression tests.",
+    "Same versions, bundler settings and shared CSS for all four libraries. Full optional Urushi runtime, selected component CSS and complete Graphite pack included.",
+    "Sum of gzip of each JS/CSS asset; no HTML, images, fonts or startup timing. One small scenario and two saved apps per library."
+  ]
+}

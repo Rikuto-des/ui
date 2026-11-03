@@ -1,19 +1,19 @@
 {
   "name": "textarea",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "contract": "schema/textarea.json",
   "files": [
     {
       "path": "textarea.tsx",
       "target": "components",
-      "content": "// Installed by `yourlib add textarea`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Textarea page of the design system.\nexport { Textarea, type TextareaProps } from \"@yourlib/react/textarea\";\n",
-      "hash": "sha256-oC9AxFOwQ8bP7rNXrUjA0ELA98ou/dTpYmOEntbsXgY="
+      "content": "// Installed by `urushi add textarea`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Textarea page of the design system.\nexport { Textarea, type TextareaProps } from \"@urushi/react/textarea\";\n",
+      "hash": "sha256-a0wrKcRvbTibWiLBtIL63lxHpm4vdnNy3HKbCPFLMlc="
     }
   ],
   "dependencies": {
-    "@yourlib/react": "^0.1.0"
+    "@urushi/react": "0.1.0-beta.1"
   },
   "css": [
-    "@yourlib/react/styles.css"
+    "@urushi/react/styles/textarea.css"
   ]
 }

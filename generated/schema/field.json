@@ -44,6 +44,10 @@
             "description": "Hint shown under the label, linked with aria-describedby.",
             "x-ts-type": "React.ReactNode"
           },
+          "success": {
+            "description": "Confirmation text, hidden when error is present; linked to the control.",
+            "x-ts-type": "React.ReactNode"
+          },
           "error": {
             "description": "Error message; marks the control aria-invalid and links the message.",
             "x-ts-type": "React.ReactNode"

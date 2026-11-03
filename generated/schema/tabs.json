@@ -1,5 +1,8 @@
 {
   "name": "tabs",
+  "styleDependencies": [
+    "button"
+  ],
   "tier": 2,
   "summary": "Switches between panels of equal weight. Server-rendered; the runtime adds clicking and arrow keys.",
   "use": [
@@ -20,7 +23,7 @@
     "requires": [],
     "enhances": [
       {
-        "feature": "@yourlib/core tabs behavior",
+        "feature": "@urushi/core tabs behavior",
         "fallback": "only the default panel is reachable"
       }
     ]
@@ -55,6 +58,15 @@
             "enum": [
               "horizontal",
               "vertical"
+            ]
+          },
+          "motion": {
+            "default": "smooth",
+            "description": "Moves the selected indicator and interpolates panel height without scaling text. Respects reduced motion; none switches immediately.",
+            "type": "string",
+            "enum": [
+              "smooth",
+              "none"
             ]
           }
         },
@@ -104,6 +116,57 @@
       "overrides": []
     },
     {
+      "jsx": "Tabs.Activate",
+      "slot": "tabs-activate",
+      "element": "button",
+      "description": "A button outside the tab list that selects a panel by Tabs id and value. The runtime keeps it in sync with pointer and keyboard selection; no DOM query or React selection state is needed. It does not move focus into the tab list; keyboard focus remains on the activating button. Disabled targets are not activated.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "tabs": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the Tabs root to control.",
+            "x-idref": "tabs"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value of the Tabs.Tab to select."
+          },
+          "variant": {
+            "default": "secondary",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "tabs",
+          "value"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
       "jsx": "Tabs.Panel",
       "slot": "tabs-panel",
       "element": "div",
@@ -145,6 +208,10 @@
     "color.action"
   ],
   "examples": [
+    {
+      "title": "Select a view from outside the tab list",
+      "code": "<Tabs.Activate tabs=\"project\" value=\"settings\">設定を開く</Tabs.Activate>\n<Tabs id=\"project\" label=\"プロジェクト\" defaultValue=\"overview\">\n  <Tabs.List><Tabs.Tab value=\"overview\">概要</Tabs.Tab><Tabs.Tab value=\"settings\">設定</Tabs.Tab></Tabs.List>\n  <Tabs.Panel value=\"overview\">…</Tabs.Panel><Tabs.Panel value=\"settings\">…</Tabs.Panel>\n</Tabs>"
+    },
     {
       "title": "Project views",
       "code": "<Tabs id=\"project\" label=\"プロジェクト\" defaultValue=\"overview\">\n  <Tabs.List>\n    <Tabs.Tab value=\"overview\">概要</Tabs.Tab>\n    <Tabs.Tab value=\"settings\">設定</Tabs.Tab>\n  </Tabs.List>\n  <Tabs.Panel value=\"overview\">…</Tabs.Panel>\n  <Tabs.Panel value=\"settings\">…</Tabs.Panel>\n</Tabs>"

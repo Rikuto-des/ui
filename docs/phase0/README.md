@@ -8,11 +8,11 @@
 
 | 領域 | 中身 |
 |---|---|
-| 契約 | `contracts/*.contract.ts`（zod）。`yourlib build` で、型・JSON Schema・ドキュメント・lint 用データ・SKILL.md・llms.txt・配布用データ・パックの CSS を生成する |
-| 部品 | Button・Dialog・Popover（`@yourlib/react`）。実行時に依存するのは react だけ。Server Components のまま使える |
+| 契約 | `contracts/*.contract.ts`（zod）。`urushi build` で、型・JSON Schema・ドキュメント・lint 用データ・SKILL.md・llms.txt・配布用データ・パックの CSS を生成する |
+| 部品 | Button・Dialog・Popover（`@urushi/react`）。実行時に依存するのは react だけ。Server Components のまま使える |
 | パック | Graphite・Lucent（DTCG トークン、ライト／ダーク、Noto Sans JP）。実行時に切り替えられ、範囲ごとに入れ子にもできる |
-| CLI | `yourlib init / add / diff / info / build`。lockfile に版とハッシュを記録し、元のファイルを `.yourlib/base` に保存する。改ざんされた配布データはインストールしない |
-| lint | `@yourlib/eslint-plugin` の 6 ルール。エラー文には「何が駄目か」と「代わりにどう書くか」を必ず書く |
+| CLI | `urushi init / add / diff / info / build`。lockfile に版とハッシュを記録し、元のファイルを `.urushi/base` に保存する。改ざんされた配布データはインストールしない |
+| lint | `@urushi/eslint-plugin` の 6 ルール。エラー文には「何が駄目か」と「代わりにどう書くか」を必ず書く |
 | デザインシステム | https://claude.ai/artifact/81F4wiBJYhaYfJKNKvqqZg 。`pnpm ds` でコードから生成する |
 | 提案 | `apps/playground/public/proposals/`（v1、v2） |
 
@@ -48,14 +48,14 @@
 
 - **静的ページ**: スクリプトが 0 個のページでも、ダイアログ・ポップオーバー・フォーム送信が 3 エンジンで動く。
 - **Next.js 16.4**:
-  - `yourlib add` で入れた部品を Server Components のまま使い、ページは静的に事前生成された。
+  - `urushi add` で入れた部品を Server Components のまま使い、ページは静的に事前生成された。
   - ブラウザに送られる JS のうち、部品のコードを含むファイルは 0 個。送られるのは、任意で入れる補助スクリプト（Safari 向けの `closedby` の代わり）だけ。
 
 ### サイズ（minify + gzip、React は含まない）
 
 | | Dialog と Popover |
 |---|---|
-| yourlib（Button 込み） | 0.99 KB |
+| Urushi（Button 込み） | 0.99 KB |
 | Radix | 25.72 KB |
 | Base UI | 42.71 KB |
 
@@ -71,6 +71,6 @@
 → 結果は [../phase1/README.md](../phase1/README.md)。
 
 - **部品を約 20 個に増やす**: Field、Input、Textarea、Checkbox、RadioGroup、Switch、Accordion、Card、Badge、Separator、Skeleton、Spinner、Tooltip、Toast、Tabs、Select、Menu。
-- **`yourlib update`**: 3-way merge で更新を取り込めるようにする。
+- **`urushi update`**: 3-way merge で更新を取り込めるようにする。
 - **スクリーンリーダーの実機確認**: 手順書の表を埋める。
 - **名前を決める**: パッケージのスコープ、CLI の名前。

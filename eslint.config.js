@@ -1,5 +1,5 @@
 import tseslint from "typescript-eslint";
-import yourlib from "@yourlib/eslint-plugin";
+import urushi from "@urushi/eslint-plugin";
 
 export default [
   {
@@ -14,7 +14,7 @@ export default [
     ],
   },
   {
-    ...yourlib.configs.recommended,
+    ...urushi.configs.recommended,
     files: ["apps/**/*.tsx", "examples/**/*.tsx", "scripts/**/*.tsx"],
     languageOptions: {
       parser: tseslint.parser,

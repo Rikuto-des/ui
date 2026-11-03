@@ -1,0 +1,3665 @@
+{
+  "date": "2026-10-29",
+  "method": "Latest result for each browser, file and test title; reruns replace earlier failures. Counts are unique test cases, not summed executions.",
+  "groups": {
+    "site": {
+      "uniqueTests": 369,
+      "passed": 369,
+      "unresolved": [],
+      "runs": [
+        {
+          "path": "site-regression.log",
+          "observedCases": 366,
+          "completed": true
+        },
+        {
+          "path": "site-recheck.log",
+          "observedCases": 33,
+          "completed": true
+        },
+        {
+          "path": "site-polish.log",
+          "observedCases": 12,
+          "completed": true
+        },
+        {
+          "path": "theme-final.log",
+          "observedCases": 9,
+          "completed": true
+        },
+        {
+          "path": "spacing-final.log",
+          "observedCases": 24,
+          "completed": true
+        },
+        {
+          "path": "spacing-recheck.log",
+          "observedCases": 24,
+          "completed": true
+        }
+      ],
+      "cases": [
+        {
+          "browser": "chromium",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "Combobox skips a disabled search result and restores committed selection",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "all 52 entries contain real previews without nested interactive links or duplicate IDs",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "DatePicker detail supports keyboard selection and focus restoration",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "field: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "inputs, buttons, switches and tabs operate in place and keep state across filtering",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "DataTable detail supports mixed selection, sorting and pagination",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "input-group: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "select: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "date-input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "Command detail runs an item, closes to its trigger and has no axe violations",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "otp-input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "copy control does not cover code at 320px",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "overlay previews escape the card, close and restore focus; catalog navigation can morph",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "range, progress, pagination and empty state have meaningful local changes",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "button: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "button-group: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "link: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "card: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "badge: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "avatar: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "kbd: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "table: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "separator: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "aspect-ratio: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "scroll-area: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "every preview fits at 320px and desktop in both packs and themes, with no axe violations",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "lower sidebar links retain position through navigation, reload and history",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "a direct lower-page visit reveals its entry without scrolling the document, even with storage blocked",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "spinner: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "mobile visits do not replace the desktop sidebar position",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "skeleton: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "breadcrumb: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "pagination: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "sidebar: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "menu: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "every page renders without errors and has one h1",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "dialog: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "accordion: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "alert-dialog: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "alert-dialog: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "alert: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "sheet: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "aspect-ratio: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "avatar: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "popover: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "badge: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "breadcrumb: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "button-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "button: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "hover-card: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "card: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "carousel: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "checkbox: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — graphite/light",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "collapsible: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "combobox: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "command: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "tooltip: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "date-picker: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "data-table: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "date-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "data-table: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "date-picker: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "command: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "dialog: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "empty: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "field: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "file-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "hover-card: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "input-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "kbd: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "link: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "menu: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "meter: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "navigation-menu: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "otp-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "pagination: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "popover: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "progress: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "radio-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "scroll-area: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "select: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "separator: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "sheet: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "sidebar: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "skeleton: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "slider: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "spinner: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "steps: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "switch: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "table: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "tabs: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "textarea: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "toast: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "toggle-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "toggle: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "tooltip: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "the docs index marks the current page and links every component",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "changed workflows fit narrow screens and remain accessible after interaction",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "field: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "input-group: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — graphite/dark",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "select: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "date-input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "otp-input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "button: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "button-group: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "link: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "card: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "badge: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "avatar: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "kbd: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "table: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "separator: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "aspect-ratio: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "scroll-area: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "spinner: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "skeleton: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "breadcrumb: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "pagination: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "sidebar: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "menu: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — lucent/light",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "dialog: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "alert-dialog: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "sheet: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "popover: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "hover-card: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "tooltip: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "date-picker: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "data-table: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "command: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "changed workflows fit narrow screens and remain accessible after interaction",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "all 52 entries contain real previews without nested interactive links or duplicate IDs",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "the documented external tab action works after pointer and keyboard selection",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "inputs, buttons, switches and tabs operate in place and keep state across filtering",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "the pack and theme switches restyle the site and are remembered",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "overlay previews escape the card, close and restore focus; catalog navigation can morph",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "rapid pack and theme changes retain both choices while a view transition waits",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "range, progress, pagination and empty state have meaningful local changes",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "small screens › keeps navigation and theme selection usable, including at 320px",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "small screens › the mobile index works without JavaScript",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "documentation-only pages do not ship component implementations",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "the agent workflow shows actual diagnostics and the corrected example",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "with JavaScript disabled › the home page dialog and task menu open without JavaScript",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "with JavaScript disabled › component examples work",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — lucent/dark",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: graphite / light",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "detail examples respond to saving, validation and keyboard selection",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "every preview fits at 320px and desktop in both packs and themes, with no axe violations",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: graphite / dark",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "Combobox skips a disabled search result and restores committed selection",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "DatePicker detail supports keyboard selection and focus restoration",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "DataTable detail supports mixed selection, sorting and pagination",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "Command detail runs an item, closes to its trigger and has no axe violations",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "copy control does not cover code at 320px",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: lucent / light",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: lucent / dark",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "lower sidebar links retain position through navigation, reload and history",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "a direct lower-page visit reveals its entry without scrolling the document, even with storage blocked",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "mobile visits do not replace the desktop sidebar position",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "open detail overlays preserve focus, validate and pass axe in both packs and themes",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "tooltip is hoverable, dismissible and cancels a pending fallback on Escape",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "every page renders without errors and has one h1",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "forced colors preserve selection marks and keyboard focus",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "reduced motion removes switch travel and spinner rotation; normal response has no delayed check",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "accordion: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "alert-dialog: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "alert: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "aspect-ratio: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "avatar: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "field: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "input-group: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "badge: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "select: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "date-input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "breadcrumb: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "otp-input: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "button-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "button: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "card: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "carousel: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "checkbox: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "collapsible: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "combobox: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "command: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "button: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "data-table: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "button-group: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "date-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "link: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "date-picker: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "card: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "dialog: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "badge: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "empty: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "avatar: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "field: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "kbd: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "file-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "table: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "hover-card: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "separator: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "input-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "aspect-ratio: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "scroll-area: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "kbd: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "link: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "menu: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "meter: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "navigation-menu: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "otp-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "spinner: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "pagination: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "popover: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "progress: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "radio-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — graphite/light",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "scroll-area: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "skeleton: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "select: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "breadcrumb: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "separator: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "pagination: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "sheet: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "sidebar: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "sidebar: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "menu: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "skeleton: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "slider: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "dialog: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "spinner: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "alert-dialog: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "steps: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "sheet: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "switch: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "popover: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "hover-card: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "table: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "tooltip: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "tabs: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "date-picker: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "textarea: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "toast: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "data-table: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "toggle-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "command: complete interaction and recovery",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "toggle: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "tooltip: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "the docs index marks the current page and links every component",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "changed workflows fit narrow screens and remain accessible after interaction",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "all 52 entries contain real previews without nested interactive links or duplicate IDs",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "inputs, buttons, switches and tabs operate in place and keep state across filtering",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "overlay previews escape the card, close and restore focus; catalog navigation can morph",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "range, progress, pagination and empty state have meaningful local changes",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — graphite/dark",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/catalog-preview.spec.ts",
+          "title": "every preview fits at 320px and desktop in both packs and themes, with no axe violations",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "Combobox skips a disabled search result and restores committed selection",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "DatePicker detail supports keyboard selection and focus restoration",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "DataTable detail supports mixed selection, sorting and pagination",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "Command detail runs an item, closes to its trigger and has no axe violations",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/client-components.spec.ts",
+          "title": "copy control does not cover code at 320px",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "the documented external tab action works after pointer and keyboard selection",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "the pack and theme switches restyle the site and are remembered",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "rapid pack and theme changes retain both choices while a view transition waits",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "small screens › keeps navigation and theme selection usable, including at 320px",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "small screens › the mobile index works without JavaScript",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "documentation-only pages do not ship component implementations",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "the agent workflow shows actual diagnostics and the corrected example",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "with JavaScript disabled › the home page dialog and task menu open without JavaScript",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "with JavaScript disabled › component examples work",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: graphite / light",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — graphite/light",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: graphite / dark",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: lucent / light",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — lucent/light",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: lucent / dark",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "lower sidebar links retain position through navigation, reload and history",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "a direct lower-page visit reveals its entry without scrolling the document, even with storage blocked",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/docs-navigation.spec.ts",
+          "title": "mobile visits do not replace the desktop sidebar position",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "every page renders without errors and has one h1",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "accordion: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "alert-dialog: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "alert: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "aspect-ratio: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "avatar: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "badge: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "breadcrumb: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "button-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "button: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "card: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "carousel: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "checkbox: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — graphite/dark",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "collapsible: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "combobox: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "command: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "data-table: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "date-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "date-picker: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "dialog: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "empty: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "field: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "file-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "hover-card: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "input-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "kbd: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "link: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "menu: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "meter: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "navigation-menu: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "otp-input: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "pagination: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "popover: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "progress: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "radio-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "scroll-area: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "select: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "separator: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — lucent/dark",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "sheet: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "sidebar: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "skeleton: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "slider: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "spinner: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "steps: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "switch: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "table: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "detail examples respond to saving, validation and keyboard selection",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "tabs: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "textarea: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "toast: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "toggle-group: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "toggle: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "tooltip: live example, source, install command and props",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "the docs index marks the current page and links every component",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — lucent/light",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "open detail overlays preserve focus, validate and pass axe in both packs and themes",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "tooltip is hoverable, dismissible and cancels a pending fallback on Escape",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "forced colors preserve selection marks and keyboard focus",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "reduced motion removes switch travel and spinner rotation; normal response has no delayed check",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "all 52 detail previews: accessibility and reflow — lucent/dark",
+          "status": "passed",
+          "lastLog": "spacing-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "detail examples respond to saving, validation and keyboard selection",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "the documented external tab action works after pointer and keyboard selection",
+          "status": "passed",
+          "lastLog": "site-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "the pack and theme switches restyle the site and are remembered",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "rapid pack and theme changes retain both choices while a view transition waits",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "small screens › keeps navigation and theme selection usable, including at 320px",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "small screens › the mobile index works without JavaScript",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "documentation-only pages do not ship component implementations",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "the agent workflow shows actual diagnostics and the corrected example",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "with JavaScript disabled › the home page dialog and task menu open without JavaScript",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "with JavaScript disabled › component examples work",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: graphite / light",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "open detail overlays preserve focus, validate and pass axe in both packs and themes",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: graphite / dark",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "tooltip is hoverable, dismissible and cancels a pending fallback on Escape",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "forced colors preserve selection marks and keyboard focus",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/design-audit.spec.ts",
+          "title": "reduced motion removes switch travel and spinner rotation; normal response has no delayed check",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: lucent / light",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/site.spec.ts",
+          "title": "no WCAG A/AA violations: lucent / dark",
+          "status": "passed",
+          "lastLog": "site-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "theme crossfade keeps underlying actions clickable",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "theme crossfade keeps underlying actions clickable",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/site/all-components-ux.spec.ts",
+          "title": "theme crossfade keeps underlying actions clickable",
+          "status": "passed",
+          "lastLog": "theme-final.log"
+        }
+      ]
+    },
+    "core": {
+      "uniqueTests": 141,
+      "passed": 141,
+      "unresolved": [],
+      "runs": [
+        {
+          "path": "core-regression.log",
+          "observedCases": 141,
+          "completed": true
+        },
+        {
+          "path": "core-recheck.log",
+          "observedCases": 12,
+          "completed": true
+        }
+      ],
+      "cases": [
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "command explores with arrows, matches all words and skips disabled commands",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "presets validate calendar dates and bounds, and restore trigger focus",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "row expansion follows stable IDs across sorting and pagination",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a toggle is a native checkbox: the label toggles it, and so does Space",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a single toggle group is a named group of radios that arrow keys move through",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a multiple toggle group is a group of checkboxes with a visible legend",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a button group is a named group of buttons",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "context motion is finite and respects reduced motion",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › an input group passes the Field's label, hint and error to its input",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a slider is a labelled native range",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a date input keeps ISO values and native limits",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a file input takes files and is described by its hint",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › an avatar is an image named after the person, with an initial",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › an OTP input is one numeric field with one-time-code autofill",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a table is named by its caption, even a hidden one",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a scroll area is a named, focusable region that the keyboard scrolls",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a collapsible opens and closes from its summary",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a carousel is a named region of numbered slides that the keyboard scrolls",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › an alert is not a live region",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › a progress bar is named by its label; without a value it is indeterminate",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › a meter is named by its label and keeps its bounds",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › a breadcrumb is a named nav whose last item is the current page, not a link",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › pagination links every page from the template and marks the current one",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › steps mark the current step and say which are done",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › a sidebar marks the current page and folds groups with details",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "AlertDialog › opens as a named alertdialog with focus on the safe choice",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › slides in at the end edge as a modal dialog and closes with Escape",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "AlertDialog › Escape and clicks outside do not close it; its buttons do",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › side=start pins it to the start edge",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › submitting its form closes it",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "textarea follows edits, React updates and native reset without eating composition",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "HoverCard › shows when the link gets keyboard focus, and the link still navigates",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "selected files are previewed and removing one changes real FormData and focus",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "HoverCard › shows on hover, stays while the pointer moves into it, and hides with Escape",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "card radios remain native and disclosure summaries retain entered content",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "runtime cleanup preserves native controls and hides stale feedback",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "progress shows true native values, checkpoint completion and a moving fill",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "selected segment moves through intermediate positions and respects reduced motion",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "new feedback fits a narrow screen and has no axe violations",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "segmented selection follows real geometry, keyboard, reset and RTL",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "server-rendered enhanced controls remain usable with JavaScript disabled",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "slider marks update controlled React values; arrows and external updates agree",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "checkbox actually draws a stroke over time and retains native form behavior",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "native reset and disabled fieldsets synchronize slider feedback and marks",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "reduced motion, RTL keyboard navigation and runtime cleanup remain usable",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "enhanced controls have no axe violations at a narrow viewport",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "chromium",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "carousel supports rapid navigation, direct positions, and keeps focus at an edge",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "presets validate calendar dates and bounds, and restore trigger focus",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "row expansion follows stable IDs across sorting and pagination",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "context motion is finite and respects reduced motion",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "command explores with arrows, matches all words and skips disabled commands",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a single toggle group is a named group of radios that arrow keys move through",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a toggle is a native checkbox: the label toggles it, and so does Space",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a button group is a named group of buttons",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › an input group passes the Field's label, hint and error to its input",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a slider is a labelled native range",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a date input keeps ISO values and native limits",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a file input takes files and is described by its hint",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a multiple toggle group is a group of checkboxes with a visible legend",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › an OTP input is one numeric field with one-time-code autofill",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › an avatar is an image named after the person, with an initial",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a table is named by its caption, even a hidden one",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a collapsible opens and closes from its summary",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a scroll area is a named, focusable region that the keyboard scrolls",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a carousel is a named region of numbered slides that the keyboard scrolls",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › an alert is not a live region",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › a progress bar is named by its label; without a value it is indeterminate",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › a meter is named by its label and keeps its bounds",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › a breadcrumb is a named nav whose last item is the current page, not a link",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › steps mark the current step and say which are done",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › pagination links every page from the template and marks the current one",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › a sidebar marks the current page and folds groups with details",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "AlertDialog › opens as a named alertdialog with focus on the safe choice",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › side=start pins it to the start edge",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "AlertDialog › Escape and clicks outside do not close it; its buttons do",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › slides in at the end edge as a modal dialog and closes with Escape",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › submitting its form closes it",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "HoverCard › shows when the link gets keyboard focus, and the link still navigates",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "textarea follows edits, React updates and native reset without eating composition",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "HoverCard › shows on hover, stays while the pointer moves into it, and hides with Escape",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "selected files are previewed and removing one changes real FormData and focus",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "card radios remain native and disclosure summaries retain entered content",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "runtime cleanup preserves native controls and hides stale feedback",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "progress shows true native values, checkpoint completion and a moving fill",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "selected segment moves through intermediate positions and respects reduced motion",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "new feedback fits a narrow screen and has no axe violations",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "server-rendered enhanced controls remain usable with JavaScript disabled",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "segmented selection follows real geometry, keyboard, reset and RTL",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "checkbox actually draws a stroke over time and retains native form behavior",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "slider marks update controlled React values; arrows and external updates agree",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "native reset and disabled fieldsets synchronize slider feedback and marks",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "reduced motion, RTL keyboard navigation and runtime cleanup remain usable",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "enhanced controls have no axe violations at a narrow viewport",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "firefox",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "carousel supports rapid navigation, direct positions, and keeps focus at an edge",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "presets validate calendar dates and bounds, and restore trigger focus",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "context motion is finite and respects reduced motion",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "row expansion follows stable IDs across sorting and pagination",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/context-feedback.spec.ts",
+          "title": "command explores with arrows, matches all words and skips disabled commands",
+          "status": "passed",
+          "lastLog": "core-recheck.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a toggle is a native checkbox: the label toggles it, and so does Space",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a single toggle group is a named group of radios that arrow keys move through",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a button group is a named group of buttons",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › an input group passes the Field's label, hint and error to its input",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a slider is a labelled native range",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Toggle and ToggleGroup › a multiple toggle group is a group of checkboxes with a visible legend",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a date input keeps ISO values and native limits",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › a file input takes files and is described by its hint",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "inputs › an OTP input is one numeric field with one-time-code autofill",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › an avatar is an image named after the person, with an initial",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a table is named by its caption, even a hidden one",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a collapsible opens and closes from its summary",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a scroll area is a named, focusable region that the keyboard scrolls",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "display › a carousel is a named region of numbered slides that the keyboard scrolls",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › an alert is not a live region",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › a progress bar is named by its label; without a value it is indeterminate",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "status › a meter is named by its label and keeps its bounds",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › a breadcrumb is a named nav whose last item is the current page, not a link",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › pagination links every page from the template and marks the current one",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › steps mark the current step and say which are done",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "navigation › a sidebar marks the current page and folds groups with details",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "AlertDialog › opens as a named alertdialog with focus on the safe choice",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "AlertDialog › Escape and clicks outside do not close it; its buttons do",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › slides in at the end edge as a modal dialog and closes with Escape",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › side=start pins it to the start edge",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "Sheet › submitting its form closes it",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "HoverCard › shows when the link gets keyboard focus, and the link still navigates",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "textarea follows edits, React updates and native reset without eating composition",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "selected files are previewed and removing one changes real FormData and focus",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "card radios remain native and disclosure summaries retain entered content",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/native-set.spec.ts",
+          "title": "HoverCard › shows on hover, stays while the pointer moves into it, and hides with Escape",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "runtime cleanup preserves native controls and hides stale feedback",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "progress shows true native values, checkpoint completion and a moving fill",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "selected segment moves through intermediate positions and respects reduced motion",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "segmented selection follows real geometry, keyboard, reset and RTL",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "new feedback fits a narrow screen and has no axe violations",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "slider marks update controlled React values; arrows and external updates agree",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/remaining-ux.spec.ts",
+          "title": "server-rendered enhanced controls remain usable with JavaScript disabled",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "checkbox actually draws a stroke over time and retains native form behavior",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "native reset and disabled fieldsets synchronize slider feedback and marks",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "reduced motion, RTL keyboard navigation and runtime cleanup remain usable",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "carousel supports rapid navigation, direct positions, and keeps focus at an edge",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        },
+        {
+          "browser": "webkit",
+          "file": "tests/e2e/tactile-ux.spec.ts",
+          "title": "enhanced controls have no axe violations at a narrow viewport",
+          "status": "passed",
+          "lastLog": "core-regression.log"
+        }
+      ]
+    }
+  },
+  "checks": {
+    "unit": {
+      "passed": 287,
+      "log": "unit.log"
+    },
+    "typecheck": {
+      "passed": true,
+      "log": "typecheck.log"
+    },
+    "lint": {
+      "passed": true,
+      "log": "lint.log"
+    },
+    "staticBuild": {
+      "passed": true,
+      "log": "build.log"
+    },
+    "size": {
+      "measured": true,
+      "log": "size.log"
+    }
+  },
+  "manual": {
+    "componentsOperated": 32,
+    "log": "manual-checks.json",
+    "coverage": "coverage.json",
+    "physicalMobileDevices": false,
+    "screenReaderOperation": false
+  },
+  "browserTestsPassed": 510,
+  "status": "passed"
+}

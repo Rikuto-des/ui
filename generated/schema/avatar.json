@@ -1,0 +1,88 @@
+{
+  "name": "avatar",
+  "tier": 1,
+  "summary": "A person's picture, or their initial when there is no picture or it fails to load.",
+  "use": [
+    "Who wrote, owns or is assigned something"
+  ],
+  "avoid": [
+    {
+      "case": "A logo or an illustration",
+      "instead": "img"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Avatar",
+      "slot": "avatar",
+      "element": "span",
+      "description": "role=img named by `name`. The initial sits behind the picture and shows if it is missing or broken (no JavaScript).",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. The person's name: the accessible name and the source of the initial."
+          },
+          "status": {
+            "description": "Presence indicator. Include a localized statusLabel.",
+            "type": "string",
+            "enum": [
+              "online",
+              "away",
+              "busy",
+              "offline"
+            ]
+          },
+          "statusLabel": {
+            "description": "Accessible presence text, appended to the name.",
+            "type": "string"
+          },
+          "src": {
+            "description": "Optional picture URL.",
+            "type": "string"
+          },
+          "size": {
+            "default": "md",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [],
+  "a11y": {
+    "rules": [
+      "name is required; the picture itself is decorative."
+    ]
+  },
+  "tokens": [
+    "color.surface",
+    "color.text-muted"
+  ],
+  "examples": [
+    {
+      "title": "Assignee",
+      "code": "<Avatar name=\"佐藤 美咲\" src=\"/people/sato.jpg\" />"
+    }
+  ]
+}

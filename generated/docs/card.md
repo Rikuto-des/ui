@@ -26,6 +26,7 @@ The surface. Header and footer render only when given. Renders `<div data-slot="
 | `description` | `React.ReactNode` | — | Supporting text under the title. |
 | `footer` | `React.ReactNode` | — | Actions or meta at the bottom. |
 | `headingLevel` | `"h2" \| "h3" \| "h4"` | `"h3"` | Keeps the page's heading outline correct. |
+| `selected` | `boolean` | `false` | Selection styling. Provide a real button, checkbox or radio to change selection. |
 | `padding` | `"sm" \| "md" \| "lg"` | `"md"` |  |
 
 className may only adjust: margin, width, height, layout, position.

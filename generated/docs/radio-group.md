@@ -27,6 +27,7 @@ The fieldset with its legend. Gives every RadioGroup.Item the group's name. Rend
 | `legend` | `React.ReactNode` | **required** | Required visible question or label for the group. |
 | `defaultValue` | `string` | — | Value of the item checked initially. |
 | `orientation` | `"vertical" \| "horizontal"` | `"vertical"` |  |
+| `variant` | `"default" \| "cards"` | `"default"` | cards gives each option a full-width selectable surface. |
 | `required` | `boolean` | `false` |  |
 
 className may only adjust: margin, width, layout, position.

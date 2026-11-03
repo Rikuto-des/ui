@@ -1,4 +1,4 @@
-import { defineContract, node, z } from "@yourlib/contract";
+import { defineContract, node, z } from "@urushi/contract";
 
 export default defineContract({
   name: "accordion",
@@ -25,7 +25,7 @@ export default defineContract({
       element: "details",
       description: "One section: <details> with the title in its <summary>.",
       props: z.object({
-        title: node("Required summary text."),
+        title: node("Required summary text."), description: node("Optional summary of the contents or current settings, visible while closed.").optional(),
         defaultOpen: z.boolean().default(false),
       }),
       overrides: [],

@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { flushSync } from "react-dom";
-import { Toaster } from "@yourlib/react";
-import { YourlibRuntime } from "@yourlib/react/runtime";
+import { Toaster } from "@urushi/react";
+import { UrushiRuntime } from "@urushi/react/runtime";
 
 const packs = [
   { name: "graphite", label: "Graphite" },
@@ -14,7 +14,7 @@ const themes = [
 ] as const;
 const pages = [
   { href: "/", label: "トップ", name: "home" },
-  { href: "/components.html", label: "部品", name: "components" },
+  { href: "/components.html", label: "コンポーネント", name: "components" },
 ] as const;
 type PackName = (typeof packs)[number]["name"];
 type ThemeName = (typeof themes)[number]["name"];
@@ -45,7 +45,7 @@ export function App({ page, children }: { page: (typeof pages)[number]["name"]; 
 
   return (
     <>
-      <YourlibRuntime />
+      <UrushiRuntime />
       <div className="review" role="toolbar" aria-label="表示の切り替え">
         <b>playground</b>
         <nav className="seg" aria-label="ページ">

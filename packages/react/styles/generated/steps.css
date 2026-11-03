@@ -1,0 +1,200 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+  [data-slot="steps"] {
+    display: flex;
+    gap: var(--ur-space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: ur-step;
+  }
+  [data-slot="steps"][data-orientation="vertical"] {
+    flex-direction: column;
+    gap: var(--ur-space-5);
+  }
+  [data-slot="steps-item"] {
+    position: relative;
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    gap: var(--ur-space-3);
+    min-inline-size: 0;
+    counter-increment: ur-step;
+  }
+  [data-slot="steps"][data-orientation="horizontal"] [data-slot="steps-item"]:not(:last-child)::after {
+    content: "";
+    flex: 1;
+    min-inline-size: var(--ur-space-4);
+    block-size: var(--ur-border-width);
+    margin-block-start: 12px;
+    background-color: var(--ur-color-border-strong);
+  }
+  [data-slot="steps"][data-orientation="vertical"] [data-slot="steps-item"]:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 11.5px;
+    inset-block: 30px calc(-1 * var(--ur-space-5) + 4px);
+    inline-size: var(--ur-border-width);
+    background-color: var(--ur-color-border-strong);
+  }
+  [data-slot="steps-item"][data-status="done"]:not(:last-child)::after {
+    background-color: var(--ur-color-accent);
+  }
+  [data-slot="steps-marker"] {
+    display: grid;
+    flex: none;
+    place-items: center;
+    box-sizing: border-box;
+    inline-size: 24px;
+    block-size: 24px;
+    border: var(--ur-border-width) solid var(--ur-color-border-strong);
+    border-radius: 50%;
+    color: var(--ur-color-text-muted);
+    font-size: var(--ur-font-size-small);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+  [data-slot="steps-marker"]::before {
+    content: counter(ur-step);
+  }
+  [data-status="current"] > [data-slot="steps-marker"] {
+    border: 2px solid var(--ur-color-accent);
+    color: var(--ur-color-text);
+  }
+  [data-status="done"] > [data-slot="steps-marker"] {
+    border-color: transparent;
+    background-color: var(--ur-color-accent);
+  }
+  [data-status="done"] > [data-slot="steps-marker"]::before {
+    content: "";
+    inline-size: 12px;
+    block-size: 12px;
+    background-color: var(--ur-color-on-action);
+    mask: /* phosphor:check */ url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M229.66%2C77.66l-128%2C128a8%2C8%2C0%2C0%2C1-11.32%2C0l-56-56a8%2C8%2C0%2C0%2C1%2C11.32-11.32L96%2C188.69%2C218.34%2C66.34a8%2C8%2C0%2C0%2C1%2C11.32%2C11.32Z%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+  }
+  [data-slot="steps-text"] {
+    display: grid;
+    gap: var(--ur-space-1);
+    padding-block-start: 2px;
+    min-inline-size: 0;
+  }
+  [data-slot="steps-title"] {
+    font-size: var(--ur-font-size-control);
+    font-weight: 500;
+    line-height: 1.45;
+  }
+  [data-status="upcoming"] [data-slot="steps-title"] {
+    color: var(--ur-color-text-muted);
+  }
+  [data-slot="steps-description"] {
+    font-size: var(--ur-font-size-small);
+    color: var(--ur-color-text-muted);
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+  [data-slot="steps-marker"], [data-slot="steps-item"]::after { transition:background-color 260ms ease,border-color 260ms ease,box-shadow 260ms ease; }
+  [data-status="current"] > [data-slot="steps-marker"] { box-shadow:0 0 0 4px color-mix(in oklab,var(--ur-color-accent) 9%,transparent); }
+  [data-status="done"] > [data-slot="steps-marker"]::before { animation:ur-step-check 220ms ease-out; }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+  @media (prefers-reduced-motion:reduce) {
+    [data-status="done"] > [data-slot="steps-marker"]::before { animation:none; }
+    [data-slot="steps-marker"], [data-slot="steps-item"]::after { transition:none; }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) {
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}

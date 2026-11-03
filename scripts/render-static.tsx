@@ -42,10 +42,10 @@ ${renderToStaticMarkup(tree)}
 }
 
 const pages = {
-  "index.html": page("yourlib — no JavaScript", <Showcase />),
+  "index.html": page("Urushi — no JavaScript", <Showcase />),
   "components.html": page(
-    "yourlib 部品 — no JavaScript",
-    <Gallery toastDemo={<p className="g-prose">トーストはスクリプトから呼び出す部品なので、この静的ページでは表示しません。</p>} />,
+    "Urushi コンポーネント — no JavaScript",
+    <Gallery toastDemo={<p className="g-prose">トーストはスクリプトから呼び出すコンポーネントなので、この静的ページでは表示しません。</p>} />,
   ),
 };
 

@@ -6,3 +6,4 @@ export type InputProps = InputOwnProps & Omit<React.ComponentPropsWithRef<"input
 export function Input({ size = inputDefaults.size, invalid = inputDefaults.invalid, ...rest }: InputProps) {
   return <input {...rest} data-slot={inputSlot} data-size={size} aria-invalid={invalid || rest["aria-invalid"] || undefined} />;
 }
+Input.urPart = "input";

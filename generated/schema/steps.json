@@ -1,0 +1,110 @@
+{
+  "name": "steps",
+  "tier": 1,
+  "summary": "Where the user is in a fixed sequence: an ordered list with aria-current=\"step\".",
+  "use": [
+    "Sign-up or checkout steps",
+    "A setup checklist"
+  ],
+  "avoid": [
+    {
+      "case": "Switching between views",
+      "instead": "tabs"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Steps",
+      "slot": "steps",
+      "element": "ol",
+      "description": "The ordered list.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. Names the sequence, e.g. \"申し込みの手順\"."
+          },
+          "orientation": {
+            "default": "horizontal",
+            "type": "string",
+            "enum": [
+              "horizontal",
+              "vertical"
+            ]
+          }
+        },
+        "required": [
+          "label"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
+      "jsx": "Steps.Item",
+      "slot": "steps-item",
+      "element": "li",
+      "description": "One step. The current one gets aria-current=\"step\"; each says its state in hidden text.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Required step name.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "description": {
+            "description": "Optional detail.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "status": {
+            "default": "upcoming",
+            "type": "string",
+            "enum": [
+              "done",
+              "current",
+              "upcoming"
+            ]
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "overrides": []
+    }
+  ],
+  "states": [
+    "done",
+    "current",
+    "upcoming"
+  ],
+  "a11y": {
+    "rules": [
+      "Exactly one step is current.",
+      "State is spoken (完了 / 現在の手順), not only shown by color."
+    ]
+  },
+  "tokens": [
+    "color.accent",
+    "color.on-action",
+    "color.border-strong"
+  ],
+  "examples": [
+    {
+      "title": "Sign-up",
+      "code": "<Steps label=\"申し込みの手順\">\n  <Steps.Item title=\"アカウント\" status=\"done\" />\n  <Steps.Item title=\"お支払い\" status=\"current\" />\n  <Steps.Item title=\"確認\" />\n</Steps>"
+    }
+  ]
+}

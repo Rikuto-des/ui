@@ -1,0 +1,477 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@24/24.18.0/bin/node",
+      "/Users/rikuto/Developer/ui/node_modules/.pnpm/@playwright+test@1.64.1/node_modules/@playwright/test/cli.js",
+      "test",
+      "-c",
+      "evals/competition/composition-loading-audit.config.ts"
+    ],
+    "configFile": "/Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.config.ts",
+    "rootDir": "/Users/rikuto/Developer/ui/evals/competition",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/rikuto/Developer/ui/evals/competition",
+        "testIgnore": [
+          "**/runs/**"
+        ],
+        "testMatch": [
+          "composition-loading-audit.spec.ts"
+        ],
+        "timeout": 15000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "name": "chromium",
+        "testDir": "/Users/rikuto/Developer/ui/evals/competition",
+        "snapshotDir": "/Users/rikuto/Developer/ui/evals/competition",
+        "testIgnore": "**/runs/**",
+        "testMatch": "composition-loading-audit.spec.ts",
+        "timeout": 15000,
+        "use": {
+          "baseURL": "http://localhost:4487",
+          "reducedMotion": "reduce",
+          "screenshot": "on",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/Users/rikuto/Developer/ui/evals/competition/studies/composition-20261029/loading-audit.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 4,
+    "webServer": {
+      "command": "node scripts/serve-static.ts evals/competition/runs 4487",
+      "cwd": "/Users/rikuto/Developer/ui",
+      "url": "http://localhost:4487/composition-sol-v2/urushi-settings-1/update/dist/",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "composition-loading-audit.spec.ts",
+      "file": "composition-loading-audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "urushi-1-update: loading remains visible before any Escape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 378,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:30:23.807Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--7b5e8-s-visible-before-any-Escape-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-ecf38bdbd085ff5a49c5",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "urushi-2-update: loading remains visible before any Escape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 378,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:30:23.806Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--6e82e-s-visible-before-any-Escape-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-f58d46ccbbb869541845",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "urushi-3-update: loading remains visible before any Escape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 377,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:30:23.806Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--b5030-s-visible-before-any-Escape-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-f770bf23a9124fcf3793",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-1-update: loading remains visible before any Escape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 609,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:30:23.809Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--c9c3e-s-visible-before-any-Escape-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-8475abebfe0aeca2e149",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-2-update: loading remains visible before any Escape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 552,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:30:24.313Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--c76a3-s-visible-before-any-Escape-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-1e74a62e7967469002de",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-2-update-repair: loading remains visible before any Escape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 553,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:30:24.313Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--e172c-s-visible-before-any-Escape-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-cd421728ad9acd1ad7d6",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-3-update: loading remains visible before any Escape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 552,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:30:24.313Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--b3886-s-visible-before-any-Escape-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-7aa59a20addefe91db24",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-3-update-repair: loading remains visible before any Escape",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 527,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:30:24.541Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--7a0e5-s-visible-before-any-Escape-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-fa8a32d76d9e8eafe6a9",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-29T03:30:23.295Z",
+    "duration": 1803.2579999999998,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

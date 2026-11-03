@@ -1,5 +1,8 @@
 {
   "name": "menu",
+  "styleDependencies": [
+    "button"
+  ],
   "tier": 3,
   "summary": "A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.",
   "use": [
@@ -23,7 +26,7 @@
     ],
     "enhances": [
       {
-        "feature": "@yourlib/core menu behavior",
+        "feature": "@urushi/core menu behavior",
         "fallback": "items are reachable with Tab"
       }
     ]
@@ -141,6 +144,14 @@
               "default",
               "danger"
             ]
+          },
+          "description": {
+            "description": "Secondary explanation of the action.",
+            "type": "string"
+          },
+          "shortcut": {
+            "description": "Displayed hint; app registers the shortcut.",
+            "type": "string"
           }
         }
       },

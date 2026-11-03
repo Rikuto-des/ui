@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "runId": 41026730572,
+  "sourceCommit": "4d69a9247879ba59855c06194f7f7aa5954c3558",
+  "packages": 7,
+  "freshInstallChecks": [
+    "seven beta archives match the release manifest",
+    "install seven packed packages",
+    "installed internal dependencies use the exact beta version",
+    "bundled registry init",
+    "install components",
+    "selected CSS",
+    "packed type declarations",
+    "strict contracts",
+    "Vite production build",
+    "packed CLI browser verification",
+    "Next RSC production build",
+    "update preserves customization",
+    "overlapping edit reports conflict with exit 2",
+    "resolved update typecheck"
+  ],
+  "sha256Verified": true,
+  "packageMetadataVerified": true,
+  "fullCiStatus": "failure",
+  "supersededBy": "b41c1808b1aa37870a6e0fce7e82b1beaefabc65"
+}

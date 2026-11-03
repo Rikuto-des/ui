@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { installRuntime } from "@yourlib/core/runtime";
+import { installRuntime } from "@urushi/core/runtime";
 
 /**
  * Optional client runtime. Render it once (e.g. in the root layout). Every
@@ -9,7 +9,7 @@ import { installRuntime } from "@yourlib/core/runtime";
  * yet: menu and tab keyboard models, tooltips outside Chromium, <dialog
  * closedby> outside browsers that ship it, and the toast region.
  */
-export function YourlibRuntime() {
+export function UrushiRuntime() {
   useEffect(() => installRuntime(), []);
   return null;
 }

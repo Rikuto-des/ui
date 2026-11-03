@@ -25,6 +25,7 @@ The textarea. All native attributes pass through. Renders `<textarea data-slot="
 |---|---|---|---|
 | `rows` | `number` | `3` | Minimum visible lines. |
 | `autoResize` | `boolean` | `true` | Grow with the content up to 12 lines. |
+| `showCount` | `boolean` | `false` | Show a live length and optional maxLength budget with UrushiRuntime. Uses native UTF-16 length. |
 | `invalid` | `boolean` | `false` |  |
 
 className may only adjust: margin, width, height, layout, position.

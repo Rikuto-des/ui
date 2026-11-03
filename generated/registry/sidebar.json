@@ -1,0 +1,19 @@
+{
+  "name": "sidebar",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/sidebar.json",
+  "files": [
+    {
+      "path": "sidebar.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add sidebar`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Sidebar page of the design system.\nexport { Sidebar, type SidebarProps } from \"@urushi/react/sidebar\";\n",
+      "hash": "sha256-6E0D1rceThwR6ShY77nc9vh6ROZBR6+xcsP+i5DnKs4="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/sidebar.css"
+  ]
+}

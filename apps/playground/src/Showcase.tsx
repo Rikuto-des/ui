@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Dialog, Field, Input, Popover } from "@yourlib/react";
+import { Button, Card, Checkbox, Dialog, Field, Input, Popover } from "@urushi/react";
 
 const tasks = [
   { title: "告知メールの文面を確定する", due: "10/24", status: "doing" },
@@ -16,7 +16,7 @@ const filters = [
 ];
 
 const sizes = [
-  { name: "yourlib", kb: 0.99, ours: true },
+  { name: "Urushi", kb: 0.99, ours: true },
   { name: "Radix", kb: 25.72, ours: false },
   { name: "Base UI", kb: 42.71, ours: false },
 ];
@@ -30,7 +30,7 @@ export function Showcase() {
     <div className="site">
       <header className="nav wrap">
         <span className="wordmark">
-          yourlib<small>仮称</small>
+          Urushi
         </span>
         <nav className="nav-links" aria-label="サイト">
           <a href="#size">特長</a>
@@ -54,7 +54,7 @@ export function Showcase() {
               何が違うのか
             </a>
           </div>
-          <code className="install">npx yourlib init</code>
+          <code className="install">npx urushi init</code>
         </div>
 
         <div className="demo">
@@ -109,12 +109,12 @@ export function Showcase() {
           <div>
             <h2 id="size-title">ダイアログとポップオーバーで 1 KB</h2>
             <p>
-              開閉、フォーカスの閉じ込め、重なり順、位置合わせをブラウザに任せているので、同じ部品を数十分の一のコードで実装できます。表示が速く、Server
+              開閉、フォーカスの閉じ込め、重なり順、位置合わせをブラウザに任せているので、コンポーネント側の JavaScript を抑えられます。Server
               Components のまま使え、JavaScript を読み込む前から動きます。
             </p>
             <p className="fine">Dialog と Popover、minify と gzip 後、React 本体を除く。2026 年 10 月 22 日に同じ条件で実測。</p>
           </div>
-          <div className="panel bars" role="img" aria-label="yourlib 0.99 KB、Radix 25.72 KB、Base UI 42.71 KB">
+          <div className="panel bars" role="img" aria-label="Urushi 0.99 KB、Radix 25.72 KB、Base UI 42.71 KB">
             {sizes.map((s) => (
               <div key={s.name} className="bar" data-ours={s.ours || undefined}>
                 <div className="bar-head">
@@ -201,7 +201,7 @@ export function Showcase() {
           <div>
             <h2 id="lint-title">AI に書かせても、デザインが崩れない</h2>
             <p>
-              部品ごとの契約から、型・lint・AI
+              コンポーネントごとの契約から、型・lint・AI
               向けの説明書を自動で作ります。色や角を直接書くとエラーになり、エラー文が直し方を伝えます。エージェントはそれを読んで、自分で直します。
             </p>
           </div>
@@ -213,7 +213,7 @@ export function Showcase() {
               {">\n  削除\n</Button>"}
             </pre>
             <div className="lint" role="note">
-              <span className="lint-rule">yourlib/no-visual-override</span>
+              <span className="lint-rule">urushi/no-visual-override</span>
               <span>Button の色・角・余白は className では変えられません。</span>
               <span className="fix">
                 代わりに <code>variant="danger"</code> を使ってください。角と余白はパックが決めます。
@@ -232,13 +232,13 @@ export function Showcase() {
           </div>
           <pre className="code">
             <span className="dim">$</span>
-            {" yourlib diff\n"}
+            {" urushi diff\n"}
             <span className="dim">変更なし</span>
             {"  components/ui/button.tsx\n"}
             <span className="hl">変更あり</span>
             {"  components/ui/dialog.tsx\n\n"}
             <span className="dim">$</span>
-            {" yourlib update dialog\ndialog 0.1.0 → 0.2.0\n"}
+            {" urushi update dialog\ndialog 0.1.0 → 0.2.0\n"}
             <span className="good">あなたの変更を残して更新しました</span>
           </pre>
         </section>
@@ -257,7 +257,7 @@ export function Showcase() {
               <p>Webhookの設定は管理画面の「連携」から行えます。APIキーは発行から1時間で失効します。</p>
             </div>
             <div className="panel type-sample" data-variant="ours">
-              <span className="type-label">yourlib</span>
+              <span className="type-label">Urushi</span>
               <h3>「秋のキャンペーン」の申し込みを受け付けています</h3>
               <p>Webhookの設定は管理画面の「連携」から行えます。APIキーは発行から1時間で失効します。</p>
             </div>
@@ -265,7 +265,7 @@ export function Showcase() {
         </section>
       </div>
 
-      <footer className="foot wrap">yourlib playground</footer>
+      <footer className="foot wrap">Urushi playground</footer>
 
       <Popover id="filters" title="状態で絞り込む" data-testid="filters">
         <fieldset className="checks">

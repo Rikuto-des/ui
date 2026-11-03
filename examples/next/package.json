@@ -9,17 +9,17 @@
     "start": "next start -p 3100"
   },
   "dependencies": {
-    "@yourlib/packs": "workspace:*",
-    "@yourlib/react": "workspace:*",
-    "next": "16.4.0",
+    "@urushi/packs": "workspace:*",
+    "@urushi/react": "workspace:*",
+    "next": "16.4.3",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@yourlib/cli": "workspace:*",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@urushi/cli": "workspace:*",
     "typescript": "6.0.3"
   }
 }

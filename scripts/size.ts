@@ -1,12 +1,12 @@
 /**
- * Measures minified + gzipped JavaScript (and the CSS) of yourlib and, when a
+ * Measures minified + gzipped JavaScript (and the CSS) of urushi and, when a
  * bench directory is given, the same component sets in other libraries.
  *   node scripts/size.ts [benchDir]
  * React itself is external in every case. In a Server Components app the
- * yourlib components ship no JavaScript at all; these numbers are for
+ * urushi components ship no JavaScript at all; these numbers are for
  * client-rendered apps.
  */
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { gzipSync } from "node:zlib";
 import { join } from "node:path";
 import { build } from "esbuild";
@@ -33,15 +33,16 @@ async function measure(label: string, opts: { stdin?: string; entry?: string; no
 }
 
 const KIT = "Dialog, Popover, Menu, Select, Tabs, Tooltip";
+const componentCount = (await readdir("contracts")).filter((f) => f.endsWith(".contract.ts")).length;
 const rows = [
-  await measure("yourlib: Button + Dialog + Popover", {
-    stdin: `export { Button, Dialog, Popover } from "@yourlib/react";`,
+  await measure("urushi: Button + Dialog + Popover", {
+    stdin: `export { Button, Dialog, Popover } from "@urushi/react";`,
   }),
-  await measure(`yourlib: ${KIT} + runtime`, {
-    stdin: `export { ${KIT} } from "@yourlib/react";\nexport { YourlibRuntime } from "@yourlib/react/runtime";`,
+  await measure(`urushi: ${KIT} + runtime`, {
+    stdin: `export { ${KIT} } from "@urushi/react";\nexport { UrushiRuntime } from "@urushi/react/runtime";`,
   }),
-  await measure("yourlib: all 21 components", { stdin: `export * from "@yourlib/react";` }),
-  await measure("yourlib: runtime (all behaviors)", { stdin: `export { YourlibRuntime } from "@yourlib/react/runtime";` }),
+  await measure(`urushi: all ${componentCount} components`, { stdin: `export * from "@urushi/react";` }),
+  await measure("urushi: runtime (all behaviors)", { stdin: `export { UrushiRuntime } from "@urushi/react/runtime";` }),
   await measure("  runtime: menu keyboard", { stdin: `export { installMenus } from "./menu.ts";`, resolveDir: "packages/core/src" }),
   await measure("  runtime: tabs", { stdin: `export { installTabs } from "./tabs.ts";`, resolveDir: "packages/core/src" }),
   await measure("  runtime: tooltip fallback", { stdin: `export { installTooltips } from "./tooltip.ts";`, resolveDir: "packages/core/src" }),

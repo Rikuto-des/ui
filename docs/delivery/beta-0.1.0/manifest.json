@@ -1,0 +1,64 @@
+{
+  "version": "0.1.0-beta.1",
+  "tag": "beta",
+  "sourceCommit": "ab60022b174f45cce3723bbed04d055543af554a",
+  "createdAt": "2026-10-30T09:25:40.194Z",
+  "packages": [
+    {
+      "name": "@urushi/contract",
+      "version": "0.1.0-beta.1",
+      "file": "urushi-contract-0.1.0-beta.1.tgz",
+      "bytes": 9038,
+      "sha256": "ad502d1c136fda5757083eedccb04ec9911fcae372f45a830a17f3f9055f0e74",
+      "files": 10
+    },
+    {
+      "name": "@urushi/tokens",
+      "version": "0.1.0-beta.1",
+      "file": "urushi-tokens-0.1.0-beta.1.tgz",
+      "bytes": 11162,
+      "sha256": "0392e0f2272b89f0447e76c2e1035e2b3a7154ed696f82520fde7025c667aca3",
+      "files": 10
+    },
+    {
+      "name": "@urushi/core",
+      "version": "0.1.0-beta.1",
+      "file": "urushi-core-0.1.0-beta.1.tgz",
+      "bytes": 44581,
+      "sha256": "ba5100082faa765fc80a470078a0fb3b72cd6ad9f8372b55615421bdb0f23c7f",
+      "files": 62
+    },
+    {
+      "name": "@urushi/packs",
+      "version": "0.1.0-beta.1",
+      "file": "urushi-packs-0.1.0-beta.1.tgz",
+      "bytes": 9425,
+      "sha256": "8876cb263c95022c1d7f8b1cee1ed21e679b5375dc0ea0d845773c735802c4ac",
+      "files": 9
+    },
+    {
+      "name": "@urushi/react",
+      "version": "0.1.0-beta.1",
+      "file": "urushi-react-0.1.0-beta.1.tgz",
+      "bytes": 171202,
+      "sha256": "61cdad768dca11e6d973e299e79f15ddfbcdbae91f2587a3ef629a3caac02576",
+      "files": 495
+    },
+    {
+      "name": "@urushi/eslint-plugin",
+      "version": "0.1.0-beta.1",
+      "file": "urushi-eslint-plugin-0.1.0-beta.1.tgz",
+      "bytes": 54523,
+      "sha256": "f7bc07571f0a7e080b8c028d2a55f3334160a3697d33b8d20e0f6892b9d5888a",
+      "files": 16
+    },
+    {
+      "name": "@urushi/cli",
+      "version": "0.1.0-beta.1",
+      "file": "urushi-cli-0.1.0-beta.1.tgz",
+      "bytes": 129668,
+      "sha256": "4cf2d84c65af69e21174b925dd7b3964646908cd3ddc78a150d20049e1bed324",
+      "files": 102
+    }
+  ]
+}

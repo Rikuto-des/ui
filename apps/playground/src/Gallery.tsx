@@ -1,27 +1,53 @@
 import type { ReactNode } from "react";
 import {
   Accordion,
+  Alert,
+  AlertDialog,
+  AspectRatio,
+  Avatar,
   Badge,
+  Breadcrumb,
   Button,
+  ButtonGroup,
   Card,
+  Carousel,
   Checkbox,
+  Collapsible,
+  DateInput,
   Dialog,
+  Empty,
   Field,
+  FileInput,
+  HoverCard,
   Input,
+  InputGroup,
+  Kbd,
   Link,
   Menu,
+  Meter,
+  OTPInput,
+  Pagination,
   Popover,
+  Progress,
   RadioGroup,
+  ScrollArea,
   Select,
   Separator,
+  Sheet,
+  Sidebar,
   Skeleton,
+  Slider,
   Spinner,
+  Steps,
   Switch,
+  Table,
   Tabs,
   Textarea,
+  Toggle,
+  ToggleGroup,
   Tooltip,
-} from "@yourlib/react";
-import { IconBold, IconCopy, IconList, IconMore, IconShare } from "./icons.tsx";
+} from "@urushi/react";
+import { IconBold, IconCalendar, IconCopy, IconItalic, IconList, IconMore, IconPeople, IconPlus, IconShare, IconTasks } from "./icons.tsx";
 
 interface Entry {
   id: string;
@@ -38,6 +64,9 @@ const groups: { label: string; entries: Entry[] }[] = [
     entries: [
       { id: "button", name: "Button", base: "<button>", js: "不要" },
       { id: "link", name: "Link", base: "<a>", js: "不要" },
+      { id: "button-group", name: "ButtonGroup", base: 'role="group"', js: "不要" },
+      { id: "toggle", name: "Toggle", base: '<input type="checkbox">', js: "不要" },
+      { id: "toggle-group", name: "ToggleGroup", base: "radio と checkbox", js: "不要" },
       { id: "menu", name: "Menu", base: 'popover="auto"', js: "矢印キーとタイプアヘッドだけ" },
     ],
   },
@@ -45,11 +74,16 @@ const groups: { label: string; entries: Entry[] }[] = [
     label: "入力",
     entries: [
       { id: "field", name: "Field + Input", base: "<label> と aria-describedby", js: "不要" },
+      { id: "input-group", name: "InputGroup", base: ":has() で 1 つの枠に", js: "不要" },
       { id: "textarea", name: "Textarea", base: "field-sizing: content", js: "不要" },
       { id: "select", name: "Select", base: "<select> と base-select", js: "不要" },
       { id: "checkbox", name: "Checkbox", base: '<input type="checkbox">', js: "不要" },
       { id: "switch", name: "Switch", base: 'role="switch"', js: "不要" },
       { id: "radio-group", name: "RadioGroup", base: "<fieldset> と radio", js: "不要" },
+      { id: "slider", name: "Slider", base: '<input type="range">', js: "不要" },
+      { id: "date-input", name: "DateInput", base: '<input type="date">', js: "不要" },
+      { id: "file-input", name: "FileInput", base: '<input type="file">', js: "不要" },
+      { id: "otp-input", name: "OTPInput", base: "one-time-code", js: "不要" },
     ],
   },
   {
@@ -57,18 +91,46 @@ const groups: { label: string; entries: Entry[] }[] = [
     entries: [
       { id: "card", name: "Card", base: "見出しレベルを選べる", js: "不要" },
       { id: "badge", name: "Badge", base: "<span>", js: "不要" },
+      { id: "avatar", name: "Avatar", base: 'role="img" と <img>', js: "不要" },
+      { id: "kbd", name: "Kbd", base: "<kbd>", js: "不要" },
+      { id: "table", name: "Table", base: "<table> と <caption>", js: "不要" },
       { id: "tabs", name: "Tabs", base: "ARIA tabs をサーバーで描画", js: "切り替えに必要" },
       { id: "accordion", name: "Accordion", base: "<details name>", js: "不要" },
+      { id: "collapsible", name: "Collapsible", base: "<details>", js: "不要" },
       { id: "separator", name: "Separator", base: "<hr>", js: "不要" },
-      { id: "skeleton", name: "Skeleton", base: "CSS のみ", js: "不要" },
+      { id: "aspect-ratio", name: "AspectRatio", base: "aspect-ratio", js: "不要" },
+      { id: "scroll-area", name: "ScrollArea", base: 'role="region"', js: "不要" },
+      { id: "carousel", name: "Carousel", base: "::scroll-marker", js: "不要" },
+    ],
+  },
+  {
+    label: "状態",
+    entries: [
+      { id: "alert", name: "Alert", base: "見出しのある面", js: "不要" },
+      { id: "progress", name: "Progress", base: "<progress>", js: "不要" },
+      { id: "meter", name: "Meter", base: "<meter>", js: "不要" },
       { id: "spinner", name: "Spinner", base: 'role="status"', js: "不要" },
+      { id: "skeleton", name: "Skeleton", base: "CSS のみ", js: "不要" },
+      { id: "empty", name: "Empty", base: "CSS のみ", js: "不要" },
+    ],
+  },
+  {
+    label: "ナビゲーション",
+    entries: [
+      { id: "breadcrumb", name: "Breadcrumb", base: "<nav> と <ol>", js: "不要" },
+      { id: "pagination", name: "Pagination", base: "<nav> とリンク", js: "不要" },
+      { id: "steps", name: "Steps", base: 'aria-current="step"', js: "不要" },
+      { id: "sidebar", name: "Sidebar", base: "<nav> と <details>", js: "不要" },
     ],
   },
   {
     label: "重なり",
     entries: [
       { id: "dialog", name: "Dialog", base: "<dialog> と command", js: "不要" },
+      { id: "alert-dialog", name: "AlertDialog", base: 'role="alertdialog"', js: "不要" },
+      { id: "sheet", name: "Sheet", base: "<dialog> と command", js: "不要" },
       { id: "popover", name: "Popover", base: "popover とアンカー配置", js: "不要" },
+      { id: "hover-card", name: "HoverCard", base: "popover と interestfor", js: "Chromium 以外で必要" },
       { id: "tooltip", name: "Tooltip", base: 'popover="hint" と interestfor', js: "Chromium 以外で必要" },
       { id: "toast", name: "Toast", base: 'popover="manual" と aria-live', js: "表示に必要" },
     ],
@@ -122,12 +184,12 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
     <div className="site gallery">
       <header className="nav wrap">
         <span className="wordmark">
-          yourlib<small>仮称</small>
+          Urushi
         </span>
       </header>
 
       <div className="g-layout wrap">
-        <nav className="g-index" aria-label="部品の一覧">
+        <nav className="g-index" aria-label="コンポーネントの一覧">
           {groups.map((g) => (
             <div key={g.label} className="g-index-group">
               <p>{g.label}</p>
@@ -144,9 +206,9 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
 
         <main className="g-main">
           <div className="g-intro">
-            <h1>部品</h1>
+            <h1>コンポーネント</h1>
             <p className="lede">
-              {count} 種類。どれも Server Components のまま描画でき、多くはブラウザ標準の要素だけで動きます。上のバーでパックとテーマを切り替えると、同じ部品がそのまま着せ替わります。
+              {count} 種類。どれも Server Components のまま描画でき、多くはブラウザ標準の要素だけで動きます。上のバーでパックとテーマを切り替えると、同じコンポーネントがそのまま着せ替わります。
             </p>
           </div>
 
@@ -190,6 +252,56 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
                   MDN の dialog 要素
                 </Link>
               </div>
+            </Example>
+          </Section>
+
+          <Section id="button-group" summary="まとまりのある操作を 1 つの形につなげます。いくつかから 1 つを選ぶなら ToggleGroup を使います。">
+            <Example label="関連する操作">
+              <div className="g-stack">
+                <ButtonGroup label="リンク" data-testid="link-actions">
+                  <Button>コピー</Button>
+                  <Button>共有</Button>
+                  <Button>埋め込み</Button>
+                </ButtonGroup>
+                <ButtonGroup label="表示の大きさ">
+                  <Button size="sm">縮小</Button>
+                  <Button size="sm">100%</Button>
+                  <Button size="sm">拡大</Button>
+                </ButtonGroup>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="toggle" summary="押すと入り、もう一度押すと切れる。中身はチェックボックスなので、フォームで送られます。">
+            <Example label="ツールバー">
+              <div className="g-toolbar" role="group" aria-label="書式">
+                <Toggle name="bold" aria-label="太字" defaultChecked data-testid="toggle-bold">
+                  <IconBold />
+                </Toggle>
+                <Toggle name="italic" aria-label="斜体" data-testid="toggle-italic">
+                  <IconItalic />
+                </Toggle>
+                <Toggle name="preview">プレビュー</Toggle>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="toggle-group" summary="ひと続きのボタンの形をした選択肢。1 つ選ぶならラジオ、いくつも選ぶならチェックボックスです。">
+            <Example label="1 つ選ぶ">
+              <ToggleGroup legend="表示" name="view" defaultValue="list" data-testid="view-group">
+                <ToggleGroup.Item value="list">リスト</ToggleGroup.Item>
+                <ToggleGroup.Item value="board">ボード</ToggleGroup.Item>
+                <ToggleGroup.Item value="calendar">カレンダー</ToggleGroup.Item>
+              </ToggleGroup>
+            </Example>
+            <Example label="いくつも選ぶ">
+              <ToggleGroup legend="表示する曜日" name="days" type="multiple" size="sm" hideLegend={false} data-testid="days-group">
+                {["月", "火", "水", "木", "金", "土", "日"].map((d, i) => (
+                  <ToggleGroup.Item key={d} value={d} defaultChecked={i < 5}>
+                    {d}
+                  </ToggleGroup.Item>
+                ))}
+              </ToggleGroup>
             </Example>
           </Section>
 
@@ -239,6 +351,35 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
                 </Field>
                 <Field id="g-size-lg" label="大" hideLabel>
                   <Input size="lg" placeholder="大" />
+                </Field>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="input-group" summary="入力欄の前後に決まった文字やボタンをつなげます。Field の中に置けば、ラベルや説明は中の Input に結びつきます。">
+            <Example label="前置きと単位">
+              <div className="g-form">
+                <Field id="g-site" label="サイトの URL" description="https:// は入れなくてかまいません。">
+                  <InputGroup>
+                    <InputGroup.Addon>https://</InputGroup.Addon>
+                    <Input placeholder="example.jp" data-testid="site-url" />
+                  </InputGroup>
+                </Field>
+                <Field id="g-budget" label="予算（円）">
+                  <InputGroup>
+                    <Input inputMode="numeric" placeholder="50000" />
+                    <InputGroup.Addon>円</InputGroup.Addon>
+                  </InputGroup>
+                </Field>
+              </div>
+            </Example>
+            <Example label="ボタン付き">
+              <div className="g-form">
+                <Field id="g-invite-to" label="招待するメールアドレス" error="メールアドレスの形になっていません。">
+                  <InputGroup>
+                    <Input type="email" defaultValue="hanako@" />
+                    <Button>招待</Button>
+                  </InputGroup>
                 </Field>
               </div>
             </Example>
@@ -314,6 +455,59 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
             </Example>
           </Section>
 
+          <Section id="slider" summary="だいたいの量を選ぶ。正確な数が大事なら Input を使います。">
+            <Example label="音量">
+              <div className="g-form">
+                <Field id="g-volume" label="通知音の大きさ">
+                  <Slider min={0} max={100} defaultValue={60} data-testid="volume" />
+                </Field>
+                <Field id="g-density" label="表示の密度" description="左ほど詰め、右ほどゆったり表示します。">
+                  <Slider min={1} max={3} step={1} defaultValue={2} />
+                </Field>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="date-input" summary="日付や時刻。ブラウザ自身のピッカーが開き、表示の形は利用者の言語設定に従います。">
+            <Example label="日付と時刻">
+              <div className="g-form">
+                <Field id="g-due" label="期限">
+                  <DateInput defaultValue="2026-10-30" min="2026-10-01" data-testid="due" />
+                </Field>
+                <Field id="g-start" label="開始時刻">
+                  <DateInput type="time" defaultValue="13:00" />
+                </Field>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="file-input" summary="ファイルの添付。dropzone はファイルを落とせる大きな的になります（スクリプトなし）。">
+            <Example label="既定">
+              <div className="g-form">
+                <Field id="g-photo" label="プロフィール写真" description="PNG か JPEG、5 MB まで。">
+                  <FileInput accept="image/png, image/jpeg" data-testid="photo" />
+                </Field>
+              </div>
+            </Example>
+            <Example label="dropzone">
+              <div className="g-form">
+                <Field id="g-files" label="添付ファイル" description="ここにファイルを落とすか、押して選びます。">
+                  <FileInput variant="dropzone" multiple />
+                </Field>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="otp-input" summary="ワンタイムコード。1 つの入力欄を桁ごとの枠に描くので、貼り付けや読み上げはふつうの入力欄と同じです。">
+            <Example label="6 桁">
+              <div className="g-form">
+                <Field id="g-otp" label="確認コード" description="メールに届いた 6 桁の数字を入れてください。">
+                  <OTPInput data-testid="otp" />
+                </Field>
+              </div>
+            </Example>
+          </Section>
+
           <Section id="card" summary="まとまった内容の入れ物。見出しレベルを指定して、ページの見出し構造を崩さないようにします。">
             <Example label="操作つき">
               <div className="g-card-grid">
@@ -357,6 +551,91 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
             </Example>
           </Section>
 
+          <Section id="avatar" summary="人を示す写真。写真がないときや読み込めないときは、名前の頭文字を出します。">
+            <Example label="大きさ">
+              <div className="g-row">
+                <Avatar name="佐藤 美咲" size="sm" />
+                <Avatar name="鈴木 健太" />
+                <Avatar name="Hana Takahashi" size="lg" data-testid="avatar-latin" />
+                <Avatar name="写真が読めない人" src="/missing-photo.jpg" data-testid="avatar-broken" />
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="kbd" summary="キーやショートカット。組み合わせは Kbd を並べます。">
+            <Example label="文中">
+              <p className="g-prose">
+                <Kbd>⌘</Kbd>
+                <Kbd>K</Kbd> でコマンドを開き、<Kbd>Esc</Kbd> で閉じます。
+              </p>
+            </Example>
+          </Section>
+
+          <Section id="table" summary="同じ列で項目を比べる。caption が表の名前になり、幅が足りないときは表だけが横にスクロールします。">
+            <Example label="一覧">
+              <Table caption="今週のタスク" data-testid="tasks-table">
+                <thead>
+                  <tr>
+                    <th scope="col">タスク</th>
+                    <th scope="col">担当</th>
+                    <th scope="col">期限</th>
+                    <th scope="col">状態</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>告知メールの文面を確定する</td>
+                    <td>佐藤</td>
+                    <td>10/24</td>
+                    <td>
+                      <Badge tone="accent">対応中</Badge>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SNS 広告を入稿する</td>
+                    <td>鈴木</td>
+                    <td>10/21</td>
+                    <td>
+                      <Badge tone="danger">期限切れ</Badge>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>申し込みページの画像を差し替える</td>
+                    <td>高橋</td>
+                    <td>10/25</td>
+                    <td>
+                      <Badge>未着手</Badge>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Example>
+            <Example label="詰めて縞">
+              <Table caption="参加者" hideCaption density="compact" striped>
+                <thead>
+                  <tr>
+                    <th scope="col">名前</th>
+                    <th scope="col">チーム</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">佐藤 美咲</th>
+                    <td>広報</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">鈴木 健太</th>
+                    <td>営業</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">高橋 陽菜</th>
+                    <td>開発</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Example>
+          </Section>
+
           <Section id="tabs" summary="同じ場所で内容を切り替える。選ばれたタブはサーバーで決まり、切り替えと矢印キーはランタイムが担います。">
             <Example label="基本">
               <Tabs id="project-tabs" label="プロジェクト" defaultValue="overview">
@@ -394,6 +673,19 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
             </Example>
           </Section>
 
+          <Section id="collapsible" summary="1 つの区画を開け閉めする details。区画がいくつも並ぶなら Accordion を使います。">
+            <Example label="詳しい設定">
+              <div className="g-wide">
+                <Collapsible title="詳細な設定" data-testid="collapsible">
+                  <div className="g-stack">
+                    <Checkbox>完了したタスクを 30 日後に自動でアーカイブする</Checkbox>
+                    <Checkbox>週末も締め切りの通知を送る</Checkbox>
+                  </div>
+                </Collapsible>
+              </div>
+            </Example>
+          </Section>
+
           <Section id="separator" summary="内容の区切り。飾りだけのときは decorative にして、読み上げから外します。">
             <Example label="横と縦">
               <div className="g-stack">
@@ -417,6 +709,114 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
             </Example>
           </Section>
 
+          <Section id="aspect-ratio" summary="縦横比を保つ箱。中の画像や動画は箱いっぱいに広がります。">
+            <Example label="16:9 と 1:1">
+              <div className="g-media">
+                <AspectRatio ratio="16 / 9">
+                  <svg viewBox="0 0 160 90" role="img" aria-label="会場の写真（見本）">
+                    <rect width="160" height="90" fill="var(--ur-color-track)" />
+                    <path d="M0 90 52 42l30 28 20-16 58 36z" fill="var(--ur-color-surface)" opacity="0.7" />
+                  </svg>
+                </AspectRatio>
+                <AspectRatio ratio="1 / 1">
+                  <svg viewBox="0 0 90 90" role="img" aria-label="正方形の写真（見本）">
+                    <rect width="90" height="90" fill="var(--ur-color-skeleton)" />
+                    <path d="M0 90 35 45l20 22 12-12 23 35z" fill="var(--ur-color-surface)" opacity="0.7" />
+                  </svg>
+                </AspectRatio>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="scroll-area" summary="名前の付いたスクロール領域。フォーカスできるので、キーボードでもスクロールできます。">
+            <Example label="長い一覧">
+              <ScrollArea label="参加者" style={{ blockSize: 180, maxInlineSize: 320 }} data-testid="people-scroll">
+                <ul className="g-people">
+                  {["佐藤 美咲", "鈴木 健太", "高橋 陽菜", "田中 大輝", "伊藤 結衣", "渡辺 蓮", "山本 葵", "中村 悠斗"].map((name) => (
+                    <li key={name}>
+                      <Avatar name={name} size="sm" />
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+              </ScrollArea>
+            </Example>
+          </Section>
+
+          <Section id="carousel" summary="横にスクロールして順に見せるスライド。勝手には動かず、対応ブラウザでは前後のボタンと点をブラウザが足します。">
+            <Example label="写真">
+              <div style={{ maxInlineSize: 440 }}>
+                <Carousel label="会場の写真" data-testid="carousel">
+                  {["受付", "講演", "交流会", "片付け"].map((title, i) => (
+                    <Carousel.Item key={title}>
+                      <AspectRatio ratio="16 / 9">
+                        <svg viewBox="0 0 160 90" role="img" aria-label={`${title}の様子（見本）`}>
+                          <rect width="160" height="90" fill={i % 2 ? "var(--ur-color-skeleton)" : "var(--ur-color-track)"} />
+                          <text x="80" y="50" textAnchor="middle" fontSize="12" fill="var(--ur-color-text-muted)">
+                            {title}
+                          </text>
+                        </svg>
+                      </AspectRatio>
+                    </Carousel.Item>
+                  ))}
+                </Carousel>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="alert" summary="ページに置いておく知らせ。見出しで言い切り、トーンの色とアイコンは補うだけです。">
+            <Example label="トーン">
+              <div className="g-wide">
+                <Alert title="下書きは 30 日後に消えます" />
+                <Alert tone="accent" title="10 月 30 日 2:00〜4:00 にメンテナンスを行います">
+                  この間は申し込みを受け付けられません。
+                </Alert>
+                <Alert tone="ok" title="すべてのタスクが完了しました" />
+                <Alert
+                  tone="warning"
+                  title="無料プランの上限まで、あと 3 件です"
+                  action={
+                    <Link variant="standalone" href="#plans">
+                      プランを見る
+                    </Link>
+                  }
+                />
+                <Alert tone="danger" title="支払いに失敗しました" data-testid="alert-danger">
+                  カードの有効期限を確かめて、もう一度お試しください。
+                </Alert>
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="progress" summary="作業がどこまで進んだか。合計がまだわからない間は value を省くと、流れる表示になります。">
+            <Example label="割合と不定">
+              <div className="g-form">
+                <Progress label="写真をアップロード中" value={42} data-testid="upload-progress" />
+                <Progress label="データを読み込んでいます" />
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="meter" summary="決まった範囲の中の量。optimum からどれだけ離れているかで、ブラウザが色を決めます。">
+            <Example label="容量と上限">
+              <div className="g-form">
+                <Meter label="使用容量" value={3.2} max={10} high={8} optimum={0} valueText="3.2 GB / 10 GB" data-testid="storage" />
+                <Meter label="今月の送信数" value={640} max={1000} low={500} high={800} optimum={0} valueText="640 / 1,000 通" />
+                <Meter label="ストレージの空き" value={4} max={100} low={10} high={50} optimum={100} valueText="残り 4%" />
+              </div>
+            </Example>
+          </Section>
+
+          <Section id="spinner" summary="処理中であることを示す。読み上げでは label の文言が伝わります。">
+            <Example label="大きさ">
+              <div className="g-row">
+                <Spinner size="sm" />
+                <Spinner />
+                <Spinner size="lg" label="アップロード中" data-testid="spinner-lg" />
+              </div>
+            </Example>
+          </Section>
+
           <Section id="skeleton" summary="読み込み中の場所取り。読み上げからは外れるので、状態は Spinner などで伝えます。">
             <Example label="カードの読み込み">
               <div className="g-skeleton">
@@ -428,12 +828,73 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
             </Example>
           </Section>
 
-          <Section id="spinner" summary="処理中であることを示す。読み上げでは label の文言が伝わります。">
-            <Example label="大きさ">
-              <div className="g-row">
-                <Spinner size="sm" />
-                <Spinner />
-                <Spinner size="lg" label="アップロード中" data-testid="spinner-lg" />
+          <Section id="empty" summary="一覧にまだ何もないとき。何が空で、どう始めればよいかを示します。">
+            <Example label="最初の画面">
+              <Empty
+                icon={<IconPlus />}
+                title="まだタスクがありません"
+                description="最初のタスクを追加すると、ここに並びます。"
+                action={<Button variant="primary">タスクを追加</Button>}
+              />
+            </Example>
+          </Section>
+
+          <Section id="breadcrumb" summary="今のページがサイトのどこにあるか。区切りの印は CSS で描き、読み上げません。">
+            <Example label="3 階層">
+              <Breadcrumb data-testid="breadcrumb">
+                <Breadcrumb.Item href="#home">ホーム</Breadcrumb.Item>
+                <Breadcrumb.Item href="#settings">設定</Breadcrumb.Item>
+                <Breadcrumb.Item current>通知</Breadcrumb.Item>
+              </Breadcrumb>
+            </Example>
+          </Section>
+
+          <Section id="pagination" summary="長い一覧のページ送り。すべてふつうのリンクで、href は URL の型から作ります。">
+            <Example label="12 ページ">
+              <Pagination page={6} total={12} href="#page-{page}" data-testid="pagination" />
+            </Example>
+            <Example label="3 ページ">
+              <Pagination page={1} total={3} href="#page-{page}" label="ページ送り（短い一覧）" />
+            </Example>
+          </Section>
+
+          <Section id="steps" summary="決まった手順のどこにいるか。今の手順に aria-current が付き、状態は言葉でも読み上げます。">
+            <Example label="横">
+              <Steps label="申し込みの手順" data-testid="steps">
+                <Steps.Item title="アカウント" status="done" />
+                <Steps.Item title="お支払い" status="current" />
+                <Steps.Item title="確認" />
+              </Steps>
+            </Example>
+            <Example label="縦">
+              <Steps label="初期設定" orientation="vertical">
+                <Steps.Item title="チームを作る" description="名前とアイコンを決めます。" status="done" />
+                <Steps.Item title="メンバーを招待する" description="メールで招待を送ります。" status="current" />
+                <Steps.Item title="最初のプロジェクトを作る" />
+              </Steps>
+            </Example>
+          </Section>
+
+          <Section id="sidebar" summary="アプリの主なナビゲーション。グループは details で畳めます（スクリプトなし）。">
+            <Example label="グループ">
+              <div className="g-sidebar">
+                <Sidebar label="メイン" data-testid="sidebar">
+                  <Sidebar.Group title="プロジェクト">
+                    <Sidebar.Item href="#tasks" icon={<IconTasks />} current>
+                      タスク
+                    </Sidebar.Item>
+                    <Sidebar.Item href="#calendar" icon={<IconCalendar />}>
+                      カレンダー
+                    </Sidebar.Item>
+                    <Sidebar.Item href="#members" icon={<IconPeople />}>
+                      メンバー
+                    </Sidebar.Item>
+                  </Sidebar.Group>
+                  <Sidebar.Group title="アーカイブ" collapsible defaultOpen={false}>
+                    <Sidebar.Item href="#spring">春のキャンペーン</Sidebar.Item>
+                    <Sidebar.Item href="#year-end">年末セール</Sidebar.Item>
+                  </Sidebar.Group>
+                </Sidebar>
               </div>
             </Example>
           </Section>
@@ -463,6 +924,65 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
             </Example>
           </Section>
 
+          <Section id="alert-dialog" summary="取り消せない操作の確認。Esc でも外側でも閉じず、最初のフォーカスはキャンセルに置かれます。">
+            <Example label="削除の確認">
+              <div className="g-row">
+                <AlertDialog.Trigger alertDialog="g-delete" variant="danger" data-testid="open-delete">
+                  プロジェクトを削除
+                </AlertDialog.Trigger>
+              </div>
+              <AlertDialog
+                id="g-delete"
+                title="「秋のキャンペーン」を削除しますか？"
+                description="タスク 5 件とコメントがすべて消えます。この操作は取り消せません。"
+                data-testid="delete-dialog"
+              >
+                <AlertDialog.Cancel alertDialog="g-delete" data-testid="delete-cancel">
+                  キャンセル
+                </AlertDialog.Cancel>
+                <AlertDialog.Action alertDialog="g-delete">削除する</AlertDialog.Action>
+              </AlertDialog>
+            </Example>
+          </Section>
+
+          <Section id="sheet" summary="画面の端から滑り出るダイアログ。左右は書字方向に従います。">
+            <Example label="端">
+              <div className="g-row">
+                <Sheet.Trigger sheet="g-task-sheet" data-testid="open-sheet">
+                  タスクを編集
+                </Sheet.Trigger>
+                <Sheet.Trigger sheet="g-nav-sheet" variant="ghost" data-testid="open-nav-sheet">
+                  メニュー
+                </Sheet.Trigger>
+              </div>
+              <Sheet id="g-task-sheet" title="タスクを編集" description="変更は保存するまで反映されません。" data-testid="task-sheet">
+                <form method="dialog" className="g-dialog-form">
+                  <Field id="g-sheet-title" label="タスク名" required>
+                    <Input defaultValue="告知メールの文面を確定する" />
+                  </Field>
+                  <Dialog.Actions>
+                    <Sheet.Close sheet="g-task-sheet" variant="ghost">
+                      キャンセル
+                    </Sheet.Close>
+                    <Button variant="primary" type="submit">
+                      保存
+                    </Button>
+                  </Dialog.Actions>
+                </form>
+              </Sheet>
+              <Sheet id="g-nav-sheet" title="メニュー" side="start" size="sm" data-testid="nav-sheet">
+                <Sidebar label="メニュー">
+                  <Sidebar.Group title="プロジェクト">
+                    <Sidebar.Item href="#tasks" current>
+                      タスク
+                    </Sidebar.Item>
+                    <Sidebar.Item href="#calendar">カレンダー</Sidebar.Item>
+                  </Sidebar.Group>
+                </Sidebar>
+              </Sheet>
+            </Example>
+          </Section>
+
           <Section id="popover" summary="ボタンの近くに出る小さなパネル。外側を押すか Esc で閉じます。">
             <Example label="設定">
               <div className="g-row">
@@ -478,6 +998,30 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
                   </div>
                 </Popover>
               </div>
+            </Example>
+          </Section>
+
+          <Section id="hover-card" summary="リンクの先をのぞき見るカード。ホバーかキーボードのフォーカスで出て、ポインタをカードに移しても消えません。">
+            <Example label="人">
+              <p className="g-prose">
+                担当は{" "}
+                <HoverCard.Trigger hoverCard="g-person" href="#sato" data-testid="hc-trigger">
+                  佐藤 美咲
+                </HoverCard.Trigger>{" "}
+                さんです。
+              </p>
+              <HoverCard id="g-person" data-testid="hc-card">
+                <span className="g-person">
+                  <Avatar name="佐藤 美咲" size="lg" />
+                  <span className="g-person-text">
+                    <b>佐藤 美咲</b>
+                    <span>広報チーム・担当タスク 4 件</span>
+                    <Link variant="standalone" href="#sato" data-testid="hc-link">
+                      プロフィールを見る
+                    </Link>
+                  </span>
+                </span>
+              </HoverCard>
             </Example>
           </Section>
 

@@ -1,0 +1,19 @@
+{
+  "name": "meter",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/meter.json",
+  "files": [
+    {
+      "path": "meter.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add meter`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Meter page of the design system.\nexport { Meter, type MeterProps } from \"@urushi/react/meter\";\n",
+      "hash": "sha256-cDo/szCTs+6Yk2NwUsM3YbtQ3HMWKTPzbrI5+v36OpU="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/meter.css"
+  ]
+}

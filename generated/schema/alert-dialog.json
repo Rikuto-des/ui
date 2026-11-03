@@ -1,0 +1,189 @@
+{
+  "name": "alert-dialog",
+  "styleDependencies": [
+    "dialog"
+  ],
+  "tier": 2,
+  "summary": "A modal confirmation (role=alertdialog) that only its buttons can close.",
+  "use": [
+    "Confirming something that cannot be undone"
+  ],
+  "avoid": [
+    {
+      "case": "A form or a longer task",
+      "instead": "dialog"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "dialog",
+      "invoker-commands"
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "AlertDialog",
+      "slot": "alert-dialog",
+      "element": "dialog",
+      "description": "A <dialog role=\"alertdialog\" closedby=\"none\">: Escape and clicks outside do not close it.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. Triggers and buttons reference it."
+          },
+          "title": {
+            "description": "Required. The question, e.g. \"削除しますか？\".",
+            "x-ts-type": "React.ReactNode"
+          },
+          "description": {
+            "description": "Required. What happens, in concrete terms.",
+            "x-ts-type": "React.ReactNode"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "description"
+        ]
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "AlertDialog.Trigger",
+      "slot": "alert-dialog-trigger",
+      "element": "button",
+      "description": "A Button that opens it.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "alertDialog": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the alert dialog.",
+            "x-idref": "alert-dialog"
+          },
+          "variant": {
+            "default": "secondary",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "description": "Control height. Density comes from the pack, not from this prop.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "alertDialog"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
+      "jsx": "AlertDialog.Cancel",
+      "slot": "alert-dialog-cancel",
+      "element": "button",
+      "description": "The safe choice. It closes the dialog and gets focus when it opens.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "alertDialog": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the alert dialog.",
+            "x-idref": "alert-dialog"
+          }
+        },
+        "required": [
+          "alertDialog"
+        ]
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "AlertDialog.Action",
+      "slot": "alert-dialog-action",
+      "element": "button",
+      "description": "The action. It closes the dialog; submit a form or add onClick to act.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "alertDialog": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the alert dialog.",
+            "x-idref": "alert-dialog"
+          },
+          "variant": {
+            "default": "danger",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          }
+        },
+        "required": [
+          "alertDialog"
+        ]
+      },
+      "overrides": []
+    }
+  ],
+  "states": [
+    "open",
+    "modal"
+  ],
+  "a11y": {
+    "apg": "alertdialog",
+    "keyboard": {
+      "Tab": "moves focus within the dialog only"
+    },
+    "focus": {
+      "initial": "AlertDialog.Cancel",
+      "restore": "the trigger"
+    },
+    "rules": [
+      "title and description are required.",
+      "Focus starts on the safe choice."
+    ]
+  },
+  "tokens": [
+    "color.surface-overlay",
+    "shadow.dialog",
+    "radius.dialog"
+  ],
+  "examples": [
+    {
+      "title": "Delete",
+      "code": "<AlertDialog.Trigger alertDialog=\"delete\" variant=\"danger\">削除</AlertDialog.Trigger>\n<AlertDialog id=\"delete\" title=\"削除しますか？\" description=\"タスク 5 件が消えます。取り消せません。\">\n  <AlertDialog.Cancel alertDialog=\"delete\">キャンセル</AlertDialog.Cancel>\n  <AlertDialog.Action alertDialog=\"delete\">削除する</AlertDialog.Action>\n</AlertDialog>"
+    }
+  ]
+}

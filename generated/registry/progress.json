@@ -1,0 +1,19 @@
+{
+  "name": "progress",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/progress.json",
+  "files": [
+    {
+      "path": "progress.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add progress`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Progress page of the design system.\nexport { Progress, type ProgressProps } from \"@urushi/react/progress\";\n",
+      "hash": "sha256-cbw/ctskWpeU21r5DTfIPyeLTjSD2y6N6u+K6RKHrnw="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/progress.css"
+  ]
+}

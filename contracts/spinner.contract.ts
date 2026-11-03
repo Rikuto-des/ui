@@ -1,4 +1,4 @@
-import { defineContract, z } from "@yourlib/contract";
+import { defineContract, z } from "@urushi/contract";
 
 export default defineContract({
   name: "spinner",
@@ -16,6 +16,7 @@ export default defineContract({
       description: "role=\"status\" with a visually hidden label.",
       props: z.object({
         label: z.string().default("読み込み中").describe("Announced to screen readers."),
+        showLabel: z.boolean().default(false).describe("Also display the status label next to the ring."),
         size: z.enum(["sm", "md", "lg"]).default("md"),
       }),
       overrides: ["margin", "layout", "position"],

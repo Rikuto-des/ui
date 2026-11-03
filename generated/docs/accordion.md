@@ -35,6 +35,7 @@ One section: <details> with the title in its <summary>. Renders `<details data-s
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `title` | `React.ReactNode` | **required** | Required summary text. |
+| `description` | `React.ReactNode` | — | Optional summary of the contents or current settings, visible while closed. |
 | `defaultOpen` | `boolean` | `false` |  |
 
 className may only adjust: nothing (visuals come from the pack).

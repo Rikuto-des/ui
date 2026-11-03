@@ -1,4 +1,4 @@
-import { defineContract, node, z } from "@yourlib/contract";
+import { defineContract, node, z } from "@urushi/contract";
 
 export default defineContract({
   name: "card",
@@ -19,6 +19,7 @@ export default defineContract({
         description: node("Supporting text under the title.").optional(),
         footer: node("Actions or meta at the bottom.").optional(),
         headingLevel: z.enum(["h2", "h3", "h4"]).default("h3").describe("Keeps the page's heading outline correct."),
+        selected: z.boolean().default(false).describe("Selection styling. Provide a real button, checkbox or radio to change selection."),
         padding: z.enum(["sm", "md", "lg"]).default("md"),
       }),
       overrides: ["margin", "width", "height", "layout", "position"],

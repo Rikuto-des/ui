@@ -1,0 +1,107 @@
+{
+  "runId": 40746333146,
+  "url": "https://github.com/Rikuto-des/ui/actions/runs/40746333146",
+  "status": "completed",
+  "conclusion": "success",
+  "commit": "9453f53b7f58d1751a0262a58d9f5c4bebd2f724",
+  "createdAt": "2026-10-28T18:34:08Z",
+  "updatedAt": "2026-10-28T18:47:12Z",
+  "jobs": [
+    {
+      "name": "Site (webkit)",
+      "conclusion": "success",
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40746333146/job/123021000566",
+      "startedAt": "2026-10-28T18:34:11Z",
+      "completedAt": "2026-10-28T18:47:11Z"
+    },
+    {
+      "name": "Components (webkit)",
+      "conclusion": "success",
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40746333146/job/123021001017",
+      "startedAt": "2026-10-28T18:34:11Z",
+      "completedAt": "2026-10-28T18:43:20Z"
+    },
+    {
+      "name": "quality",
+      "conclusion": "success",
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40746333146/job/123021001026",
+      "startedAt": "2026-10-28T18:34:11Z",
+      "completedAt": "2026-10-28T18:38:52Z"
+    },
+    {
+      "name": "Site (firefox)",
+      "conclusion": "success",
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40746333146/job/123021001076",
+      "startedAt": "2026-10-28T18:34:11Z",
+      "completedAt": "2026-10-28T18:45:41Z"
+    },
+    {
+      "name": "Site (chromium)",
+      "conclusion": "success",
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40746333146/job/123021001086",
+      "startedAt": "2026-10-28T18:34:11Z",
+      "completedAt": "2026-10-28T18:38:42Z"
+    },
+    {
+      "name": "Components (chromium)",
+      "conclusion": "success",
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40746333146/job/123021001123",
+      "startedAt": "2026-10-28T18:34:11Z",
+      "completedAt": "2026-10-28T18:37:44Z"
+    },
+    {
+      "name": "Components (firefox)",
+      "conclusion": "success",
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40746333146/job/123021001266",
+      "startedAt": "2026-10-28T18:34:11Z",
+      "completedAt": "2026-10-28T18:40:02Z"
+    }
+  ],
+  "checks": {
+    "unitPassed": 271,
+    "unitFailed": 0,
+    "typecheck": "pass",
+    "lint": "pass",
+    "workflowBrowserSmoke": "pass",
+    "nextPassed": 36,
+    "studioPassed": 39,
+    "browsers": {
+      "chromium": {
+        "componentsPassed": 135,
+        "componentsSkipped": 2,
+        "sitePassed": 112
+      },
+      "firefox": {
+        "componentsPassed": 133,
+        "componentsSkipped": 4,
+        "sitePassed": 112
+      },
+      "webkit": {
+        "componentsPassed": 132,
+        "componentsSkipped": 5,
+        "sitePassed": 112
+      }
+    },
+    "packageSmoke": "pass",
+    "packages": 7,
+    "retriesObserved": 0
+  },
+  "packageManifest": "../../dist/release/ci-9453f53/manifest.json",
+  "sourceVerification": "ci-source-hashes.json",
+  "notes": [
+    "11 pre-existing component skips cover browser-specific AX, interest invokers, tooltip fallback and WebKit Tab behavior; not counted as passes.",
+    "Site page interaction loop split into 52 isolated tests; total 112 per browser.",
+    "No external AI requests in CI.",
+    "Physical device touch, software keyboard and VoiceOver/TalkBack/NVDA remain unverified.",
+    "Documentation result files are updated locally after the verified source commit."
+  ],
+  "previousFailedRuns": [
+    40724540689,
+    40727476383,
+    40732161626,
+    40733742280,
+    40735260992,
+    40740512202,
+    40743508879
+  ]
+}

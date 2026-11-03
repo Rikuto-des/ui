@@ -1,10 +1,11 @@
-import { defineContract, idref, node, z } from "@yourlib/contract";
+import { defineContract, idref, node, z } from "@urushi/contract";
 import { buttonProps } from "./button.contract.ts";
 
 const { variant, size } = buttonProps;
 
 export default defineContract({
   name: "popover",
+  styleDependencies: ["button"],
   tier: 2,
   summary: "A non-modal panel in the top layer (native `popover`), positioned against its trigger with CSS anchor positioning.",
   use: ["Filters or settings attached to a control", "Supplementary content that keeps the page usable"],

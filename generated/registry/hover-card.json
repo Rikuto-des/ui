@@ -1,0 +1,19 @@
+{
+  "name": "hover-card",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/hover-card.json",
+  "files": [
+    {
+      "path": "hover-card.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add hover-card`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the HoverCard page of the design system.\nexport { HoverCard, type HoverCardProps } from \"@urushi/react/hover-card\";\n",
+      "hash": "sha256-4snr0nfVGnJGVjbMjimMy0QlchpypFsMm/4vYOYdTfI="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/hover-card.css"
+  ]
+}

@@ -1,0 +1,197 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
+    opacity: 0;
+    scale: var(--ur-motion-enter-scale, 1);
+    transition-property: opacity, scale, display, overlay;
+    transition-duration: var(--ur-motion-duration-fast, 0s);
+    transition-timing-function: var(--ur-motion-ease-overlay, ease-out);
+    transition-behavior: allow-discrete;
+  }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
+    opacity: 1;
+    scale: 1;
+    transition-duration: var(--ur-motion-duration-overlay, 0s);
+  }
+  @starting-style {
+    :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
+      opacity: 0;
+      scale: var(--ur-motion-enter-scale, 1);
+    }
+  }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
+    --_offset: var(--ur-popover-offset, 4px);
+    inset: auto;
+    margin: 0;
+    position-try-fallbacks: flip-block, flip-inline;
+  }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"] { margin-block-start: var(--_offset); }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"] { margin-block-end: var(--_offset); }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"] { margin-inline-end: var(--_offset); }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"] { margin-inline-start: var(--_offset); }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="start"] { position-area: block-end span-inline-end; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="center"] { position-area: block-end; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="end"] { position-area: block-end span-inline-start; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="start"] { position-area: block-start span-inline-end; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="center"] { position-area: block-start; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="end"] { position-area: block-start span-inline-start; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="start"] { position-area: inline-start span-block-end; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="center"] { position-area: inline-start; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="end"] { position-area: inline-start span-block-start; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="start"] { position-area: inline-end span-block-end; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="center"] { position-area: inline-end; }
+  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="end"] { position-area: inline-end span-block-start; }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"]) {
+      scale: 1;
+    }
+    @starting-style {
+      :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"]):popover-open {
+        scale: 1;
+      }
+    }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  [data-slot="hover-card"] {
+    box-sizing: border-box;
+    color: var(--ur-color-text);
+    background-color: var(--ur-color-surface-overlay);
+    border: 0;
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+  [data-slot="hover-card"] {
+    inline-size: max-content;
+    max-inline-size: min(320px, 100vw - 16px);
+    padding: var(--ur-popover-padding);
+    border-radius: var(--ur-radius-overlay);
+    box-shadow: var(--ur-shadow-overlay);
+    font-size: calc(var(--ur-font-size-body) - 0.5px);
+  }
+  [data-slot="hover-card-trigger"] {
+    color: var(--ur-color-link);
+    font-weight: 500;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: color-mix(in oklab, currentColor 55%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: 2px;
+  }
+  [data-slot="hover-card-trigger"]:hover {
+    text-decoration-style: solid;
+    text-decoration-color: currentColor;
+  }
+  [data-slot="hover-card-trigger"]:focus-visible {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: 2px;
+  }
+  @supports (corner-shape: squircle) {
+    [data-slot="hover-card"] {
+      corner-shape: var(--ur-corner-shape);
+    }
+    :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"], [data-slot="toast"]) {
+      border-radius: var(--ur-radius-squircle-overlay);
+    }
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot="hover-card"] {
+      border: 1px solid CanvasText;
+    }
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) {
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}

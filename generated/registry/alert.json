@@ -1,0 +1,19 @@
+{
+  "name": "alert",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/alert.json",
+  "files": [
+    {
+      "path": "alert.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add alert`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Alert page of the design system.\nexport { Alert, type AlertProps } from \"@urushi/react/alert\";\n",
+      "hash": "sha256-G8cDslVaNLxnh09A0N9mNCEtD4lTaZMfT02svJ2ZL6U="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/alert.css"
+  ]
+}

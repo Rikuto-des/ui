@@ -1,0 +1,5 @@
+current.json
+browser-results.json
+runs/*/*-browser-artifacts/
+runs/*/*/*/entry.tsx
+runs/*/*/*/tsconfig.json

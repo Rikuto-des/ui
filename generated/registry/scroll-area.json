@@ -1,0 +1,19 @@
+{
+  "name": "scroll-area",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/scroll-area.json",
+  "files": [
+    {
+      "path": "scroll-area.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add scroll-area`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the ScrollArea page of the design system.\nexport { ScrollArea, type ScrollAreaProps } from \"@urushi/react/scroll-area\";\n",
+      "hash": "sha256-Ka4TQCmlJLpwnv10LOO2EALuQIh1KmS2yzz20J46CYA="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/scroll-area.css"
+  ]
+}

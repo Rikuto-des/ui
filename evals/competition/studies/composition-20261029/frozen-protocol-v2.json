@@ -1,0 +1,97 @@
+{
+  "authorizedBy": "User explicitly requested additional AI comparisons, analysis and improvements on 2026-10-29. Same prior fictional-data scope and existing Codex provider.",
+  "maxAdditionalRequests": 72,
+  "libraries": [
+    "urushi",
+    "base"
+  ],
+  "models": [
+    "gpt-6-luna",
+    "gpt-6.1-sol"
+  ],
+  "trialsPerLibraryAndModel": 3,
+  "humanCalibration": "composition-calibration-v6",
+  "sourceChangesBeforeFreeze": [
+    "Combobox query/onQueryChange/manual filtering and retained committed labels",
+    "Dialog nested cancel/close event isolation"
+  ],
+  "files": [
+    {
+      "path": "evals/competition/composition-run.ts",
+      "sha256": "fe814150241bbd129d53a8002e80e3fb3170c98314c49263f9853d134a8eee8d"
+    },
+    {
+      "path": "evals/competition/composition-task.ts",
+      "sha256": "0b2bcad2ccd8ab4bbea61b8309a20099b33e5701f0873c671552af03a5c41b18"
+    },
+    {
+      "path": "evals/competition/composition-guide.ts",
+      "sha256": "e008dde78094aa69e8c8e23f0a1685fa0b22f013d79273b9deab8341b03458a5"
+    },
+    {
+      "path": "evals/competition/guides.ts",
+      "sha256": "191fb7bea497f1edadb525ec3831a823ac0bee625581ca377402283099ad8d2b"
+    },
+    {
+      "path": "evals/competition/composition-workflows.spec.ts",
+      "sha256": "daf8044dcc917454734d25eceb7b3ee730c3018f70cf7a048a7dd76a4abd305e"
+    },
+    {
+      "path": "evals/competition/composition-playwright.config.ts",
+      "sha256": "bb6faab005a5f3f081c1fcef37bc2750a854e543c66d677fdb41e58968dc9d69"
+    },
+    {
+      "path": "evals/competition/composition.css",
+      "sha256": "b1322dcc3168f6edac95cffd226f102ea027dd892255520b6fcb3161ca76b2b6"
+    },
+    {
+      "path": "evals/competition/package.json",
+      "sha256": "650084847f6ac2e18a0c135d9fa4a157b4998e9d5e1395a7265e5484d29645b9"
+    },
+    {
+      "path": "evals/competition/pnpm-lock.yaml",
+      "sha256": "b5e0c5dc958a4a6181cf01a742c56539501a40ec3ce72a80a320d5f1db0e49dd"
+    },
+    {
+      "path": "evals/competition/composition-reference.ts",
+      "sha256": "df554b8ef6744ae32ad1cc761565dc774d41ef73db76cbde829e48dadf15ef3b"
+    },
+    {
+      "path": "packages/core/src/dialog.ts",
+      "sha256": "b9a579329c31f0a24795a30cb4e89702e82f4400b6184df7d655c4e45c96ab68"
+    },
+    {
+      "path": "packages/core/src/tooltip.ts",
+      "sha256": "10c7e1ea34775c7d2c4ff0f8cbea5d48703b6ef64744522bfcbab7d1d5632e0e"
+    },
+    {
+      "path": "packages/react/src/dialog.tsx",
+      "sha256": "e09d0cb3f01421e3773b536fb94f35f20023892cbd98fbaa9f5fd0ef3c7a1fe9"
+    },
+    {
+      "path": "packages/react/src/combobox.tsx",
+      "sha256": "5ad470b0b4d82526e27fdd761c4184a10b04098d8f2579c5e1820840b03bec65"
+    },
+    {
+      "path": "contracts/dialog.contract.ts",
+      "sha256": "6b6b28bbd8b4afbd846c6bba9ee89d7c3414759cb45ff28ea6b8eba6473abaa3"
+    },
+    {
+      "path": "contracts/combobox.contract.ts",
+      "sha256": "8bd8af1ac93cf6380d45ec7feb9ff6bd684e42af107d9ee1157bda001b6ee363"
+    }
+  ],
+  "version": 2,
+  "frozenAt": "2026-10-29T02:57:09.554997+00:00",
+  "phase": "confirmation",
+  "exploratoryRequestsCompleted": 24,
+  "maxConfirmationRequests": 48,
+  "negativeCalibration": "composition-mutants-v2",
+  "changesAfterExploration": [
+    "Pending save label, awaited dirty confirmation, portalled status lookup and active option-aware keyboard selection in common tests",
+    "Dialog initialFocus/returnFocus IDs",
+    "Combobox loadOptions, status strings and retry",
+    "Tooltip late runtime initialization fix",
+    "Both references describe composition pitfalls observed in exploratory trials; no complete app solutions provided"
+  ]
+}

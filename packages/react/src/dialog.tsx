@@ -26,9 +26,13 @@ function DialogRoot({
   id,
   title,
   description,
+  initialFocus,
+  returnFocus,
   dismissible = dialogDefaults.dismissible,
   size = dialogDefaults.size,
   children,
+  onCancel,
+  onClose,
   ...rest
 }: DialogProps) {
   const titleId = `${id}-title`;
@@ -36,12 +40,18 @@ function DialogRoot({
   return (
     <dialog
       {...rest}
+      // React propagates these events through nested dialogs even though the
+      // native events do not bubble. Only report this dialog's own lifecycle.
+      onCancel={onCancel ? event => { if (event.target === event.currentTarget) onCancel(event); } : undefined}
+      onClose={onClose ? event => { if (event.target === event.currentTarget) onClose(event); } : undefined}
       id={id}
       closedby={dismissible}
       aria-labelledby={titleId}
       aria-describedby={description ? descriptionId : undefined}
       data-slot={dialogSlot}
       data-size={size}
+      data-initial-focus={initialFocus}
+      data-return-focus={returnFocus}
     >
       <h2 id={titleId} data-slot="dialog-title">
         {title}

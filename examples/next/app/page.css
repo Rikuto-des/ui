@@ -3,7 +3,7 @@ body {
 }
 .page {
   display: grid;
-  gap: var(--yl-space-5);
+  gap: var(--ur-space-5);
   max-inline-size: 720px;
   margin: 0 auto;
   padding: 64px 24px;
@@ -11,23 +11,23 @@ body {
 .page h1 {
   margin: 0;
   font-size: 32px;
-  font-feature-settings: var(--yl-font-features-title);
+  font-feature-settings: var(--ur-font-features-title);
 }
 .muted {
   margin: 0;
-  color: var(--yl-color-text-muted);
+  color: var(--ur-color-text-muted);
 }
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--yl-space-3);
+  gap: var(--ur-space-3);
 }
 .check {
   display: flex;
   align-items: center;
-  gap: var(--yl-space-3);
+  gap: var(--ur-space-3);
 }
 .form {
   display: grid;
-  gap: var(--yl-space-5);
+  gap: var(--ur-space-5);
 }

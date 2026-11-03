@@ -1,0 +1,41 @@
+import { defineContract, z } from "@urushi/contract";
+
+export default defineContract({
+  name: "input-group",
+  styleDependencies: ["input", "button"],
+  tier: 1,
+  summary: "An Input with fixed text or a button attached before or after it, drawn as one field.",
+  use: ["A URL prefix (https://)", "A unit (円, %)", "A search field with its button"],
+  avoid: [{ case: "Several inputs on one line", instead: "a grid of Fields" }],
+  rendering: "server",
+  platform: { requires: [":has()"] },
+  parts: [
+    {
+      jsx: "InputGroup",
+      slot: "input-group",
+      element: "div",
+      description: "The frame. It passes the Field's id, aria-describedby, aria-invalid and required on to its Input.",
+      props: z.object({ size: z.enum(["sm", "md", "lg"]).default("md") }),
+      overrides: ["margin", "width", "layout", "position"],
+    },
+    {
+      jsx: "InputGroup.Addon",
+      slot: "input-group-addon",
+      element: "span",
+      description: "Fixed text before or after the input.",
+      props: z.object({}),
+      overrides: [],
+    },
+  ],
+  states: ["focus-within", "invalid"],
+  a11y: { rules: ["Put the meaning in the Field label too: addon text is not part of the input's name."] },
+  tokens: ["color.field", "color.border-field", "color.text-muted"],
+  examples: [
+    {
+      title: "URL",
+      code: `<Field id="site" label="サイトの URL">
+  <InputGroup><InputGroup.Addon>https://</InputGroup.Addon><Input /></InputGroup>
+</Field>`,
+    },
+  ],
+});

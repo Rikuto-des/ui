@@ -1,0 +1,1 @@
+import {createRoot} from 'react-dom/client';import App from './App.tsx';import '../../../packages/packs/generated/graphite.css';import '@urushi/react/styles/dialog.css';import '@urushi/react/styles/button.css';import '@urushi/react/styles/input.css';import '@urushi/react/styles/field.css';createRoot(document.getElementById('root')!).render(<App/>);

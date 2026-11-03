@@ -43,6 +43,11 @@
             "description": "Grow with the content up to 12 lines.",
             "type": "boolean"
           },
+          "showCount": {
+            "default": false,
+            "description": "Show a live length and optional maxLength budget with UrushiRuntime. Uses native UTF-16 length.",
+            "type": "boolean"
+          },
           "invalid": {
             "default": false,
             "type": "boolean"

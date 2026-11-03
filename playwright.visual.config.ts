@@ -7,7 +7,7 @@ import { defineConfig, devices } from "@playwright/test";
 // The playground is built fresh for every run and served without HMR. Against
 // the dev server, an edit anywhere in the repo swaps the stylesheets of open
 // pages mid-test, and the transitions that follow end up in the screenshots.
-const site = "../../node_modules/.cache/yourlib-visual";
+const site = "../../node_modules/.cache/urushi-visual";
 const port = 4319;
 
 export default defineConfig({

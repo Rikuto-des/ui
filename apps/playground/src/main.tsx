@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@yourlib/react/styles.css";
-import "@yourlib/packs/all.css";
+import "@urushi/react/styles.css";
+import "@urushi/packs/all.css";
 import "./app.css";
 import { App } from "./App.tsx";
 import { Showcase } from "./Showcase.tsx";

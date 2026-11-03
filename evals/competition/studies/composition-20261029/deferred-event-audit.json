@@ -1,0 +1,293 @@
+{
+  "at": "2026-10-29T03:30:24.984Z",
+  "purpose": "Read-only audit after generation. Not part of v2 model feedback or common pass scores.",
+  "checked": 37,
+  "flagged": 2,
+  "findings": [
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-1",
+      "stage": "generate",
+      "sha256": "db3ed58e34dcaad32c5f930782b00921467fae393cb17ee1d95ea99a3034d06c",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-1",
+      "stage": "repair",
+      "sha256": "b652fa91aaf8e852e7ab0f61ea716e29b40d8ddd054b79fde38cb16684c29322",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-1",
+      "stage": "update",
+      "sha256": "209be1b8e14eef682913909611d62fa45aeafc42f658b48c2ca800f7f4dcda93",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-1",
+      "stage": "update-repair",
+      "sha256": "45396e3ce012c5434366ecf263b68c574cda1a277b9d74706365e663493c49f4",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-2",
+      "stage": "generate",
+      "sha256": "bcb671a5b54ec1e91ac5114b9d370fa0ce08cf9ce873b605fc2a5962a77d78be",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-2",
+      "stage": "repair",
+      "sha256": "b93a5bba25afc30a8d7d93a13804e2b9a663f0927819306e10ab281cf9336774",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-2",
+      "stage": "update",
+      "sha256": "7f146b13e0b34da4253897b2fa3029cdd04b0e8da1b38eacb14fce894eeec43c",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-2",
+      "stage": "update-repair",
+      "sha256": "8d8dafcc525c244fd0915d8ca25fde40a4f869f8058146abb1c976ee4cba53fd",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-3",
+      "stage": "generate",
+      "sha256": "d2dbbb0a1749a648c5b490194171be2572229afdb31322667c4ee35b58cc18e8",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-3",
+      "stage": "repair",
+      "sha256": "cfec3b9f013965e5971bcd48e2861d3f198cedea083021b3f0663bdd2047ec66",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-3",
+      "stage": "update",
+      "sha256": "2c68711004097baa79ef955131838d89539aca8d0105dc8cbd4a0de2c0a0d791",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "base-settings-3",
+      "stage": "update-repair",
+      "sha256": "4b17a0ca469b542ea782f30d1d44b6a77147bd2f628c6452c1f63c32ed6aff36",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-1",
+      "stage": "generate",
+      "sha256": "2d1559a2c942282932d7985080a92e47b60dc48ee5aaa50778eb10498c571e12",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-1",
+      "stage": "update",
+      "sha256": "2e5b74c13dbaa56ea8fc4de94eb6330858e52c7b9c56a9ce5857308c1fb64078",
+      "issues": [
+        {
+          "line": 220,
+          "column": 64,
+          "message": "更新関数の中で event.currentTarget を参照しています。イベント処理の終了後は null になるため、イベントハンドラ内で必要な値を取り出し、更新関数にはその値を渡してください。例: const value = event.currentTarget.value; setState(previous => ({ ...previous, value }));",
+          "excerpt": "                    setDraft((current) => ({ ...current, name: event.currentTarget.value }));"
+        },
+        {
+          "line": 273,
+          "column": 65,
+          "message": "更新関数の中で event.currentTarget を参照しています。イベント処理の終了後は null になるため、イベントハンドラ内で必要な値を取り出し、更新関数にはその値を渡してください。例: const value = event.currentTarget.value; setState(previous => ({ ...previous, value }));",
+          "excerpt": "                    setDraft((current) => ({ ...current, email: event.currentTarget.value }));"
+        }
+      ]
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-1",
+      "stage": "update-repair",
+      "sha256": "25da7445da2f45c5894120e79f3a592a8bc8dbcbe2f52ee656ddb74bbd80ea0e",
+      "issues": [
+        {
+          "line": 189,
+          "column": 64,
+          "message": "更新関数の中で event.currentTarget を参照しています。イベント処理の終了後は null になるため、イベントハンドラ内で必要な値を取り出し、更新関数にはその値を渡してください。例: const value = event.currentTarget.value; setState(previous => ({ ...previous, value }));",
+          "excerpt": "                    setDraft((current) => ({ ...current, name: event.currentTarget.value }));"
+        },
+        {
+          "line": 223,
+          "column": 65,
+          "message": "更新関数の中で event.currentTarget を参照しています。イベント処理の終了後は null になるため、イベントハンドラ内で必要な値を取り出し、更新関数にはその値を渡してください。例: const value = event.currentTarget.value; setState(previous => ({ ...previous, value }));",
+          "excerpt": "                    setDraft((current) => ({ ...current, email: event.currentTarget.value }));"
+        }
+      ]
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-2",
+      "stage": "generate",
+      "sha256": "62626a6165a13355115b6fecfb9df98bf44f47848c69ab6e06f50fa9a6875262",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-2",
+      "stage": "repair",
+      "sha256": "4ba9d402d27014a503b4c7b926eab59482c635a7a4291ce96d6406a63c0c4ad2",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-2",
+      "stage": "update",
+      "sha256": "3d0a0cf22ba33307a82c2b87c759f1416311fef3b1036595053dbf5105c5c584",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-2",
+      "stage": "update-repair",
+      "sha256": "b3286aefc9674100252f8f68dc017dc29e2cbf118d5e13b9151af86852639504",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-3",
+      "stage": "generate",
+      "sha256": "8e05828c632ab8b8e959f716411f054dd639fd554213517e3250aa1643798072",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-3",
+      "stage": "repair",
+      "sha256": "e4580ee28d789cf48abe26c6dea9a9e4afc15e503b01f96380b5d8d08e88395c",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-3",
+      "stage": "update",
+      "sha256": "c25fa47cab789dedeab18e7b8c798f38865c9479b0f424f10bb8d586b72c938d",
+      "issues": []
+    },
+    {
+      "run": "composition-luna-v2",
+      "sample": "urushi-settings-3",
+      "stage": "update-repair",
+      "sha256": "cda7b3d0ac4c84ddff09bed84d9e9d40a23c53121c699b8cf4f0ec09951c136b",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "base-settings-1",
+      "stage": "generate",
+      "sha256": "eb9d7a24bfecd0824307a84238b81feaff476d919c4347d251d8dc27a520ba8f",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "base-settings-1",
+      "stage": "update",
+      "sha256": "6d96a3df0b648af5fd2aacb189fc21adf40d7709e35563ce11e85329490521d0",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "base-settings-2",
+      "stage": "generate",
+      "sha256": "de8a96511ebc322b2e3293f60ff037881233899ae2e0930874915759d4bd8de4",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "base-settings-2",
+      "stage": "update",
+      "sha256": "a696842b459a044086b408e75c4725511311a9ea0b7f6e1fa4e77aff1bd9c701",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "base-settings-2",
+      "stage": "update-repair",
+      "sha256": "7900e17169183dfe6beda088f44950ea03e789eb7aa250633c5deba2747d15a1",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "base-settings-3",
+      "stage": "generate",
+      "sha256": "afdb54291ba6f08d89614bf4dc8a682f6b87d5e92ebb3309a09d5fc4e0c138e9",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "base-settings-3",
+      "stage": "update",
+      "sha256": "3ca7a069e649a84f049270a78270853d4bb211923abeb93d420743ad6cdf1632",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "base-settings-3",
+      "stage": "update-repair",
+      "sha256": "eaed25d30d297ce1e95724c8ee95c8df06e129883a6f4c0cdaa5cc6569988c55",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "urushi-settings-1",
+      "stage": "generate",
+      "sha256": "f2baa66a6079c500a14d84e8cd3204b7aac479990a02344745ea2ac7385181f1",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "urushi-settings-1",
+      "stage": "update",
+      "sha256": "4ae5c5a6226af4719c08a050930ac23a1112977373dd5e2d2f376d6912c8b38b",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "urushi-settings-2",
+      "stage": "generate",
+      "sha256": "28a2530b4f9f1a239cf6c5eb3a8a88f85a5ceefa58a51a9c4da347f0b2edaa39",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "urushi-settings-2",
+      "stage": "update",
+      "sha256": "ce7268e0b19d536ab90649ed0a332f2445fe0a1ee460087c913d6fa4beba8d25",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "urushi-settings-3",
+      "stage": "generate",
+      "sha256": "e39bf1ff1fa7e19b9372eb09c19eac0074a34e31c9c698ff25b0f6e3845ff0e3",
+      "issues": []
+    },
+    {
+      "run": "composition-sol-v2",
+      "sample": "urushi-settings-3",
+      "stage": "update",
+      "sha256": "ea1d5969e09cc5a4bff449519d037ea1a553dc2aa9da3284253245e1b5c6ca64",
+      "issues": []
+    }
+  ]
+}

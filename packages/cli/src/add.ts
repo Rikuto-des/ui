@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { isAbsolute, join, resolve } from "node:path";
 import { sha256 } from "./build.ts";
+import { projectPath, relativePath } from "./paths.ts";
 
 export interface Config {
   $schema?: string;
@@ -23,24 +24,35 @@ export interface RegistryItem {
   css: string[];
 }
 
-export const CONFIG_FILE = "yourlib.json";
-export const LOCK_FILE = "yourlib.lock";
-/** Pristine copies of installed files: the merge base for a future `yourlib update`. */
-export const BASE_DIR = ".yourlib/base";
+export const CONFIG_FILE = "urushi.json";
+export const LOCK_FILE = "urushi.lock";
+/** Pristine copies of installed files: the merge base for a future `urushi update`. */
+export const BASE_DIR = ".urushi/base";
 
 export async function readConfig(cwd: string): Promise<Config> {
-  const path = join(cwd, CONFIG_FILE);
-  if (!existsSync(path)) throw new Error(`${CONFIG_FILE} not found in ${cwd}. Run \`yourlib init\` first.`);
-  return JSON.parse(await readFile(path, "utf8")) as Config;
+  const path = await projectPath(cwd, CONFIG_FILE);
+  if (!existsSync(path)) throw new Error(`${CONFIG_FILE} not found in ${cwd}. Run \`urushi init\` first.`);
+  const config = JSON.parse(await readFile(path, "utf8")) as Config;
+  relativePath(config.components);
+  if (config.components.split("/")[0] === ".urushi") throw new Error("components must not use the reserved .urushi directory");
+  return config;
 }
 
 export async function readLock(cwd: string): Promise<LockFile> {
-  const path = join(cwd, LOCK_FILE);
+  const path = await projectPath(cwd, LOCK_FILE);
   if (!existsSync(path)) return { lockfileVersion: 1, items: {} };
-  return JSON.parse(await readFile(path, "utf8")) as LockFile;
+  const lock = JSON.parse(await readFile(path, "utf8")) as LockFile;
+  for (const entry of Object.values(lock.items)) {
+    for (const file of Object.keys(entry.files)) {
+      await projectPath(cwd, file);
+      await projectPath(cwd, join(BASE_DIR, file));
+    }
+  }
+  return lock;
 }
 
 export async function fetchItem(registry: string, name: string, cwd: string): Promise<RegistryItem> {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name)) throw new Error(`Invalid component name: ${name}`);
   if (/^https?:\/\//.test(registry)) {
     const res = await fetch(new URL(`${name}.json`, registry.endsWith("/") ? registry : `${registry}/`));
     if (!res.ok) throw new Error(`registry returned ${res.status} for ${name}`);
@@ -53,7 +65,9 @@ export async function fetchItem(registry: string, name: string, cwd: string): Pr
 }
 
 export async function init(cwd: string, opts: { registry: string; pack: string; components: string }) {
-  const path = join(cwd, CONFIG_FILE);
+  relativePath(opts.components);
+  if (opts.components.split("/")[0] === ".urushi") throw new Error("components must not use the reserved .urushi directory");
+  const path = await projectPath(cwd, CONFIG_FILE);
   if (existsSync(path)) throw new Error(`${CONFIG_FILE} already exists`);
   const config: Config = { components: opts.components, pack: opts.pack, registry: opts.registry };
   await writeFile(path, JSON.stringify(config, null, 2) + "\n");
@@ -69,14 +83,36 @@ export interface AddResult {
   css: string[];
 }
 
+/** Preflight every item before a command changes any component, merge base or lock. */
+export async function prepareItems(cwd: string, config: Config, names: string[]): Promise<RegistryItem[]> {
+  const items: RegistryItem[] = [];
+  const targets = new Set<string>();
+  for (const name of new Set(names)) {
+    const item = await fetchItem(config.registry, name, cwd);
+    if (item.name !== name) throw new Error(`Registry item name mismatch: expected ${name}`);
+    for (const file of item.files) {
+      relativePath(file.path);
+      if (sha256(file.content) !== file.hash) throw new Error(`${name}/${file.path}: hash mismatch, refusing to install or update`);
+      const target = join(config.components, file.path);
+      if (targets.has(target)) throw new Error(`Duplicate registry destination: ${target}`);
+      targets.add(target);
+      await projectPath(cwd, target);
+      await projectPath(cwd, join(BASE_DIR, target));
+    }
+    items.push(item);
+  }
+  return items;
+}
+
 export async function add(cwd: string, names: string[], opts: { overwrite?: boolean } = {}): Promise<AddResult[]> {
   const config = await readConfig(cwd);
   const lock = await readLock(cwd);
+  const items = await prepareItems(cwd, config, names);
   const results: AddResult[] = [];
-  for (const name of names) {
-    const item = await fetchItem(config.registry, name, cwd);
+  for (const item of items) {
+    const name = item.name;
     const result: AddResult = { name, version: item.version, written: [], skipped: [], dependencies: item.dependencies, css: item.css };
-    const files: Record<string, string> = {};
+    const files: Record<string, string> = { ...lock.items[name]?.files };
     for (const file of item.files) {
       if (sha256(file.content) !== file.hash) throw new Error(`${name}/${file.path}: hash mismatch, refusing to install`);
       const target = join(config.components, file.path);
@@ -94,7 +130,7 @@ export async function add(cwd: string, names: string[], opts: { overwrite?: bool
       files[target] = file.hash;
       result.written.push(target);
     }
-    if (Object.keys(files).length) lock.items[name] = { version: item.version, files };
+    if (result.written.length) lock.items[name] = { version: item.version, files };
     results.push(result);
   }
   await writeLock(cwd, lock);
@@ -107,23 +143,23 @@ export interface DiffEntry {
   status: "unmodified" | "modified" | "conflict" | "missing";
 }
 
-/** Conflict markers left by `yourlib update`, at the start of a line. */
+/** Conflict markers left by `urushi update`, at the start of a line. */
 export const CONFLICT_MARKER = /^(<{7}|>{7}) /m;
 
 /** Writes the lockfile with items sorted, so it diffs cleanly. */
 export async function writeLock(cwd: string, lock: LockFile) {
   const sorted = Object.fromEntries(Object.entries(lock.items).sort(([a], [b]) => a.localeCompare(b)));
-  await writeFile(join(cwd, LOCK_FILE), JSON.stringify({ lockfileVersion: 1, items: sorted }, null, 2) + "\n");
+  await writeFile(await projectPath(cwd, LOCK_FILE), JSON.stringify({ lockfileVersion: 1, items: sorted }, null, 2) + "\n");
 }
 
 /** Saves the pristine registry copy of a file: the merge base of the next update. */
 export async function writeBase(cwd: string, target: string, content: string) {
-  const base = join(cwd, BASE_DIR, target);
+  const base = await projectPath(cwd, join(BASE_DIR, target));
   await mkdir(join(base, ".."), { recursive: true });
   await writeFile(base, content);
 }
 
-/** Reports which installed files the user has changed since `yourlib add` or `update`. */
+/** Reports which installed files the user has changed since `urushi add` or `update`. */
 export async function diff(cwd: string): Promise<DiffEntry[]> {
   const lock = await readLock(cwd);
   const out: DiffEntry[] = [];

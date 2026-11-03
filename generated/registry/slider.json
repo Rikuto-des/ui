@@ -1,0 +1,19 @@
+{
+  "name": "slider",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/slider.json",
+  "files": [
+    {
+      "path": "slider.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add slider`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Slider page of the design system.\nexport { Slider, type SliderProps } from \"@urushi/react/slider\";\n",
+      "hash": "sha256-/cpBsIa+gJdzmP6inTcysJi8SPg9aVLi62BKHK33k4Y="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/slider.css"
+  ]
+}

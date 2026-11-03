@@ -1,0 +1,19 @@
+{
+  "name": "toggle-group",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/toggle-group.json",
+  "files": [
+    {
+      "path": "toggle-group.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add toggle-group`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the ToggleGroup page of the design system.\nexport { ToggleGroup, type ToggleGroupProps } from \"@urushi/react/toggle-group\";\n",
+      "hash": "sha256-9ncRQzudgvFdenDa1VE/E+sB2BCDjn9zGbA8KILjSDM="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/toggle-group.css"
+  ]
+}

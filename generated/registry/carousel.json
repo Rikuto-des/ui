@@ -1,0 +1,19 @@
+{
+  "name": "carousel",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/carousel.json",
+  "files": [
+    {
+      "path": "carousel.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add carousel`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Carousel page of the design system.\nexport { Carousel, type CarouselProps } from \"@urushi/react/carousel\";\n",
+      "hash": "sha256-EiB6XYLTEMf62+7JZO8u02wFArC/nWKlIne7VYeFJso="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/carousel.css"
+  ]
+}

@@ -1,0 +1,561 @@
+{
+  "package": "@phosphor-icons/core",
+  "version": "2.1.1",
+  "source": "https://registry.npmjs.org/@phosphor-icons/core/-/core-2.1.1.tgz",
+  "integrity": "sha512-v4ARvrip4qBCImOE5rmPUylOEK4iiED9ZyKjcvzuezqMaiRASCHKcRIuvvxL/twvLpkfnEODCOJp5dM4eZilxQ==",
+  "license": "MIT",
+  "icons": [
+    {
+      "name": "archive",
+      "export": "ArchiveIcon",
+      "files": {
+        "regular": {
+          "path": "regular/archive.svg",
+          "sha256": "bde81c0c44e80a7b8bf97f29ec11488c1b48998f2f74b2eb29e13ef8c1975e75"
+        },
+        "fill": {
+          "path": "fill/archive-fill.svg",
+          "sha256": "a8df0d704e55ecc356f323f23e659c67ea271fe2036f30543d6f2534b7024339"
+        }
+      }
+    },
+    {
+      "name": "arrow-bend-down-left",
+      "export": "ArrowBendDownLeftIcon",
+      "files": {
+        "regular": {
+          "path": "regular/arrow-bend-down-left.svg",
+          "sha256": "aac2ab7d8d91029abe6b9ff58d5b247eed901de1705244eaaeb907639bb095dd"
+        }
+      }
+    },
+    {
+      "name": "arrow-down",
+      "export": "ArrowDownIcon",
+      "files": {
+        "regular": {
+          "path": "regular/arrow-down.svg",
+          "sha256": "cc6416ae83e20660f14b11f5525c6d05ee679c3f26cee41b696cb37aa905d4f5"
+        }
+      }
+    },
+    {
+      "name": "arrow-left",
+      "export": "ArrowLeftIcon",
+      "files": {
+        "regular": {
+          "path": "regular/arrow-left.svg",
+          "sha256": "3c2001cf957d182fc54927e4b286cc8cf66dd97830f441ca2650d42a63a9006a"
+        }
+      }
+    },
+    {
+      "name": "arrow-right",
+      "export": "ArrowRightIcon",
+      "files": {
+        "regular": {
+          "path": "regular/arrow-right.svg",
+          "sha256": "e45bc4a12592b8723110db42c6deffdf177e4fe7704cf50324963fa0a59b2d74"
+        }
+      }
+    },
+    {
+      "name": "arrow-up",
+      "export": "ArrowUpIcon",
+      "files": {
+        "regular": {
+          "path": "regular/arrow-up.svg",
+          "sha256": "361aa9f9c52a759bf598faf6ed38ccd426f949f541d662c65b5b5d868fa76980"
+        }
+      }
+    },
+    {
+      "name": "arrow-up-right",
+      "export": "ArrowUpRightIcon",
+      "files": {
+        "regular": {
+          "path": "regular/arrow-up-right.svg",
+          "sha256": "44db5257b360ec04863eb6daaa41f220c8b714d23fb81403517d0a30acfda9f4"
+        }
+      }
+    },
+    {
+      "name": "arrow-u-up-left",
+      "export": "ArrowUUpLeftIcon",
+      "files": {
+        "regular": {
+          "path": "regular/arrow-u-up-left.svg",
+          "sha256": "37975867f2e89f745250d3601a5674ca37883a8d79f52abcb082beba4df28df7"
+        }
+      }
+    },
+    {
+      "name": "arrows-down-up",
+      "export": "ArrowsDownUpIcon",
+      "files": {
+        "regular": {
+          "path": "regular/arrows-down-up.svg",
+          "sha256": "64046920e174a406b080ec61e040bf73bf231be019d92ce8caec14d2035e167d"
+        }
+      }
+    },
+    {
+      "name": "bell",
+      "export": "BellIcon",
+      "files": {
+        "regular": {
+          "path": "regular/bell.svg",
+          "sha256": "439b02c746ff59945b6175c6d327113ca3f7a729a43d5bcafb278a0f11ee34b5"
+        },
+        "fill": {
+          "path": "fill/bell-fill.svg",
+          "sha256": "26437565edc7418a2c326a74078fb4519aa2316e84fcf1adefbdd1b2c89f4ac5"
+        }
+      }
+    },
+    {
+      "name": "bell-slash",
+      "export": "BellSlashIcon",
+      "files": {
+        "regular": {
+          "path": "regular/bell-slash.svg",
+          "sha256": "d5c7ee0acf3ea46fe7d821dd1816f3d9e2c4aecce6b040722e877b72c85a8d3e"
+        }
+      }
+    },
+    {
+      "name": "bookmark-simple",
+      "export": "BookmarkSimpleIcon",
+      "files": {
+        "regular": {
+          "path": "regular/bookmark-simple.svg",
+          "sha256": "493a836009ab98f8d4ca84f088cc03f2785cdee86daa1643e003865ff3168b41"
+        },
+        "fill": {
+          "path": "fill/bookmark-simple-fill.svg",
+          "sha256": "379dfd32059dc79b50e9e51a92ff94e028f0325262a985ad8136b0d4c661db65"
+        }
+      }
+    },
+    {
+      "name": "calendar-blank",
+      "export": "CalendarBlankIcon",
+      "files": {
+        "regular": {
+          "path": "regular/calendar-blank.svg",
+          "sha256": "6268583ae0ea04e93fd24f1e70d47a8e8d79c88fc304af397b95b318980215d6"
+        }
+      }
+    },
+    {
+      "name": "caret-down",
+      "export": "CaretDownIcon",
+      "files": {
+        "regular": {
+          "path": "regular/caret-down.svg",
+          "sha256": "53f0cf2d0b144ac3cb07e353e0cd0853ffb3ed432d741460ce288edfcb0924b1"
+        }
+      }
+    },
+    {
+      "name": "caret-left",
+      "export": "CaretLeftIcon",
+      "files": {
+        "regular": {
+          "path": "regular/caret-left.svg",
+          "sha256": "623bf248fe21a8170344e168aaac2e174119cea5d7c5d0fb0dc84f581009475f"
+        }
+      }
+    },
+    {
+      "name": "caret-right",
+      "export": "CaretRightIcon",
+      "files": {
+        "regular": {
+          "path": "regular/caret-right.svg",
+          "sha256": "e6dec01e074807965b7f3146b976a9b5e82c31d9c2c88aeb52e77cc2ab16c1d7"
+        }
+      }
+    },
+    {
+      "name": "check",
+      "export": "CheckIcon",
+      "files": {
+        "regular": {
+          "path": "regular/check.svg",
+          "sha256": "cbb89a8c42f283d4f846eb935e05d88c1be04462f16480e068c0f82b9ce40b12"
+        }
+      }
+    },
+    {
+      "name": "check-circle",
+      "export": "CheckCircleIcon",
+      "files": {
+        "regular": {
+          "path": "regular/check-circle.svg",
+          "sha256": "e02a080c3d1a758de5c5fd41abd913dec4cffbc70fe1e9637dbf7ce35f377055"
+        }
+      }
+    },
+    {
+      "name": "cloud-arrow-up",
+      "export": "CloudArrowUpIcon",
+      "files": {
+        "regular": {
+          "path": "regular/cloud-arrow-up.svg",
+          "sha256": "607be53bf33acbd72f0e3f964ff3ef45bdc46c9e069162fdc1c9140594feab76"
+        }
+      }
+    },
+    {
+      "name": "copy",
+      "export": "CopyIcon",
+      "files": {
+        "regular": {
+          "path": "regular/copy.svg",
+          "sha256": "5a892fc6a72866e60c67db2088a87653cf44b57b1a5d183b36e950cdc5dd66b3"
+        }
+      }
+    },
+    {
+      "name": "desktop",
+      "export": "DesktopIcon",
+      "files": {
+        "regular": {
+          "path": "regular/desktop.svg",
+          "sha256": "875a31fd2dc493c6ba9aa5187a91e0364de6704876704e1bf81ef4b7e785ad79"
+        }
+      }
+    },
+    {
+      "name": "dots-three",
+      "export": "DotsThreeIcon",
+      "files": {
+        "regular": {
+          "path": "regular/dots-three.svg",
+          "sha256": "ca4e748007101155641ec3041cd129bb03a8030d0eed16e313b9dd75e6beac77"
+        }
+      }
+    },
+    {
+      "name": "export",
+      "export": "ExportIcon",
+      "files": {
+        "regular": {
+          "path": "regular/export.svg",
+          "sha256": "b3323cae86c93d7a4d344e921dc1500f97a73c66e5d9f0e6c46aab64e4a6f616"
+        }
+      }
+    },
+    {
+      "name": "eye",
+      "export": "EyeIcon",
+      "files": {
+        "regular": {
+          "path": "regular/eye.svg",
+          "sha256": "91d39f20bf95e0f36c07bd79b83a85fe6ff4ca20e2759c4afee7419ef80403fe"
+        }
+      }
+    },
+    {
+      "name": "eye-slash",
+      "export": "EyeSlashIcon",
+      "files": {
+        "regular": {
+          "path": "regular/eye-slash.svg",
+          "sha256": "070b0296a7df89ebf4cec12436e323b5531d458aa9aed3608924085889e1fd17"
+        }
+      }
+    },
+    {
+      "name": "folder",
+      "export": "FolderIcon",
+      "files": {
+        "regular": {
+          "path": "regular/folder.svg",
+          "sha256": "4a882bcd4a91ae0a01887024f08d358932f183b6b171e87a3e48c5910364d507"
+        },
+        "fill": {
+          "path": "fill/folder-fill.svg",
+          "sha256": "2217bd2f730884d7a8aec3e3358eb7500448b0e3d86f33a63142f40f0622bfe9"
+        }
+      }
+    },
+    {
+      "name": "gear-six",
+      "export": "GearSixIcon",
+      "files": {
+        "regular": {
+          "path": "regular/gear-six.svg",
+          "sha256": "2bb05ec80cc37505a3f21c74989dbb297ab8442a668f5ffbd6a8f7c1d5794c7b"
+        }
+      }
+    },
+    {
+      "name": "heart",
+      "export": "HeartIcon",
+      "files": {
+        "regular": {
+          "path": "regular/heart.svg",
+          "sha256": "312dee73d1d969631d5498012f619ccf4edbdf31e1be3e65af4f4f1b3ac1b2dd"
+        },
+        "fill": {
+          "path": "fill/heart-fill.svg",
+          "sha256": "d90560d4f762f1b345bd2322cd1ef696926ffa74b0c1396933b6d926faf8341e"
+        }
+      }
+    },
+    {
+      "name": "house",
+      "export": "HouseIcon",
+      "files": {
+        "regular": {
+          "path": "regular/house.svg",
+          "sha256": "180e9259e99e23da197b59b19394d006d6a5d33e384cc2b9c8381cb0214a5716"
+        },
+        "fill": {
+          "path": "fill/house-fill.svg",
+          "sha256": "4783cdf0ae5f5ec363df6f77167a41642aac42fe8d73251b9a61232ab43f355d"
+        }
+      }
+    },
+    {
+      "name": "info",
+      "export": "InfoIcon",
+      "files": {
+        "regular": {
+          "path": "regular/info.svg",
+          "sha256": "438a1f319d53d86e840af73fb7b1d224c9224a437b9fa449a4e2cb45a82a3552"
+        }
+      }
+    },
+    {
+      "name": "list",
+      "export": "ListIcon",
+      "files": {
+        "regular": {
+          "path": "regular/list.svg",
+          "sha256": "fb1851842c74b40a3f42ce3d6ae0e67ede556b624218e79c0f4ead7d9ceec51f"
+        }
+      }
+    },
+    {
+      "name": "list-checks",
+      "export": "ListChecksIcon",
+      "files": {
+        "regular": {
+          "path": "regular/list-checks.svg",
+          "sha256": "b2d11fc95de627d6abe9feeced5f7e0cdce3ccdf8d9f9d2334d596b8b5cc5cc4"
+        }
+      }
+    },
+    {
+      "name": "magnifying-glass",
+      "export": "MagnifyingGlassIcon",
+      "files": {
+        "regular": {
+          "path": "regular/magnifying-glass.svg",
+          "sha256": "f9fa2561978a9a3291e8ae0ebfcb651104f5069fade8f84871627bca68889cde"
+        }
+      }
+    },
+    {
+      "name": "minus",
+      "export": "MinusIcon",
+      "files": {
+        "regular": {
+          "path": "regular/minus.svg",
+          "sha256": "5a068d1cfd707fde5ddb0ce0623958123b6a5afba98401318983aeb0fdad6382"
+        }
+      }
+    },
+    {
+      "name": "moon",
+      "export": "MoonIcon",
+      "files": {
+        "regular": {
+          "path": "regular/moon.svg",
+          "sha256": "5c91f82aea4e7b53305bf29628caebc22a1198ba9fa46c62eef13fb8b3c3f21d"
+        }
+      }
+    },
+    {
+      "name": "note",
+      "export": "NoteIcon",
+      "files": {
+        "regular": {
+          "path": "regular/note.svg",
+          "sha256": "8dad2e545c79b0d8eb121a80296053238691af688afae4d1d7629e6c300f3904"
+        }
+      }
+    },
+    {
+      "name": "notebook",
+      "export": "NotebookIcon",
+      "files": {
+        "regular": {
+          "path": "regular/notebook.svg",
+          "sha256": "508be681b27a34b9388e748ca4b8800b4531a38bfb7d6cb390546cba6ea90208"
+        },
+        "fill": {
+          "path": "fill/notebook-fill.svg",
+          "sha256": "e58b383d37d18ce45302b0ad6c49d8ebca752e98ba40a75dfe0321583b8b8de0"
+        }
+      }
+    },
+    {
+      "name": "pencil-simple",
+      "export": "PencilSimpleIcon",
+      "files": {
+        "regular": {
+          "path": "regular/pencil-simple.svg",
+          "sha256": "999530da442f44d8cf0054364373d16150f3e082c2ac294a4988a9c3a4295c28"
+        }
+      }
+    },
+    {
+      "name": "plus",
+      "export": "PlusIcon",
+      "files": {
+        "regular": {
+          "path": "regular/plus.svg",
+          "sha256": "d688feb9dd2e41c1721d6906a05a2a42e18cd774762fe706d72b2bdfd91cddc4"
+        }
+      }
+    },
+    {
+      "name": "share-network",
+      "export": "ShareNetworkIcon",
+      "files": {
+        "regular": {
+          "path": "regular/share-network.svg",
+          "sha256": "e6923db3591f797c89c36671aad3e20effd7b06e6eb400b2a7ffb6daaed0474a"
+        }
+      }
+    },
+    {
+      "name": "sliders-horizontal",
+      "export": "SlidersHorizontalIcon",
+      "files": {
+        "regular": {
+          "path": "regular/sliders-horizontal.svg",
+          "sha256": "1d937baa3bc51ec4052364edf30cf8991d550920534f5d413eb9f60535cc1916"
+        }
+      }
+    },
+    {
+      "name": "sparkle",
+      "export": "SparkleIcon",
+      "files": {
+        "regular": {
+          "path": "regular/sparkle.svg",
+          "sha256": "9e2c17a26564098cb48dd95737a83c742156f755f13cedaa30f9d864d0e3eb76"
+        }
+      }
+    },
+    {
+      "name": "squares-four",
+      "export": "SquaresFourIcon",
+      "files": {
+        "regular": {
+          "path": "regular/squares-four.svg",
+          "sha256": "f70d6b20e08e028ab5b1714077681910a2431092cf7a23b82366ddaec554ab87"
+        }
+      }
+    },
+    {
+      "name": "star",
+      "export": "StarIcon",
+      "files": {
+        "regular": {
+          "path": "regular/star.svg",
+          "sha256": "165cd96e51d60442fb9c7aa89592fa6ef28f22d18368c85771be302c2e977101"
+        },
+        "fill": {
+          "path": "fill/star-fill.svg",
+          "sha256": "42451b34121b695bdaab88fdcf3eacec9cda9ac36d222349609426dcb9f04b48"
+        }
+      }
+    },
+    {
+      "name": "sun",
+      "export": "SunIcon",
+      "files": {
+        "regular": {
+          "path": "regular/sun.svg",
+          "sha256": "8df1c7b747774f8b2c1fe353b1b785c74aac35bfa50f2ed7d8d9a85a4191b2ac"
+        }
+      }
+    },
+    {
+      "name": "text-b",
+      "export": "TextBIcon",
+      "files": {
+        "regular": {
+          "path": "regular/text-b.svg",
+          "sha256": "39dc3c7bafeb11d9d6dc982201d60b52e84ffdbf35833d4b1dfaa298c68518b6"
+        }
+      }
+    },
+    {
+      "name": "text-italic",
+      "export": "TextItalicIcon",
+      "files": {
+        "regular": {
+          "path": "regular/text-italic.svg",
+          "sha256": "189d5093097bb07a2894efb0221ffe5054617163c97eb5f73b79cbee375161c3"
+        }
+      }
+    },
+    {
+      "name": "text-underline",
+      "export": "TextUnderlineIcon",
+      "files": {
+        "regular": {
+          "path": "regular/text-underline.svg",
+          "sha256": "31739d959bc52b6d0384d2a878145b130107a94c2dc84e1da9aa9f1370581cfd"
+        }
+      }
+    },
+    {
+      "name": "users",
+      "export": "UsersIcon",
+      "files": {
+        "regular": {
+          "path": "regular/users.svg",
+          "sha256": "b3385e4c6aa03f7e16d1b03887c2cdff9900f5a7edbd5ea5176055938ccfb908"
+        }
+      }
+    },
+    {
+      "name": "warning",
+      "export": "WarningIcon",
+      "files": {
+        "regular": {
+          "path": "regular/warning.svg",
+          "sha256": "047c8edbdfddb9f1692bbf56acc85b7e4649b567c60eb39470e98e4f9ddc6a2e"
+        }
+      }
+    },
+    {
+      "name": "warning-circle",
+      "export": "WarningCircleIcon",
+      "files": {
+        "regular": {
+          "path": "regular/warning-circle.svg",
+          "sha256": "e48a90760a68659fd3f06dd9187e471aead4877c72e915339071b2c7f7bd714c"
+        }
+      }
+    },
+    {
+      "name": "x",
+      "export": "XIcon",
+      "files": {
+        "regular": {
+          "path": "regular/x.svg",
+          "sha256": "7397b15e1fa66eaf6ff9b59fe91d483cb5c3bcf75b2fe052097ab6f0593b513a"
+        }
+      }
+    }
+  ]
+}

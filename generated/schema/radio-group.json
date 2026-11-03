@@ -52,6 +52,15 @@
               "horizontal"
             ]
           },
+          "variant": {
+            "default": "default",
+            "description": "cards gives each option a full-width selectable surface.",
+            "type": "string",
+            "enum": [
+              "default",
+              "cards"
+            ]
+          },
           "required": {
             "default": false,
             "type": "boolean"

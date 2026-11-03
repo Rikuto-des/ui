@@ -1,0 +1,107 @@
+{
+  "name": "progress",
+  "tier": 1,
+  "summary": "How far a task has got, in a native <progress> with a visible label.",
+  "use": [
+    "Uploads, imports, multi-step processes"
+  ],
+  "avoid": [
+    {
+      "case": "A measurement within a range (disk usage, a score)",
+      "instead": "meter"
+    },
+    {
+      "case": "Waiting with no known length",
+      "instead": "spinner"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "progress"
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Progress",
+      "slot": "progress",
+      "element": "progress",
+      "description": "A label and a <progress>. Without value it is indeterminate.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "label": {
+            "description": "Required visible label; it names the progress bar.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "value": {
+            "description": "Current amount. Leave out while the total is unknown.",
+            "type": "number",
+            "minimum": 0
+          },
+          "max": {
+            "default": 100,
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "milestones": {
+            "description": "Labelled checkpoints in the same units as value and max.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "label": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "label"
+              ]
+            }
+          },
+          "valueText": {
+            "description": "Readable progress, e.g. 3 of 8 files. Also announced by assistive technology.",
+            "type": "string"
+          },
+          "showValue": {
+            "default": true,
+            "description": "Shows the percentage next to the label.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "label"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "indeterminate"
+  ],
+  "a11y": {
+    "rules": [
+      "label is required; it is linked with aria-labelledby."
+    ]
+  },
+  "tokens": [
+    "color.accent",
+    "color.track"
+  ],
+  "examples": [
+    {
+      "title": "Upload",
+      "code": "<Progress label=\"写真をアップロード中\" value={42} />"
+    }
+  ]
+}

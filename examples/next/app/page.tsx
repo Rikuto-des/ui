@@ -18,7 +18,7 @@ export default function Page() {
   return (
     <main className="page">
       <h1>秋のキャンペーン</h1>
-      <p className="muted">このページは Server Components だけで描画され、部品のための JavaScript を送っていません。</p>
+      <p className="muted">このページは Server Components だけで描画され、コンポーネントのための JavaScript を送っていません。</p>
       <div className="row">
         <Popover.Trigger popover="filters" data-testid="open-filters">
           フィルタ
@@ -76,8 +76,8 @@ export default function Page() {
         <Accordion.Item title="JavaScript を切っても動きますか？" defaultOpen>
           動きます。開閉はブラウザの details 要素がしています。
         </Accordion.Item>
-        <Accordion.Item title="部品のコードはブラウザに送られますか？">
-          送られません。このページの部品はすべて Server Components です。
+        <Accordion.Item title="コンポーネントのコードはブラウザに送られますか？">
+          送られません。このページのコンポーネントはすべて Server Components です。
         </Accordion.Item>
       </Accordion>
 

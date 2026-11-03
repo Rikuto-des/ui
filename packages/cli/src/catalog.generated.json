@@ -1,0 +1,5689 @@
+[
+  {
+    "name": "accordion",
+    "tier": 1,
+    "summary": "Collapsible sections built on native <details>/<summary>; a shared name makes them exclusive.",
+    "use": [
+      "FAQs",
+      "Secondary settings that most people skip"
+    ],
+    "avoid": [
+      {
+        "case": "Switching between views of equal weight",
+        "instead": "tabs"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "details",
+        "details[name]"
+      ],
+      "enhances": [
+        {
+          "feature": "::details-content + interpolate-size",
+          "fallback": "opens without animation"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Accordion",
+        "slot": "accordion",
+        "element": "div",
+        "description": "Groups items. With a name, opening one item closes the others (native exclusive accordion).",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Shared details name: only one item open at a time.",
+              "type": "string"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Accordion.Item",
+        "slot": "accordion-item",
+        "element": "details",
+        "description": "One section: <details> with the title in its <summary>.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Required summary text.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Optional summary of the contents or current settings, visible while closed.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "defaultOpen": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "open"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Enter / Space": "toggle the focused item"
+      },
+      "rules": [
+        "Titles are short and say what the section holds."
+      ]
+    },
+    "tokens": [
+      "color.border",
+      "motion.overlay"
+    ],
+    "examples": [
+      {
+        "title": "FAQ",
+        "code": "<Accordion name=\"faq\">\n  <Accordion.Item title=\"料金はかかりますか？\">無料で始められます。</Accordion.Item>\n  <Accordion.Item title=\"解約はいつでもできますか？\">はい、いつでもできます。</Accordion.Item>\n</Accordion>"
+      }
+    ]
+  },
+  {
+    "name": "alert-dialog",
+    "styleDependencies": [
+      "dialog"
+    ],
+    "tier": 2,
+    "summary": "A modal confirmation (role=alertdialog) that only its buttons can close.",
+    "use": [
+      "Confirming something that cannot be undone"
+    ],
+    "avoid": [
+      {
+        "case": "A form or a longer task",
+        "instead": "dialog"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "dialog",
+        "invoker-commands"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "AlertDialog",
+        "slot": "alert-dialog",
+        "element": "dialog",
+        "description": "A <dialog role=\"alertdialog\" closedby=\"none\">: Escape and clicks outside do not close it.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Triggers and buttons reference it."
+            },
+            "title": {
+              "description": "Required. The question, e.g. \"削除しますか？\".",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Required. What happens, in concrete terms.",
+              "x-ts-type": "React.ReactNode"
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "description"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "AlertDialog.Trigger",
+        "slot": "alert-dialog-trigger",
+        "element": "button",
+        "description": "A Button that opens it.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "alertDialog": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the alert dialog.",
+              "x-idref": "alert-dialog"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "alertDialog"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "AlertDialog.Cancel",
+        "slot": "alert-dialog-cancel",
+        "element": "button",
+        "description": "The safe choice. It closes the dialog and gets focus when it opens.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "alertDialog": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the alert dialog.",
+              "x-idref": "alert-dialog"
+            }
+          },
+          "required": [
+            "alertDialog"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "AlertDialog.Action",
+        "slot": "alert-dialog-action",
+        "element": "button",
+        "description": "The action. It closes the dialog; submit a form or add onClick to act.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "alertDialog": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the alert dialog.",
+              "x-idref": "alert-dialog"
+            },
+            "variant": {
+              "default": "danger",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            }
+          },
+          "required": [
+            "alertDialog"
+          ]
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "open",
+      "modal"
+    ],
+    "a11y": {
+      "apg": "alertdialog",
+      "keyboard": {
+        "Tab": "moves focus within the dialog only"
+      },
+      "focus": {
+        "initial": "AlertDialog.Cancel",
+        "restore": "the trigger"
+      },
+      "rules": [
+        "title and description are required.",
+        "Focus starts on the safe choice."
+      ]
+    },
+    "tokens": [
+      "color.surface-overlay",
+      "shadow.dialog",
+      "radius.dialog"
+    ],
+    "examples": [
+      {
+        "title": "Delete",
+        "code": "<AlertDialog.Trigger alertDialog=\"delete\" variant=\"danger\">削除</AlertDialog.Trigger>\n<AlertDialog id=\"delete\" title=\"削除しますか？\" description=\"タスク 5 件が消えます。取り消せません。\">\n  <AlertDialog.Cancel alertDialog=\"delete\">キャンセル</AlertDialog.Cancel>\n  <AlertDialog.Action alertDialog=\"delete\">削除する</AlertDialog.Action>\n</AlertDialog>"
+      }
+    ]
+  },
+  {
+    "name": "alert",
+    "tier": 1,
+    "summary": "A callout in the page: a title, supporting text and an optional action, in a tone.",
+    "use": [
+      "A notice that stays on the page (maintenance, a limit reached)",
+      "The result of a page-level check"
+    ],
+    "avoid": [
+      {
+        "case": "Reporting the result of an action that just happened",
+        "instead": "toast"
+      },
+      {
+        "case": "An error on one input",
+        "instead": "field"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Alert",
+        "slot": "alert",
+        "element": "div",
+        "description": "The callout. The title states the point; tone only reinforces it.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Required. One line that states the point.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "tone": {
+              "default": "neutral",
+              "type": "string",
+              "enum": [
+                "neutral",
+                "accent",
+                "ok",
+                "warning",
+                "danger"
+              ]
+            },
+            "action": {
+              "description": "Optional action, e.g. a Link or a small Button.",
+              "x-ts-type": "React.ReactNode"
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "Never rely on tone alone; the title says what happened.",
+        "Not a live region: for news that arrives later, use a toast."
+      ]
+    },
+    "tokens": [
+      "color.accent",
+      "color.ok",
+      "color.warning",
+      "color.danger",
+      "color.text",
+      "radius.panel"
+    ],
+    "examples": [
+      {
+        "title": "Maintenance notice",
+        "code": "<Alert tone=\"accent\" title=\"10 月 30 日 2:00〜4:00 にメンテナンスを行います\">この間は申し込みを受け付けられません。</Alert>"
+      }
+    ]
+  },
+  {
+    "name": "aspect-ratio",
+    "tier": 1,
+    "summary": "A box that keeps a ratio (CSS aspect-ratio); its media fills it.",
+    "use": [
+      "Thumbnails, video embeds, maps"
+    ],
+    "avoid": [
+      {
+        "case": "A square avatar",
+        "instead": "avatar"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "aspect-ratio"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "AspectRatio",
+        "slot": "aspect-ratio",
+        "element": "div",
+        "description": "The box. An img, video or iframe inside fills it with object-fit: cover.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "ratio": {
+              "default": "16 / 9",
+              "description": "Width / height, e.g. \"4 / 3\".",
+              "type": "string",
+              "pattern": "^\\d+(\\.\\d+)?\\s*\\/\\s*\\d+(\\.\\d+)?$"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "The media inside still needs its own alt text or title."
+      ]
+    },
+    "tokens": [
+      "radius.panel"
+    ],
+    "examples": [
+      {
+        "title": "Thumbnail",
+        "code": "<AspectRatio ratio=\"4 / 3\"><img src=\"/photo.jpg\" alt=\"会場の様子\" /></AspectRatio>"
+      }
+    ]
+  },
+  {
+    "name": "avatar",
+    "tier": 1,
+    "summary": "A person's picture, or their initial when there is no picture or it fails to load.",
+    "use": [
+      "Who wrote, owns or is assigned something"
+    ],
+    "avoid": [
+      {
+        "case": "A logo or an illustration",
+        "instead": "img"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Avatar",
+        "slot": "avatar",
+        "element": "span",
+        "description": "role=img named by `name`. The initial sits behind the picture and shows if it is missing or broken (no JavaScript).",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. The person's name: the accessible name and the source of the initial."
+            },
+            "status": {
+              "description": "Presence indicator. Include a localized statusLabel.",
+              "type": "string",
+              "enum": [
+                "online",
+                "away",
+                "busy",
+                "offline"
+              ]
+            },
+            "statusLabel": {
+              "description": "Accessible presence text, appended to the name.",
+              "type": "string"
+            },
+            "src": {
+              "description": "Optional picture URL.",
+              "type": "string"
+            },
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "name is required; the picture itself is decorative."
+      ]
+    },
+    "tokens": [
+      "color.surface",
+      "color.text-muted"
+    ],
+    "examples": [
+      {
+        "title": "Assignee",
+        "code": "<Avatar name=\"佐藤 美咲\" src=\"/people/sato.jpg\" />"
+      }
+    ]
+  },
+  {
+    "name": "badge",
+    "tier": 1,
+    "summary": "A short status or count label.",
+    "use": [
+      "Status of an item (対応中, 完了)",
+      "A count next to a label"
+    ],
+    "avoid": [
+      {
+        "case": "An action",
+        "instead": "button"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Badge",
+        "slot": "badge",
+        "element": "span",
+        "description": "The badge. Its text carries the meaning; tone only reinforces it.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "tone": {
+              "default": "neutral",
+              "type": "string",
+              "enum": [
+                "neutral",
+                "accent",
+                "ok",
+                "danger"
+              ]
+            },
+            "dot": {
+              "default": false,
+              "description": "Shows a small status dot before the text.",
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "Never rely on tone alone; the text states the status."
+      ]
+    },
+    "tokens": [
+      "color.accent",
+      "color.ok",
+      "color.danger",
+      "color.text-muted"
+    ],
+    "examples": [
+      {
+        "title": "Status",
+        "code": "<Badge tone=\"danger\" dot>期限切れ</Badge>"
+      }
+    ]
+  },
+  {
+    "name": "breadcrumb",
+    "tier": 1,
+    "summary": "Where the page sits in the site: a nav with an ordered list of links.",
+    "use": [
+      "Pages more than two levels deep"
+    ],
+    "avoid": [
+      {
+        "case": "Steps of a process",
+        "instead": "steps"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Breadcrumb",
+        "slot": "breadcrumb",
+        "element": "nav",
+        "description": "The nav landmark and its list.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "default": "パンくずリスト",
+              "description": "Names the nav landmark.",
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Breadcrumb.Item",
+        "slot": "breadcrumb-item",
+        "element": "li",
+        "description": "One level: a link, or the current page (aria-current=\"page\").",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "href": {
+              "description": "Link target; leave out for the current page.",
+              "type": "string"
+            },
+            "current": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "current"
+    ],
+    "a11y": {
+      "rules": [
+        "The last item is the current page.",
+        "Separators are drawn by CSS and not read."
+      ]
+    },
+    "tokens": [
+      "color.text-muted",
+      "color.link"
+    ],
+    "examples": [
+      {
+        "title": "Settings",
+        "code": "<Breadcrumb>\n  <Breadcrumb.Item href=\"/\">ホーム</Breadcrumb.Item>\n  <Breadcrumb.Item href=\"/settings\">設定</Breadcrumb.Item>\n  <Breadcrumb.Item current>通知</Breadcrumb.Item>\n</Breadcrumb>"
+      }
+    ]
+  },
+  {
+    "name": "button-group",
+    "tier": 1,
+    "summary": "Buttons that belong together, joined into one shape (role=group).",
+    "use": [
+      "Related actions on one object",
+      "A split between an action and its menu"
+    ],
+    "avoid": [
+      {
+        "case": "Choosing one of several options",
+        "instead": "toggle-group"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "ButtonGroup",
+        "slot": "button-group",
+        "element": "div",
+        "description": "role=group named by label. Inner corners and borders between the buttons are removed.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Names the group."
+            },
+            "orientation": {
+              "default": "horizontal",
+              "type": "string",
+              "enum": [
+                "horizontal",
+                "vertical"
+              ]
+            }
+          },
+          "required": [
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "label is required: a group needs a name."
+      ]
+    },
+    "tokens": [
+      "radius.control",
+      "color.border-control"
+    ],
+    "examples": [
+      {
+        "title": "Copy / share",
+        "code": "<ButtonGroup label=\"リンク\"><Button>コピー</Button><Button>共有</Button></ButtonGroup>"
+      }
+    ]
+  },
+  {
+    "name": "button",
+    "tier": 1,
+    "summary": "A native <button> that runs or confirms an action.",
+    "use": [
+      "Submitting a form",
+      "Confirming a dialog",
+      "Opening a dialog or popover through `command`"
+    ],
+    "avoid": [
+      {
+        "case": "Navigating to another page",
+        "instead": "link"
+      },
+      {
+        "case": "Toggling a setting on and off",
+        "instead": "switch"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "invoker-commands"
+      ],
+      "enhances": [
+        {
+          "feature": "corner-shape",
+          "fallback": "border-radius only"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Button",
+        "slot": "button",
+        "element": "button",
+        "description": "The button itself. Defaults to type=\"button\" so it never submits by accident.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            "loading": {
+              "default": false,
+              "description": "While true the button reports aria-disabled, ignores activation and never submits a form.",
+              "type": "boolean"
+            },
+            "command": {
+              "description": "Invoker command (HTML `command` attribute). Works without JavaScript.",
+              "type": "string",
+              "enum": [
+                "show-modal",
+                "close",
+                "request-close",
+                "toggle-popover",
+                "show-popover",
+                "hide-popover"
+              ]
+            },
+            "commandfor": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the dialog or popover the command targets (HTML `commandfor`).",
+              "x-idref": true
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "disabled",
+      "loading",
+      "hover",
+      "active",
+      "focus-visible"
+    ],
+    "a11y": {
+      "apg": "button",
+      "keyboard": {
+        "Enter": "activate",
+        "Space": "activate"
+      },
+      "rules": [
+        "An icon-only button needs aria-label.",
+        "Use at most one primary button per view.",
+        "Loading buttons stay focusable (aria-disabled), they are never natively disabled."
+      ]
+    },
+    "tokens": [
+      "color.action",
+      "color.secondary",
+      "color.danger",
+      "radius.control",
+      "control.*",
+      "motion.fast"
+    ],
+    "examples": [
+      {
+        "title": "Primary action",
+        "code": "<Button variant=\"primary\" type=\"submit\">Save</Button>"
+      },
+      {
+        "title": "Open a dialog without JavaScript",
+        "code": "<Button command=\"show-modal\" commandfor=\"confirm\">Delete</Button>"
+      }
+    ]
+  },
+  {
+    "name": "card",
+    "tier": 1,
+    "summary": "A surface that groups related content, with an optional title, description and footer.",
+    "use": [
+      "A self-contained group of content or settings"
+    ],
+    "avoid": [
+      {
+        "case": "Wrapping every block on a page (use spacing instead)",
+        "instead": "separator"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Card",
+        "slot": "card",
+        "element": "div",
+        "description": "The surface. Header and footer render only when given.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Heading of the card.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Supporting text under the title.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "footer": {
+              "description": "Actions or meta at the bottom.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "headingLevel": {
+              "default": "h3",
+              "description": "Keeps the page's heading outline correct.",
+              "type": "string",
+              "enum": [
+                "h2",
+                "h3",
+                "h4"
+              ]
+            },
+            "selected": {
+              "default": false,
+              "description": "Selection styling. Provide a real button, checkbox or radio to change selection.",
+              "type": "boolean"
+            },
+            "padding": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "height",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "Pick headingLevel so headings stay in order on the page."
+      ]
+    },
+    "tokens": [
+      "color.surface",
+      "shadow.panel",
+      "radius.panel",
+      "space.*"
+    ],
+    "examples": [
+      {
+        "title": "Settings card",
+        "code": "<Card title=\"通知\" description=\"受け取る通知を選びます。\" footer={<Button>保存</Button>}>…</Card>"
+      }
+    ]
+  },
+  {
+    "name": "carousel",
+    "tier": 2,
+    "summary": "Slides in a horizontal scroll-snap strip; where CSS ::scroll-button and ::scroll-marker exist, the browser adds the buttons and dots.",
+    "use": [
+      "A set of images or cards of equal weight that do not all fit"
+    ],
+    "avoid": [
+      {
+        "case": "Content most people must see",
+        "instead": "a list or grid"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "scroll-snap"
+      ],
+      "enhances": [
+        {
+          "feature": "::scroll-button / ::scroll-marker",
+          "fallback": "scroll by swipe, trackpad or the arrow keys"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Carousel",
+        "slot": "carousel",
+        "element": "section",
+        "description": "A named region (aria-roledescription=\"カルーセル\") with a focusable scroll strip.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Names the carousel."
+            },
+            "previousLabel": {
+              "default": "前のスライド",
+              "description": "Accessible name for the previous-slide control.",
+              "type": "string"
+            },
+            "nextLabel": {
+              "default": "次のスライド",
+              "description": "Accessible name for the next-slide control.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Carousel.Item",
+        "slot": "carousel-item",
+        "element": "div",
+        "description": "One slide; it is named \"n / total\".",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "overrides": []
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "keyboard": {
+        "← / →": "move between slides when the strip is focused; respects RTL",
+        "Home / End": "first / last slide with the runtime",
+        "Tab": "previous, numbered positions and next controls"
+      },
+      "rules": [
+        "Slides never move by themselves.",
+        "The optional runtime adds controls and a current position in every supported browser; reduced motion uses immediate scrolling."
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.border-strong",
+      "radius.panel"
+    ],
+    "examples": [
+      {
+        "title": "Photos",
+        "code": "<Carousel label=\"会場の写真\">\n  <Carousel.Item><img src=\"/1.jpg\" alt=\"受付\" /></Carousel.Item>\n  <Carousel.Item><img src=\"/2.jpg\" alt=\"講演\" /></Carousel.Item>\n</Carousel>"
+      }
+    ]
+  },
+  {
+    "name": "checkbox",
+    "tier": 1,
+    "summary": "A native checkbox with its own label.",
+    "use": [
+      "Choosing any number of options",
+      "Confirming a single statement (agree to terms)"
+    ],
+    "avoid": [
+      {
+        "case": "A setting that applies immediately",
+        "instead": "switch"
+      },
+      {
+        "case": "Exactly one of several options",
+        "instead": "radio-group"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "appearance: none"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Checkbox",
+        "slot": "checkbox",
+        "element": "label",
+        "description": "A <label> around the native <input type=\"checkbox\">. Input attributes (name, value, checked…) go to the input.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "description": {
+              "description": "Supporting text under the label. Linked with aria-describedby when id is set.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "invalid": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "checked",
+      "focus-visible",
+      "disabled",
+      "invalid"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Space": "toggle"
+      },
+      "rules": [
+        "children is the label; never leave it empty."
+      ]
+    },
+    "tokens": [
+      "color.accent",
+      "color.field",
+      "color.border-strong",
+      "radius.checkbox"
+    ],
+    "examples": [
+      {
+        "title": "Agree",
+        "code": "<Checkbox name=\"terms\" required>利用規約に同意します</Checkbox>"
+      }
+    ]
+  },
+  {
+    "name": "collapsible",
+    "tier": 1,
+    "summary": "One section that opens and closes: a native <details>.",
+    "use": [
+      "Advanced options under a form",
+      "Details most people skip"
+    ],
+    "avoid": [
+      {
+        "case": "Several sections in a row",
+        "instead": "accordion"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "details"
+      ],
+      "enhances": [
+        {
+          "feature": "::details-content + interpolate-size",
+          "fallback": "opens without animation"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Collapsible",
+        "slot": "collapsible",
+        "element": "details",
+        "description": "The <details>, with the title in its <summary>.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Required summary text.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Optional summary of the contents or current settings, visible while closed.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "defaultOpen": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "open"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Enter / Space": "toggle"
+      },
+      "rules": [
+        "The title says what is inside."
+      ]
+    },
+    "tokens": [
+      "color.text-muted",
+      "motion.overlay"
+    ],
+    "examples": [
+      {
+        "title": "Advanced",
+        "code": "<Collapsible title=\"詳細な設定\">…</Collapsible>"
+      }
+    ]
+  },
+  {
+    "name": "combobox",
+    "tier": 3,
+    "summary": "検索して候補を絞り込み、1つの値を選択します。",
+    "use": [
+      "検索して候補を絞り込み、1つの値を選択します。"
+    ],
+    "avoid": [
+      {
+        "case": "検索や複雑な操作が不要な場合",
+        "instead": "select"
+      }
+    ],
+    "rendering": "client",
+    "platform": {
+      "requires": [
+        "React 19",
+        "Popover API"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Combobox",
+        "slot": "combobox",
+        "element": "div",
+        "description": "検索して候補を絞り込み、1つの値を選択します。",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "画面に表示するラベル。必須です。"
+            },
+            "options": {
+              "x-ts-type": "readonly import(\"../combobox.tsx\").ComboboxOption[]",
+              "description": "valueは一意にします。無効な候補はキーボード移動で飛ばします。iconで装飾、keywordsで別名の検索語を追加できます。"
+            },
+            "value": {
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "string"
+            },
+            "onValueChange": {
+              "x-ts-type": "(value: string, option: import(\"../combobox.tsx\").ComboboxOption) => void"
+            },
+            "query": {
+              "description": "候補を検索する文字列。確定したvalueとは別に保持します。",
+              "type": "string"
+            },
+            "onQueryChange": {
+              "x-ts-type": "(query: string) => void",
+              "description": "検索語の変更を受け取ります。候補を開くときと選択時には空文字になります。非同期取得の古い応答は呼び出し側で除外します。"
+            },
+            "filter": {
+              "default": "local",
+              "description": "manualではoptionsを再絞り込みせず表示します。サーバー側で検索・順位付けするときに指定します。確定した選択の表示は候補が入れ替わっても保持します。",
+              "type": "string",
+              "enum": [
+                "local",
+                "manual"
+              ]
+            },
+            "loadOptions": {
+              "x-ts-type": "import(\"../combobox.tsx\").ComboboxLoader",
+              "description": "非同期で候補を取得する関数。検索語と{signal}を受け取り、候補配列を返します。開く・検索する・再試行するたびに呼ばれ、結果は再絞り込みせず表示します。閉じる・無効化・削除時に中断し、古い応答も除外します。optionsには初期選択を含めます。関数の参照変更だけでは再取得しません。データ源を切り替える場合はReactのkeyも変えます。"
+            },
+            "loadingText": {
+              "type": "string"
+            },
+            "errorText": {
+              "type": "string"
+            },
+            "retryLabel": {
+              "type": "string"
+            },
+            "loading": {
+              "type": "boolean"
+            },
+            "emptyText": {
+              "type": "string"
+            },
+            "renderPreview": {
+              "x-ts-type": "(option: import(\"../combobox.tsx\").ComboboxOption) => import(\"react\").ReactNode",
+              "description": "候補の詳細を表示します。クリック・タップ・矢印キーではプレビューを切り替え、Enterまたは確定ボタンで選びます。プレビューには操作ボタンを含めず、重要な情報はdescriptionにも含めます。狭い画面では候補の下に表示します。"
+            },
+            "previewLabel": {
+              "description": "詳細領域のアクセシブルな名前。",
+              "type": "string"
+            },
+            "previewActionLabel": {
+              "description": "プレビュー中の候補を確定するボタンの文言。",
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "options"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "disabled",
+      "empty",
+      "focused"
+    ],
+    "a11y": {
+      "keyboard": {
+        "ArrowDown / ArrowUp": "候補を開き、選択できる項目へ移動します。取得エラー時は再試行ボタンへ移動します",
+        "Enter": "現在の候補を選択します",
+        "Escape": "選択済みの値を変えずに閉じます",
+        "Tab": "プレビューの詳細・確定ボタンへ順に移動します。取得エラー時は再試行へ移動します"
+      },
+      "rules": [
+        "用途が伝わるlabelを指定します。",
+        "候補・項目・行には重複しない固定のIDを指定します。",
+        "組み合わせた画面を、対象の支援技術で確認してください。"
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.surface",
+      "color.focus-ring",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Example",
+        "code": "<Combobox label=\"担当者\" options={[{ value: \"mika\", label: \"Mika Sato\" }, { value: \"kai\", label: \"Kai Ito\" }]} />"
+      }
+    ]
+  },
+  {
+    "name": "command",
+    "tier": 3,
+    "summary": "コマンドを検索し、キーボードで実行するダイアログです。",
+    "use": [
+      "コマンドを検索し、キーボードで実行するダイアログです。"
+    ],
+    "avoid": [
+      {
+        "case": "検索や複雑な操作が不要な場合",
+        "instead": "menu"
+      }
+    ],
+    "rendering": "client",
+    "platform": {
+      "requires": [
+        "React 19",
+        "dialog.showModal"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Command",
+        "slot": "command",
+        "element": "dialog",
+        "description": "コマンドを検索し、キーボードで実行するダイアログです。",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "open": {
+              "type": "boolean"
+            },
+            "onOpenChange": {
+              "x-ts-type": "(open: boolean) => void"
+            },
+            "items": {
+              "x-ts-type": "readonly import(\"../command.tsx\").CommandItem[]"
+            },
+            "placeholder": {
+              "type": "string"
+            },
+            "emptyText": {
+              "type": "string"
+            },
+            "closeLabel": {
+              "type": "string"
+            },
+            "navigationHint": {
+              "type": "string"
+            },
+            "actionHint": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "open",
+            "onOpenChange",
+            "items"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "disabled",
+      "empty",
+      "focused"
+    ],
+    "a11y": {
+      "keyboard": {
+        "ArrowDown / ArrowUp": "実行できるコマンドへ移動します",
+        "Enter": "現在のコマンドを実行します",
+        "Escape": "閉じて元のフォーカス位置へ戻ります",
+        "Tab": "ダイアログ内の操作へ移動します"
+      },
+      "rules": [
+        "用途が伝わるlabelを指定します。",
+        "候補・項目・行には重複しない固定のIDを指定します。",
+        "組み合わせた画面を、対象の支援技術で確認してください。"
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.surface",
+      "color.focus-ring",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Example",
+        "code": "<Command label=\"コマンド\" open={open} onOpenChange={setOpen} items={[{id:\"new\",label:\"作成\",onSelect: createProject}]} />"
+      }
+    ]
+  },
+  {
+    "name": "data-table",
+    "tier": 3,
+    "styleDependencies": [
+      "checkbox"
+    ],
+    "summary": "並び替え、ページ送り、行の選択に対応したテーブルです。",
+    "use": [
+      "並び替え、ページ送り、行の選択に対応したテーブルです。"
+    ],
+    "avoid": [
+      {
+        "case": "検索や複雑な操作が不要な場合",
+        "instead": "table"
+      }
+    ],
+    "rendering": "client",
+    "platform": {
+      "requires": [
+        "React 19",
+        "HTML table"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "DataTable",
+        "slot": "data-table",
+        "element": "div",
+        "description": "並び替え、ページ送り、行の選択に対応したテーブルです。",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "テーブルの用途が伝わる名前。"
+            },
+            "rows": {
+              "x-ts-type": "readonly unknown[]"
+            },
+            "columns": {
+              "x-ts-type": "readonly import(\"../data-table.tsx\").DataTableColumn<unknown>[]"
+            },
+            "getRowId": {
+              "x-ts-type": "(row: unknown) => string",
+              "description": "並び順が変わっても一定のID。行番号は使いません。"
+            },
+            "getRowLabel": {
+              "x-ts-type": "(row: unknown) => string"
+            },
+            "selectedIds": {
+              "x-ts-type": "readonly string[]"
+            },
+            "onSelectionChange": {
+              "x-ts-type": "(ids: string[]) => void"
+            },
+            "locale": {
+              "default": "en",
+              "description": "操作ラベルはen・jaに対応。並び替えにも使います。",
+              "type": "string"
+            },
+            "pageSize": {
+              "default": 10,
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            },
+            "loading": {
+              "type": "boolean"
+            },
+            "renderDetails": {
+              "x-ts-type": "(row: unknown) => React.ReactNode",
+              "description": "行末のボタンで展開する詳細。"
+            },
+            "empty": {
+              "description": "0件のときに表示する内容",
+              "x-ts-type": "React.ReactNode"
+            }
+          },
+          "required": [
+            "label",
+            "rows",
+            "columns",
+            "getRowId"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "disabled",
+      "empty",
+      "focused"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Tab": "並び替え・選択・ページ送りの操作へ移動します",
+        "Space": "行の選択を切り替えます",
+        "Enter": "列を並び替えるか、ページを切り替えます"
+      },
+      "rules": [
+        "用途が伝わるlabelを指定します。",
+        "候補・項目・行には重複しない固定のIDを指定します。",
+        "組み合わせた画面を、対象の支援技術で確認してください。"
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.surface",
+      "color.focus-ring",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Example",
+        "code": "<DataTable label=\"プロジェクト\" rows={[{id:\"1\",name:\"Website\"}]} getRowId={row => row.id} columns={[{id:\"name\",header:\"名前\",cell: row => row.name,sortValue: row => row.name}]} />"
+      }
+    ]
+  },
+  {
+    "name": "date-input",
+    "styleDependencies": [
+      "input"
+    ],
+    "tier": 1,
+    "summary": "A native date or time input with the browser's own picker, drawn like Input.",
+    "use": [
+      "A date, time or month where typing or the system picker is enough"
+    ],
+    "avoid": [
+      {
+        "case": "Picking from a visible calendar on the page",
+        "instead": "a date picker (planned)"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "input[type=date]"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "DateInput",
+        "slot": "date-input",
+        "element": "input",
+        "description": "<input type=\"date\"> (or time / datetime-local / month). Put it in a Field.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "type": {
+              "default": "date",
+              "type": "string",
+              "enum": [
+                "date",
+                "time",
+                "datetime-local",
+                "month"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            "invalid": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "invalid"
+    ],
+    "a11y": {
+      "rules": [
+        "Label it with a Field; min and max are announced by the browser."
+      ]
+    },
+    "tokens": [
+      "color.field",
+      "color.border-field"
+    ],
+    "examples": [
+      {
+        "title": "Due date",
+        "code": "<Field id=\"due\" label=\"期限\"><DateInput min=\"2026-10-01\" /></Field>"
+      }
+    ]
+  },
+  {
+    "name": "date-picker",
+    "tier": 3,
+    "summary": "日付を直接入力するか、カレンダーから選択します。",
+    "use": [
+      "日付を直接入力するか、カレンダーから選択します。"
+    ],
+    "avoid": [
+      {
+        "case": "検索や複雑な操作が不要な場合",
+        "instead": "date-input"
+      }
+    ],
+    "rendering": "client",
+    "platform": {
+      "requires": [
+        "React 19",
+        "dialog.showModal"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "DatePicker",
+        "slot": "date-picker",
+        "element": "div",
+        "description": "日付を直接入力するか、カレンダーから選択します。",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "画面に表示するラベル。必須です。"
+            },
+            "value": {
+              "description": "YYYY-MM-DD形式。タイムゾーン変換は行いません。",
+              "type": "string"
+            },
+            "defaultValue": {
+              "type": "string"
+            },
+            "onValueChange": {
+              "x-ts-type": "(value: string) => void"
+            },
+            "min": {
+              "type": "string"
+            },
+            "max": {
+              "type": "string"
+            },
+            "locale": {
+              "default": "en",
+              "type": "string"
+            },
+            "presets": {
+              "description": "日付候補。valueはYYYY-MM-DD形式。範囲外は選択できません。",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label",
+                  "value"
+                ]
+              }
+            }
+          },
+          "required": [
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "disabled",
+      "empty",
+      "focused"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Arrow keys": "左右で1日、上下で1週間移動します",
+        "Home / End": "週の最初または最後の日へ移動します",
+        "PageUp / PageDown": "前月・翌月へ移動します。Shiftを押すと年を切り替えます",
+        "Enter": "日付を選択します",
+        "Escape": "カレンダーを閉じ、開いたボタンへ戻ります"
+      },
+      "rules": [
+        "用途が伝わるlabelを指定します。",
+        "候補・項目・行には重複しない固定のIDを指定します。",
+        "組み合わせた画面を、対象の支援技術で確認してください。"
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.surface",
+      "color.focus-ring",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Example",
+        "code": "<DatePicker label=\"期限\" defaultValue=\"2026-10-30\" locale=\"ja\" />"
+      }
+    ]
+  },
+  {
+    "name": "dialog",
+    "styleDependencies": [
+      "button"
+    ],
+    "tier": 2,
+    "summary": "A modal native <dialog> that interrupts the user for a confirmation or a short task.",
+    "use": [
+      "Confirming a destructive action",
+      "A short form that must be finished before continuing"
+    ],
+    "avoid": [
+      {
+        "case": "Showing supplementary information next to a control",
+        "instead": "popover"
+      },
+      {
+        "case": "Reporting the result of an action",
+        "instead": "toast"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "dialog",
+        "invoker-commands",
+        ":modal",
+        "@starting-style"
+      ],
+      "enhances": [
+        {
+          "feature": "dialog-closedby",
+          "fallback": "@urushi/core/closedby (loaded by <UrushiRuntime />)"
+        },
+        {
+          "feature": "overlay-transition",
+          "fallback": "the dialog closes without an exit animation"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Dialog",
+        "slot": "dialog",
+        "element": "dialog",
+        "description": "The <dialog> element. Opened with showModal() by a trigger's `show-modal` command.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Triggers and close buttons reference it."
+            },
+            "title": {
+              "description": "Required accessible title, rendered as the dialog heading.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Optional supporting text, linked with aria-describedby.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "initialFocus": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the element inside the dialog to focus after opening. Requires UrushiRuntime. Use this for dynamic React content, where autoFocus alone can run before showModal().",
+              "x-idref": true
+            },
+            "returnFocus": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the element to focus after closing or removing an open dialog. Requires UrushiRuntime. Useful for programmatic opening and conditional rendering; native trigger restoration remains the default.",
+              "x-idref": true
+            },
+            "dismissible": {
+              "default": "any",
+              "description": "any: Escape or a click outside closes it. closerequest: Escape only. none: only explicit buttons.",
+              "type": "string",
+              "enum": [
+                "any",
+                "closerequest",
+                "none"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Maximum inline size.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "title"
+          ]
+        },
+        "overrides": [
+          "width"
+        ]
+      },
+      {
+        "jsx": "Dialog.Trigger",
+        "slot": "dialog-trigger",
+        "element": "button",
+        "description": "A Button that opens the dialog (command=\"show-modal\").",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "dialog": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the dialog to open.",
+              "x-idref": "dialog"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "dialog"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Dialog.Close",
+        "slot": "dialog-close",
+        "element": "button",
+        "description": "A Button that closes the dialog with a native command after the click handler. Do not disable or unmount this button in that handler: it would cancel the native default action. For a successful mutation, use a normal Button and close the dialog ref before changing state. For async work, close only after success.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "dialog": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the dialog to close.",
+              "x-idref": "dialog"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "dialog"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Dialog.Actions",
+        "slot": "dialog-actions",
+        "element": "div",
+        "description": "Footer row for the dialog's buttons. Put the primary action last.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "open",
+      "modal"
+    ],
+    "a11y": {
+      "apg": "dialog-modal",
+      "keyboard": {
+        "Escape": "close (unless dismissible=\"none\")",
+        "Tab": "moves focus within the dialog only"
+      },
+      "focus": {
+        "initial": "first focusable element, or the element with autofocus",
+        "restore": "the trigger"
+      },
+      "rules": [
+        "Install UrushiRuntime to restore the clicked invoker after closing on Safari too; without it, pointer focus follows browser settings.",
+        "For dynamically rendered React content, set initialFocus to an input or safe button id. React autoFocus can run before showModal(); initialFocus runs after the dialog opens. Set returnFocus to a stable trigger id when opening programmatically or unmounting the dialog.",
+        "title is required; it becomes the accessible name through aria-labelledby.",
+        "Every Dialog.Trigger and Dialog.Close must reference an existing Dialog id.",
+        "Destructive confirmations should put focus on the safe action with autofocus.",
+        "For client-side mutations, hold a ref<HTMLDialogElement> on Dialog. On success call ref.current?.close() before removing the trigger or changing state. Use Button for that action; Dialog.Close is suitable for Cancel."
+      ]
+    },
+    "tokens": [
+      "color.surface.overlay",
+      "color.backdrop",
+      "radius.overlay",
+      "shadow.overlay",
+      "motion.overlay",
+      "dialog.size.*"
+    ],
+    "examples": [
+      {
+        "title": "Confirm a destructive action",
+        "code": "<Dialog.Trigger dialog=\"confirm-delete\" variant=\"danger\">Delete</Dialog.Trigger>\n<Dialog id=\"confirm-delete\" title=\"Delete this project?\" description=\"This cannot be undone.\">\n  <Dialog.Actions>\n    <Dialog.Close dialog=\"confirm-delete\" autoFocus>Cancel</Dialog.Close>\n    <Button variant=\"danger\" type=\"submit\" form=\"delete-form\">Delete</Button>\n  </Dialog.Actions>\n</Dialog>"
+      }
+    ]
+  },
+  {
+    "name": "empty",
+    "tier": 1,
+    "summary": "What a list or page shows when there is nothing in it yet, and how to start.",
+    "use": [
+      "An empty list, no search results, a first-run screen"
+    ],
+    "avoid": [
+      {
+        "case": "An error",
+        "instead": "alert"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Empty",
+        "slot": "empty",
+        "element": "div",
+        "description": "A centered title, explanation and action.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Required. Says what is empty, e.g. \"まだタスクがありません\".",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Optional: why, or what to do.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "action": {
+              "description": "Optional: the action that fills it, usually a primary Button.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "icon": {
+              "description": "Optional decorative icon.",
+              "x-ts-type": "React.ReactNode"
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "height",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "The icon is decorative (aria-hidden); the title carries the meaning."
+      ]
+    },
+    "tokens": [
+      "color.text-muted"
+    ],
+    "examples": [
+      {
+        "title": "No tasks",
+        "code": "<Empty title=\"まだタスクがありません\" description=\"最初のタスクを追加しましょう。\" action={<Button variant=\"primary\">タスクを追加</Button>} />"
+      }
+    ]
+  },
+  {
+    "name": "field",
+    "tier": 1,
+    "summary": "Labels a single form control and links its description and error message to it.",
+    "use": [
+      "Every text input, textarea and select in a form"
+    ],
+    "avoid": [
+      {
+        "case": "A checkbox or switch (they carry their own label)",
+        "instead": "checkbox"
+      },
+      {
+        "case": "A group of radio buttons",
+        "instead": "radio-group"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        ":user-invalid"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Field",
+        "slot": "field",
+        "element": "div",
+        "description": "Wraps one control (its only child) and gives it id, aria-describedby, aria-invalid and required.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Becomes the control's id; the label points at it."
+            },
+            "label": {
+              "description": "Required visible label.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Hint shown under the label, linked with aria-describedby.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "success": {
+              "description": "Confirmation text, hidden when error is present; linked to the control.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "error": {
+              "description": "Error message; marks the control aria-invalid and links the message.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "required": {
+              "default": false,
+              "description": "Marks the control required and shows a visual marker.",
+              "type": "boolean"
+            },
+            "hideLabel": {
+              "default": false,
+              "description": "Keeps the label for screen readers only. Use sparingly.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "invalid",
+      "required",
+      "disabled"
+    ],
+    "a11y": {
+      "rules": [
+        "Every control has a visible label; hideLabel only when the context already labels it visually.",
+        "Error messages say what is wrong and how to fix it."
+      ]
+    },
+    "tokens": [
+      "color.text-muted",
+      "color.danger",
+      "space.*"
+    ],
+    "examples": [
+      {
+        "title": "Email with an error",
+        "code": "<Field id=\"email\" label=\"メールアドレス\" error=\"@ を含むアドレスを入力してください。\" required>\n  <Input type=\"email\" name=\"email\" />\n</Field>"
+      }
+    ]
+  },
+  {
+    "name": "file-input",
+    "styleDependencies": [
+      "input"
+    ],
+    "tier": 1,
+    "summary": "A native <input type=\"file\">; the dropzone variant is a large target that files can be dropped on (no JavaScript).",
+    "use": [
+      "Attaching files to a form"
+    ],
+    "avoid": [
+      {
+        "case": "Uploading in the background with progress",
+        "instead": "your own uploader with Progress"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "::file-selector-button"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "FileInput",
+        "slot": "file-input",
+        "element": "input",
+        "description": "The file input. accept and multiple are native. Put it in a Field.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "variant": {
+              "default": "default",
+              "type": "string",
+              "enum": [
+                "default",
+                "dropzone"
+              ]
+            },
+            "invalid": {
+              "default": false,
+              "type": "boolean"
+            },
+            "showFiles": {
+              "default": false,
+              "description": "With UrushiRuntime, show selected file names, sizes, image previews and individual remove buttons. Files stay local.",
+              "type": "boolean"
+            },
+            "removeLabel": {
+              "default": "取り除く",
+              "description": "Accessible remove action; the file name is appended.",
+              "type": "string"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "invalid"
+    ],
+    "a11y": {
+      "rules": [
+        "Label it with a Field; say the accepted types in its description."
+      ]
+    },
+    "tokens": [
+      "color.field",
+      "color.border-field",
+      "color.secondary"
+    ],
+    "examples": [
+      {
+        "title": "Attachments",
+        "code": "<Field id=\"files\" label=\"添付ファイル\"><FileInput variant=\"dropzone\" multiple /></Field>"
+      }
+    ]
+  },
+  {
+    "name": "hover-card",
+    "tier": 2,
+    "summary": "A preview card for a link, shown on hover and keyboard focus (interestfor).",
+    "use": [
+      "A person or page preview behind a link"
+    ],
+    "avoid": [
+      {
+        "case": "Information needed to act",
+        "instead": "popover"
+      },
+      {
+        "case": "A short label",
+        "instead": "tooltip"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "popover",
+        "anchor-positioning"
+      ],
+      "enhances": [
+        {
+          "feature": "interestfor",
+          "fallback": "@urushi/core hover-card behavior (loaded by <UrushiRuntime />)"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "HoverCard",
+        "slot": "hover-card",
+        "element": "div",
+        "description": "The card: an auto popover anchored to its link.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. The trigger references it."
+            },
+            "side": {
+              "default": "bottom",
+              "type": "string",
+              "enum": [
+                "top",
+                "bottom",
+                "start",
+                "end"
+              ]
+            },
+            "align": {
+              "default": "start",
+              "type": "string",
+              "enum": [
+                "start",
+                "center",
+                "end"
+              ]
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "HoverCard.Trigger",
+        "slot": "hover-card-trigger",
+        "element": "a",
+        "description": "The link that shows the card on hover and focus; it still navigates when clicked.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "hoverCard": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the hover card.",
+              "x-idref": "hover-card"
+            },
+            "href": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required link target."
+            }
+          },
+          "required": [
+            "hoverCard",
+            "href"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "open"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Tab": "focusing the link shows the card",
+        "Escape": "hides it"
+      },
+      "rules": [
+        "Everything in the card is also reachable through the link's page."
+      ]
+    },
+    "tokens": [
+      "color.surface-overlay",
+      "shadow.overlay",
+      "radius.overlay"
+    ],
+    "examples": [
+      {
+        "title": "Person",
+        "code": "<HoverCard.Trigger hoverCard=\"sato\" href=\"/people/sato\">佐藤 美咲</HoverCard.Trigger>\n<HoverCard id=\"sato\">…</HoverCard>"
+      }
+    ]
+  },
+  {
+    "name": "input-group",
+    "styleDependencies": [
+      "input",
+      "button"
+    ],
+    "tier": 1,
+    "summary": "An Input with fixed text or a button attached before or after it, drawn as one field.",
+    "use": [
+      "A URL prefix (https://)",
+      "A unit (円, %)",
+      "A search field with its button"
+    ],
+    "avoid": [
+      {
+        "case": "Several inputs on one line",
+        "instead": "a grid of Fields"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        ":has()"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "InputGroup",
+        "slot": "input-group",
+        "element": "div",
+        "description": "The frame. It passes the Field's id, aria-describedby, aria-invalid and required on to its Input.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "InputGroup.Addon",
+        "slot": "input-group-addon",
+        "element": "span",
+        "description": "Fixed text before or after the input.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "focus-within",
+      "invalid"
+    ],
+    "a11y": {
+      "rules": [
+        "Put the meaning in the Field label too: addon text is not part of the input's name."
+      ]
+    },
+    "tokens": [
+      "color.field",
+      "color.border-field",
+      "color.text-muted"
+    ],
+    "examples": [
+      {
+        "title": "URL",
+        "code": "<Field id=\"site\" label=\"サイトの URL\">\n  <InputGroup><InputGroup.Addon>https://</InputGroup.Addon><Input /></InputGroup>\n</Field>"
+      }
+    ]
+  },
+  {
+    "name": "input",
+    "tier": 1,
+    "summary": "A native single-line <input> styled by the pack.",
+    "use": [
+      "Short free text, email, numbers, dates, search"
+    ],
+    "avoid": [
+      {
+        "case": "Several lines of text",
+        "instead": "textarea"
+      },
+      {
+        "case": "Picking from a known list",
+        "instead": "select"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        ":user-invalid"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Input",
+        "slot": "input",
+        "element": "input",
+        "description": "The input. All native attributes (type, name, required, pattern…) pass through.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "size": {
+              "default": "md",
+              "description": "Control height, matching Button sizes.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            "invalid": {
+              "default": false,
+              "description": "Shows the error style and sets aria-invalid.",
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "focus-visible",
+      "invalid",
+      "user-invalid",
+      "disabled",
+      "read-only"
+    ],
+    "a11y": {
+      "rules": [
+        "Wrap in Field so it has a label.",
+        "Use the right type and autocomplete for the data."
+      ]
+    },
+    "tokens": [
+      "color.field",
+      "color.border-strong",
+      "color.accent",
+      "radius.control",
+      "control.*"
+    ],
+    "examples": [
+      {
+        "title": "Email",
+        "code": "<Field id=\"email\" label=\"メールアドレス\"><Input type=\"email\" name=\"email\" autoComplete=\"email\" /></Field>"
+      }
+    ]
+  },
+  {
+    "name": "kbd",
+    "tier": 1,
+    "summary": "A key or keyboard shortcut, in a native <kbd>.",
+    "use": [
+      "Shortcuts in help text and tooltips"
+    ],
+    "avoid": [
+      {
+        "case": "Code",
+        "instead": "code"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Kbd",
+        "slot": "kbd",
+        "element": "kbd",
+        "description": "One key. Put several side by side for a combination.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "pressed": {
+              "default": false,
+              "description": "Visual key-down state; the app owns shortcut handling.",
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "Write the key's name as text (⌘ is read as its name on most screen readers)."
+      ]
+    },
+    "tokens": [
+      "color.border-strong",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Shortcut",
+        "code": "<Kbd>⌘</Kbd><Kbd>K</Kbd>"
+      }
+    ]
+  },
+  {
+    "name": "link",
+    "tier": 1,
+    "summary": "A native <a> that navigates to another page or place.",
+    "use": [
+      "Navigating to another page",
+      "Linking to an external site"
+    ],
+    "avoid": [
+      {
+        "case": "Running an action on the current page",
+        "instead": "button"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Link",
+        "slot": "link",
+        "element": "a",
+        "description": "The anchor. Underlined so it never relies on color alone.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Destination URL."
+            },
+            "variant": {
+              "default": "inline",
+              "description": "inline: inside running text. standalone: on its own line or in a list.",
+              "type": "string",
+              "enum": [
+                "inline",
+                "standalone"
+              ]
+            },
+            "external": {
+              "default": false,
+              "description": "Opens in a new tab and says so to screen readers.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "hover",
+      "focus-visible",
+      "visited"
+    ],
+    "a11y": {
+      "rules": [
+        "Link text names the destination; never 'here' or 'more'.",
+        "External links announce that they open a new tab."
+      ]
+    },
+    "tokens": [
+      "color.link",
+      "focus-ring.*"
+    ],
+    "examples": [
+      {
+        "title": "Inline link",
+        "code": "<p>詳しくは<Link href=\"/docs\">使い方ガイド</Link>をご覧ください。</p>"
+      }
+    ]
+  },
+  {
+    "name": "menu",
+    "styleDependencies": [
+      "button"
+    ],
+    "tier": 3,
+    "summary": "A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.",
+    "use": [
+      "Secondary actions on an item (編集・複製・削除)"
+    ],
+    "avoid": [
+      {
+        "case": "Choosing a value",
+        "instead": "select"
+      },
+      {
+        "case": "Navigation",
+        "instead": "link"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "popover",
+        "anchor-positioning"
+      ],
+      "enhances": [
+        {
+          "feature": "@urushi/core menu behavior",
+          "fallback": "items are reachable with Tab"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Menu",
+        "slot": "menu",
+        "element": "div",
+        "description": "The menu popover (role=menu).",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. The trigger references it."
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required accessible name of the menu."
+            },
+            "side": {
+              "default": "bottom",
+              "type": "string",
+              "enum": [
+                "top",
+                "bottom",
+                "start",
+                "end"
+              ]
+            },
+            "align": {
+              "default": "start",
+              "type": "string",
+              "enum": [
+                "start",
+                "center",
+                "end"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "label"
+          ]
+        },
+        "overrides": [
+          "width"
+        ]
+      },
+      {
+        "jsx": "Menu.Trigger",
+        "slot": "menu-trigger",
+        "element": "button",
+        "description": "A Button that toggles the menu (aria-haspopup=menu).",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "menu": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the menu.",
+              "x-idref": "menu"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "menu"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Menu.Item",
+        "slot": "menu-item",
+        "element": "button",
+        "description": "An action (role=menuitem). Activating it closes the menu.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "variant": {
+              "default": "default",
+              "type": "string",
+              "enum": [
+                "default",
+                "danger"
+              ]
+            },
+            "description": {
+              "description": "Secondary explanation of the action.",
+              "type": "string"
+            },
+            "shortcut": {
+              "description": "Displayed hint; app registers the shortcut.",
+              "type": "string"
+            }
+          }
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "Menu.Link",
+        "slot": "menu-link",
+        "element": "a",
+        "description": "A navigation item (role=menuitem).",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "Menu.Separator",
+        "slot": "menu-separator",
+        "element": "div",
+        "description": "A rule between groups of items.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "open"
+    ],
+    "a11y": {
+      "apg": "menu button",
+      "keyboard": {
+        "↑ / ↓": "move between items",
+        "Home / End": "first / last item",
+        "Letters": "jump to the next item starting with them",
+        "Escape": "close and return focus to the trigger",
+        "Tab": "close"
+      },
+      "rules": [
+        "Items are verbs (編集, 複製, 削除).",
+        "Put destructive items last, after a Menu.Separator."
+      ]
+    },
+    "tokens": [
+      "color.surface-overlay",
+      "shadow.overlay",
+      "radius.overlay",
+      "color.ghost-hover",
+      "color.danger"
+    ],
+    "examples": [
+      {
+        "title": "Row actions",
+        "code": "<Menu.Trigger menu=\"row-actions\" variant=\"ghost\" aria-label=\"操作\">…</Menu.Trigger>\n<Menu id=\"row-actions\" label=\"タスクの操作\">\n  <Menu.Item>編集</Menu.Item>\n  <Menu.Item>複製</Menu.Item>\n  <Menu.Separator />\n  <Menu.Item variant=\"danger\">削除</Menu.Item>\n</Menu>"
+      }
+    ]
+  },
+  {
+    "name": "meter",
+    "tier": 1,
+    "summary": "A measurement within a known range, in a native <meter> that colors itself by low / high / optimum.",
+    "use": [
+      "Storage used, a quota, a score"
+    ],
+    "avoid": [
+      {
+        "case": "How far a task has got",
+        "instead": "progress"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "meter"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Meter",
+        "slot": "meter",
+        "element": "meter",
+        "description": "A label, the value as text and a <meter>.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "description": "Required visible label; it names the meter.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "value": {
+              "type": "number",
+              "description": "Required. The measured value."
+            },
+            "min": {
+              "default": 0,
+              "type": "number"
+            },
+            "max": {
+              "default": 100,
+              "type": "number"
+            },
+            "low": {
+              "description": "Below this the value is low.",
+              "type": "number"
+            },
+            "high": {
+              "description": "Above this the value is high.",
+              "type": "number"
+            },
+            "optimum": {
+              "description": "The best value; the browser colors the bar by how far the value is from it.",
+              "type": "number"
+            },
+            "valueText": {
+              "description": "Optional text shown for the value, e.g. \"8.2 GB / 10 GB\". Defaults to the percentage.",
+              "x-ts-type": "React.ReactNode"
+            }
+          },
+          "required": [
+            "label",
+            "value"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "optimum",
+      "suboptimum",
+      "even-less-good"
+    ],
+    "a11y": {
+      "rules": [
+        "label is required; it is linked with aria-labelledby.",
+        "Say the value in text too: color alone does not tell how full it is."
+      ]
+    },
+    "tokens": [
+      "color.ok",
+      "color.accent",
+      "color.danger",
+      "color.track"
+    ],
+    "examples": [
+      {
+        "title": "Storage",
+        "code": "<Meter label=\"使用容量\" value={82} high={80} optimum={0} valueText=\"8.2 GB / 10 GB\" />"
+      }
+    ]
+  },
+  {
+    "name": "navigation-menu",
+    "tier": 1,
+    "summary": "Site navigation with native disclosures, pointer-intent hover, collision-aware flyouts and responsive inline layout.",
+    "use": [
+      "A website header with grouped links",
+      "Nested navigation that remains usable before JavaScript loads"
+    ],
+    "avoid": [
+      {
+        "case": "Actions such as delete or archive",
+        "instead": "menu"
+      },
+      {
+        "case": "Persistent application sidebar",
+        "instead": "sidebar"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "details"
+      ],
+      "enhances": [
+        {
+          "feature": "Hover intent, flyouts, Escape, outside dismissal and arrow keys",
+          "fallback": "Tab through links; Enter or Space toggles native summaries. Submenus stay inline without runtime or Popover API."
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "NavigationMenu",
+        "slot": "navigation-menu",
+        "element": "nav",
+        "description": "Named navigation landmark. Children are Group or Link. Already renders a styled internal list and panels. Do not attach list/panel presentation classes to Root; use className only for outer width, margin, placement or position. openOnHover applies only to a mouse on a wide hover-capable screen; click and keyboard always work.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "openOnHover": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "NavigationMenu.Group",
+        "slot": "navigation-menu-group",
+        "element": "details",
+        "description": "A disclosure. title is plain text, children are Link or nested Group. columns=2 lays out a wider desktop panel. Nested groups fly out with runtime, flipping at viewport edges; submenu=inline keeps them in flow. Narrow screens or insufficient side space use inline layout. No interactive content in title.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "defaultOpen": {
+              "default": false,
+              "type": "boolean"
+            },
+            "columns": {
+              "default": 1,
+              "anyOf": [
+                {
+                  "type": "number",
+                  "const": 1
+                },
+                {
+                  "type": "number",
+                  "const": 2
+                }
+              ]
+            },
+            "submenu": {
+              "default": "flyout",
+              "type": "string",
+              "enum": [
+                "flyout",
+                "inline"
+              ]
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "NavigationMenu.Link",
+        "slot": "navigation-menu-link",
+        "element": "a",
+        "description": "Native link, wrapped in a list item. current marks the current page.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "minLength": 1
+            },
+            "current": {
+              "default": false,
+              "type": "boolean"
+            },
+            "description": {
+              "description": "Optional supporting text.",
+              "x-ts-type": "React.ReactNode"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "open",
+      "current",
+      "focus-visible"
+    ],
+    "a11y": {
+      "apg": "https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/",
+      "keyboard": {
+        "Tab": "All visible summaries and links remain in normal DOM tab order.",
+        "Enter / Space": "Toggle a focused disclosure.",
+        "Escape": "Close the nearest open group and restore its summary; dismiss pointer-opened menus even when focus is outside.",
+        "ArrowDown / ArrowUp": "Open a focused group and focus first/last entry; move within an open panel.",
+        "ArrowLeft / ArrowRight": "Move between top-level entries; when a panel is already open, switch to the focused group. Inside panels, open a child in the forward direction or close the current submenu in the backward direction, respecting RTL.",
+        "Home / End": "First/last entry in the current level."
+      },
+      "rules": [
+        "Use navigation links, not role=menu or menuitem.",
+        "Give the navigation a unique label.",
+        "Use at most one current link per navigation.",
+        "Do not put buttons, links or inputs inside Group title.",
+        "Install UrushiRuntime for hover intent, flyouts, Escape, outside dismissal and arrow keys. Basic disclosure and links need no runtime.",
+        "Hover must not move focus or hide a panel containing keyboard focus. Touch and narrow screens use explicit activation."
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.text-muted",
+      "color.surface",
+      "color.border",
+      "color.ghost-hover",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Site navigation",
+        "code": "<NavigationMenu label=\"Main navigation\">\n  <NavigationMenu.Group title=\"Product\">\n    <NavigationMenu.Link href=\"/overview\" current>Overview</NavigationMenu.Link>\n    <NavigationMenu.Group title=\"Developers\">\n      <NavigationMenu.Link href=\"/docs\">Documentation</NavigationMenu.Link>\n    </NavigationMenu.Group>\n  </NavigationMenu.Group>\n  <NavigationMenu.Link href=\"/pricing\">Pricing</NavigationMenu.Link>\n</NavigationMenu>"
+      }
+    ]
+  },
+  {
+    "name": "otp-input",
+    "styleDependencies": [
+      "input"
+    ],
+    "tier": 1,
+    "summary": "A one-time code field: one native input drawn as separate boxes, with one-time-code autofill.",
+    "use": [
+      "Codes sent by mail or SMS"
+    ],
+    "avoid": [
+      {
+        "case": "Passwords",
+        "instead": "input type=\"password\""
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "OTPInput",
+        "slot": "otp-input",
+        "element": "input",
+        "description": "A single text input (inputmode=numeric, autocomplete=one-time-code, pattern) whose background draws the boxes.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "length": {
+              "default": 6,
+              "type": "integer",
+              "minimum": 4,
+              "maximum": 8
+            },
+            "invalid": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "invalid"
+    ],
+    "a11y": {
+      "rules": [
+        "It is one field, so screen readers and paste work as for any input.",
+        "Label it with a Field."
+      ]
+    },
+    "tokens": [
+      "color.field",
+      "color.border-field",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Sign-in code",
+        "code": "<Field id=\"code\" label=\"確認コード\"><OTPInput /></Field>"
+      }
+    ]
+  },
+  {
+    "name": "pagination",
+    "tier": 1,
+    "summary": "Links to the pages of a long list: previous, numbered pages with gaps, next.",
+    "use": [
+      "Search results and lists split into pages"
+    ],
+    "avoid": [
+      {
+        "case": "A feed that loads more as you scroll",
+        "instead": "a load-more Button"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Pagination",
+        "slot": "pagination",
+        "element": "nav",
+        "description": "A nav of links. Each link's href comes from the template, so it works without JavaScript.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "description": "Required. The current page."
+            },
+            "total": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "description": "Required. The number of pages."
+            },
+            "href": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required URL template; {page} is replaced, e.g. \"/tasks?page={page}\"."
+            },
+            "siblings": {
+              "default": 1,
+              "description": "Pages shown on each side of the current one.",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            },
+            "label": {
+              "default": "ページ送り",
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "page",
+            "total",
+            "href"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "current"
+    ],
+    "a11y": {
+      "rules": [
+        "The current page has aria-current=\"page\"; each number says \"n ページ目\"."
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.ghost-hover",
+      "color.field",
+      "shadow.control"
+    ],
+    "examples": [
+      {
+        "title": "Tasks",
+        "code": "<Pagination page={3} total={12} href=\"/tasks?page={page}\" />"
+      }
+    ]
+  },
+  {
+    "name": "popover",
+    "styleDependencies": [
+      "button"
+    ],
+    "tier": 2,
+    "summary": "A non-modal panel in the top layer (native `popover`), positioned against its trigger with CSS anchor positioning.",
+    "use": [
+      "Filters or settings attached to a control",
+      "Supplementary content that keeps the page usable"
+    ],
+    "avoid": [
+      {
+        "case": "A task that must be finished before continuing",
+        "instead": "dialog"
+      },
+      {
+        "case": "A list of actions",
+        "instead": "menu"
+      },
+      {
+        "case": "A short label on hover",
+        "instead": "tooltip"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "popover",
+        "anchor-positioning",
+        "invoker-commands",
+        "@starting-style"
+      ],
+      "enhances": [
+        {
+          "feature": "overlay-transition",
+          "fallback": "the popover closes without an exit animation"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Popover",
+        "slot": "popover",
+        "element": "div",
+        "description": "The popover panel (role=dialog, popover=auto).",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Triggers and close buttons reference it."
+            },
+            "title": {
+              "description": "Accessible title rendered as a heading. Provide title or aria-label.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "side": {
+              "default": "bottom",
+              "description": "Logical side: start/end follow the writing direction.",
+              "type": "string",
+              "enum": [
+                "top",
+                "bottom",
+                "start",
+                "end"
+              ]
+            },
+            "align": {
+              "default": "start",
+              "type": "string",
+              "enum": [
+                "start",
+                "center",
+                "end"
+              ]
+            },
+            "mode": {
+              "default": "auto",
+              "description": "auto: light dismiss (Escape / outside click) and closes other auto popovers. manual: only explicit commands.",
+              "type": "string",
+              "enum": [
+                "auto",
+                "manual"
+              ]
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "overrides": [
+          "width",
+          "height"
+        ]
+      },
+      {
+        "jsx": "Popover.Trigger",
+        "slot": "popover-trigger",
+        "element": "button",
+        "description": "A Button that toggles the popover and acts as its anchor.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "popover": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the popover to toggle.",
+              "x-idref": "popover"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "popover"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Popover.Close",
+        "slot": "popover-close",
+        "element": "button",
+        "description": "A Button that hides the popover.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "popover": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the popover to hide.",
+              "x-idref": "popover"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "popover"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "open"
+    ],
+    "a11y": {
+      "apg": "disclosure (non-modal dialog)",
+      "keyboard": {
+        "Escape": "close (mode=auto)",
+        "Tab": "moves from the trigger into the popover, then back to the page"
+      },
+      "focus": {
+        "initial": "stays on the trigger unless an element inside has autofocus",
+        "restore": "the trigger, when focus was inside"
+      },
+      "rules": [
+        "Provide title or aria-label so the panel has an accessible name.",
+        "Every Popover.Trigger and Popover.Close must reference an existing Popover id."
+      ]
+    },
+    "tokens": [
+      "color.surface.overlay",
+      "radius.overlay",
+      "shadow.overlay",
+      "motion.overlay",
+      "popover.offset"
+    ],
+    "examples": [
+      {
+        "title": "Filters next to a button",
+        "code": "<Popover.Trigger popover=\"filters\">Filters</Popover.Trigger>\n<Popover id=\"filters\" title=\"Filters\" side=\"bottom\" align=\"start\">…</Popover>"
+      }
+    ]
+  },
+  {
+    "name": "progress",
+    "tier": 1,
+    "summary": "How far a task has got, in a native <progress> with a visible label.",
+    "use": [
+      "Uploads, imports, multi-step processes"
+    ],
+    "avoid": [
+      {
+        "case": "A measurement within a range (disk usage, a score)",
+        "instead": "meter"
+      },
+      {
+        "case": "Waiting with no known length",
+        "instead": "spinner"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "progress"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Progress",
+        "slot": "progress",
+        "element": "progress",
+        "description": "A label and a <progress>. Without value it is indeterminate.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "description": "Required visible label; it names the progress bar.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "value": {
+              "description": "Current amount. Leave out while the total is unknown.",
+              "type": "number",
+              "minimum": 0
+            },
+            "max": {
+              "default": 100,
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "milestones": {
+              "description": "Labelled checkpoints in the same units as value and max.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "label": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "value",
+                  "label"
+                ]
+              }
+            },
+            "valueText": {
+              "description": "Readable progress, e.g. 3 of 8 files. Also announced by assistive technology.",
+              "type": "string"
+            },
+            "showValue": {
+              "default": true,
+              "description": "Shows the percentage next to the label.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "indeterminate"
+    ],
+    "a11y": {
+      "rules": [
+        "label is required; it is linked with aria-labelledby."
+      ]
+    },
+    "tokens": [
+      "color.accent",
+      "color.track"
+    ],
+    "examples": [
+      {
+        "title": "Upload",
+        "code": "<Progress label=\"写真をアップロード中\" value={42} />"
+      }
+    ]
+  },
+  {
+    "name": "radio-group",
+    "tier": 1,
+    "summary": "A <fieldset> of native radio buttons: exactly one choice, arrow keys move between them.",
+    "use": [
+      "Choosing exactly one of two to six visible options"
+    ],
+    "avoid": [
+      {
+        "case": "Many options or a long list",
+        "instead": "select"
+      },
+      {
+        "case": "Any number of choices",
+        "instead": "checkbox"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "appearance: none"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "RadioGroup",
+        "slot": "radio-group",
+        "element": "fieldset",
+        "description": "The fieldset with its legend. Gives every RadioGroup.Item the group's name.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required form field name shared by the items."
+            },
+            "legend": {
+              "description": "Required visible question or label for the group.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "defaultValue": {
+              "description": "Value of the item checked initially.",
+              "type": "string"
+            },
+            "orientation": {
+              "default": "vertical",
+              "type": "string",
+              "enum": [
+                "vertical",
+                "horizontal"
+              ]
+            },
+            "variant": {
+              "default": "default",
+              "description": "cards gives each option a full-width selectable surface.",
+              "type": "string",
+              "enum": [
+                "default",
+                "cards"
+              ]
+            },
+            "required": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "name",
+            "legend"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "RadioGroup.Item",
+        "slot": "radio",
+        "element": "label",
+        "description": "One option: a <label> around a native radio input.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Required submitted value."
+            },
+            "description": {
+              "description": "Supporting text under the option label.",
+              "x-ts-type": "React.ReactNode"
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "checked",
+      "focus-visible",
+      "disabled"
+    ],
+    "a11y": {
+      "apg": "radio group (native)",
+      "keyboard": {
+        "Arrow keys": "move and select",
+        "Tab": "enters at the checked option"
+      },
+      "rules": [
+        "legend is required; it is the group's accessible name."
+      ]
+    },
+    "tokens": [
+      "color.accent",
+      "color.field",
+      "color.border-strong"
+    ],
+    "examples": [
+      {
+        "title": "Plan",
+        "code": "<RadioGroup name=\"plan\" legend=\"プラン\" defaultValue=\"team\">\n  <RadioGroup.Item value=\"free\">無料</RadioGroup.Item>\n  <RadioGroup.Item value=\"team\" description=\"5 人まで\">チーム</RadioGroup.Item>\n</RadioGroup>"
+      }
+    ]
+  },
+  {
+    "name": "scroll-area",
+    "tier": 1,
+    "summary": "A scrolling region with pack-styled scrollbars, focusable and named so keyboards can scroll it.",
+    "use": [
+      "A long list inside a fixed-height panel",
+      "Wide content that scrolls sideways"
+    ],
+    "avoid": [
+      {
+        "case": "The page itself",
+        "instead": "the document scroll"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [],
+      "enhances": [
+        {
+          "feature": "scrollbar-color",
+          "fallback": "the system scrollbar"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "ScrollArea",
+        "slot": "scroll-area",
+        "element": "div",
+        "description": "role=region with a name and tabIndex=0. Set its height (or width) from the outside.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Names the region for screen readers."
+            },
+            "orientation": {
+              "default": "vertical",
+              "type": "string",
+              "enum": [
+                "vertical",
+                "horizontal",
+                "both"
+              ]
+            }
+          },
+          "required": [
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "height",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "keyboard": {
+        "↑ / ↓ / ← / →": "scroll when focused",
+        "Page Up / Page Down": "scroll by a page"
+      },
+      "rules": [
+        "label is required: a focusable region needs a name."
+      ]
+    },
+    "tokens": [
+      "color.border-strong"
+    ],
+    "examples": [
+      {
+        "title": "Members",
+        "code": "<ScrollArea label=\"参加者\" style={{ blockSize: 240 }}>…</ScrollArea>"
+      }
+    ]
+  },
+  {
+    "name": "select",
+    "tier": 2,
+    "summary": "A native <select>; with appearance: base-select its picker follows the pack.",
+    "use": [
+      "Choosing one option from a list of about 5 to 15"
+    ],
+    "avoid": [
+      {
+        "case": "Two to five visible options",
+        "instead": "radio-group"
+      },
+      {
+        "case": "Actions",
+        "instead": "menu"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [],
+      "enhances": [
+        {
+          "feature": "appearance: base-select",
+          "fallback": "the platform's own picker"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Select",
+        "slot": "select",
+        "element": "select",
+        "description": "The select. Children are native <option> and <optgroup> elements.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            "invalid": {
+              "default": false,
+              "type": "boolean"
+            },
+            "placeholder": {
+              "description": "Adds a disabled first option shown until a choice is made.",
+              "type": "string"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "open",
+      "focus-visible",
+      "invalid",
+      "disabled"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Arrow keys": "move",
+        "Enter": "choose"
+      },
+      "rules": [
+        "Wrap in Field so it has a label."
+      ]
+    },
+    "tokens": [
+      "color.field",
+      "color.surface-overlay",
+      "shadow.overlay",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Assignee",
+        "code": "<Field id=\"owner\" label=\"担当\"><Select name=\"owner\" placeholder=\"選択してください\"><option>山田</option><option>佐藤</option></Select></Field>"
+      }
+    ]
+  },
+  {
+    "name": "separator",
+    "tier": 1,
+    "summary": "A thin rule between groups of content.",
+    "use": [
+      "Separating groups when spacing alone is not enough"
+    ],
+    "avoid": [
+      {
+        "case": "Decorating every block",
+        "instead": "card"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Separator",
+        "slot": "separator",
+        "element": "hr",
+        "description": "<hr> (horizontal) or a vertical separator.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "orientation": {
+              "default": "horizontal",
+              "type": "string",
+              "enum": [
+                "horizontal",
+                "vertical"
+              ]
+            },
+            "decorative": {
+              "default": false,
+              "description": "Hide from assistive technology when it only decorates.",
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "height",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "Use decorative when the rule adds no structure."
+      ]
+    },
+    "tokens": [
+      "color.border"
+    ],
+    "examples": [
+      {
+        "title": "Between groups",
+        "code": "<Separator />"
+      }
+    ]
+  },
+  {
+    "name": "sheet",
+    "styleDependencies": [
+      "dialog"
+    ],
+    "tier": 2,
+    "summary": "A modal <dialog> that slides in from an edge of the screen.",
+    "use": [
+      "Details or a form next to a list",
+      "Navigation or filters on small screens"
+    ],
+    "avoid": [
+      {
+        "case": "A short confirmation",
+        "instead": "alert-dialog"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "dialog",
+        "invoker-commands"
+      ],
+      "enhances": [
+        {
+          "feature": "dialog-closedby",
+          "fallback": "@urushi/core/closedby (loaded by <UrushiRuntime />)"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Sheet",
+        "slot": "sheet",
+        "element": "dialog",
+        "description": "The <dialog>, pinned to one edge.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Triggers and close buttons reference it."
+            },
+            "title": {
+              "description": "Required heading and accessible name.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Optional supporting text.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "side": {
+              "default": "end",
+              "description": "The edge it slides from (start/end follow the writing direction).",
+              "type": "string",
+              "enum": [
+                "start",
+                "end",
+                "top",
+                "bottom"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            },
+            "dismissible": {
+              "default": "any",
+              "type": "string",
+              "enum": [
+                "any",
+                "closerequest",
+                "none"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "title"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "Sheet.Trigger",
+        "slot": "sheet-trigger",
+        "element": "button",
+        "description": "A Button that opens the sheet.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "sheet": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the sheet to open.",
+              "x-idref": "sheet"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "sheet"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Sheet.Close",
+        "slot": "sheet-close",
+        "element": "button",
+        "description": "A Button that closes the sheet.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "sheet": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the sheet to close.",
+              "x-idref": "sheet"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "sheet"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "open",
+      "modal"
+    ],
+    "a11y": {
+      "apg": "dialog-modal",
+      "keyboard": {
+        "Escape": "close (unless dismissible=\"none\")",
+        "Tab": "moves focus within the sheet only"
+      },
+      "rules": [
+        "title is required.",
+        "Every trigger and close button references an existing Sheet id."
+      ]
+    },
+    "tokens": [
+      "color.surface-overlay",
+      "shadow.dialog",
+      "motion.overlay"
+    ],
+    "examples": [
+      {
+        "title": "Task details",
+        "code": "<Sheet.Trigger sheet=\"task\">詳細</Sheet.Trigger>\n<Sheet id=\"task\" title=\"告知メールの文面を確定する\">…</Sheet>"
+      }
+    ]
+  },
+  {
+    "name": "sidebar",
+    "tier": 1,
+    "summary": "An app's side navigation: groups of links, optionally collapsible with native <details>.",
+    "use": [
+      "The main navigation of an app with many sections"
+    ],
+    "avoid": [
+      {
+        "case": "A short list of top-level pages",
+        "instead": "a header nav"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "details"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Sidebar",
+        "slot": "sidebar",
+        "element": "nav",
+        "description": "The nav landmark.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Names the nav landmark."
+            }
+          },
+          "required": [
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "height",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Sidebar.Group",
+        "slot": "sidebar-group",
+        "element": "div",
+        "description": "A titled group of items. collapsible makes it a <details>.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Required group title.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "collapsible": {
+              "default": false,
+              "type": "boolean"
+            },
+            "defaultOpen": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "Sidebar.Item",
+        "slot": "sidebar-item",
+        "element": "a",
+        "description": "A link. The current page gets aria-current=\"page\".",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required link target."
+            },
+            "current": {
+              "default": false,
+              "type": "boolean"
+            },
+            "icon": {
+              "description": "Optional decorative icon.",
+              "x-ts-type": "React.ReactNode"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "current",
+      "open"
+    ],
+    "a11y": {
+      "rules": [
+        "Exactly one item is current per page.",
+        "Icons are decorative; the text names the link."
+      ]
+    },
+    "tokens": [
+      "color.text-muted",
+      "color.ghost-hover",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "App",
+        "code": "<Sidebar label=\"メイン\">\n  <Sidebar.Group title=\"プロジェクト\">\n    <Sidebar.Item href=\"/tasks\" current>タスク</Sidebar.Item>\n    <Sidebar.Item href=\"/members\">メンバー</Sidebar.Item>\n  </Sidebar.Group>\n</Sidebar>"
+      }
+    ]
+  },
+  {
+    "name": "skeleton",
+    "tier": 1,
+    "summary": "A placeholder shape shown while content loads.",
+    "use": [
+      "Reserving the space of content that is still loading"
+    ],
+    "avoid": [
+      {
+        "case": "An action in progress",
+        "instead": "spinner"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Skeleton",
+        "slot": "skeleton",
+        "element": "div",
+        "description": "The placeholder. Hidden from assistive technology; announce loading elsewhere (aria-busy on the region).",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "shape": {
+              "default": "block",
+              "type": "string",
+              "enum": [
+                "block",
+                "text",
+                "circle"
+              ]
+            },
+            "lines": {
+              "default": 1,
+              "description": "Number of text lines when shape is text.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "height",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "Set aria-busy=\"true\" on the region that is loading."
+      ]
+    },
+    "tokens": [
+      "color.border",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Text lines",
+        "code": "<Skeleton shape=\"text\" lines={3} />"
+      }
+    ]
+  },
+  {
+    "name": "slider",
+    "tier": 1,
+    "summary": "A native range input with optional live value feedback and directly selectable labelled marks.",
+    "use": [
+      "An approximate value where the exact number matters less (音量, 明るさ)"
+    ],
+    "avoid": [
+      {
+        "case": "An exact number",
+        "instead": "input"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "accent-color"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Slider",
+        "slot": "slider",
+        "element": "input",
+        "description": "The range input. Put it in a Field for its label; min, max, step and value are native.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "showValue": {
+              "default": false,
+              "description": "Shows a value bubble following the thumb. Requires UrushiRuntime for live feedback; the range itself works without JavaScript.",
+              "type": "boolean"
+            },
+            "valueSuffix": {
+              "default": "",
+              "description": "Visible unit appended to the value, such as % or px. Use aria-valuetext for a spoken custom unit.",
+              "type": "string"
+            },
+            "marks": {
+              "x-ts-type": "readonly import(\"../slider.tsx\").SliderMark[]",
+              "description": "Positions with {value,label?}. UrushiRuntime makes them selectable and sends native input/change events, including to React onChange. Keep labels short and sparse."
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "keyboard": {
+        "← / → / ↑ / ↓": "step",
+        "Home / End": "min / max",
+        "Page Up / Page Down": "larger steps"
+      },
+      "rules": [
+        "Label it with a Field."
+      ]
+    },
+    "tokens": [
+      "color.accent"
+    ],
+    "examples": [
+      {
+        "title": "Volume",
+        "code": "<Field id=\"volume\" label=\"音量\"><Slider min={0} max={100} defaultValue={60} /></Field>"
+      }
+    ]
+  },
+  {
+    "name": "spinner",
+    "tier": 1,
+    "summary": "An indeterminate progress indicator with a status message for screen readers.",
+    "use": [
+      "Short waits where the remaining time is unknown"
+    ],
+    "avoid": [
+      {
+        "case": "Loading a layout you can predict",
+        "instead": "skeleton"
+      },
+      {
+        "case": "A button that is submitting",
+        "instead": "button (loading)"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Spinner",
+        "slot": "spinner",
+        "element": "span",
+        "description": "role=\"status\" with a visually hidden label.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "default": "読み込み中",
+              "description": "Announced to screen readers.",
+              "type": "string"
+            },
+            "showLabel": {
+              "default": false,
+              "description": "Also display the status label next to the ring.",
+              "type": "boolean"
+            },
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "label says what is loading when it is not obvious."
+      ]
+    },
+    "tokens": [
+      "color.text-muted"
+    ],
+    "examples": [
+      {
+        "title": "Loading",
+        "code": "<Spinner label=\"検索結果を読み込み中\" />"
+      }
+    ]
+  },
+  {
+    "name": "steps",
+    "tier": 1,
+    "summary": "Where the user is in a fixed sequence: an ordered list with aria-current=\"step\".",
+    "use": [
+      "Sign-up or checkout steps",
+      "A setup checklist"
+    ],
+    "avoid": [
+      {
+        "case": "Switching between views",
+        "instead": "tabs"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Steps",
+        "slot": "steps",
+        "element": "ol",
+        "description": "The ordered list.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Names the sequence, e.g. \"申し込みの手順\"."
+            },
+            "orientation": {
+              "default": "horizontal",
+              "type": "string",
+              "enum": [
+                "horizontal",
+                "vertical"
+              ]
+            }
+          },
+          "required": [
+            "label"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Steps.Item",
+        "slot": "steps-item",
+        "element": "li",
+        "description": "One step. The current one gets aria-current=\"step\"; each says its state in hidden text.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Required step name.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "description": {
+              "description": "Optional detail.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "status": {
+              "default": "upcoming",
+              "type": "string",
+              "enum": [
+                "done",
+                "current",
+                "upcoming"
+              ]
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "done",
+      "current",
+      "upcoming"
+    ],
+    "a11y": {
+      "rules": [
+        "Exactly one step is current.",
+        "State is spoken (完了 / 現在の手順), not only shown by color."
+      ]
+    },
+    "tokens": [
+      "color.accent",
+      "color.on-action",
+      "color.border-strong"
+    ],
+    "examples": [
+      {
+        "title": "Sign-up",
+        "code": "<Steps label=\"申し込みの手順\">\n  <Steps.Item title=\"アカウント\" status=\"done\" />\n  <Steps.Item title=\"お支払い\" status=\"current\" />\n  <Steps.Item title=\"確認\" />\n</Steps>"
+      }
+    ]
+  },
+  {
+    "name": "switch",
+    "tier": 1,
+    "summary": "A native checkbox with role=\"switch\" for settings that take effect immediately.",
+    "use": [
+      "Turning a setting on or off right away"
+    ],
+    "avoid": [
+      {
+        "case": "A choice that is submitted with a form",
+        "instead": "checkbox"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "appearance: none"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Switch",
+        "slot": "switch",
+        "element": "label",
+        "description": "A <label> around <input type=\"checkbox\" role=\"switch\">.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "description": {
+              "description": "Supporting text under the label.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "showState": {
+              "default": false,
+              "description": "Adds on/off marks to the track so its state is also visible without relying on color.",
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "checked",
+      "focus-visible",
+      "disabled"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Space": "toggle"
+      },
+      "rules": [
+        "The label names the setting, not its state ('通知', not '通知をオンにする')."
+      ]
+    },
+    "tokens": [
+      "color.accent",
+      "color.border-strong",
+      "motion.fast"
+    ],
+    "examples": [
+      {
+        "title": "Notifications",
+        "code": "<Switch name=\"notify\" defaultChecked>メール通知</Switch>"
+      }
+    ]
+  },
+  {
+    "name": "table",
+    "tier": 1,
+    "summary": "A native <table> styled by the pack. You write thead, tbody, th and td as usual.",
+    "use": [
+      "Comparing items across the same columns",
+      "Lists with several attributes per row"
+    ],
+    "avoid": [
+      {
+        "case": "Laying out a page",
+        "instead": "CSS grid"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Table",
+        "slot": "table",
+        "element": "table",
+        "description": "The table inside a horizontally scrolling wrapper. Children are native thead / tbody / tr / th / td.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "caption": {
+              "description": "Required. Names the table; hide it visually with hideCaption.",
+              "x-ts-type": "React.ReactNode"
+            },
+            "hideCaption": {
+              "default": false,
+              "type": "boolean"
+            },
+            "density": {
+              "default": "default",
+              "type": "string",
+              "enum": [
+                "default",
+                "compact"
+              ]
+            },
+            "striped": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "caption"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [],
+    "a11y": {
+      "rules": [
+        "caption is required: it is the table's accessible name.",
+        "Use th with scope=\"col\" / scope=\"row\" for headers."
+      ]
+    },
+    "tokens": [
+      "color.border",
+      "color.text-muted",
+      "font.size.control"
+    ],
+    "examples": [
+      {
+        "title": "Tasks",
+        "code": "<Table caption=\"タスク\">\n  <thead><tr><th scope=\"col\">タスク</th><th scope=\"col\">期限</th></tr></thead>\n  <tbody><tr><td>告知メールの文面を確定する</td><td>10/24</td></tr></tbody>\n</Table>"
+      }
+    ]
+  },
+  {
+    "name": "tabs",
+    "styleDependencies": [
+      "button"
+    ],
+    "tier": 2,
+    "summary": "Switches between panels of equal weight. Server-rendered; the runtime adds clicking and arrow keys.",
+    "use": [
+      "Views of the same object (概要・設定・履歴)"
+    ],
+    "avoid": [
+      {
+        "case": "Steps of a process",
+        "instead": "stepper (planned)"
+      },
+      {
+        "case": "Content most people skip",
+        "instead": "accordion"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [],
+      "enhances": [
+        {
+          "feature": "@urushi/core tabs behavior",
+          "fallback": "only the default panel is reachable"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Tabs",
+        "slot": "tabs",
+        "element": "div",
+        "description": "The root. Generates the ids that link tabs and panels.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Prefix for the tab and panel ids."
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required accessible name of the tab list."
+            },
+            "defaultValue": {
+              "type": "string",
+              "description": "Required value of the tab selected initially."
+            },
+            "orientation": {
+              "default": "horizontal",
+              "type": "string",
+              "enum": [
+                "horizontal",
+                "vertical"
+              ]
+            },
+            "motion": {
+              "default": "smooth",
+              "description": "Moves the selected indicator and interpolates panel height without scaling text. Respects reduced motion; none switches immediately.",
+              "type": "string",
+              "enum": [
+                "smooth",
+                "none"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "label",
+            "defaultValue"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Tabs.List",
+        "slot": "tabs-list",
+        "element": "div",
+        "description": "role=tablist; holds the Tabs.Tab elements.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "Tabs.Tab",
+        "slot": "tabs-tab",
+        "element": "button",
+        "description": "role=tab.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Required; matches a Tabs.Panel value."
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "Tabs.Activate",
+        "slot": "tabs-activate",
+        "element": "button",
+        "description": "A button outside the tab list that selects a panel by Tabs id and value. The runtime keeps it in sync with pointer and keyboard selection; no DOM query or React selection state is needed. It does not move focus into the tab list; keyboard focus remains on the activating button. Disabled targets are not activated.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "tabs": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the Tabs root to control.",
+              "x-idref": "tabs"
+            },
+            "value": {
+              "type": "string",
+              "description": "Value of the Tabs.Tab to select."
+            },
+            "variant": {
+              "default": "secondary",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "tabs",
+            "value"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "Tabs.Panel",
+        "slot": "tabs-panel",
+        "element": "div",
+        "description": "role=tabpanel.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Required; matches a Tabs.Tab value."
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "selected"
+    ],
+    "a11y": {
+      "apg": "tabs (automatic activation)",
+      "keyboard": {
+        "← / →": "move to and select the previous / next tab",
+        "Home / End": "first / last tab",
+        "Tab": "moves into the selected panel"
+      },
+      "rules": [
+        "Tabs.Tab and Tabs.Panel must be direct children of Tabs.List and Tabs."
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.text-muted",
+      "color.border",
+      "color.action"
+    ],
+    "examples": [
+      {
+        "title": "Select a view from outside the tab list",
+        "code": "<Tabs.Activate tabs=\"project\" value=\"settings\">設定を開く</Tabs.Activate>\n<Tabs id=\"project\" label=\"プロジェクト\" defaultValue=\"overview\">\n  <Tabs.List><Tabs.Tab value=\"overview\">概要</Tabs.Tab><Tabs.Tab value=\"settings\">設定</Tabs.Tab></Tabs.List>\n  <Tabs.Panel value=\"overview\">…</Tabs.Panel><Tabs.Panel value=\"settings\">…</Tabs.Panel>\n</Tabs>"
+      },
+      {
+        "title": "Project views",
+        "code": "<Tabs id=\"project\" label=\"プロジェクト\" defaultValue=\"overview\">\n  <Tabs.List>\n    <Tabs.Tab value=\"overview\">概要</Tabs.Tab>\n    <Tabs.Tab value=\"settings\">設定</Tabs.Tab>\n  </Tabs.List>\n  <Tabs.Panel value=\"overview\">…</Tabs.Panel>\n  <Tabs.Panel value=\"settings\">…</Tabs.Panel>\n</Tabs>"
+      }
+    ]
+  },
+  {
+    "name": "textarea",
+    "tier": 1,
+    "summary": "A native <textarea> that grows with its content (field-sizing).",
+    "use": [
+      "Comments, descriptions and other multi-line text"
+    ],
+    "avoid": [
+      {
+        "case": "A single line",
+        "instead": "input"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [],
+      "enhances": [
+        {
+          "feature": "field-sizing",
+          "fallback": "fixed height of `rows` lines"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Textarea",
+        "slot": "textarea",
+        "element": "textarea",
+        "description": "The textarea. All native attributes pass through.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "rows": {
+              "default": 3,
+              "description": "Minimum visible lines.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "autoResize": {
+              "default": true,
+              "description": "Grow with the content up to 12 lines.",
+              "type": "boolean"
+            },
+            "showCount": {
+              "default": false,
+              "description": "Show a live length and optional maxLength budget with UrushiRuntime. Uses native UTF-16 length.",
+              "type": "boolean"
+            },
+            "invalid": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "height",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "focus-visible",
+      "invalid",
+      "user-invalid",
+      "disabled"
+    ],
+    "a11y": {
+      "rules": [
+        "Wrap in Field so it has a label."
+      ]
+    },
+    "tokens": [
+      "color.field",
+      "color.border-strong",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Comment",
+        "code": "<Field id=\"comment\" label=\"コメント\"><Textarea name=\"comment\" rows={4} /></Field>"
+      }
+    ]
+  },
+  {
+    "name": "toast",
+    "tier": 2,
+    "summary": "Brief notifications about the result of an action. Place one <Toaster /> per page and call toast() from client code.",
+    "use": [
+      "Confirming that an action finished (保存しました)",
+      "Reporting a recoverable failure"
+    ],
+    "avoid": [
+      {
+        "case": "Anything the user must decide",
+        "instead": "dialog"
+      },
+      {
+        "case": "Errors in a form field",
+        "instead": "field"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "popover=manual"
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Toaster",
+        "slot": "toaster",
+        "element": "section",
+        "description": "The live region toasts appear in. A manual popover so it stays above modal dialogs.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "label": {
+              "default": "通知",
+              "description": "Accessible name of the region.",
+              "type": "string"
+            },
+            "position": {
+              "default": "bottom-end",
+              "type": "string",
+              "enum": [
+                "bottom-end",
+                "bottom-center",
+                "top-end"
+              ]
+            }
+          }
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "closing",
+      "loading"
+    ],
+    "a11y": {
+      "rules": [
+        "Messages are short and name the result in the same words as the action (保存 → 保存しました).",
+        "Toasts are announced politely; never put the only copy of important information in one."
+      ]
+    },
+    "tokens": [
+      "color.surface-overlay",
+      "shadow.overlay",
+      "radius.overlay",
+      "color.ok",
+      "color.danger"
+    ],
+    "examples": [
+      {
+        "title": "After saving",
+        "code": "toast(\"保存しました\", { tone: \"ok\" })"
+      },
+      {
+        "title": "Follow an async operation",
+        "code": "toast.promise(saveProject(), {\n  loading: \"保存しています…\",\n  success: \"保存しました\",\n  error: \"保存できませんでした\",\n})"
+      },
+      {
+        "title": "Update progress in place",
+        "code": "const id = toast(\"書き出しています…\", { loading: true, progress: 0 })\ntoast.update(id, { progress: 50 })\ntoast.update(id, { message: \"書き出しました\", loading: false, progress: undefined, tone: \"ok\" })"
+      }
+    ]
+  },
+  {
+    "name": "toggle-group",
+    "tier": 1,
+    "summary": "A segmented control: native radios (one choice) or checkboxes (several) drawn as one row of buttons.",
+    "use": [
+      "Choosing a view (リスト / ボード)",
+      "Text alignment in a toolbar"
+    ],
+    "avoid": [
+      {
+        "case": "Navigation between pages",
+        "instead": "tabs or links"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "ToggleGroup",
+        "slot": "toggle-group",
+        "element": "fieldset",
+        "description": "A fieldset; items get its name and type.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "legend": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. Names the group."
+            },
+            "hideLegend": {
+              "default": true,
+              "description": "Keeps the legend for screen readers only.",
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required form name shared by the items."
+            },
+            "type": {
+              "default": "single",
+              "description": "single: radios. multiple: checkboxes.",
+              "type": "string",
+              "enum": [
+                "single",
+                "multiple"
+              ]
+            },
+            "defaultValue": {
+              "description": "single: the item checked initially.",
+              "type": "string"
+            },
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md"
+              ]
+            }
+          },
+          "required": [
+            "legend",
+            "name"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      },
+      {
+        "jsx": "ToggleGroup.Item",
+        "slot": "toggle-group-item",
+        "element": "input",
+        "description": "One segment: a radio or checkbox inside a <label>.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "Required form value."
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "overrides": []
+      }
+    ],
+    "states": [
+      "checked"
+    ],
+    "a11y": {
+      "keyboard": {
+        "← / →": "move the choice (single)",
+        "Space": "toggle (multiple)"
+      },
+      "rules": [
+        "legend is required even when hidden.",
+        "Icon-only items need aria-label."
+      ]
+    },
+    "tokens": [
+      "color.field",
+      "color.text-muted",
+      "shadow.control"
+    ],
+    "examples": [
+      {
+        "title": "View",
+        "code": "<ToggleGroup legend=\"表示\" name=\"view\" defaultValue=\"list\">\n  <ToggleGroup.Item value=\"list\">リスト</ToggleGroup.Item>\n  <ToggleGroup.Item value=\"board\">ボード</ToggleGroup.Item>\n</ToggleGroup>"
+      }
+    ]
+  },
+  {
+    "name": "toggle",
+    "tier": 1,
+    "summary": "A button-looking on/off control. It is a native checkbox, so it works in forms and without JavaScript.",
+    "use": [
+      "Formatting in a toolbar (太字)",
+      "Showing or hiding something in place"
+    ],
+    "avoid": [
+      {
+        "case": "A setting that applies at once in a list of settings",
+        "instead": "switch"
+      },
+      {
+        "case": "One of several exclusive options",
+        "instead": "toggle-group"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": []
+    },
+    "parts": [
+      {
+        "jsx": "Toggle",
+        "slot": "toggle",
+        "element": "input",
+        "description": "A <label> drawn as a button around a checkbox. Other props go to the checkbox.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "size": {
+              "default": "md",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          }
+        },
+        "overrides": [
+          "margin",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "checked"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Space": "toggle"
+      },
+      "rules": [
+        "Icon-only toggles need aria-label.",
+        "It is exposed as a checkbox (checked / not checked)."
+      ]
+    },
+    "tokens": [
+      "color.ghost-hover",
+      "color.text",
+      "radius.control"
+    ],
+    "examples": [
+      {
+        "title": "Bold",
+        "code": "<Toggle aria-label=\"太字\"><BoldIcon /></Toggle>"
+      }
+    ]
+  },
+  {
+    "name": "tooltip",
+    "styleDependencies": [
+      "button"
+    ],
+    "tier": 2,
+    "summary": "A short description shown on hover and keyboard focus: popover=\"hint\" opened through interestfor.",
+    "use": [
+      "Naming or describing an icon button",
+      "A keyboard shortcut hint"
+    ],
+    "avoid": [
+      {
+        "case": "Anything interactive or essential",
+        "instead": "popover"
+      },
+      {
+        "case": "Long explanations",
+        "instead": "popover"
+      }
+    ],
+    "rendering": "server",
+    "platform": {
+      "requires": [
+        "popover=hint",
+        "anchor-positioning"
+      ],
+      "enhances": [
+        {
+          "feature": "interestfor",
+          "fallback": "@urushi/core tooltip behavior (loaded by <UrushiRuntime />)"
+        }
+      ]
+    },
+    "parts": [
+      {
+        "jsx": "Tooltip",
+        "slot": "tooltip",
+        "element": "div",
+        "description": "The tooltip (role=tooltip, popover=hint).",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Required. The trigger references it."
+            },
+            "side": {
+              "default": "top",
+              "type": "string",
+              "enum": [
+                "top",
+                "bottom",
+                "start",
+                "end"
+              ]
+            },
+            "align": {
+              "default": "center",
+              "type": "string",
+              "enum": [
+                "start",
+                "center",
+                "end"
+              ]
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "overrides": []
+      },
+      {
+        "jsx": "Tooltip.Trigger",
+        "slot": "tooltip-trigger",
+        "element": "button",
+        "description": "A Button that shows the tooltip on hover and focus and is described by it.",
+        "props": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "tooltip": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Id of the tooltip.",
+              "x-idref": "tooltip"
+            },
+            "variant": {
+              "default": "secondary",
+              "description": "primary is the single main action of a view. danger is for destructive actions.",
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "ghost",
+                "danger"
+              ]
+            },
+            "size": {
+              "default": "md",
+              "description": "Control height. Density comes from the pack, not from this prop.",
+              "type": "string",
+              "enum": [
+                "sm",
+                "md",
+                "lg"
+              ]
+            }
+          },
+          "required": [
+            "tooltip"
+          ]
+        },
+        "overrides": [
+          "margin",
+          "width",
+          "layout",
+          "position"
+        ]
+      }
+    ],
+    "states": [
+      "open"
+    ],
+    "a11y": {
+      "keyboard": {
+        "Focus": "shows the tooltip",
+        "Escape": "hides it"
+      },
+      "rules": [
+        "The trigger still needs its own name (aria-label for icon buttons); the tooltip only describes it.",
+        "Never put links or buttons in a tooltip."
+      ]
+    },
+    "tokens": [
+      "color.text",
+      "color.bg",
+      "radius.control",
+      "motion.fast"
+    ],
+    "examples": [
+      {
+        "title": "Icon button",
+        "code": "<Tooltip.Trigger tooltip=\"tip-copy\" aria-label=\"コピー\" variant=\"ghost\">⧉</Tooltip.Trigger>\n<Tooltip id=\"tip-copy\">クリップボードにコピー（⌘C）</Tooltip>"
+      }
+    ]
+  }
+]

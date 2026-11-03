@@ -1,0 +1,80 @@
+{
+  "name": "table",
+  "tier": 1,
+  "summary": "A native <table> styled by the pack. You write thead, tbody, th and td as usual.",
+  "use": [
+    "Comparing items across the same columns",
+    "Lists with several attributes per row"
+  ],
+  "avoid": [
+    {
+      "case": "Laying out a page",
+      "instead": "CSS grid"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Table",
+      "slot": "table",
+      "element": "table",
+      "description": "The table inside a horizontally scrolling wrapper. Children are native thead / tbody / tr / th / td.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "caption": {
+            "description": "Required. Names the table; hide it visually with hideCaption.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "hideCaption": {
+            "default": false,
+            "type": "boolean"
+          },
+          "density": {
+            "default": "default",
+            "type": "string",
+            "enum": [
+              "default",
+              "compact"
+            ]
+          },
+          "striped": {
+            "default": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "caption"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [],
+  "a11y": {
+    "rules": [
+      "caption is required: it is the table's accessible name.",
+      "Use th with scope=\"col\" / scope=\"row\" for headers."
+    ]
+  },
+  "tokens": [
+    "color.border",
+    "color.text-muted",
+    "font.size.control"
+  ],
+  "examples": [
+    {
+      "title": "Tasks",
+      "code": "<Table caption=\"タスク\">\n  <thead><tr><th scope=\"col\">タスク</th><th scope=\"col\">期限</th></tr></thead>\n  <tbody><tr><td>告知メールの文面を確定する</td><td>10/24</td></tr></tbody>\n</Table>"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { fixedViewport } from "./layout.js";
 
 // Web fonts arrive late and shift layout; tests run on system fonts so
 // measurements are deterministic.
@@ -101,6 +102,55 @@ test.describe("component gallery with JavaScript disabled", () => {
     const before = (await notes.boundingBox())!.height;
     await notes.fill("1\n2\n3\n4\n5\n6\n7\n8");
     await expect.poll(async () => (await notes.boundingBox())!.height).toBeGreaterThan(before + 40);
+  });
+
+  test("toggles and toggle groups work as native checkboxes and radios", async ({ page }) => {
+    await page.getByRole("checkbox", { name: "斜体" }).check();
+    await expect(page.getByRole("checkbox", { name: "斜体" })).toBeChecked();
+    await page.getByRole("radio", { name: "ボード" }).check();
+    await expect(page.getByRole("radio", { name: "リスト" })).not.toBeChecked();
+  });
+
+  test("an alert dialog opens and only its buttons close it", async ({ page }) => {
+    await page.getByTestId("open-delete").focus();
+    await page.keyboard.press("Enter");
+    const dialog = page.getByTestId("delete-dialog");
+    await expect(dialog).toBeVisible();
+    await expect(page.getByTestId("delete-cancel")).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeVisible();
+    await page.keyboard.press("Enter");
+    await expect(dialog).toBeHidden();
+    await expect(page.getByTestId("open-delete")).toBeFocused();
+  });
+
+  test("a sheet opens at its edge and closes with Escape", async ({ page }) => {
+    await page.getByTestId("open-sheet").click();
+    const sheet = page.getByTestId("task-sheet");
+    await expect(sheet).toBeVisible();
+    const box = (await sheet.boundingBox())!;
+    const viewport = await fixedViewport(page);
+    expect(Math.round(box.x + box.width)).toBe(Math.round(viewport.x + viewport.width));
+    await page.keyboard.press("Escape");
+    await expect(sheet).toBeHidden();
+  });
+
+  test("a collapsible and a sidebar group open from their summaries", async ({ page }) => {
+    await page.getByTestId("collapsible").getByText("詳細な設定").click();
+    await expect(page.getByTestId("collapsible")).toHaveAttribute("open", "");
+    await page.getByTestId("sidebar").getByText("アーカイブ").click();
+    await expect(page.getByRole("link", { name: "春のキャンペーン" })).toBeVisible();
+  });
+
+  test("pagination and breadcrumbs are plain links", async ({ page }) => {
+    await expect(page.getByRole("link", { name: "7 ページ目" })).toHaveAttribute("href", "#page-7");
+    await expect(page.getByRole("navigation", { name: "パンくずリスト" }).getByRole("link")).toHaveCount(2);
+  });
+
+  test("a hover card shows on hover through interest invokers (Chromium)", async ({ page, browserName }) => {
+    test.skip(browserName !== "chromium", "interestfor ships in Chromium only; other engines use the runtime");
+    await page.getByTestId("hc-trigger").hover();
+    await expect(page.getByTestId("hc-card")).toBeVisible({ timeout: 3000 });
   });
 
   test("a tooltip shows on hover through interest invokers (Chromium)", async ({ page, browserName }) => {

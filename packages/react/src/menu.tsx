@@ -15,17 +15,34 @@ import {
 } from "./generated/menu.ts";
 import { anchorName } from "./util.ts";
 
-export type MenuProps = MenuOwnProps & Omit<React.ComponentPropsWithRef<"div">, keyof MenuOwnProps | "popover" | "role">;
-export type MenuTriggerProps = MenuTriggerOwnProps & Omit<ButtonLikeProps, keyof MenuTriggerOwnProps>;
-export type MenuItemProps = MenuItemOwnProps & Omit<React.ComponentPropsWithRef<"button">, keyof MenuItemOwnProps | "role">;
-export type MenuLinkProps = MenuLinkOwnProps & Omit<React.ComponentPropsWithRef<"a">, keyof MenuLinkOwnProps | "role">;
-export type MenuSeparatorProps = Omit<React.ComponentPropsWithRef<"div">, "role" | "children">;
+export type MenuProps = MenuOwnProps &
+  Omit<
+    React.ComponentPropsWithRef<"div">,
+    keyof MenuOwnProps | "popover" | "role"
+  >;
+export type MenuTriggerProps = MenuTriggerOwnProps &
+  Omit<ButtonLikeProps, keyof MenuTriggerOwnProps>;
+export type MenuItemProps = MenuItemOwnProps &
+  Omit<React.ComponentPropsWithRef<"button">, keyof MenuItemOwnProps | "role">;
+export type MenuLinkProps = MenuLinkOwnProps &
+  Omit<React.ComponentPropsWithRef<"a">, keyof MenuLinkOwnProps | "role">;
+export type MenuSeparatorProps = Omit<
+  React.ComponentPropsWithRef<"div">,
+  "role" | "children"
+>;
 
 /**
  * A menu in a native auto popover. It opens and closes without JavaScript
  * (items are reachable with Tab); the runtime adds the menu keyboard model.
  */
-function MenuRoot({ id, label, side = menuDefaults.side, align = menuDefaults.align, style, ...rest }: MenuProps) {
+function MenuRoot({
+  id,
+  label,
+  side = menuDefaults.side,
+  align = menuDefaults.align,
+  style,
+  ...rest
+}: MenuProps) {
   return (
     <div
       {...rest}
@@ -36,7 +53,9 @@ function MenuRoot({ id, label, side = menuDefaults.side, align = menuDefaults.al
       data-slot={menuSlot}
       data-side={side}
       data-align={align}
-      style={{ positionAnchor: anchorName(id), ...style } as React.CSSProperties}
+      style={
+        { positionAnchor: anchorName(id), ...style } as React.CSSProperties
+      }
     />
   );
 }
@@ -51,16 +70,47 @@ function MenuTrigger({ menu, style, ...props }: MenuTriggerProps) {
   });
 }
 
-function MenuItem({ variant = menuItemDefaults.variant, ...rest }: MenuItemProps) {
-  return <button type="button" {...rest} role="menuitem" data-slot={`${menuItemSlot}`} data-variant={variant} />;
+function MenuItem({
+  variant = menuItemDefaults.variant,
+  children,
+  description,
+  shortcut,
+  ...rest
+}: MenuItemProps) {
+  return (
+    <button
+      type="button"
+      {...rest}
+      role="menuitem"
+      data-slot={`${menuItemSlot}`}
+      data-variant={variant}
+    >
+      <span data-slot="menu-item-label">
+        {children}
+        {description && <small>{description}</small>}
+      </span>
+      {shortcut && <kbd aria-hidden="true">{shortcut}</kbd>}
+    </button>
+  );
 }
 
 function MenuLink(props: MenuLinkProps) {
-  return <a {...props} role="menuitem" data-slot={`${menuLinkSlot} ${menuItemSlot}`} />;
+  return (
+    <a
+      {...props}
+      role="menuitem"
+      data-slot={`${menuLinkSlot} ${menuItemSlot}`}
+    />
+  );
 }
 
 function MenuSeparator(props: MenuSeparatorProps) {
   return <div {...props} role="separator" data-slot={menuSeparatorSlot} />;
 }
 
-export const Menu = Object.assign(MenuRoot, { Trigger: MenuTrigger, Item: MenuItem, Link: MenuLink, Separator: MenuSeparator });
+export const Menu = Object.assign(MenuRoot, {
+  Trigger: MenuTrigger,
+  Item: MenuItem,
+  Link: MenuLink,
+  Separator: MenuSeparator,
+});

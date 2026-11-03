@@ -1,0 +1,19 @@
+{
+  "name": "pagination",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/pagination.json",
+  "files": [
+    {
+      "path": "pagination.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add pagination`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Pagination page of the design system.\nexport { Pagination, type PaginationProps } from \"@urushi/react/pagination\";\n",
+      "hash": "sha256-IN8d2whH2WxGoSTiM3vNUfmielVs4uimAqYDgJ0KnCI="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/pagination.css"
+  ]
+}

@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 
 test.describe("Field", () => {
   test("links the label, hint and error to the control", async ({ page }) => {
-    const email = page.getByRole("textbox", { name: "メールアドレス" });
+    const email = page.getByRole("textbox", { name: "メールアドレス", exact: true });
     await expect(email).toHaveAccessibleDescription("受付完了のお知らせを送ります。");
     const code = page.getByRole("textbox", { name: "招待コード" });
     await expect(code).toHaveAttribute("aria-invalid", "true");
@@ -151,14 +151,14 @@ test.describe("Tabs indicator", () => {
       await expect
         .poll(async () => {
           const [i, t] = [await box(page, '#project-tabs [data-slot="tabs-indicator"]'), await box(page, `#project-tabs-tab-${value}`)];
-          return [Math.round(i.x - t.x), Math.round(i.y - t.y), Math.round(i.width - t.width), Math.round(i.height - t.height)];
+          return [i.x - t.x, i.y - t.y, i.width - t.width, i.height - t.height].map(delta => Math.round(Math.abs(delta)));
         })
         .toEqual([0, 0, 0, 0]);
     }
   });
 
   test("each Tabs gets its own anchor name, from its id", async ({ page }) => {
-    await expect(page.locator('#project-tabs [data-slot="tabs-list"]')).toHaveAttribute("style", /--yl-tabs-anchor:\s*--yl-anchor-project-tabs-selected/);
+    await expect(page.locator('#project-tabs [data-slot="tabs-list"]')).toHaveAttribute("style", /--ur-tabs-anchor:\s*--ur-anchor-project-tabs-selected/);
   });
 });
 
@@ -228,7 +228,7 @@ test.describe("Tooltip", () => {
     await expect(trigger).toHaveAccessibleDescription("共有用の URL をクリップボードに入れます");
     // A key press first, so the focus that follows counts as keyboard focus
     // (:focus-visible). Tab itself skips buttons in Safari by default.
-    await page.keyboard.press("Shift");
+    await page.keyboard.press("Tab");
     await trigger.focus();
     await expect(trigger).toBeFocused();
     await expect(page.getByTestId("tip-copy")).toBeVisible();
@@ -276,7 +276,7 @@ test.describe("Toast", () => {
   test("appears above an open modal dialog and stays operable", async ({ page }) => {
     await page.getByTestId("open-invite").click();
     await expect(page.locator("dialog#g-invite")).toBeVisible();
-    await page.evaluate(() => (window as unknown as { yourlibToast: (m: string) => void }).yourlibToast("ダイアログの上に出ます"));
+    await page.evaluate(() => (window as unknown as { urushiToast: (m: string) => void }).urushiToast("ダイアログの上に出ます"));
     // It lands in an outlet inside the dialog: outside it would be inert.
     const toast = page.locator("dialog#g-invite").getByRole("region", { name: "通知" }).getByText("ダイアログの上に出ます");
     await expect(toast).toBeVisible();
@@ -294,14 +294,14 @@ test.describe("Toast", () => {
   test("toasts left in a dialog move back to the page when it closes", async ({ page }) => {
     await page.getByTestId("open-invite").click();
     await page.evaluate(() =>
-      (window as unknown as { yourlibToast: (m: string, o: object) => void }).yourlibToast("閉じたあとも残ります", { duration: 0 }),
+      (window as unknown as { urushiToast: (m: string, o: object) => void }).urushiToast("閉じたあとも残ります", { duration: 0 }),
     );
     await expect(page.locator("dialog#g-invite").getByText("閉じたあとも残ります")).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(page.locator("dialog#g-invite")).toBeHidden();
-    const pageRegion = page.locator('[data-slot="toaster"]:not([data-yl-outlet])');
+    const pageRegion = page.locator('[data-slot="toaster"]:not([data-ur-outlet])');
     await expect(pageRegion.getByText("閉じたあとも残ります")).toBeVisible();
-    await expect(page.locator("[data-yl-outlet]")).toHaveCount(0);
+    await expect(page.locator("[data-ur-outlet]")).toHaveCount(0);
   });
 });
 

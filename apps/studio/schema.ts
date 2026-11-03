@@ -1,0 +1,3 @@
+import { z } from "zod";
+export const projectSchema = z.object({id:z.string().min(1),name:z.string().trim().min(1).max(100),description:z.string().max(2000),status:z.enum(["planned","active","review","done"]),owner:z.enum(["mika","kai","alex"]),due:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(value=>{const date=new Date(value+"T12:00:00Z");return !Number.isNaN(date.valueOf()) && date.toISOString().slice(0,10)===value;},"Invalid calendar date"),revision:z.number().int().nonnegative()});
+export const settingsSchema = z.object({workspace:z.string().trim().min(1).max(60),theme:z.enum(["light","dark","system"]),pack:z.enum(["graphite","lucent"])});

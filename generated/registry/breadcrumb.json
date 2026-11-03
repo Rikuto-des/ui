@@ -1,0 +1,19 @@
+{
+  "name": "breadcrumb",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/breadcrumb.json",
+  "files": [
+    {
+      "path": "breadcrumb.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add breadcrumb`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Breadcrumb page of the design system.\nexport { Breadcrumb, type BreadcrumbProps } from \"@urushi/react/breadcrumb\";\n",
+      "hash": "sha256-OZNhHv82wXB7LYxoto5rtfb3JEQSL3MxHWOUa0t5Ltg="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/breadcrumb.css"
+  ]
+}

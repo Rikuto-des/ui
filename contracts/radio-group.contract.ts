@@ -1,4 +1,4 @@
-import { defineContract, node, z } from "@yourlib/contract";
+import { defineContract, node, z } from "@urushi/contract";
 
 export default defineContract({
   name: "radio-group",
@@ -19,6 +19,7 @@ export default defineContract({
         legend: node("Required visible question or label for the group."),
         defaultValue: z.string().optional().describe("Value of the item checked initially."),
         orientation: z.enum(["vertical", "horizontal"]).default("vertical"),
+        variant: z.enum(["default", "cards"]).default("default").describe("cards gives each option a full-width selectable surface."),
         required: z.boolean().default(false),
       }),
       overrides: ["margin", "width", "layout", "position"],

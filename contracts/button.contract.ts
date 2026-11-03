@@ -1,4 +1,4 @@
-import { defineContract, idref, z } from "@yourlib/contract";
+import { defineContract, idref, z } from "@urushi/contract";
 
 export const buttonProps = {
   variant: z

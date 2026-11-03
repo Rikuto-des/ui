@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import "@yourlib/react/styles.css";
-import "@yourlib/packs/all.css";
+import "@urushi/react/styles.css";
+import "@urushi/packs/all.css";
 import "./page.css";
-import { YourlibRuntime } from "@yourlib/react/runtime";
+import { UrushiRuntime } from "@urushi/react/runtime";
 import { Toaster } from "@/components/ui/toast";
 
-export const metadata: Metadata = { title: "yourlib × Next.js" };
+export const metadata: Metadata = { title: "Urushi × Next.js" };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         {/* Optional: menu and tab keyboard models, tooltips outside Chromium,
             and platform gaps such as <dialog closedby> in older Safari. */}
-        <YourlibRuntime />
+        <UrushiRuntime />
         {children}
         <Toaster />
       </body>

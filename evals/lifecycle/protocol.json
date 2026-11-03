@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Real dependency upgrades and CSS-inclusive measurements; no new model generation or hand edits to model output.",
+  "sourceRun": "evals/competition/runs/measured-v4",
+  "selection": "Every library/task/trial's terminal update-stage output, including failures; prefer update-repair when that file exists. No cherry-picking.",
+  "tasks": ["dialog", "tabs", "menu"],
+  "trials": 2,
+  "libraries": ["urushi", "base", "radix", "shadcn"],
+  "before": {"react":"19.3.0","react-dom":"19.3.0","@base-ui/react":"1.8.0","radix-ui":"1.7.0"},
+  "after": {"react":"19.3.1","react-dom":"19.3.1","@base-ui/react":"1.9.0","radix-ui":"1.8.1"},
+  "controls": "Same exact TSX bytes, shadcn wrapper bytes, Urushi frozen source, shared CSS, TypeScript settings, browser tests and viewport in both environments. Each environment has an independently installed exact manifest and lockfile. shadcn is the Radix edition. React types are fixed at 19.3.0.",
+  "scoring": "Report before/after passes, retained passes and regressions separately. Existing baseline failures do not count as upgrade regressions. Typecheck plus four unchanged workflow checks in Chromium. No test edits or repair after seeing results.",
+  "css": "Additional Urushi selected-styles arm uses same post-upgrade source and full public Graphite token CSS. Common Tailwind stylesheet is copied byte-for-byte from measured-v4; no growing content scan. No DOM purging. Screenshots compare selected and full CSS across both packs, themes and states.",
+  "limitations": "Small fixed sample. Latest-generated code replayed on a prior version, not a longitudinal deployment. No Urushi published old/new release exists (private 0.0.0); only its React dependency changes. Registry source migrations and major-version upgrades are not covered. This is upgrade compatibility, not a fresh AI success-rate trial."
+}

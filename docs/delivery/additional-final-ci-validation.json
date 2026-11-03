@@ -1,0 +1,62 @@
+{
+  "sourceCommit": "97e929eb8f53cccb9c57c135b25270c0e7b3002c",
+  "ciRunUrl": "https://github.com/Rikuto-des/ui/actions/runs/40813655469",
+  "result": "pass",
+  "unit": {
+    "passed": 284
+  },
+  "components": {
+    "chromium": {
+      "passed": 145,
+      "skipped": 3
+    },
+    "firefox": {
+      "passed": 144,
+      "skipped": 4
+    },
+    "webkit": {
+      "passed": 143,
+      "skipped": 5
+    }
+  },
+  "site": {
+    "chromium": {
+      "passed": 112
+    },
+    "firefox": {
+      "passed": 112
+    },
+    "webkit": {
+      "passed": 112
+    }
+  },
+  "next": {
+    "passed": 36
+  },
+  "studio": {
+    "passed": 39
+  },
+  "release": {
+    "sourceCommit": "97e929eb8f53cccb9c57c135b25270c0e7b3002c",
+    "ciRunUrl": "https://github.com/Rikuto-des/ui/actions/runs/40813655469",
+    "packages": 7,
+    "sha256Verified": true,
+    "releaseChecks": [
+      "install seven packed packages",
+      "bundled registry init",
+      "install components",
+      "selected CSS",
+      "packed type declarations",
+      "strict contracts",
+      "Vite production build",
+      "packed CLI browser verification",
+      "Next RSC production build",
+      "update preserves customization",
+      "overlapping edit reports conflict with exit 2",
+      "resolved update typecheck"
+    ],
+    "status": "pass"
+  },
+  "ciLogSha256": "6719f5223b772126d5b1f246c15a320851e0a9f419b24fa6987c6848fc1278b9",
+  "scope": "Final implementation and comparison page. Frozen AI comparison uses source 1f6f43c70bd347f82a3026ec9725fb4701a6f830; post-study diagnostics were not fed to benchmark models."
+}

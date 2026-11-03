@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@source "./ui";
+@source "./runs";
+@theme inline {
+  --color-background: #fff; --color-foreground: #17212b; --color-card: #fff; --color-card-foreground:#17212b;
+  --color-popover:#fff; --color-popover-foreground:#17212b; --color-primary:#145b52; --color-primary-foreground:#fff;
+  --color-secondary:#edf1f5; --color-secondary-foreground:#17212b; --color-muted:#edf1f5; --color-muted-foreground:#4c5868;
+  --color-accent:#edf1f5; --color-accent-foreground:#17212b; --color-destructive:#a9232c;
+  --color-border:#c6cdd4; --color-input:#9aa6b4; --color-ring:#145b52;
+  --radius-sm:4px; --radius-md:6px; --radius-lg:8px; --radius-xl:12px;
+}
+@layer base {
+  * { box-sizing:border-box; }
+  body { margin:0; padding:24px; color:#17212b; background:#f6f7f9; font:16px/1.5 system-ui; }
+  #root { isolation:isolate; max-width:800px; margin:auto; }
+  h1 { font-size:28px; font-weight:700; margin-bottom:20px; }
+  h2 { font-size:20px; font-weight:600; }
+  button { cursor:pointer; border:1px solid #9aa6b4; border-radius:6px; padding:8px 14px; background:#fff; }
+  button:disabled,[aria-disabled=true] { cursor:default; opacity:.6; }
+  input { border:1px solid #9aa6b4; border-radius:5px; padding:8px; max-width:100%; }
+  :focus-visible { outline:2px solid #145b52; outline-offset:3px; }
+  [hidden] { display:none!important; }
+  [role=tablist] { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  [role=tab][aria-selected=true] { background:#145b52; color:#fff; }
+  [role=menuitem] { display:block; padding:8px; cursor:pointer; }
+  .backdrop { position:fixed; inset:0; background:#0007; z-index:40; }
+  .modal { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:50; width:420px; max-width:calc(100vw - 32px); padding:24px; border-radius:12px; background:#fff; box-shadow:0 12px 70px #0004; }
+  .menu { background:#fff; border:1px solid #c6cdd4; border-radius:8px; padding:4px; min-width:150px; z-index:60; }
+  .stack { display:grid; gap:16px; } .row { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+}

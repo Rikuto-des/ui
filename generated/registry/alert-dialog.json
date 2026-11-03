@@ -1,0 +1,19 @@
+{
+  "name": "alert-dialog",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/alert-dialog.json",
+  "files": [
+    {
+      "path": "alert-dialog.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add alert-dialog`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the AlertDialog page of the design system.\nexport { AlertDialog, type AlertDialogProps } from \"@urushi/react/alert-dialog\";\n",
+      "hash": "sha256-EneGyQru68fN9JcGzzXvwu2LiLHUlD5nGHezXXyR6bE="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/alert-dialog.css"
+  ]
+}

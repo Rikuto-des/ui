@@ -1,0 +1,19 @@
+{
+  "name": "table",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/table.json",
+  "files": [
+    {
+      "path": "table.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add table`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Table page of the design system.\nexport { Table, type TableProps } from \"@urushi/react/table\";\n",
+      "hash": "sha256-SRJ0asO8c4UU8l7gzuGQSW8Md18gIs6vJC3bkhXMmYI="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/table.css"
+  ]
+}

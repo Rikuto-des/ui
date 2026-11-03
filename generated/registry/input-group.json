@@ -1,0 +1,19 @@
+{
+  "name": "input-group",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/input-group.json",
+  "files": [
+    {
+      "path": "input-group.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add input-group`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the InputGroup page of the design system.\nexport { InputGroup, type InputGroupProps } from \"@urushi/react/input-group\";\n",
+      "hash": "sha256-eZCxSLn/neZa4Gl8D91qisxhHHyxqTJhVC9b+E3dEu0="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/input-group.css"
+  ]
+}

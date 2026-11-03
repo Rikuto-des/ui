@@ -1,0 +1,73 @@
+{
+  "name": "empty",
+  "tier": 1,
+  "summary": "What a list or page shows when there is nothing in it yet, and how to start.",
+  "use": [
+    "An empty list, no search results, a first-run screen"
+  ],
+  "avoid": [
+    {
+      "case": "An error",
+      "instead": "alert"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Empty",
+      "slot": "empty",
+      "element": "div",
+      "description": "A centered title, explanation and action.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "Required. Says what is empty, e.g. \"まだタスクがありません\".",
+            "x-ts-type": "React.ReactNode"
+          },
+          "description": {
+            "description": "Optional: why, or what to do.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "action": {
+            "description": "Optional: the action that fills it, usually a primary Button.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "icon": {
+            "description": "Optional decorative icon.",
+            "x-ts-type": "React.ReactNode"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "height",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [],
+  "a11y": {
+    "rules": [
+      "The icon is decorative (aria-hidden); the title carries the meaning."
+    ]
+  },
+  "tokens": [
+    "color.text-muted"
+  ],
+  "examples": [
+    {
+      "title": "No tasks",
+      "code": "<Empty title=\"まだタスクがありません\" description=\"最初のタスクを追加しましょう。\" action={<Button variant=\"primary\">タスクを追加</Button>} />"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "avatar",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/avatar.json",
+  "files": [
+    {
+      "path": "avatar.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add avatar`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Avatar page of the design system.\nexport { Avatar, type AvatarProps } from \"@urushi/react/avatar\";\n",
+      "hash": "sha256-CihUU8abBaQdTDE8KTaPyOYnUztOBxc9YH5z5HKbRdU="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/avatar.css"
+  ]
+}

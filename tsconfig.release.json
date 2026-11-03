@@ -1,0 +1,1 @@
+{"extends":"./tsconfig.json","compilerOptions":{"noEmit":false,"declaration":true,"declarationMap":true,"sourceMap":true,"rewriteRelativeImportExtensions":true,"rootDir":"packages","outDir":"dist/release/modules"},"include":["packages/*/src"],"exclude":["packages/*/test"]}

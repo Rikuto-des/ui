@@ -1,4 +1,4 @@
-import { defineContract, node, z } from "@yourlib/contract";
+import { defineContract, node, z } from "@urushi/contract";
 
 export default defineContract({
   name: "switch",
@@ -16,6 +16,7 @@ export default defineContract({
       description: "A <label> around <input type=\"checkbox\" role=\"switch\">.",
       props: z.object({
         description: node("Supporting text under the label.").optional(),
+        showState: z.boolean().default(false).describe("Adds on/off marks to the track so its state is also visible without relying on color."),
       }),
       overrides: ["margin", "width", "layout", "position"],
     },

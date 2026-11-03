@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   // Workspace packages ship TypeScript source; let Vite transform them.
-  optimizeDeps: { exclude: ["@yourlib/react", "@yourlib/core"] },
+  optimizeDeps: { exclude: ["@urushi/react", "@urushi/core"] },
   build: {
     rollupOptions: {
       input: {

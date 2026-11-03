@@ -1,0 +1,19 @@
+{
+  "name": "kbd",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/kbd.json",
+  "files": [
+    {
+      "path": "kbd.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add kbd`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Kbd page of the design system.\nexport { Kbd, type KbdProps } from \"@urushi/react/kbd\";\n",
+      "hash": "sha256-vTHGBu6hoZbamqIWlXgj3FFYRkCUWvU4R1Q64eEQ9Ks="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/kbd.css"
+  ]
+}

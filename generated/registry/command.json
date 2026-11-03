@@ -1,0 +1,19 @@
+{
+  "name": "command",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/command.json",
+  "files": [
+    {
+      "path": "command.tsx",
+      "target": "components",
+      "content": "// Installed by urushi add command. This wrapper belongs to your application.\nexport { Command, type CommandProps, type CommandItem } from \"@urushi/react/command\";\n",
+      "hash": "sha256-R4LzZ58rHOaFVNsCnBHFCkoxbErDmOPbLGYUfB+x/DY="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/command.css"
+  ]
+}

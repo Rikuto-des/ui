@@ -13,6 +13,11 @@ export type ToastTone = "neutral" | "ok" | "danger";
 
 export interface ToastOptions {
   description?: string;
+  /** A pending operation. The notification remains until updated or dismissed. */
+  loading?: boolean;
+  /** Known progress from 0 to 100; omitted for an indeterminate operation. */
+  progress?: number;
+  progressLabel?: string;
   tone?: ToastTone;
   /** Milliseconds before the toast hides itself; 0 keeps it until dismissed. */
   duration?: number;
@@ -22,7 +27,16 @@ export interface ToastOptions {
 }
 
 let counter = 0;
-const PAGE_REGION = '[data-slot="toaster"]:not([data-yl-outlet])';
+export type ToastUpdate = ToastOptions & { message?: string };
+export interface ToastPromiseOptions<T> {
+  loading: string;
+  success: string | ((value: T) => string | ToastUpdate);
+  error: string | ((error: unknown) => string | ToastUpdate);
+  dismissLabel?: string;
+}
+
+const active = new WeakMap<Document, Map<string, { item: HTMLElement; cancel: () => void; update: (options: ToastUpdate) => void }>>();
+const PAGE_REGION = '[data-slot="toaster"]:not([data-ur-outlet])';
 
 function region(doc: Document): HTMLElement {
   let toaster = doc.querySelector<HTMLElement>(PAGE_REGION);
@@ -56,13 +70,13 @@ function topModal(doc: Document): HTMLDialogElement | undefined {
 
 /** A region inside the modal dialog, shaped like the page region, so its toasts stay operable. */
 function outlet(dialog: HTMLDialogElement, page: HTMLElement): HTMLElement {
-  const existing = dialog.querySelector<HTMLElement>(":scope > [data-yl-outlet]");
+  const existing = dialog.querySelector<HTMLElement>(":scope > [data-ur-outlet]");
   if (existing) return existing;
   const doc = dialog.ownerDocument;
   const el = doc.createElement("section");
   el.dataset.slot = "toaster";
   el.dataset.position = page.dataset.position ?? "bottom-end";
-  el.dataset.ylOutlet = "";
+  el.dataset.urOutlet = "";
   el.setAttribute("popover", "manual");
   el.setAttribute("aria-label", page.getAttribute("aria-label") ?? "通知");
   const list = doc.createElement("ol");
@@ -95,8 +109,11 @@ function target(doc: Document): HTMLElement {
 }
 
 export function dismiss(id: string, doc: Document = document) {
-  const item = doc.getElementById(id);
+  const pending = active.get(doc)?.get(id);
+  const item = pending?.item ?? doc.getElementById(id);
   if (!item || item.dataset.state === "closing") return;
+  pending?.cancel();
+  active.get(doc)?.delete(id);
   item.dataset.state = "closing";
   const remove = () => item.remove();
   const duration = parseFloat(getComputedStyle(item).transitionDuration) || 0;
@@ -107,66 +124,121 @@ export function dismiss(id: string, doc: Document = document) {
   }
 }
 
-export function toast(message: string, options: ToastOptions = {}, doc: Document = document): string {
-  const list = listOf(target(doc));
-  const id = `yl-toast-${++counter}`;
-
+function createToast(message: string, initial: ToastOptions = {}, doc: Document = document): string {
+  target(doc);
+  const id = `ur-toast-${++counter}`;
   const item = doc.createElement("li");
   item.id = id;
   item.dataset.slot = "toast";
-  item.dataset.tone = options.tone ?? "neutral";
   const body = doc.createElement("div");
   body.dataset.slot = "toast-body";
+  body.setAttribute("aria-atomic", "true");
   const title = doc.createElement("p");
   title.dataset.slot = "toast-title";
   title.textContent = message;
-  body.append(title);
-  if (options.description) {
-    const description = doc.createElement("p");
-    description.dataset.slot = "toast-description";
-    description.textContent = options.description;
-    body.append(description);
-  }
-  item.append(body);
-  if (options.action) {
-    const action = doc.createElement("button");
-    action.type = "button";
-    action.dataset.slot = "toast-action button";
-    action.dataset.variant = "ghost";
-    action.dataset.size = "sm";
-    action.textContent = options.action.label;
-    const { onClick } = options.action;
-    action.addEventListener("click", () => {
-      onClick();
-      dismiss(id, doc);
-    });
-    item.append(action);
-  }
+  const description = doc.createElement("p");
+  description.dataset.slot = "toast-description";
+  const progress = doc.createElement("progress");
+  progress.dataset.slot = "toast-progress";
+  progress.max = 100;
+  const action = doc.createElement("button");
+  action.type = "button";
+  action.dataset.slot = "toast-action button";
+  action.dataset.variant = "ghost";
+  action.dataset.size = "sm";
   const close = doc.createElement("button");
   close.type = "button";
   close.dataset.slot = "toast-close";
-  close.setAttribute("aria-label", options.dismissLabel ?? "通知を閉じる");
   close.addEventListener("click", () => dismiss(id, doc));
-  item.append(close);
+  body.append(title, description, progress);
+  item.append(body, action, close);
 
-  // Append on the next frame so the live region is already in the top layer.
-  requestAnimationFrame(() => list.append(item));
-
-  const duration = options.duration ?? 5000;
-  if (duration > 0) {
-    let timer = setTimeout(() => dismiss(id, doc), duration);
-    const pause = () => clearTimeout(timer);
-    const resume = () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => dismiss(id, doc), duration / 2);
-    };
-    item.addEventListener("pointerenter", pause);
-    item.addEventListener("pointerleave", resume);
-    item.addEventListener("focusin", pause);
-    item.addEventListener("focusout", resume);
-  }
+  let options = initial;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let remaining = 0;
+  let startedAt = 0;
+  let hovering = false;
+  let focused = false;
+  let motion: Animation | undefined;
+  const pause = () => {
+    if (timer !== undefined) remaining = Math.max(0, remaining - (Date.now() - startedAt));
+    clearTimeout(timer);
+    timer = undefined;
+  };
+  const resume = () => {
+    if (options.loading || (options.duration ?? 5000) <= 0 || hovering || focused || !item.isConnected || item.dataset.state === "closing") return;
+    clearTimeout(timer);
+    startedAt = Date.now();
+    timer = setTimeout(() => dismiss(id, doc), remaining);
+  };
+  const update = (next: ToastUpdate) => {
+    const before = item.getBoundingClientRect().height;
+    const actionFocused = doc.activeElement === action;
+    motion?.cancel();
+    pause();
+    options = { ...options, ...next };
+    if (next.message !== undefined) title.textContent = next.message;
+    item.dataset.tone = options.tone ?? "neutral";
+    item.toggleAttribute("data-loading", Boolean(options.loading));
+    description.textContent = options.description ?? "";
+    description.hidden = !options.description;
+    progress.hidden = options.progress === undefined;
+    if (options.progress !== undefined) progress.value = Math.max(0, Math.min(100, options.progress));
+    progress.setAttribute("aria-label", options.progressLabel ?? "Progress");
+    action.hidden = !options.action;
+    action.textContent = options.action?.label ?? "";
+    action.onclick = () => { options.action?.onClick(); dismiss(id, doc); };
+    close.setAttribute("aria-label", options.dismissLabel ?? "通知を閉じる");
+    // Keep keyboard focus inside the notice if an update removes its action.
+    if (action.hidden && actionFocused) close.focus({ preventScroll: true });
+    remaining = options.duration ?? 5000;
+    resume();
+    if (before && !doc.defaultView?.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const after = item.getBoundingClientRect().height;
+      motion = item.animate([{ height: `${before}px` }, { height: `${after}px` }], { duration: 220, easing: "cubic-bezier(.22,1,.36,1)" });
+    }
+  };
+  update(initial);
+  // Resolve the outlet again: a modal may close before this frame runs.
+  const frame = requestAnimationFrame(() => { listOf(target(doc)).append(item); resume(); });
+  let records = active.get(doc);
+  if (!records) active.set(doc, (records = new Map()));
+  records.set(id, { item, update, cancel: () => { cancelAnimationFrame(frame); clearTimeout(timer); motion?.cancel(); } });
+  item.addEventListener("pointerenter", () => { hovering = true; pause(); });
+  item.addEventListener("pointerleave", () => { hovering = false; resume(); });
+  item.addEventListener("focusin", () => { focused = true; pause(); });
+  item.addEventListener("focusout", (event) => {
+    focused = event.relatedTarget instanceof Node && item.contains(event.relatedTarget);
+    resume();
+  });
   return id;
 }
+
+/** Update in place. Dismissed notifications never reappear. */
+function updateToast(id: string, options: ToastUpdate, doc: Document = document): boolean {
+  const record = active.get(doc)?.get(id);
+  if (!record) return false;
+  record.update(options);
+  return true;
+}
+
+/** One notice follows an existing operation; dismissing it does not cancel that operation. */
+function promiseToast<T>(promise: Promise<T>, messages: ToastPromiseOptions<T>, doc: Document = document): string {
+  const id = createToast(messages.loading, { loading: true, dismissLabel: messages.dismissLabel }, doc);
+  void promise.then(
+    value => {
+      const result = typeof messages.success === "function" ? messages.success(value) : messages.success;
+      updateToast(id, { loading: false, progress: undefined, description: undefined, action: undefined, tone: "ok", ...(typeof result === "string" ? { message: result } : result) }, doc);
+    },
+    error => {
+      const result = typeof messages.error === "function" ? messages.error(error) : messages.error;
+      updateToast(id, { loading: false, progress: undefined, description: undefined, action: undefined, tone: "danger", duration: 0, ...(typeof result === "string" ? { message: result } : result) }, doc);
+    },
+  );
+  return id;
+}
+
+export const toast = Object.assign(createToast, { update: updateToast, promise: promiseToast });
 
 /** Shows an existing toaster region so its live region is ready before the first toast. */
 export function installToasts(doc: Document = document): () => void {

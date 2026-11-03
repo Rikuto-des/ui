@@ -1,0 +1,19 @@
+{
+  "name": "aspect-ratio",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/aspect-ratio.json",
+  "files": [
+    {
+      "path": "aspect-ratio.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add aspect-ratio`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the AspectRatio page of the design system.\nexport { AspectRatio, type AspectRatioProps } from \"@urushi/react/aspect-ratio\";\n",
+      "hash": "sha256-nJNuWhtFuZObhl2zdhOquRKt1e2e+WXSYixcl5qZDw4="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/aspect-ratio.css"
+  ]
+}

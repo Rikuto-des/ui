@@ -9,8 +9,8 @@
     "preview": "vite preview --port 4173 --strictPort"
   },
   "dependencies": {
-    "@yourlib/packs": "workspace:*",
-    "@yourlib/react": "workspace:*",
+    "@urushi/packs": "workspace:*",
+    "@urushi/react": "workspace:*",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

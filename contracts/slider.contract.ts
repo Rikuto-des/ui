@@ -1,0 +1,29 @@
+import { defineContract, z } from "@urushi/contract";
+
+export default defineContract({
+  name: "slider",
+  tier: 1,
+  summary: "A native range input with optional live value feedback and directly selectable labelled marks.",
+  use: ["An approximate value where the exact number matters less (音量, 明るさ)"],
+  avoid: [{ case: "An exact number", instead: "input" }],
+  rendering: "server",
+  platform: { requires: ["accent-color"] },
+  parts: [
+    {
+      jsx: "Slider",
+      slot: "slider",
+      element: "input",
+      description: "The range input. Put it in a Field for its label; min, max, step and value are native.",
+      props: z.object({
+        showValue: z.boolean().default(false).describe("Shows a value bubble following the thumb. Requires UrushiRuntime for live feedback; the range itself works without JavaScript."),
+        valueSuffix: z.string().default("").describe("Visible unit appended to the value, such as % or px. Use aria-valuetext for a spoken custom unit."),
+        marks: z.any().optional().meta({ "x-ts-type": 'readonly import("../slider.tsx").SliderMark[]', description: "Positions with {value,label?}. UrushiRuntime makes them selectable and sends native input/change events, including to React onChange. Keep labels short and sparse." }),
+      }),
+      overrides: ["margin", "width", "layout", "position"],
+    },
+  ],
+  states: [],
+  a11y: { keyboard: { "← / → / ↑ / ↓": "step", "Home / End": "min / max", "Page Up / Page Down": "larger steps" }, rules: ["Label it with a Field."] },
+  tokens: ["color.accent"],
+  examples: [{ title: "Volume", code: `<Field id="volume" label="音量"><Slider min={0} max={100} defaultValue={60} /></Field>` }],
+});

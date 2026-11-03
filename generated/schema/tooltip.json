@@ -1,5 +1,8 @@
 {
   "name": "tooltip",
+  "styleDependencies": [
+    "button"
+  ],
   "tier": 2,
   "summary": "A short description shown on hover and keyboard focus: popover=\"hint\" opened through interestfor.",
   "use": [
@@ -25,7 +28,7 @@
     "enhances": [
       {
         "feature": "interestfor",
-        "fallback": "@yourlib/core tooltip behavior (loaded by <YourlibRuntime />)"
+        "fallback": "@urushi/core tooltip behavior (loaded by <UrushiRuntime />)"
       }
     ]
   },

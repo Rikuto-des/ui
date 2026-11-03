@@ -61,6 +61,10 @@
             "description": "Required summary text.",
             "x-ts-type": "React.ReactNode"
           },
+          "description": {
+            "description": "Optional summary of the contents or current settings, visible while closed.",
+            "x-ts-type": "React.ReactNode"
+          },
           "defaultOpen": {
             "default": false,
             "type": "boolean"

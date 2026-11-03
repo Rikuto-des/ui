@@ -1,0 +1,713 @@
+--- a/apps/site/components/docs-navigation.tsx
++++ b/apps/site/components/docs-navigation.tsx
+@@ -1,39 +1,69 @@
+ "use client";
+ 
+-import { useLayoutEffect, useRef, type ReactNode } from "react";
+-
+-const SCROLL_KEY = "urushi-docs-navigation-scroll";
+-
+-/** Preserve the index independently of the document's normal scroll behavior. */
+-export function DocsNavigation({ current, children }: { current: string; children: ReactNode }) {
+-  const ref = useRef<HTMLElement>(null);
++import Link from "next/link";
++import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
++import { ListIcon, MagnifyingGlassIcon, XIcon } from "@urushi/react/icons";
++import { docsNavGroups, type DocsNavGroup } from "@/lib/docs-navigation";
++
++const DESKTOP_SCROLL_KEY = "urushi-docs-navigation-scroll-v2";
++const MOBILE_SCROLL_KEY = "urushi-docs-navigation-mobile-scroll";
++const normalize = (text: string) => text.normalize("NFKC").toLocaleLowerCase().replace(/[\s-]/g, "");
++
++function NavLinks({ groups, current, onNavigate }: { groups: DocsNavGroup[]; current: string; onNavigate?: () => void }) {
++  return groups.map(group => <div className="docs-nav-group" key={group.label}>
++    <p>{group.label}</p>
++    <ul>{group.items.map(item => <li key={item.href}>
++      <Link href={item.href} prefetch={false} aria-current={item.href === current ? "page" : undefined} onNavigate={onNavigate}>
++        {item.label}
++      </Link>
++    </li>)}</ul>
++  </div>);
++}
++
++/** The search stays visible while only the links scroll. */
++function NavigationPanel({ current, mobile = false, open = false, onNavigate }: {
++  current: string; mobile?: boolean; open?: boolean; onNavigate?: () => void;
++}) {
++  const navRef = useRef<HTMLElement>(null);
++  const searchRef = useRef<HTMLInputElement>(null);
++  const unfilteredTop = useRef(0);
++  const filtering = useRef(false);
++  const [query, setQuery] = useState("");
++  const [shortcut, setShortcut] = useState("Ctrl K");
++  const key = mobile ? MOBILE_SCROLL_KEY : DESKTOP_SCROLL_KEY;
++  const normalized = normalize(query);
++  const groups = docsNavGroups.map(group => ({ ...group, items: group.items.filter(item =>
++    normalize(`${item.label} ${item.keywords ?? ""}`).includes(normalized),
++  ) })).filter(group => group.items.length);
++  const count = groups.reduce((sum, group) => sum + group.items.length, 0);
++
++  useEffect(() => {
++    setShortcut(/Mac|iPhone|iPad/.test(navigator.platform) ? "⌘ K" : "Ctrl K");
++  }, []);
+ 
+   useLayoutEffect(() => {
+-    const nav = ref.current;
++    const nav = navRef.current;
+     if (!nav) return;
+-
+     const save = () => {
+-      // The desktop index is hidden on mobile; do not replace its position with 0.
+-      if (!nav.clientHeight) return;
+-      try { sessionStorage.setItem(SCROLL_KEY, String(nav.scrollTop)); } catch { /* Storage may be disabled. */ }
++      if (!nav.clientHeight || filtering.current) return;
++      unfilteredTop.current = nav.scrollTop;
++      try { sessionStorage.setItem(key, String(nav.scrollTop)); } catch { /* Storage is optional. */ }
+     };
+     const restore = () => {
+-      if (!nav.clientHeight) return;
++      if (!nav.clientHeight || filtering.current) return;
+       try {
+-        const top = Number(sessionStorage.getItem(SCROLL_KEY));
+-        if (Number.isFinite(top) && top >= 0) nav.scrollTop = top;
+-      } catch { /* The active link can still be revealed without storage. */ }
+-
+-      // Direct links and viewport changes may put the active entry out of view.
+-      // Move only this scroller, never the document or keyboard focus.
++        const saved = sessionStorage.getItem(key);
++        if (saved !== null && Number.isFinite(Number(saved))) nav.scrollTop = Math.max(0, Number(saved));
++      } catch { /* Reveal the current page even when storage is blocked. */ }
+       const active = nav.querySelector('[aria-current="page"]');
+-      if (!active) return;
+-      const item = active.getBoundingClientRect();
+-      const frame = nav.getBoundingClientRect();
+-      if (item.top < frame.top) nav.scrollTop += item.top - frame.top - 8;
+-      else if (item.bottom > frame.bottom) nav.scrollTop += item.bottom - frame.bottom + 8;
+-    };
+-
++      if (active) {
++        const item = active.getBoundingClientRect(), frame = nav.getBoundingClientRect();
++        if (item.top < frame.top + 8 || item.bottom > frame.bottom - 8) {
++          nav.scrollTop += (item.top + item.bottom - frame.top - frame.bottom) / 2;
++        }
++      }
++      unfilteredTop.current = nav.scrollTop;
++    };
+     restore();
+     let visible = nav.clientHeight > 0;
+     const observer = new ResizeObserver(() => {
+@@ -41,18 +71,140 @@
+       if (nextVisible && !visible) restore();
+       visible = nextVisible;
+     });
++    // Keep boundary wheels in the index even when a browser's async scrolling
++    // chains them despite overscroll-behavior. Preserve zoom and horizontal scroll.
++    const containWheel = (event: WheelEvent) => {
++      if (event.ctrlKey || event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
++      const bottom = nav.scrollHeight - nav.clientHeight;
++      if ((event.deltaY < 0 && nav.scrollTop <= 1) || (event.deltaY > 0 && nav.scrollTop >= bottom - 1)) event.preventDefault();
++    };
+     observer.observe(nav);
+     nav.addEventListener("scroll", save, { passive: true });
++    nav.addEventListener("wheel", containWheel, { passive: false });
+     nav.addEventListener("click", save, { capture: true });
+     window.addEventListener("pagehide", save);
+     return () => {
+       save();
+       observer.disconnect();
+       nav.removeEventListener("scroll", save);
++      nav.removeEventListener("wheel", containWheel);
+       nav.removeEventListener("click", save, { capture: true });
+       window.removeEventListener("pagehide", save);
+     };
+-  }, [current]);
+-
+-  return <nav ref={ref} className="docs-nav docs-nav-list" aria-label="ドキュメントの目次">{children}</nav>;
++  }, [current, key, open]);
++
++  useLayoutEffect(() => {
++    const nav = navRef.current;
++    if (!nav) return;
++    nav.scrollTop = normalized ? 0 : unfilteredTop.current;
++  }, [normalized]);
++
++  const changeQuery = (value: string) => {
++    if (!filtering.current && normalize(value)) unfilteredTop.current = navRef.current?.scrollTop ?? 0;
++    filtering.current = Boolean(normalize(value));
++    setQuery(value);
++  };
++  const searchKey = (event: KeyboardEvent<HTMLInputElement>) => {
++    if (event.nativeEvent.isComposing) return;
++    if (event.key === "Escape" && query) {
++      event.preventDefault(); event.stopPropagation(); changeQuery("");
++    } else if (event.key === "ArrowDown") {
++      event.preventDefault(); navRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
++    } else if (event.key === "Enter" && normalized) {
++      event.preventDefault(); navRef.current?.querySelector<HTMLAnchorElement>("a")?.click();
++    }
++  };
++  return <>
++    <div className="docs-nav-search">
++      <MagnifyingGlassIcon size={16} />
++      <input ref={searchRef} type="search" aria-label="ドキュメントを検索" aria-keyshortcuts="Meta+K Control+K" placeholder="検索..." value={query}
++        onChange={e => changeQuery(e.target.value)} onKeyDown={searchKey} autoComplete="off" spellCheck={false} />
++      {query ? <button type="button" aria-label="検索をクリア" onClick={() => { changeQuery(""); searchRef.current?.focus(); }}><XIcon size={16} /></button>
++        : <kbd aria-hidden="true">{shortcut}</kbd>}
++    </div>
++    <nav ref={navRef} className="docs-nav docs-nav-list" aria-label={mobile ? "モバイルの目次" : "ドキュメントの目次"}>
++      <NavLinks groups={groups} current={current} onNavigate={onNavigate} />
++      {normalized && count === 0 && <div className="docs-nav-empty"><p>一致するページがありません。</p><button type="button" onClick={() => { changeQuery(""); searchRef.current?.focus(); }}>検索をクリア</button></div>}
++    </nav>
++    <span className="visually-hidden" role="status">{normalized ? `${count}件のページが見つかりました。` : ""}</span>
++  </>;
+ }
++
++export function DocsNavigation({ current }: { current: string }) {
++  const asideRef = useRef<HTMLElement>(null);
++  const dialogRef = useRef<HTMLDialogElement>(null);
++  const titleRef = useRef<HTMLHeadingElement>(null);
++  const detailsRef = useRef<HTMLDetailsElement>(null);
++  const backdropPress = useRef(false);
++  const [open, setOpen] = useState(false);
++  const [enhanced, setEnhanced] = useState(false);
++  const currentLabel = docsNavGroups.flatMap(group => group.items).find(item => item.href === current)?.label ?? "ドキュメント";
++  const close = () => { dialogRef.current?.close(); setOpen(false); };
++  const show = (search = false) => {
++    const dialog = dialogRef.current;
++    if (!dialog || dialog.open) return;
++    dialog.showModal(); setOpen(true);
++    if (search) dialog.querySelector<HTMLInputElement>('input[type="search"]')?.focus();
++    else titleRef.current?.focus({ preventScroll: true });
++  };
++
++  useEffect(() => {
++    setEnhanced(true);
++    const media = matchMedia("(max-width: 960px)");
++    const resize = () => {
++      if (!media.matches && dialogRef.current?.open) {
++        dialogRef.current.close(); setOpen(false);
++        requestAnimationFrame(() => asideRef.current?.querySelector<HTMLInputElement>('input[type="search"]')?.focus({ preventScroll: true }));
++      }
++    };
++    const shortcut = (event: globalThis.KeyboardEvent) => {
++      if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== "k" || event.altKey || event.isComposing) return;
++      // Do not steal shortcuts from an example dialog opened over the documentation.
++      if (document.querySelector('dialog[open]:not(.docs-drawer)')) return;
++      event.preventDefault();
++      if (media.matches) {
++        if (!dialogRef.current?.open) show(true);
++        else dialogRef.current.querySelector<HTMLInputElement>('input[type="search"]')?.focus();
++      } else asideRef.current?.querySelector<HTMLInputElement>('input[type="search"]')?.focus();
++    };
++    // Next may temporarily retain a hidden outgoing page. Measure this page's
++    // header, never the first matching header in the whole document.
++    const header = asideRef.current?.closest(".docs")?.previousElementSibling;
++    const sizeHeader = () => {
++      const height = header?.getBoundingClientRect().height;
++      if (height) document.documentElement.style.setProperty("--site-header-height", `${height}px`);
++    };
++    sizeHeader();
++    const observer = new ResizeObserver(sizeHeader);
++    if (header) observer.observe(header);
++    media.addEventListener("change", resize);
++    document.addEventListener("keydown", shortcut);
++    return () => { observer.disconnect(); media.removeEventListener("change", resize); document.removeEventListener("keydown", shortcut); };
++  }, []);
++
++  return <>
++    <aside ref={asideRef} className="docs-sidebar">
++      <NavigationPanel current={current} />
++    </aside>
++    <details ref={detailsRef} className="docs-mobile">
++      <summary aria-haspopup={enhanced ? "dialog" : undefined} aria-expanded={enhanced ? open : undefined} aria-controls={enhanced ? "site-docs-menu" : undefined} onClick={event => { event.preventDefault(); show(); }}>
++        <ListIcon size={20} /><span>ドキュメントの目次</span><span className="docs-mobile-current">{currentLabel}</span>
++      </summary>
++      <nav className="docs-mobile-fallback docs-nav-list" aria-label="モバイルの目次"><NavLinks groups={docsNavGroups} current={current} /></nav>
++    </details>
++    <dialog ref={dialogRef} id="site-docs-menu" className="docs-drawer" aria-labelledby="site-docs-menu-title" closedby="any"
++      onClose={() => { setOpen(false); detailsRef.current?.querySelector("summary")?.focus({ preventScroll: true }); }}
++      onPointerDown={event => {
++        const rect = event.currentTarget.getBoundingClientRect();
++        backdropPress.current = event.target === event.currentTarget && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom);
++      }}
++      onClick={event => {
++        if (event.target !== event.currentTarget || !backdropPress.current) return;
++        const rect = event.currentTarget.getBoundingClientRect();
++        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) close();
++      }}>
++      <div className="docs-drawer-heading"><h2 ref={titleRef} tabIndex={-1} id="site-docs-menu-title">ドキュメント</h2><button type="button" aria-label="メニューを閉じる" onClick={close}><XIcon size={20} /></button></div>
++      <NavigationPanel current={current} mobile open={open} onNavigate={close} />
++    </dialog>
++  </>;
++}
+--- a/apps/site/components/docs-shell.tsx
++++ b/apps/site/components/docs-shell.tsx
+@@ -1,65 +1,11 @@
+ import type { ReactNode } from "react";
+-import Link from "next/link";
+-import { components, groups } from "@/lib/components";
+ import { DocsNavigation } from "./docs-navigation";
+ 
+-const guides = [
+-  {
+-    label: "Get Started",
+-    items: [
+-      { href: "/docs/", label: "はじめかた" },
+-      { href: "/docs/browsers/", label: "ブラウザの対応" },
+-    ],
+-  },
+-  {
+-    label: "Guides",
+-    items: [
+-      { href: "/docs/packs/", label: "パック" },
+-      { href: "/docs/typesetting/", label: "日本語組版" },
+-      { href: "/docs/design/", label: "デザインの決まり" },
+-      { href: "/docs/icons/", label: "Icons" },
+-      { href: "/docs/ai/", label: "AI と lint" },
+-      { href: "/docs/comparison/", label: "AIによる実装の比較" },
+-    ],
+-  },
+-  { label: "Reference", items: [{ href: "/docs/cli/", label: "CLI" }] },
+-];
+-
+-/**
+- * The documentation frame: an index on the side and the page. `current` marks
+- * the page in the index, so this stays a server component.
+- */
+ export function DocsShell({ current, children, toc }: { current: string; children: ReactNode; toc?: {id: string; label: string}[] }) {
+-  const link = (href: string, label: string) => (
+-    <li key={href}>
+-      <Link href={href} prefetch={false} aria-current={href === current ? "page" : undefined}>
+-        {label}
+-      </Link>
+-    </li>
+-  );
+-  const contents = (
+-    <>
+-        {guides.map((g) => (
+-          <div key={g.label} className="docs-nav-group">
+-            <p>{g.label}</p>
+-            <ul>{g.items.map((i) => link(i.href, i.label))}</ul>
+-          </div>
+-        ))}
+-        {groups.map((group) => (
+-          <div key={group} className="docs-nav-group">
+-            <p>{group}</p>
+-            <ul>{components.filter((c) => c.group === group).map((c) => link(`/components/${c.slug}/`, c.name))}</ul>
+-          </div>
+-        ))}
+-    </>
+-  );
+   return (
+     <div className={`docs wrap${toc ? " docs-with-toc" : ""}`}>
+-      <details className="docs-mobile">
+-        <summary>ドキュメントの目次</summary>
+-        <nav className="docs-nav-list" aria-label="モバイルの目次">{contents}</nav>
+-      </details>
+-      <DocsNavigation current={current}>{contents}</DocsNavigation>
++      <noscript><style>{".docs-nav-search { display: none; }"}</style></noscript>
++      <DocsNavigation current={current} />
+       <main className="docs-main" id="main">
+         {children}
+       </main>
+--- a/apps/site/app/site.css
++++ b/apps/site/app/site.css
+@@ -184,55 +184,125 @@
+ .code-language { color: var(--ur-color-text-muted); font-family: var(--font-mono, monospace); font-size: 11px; }
+ 
+ /* Docs frame -------------------------------------------------------------- */
++:root { --site-header-height: 64px; }
++@media (max-width: 700px) { :root { --site-header-height: 89px; } }
+ .docs {
+   display: grid;
+   grid-template-columns: 200px minmax(0, 1fr);
+   gap: 48px;
+   align-items: start;
+ }
++.docs > noscript { display: none; }
++.docs-sidebar {
++  position: sticky;
++  inset-block-start: var(--site-header-height, 64px);
++  display: flex;
++  flex-direction: column;
++  min-inline-size: 0;
++  block-size: calc(100dvh - var(--site-header-height, 64px));
++  box-sizing: border-box;
++  padding-block: 24px 16px;
++  gap: 16px;
++  overscroll-behavior-y: contain;
++}
+ .docs-nav {
+-  position: sticky;
+-  inset-block-start: 76px;
+-  display: grid;
+-  gap: 22px;
+-  max-block-size: calc(100dvh - 96px);
++  min-block-size: 0;
++  flex: 1;
+   overflow-y: auto;
+-  padding-block: 32px 24px;
+-  font-size: 13.5px;
++  overscroll-behavior-y: contain;
+   scrollbar-width: thin;
+-}
+-.docs-mobile {
+-  display: none;
+-}
++  scrollbar-color: var(--ur-color-border-strong) transparent;
++  scroll-padding-block: 8px;
++  padding: 4px 12px 32px 4px;
++  font-size: 13px;
++}
++.docs-nav-group + .docs-nav-group { margin-block-start: 28px; }
+ .docs-nav-list p {
+-  margin: 0 0 6px;
++  margin: 0 8px 8px;
+   font-size: 12px;
+   font-weight: 500;
+-  color: var(--ur-color-text-subtle);
+-}
+-.docs-nav-list ul {
+-  display: grid;
+-  gap: 1px;
+-  margin: 0;
+-  padding: 0;
+-  list-style: none;
+-}
++  color: var(--ur-color-text-muted);
++}
++.docs-nav-list ul { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+ .docs-nav-list a {
+-  display: block;
+-  margin-inline: -10px;
+-  padding: 4px 10px;
+-  border-radius: var(--ur-radius-control);
++  display: flex;
++  align-items: center;
++  min-block-size: 32px;
++  box-sizing: border-box;
++  padding: 5px 10px;
++  border-radius: 6px;
+   color: var(--ur-color-text-muted);
++  line-height: 1.5;
+   text-decoration: none;
+ }
+-.docs-nav-list a:hover {
+-  color: var(--ur-color-text);
+-  background-color: var(--ur-color-ghost-hover);
+-}
++.docs-nav-list a:hover { color: var(--ur-color-text); background: var(--ur-color-ghost-hover); }
+ .docs-nav-list a[aria-current="page"] {
+   color: var(--ur-color-text);
+-  font-weight: 500;
+-  background-color: var(--ur-color-ghost-hover);
++  font-weight: 600;
++  background: var(--ur-color-ghost-hover);
++  box-shadow: inset 2px 0 var(--ur-color-text);
++}
++.docs-nav-list a:focus-visible { outline: 2px solid var(--ur-color-focus-ring); outline-offset: 1px; }
++.docs-nav-search {
++  display: flex;
++  align-items: center;
++  gap: 7px;
++  min-block-size: 36px;
++  padding-inline: 10px 6px;
++  margin-inline: 4px 12px;
++  border: 1px solid var(--ur-color-border-strong);
++  border-radius: 7px;
++  color: var(--ur-color-text-muted);
++  background: var(--ur-color-field);
++}
++.docs-nav-search:focus-within { outline: 2px solid var(--ur-color-focus-ring); outline-offset: 2px; }
++.docs-nav-search input {
++  inline-size: 100%; min-inline-size: 0; padding: 0; border: 0; outline: none;
++  background: transparent; color: var(--ur-color-text); font: inherit; font-size: 13px;
++}
++.docs-nav-search input::-webkit-search-cancel-button { display: none; }
++.docs-nav-search input::placeholder { color: var(--ur-color-text-muted); }
++.docs-nav-search kbd { white-space: nowrap; font-size: 10px; padding-inline: 3px; }
++.docs-nav-search button,.docs-drawer-heading button {
++  display: grid; place-items: center; flex-shrink: 0; padding: 0;
++  inline-size: 28px; block-size: 28px; border: 0; border-radius: 4px;
++  background: transparent; color: var(--ur-color-text-muted); cursor: pointer;
++}
++.docs-nav-search button:hover,.docs-drawer-heading button:hover { background: var(--ur-color-ghost-hover); color: var(--ur-color-text); }
++.docs-nav-search button:focus-visible,.docs-drawer-heading button:focus-visible { outline: 2px solid var(--ur-color-focus-ring); outline-offset: 1px; }
++.docs-nav-empty { padding-block: 16px; }
++.docs-nav-empty p { margin: 0 4px 12px; line-height: 1.7; }
++.docs-nav-empty button { margin-inline: 4px; background: none; border: 0; color: var(--ur-color-text); font: inherit; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
++.docs-mobile { display: none; }
++.docs-drawer {
++  margin: 0;
++  inset: 0 auto 0 0;
++  inline-size: min(360px, calc(100vw - 24px));
++  max-inline-size: none;
++  block-size: 100dvh;
++  max-block-size: 100dvh;
++  box-sizing: border-box;
++  border: 0;
++  border-inline-end: 1px solid var(--ur-color-border);
++  padding: env(safe-area-inset-top, 0px) 12px env(safe-area-inset-bottom, 0px);
++  background: var(--ur-color-bg);
++  color: var(--ur-color-text);
++  overflow: hidden;
++}
++.docs-drawer[open] { display: flex; flex-direction: column; gap: 16px; }
++.docs-drawer::backdrop { background: rgb(0 0 0 / .45); }
++html:has(.docs-drawer[open]) { overflow: hidden; }
++.docs-drawer-heading { display: flex; align-items: center; justify-content: space-between; padding-inline: 8px 0; min-block-size: 64px; }
++.docs-drawer-heading h2 { margin: 0; font-size: 16px; font-weight: 600; outline: none; }
++.docs-drawer-heading button { inline-size: 44px; block-size: 44px; }
++.docs-drawer .docs-nav-search { min-block-size: 44px; margin-inline: 4px; }
++.docs-drawer .docs-nav-search input { font-size: 16px; }
++.docs-drawer .docs-nav-search button { inline-size: 36px; block-size: 36px; }
++.docs-drawer .docs-nav { font-size: 15px; padding-inline-end: 4px; }
++.docs-drawer .docs-nav-list a { min-block-size: 44px; }
++@media (prefers-reduced-motion: no-preference) {
++  .docs-drawer[open] { animation: docs-drawer-enter 160ms ease-out; }
++  @keyframes docs-drawer-enter { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
+ }
+ .docs-main {
+   min-inline-size: 0;
+@@ -854,33 +924,26 @@
+     grid-template-columns: minmax(0, 1fr);
+     gap: 0;
+   }
+-  .docs-nav {
+-    display: none;
+-  }
++  .docs-sidebar { display: none; }
+   .docs-mobile {
+     display: block;
++    position: sticky;
++    inset-block-start: var(--site-header-height, 64px);
++    z-index: 18;
+     min-inline-size: 0;
++    background: var(--ur-color-bg);
+     border-block-end: 1px solid var(--ur-color-border);
+   }
+   .docs-mobile summary {
+-    padding-block: 16px;
+-    font-size: 14px;
+-    font-weight: 500;
+-    cursor: pointer;
+-  }
+-  .docs-mobile .docs-nav-list {
+-    display: grid;
+-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+-    gap: 24px;
+-    max-block-size: 55dvh;
+-    overflow-y: auto;
+-    overscroll-behavior: contain;
+-    padding: 8px 10px 24px;
+-    font-size: 14px;
+-  }
+-  .docs-mobile a {
+-    padding-block: 10px;
+-  }
++    display: flex; align-items: center; gap: 10px; min-block-size: 48px;
++    list-style: none; font-size: 12px; font-weight: 500; cursor: pointer;
++  }
++  .docs-mobile summary::-webkit-details-marker { display: none; }
++  .docs-mobile summary:focus-visible { outline: 2px solid var(--ur-color-focus-ring); outline-offset: -2px; }
++  .docs-mobile-current { margin-inline-start: auto; min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ur-color-text-muted); }
++  .docs-mobile-fallback { max-block-size: 65dvh; overflow-y: auto; overscroll-behavior: contain; padding: 8px 8px 24px; }
++  .docs-mobile-fallback a { min-block-size: 44px; }
++
+ }
+ @media (max-width: 640px) {
+   .wrap {
+@@ -1098,11 +1161,8 @@
+ .footer-bottom nav { display: flex; flex-wrap: wrap; gap: 20px; }
+ .footer-bottom a { text-decoration: none; }
+ .footer-bottom a:hover { text-decoration: underline; text-underline-offset: 4px; }
+-.site-docs .docs { grid-template-columns: 180px minmax(0, 1fr); gap: 48px; }
+-.site-docs .docs-with-toc { grid-template-columns: 180px minmax(0, 1fr) 140px; gap: 40px; }
+-.site-docs .docs-nav { inset-block-start: 84px; max-block-size: calc(100dvh - 104px); gap: 24px; padding-block: 24px; font-size: 13px; }
+-.site-docs .docs-nav-list p { font-size: 12px; color: var(--ur-color-text); margin-block-end: 8px; }
+-.site-docs .docs-nav-list a { margin-inline: 0; padding: 5px 10px; border-radius: 5px; }
++.site-docs .docs { grid-template-columns: 224px minmax(0, 1fr); gap: 40px; }
++.site-docs .docs-with-toc { grid-template-columns: 224px minmax(0, 1fr) 140px; gap: 32px; }
+ .site-docs .docs-main { max-inline-size: 1040px; padding-block: 44px 72px; }
+ .site-docs .page-head h1, .site-docs .prose h1 { font-size: 34px; font-weight: 600; line-height: 1.2; letter-spacing: -.045em; }
+ .site-docs .page-head .lede, .site-docs .page-head .prose p { max-inline-size: 44em; font-size: 14px; line-height: 1.8; margin-block-start: 16px; }
+@@ -1164,7 +1224,7 @@
+ .preview-people { display: grid; gap: 16px; padding: 4px; margin: 0; list-style: none; }
+ .preview-people li { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+ @media (max-width: 1150px) {
+-  .site-docs .docs-with-toc { grid-template-columns: 170px minmax(0, 1fr); }
++  .site-docs .docs-with-toc { grid-template-columns: 224px minmax(0, 1fr); }
+   .page-toc { display: none; }
+   .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ }
+--- a/apps/site/lib/docs-navigation.ts
++++ b/apps/site/lib/docs-navigation.ts
+@@ -0,0 +1,35 @@
++import { components } from "./components";
++
++export interface DocsNavItem {
++  href: string;
++  label: string;
++  keywords?: string;
++}
++export interface DocsNavGroup {
++  label: string;
++  items: DocsNavItem[];
++}
++
++export const docsNavGroups: DocsNavGroup[] = [
++  {
++    label: "Documentation",
++    items: [
++      { href: "/docs/", label: "はじめかた", keywords: "installation getting started 導入" },
++      { href: "/components/", label: "Components", keywords: "一覧 コンポーネント" },
++      { href: "/docs/packs/", label: "パック", keywords: "theme graphite lucent テーマ" },
++      { href: "/docs/design/", label: "デザインの決まり" },
++      { href: "/docs/icons/", label: "Icons", keywords: "phosphor アイコン" },
++      { href: "/docs/typesetting/", label: "日本語組版" },
++      { href: "/docs/ai/", label: "AI と lint", keywords: "生成 検証 修正" },
++      { href: "/docs/comparison/", label: "AIによる実装の比較" },
++      { href: "/docs/cli/", label: "CLI", keywords: "コマンド 更新" },
++      { href: "/docs/browsers/", label: "ブラウザの対応" },
++    ],
++  },
++  {
++    label: "Components",
++    items: [...components].sort((a, b) => a.name.localeCompare(b.name, "en")).map(c => ({
++      href: `/components/${c.slug}/`, label: c.name, keywords: `${c.slug} ${c.group} ${c.base}`,
++    })),
++  },
++];
+--- a/tests/site/docs-navigation.spec.ts
++++ b/tests/site/docs-navigation.spec.ts
+@@ -127,3 +127,130 @@
+     await visibleInside(nav.getByRole("link", { name: "Toast", exact: true })),
+   ).toBe(true);
+ });
++
++test("the index is alphabetical and search restores its scroll position when cleared", async ({ page }) => {
++  await page.goto("/components/tooltip/");
++  const nav = page.getByRole("navigation", { name: "ドキュメントの目次", exact: true });
++  const names = await nav.locator('.docs-nav-group').last().getByRole("link").allTextContents();
++  expect(names).toHaveLength(52);
++  expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b, "en")));
++  const before = await position(nav);
++  await page.keyboard.press("Control+k");
++  const search = page.locator('.docs-sidebar').getByRole("searchbox", { name: "ドキュメントを検索" });
++  await expect(search).toBeFocused();
++  await search.fill("Date Picker");
++  await expect(nav.getByRole("link")).toHaveCount(1);
++  await expect(nav.getByRole("link", { name: "DatePicker", exact: true })).toBeVisible();
++  await search.press("Escape");
++  await expect(search).toHaveValue("");
++  await expect.poll(async () => Math.abs((await position(nav)) - before)).toBeLessThan(2);
++  await search.fill("no-such-component");
++  await expect(nav.getByText("一致するページがありません。")).toBeVisible();
++  await nav.getByRole("button", { name: "検索をクリア" }).click();
++  await expect(search).toBeFocused();
++  await search.fill("combobox");
++  await search.press("ArrowDown");
++  await expect(nav.getByRole("link", { name: "Combobox", exact: true })).toBeFocused();
++  await page.keyboard.press("Enter");
++  await expect(page).toHaveURL(/\/components\/combobox\/$/);
++  await expect(nav.getByRole("link", { name: "Combobox", exact: true })).toHaveAttribute("aria-current", "page");
++  await expect(search).toHaveValue("");
++});
++
++test("sidebar scrolling keeps search available and does not scroll the document at either edge", async ({ page }) => {
++  await page.goto("/components/tooltip/");
++  const nav = page.getByRole("navigation", { name: "ドキュメントの目次", exact: true });
++  const search = page.locator('.docs-sidebar').getByRole("searchbox");
++  const start = await search.boundingBox();
++  await nav.evaluate(el => { el.scrollTop = el.scrollHeight; });
++  await nav.hover();
++  await page.mouse.wheel(0, 1200);
++  await page.waitForTimeout(250);
++  expect(await page.evaluate(() => scrollY)).toBe(0);
++  expect((await search.boundingBox())!.y).toBe(start!.y);
++  const frame = await nav.boundingBox();
++  expect(frame!.y + frame!.height).toBeLessThanOrEqual(800);
++  await nav.evaluate(el => { el.scrollTop = 0; });
++  await page.mouse.wheel(0, -1200);
++  await page.waitForTimeout(250);
++  expect(await page.evaluate(() => scrollY)).toBe(0);
++});
++
++test("mobile navigation overlays the page, restores focus and closes after choosing a result", async ({ page }) => {
++  await page.setViewportSize({ width: 390, height: 844 });
++  await page.goto("/components/checkbox/");
++  await page.evaluate(() => scrollTo(0, 600));
++  const top = await page.evaluate(() => scrollY);
++  const trigger = page.locator('.docs-mobile summary');
++  await trigger.click();
++  const dialog = page.getByRole("dialog", { name: "ドキュメント", exact: true });
++  await expect(dialog).toBeVisible();
++  await expect(trigger).toHaveAttribute("aria-expanded", "true");
++  expect(await page.evaluate(() => scrollY)).toBe(top);
++  for (let i = 0; i < 8; i++) {
++    await page.keyboard.press("Tab");
++    // Safari can move Tab into browser chrome; the page behind the dialog must stay inert.
++    expect(await dialog.evaluate(el => el.contains(document.activeElement) || document.activeElement === document.body)).toBe(true);
++  }
++  await page.keyboard.press("Escape");
++  await expect(dialog).toBeHidden();
++  await expect(trigger).toBeFocused();
++  expect(await page.evaluate(() => scrollY)).toBe(top);
++  await page.keyboard.press("Control+k");
++  const search = dialog.getByRole("searchbox", { name: "ドキュメントを検索" });
++  await expect(search).toBeFocused();
++  await search.fill("toast");
++  await search.press("Escape");
++  await expect(search).toHaveValue("");
++  await expect(dialog).toBeVisible();
++  await search.fill("toast");
++  await search.press("Enter");
++  await expect(page).toHaveURL(/\/components\/toast\/$/);
++  await expect(dialog).toBeHidden();
++  expect(await page.evaluate(() => getComputedStyle(document.documentElement).overflow)).not.toBe("hidden");
++  await trigger.click();
++  await expect(dialog.getByRole("link", { name: "Toast", exact: true })).toHaveAttribute("aria-current", "page");
++  await page.setViewportSize({ width: 1280, height: 800 });
++  await expect(dialog).toBeHidden();
++  await expect(page.locator('.docs-sidebar').getByRole("searchbox")).toBeFocused();
++});
++
++test("the mobile drawer fits 320px and is accessible in every pack and theme", async ({ page }) => {
++  const { default: AxeBuilder } = await import("@axe-core/playwright");
++  await page.setViewportSize({ width: 320, height: 720 });
++  await page.goto("/docs/icons/");
++  for (const pack of ["graphite", "lucent"]) for (const theme of ["light", "dark"]) {
++    await page.getByRole("combobox", { name: "パック", exact: true }).selectOption(pack);
++    await page.getByRole("combobox", { name: "テーマ", exact: true }).selectOption(theme);
++    await page.locator('.docs-mobile summary').click();
++    const dialog = page.getByRole("dialog", { name: "ドキュメント", exact: true });
++    await expect(dialog).toBeVisible();
++    expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true);
++    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
++    expect((await new AxeBuilder({ page }).include('.docs-drawer').withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
++    const nav = dialog.getByRole("navigation");
++    await nav.evaluate(el => { el.scrollTop = el.scrollHeight; });
++    await expect(dialog.getByRole("searchbox")).toBeInViewport();
++    await expect(dialog.getByRole("button", { name: "メニューを閉じる" })).toBeInViewport();
++    // Clicking the backdrop is supported even without native closedby support.
++    await page.mouse.click(316, 350);
++    await expect(dialog).toBeHidden();
++  }
++});
++
++test("without JavaScript the desktop index keeps its layout and the mobile index stays usable", async ({ browser }) => {
++  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1280, height: 800 } });
++  const page = await context.newPage();
++  await page.route(/fonts\.(googleapis|gstatic)\.com/, route => route.fulfill({ status: 200, contentType: "text/css", body: "" }));
++  await page.goto("http://localhost:3201/docs/");
++  const side = await page.locator('.docs-sidebar').boundingBox();
++  const main = await page.locator('main').boundingBox();
++  expect(main!.x).toBeGreaterThan(side!.x + side!.width);
++  expect(Math.abs(main!.y - side!.y)).toBeLessThan(2);
++  await expect(page.getByRole('searchbox', { name: 'ドキュメントを検索' })).toBeHidden();
++  await page.setViewportSize({ width: 390, height: 844 });
++  await page.locator('.docs-mobile summary').press('Enter');
++  await page.getByRole('navigation', { name: 'モバイルの目次' }).getByRole('link', { name: 'Icons', exact: true }).click();
++  await expect(page).toHaveURL(/\/docs\/icons\/$/);
++  await context.close();
++});

@@ -1,0 +1,6 @@
+import {useRef,useState} from 'react';
+import {Dialog,Button,Input,Field} from '@urushi/react';
+export default function App(){
+ const editor=useRef<HTMLDialogElement>(null);const [name,setName]=useState('Atlas'),[saved,setSaved]=useState('Atlas');
+ return <main><h1>Project settings</h1><p>Saved project: {saved}</p><Button onClick={()=>editor.current?.showModal()}>Edit project</Button><Dialog ref={editor} id="edit" title="Edit project" description="Change the project name"><form noValidate onSubmit={event=>{event.preventDefault();setSaved(name.trim());editor.current?.close();}}><Field id="name" label="Project name"><Input autoFocus value={name} onChange={event=>setName(event.target.value)}/></Field><Button type="button" onClick={()=>editor.current?.close()}>Cancel</Button><Button type="submit">Save</Button></form></Dialog></main>;
+}

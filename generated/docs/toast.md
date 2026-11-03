@@ -36,7 +36,7 @@ className may only adjust: nothing (visuals come from the pack).
 
 ## States
 
-`closing`
+`closing`, `loading`
 
 ## Tokens
 
@@ -48,4 +48,22 @@ className may only adjust: nothing (visuals come from the pack).
 
 ```tsx
 toast("保存しました", { tone: "ok" })
+```
+
+### Follow an async operation
+
+```tsx
+toast.promise(saveProject(), {
+  loading: "保存しています…",
+  success: "保存しました",
+  error: "保存できませんでした",
+})
+```
+
+### Update progress in place
+
+```tsx
+const id = toast("書き出しています…", { loading: true, progress: 0 })
+toast.update(id, { progress: 50 })
+toast.update(id, { message: "書き出しました", loading: false, progress: undefined, tone: "ok" })
 ```

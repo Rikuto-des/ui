@@ -1,0 +1,893 @@
+{
+  "conclusion": "success",
+  "headSha": "97e929eb8f53cccb9c57c135b25270c0e7b3002c",
+  "jobs": [
+    {
+      "completedAt": "2026-10-29T03:48:16Z",
+      "conclusion": "success",
+      "databaseId": 123249683673,
+      "name": "quality",
+      "startedAt": "2026-10-29T03:42:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T03:42:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T03:42:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:42:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 2,
+          "startedAt": "2026-10-29T03:42:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:01Z",
+          "conclusion": "success",
+          "name": "Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 3,
+          "startedAt": "2026-10-29T03:42:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:05Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 4,
+          "startedAt": "2026-10-29T03:43:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:08Z",
+          "conclusion": "success",
+          "name": "Run pnpm install --frozen-lockfile",
+          "number": 5,
+          "startedAt": "2026-10-29T03:43:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:56Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright install --with-deps chromium firefox webkit",
+          "number": 6,
+          "startedAt": "2026-10-29T03:43:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:59Z",
+          "conclusion": "success",
+          "name": "Run pnpm gen",
+          "number": 7,
+          "startedAt": "2026-10-29T03:43:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:44:05Z",
+          "conclusion": "success",
+          "name": "Run pnpm typecheck",
+          "number": 8,
+          "startedAt": "2026-10-29T03:43:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:44:08Z",
+          "conclusion": "success",
+          "name": "Run pnpm --filter studio typecheck",
+          "number": 9,
+          "startedAt": "2026-10-29T03:44:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:44:29Z",
+          "conclusion": "success",
+          "name": "Run pnpm test",
+          "number": 10,
+          "startedAt": "2026-10-29T03:44:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:44:51Z",
+          "conclusion": "success",
+          "name": "Run node scripts/workflow-smoke.ts",
+          "number": 11,
+          "startedAt": "2026-10-29T03:44:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:44:54Z",
+          "conclusion": "success",
+          "name": "Run pnpm lint",
+          "number": 12,
+          "startedAt": "2026-10-29T03:44:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:44:59Z",
+          "conclusion": "success",
+          "name": "Run pnpm proof:agent",
+          "number": 13,
+          "startedAt": "2026-10-29T03:44:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:45:00Z",
+          "conclusion": "success",
+          "name": "Run pnpm static",
+          "number": 14,
+          "startedAt": "2026-10-29T03:44:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:45:45Z",
+          "conclusion": "success",
+          "name": "Run pnpm test:next",
+          "number": 15,
+          "startedAt": "2026-10-29T03:45:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:20Z",
+          "conclusion": "success",
+          "name": "Run pnpm test:product",
+          "number": 16,
+          "startedAt": "2026-10-29T03:45:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:31Z",
+          "conclusion": "success",
+          "name": "Run pnpm package:release",
+          "number": 17,
+          "startedAt": "2026-10-29T03:47:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:12Z",
+          "conclusion": "success",
+          "name": "Run pnpm test:release",
+          "number": 18,
+          "startedAt": "2026-10-29T03:47:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:14Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 19,
+          "startedAt": "2026-10-29T03:48:12Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:14Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 36,
+          "startedAt": "2026-10-29T03:48:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:14Z",
+          "conclusion": "success",
+          "name": "Post Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 37,
+          "startedAt": "2026-10-29T03:48:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:14Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 38,
+          "startedAt": "2026-10-29T03:48:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:14Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 39,
+          "startedAt": "2026-10-29T03:48:14Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40813655469/job/123249683673"
+    },
+    {
+      "completedAt": "2026-10-29T03:54:37Z",
+      "conclusion": "success",
+      "databaseId": 123249683749,
+      "name": "Site (firefox)",
+      "startedAt": "2026-10-29T03:42:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T03:42:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T03:42:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:42:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 2,
+          "startedAt": "2026-10-29T03:42:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:10Z",
+          "conclusion": "success",
+          "name": "Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 3,
+          "startedAt": "2026-10-29T03:42:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:14Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 4,
+          "startedAt": "2026-10-29T03:43:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:17Z",
+          "conclusion": "success",
+          "name": "Run pnpm install --frozen-lockfile",
+          "number": 5,
+          "startedAt": "2026-10-29T03:43:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:44Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright install --with-deps firefox",
+          "number": 6,
+          "startedAt": "2026-10-29T03:43:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:44:15Z",
+          "conclusion": "success",
+          "name": "Run pnpm gen && pnpm proof:agent && pnpm --filter site build",
+          "number": 7,
+          "startedAt": "2026-10-29T03:43:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:54:34Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright test -c playwright.site.config.ts --project=firefox",
+          "number": 8,
+          "startedAt": "2026-10-29T03:44:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:54:35Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 9,
+          "startedAt": "2026-10-29T03:54:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:54:35Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 16,
+          "startedAt": "2026-10-29T03:54:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:54:35Z",
+          "conclusion": "success",
+          "name": "Post Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 17,
+          "startedAt": "2026-10-29T03:54:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:54:36Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 18,
+          "startedAt": "2026-10-29T03:54:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:54:36Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-29T03:54:36Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40813655469/job/123249683749"
+    },
+    {
+      "completedAt": "2026-10-29T03:50:58Z",
+      "conclusion": "success",
+      "databaseId": 123249683770,
+      "name": "Site (webkit)",
+      "startedAt": "2026-10-29T03:42:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T03:42:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T03:42:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:42:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 2,
+          "startedAt": "2026-10-29T03:42:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:01Z",
+          "conclusion": "success",
+          "name": "Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 3,
+          "startedAt": "2026-10-29T03:42:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:05Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 4,
+          "startedAt": "2026-10-29T03:43:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:07Z",
+          "conclusion": "success",
+          "name": "Run pnpm install --frozen-lockfile",
+          "number": 5,
+          "startedAt": "2026-10-29T03:43:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:41Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright install --with-deps webkit",
+          "number": 6,
+          "startedAt": "2026-10-29T03:43:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:44:00Z",
+          "conclusion": "success",
+          "name": "Run pnpm gen && pnpm proof:agent && pnpm --filter site build",
+          "number": 7,
+          "startedAt": "2026-10-29T03:43:41Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:50:54Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright test -c playwright.site.config.ts --project=webkit",
+          "number": 8,
+          "startedAt": "2026-10-29T03:44:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:50:55Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 9,
+          "startedAt": "2026-10-29T03:50:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:50:56Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 16,
+          "startedAt": "2026-10-29T03:50:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:50:56Z",
+          "conclusion": "success",
+          "name": "Post Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 17,
+          "startedAt": "2026-10-29T03:50:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:50:56Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 18,
+          "startedAt": "2026-10-29T03:50:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:50:56Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-29T03:50:56Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40813655469/job/123249683770"
+    },
+    {
+      "completedAt": "2026-10-29T03:47:46Z",
+      "conclusion": "success",
+      "databaseId": 123249683807,
+      "name": "Components (firefox)",
+      "startedAt": "2026-10-29T03:42:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T03:42:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T03:42:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:42:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 2,
+          "startedAt": "2026-10-29T03:42:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:05Z",
+          "conclusion": "success",
+          "name": "Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 3,
+          "startedAt": "2026-10-29T03:42:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:10Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 4,
+          "startedAt": "2026-10-29T03:43:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:13Z",
+          "conclusion": "success",
+          "name": "Run pnpm install --frozen-lockfile",
+          "number": 5,
+          "startedAt": "2026-10-29T03:43:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:33Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright install --with-deps firefox",
+          "number": 6,
+          "startedAt": "2026-10-29T03:43:13Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:37Z",
+          "conclusion": "success",
+          "name": "Run pnpm gen && pnpm static",
+          "number": 7,
+          "startedAt": "2026-10-29T03:43:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:42Z",
+          "conclusion": "success",
+          "name": "Run pnpm test:e2e --project=firefox",
+          "number": 8,
+          "startedAt": "2026-10-29T03:43:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:44Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 9,
+          "startedAt": "2026-10-29T03:47:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:44Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 16,
+          "startedAt": "2026-10-29T03:47:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:44Z",
+          "conclusion": "success",
+          "name": "Post Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 17,
+          "startedAt": "2026-10-29T03:47:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:44Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 18,
+          "startedAt": "2026-10-29T03:47:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:44Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-29T03:47:44Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40813655469/job/123249683807"
+    },
+    {
+      "completedAt": "2026-10-29T03:45:51Z",
+      "conclusion": "success",
+      "databaseId": 123249683808,
+      "name": "Components (chromium)",
+      "startedAt": "2026-10-29T03:42:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T03:42:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T03:42:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:42:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 2,
+          "startedAt": "2026-10-29T03:42:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:04Z",
+          "conclusion": "success",
+          "name": "Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 3,
+          "startedAt": "2026-10-29T03:42:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:08Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 4,
+          "startedAt": "2026-10-29T03:43:04Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:12Z",
+          "conclusion": "success",
+          "name": "Run pnpm install --frozen-lockfile",
+          "number": 5,
+          "startedAt": "2026-10-29T03:43:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:35Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright install --with-deps chromium",
+          "number": 6,
+          "startedAt": "2026-10-29T03:43:12Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:39Z",
+          "conclusion": "success",
+          "name": "Run pnpm gen && pnpm static",
+          "number": 7,
+          "startedAt": "2026-10-29T03:43:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:45:47Z",
+          "conclusion": "success",
+          "name": "Run pnpm test:e2e --project=chromium",
+          "number": 8,
+          "startedAt": "2026-10-29T03:43:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:45:49Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 9,
+          "startedAt": "2026-10-29T03:45:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:45:49Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 16,
+          "startedAt": "2026-10-29T03:45:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:45:49Z",
+          "conclusion": "success",
+          "name": "Post Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 17,
+          "startedAt": "2026-10-29T03:45:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:45:49Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 18,
+          "startedAt": "2026-10-29T03:45:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:45:49Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-29T03:45:49Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40813655469/job/123249683808"
+    },
+    {
+      "completedAt": "2026-10-29T03:48:41Z",
+      "conclusion": "success",
+      "databaseId": 123249683824,
+      "name": "Components (webkit)",
+      "startedAt": "2026-10-29T03:42:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T03:42:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T03:42:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:42:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 2,
+          "startedAt": "2026-10-29T03:42:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:01Z",
+          "conclusion": "success",
+          "name": "Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 3,
+          "startedAt": "2026-10-29T03:42:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:05Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 4,
+          "startedAt": "2026-10-29T03:43:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:07Z",
+          "conclusion": "success",
+          "name": "Run pnpm install --frozen-lockfile",
+          "number": 5,
+          "startedAt": "2026-10-29T03:43:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:42Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright install --with-deps webkit",
+          "number": 6,
+          "startedAt": "2026-10-29T03:43:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:45Z",
+          "conclusion": "success",
+          "name": "Run pnpm gen && pnpm static",
+          "number": 7,
+          "startedAt": "2026-10-29T03:43:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:37Z",
+          "conclusion": "success",
+          "name": "Run pnpm test:e2e --project=webkit",
+          "number": 8,
+          "startedAt": "2026-10-29T03:43:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:38Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 9,
+          "startedAt": "2026-10-29T03:48:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:38Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 16,
+          "startedAt": "2026-10-29T03:48:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:39Z",
+          "conclusion": "success",
+          "name": "Post Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 17,
+          "startedAt": "2026-10-29T03:48:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:39Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 18,
+          "startedAt": "2026-10-29T03:48:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:48:39Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-29T03:48:39Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40813655469/job/123249683824"
+    },
+    {
+      "completedAt": "2026-10-29T03:47:26Z",
+      "conclusion": "success",
+      "databaseId": 123249683867,
+      "name": "Site (chromium)",
+      "startedAt": "2026-10-29T03:42:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T03:42:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T03:42:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:42:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 2,
+          "startedAt": "2026-10-29T03:42:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:00Z",
+          "conclusion": "success",
+          "name": "Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 3,
+          "startedAt": "2026-10-29T03:42:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:04Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 4,
+          "startedAt": "2026-10-29T03:43:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:07Z",
+          "conclusion": "success",
+          "name": "Run pnpm install --frozen-lockfile",
+          "number": 5,
+          "startedAt": "2026-10-29T03:43:04Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:28Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright install --with-deps chromium",
+          "number": 6,
+          "startedAt": "2026-10-29T03:43:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:43:47Z",
+          "conclusion": "success",
+          "name": "Run pnpm gen && pnpm proof:agent && pnpm --filter site build",
+          "number": 7,
+          "startedAt": "2026-10-29T03:43:28Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:22Z",
+          "conclusion": "success",
+          "name": "Run pnpm exec playwright test -c playwright.site.config.ts --project=chromium",
+          "number": 8,
+          "startedAt": "2026-10-29T03:43:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:23Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 9,
+          "startedAt": "2026-10-29T03:47:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:23Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "number": 16,
+          "startedAt": "2026-10-29T03:47:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:23Z",
+          "conclusion": "success",
+          "name": "Post Run pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+          "number": 17,
+          "startedAt": "2026-10-29T03:47:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:24Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 18,
+          "startedAt": "2026-10-29T03:47:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T03:47:24Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-29T03:47:24Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Rikuto-des/ui/actions/runs/40813655469/job/123249683867"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/Rikuto-des/ui/actions/runs/40813655469"
+}

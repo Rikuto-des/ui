@@ -1,19 +1,19 @@
 {
   "name": "popover",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "contract": "schema/popover.json",
   "files": [
     {
       "path": "popover.tsx",
       "target": "components",
-      "content": "// Installed by `yourlib add popover`. This file is yours.\n// <Popover.Trigger popover=\"id\"> toggles and anchors <Popover id=\"id\">.\nexport { Popover, type PopoverProps } from \"@yourlib/react/popover\";\n",
-      "hash": "sha256-BFH5Gg4TIklGf7JYOtQK/T/Hw4Mf6fVtxxbhfs/zNig="
+      "content": "// Installed by `urushi add popover`. This file is yours.\n// <Popover.Trigger popover=\"id\"> toggles and anchors <Popover id=\"id\">.\nexport { Popover, type PopoverProps } from \"@urushi/react/popover\";\n",
+      "hash": "sha256-yktjYVSuyX2tkzXgrUTlT2Ls1mQxbMWnz05nqBsPDTc="
     }
   ],
   "dependencies": {
-    "@yourlib/react": "^0.1.0"
+    "@urushi/react": "0.1.0-beta.1"
   },
   "css": [
-    "@yourlib/react/styles.css"
+    "@urushi/react/styles/popover.css"
   ]
 }

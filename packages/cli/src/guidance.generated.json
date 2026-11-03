@@ -1,0 +1,460 @@
+{
+  "instructions": "---\nname: urushi\ndescription: Rules for building UI with urushi components. Use whenever you write or edit JSX that uses urushi components, packs or tokens.\n---\n\n# Building UI with urushi\n\nurushi components are native HTML elements with a contract. Follow the contract; the lint plugin enforces it.\n\n## Generate, verify, repair\n\n1. Read `urushi context <component...>` before writing JSX. It returns the exact contracts together with the design rules and valid tokens. Use `urushi describe <component>` when you only need the API contract.\n2. After editing, run `urushi check --project <tsconfig.json> --strict --json`. This is offline and read-only; it checks TypeScript and the contract rules without executing the application's ESLint configuration.\n3. For each issue, use its file/line/column, message and related contracts to repair the source. Do not silence rules with eslint-disable or weaken the project's TypeScript settings to obtain a pass.\n4. Re-run the same check. Exit code 1 means diagnostics remain; exit code 0 means this static gate passed. A pass does not verify layout, browser interactions, dynamic values, cross-file ID references or screen readers: test those separately.\n5. Before updating installed components, run `urushi update --dry-run --json`. After updating, resolve conflicts, run `urushi diff`, then repeat the static and browser checks.\n\n## Ground rules\n\n1. Visuals come from the active pack (`data-pack` on <html> or any section). Never restyle a component with className or style.\n   className on a component may only adjust the categories its contract lists (margin, width, layout, position).\n2. Need a different look? Use a variant prop. If none fits, stop and ask: a new variant is added to the contract and to every pack, never inlined.\n3. Colors in your own markup come from the pack's tokens (see Tokens below; no other `--ur-*` name exists).\n   Write them in your own CSS (`color: var(--ur-color-text-muted)`) or in `style` on your own elements (`style={{ color: \"var(--ur-color-text-muted)\" }}`).\n   Never inside Tailwind arbitrary values (`text-[var(--ur-color-text-muted)]`, `bg-(--ur-color-surface)`). No Tailwind palette colors (`bg-gray-100`) and no raw hex/oklch values.\n   For spacing and sizes use Tailwind's scale (`p-4`, `gap-3`, `max-w-md`) or the `--ur-space-*` tokens, not arbitrary values (`p-[13px]`).\n4. Prefer native behavior. Dialog.Trigger, Popover.Trigger, Menu.Trigger and Tooltip.Trigger wire the browser's own opening (command, popovertarget, interestfor); Accordion uses <details name>. No useState is needed to open or close anything.\n5. Link elements by id, like HTML: every Trigger/Close references an existing id of the right kind (a Menu.Trigger points at a <Menu>, not a <Popover>).\n6. Put one control inside each Field and let Field wire id, aria-describedby, aria-invalid and required. Do not set them on the control by hand.\n7. In Tabs, every Tabs.Tab value has a Tabs.Panel with the same value, and defaultValue names one of the tabs.\n8. Render <UrushiRuntime /> (from `@urushi/react/runtime`) and <Toaster /> once in the root layout. Call toast() only from client code (event handlers). Everything else renders in Server Components.\n9. Before building a screen, decide which pack and density it uses, then compose components. Do not mix packs inside one control.",
+  "tokens": [
+    {
+      "name": "--ur-color-bg",
+      "group": "color",
+      "use": "Page background."
+    },
+    {
+      "name": "--ur-color-surface",
+      "group": "color",
+      "use": "Panels, cards and tables."
+    },
+    {
+      "name": "--ur-color-surface-overlay",
+      "group": "color",
+      "use": "Dialogs, popovers and menus."
+    },
+    {
+      "name": "--ur-color-field",
+      "group": "color",
+      "use": "Fill of inputs and checkboxes."
+    },
+    {
+      "name": "--ur-color-text",
+      "group": "color",
+      "use": "Body text and headings."
+    },
+    {
+      "name": "--ur-color-text-muted",
+      "group": "color",
+      "use": "Secondary text: descriptions, table headers, helper text."
+    },
+    {
+      "name": "--ur-color-text-subtle",
+      "group": "color",
+      "use": "Dates, counts and notes."
+    },
+    {
+      "name": "--ur-color-border",
+      "group": "color",
+      "use": "Dividers and table rules (1px)."
+    },
+    {
+      "name": "--ur-color-border-strong",
+      "group": "color",
+      "use": "Hovered input borders; emphasized dividers."
+    },
+    {
+      "name": "--ur-color-border-control",
+      "group": "color",
+      "use": "Border of secondary buttons."
+    },
+    {
+      "name": "--ur-color-secondary",
+      "group": "color",
+      "use": "Fill of secondary buttons."
+    },
+    {
+      "name": "--ur-color-secondary-hover",
+      "group": "color",
+      "use": "Hovered secondary buttons."
+    },
+    {
+      "name": "--ur-color-on-secondary",
+      "group": "color",
+      "use": "Text on secondary buttons."
+    },
+    {
+      "name": "--ur-color-ghost-hover",
+      "group": "color",
+      "use": "Hovered ghost buttons and navigation items."
+    },
+    {
+      "name": "--ur-color-action",
+      "group": "color",
+      "use": "Fill of the primary action (one per screen)."
+    },
+    {
+      "name": "--ur-color-action-hover",
+      "group": "color",
+      "use": "Hovered primary actions."
+    },
+    {
+      "name": "--ur-color-on-action",
+      "group": "color",
+      "use": "Text and icons on an action fill."
+    },
+    {
+      "name": "--ur-color-danger",
+      "group": "color",
+      "use": "Fill of danger buttons; text that signals danger (errors, overdue)."
+    },
+    {
+      "name": "--ur-color-danger-hover",
+      "group": "color",
+      "use": "Hovered danger buttons."
+    },
+    {
+      "name": "--ur-color-on-danger",
+      "group": "color",
+      "use": "Text and icons on a danger fill."
+    },
+    {
+      "name": "--ur-color-accent",
+      "group": "color",
+      "use": "Focus, selection and in-progress state. Not for decoration."
+    },
+    {
+      "name": "--ur-color-focus-ring",
+      "group": "color",
+      "use": "Focus rings."
+    },
+    {
+      "name": "--ur-color-ok",
+      "group": "color",
+      "use": "Done or success marks; always next to a text label."
+    },
+    {
+      "name": "--ur-color-backdrop",
+      "group": "color",
+      "use": "Behind modal dialogs."
+    },
+    {
+      "name": "--ur-color-link",
+      "group": "color",
+      "use": "Inline link text."
+    },
+    {
+      "name": "--ur-color-border-field",
+      "group": "color",
+      "use": "Borders of inputs, selects, checkboxes and radios."
+    },
+    {
+      "name": "--ur-color-track",
+      "group": "color",
+      "use": "Track of a switch that is off."
+    },
+    {
+      "name": "--ur-color-skeleton",
+      "group": "color",
+      "use": "Loading placeholders."
+    },
+    {
+      "name": "--ur-color-tooltip",
+      "group": "color",
+      "use": "Tooltip fill (the inverse of the page)."
+    },
+    {
+      "name": "--ur-color-on-tooltip",
+      "group": "color",
+      "use": "Text on tooltips."
+    },
+    {
+      "name": "--ur-color-thumb",
+      "group": "color",
+      "use": "Knob of a switch that is off."
+    },
+    {
+      "name": "--ur-color-warning",
+      "group": "color",
+      "use": "Caution: a value getting high, a notice that needs attention. Always with words."
+    },
+    {
+      "name": "--ur-shadow-control",
+      "group": "shadow",
+      "use": "Secondary buttons."
+    },
+    {
+      "name": "--ur-shadow-action",
+      "group": "shadow",
+      "use": "Primary buttons."
+    },
+    {
+      "name": "--ur-shadow-danger",
+      "group": "shadow",
+      "use": "Danger buttons."
+    },
+    {
+      "name": "--ur-shadow-panel",
+      "group": "shadow",
+      "use": "Panels and cards."
+    },
+    {
+      "name": "--ur-shadow-overlay",
+      "group": "shadow",
+      "use": "Popovers and menus."
+    },
+    {
+      "name": "--ur-shadow-dialog",
+      "group": "shadow",
+      "use": "Dialogs."
+    },
+    {
+      "name": "--ur-material-overlay",
+      "group": "material",
+      "use": "backdrop-filter of popovers and menus (`none` in opaque packs)."
+    },
+    {
+      "name": "--ur-material-backdrop",
+      "group": "material",
+      "use": "backdrop-filter behind modal dialogs."
+    },
+    {
+      "name": "--ur-radius-control",
+      "group": "radius",
+      "use": "Buttons and inputs."
+    },
+    {
+      "name": "--ur-radius-panel",
+      "group": "radius",
+      "use": "Panels and cards."
+    },
+    {
+      "name": "--ur-radius-overlay",
+      "group": "radius",
+      "use": "Popovers and menus."
+    },
+    {
+      "name": "--ur-radius-dialog",
+      "group": "radius",
+      "use": "Dialogs."
+    },
+    {
+      "name": "--ur-radius-checkbox",
+      "group": "radius",
+      "use": "Checkboxes."
+    },
+    {
+      "name": "--ur-radius-squircle-control",
+      "group": "radius",
+      "use": "radius-control where `corner-shape` is supported (components switch by themselves)."
+    },
+    {
+      "name": "--ur-radius-squircle-panel",
+      "group": "radius",
+      "use": "radius-panel where `corner-shape` is supported."
+    },
+    {
+      "name": "--ur-radius-squircle-overlay",
+      "group": "radius",
+      "use": "radius-overlay where `corner-shape` is supported."
+    },
+    {
+      "name": "--ur-radius-squircle-dialog",
+      "group": "radius",
+      "use": "radius-dialog where `corner-shape` is supported."
+    },
+    {
+      "name": "--ur-radius-badge",
+      "group": "radius",
+      "use": "Badges."
+    },
+    {
+      "name": "--ur-corner-shape",
+      "group": "corner-shape",
+      "use": "`corner-shape` of components (`round` or `squircle`)."
+    },
+    {
+      "name": "--ur-space-1",
+      "group": "space",
+      "use": "Smallest step: between an icon and its text."
+    },
+    {
+      "name": "--ur-space-2",
+      "group": "space",
+      "use": "Inside dense rows."
+    },
+    {
+      "name": "--ur-space-3",
+      "group": "space",
+      "use": "Between buttons; between a label and its field."
+    },
+    {
+      "name": "--ur-space-4",
+      "group": "space",
+      "use": "Between a panel's heading and its body."
+    },
+    {
+      "name": "--ur-space-5",
+      "group": "space",
+      "use": "Between form fields."
+    },
+    {
+      "name": "--ur-space-6",
+      "group": "space",
+      "use": "Section padding; above a dialog's buttons."
+    },
+    {
+      "name": "--ur-control-sm",
+      "group": "control",
+      "use": "Height of size=\"sm\" controls."
+    },
+    {
+      "name": "--ur-control-md",
+      "group": "control",
+      "use": "Height of size=\"md\" controls."
+    },
+    {
+      "name": "--ur-control-lg",
+      "group": "control",
+      "use": "Height of size=\"lg\" controls."
+    },
+    {
+      "name": "--ur-control-padding-sm",
+      "group": "control",
+      "use": "Inline padding of size=\"sm\" controls."
+    },
+    {
+      "name": "--ur-control-padding-md",
+      "group": "control",
+      "use": "Inline padding of size=\"md\" controls."
+    },
+    {
+      "name": "--ur-control-padding-lg",
+      "group": "control",
+      "use": "Inline padding of size=\"lg\" controls."
+    },
+    {
+      "name": "--ur-font-family-ui",
+      "group": "font",
+      "use": "The UI font stack."
+    },
+    {
+      "name": "--ur-font-size-small",
+      "group": "font",
+      "use": "Captions, badges and helper text."
+    },
+    {
+      "name": "--ur-font-size-control",
+      "group": "font",
+      "use": "Text in buttons and inputs."
+    },
+    {
+      "name": "--ur-font-size-body",
+      "group": "font",
+      "use": "Body text."
+    },
+    {
+      "name": "--ur-font-size-title",
+      "group": "font",
+      "use": "Titles of panels and dialogs."
+    },
+    {
+      "name": "--ur-font-weight-control",
+      "group": "font",
+      "use": "Weight of button labels."
+    },
+    {
+      "name": "--ur-font-weight-title",
+      "group": "font",
+      "use": "Weight of titles."
+    },
+    {
+      "name": "--ur-font-line-height-body",
+      "group": "font",
+      "use": "Line height of body text."
+    },
+    {
+      "name": "--ur-font-line-height-title",
+      "group": "font",
+      "use": "Line height of titles."
+    },
+    {
+      "name": "--ur-font-tracking-body",
+      "group": "font",
+      "use": "letter-spacing of body text."
+    },
+    {
+      "name": "--ur-font-tracking-title",
+      "group": "font",
+      "use": "letter-spacing of titles."
+    },
+    {
+      "name": "--ur-font-features-title",
+      "group": "font",
+      "use": "font-feature-settings of titles."
+    },
+    {
+      "name": "--ur-font-numeric",
+      "group": "font",
+      "use": "font-variant-numeric for numbers that line up (tables, counters)."
+    },
+    {
+      "name": "--ur-border-width",
+      "group": "border",
+      "use": "Width of component borders and dividers."
+    },
+    {
+      "name": "--ur-motion-duration-fast",
+      "group": "motion",
+      "use": "Hover and press transitions."
+    },
+    {
+      "name": "--ur-motion-duration-overlay",
+      "group": "motion",
+      "use": "Opening and closing overlays."
+    },
+    {
+      "name": "--ur-motion-ease-out",
+      "group": "motion",
+      "use": "Easing of hover and press transitions."
+    },
+    {
+      "name": "--ur-motion-ease-overlay",
+      "group": "motion",
+      "use": "Easing of overlays."
+    },
+    {
+      "name": "--ur-motion-enter-scale",
+      "group": "motion",
+      "use": "Scale an overlay opens from (1 with reduced motion)."
+    },
+    {
+      "name": "--ur-motion-press-scale",
+      "group": "motion",
+      "use": "Scale of a pressed button (1 with reduced motion)."
+    },
+    {
+      "name": "--ur-focus-ring-width",
+      "group": "focus-ring",
+      "use": "Width of focus rings."
+    },
+    {
+      "name": "--ur-focus-ring-offset",
+      "group": "focus-ring",
+      "use": "Gap between a control and its focus ring."
+    },
+    {
+      "name": "--ur-dialog-padding",
+      "group": "dialog",
+      "use": "Inner padding of dialogs."
+    },
+    {
+      "name": "--ur-dialog-size-sm",
+      "group": "dialog",
+      "use": "Width of size=\"sm\" dialogs."
+    },
+    {
+      "name": "--ur-dialog-size-md",
+      "group": "dialog",
+      "use": "Width of size=\"md\" dialogs."
+    },
+    {
+      "name": "--ur-dialog-size-lg",
+      "group": "dialog",
+      "use": "Width of size=\"lg\" dialogs."
+    },
+    {
+      "name": "--ur-popover-offset",
+      "group": "popover",
+      "use": "Gap between a trigger and its popover."
+    },
+    {
+      "name": "--ur-popover-padding",
+      "group": "popover",
+      "use": "Inner padding of popovers."
+    }
+  ]
+}

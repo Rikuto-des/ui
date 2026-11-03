@@ -23,6 +23,7 @@ A <label> around <input type="checkbox" role="switch">. Renders `<label data-slo
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `description` | `React.ReactNode` | — | Supporting text under the label. |
+| `showState` | `boolean` | `false` | Adds on/off marks to the track so its state is also visible without relying on color. |
 
 className may only adjust: margin, width, layout, position.
 

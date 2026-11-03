@@ -1,118 +1,166 @@
 {
   "tokens": [
-    "--yl-color-bg",
-    "--yl-color-surface",
-    "--yl-color-surface-overlay",
-    "--yl-color-field",
-    "--yl-color-text",
-    "--yl-color-text-muted",
-    "--yl-color-text-subtle",
-    "--yl-color-border",
-    "--yl-color-border-strong",
-    "--yl-color-border-control",
-    "--yl-color-secondary",
-    "--yl-color-secondary-hover",
-    "--yl-color-on-secondary",
-    "--yl-color-ghost-hover",
-    "--yl-color-action",
-    "--yl-color-action-hover",
-    "--yl-color-on-action",
-    "--yl-color-danger",
-    "--yl-color-danger-hover",
-    "--yl-color-on-danger",
-    "--yl-color-accent",
-    "--yl-color-focus-ring",
-    "--yl-color-ok",
-    "--yl-color-backdrop",
-    "--yl-color-link",
-    "--yl-color-border-field",
-    "--yl-color-track",
-    "--yl-color-skeleton",
-    "--yl-color-tooltip",
-    "--yl-color-on-tooltip",
-    "--yl-color-thumb",
-    "--yl-shadow-control",
-    "--yl-shadow-action",
-    "--yl-shadow-danger",
-    "--yl-shadow-panel",
-    "--yl-shadow-overlay",
-    "--yl-shadow-dialog",
-    "--yl-material-overlay",
-    "--yl-material-backdrop",
-    "--yl-radius-control",
-    "--yl-radius-panel",
-    "--yl-radius-overlay",
-    "--yl-radius-dialog",
-    "--yl-radius-checkbox",
-    "--yl-radius-squircle-control",
-    "--yl-radius-squircle-panel",
-    "--yl-radius-squircle-overlay",
-    "--yl-radius-squircle-dialog",
-    "--yl-radius-badge",
-    "--yl-corner-shape",
-    "--yl-space-1",
-    "--yl-space-2",
-    "--yl-space-3",
-    "--yl-space-4",
-    "--yl-space-5",
-    "--yl-space-6",
-    "--yl-control-sm",
-    "--yl-control-md",
-    "--yl-control-lg",
-    "--yl-control-padding-sm",
-    "--yl-control-padding-md",
-    "--yl-control-padding-lg",
-    "--yl-font-family-ui",
-    "--yl-font-size-small",
-    "--yl-font-size-control",
-    "--yl-font-size-body",
-    "--yl-font-size-title",
-    "--yl-font-weight-control",
-    "--yl-font-weight-title",
-    "--yl-font-line-height-body",
-    "--yl-font-line-height-title",
-    "--yl-font-tracking-body",
-    "--yl-font-tracking-title",
-    "--yl-font-features-title",
-    "--yl-font-numeric",
-    "--yl-border-width",
-    "--yl-motion-duration-fast",
-    "--yl-motion-duration-overlay",
-    "--yl-motion-ease-out",
-    "--yl-motion-ease-overlay",
-    "--yl-motion-enter-scale",
-    "--yl-motion-press-scale",
-    "--yl-focus-ring-width",
-    "--yl-focus-ring-offset",
-    "--yl-dialog-padding",
-    "--yl-dialog-size-sm",
-    "--yl-dialog-size-md",
-    "--yl-dialog-size-lg",
-    "--yl-popover-offset",
-    "--yl-popover-padding"
+    "--ur-color-bg",
+    "--ur-color-surface",
+    "--ur-color-surface-overlay",
+    "--ur-color-field",
+    "--ur-color-text",
+    "--ur-color-text-muted",
+    "--ur-color-text-subtle",
+    "--ur-color-border",
+    "--ur-color-border-strong",
+    "--ur-color-border-control",
+    "--ur-color-secondary",
+    "--ur-color-secondary-hover",
+    "--ur-color-on-secondary",
+    "--ur-color-ghost-hover",
+    "--ur-color-action",
+    "--ur-color-action-hover",
+    "--ur-color-on-action",
+    "--ur-color-danger",
+    "--ur-color-danger-hover",
+    "--ur-color-on-danger",
+    "--ur-color-accent",
+    "--ur-color-focus-ring",
+    "--ur-color-ok",
+    "--ur-color-backdrop",
+    "--ur-color-link",
+    "--ur-color-border-field",
+    "--ur-color-track",
+    "--ur-color-skeleton",
+    "--ur-color-tooltip",
+    "--ur-color-on-tooltip",
+    "--ur-color-thumb",
+    "--ur-color-warning",
+    "--ur-shadow-control",
+    "--ur-shadow-action",
+    "--ur-shadow-danger",
+    "--ur-shadow-panel",
+    "--ur-shadow-overlay",
+    "--ur-shadow-dialog",
+    "--ur-material-overlay",
+    "--ur-material-backdrop",
+    "--ur-radius-control",
+    "--ur-radius-panel",
+    "--ur-radius-overlay",
+    "--ur-radius-dialog",
+    "--ur-radius-checkbox",
+    "--ur-radius-squircle-control",
+    "--ur-radius-squircle-panel",
+    "--ur-radius-squircle-overlay",
+    "--ur-radius-squircle-dialog",
+    "--ur-radius-badge",
+    "--ur-corner-shape",
+    "--ur-space-1",
+    "--ur-space-2",
+    "--ur-space-3",
+    "--ur-space-4",
+    "--ur-space-5",
+    "--ur-space-6",
+    "--ur-control-sm",
+    "--ur-control-md",
+    "--ur-control-lg",
+    "--ur-control-padding-sm",
+    "--ur-control-padding-md",
+    "--ur-control-padding-lg",
+    "--ur-font-family-ui",
+    "--ur-font-size-small",
+    "--ur-font-size-control",
+    "--ur-font-size-body",
+    "--ur-font-size-title",
+    "--ur-font-weight-control",
+    "--ur-font-weight-title",
+    "--ur-font-line-height-body",
+    "--ur-font-line-height-title",
+    "--ur-font-tracking-body",
+    "--ur-font-tracking-title",
+    "--ur-font-features-title",
+    "--ur-font-numeric",
+    "--ur-border-width",
+    "--ur-motion-duration-fast",
+    "--ur-motion-duration-overlay",
+    "--ur-motion-ease-out",
+    "--ur-motion-ease-overlay",
+    "--ur-motion-enter-scale",
+    "--ur-motion-press-scale",
+    "--ur-focus-ring-width",
+    "--ur-focus-ring-offset",
+    "--ur-dialog-padding",
+    "--ur-dialog-size-sm",
+    "--ur-dialog-size-md",
+    "--ur-dialog-size-lg",
+    "--ur-popover-offset",
+    "--ur-popover-padding"
   ],
   "modules": {
-    "@yourlib/react": [
+    "@urushi/react": [
       "Accordion",
       "AccordionItemProps",
       "AccordionProps",
+      "Alert",
+      "AlertDialog",
+      "AlertDialogActionProps",
+      "AlertDialogCancelProps",
+      "AlertDialogProps",
+      "AlertDialogTriggerProps",
+      "AlertProps",
+      "AspectRatio",
+      "AspectRatioProps",
+      "Avatar",
+      "AvatarProps",
       "Badge",
       "BadgeProps",
+      "Breadcrumb",
+      "BreadcrumbItemProps",
+      "BreadcrumbProps",
       "Button",
+      "ButtonGroup",
+      "ButtonGroupProps",
       "ButtonProps",
       "Card",
       "CardProps",
+      "Carousel",
+      "CarouselItemProps",
+      "CarouselProps",
       "Checkbox",
       "CheckboxProps",
+      "Collapsible",
+      "CollapsibleProps",
+      "Combobox",
+      "ComboboxLoader",
+      "ComboboxOption",
+      "ComboboxProps",
+      "Command",
+      "CommandItem",
+      "CommandProps",
+      "DataTable",
+      "DataTableColumn",
+      "DataTableProps",
+      "DateInput",
+      "DateInputProps",
+      "DatePicker",
+      "DatePickerProps",
       "Dialog",
       "DialogActionsProps",
       "DialogCloseProps",
       "DialogProps",
       "DialogTriggerProps",
+      "Empty",
+      "EmptyProps",
       "Field",
       "FieldProps",
+      "FileInput",
+      "FileInputProps",
+      "HoverCard",
+      "HoverCardProps",
+      "HoverCardTriggerProps",
       "Input",
+      "InputGroup",
+      "InputGroupAddonProps",
+      "InputGroupProps",
       "InputProps",
+      "Kbd",
+      "KbdProps",
       "Link",
       "LinkProps",
       "Menu",
@@ -121,24 +169,56 @@
       "MenuProps",
       "MenuSeparatorProps",
       "MenuTriggerProps",
+      "Meter",
+      "MeterProps",
+      "NavigationMenu",
+      "NavigationMenuGroupProps",
+      "NavigationMenuLinkProps",
+      "NavigationMenuProps",
+      "OTPInput",
+      "OTPInputProps",
+      "Pagination",
+      "PaginationProps",
       "Popover",
       "PopoverCloseProps",
       "PopoverProps",
       "PopoverTriggerProps",
+      "Progress",
+      "ProgressMilestone",
+      "ProgressProps",
       "RadioGroup",
       "RadioGroupItemProps",
       "RadioGroupProps",
+      "ScrollArea",
+      "ScrollAreaProps",
       "Select",
       "SelectProps",
       "Separator",
       "SeparatorProps",
+      "Sheet",
+      "SheetCloseProps",
+      "SheetProps",
+      "SheetTriggerProps",
+      "Sidebar",
+      "SidebarGroupProps",
+      "SidebarItemProps",
+      "SidebarProps",
       "Skeleton",
       "SkeletonProps",
+      "Slider",
+      "SliderMark",
+      "SliderProps",
       "Spinner",
       "SpinnerProps",
+      "Steps",
+      "StepsItemProps",
+      "StepsProps",
       "Switch",
       "SwitchProps",
+      "Table",
+      "TableProps",
       "Tabs",
+      "TabsActivateProps",
       "TabsListProps",
       "TabsPanelProps",
       "TabsProps",
@@ -146,9 +226,16 @@
       "Textarea",
       "TextareaProps",
       "ToastOptions",
+      "ToastPromiseOptions",
       "ToastTone",
+      "ToastUpdate",
       "Toaster",
       "ToasterProps",
+      "Toggle",
+      "ToggleGroup",
+      "ToggleGroupItemProps",
+      "ToggleGroupProps",
+      "ToggleProps",
       "Tooltip",
       "TooltipProps",
       "TooltipTriggerProps",
@@ -156,49 +243,113 @@
       "dismiss",
       "toast"
     ],
-    "@yourlib/react/accordion": [
+    "@urushi/react/accordion": [
       "Accordion",
       "AccordionItemProps",
       "AccordionProps"
     ],
-    "@yourlib/react/badge": [
+    "@urushi/react/alert": [
+      "Alert",
+      "AlertProps"
+    ],
+    "@urushi/react/alert-dialog": [
+      "AlertDialog",
+      "AlertDialogActionProps",
+      "AlertDialogCancelProps",
+      "AlertDialogProps",
+      "AlertDialogTriggerProps"
+    ],
+    "@urushi/react/aspect-ratio": [
+      "AspectRatio",
+      "AspectRatioProps"
+    ],
+    "@urushi/react/avatar": [
+      "Avatar",
+      "AvatarProps",
+      "initialOf"
+    ],
+    "@urushi/react/badge": [
       "Badge",
       "BadgeProps"
     ],
-    "@yourlib/react/button": [
+    "@urushi/react/breadcrumb": [
+      "Breadcrumb",
+      "BreadcrumbItemProps",
+      "BreadcrumbProps"
+    ],
+    "@urushi/react/button": [
       "Button",
       "ButtonProps"
     ],
-    "@yourlib/react/card": [
+    "@urushi/react/button-group": [
+      "ButtonGroup",
+      "ButtonGroupProps"
+    ],
+    "@urushi/react/card": [
       "Card",
       "CardProps"
     ],
-    "@yourlib/react/checkbox": [
+    "@urushi/react/carousel": [
+      "Carousel",
+      "CarouselItemProps",
+      "CarouselProps"
+    ],
+    "@urushi/react/checkbox": [
       "Checkbox",
       "CheckboxProps",
       "Switch",
       "SwitchProps"
     ],
-    "@yourlib/react/dialog": [
+    "@urushi/react/collapsible": [
+      "Collapsible",
+      "CollapsibleProps"
+    ],
+    "@urushi/react/date-input": [
+      "DateInput",
+      "DateInputProps"
+    ],
+    "@urushi/react/dialog": [
       "Dialog",
       "DialogActionsProps",
       "DialogCloseProps",
       "DialogProps",
       "DialogTriggerProps"
     ],
-    "@yourlib/react/field": [
+    "@urushi/react/empty": [
+      "Empty",
+      "EmptyProps"
+    ],
+    "@urushi/react/field": [
       "Field",
       "FieldProps"
     ],
-    "@yourlib/react/input": [
+    "@urushi/react/file-input": [
+      "FileInput",
+      "FileInputProps"
+    ],
+    "@urushi/react/hover-card": [
+      "HoverCard",
+      "HoverCardProps",
+      "HoverCardTriggerProps"
+    ],
+    "@urushi/react/input": [
       "Input",
       "InputProps"
     ],
-    "@yourlib/react/link": [
+    "@urushi/react/input-group": [
+      "InputGroup",
+      "InputGroupAddonProps",
+      "InputGroupProps"
+    ],
+    "@urushi/react/kbd": [
+      "Kbd",
+      "KbdProps"
+    ],
+    "@urushi/react/link": [
       "Link",
       "LinkProps"
     ],
-    "@yourlib/react/menu": [
+    "@urushi/react/menu": [
       "Menu",
       "MenuItemProps",
       "MenuLinkProps",
@@ -206,66 +357,260 @@
       "MenuSeparatorProps",
       "MenuTriggerProps"
     ],
-    "@yourlib/react/popover": [
+    "@urushi/react/meter": [
+      "Meter",
+      "MeterProps"
+    ],
+    "@urushi/react/otp-input": [
+      "OTPInput",
+      "OTPInputProps"
+    ],
+    "@urushi/react/pagination": [
+      "Pagination",
+      "PaginationProps",
+      "pageItems"
+    ],
+    "@urushi/react/popover": [
       "Popover",
       "PopoverCloseProps",
       "PopoverProps",
       "PopoverTriggerProps",
       "anchorName"
     ],
-    "@yourlib/react/radio-group": [
+    "@urushi/react/progress": [
+      "Progress",
+      "ProgressMilestone",
+      "ProgressProps"
+    ],
+    "@urushi/react/radio-group": [
       "RadioGroup",
       "RadioGroupItemProps",
       "RadioGroupProps"
     ],
-    "@yourlib/react/select": [
+    "@urushi/react/scroll-area": [
+      "ScrollArea",
+      "ScrollAreaProps"
+    ],
+    "@urushi/react/select": [
       "Select",
       "SelectProps"
     ],
-    "@yourlib/react/separator": [
+    "@urushi/react/separator": [
       "Separator",
       "SeparatorProps"
     ],
-    "@yourlib/react/skeleton": [
+    "@urushi/react/sheet": [
+      "Sheet",
+      "SheetCloseProps",
+      "SheetProps",
+      "SheetTriggerProps"
+    ],
+    "@urushi/react/sidebar": [
+      "Sidebar",
+      "SidebarGroupProps",
+      "SidebarItemProps",
+      "SidebarProps"
+    ],
+    "@urushi/react/skeleton": [
       "Skeleton",
       "SkeletonProps"
     ],
-    "@yourlib/react/spinner": [
+    "@urushi/react/slider": [
+      "Slider",
+      "SliderMark",
+      "SliderProps"
+    ],
+    "@urushi/react/spinner": [
       "Spinner",
       "SpinnerProps"
     ],
-    "@yourlib/react/switch": [
+    "@urushi/react/steps": [
+      "Steps",
+      "StepsItemProps",
+      "StepsProps"
+    ],
+    "@urushi/react/switch": [
       "Switch",
       "SwitchProps"
     ],
-    "@yourlib/react/tabs": [
+    "@urushi/react/table": [
+      "Table",
+      "TableProps"
+    ],
+    "@urushi/react/tabs": [
       "Tabs",
+      "TabsActivateProps",
       "TabsListProps",
       "TabsPanelProps",
       "TabsProps",
       "TabsTabProps"
     ],
-    "@yourlib/react/textarea": [
+    "@urushi/react/textarea": [
       "Textarea",
       "TextareaProps"
     ],
-    "@yourlib/react/toast": [
+    "@urushi/react/toast": [
       "ToastOptions",
+      "ToastPromiseOptions",
       "ToastTone",
+      "ToastUpdate",
       "Toaster",
       "ToasterProps",
       "dismiss",
       "toast"
     ],
-    "@yourlib/react/tooltip": [
+    "@urushi/react/toggle": [
+      "Toggle",
+      "ToggleProps"
+    ],
+    "@urushi/react/toggle-group": [
+      "ToggleGroup",
+      "ToggleGroupItemProps",
+      "ToggleGroupProps"
+    ],
+    "@urushi/react/tooltip": [
       "Tooltip",
       "TooltipProps",
       "TooltipTriggerProps"
     ],
-    "@yourlib/react/runtime": [
-      "YourlibRuntime"
+    "@urushi/react/runtime": [
+      "UrushiRuntime"
     ],
-    "@yourlib/react/styles.css": []
+    "@urushi/react/styles.css": [],
+    "@urushi/react/styles/accordion.css": [],
+    "@urushi/react/styles/alert-dialog.css": [],
+    "@urushi/react/styles/alert.css": [],
+    "@urushi/react/styles/aspect-ratio.css": [],
+    "@urushi/react/styles/avatar.css": [],
+    "@urushi/react/styles/badge.css": [],
+    "@urushi/react/styles/breadcrumb.css": [],
+    "@urushi/react/styles/button-group.css": [],
+    "@urushi/react/styles/button.css": [],
+    "@urushi/react/styles/card.css": [],
+    "@urushi/react/styles/carousel.css": [],
+    "@urushi/react/styles/checkbox.css": [],
+    "@urushi/react/styles/collapsible.css": [],
+    "@urushi/react/styles/combobox.css": [],
+    "@urushi/react/styles/command.css": [],
+    "@urushi/react/styles/data-table.css": [],
+    "@urushi/react/styles/date-input.css": [],
+    "@urushi/react/styles/date-picker.css": [],
+    "@urushi/react/styles/dialog.css": [],
+    "@urushi/react/styles/empty.css": [],
+    "@urushi/react/styles/field.css": [],
+    "@urushi/react/styles/file-input.css": [],
+    "@urushi/react/styles/hover-card.css": [],
+    "@urushi/react/styles/input-group.css": [],
+    "@urushi/react/styles/input.css": [],
+    "@urushi/react/styles/kbd.css": [],
+    "@urushi/react/styles/link.css": [],
+    "@urushi/react/styles/menu.css": [],
+    "@urushi/react/styles/meter.css": [],
+    "@urushi/react/styles/navigation-menu.css": [],
+    "@urushi/react/styles/otp-input.css": [],
+    "@urushi/react/styles/pagination.css": [],
+    "@urushi/react/styles/popover.css": [],
+    "@urushi/react/styles/progress.css": [],
+    "@urushi/react/styles/radio-group.css": [],
+    "@urushi/react/styles/scroll-area.css": [],
+    "@urushi/react/styles/select.css": [],
+    "@urushi/react/styles/separator.css": [],
+    "@urushi/react/styles/sheet.css": [],
+    "@urushi/react/styles/sidebar.css": [],
+    "@urushi/react/styles/skeleton.css": [],
+    "@urushi/react/styles/slider.css": [],
+    "@urushi/react/styles/spinner.css": [],
+    "@urushi/react/styles/steps.css": [],
+    "@urushi/react/styles/switch.css": [],
+    "@urushi/react/styles/table.css": [],
+    "@urushi/react/styles/tabs.css": [],
+    "@urushi/react/styles/textarea.css": [],
+    "@urushi/react/styles/toast.css": [],
+    "@urushi/react/styles/toggle-group.css": [],
+    "@urushi/react/styles/toggle.css": [],
+    "@urushi/react/styles/tooltip.css": [],
+    "@urushi/react/navigation-menu": [
+      "NavigationMenu",
+      "NavigationMenuGroupProps",
+      "NavigationMenuLinkProps",
+      "NavigationMenuProps"
+    ],
+    "@urushi/react/combobox": [
+      "Combobox",
+      "ComboboxLoader",
+      "ComboboxOption",
+      "ComboboxProps"
+    ],
+    "@urushi/react/data-table": [
+      "DataTable",
+      "DataTableColumn",
+      "DataTableProps"
+    ],
+    "@urushi/react/date-picker": [
+      "DatePicker",
+      "DatePickerProps"
+    ],
+    "@urushi/react/command": [
+      "Command",
+      "CommandItem",
+      "CommandProps"
+    ],
+    "@urushi/react/icons": [
+      "ArchiveIcon",
+      "ArrowBendDownLeftIcon",
+      "ArrowDownIcon",
+      "ArrowLeftIcon",
+      "ArrowRightIcon",
+      "ArrowUUpLeftIcon",
+      "ArrowUpIcon",
+      "ArrowUpRightIcon",
+      "ArrowsDownUpIcon",
+      "BellIcon",
+      "BellSlashIcon",
+      "BookmarkSimpleIcon",
+      "CalendarBlankIcon",
+      "CaretDownIcon",
+      "CaretLeftIcon",
+      "CaretRightIcon",
+      "CheckCircleIcon",
+      "CheckIcon",
+      "CloudArrowUpIcon",
+      "CopyIcon",
+      "DesktopIcon",
+      "DotsThreeIcon",
+      "ExportIcon",
+      "EyeIcon",
+      "EyeSlashIcon",
+      "FolderIcon",
+      "GearSixIcon",
+      "HeartIcon",
+      "HouseIcon",
+      "IconProps",
+      "InfoIcon",
+      "ListChecksIcon",
+      "ListIcon",
+      "MagnifyingGlassIcon",
+      "MinusIcon",
+      "MoonIcon",
+      "NoteIcon",
+      "NotebookIcon",
+      "PencilSimpleIcon",
+      "PlusIcon",
+      "ShareNetworkIcon",
+      "SlidersHorizontalIcon",
+      "SparkleIcon",
+      "SquaresFourIcon",
+      "StarIcon",
+      "StatefulIconProps",
+      "SunIcon",
+      "TextBIcon",
+      "TextItalicIcon",
+      "TextUnderlineIcon",
+      "UsersIcon",
+      "WarningCircleIcon",
+      "WarningIcon",
+      "XIcon"
+    ]
   },
   "attributes": [
     "about",

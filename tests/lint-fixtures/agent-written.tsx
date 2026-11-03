@@ -1,6 +1,6 @@
 // What a coding agent typically writes against a component library it half
 // remembers. `pnpm test` lints this file and checks every problem is caught.
-import { Button, Card, CardHeader, Dialog, Field, Input, Menu, Popover, Tabs, TabsTrigger, Tooltip } from "@yourlib/react";
+import { Button, Card, CardHeader, Dialog, Field, Input, Menu, Popover, Tabs, TabsTrigger, Tooltip } from "@urushi/react";
 
 export function DangerZone({ onDelete }: { onDelete: () => void }) {
   return (
@@ -50,13 +50,13 @@ export function ProjectHeader() {
 }
 
 // Names and tokens borrowed from other libraries, and a token inside a Tailwind
-// arbitrary value (what an agent writes after reading "use var(--yl-color-…)").
+// arbitrary value (what an agent writes after reading "use var(--ur-color-…)").
 export function PlanPicker({ selected }: { selected: boolean }) {
   return (
     <Card>
       <CardHeader>プラン</CardHeader>
-      <div className={["rounded-lg p-4", selected ? "border-[var(--yl-color-brand)]" : "border-gray-200"].join(" ")}>
-        <p className="text-[var(--yl-color-text-muted)]">月額 980 円</p>
+      <div className={["rounded-lg p-4", selected ? "border-[var(--ur-color-brand)]" : "border-gray-200"].join(" ")}>
+        <p className="text-[var(--ur-color-text-muted)]">月額 980 円</p>
       </div>
       <Tabs.Trigger value="monthly">月払い</Tabs.Trigger>
     </Card>

@@ -52,7 +52,8 @@
     }
   ],
   "states": [
-    "closing"
+    "closing",
+    "loading"
   ],
   "a11y": {
     "rules": [
@@ -71,6 +72,14 @@
     {
       "title": "After saving",
       "code": "toast(\"保存しました\", { tone: \"ok\" })"
+    },
+    {
+      "title": "Follow an async operation",
+      "code": "toast.promise(saveProject(), {\n  loading: \"保存しています…\",\n  success: \"保存しました\",\n  error: \"保存できませんでした\",\n})"
+    },
+    {
+      "title": "Update progress in place",
+      "code": "const id = toast(\"書き出しています…\", { loading: true, progress: 0 })\ntoast.update(id, { progress: 50 })\ntoast.update(id, { message: \"書き出しました\", loading: false, progress: undefined, tone: \"ok\" })"
     }
   ]
 }

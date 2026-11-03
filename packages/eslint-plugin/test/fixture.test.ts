@@ -23,15 +23,15 @@ test("every problem in the agent-written fixture is reported with a fix in the m
   const ids = result.messages.map((m) => m.ruleId).sort();
   if (process.env.SHOW) for (const m of result.messages) console.log(`${m.line}:${m.column} ${m.ruleId}\n  ${m.message}`);
   assert.deepEqual(ids, [
-    ...Array(3).fill("yourlib/accessible-name"),
-    ...Array(10).fill("yourlib/no-raw-color"),
-    ...Array(3).fill("yourlib/no-visual-override"),
-    "yourlib/prefer-native",
-    ...Array(2).fill("yourlib/required-props"),
-    ...Array(2).fill("yourlib/tabs-match"),
-    ...Array(2).fill("yourlib/valid-idref"),
-    ...Array(3).fill("yourlib/valid-import"),
-    "yourlib/valid-token",
+    ...Array(3).fill("urushi/accessible-name"),
+    ...Array(10).fill("urushi/no-raw-color"),
+    ...Array(3).fill("urushi/no-visual-override"),
+    "urushi/prefer-native",
+    ...Array(2).fill("urushi/required-props"),
+    ...Array(2).fill("urushi/tabs-match"),
+    ...Array(2).fill("urushi/valid-idref"),
+    ...Array(3).fill("urushi/valid-import"),
+    "urushi/valid-token",
   ]);
   for (const m of result.messages) assert.ok(m.message.length > 20, `${m.ruleId} message should explain the fix`);
 });

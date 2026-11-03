@@ -1,0 +1,496 @@
+{
+  "schemaVersion": 1,
+  "kind": "authored regression fixture, not an AI benchmark",
+  "command": "pnpm proof:agent",
+  "catalogSha256": "9fb80602d67ad6ec47a315046aa0b8500039f4d8c35fe0f3ed323e91fd23ce85",
+  "before": {
+    "code": "import { Button, Dialog } from \"@urushi/react\";\n\nexport default function Confirm() {\n  return <>\n    <Button variant=\"destructive\" className=\"rounded-xl\">削除する</Button>\n    <Dialog id=\"confirm\" open onOpenChange={() => {}} />\n  </>;\n}\n",
+    "sha256": "f98d28b71e5c8b1b01782f4a608426facc2c902400c608b4fb33adc8be2d1149",
+    "report": {
+      "schemaVersion": 1,
+      "status": "fail",
+      "project": "tsconfig.json",
+      "summary": {
+        "errors": 7,
+        "warnings": 0,
+        "lintedFiles": 1,
+        "typechecked": true
+      },
+      "issues": [
+        {
+          "source": "typescript",
+          "severity": "error",
+          "code": "TS2322",
+          "file": "screen.tsx",
+          "line": 5,
+          "column": 13,
+          "excerpt": "    <Button variant=\"destructive\" className=\"rounded-xl\">削除する</Button>",
+          "message": "Type '\"destructive\"' is not assignable to type '\"primary\" | \"secondary\" | \"ghost\" | \"danger\" | undefined'."
+        },
+        {
+          "source": "contract",
+          "severity": "error",
+          "code": "urushi/valid-props",
+          "file": "screen.tsx",
+          "line": 5,
+          "column": 13,
+          "message": "<Button> の variant に \"destructive\" はありません。variant は \"primary\" | \"secondary\" | \"ghost\" | \"danger\" のどれかです。variant=\"danger\" のことですか。",
+          "excerpt": "    <Button variant=\"destructive\" className=\"rounded-xl\">削除する</Button>"
+        },
+        {
+          "source": "contract",
+          "severity": "error",
+          "code": "urushi/no-visual-override",
+          "file": "screen.tsx",
+          "line": 5,
+          "column": 35,
+          "message": "<Button> の見た目は className では変えられません（rounded-xl）。className で変えてよいのは 外側の余白（m-*）・幅（w-*）・並びの中の配置（self-*・col-span-* など）・位置（relative・absolute・inset-* など） だけです。角の丸みはパックが決めます。別の形が必要なら、パックを切り替えてください。",
+          "excerpt": "    <Button variant=\"destructive\" className=\"rounded-xl\">削除する</Button>"
+        },
+        {
+          "source": "contract",
+          "severity": "error",
+          "code": "urushi/required-props",
+          "file": "screen.tsx",
+          "line": 6,
+          "column": 5,
+          "message": "<Dialog> には title が必要です。見出しになり、スクリーンリーダーで読み上げられる名前になります。",
+          "excerpt": "    <Dialog id=\"confirm\" open onOpenChange={() => {}} />"
+        },
+        {
+          "source": "typescript",
+          "severity": "error",
+          "code": "TS2322",
+          "file": "screen.tsx",
+          "line": 6,
+          "column": 26,
+          "excerpt": "    <Dialog id=\"confirm\" open onOpenChange={() => {}} />",
+          "message": "Type '{ id: string; open: true; onOpenChange: () => void; }' is not assignable to type 'IntrinsicAttributes & DialogOwnProps & Omit<DetailedHTMLProps<DialogHTMLAttributes<HTMLDialogElement>, HTMLDialogElement>, \"open\" | ... 1 more ... | keyof DialogOwnProps>'.\n  Property 'open' does not exist on type 'IntrinsicAttributes & DialogOwnProps & Omit<DetailedHTMLProps<DialogHTMLAttributes<HTMLDialogElement>, HTMLDialogElement>, \"open\" | ... 1 more ... | keyof DialogOwnProps>'."
+        },
+        {
+          "source": "contract",
+          "severity": "error",
+          "code": "urushi/valid-props",
+          "file": "screen.tsx",
+          "line": 6,
+          "column": 26,
+          "message": "<Dialog> に open という props はありません。開閉は <Dialog.Trigger dialog=\"…\"> と <Dialog.Close dialog=\"…\"> がブラウザの機能でします。open・onOpenChange と useState は要りません。閉じたあとの処理は <Dialog> の onClose に書きます。",
+          "excerpt": "    <Dialog id=\"confirm\" open onOpenChange={() => {}} />"
+        },
+        {
+          "source": "contract",
+          "severity": "error",
+          "code": "urushi/valid-props",
+          "file": "screen.tsx",
+          "line": 6,
+          "column": 31,
+          "message": "<Dialog> に onOpenChange という props はありません。開閉は <Dialog.Trigger dialog=\"…\"> と <Dialog.Close dialog=\"…\"> がブラウザの機能でします。open・onOpenChange と useState は要りません。閉じたあとの処理は <Dialog> の onClose に書きます。",
+          "excerpt": "    <Dialog id=\"confirm\" open onOpenChange={() => {}} />"
+        }
+      ],
+      "contracts": [
+        {
+          "name": "button",
+          "tier": 1,
+          "summary": "A native <button> that runs or confirms an action.",
+          "use": [
+            "Submitting a form",
+            "Confirming a dialog",
+            "Opening a dialog or popover through `command`"
+          ],
+          "avoid": [
+            {
+              "case": "Navigating to another page",
+              "instead": "link"
+            },
+            {
+              "case": "Toggling a setting on and off",
+              "instead": "switch"
+            }
+          ],
+          "rendering": "server",
+          "platform": {
+            "requires": [
+              "invoker-commands"
+            ],
+            "enhances": [
+              {
+                "feature": "corner-shape",
+                "fallback": "border-radius only"
+              }
+            ]
+          },
+          "parts": [
+            {
+              "jsx": "Button",
+              "slot": "button",
+              "element": "button",
+              "description": "The button itself. Defaults to type=\"button\" so it never submits by accident.",
+              "props": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "variant": {
+                    "default": "secondary",
+                    "description": "primary is the single main action of a view. danger is for destructive actions.",
+                    "type": "string",
+                    "enum": [
+                      "primary",
+                      "secondary",
+                      "ghost",
+                      "danger"
+                    ]
+                  },
+                  "size": {
+                    "default": "md",
+                    "description": "Control height. Density comes from the pack, not from this prop.",
+                    "type": "string",
+                    "enum": [
+                      "sm",
+                      "md",
+                      "lg"
+                    ]
+                  },
+                  "loading": {
+                    "default": false,
+                    "description": "While true the button reports aria-disabled, ignores activation and never submits a form.",
+                    "type": "boolean"
+                  },
+                  "command": {
+                    "description": "Invoker command (HTML `command` attribute). Works without JavaScript.",
+                    "type": "string",
+                    "enum": [
+                      "show-modal",
+                      "close",
+                      "request-close",
+                      "toggle-popover",
+                      "show-popover",
+                      "hide-popover"
+                    ]
+                  },
+                  "commandfor": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Id of the dialog or popover the command targets (HTML `commandfor`).",
+                    "x-idref": true
+                  }
+                }
+              },
+              "overrides": [
+                "margin",
+                "width",
+                "layout",
+                "position"
+              ]
+            }
+          ],
+          "states": [
+            "disabled",
+            "loading",
+            "hover",
+            "active",
+            "focus-visible"
+          ],
+          "a11y": {
+            "apg": "button",
+            "keyboard": {
+              "Enter": "activate",
+              "Space": "activate"
+            },
+            "rules": [
+              "An icon-only button needs aria-label.",
+              "Use at most one primary button per view.",
+              "Loading buttons stay focusable (aria-disabled), they are never natively disabled."
+            ]
+          },
+          "tokens": [
+            "color.action",
+            "color.secondary",
+            "color.danger",
+            "radius.control",
+            "control.*",
+            "motion.fast"
+          ],
+          "examples": [
+            {
+              "title": "Primary action",
+              "code": "<Button variant=\"primary\" type=\"submit\">Save</Button>"
+            },
+            {
+              "title": "Open a dialog without JavaScript",
+              "code": "<Button command=\"show-modal\" commandfor=\"confirm\">Delete</Button>"
+            }
+          ]
+        },
+        {
+          "name": "dialog",
+          "styleDependencies": [
+            "button"
+          ],
+          "tier": 2,
+          "summary": "A modal native <dialog> that interrupts the user for a confirmation or a short task.",
+          "use": [
+            "Confirming a destructive action",
+            "A short form that must be finished before continuing"
+          ],
+          "avoid": [
+            {
+              "case": "Showing supplementary information next to a control",
+              "instead": "popover"
+            },
+            {
+              "case": "Reporting the result of an action",
+              "instead": "toast"
+            }
+          ],
+          "rendering": "server",
+          "platform": {
+            "requires": [
+              "dialog",
+              "invoker-commands",
+              ":modal",
+              "@starting-style"
+            ],
+            "enhances": [
+              {
+                "feature": "dialog-closedby",
+                "fallback": "@urushi/core/closedby (loaded by <UrushiRuntime />)"
+              },
+              {
+                "feature": "overlay-transition",
+                "fallback": "the dialog closes without an exit animation"
+              }
+            ]
+          },
+          "parts": [
+            {
+              "jsx": "Dialog",
+              "slot": "dialog",
+              "element": "dialog",
+              "description": "The <dialog> element. Opened with showModal() by a trigger's `show-modal` command.",
+              "props": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Required. Triggers and close buttons reference it."
+                  },
+                  "title": {
+                    "description": "Required accessible title, rendered as the dialog heading.",
+                    "x-ts-type": "React.ReactNode"
+                  },
+                  "description": {
+                    "description": "Optional supporting text, linked with aria-describedby.",
+                    "x-ts-type": "React.ReactNode"
+                  },
+                  "dismissible": {
+                    "default": "any",
+                    "description": "any: Escape or a click outside closes it. closerequest: Escape only. none: only explicit buttons.",
+                    "type": "string",
+                    "enum": [
+                      "any",
+                      "closerequest",
+                      "none"
+                    ]
+                  },
+                  "size": {
+                    "default": "md",
+                    "description": "Maximum inline size.",
+                    "type": "string",
+                    "enum": [
+                      "sm",
+                      "md",
+                      "lg"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "title"
+                ]
+              },
+              "overrides": [
+                "width"
+              ]
+            },
+            {
+              "jsx": "Dialog.Trigger",
+              "slot": "dialog-trigger",
+              "element": "button",
+              "description": "A Button that opens the dialog (command=\"show-modal\").",
+              "props": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "dialog": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Id of the dialog to open.",
+                    "x-idref": "dialog"
+                  },
+                  "variant": {
+                    "default": "secondary",
+                    "description": "primary is the single main action of a view. danger is for destructive actions.",
+                    "type": "string",
+                    "enum": [
+                      "primary",
+                      "secondary",
+                      "ghost",
+                      "danger"
+                    ]
+                  },
+                  "size": {
+                    "default": "md",
+                    "description": "Control height. Density comes from the pack, not from this prop.",
+                    "type": "string",
+                    "enum": [
+                      "sm",
+                      "md",
+                      "lg"
+                    ]
+                  }
+                },
+                "required": [
+                  "dialog"
+                ]
+              },
+              "overrides": [
+                "margin",
+                "width",
+                "layout",
+                "position"
+              ]
+            },
+            {
+              "jsx": "Dialog.Close",
+              "slot": "dialog-close",
+              "element": "button",
+              "description": "A Button that closes the dialog with a native command after the click handler. Do not disable or unmount this button in that handler: it would cancel the native default action. For a successful mutation, use a normal Button and close the dialog ref before changing state. For async work, close only after success.",
+              "props": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "dialog": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Id of the dialog to close.",
+                    "x-idref": "dialog"
+                  },
+                  "variant": {
+                    "default": "secondary",
+                    "description": "primary is the single main action of a view. danger is for destructive actions.",
+                    "type": "string",
+                    "enum": [
+                      "primary",
+                      "secondary",
+                      "ghost",
+                      "danger"
+                    ]
+                  },
+                  "size": {
+                    "default": "md",
+                    "description": "Control height. Density comes from the pack, not from this prop.",
+                    "type": "string",
+                    "enum": [
+                      "sm",
+                      "md",
+                      "lg"
+                    ]
+                  }
+                },
+                "required": [
+                  "dialog"
+                ]
+              },
+              "overrides": [
+                "margin",
+                "width",
+                "layout",
+                "position"
+              ]
+            },
+            {
+              "jsx": "Dialog.Actions",
+              "slot": "dialog-actions",
+              "element": "div",
+              "description": "Footer row for the dialog's buttons. Put the primary action last.",
+              "props": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {}
+              },
+              "overrides": []
+            }
+          ],
+          "states": [
+            "open",
+            "modal"
+          ],
+          "a11y": {
+            "apg": "dialog-modal",
+            "keyboard": {
+              "Escape": "close (unless dismissible=\"none\")",
+              "Tab": "moves focus within the dialog only"
+            },
+            "focus": {
+              "initial": "first focusable element, or the element with autofocus",
+              "restore": "the trigger"
+            },
+            "rules": [
+              "Install UrushiRuntime to restore the clicked invoker after closing on Safari too; without it, pointer focus follows browser settings.",
+              "title is required; it becomes the accessible name through aria-labelledby.",
+              "Every Dialog.Trigger and Dialog.Close must reference an existing Dialog id.",
+              "Destructive confirmations should put focus on the safe action with autofocus.",
+              "For client-side mutations, hold a ref<HTMLDialogElement> on Dialog. On success call ref.current?.close() before removing the trigger or changing state. Use Button for that action; Dialog.Close is suitable for Cancel."
+            ]
+          },
+          "tokens": [
+            "color.surface.overlay",
+            "color.backdrop",
+            "radius.overlay",
+            "shadow.overlay",
+            "motion.overlay",
+            "dialog.size.*"
+          ],
+          "examples": [
+            {
+              "title": "Confirm a destructive action",
+              "code": "<Dialog.Trigger dialog=\"confirm-delete\" variant=\"danger\">Delete</Dialog.Trigger>\n<Dialog id=\"confirm-delete\" title=\"Delete this project?\" description=\"This cannot be undone.\">\n  <Dialog.Actions>\n    <Dialog.Close dialog=\"confirm-delete\" autoFocus>Cancel</Dialog.Close>\n    <Button variant=\"danger\" type=\"submit\" form=\"delete-form\">Delete</Button>\n  </Dialog.Actions>\n</Dialog>"
+            }
+          ]
+        }
+      ],
+      "notChecked": [
+        "rendered layout",
+        "browser interaction",
+        "screen reader behavior",
+        "dynamic values and cross-file ID references"
+      ]
+    }
+  },
+  "after": {
+    "code": "import { Dialog } from \"@urushi/react\";\n\nexport default function Confirm() {\n  return <>\n    <Dialog.Trigger dialog=\"confirm\" variant=\"danger\">削除する</Dialog.Trigger>\n    <Dialog id=\"confirm\" title=\"タスクを削除しますか？\">\n      <Dialog.Actions>\n        <Dialog.Close dialog=\"confirm\" variant=\"ghost\" autoFocus>キャンセル</Dialog.Close>\n        <Dialog.Close dialog=\"confirm\" variant=\"danger\">削除する</Dialog.Close>\n      </Dialog.Actions>\n    </Dialog>\n  </>;\n}\n",
+    "sha256": "ae6eba44aafb1dec8a634e87055def32e17d7602f6596945b45e9070d04699f9",
+    "report": {
+      "schemaVersion": 1,
+      "status": "pass",
+      "project": "tsconfig.json",
+      "summary": {
+        "errors": 0,
+        "warnings": 0,
+        "lintedFiles": 1,
+        "typechecked": true
+      },
+      "issues": [],
+      "contracts": [],
+      "notChecked": [
+        "rendered layout",
+        "browser interaction",
+        "screen reader behavior",
+        "dynamic values and cross-file ID references"
+      ]
+    }
+  }
+}

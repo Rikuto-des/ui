@@ -1,0 +1,535 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@24/24.18.0/bin/node",
+      "/Users/rikuto/Developer/ui/node_modules/.pnpm/@playwright+test@1.64.1/node_modules/@playwright/test/cli.js",
+      "test",
+      "-c",
+      "evals/competition/composition-loading-audit.config.ts"
+    ],
+    "configFile": "/Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.config.ts",
+    "rootDir": "/Users/rikuto/Developer/ui/evals/competition",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/rikuto/Developer/ui/evals/competition",
+        "testIgnore": [
+          "**/runs/**"
+        ],
+        "testMatch": [
+          "composition-loading-audit.spec.ts"
+        ],
+        "timeout": 15000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "name": "chromium",
+        "testDir": "/Users/rikuto/Developer/ui/evals/competition",
+        "snapshotDir": "/Users/rikuto/Developer/ui/evals/competition",
+        "testIgnore": "**/runs/**",
+        "testMatch": "composition-loading-audit.spec.ts",
+        "timeout": 15000,
+        "use": {
+          "baseURL": "http://localhost:4487",
+          "reducedMotion": "reduce",
+          "screenshot": "on",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/Users/rikuto/Developer/ui/evals/competition/studies/composition-20261029/loading-audit.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 4,
+    "webServer": {
+      "command": "node scripts/serve-static.ts evals/competition/runs 4487",
+      "cwd": "/Users/rikuto/Developer/ui",
+      "url": "http://localhost:4487/composition-sol-v2/urushi-settings-1/update/dist/",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "composition-loading-audit.spec.ts",
+      "file": "composition-loading-audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "urushi-1-update: Escape during loading preserves its parent dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 685,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:31:21.167Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--01143-preserves-its-parent-dialog-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-bce453a6bf75657d75c1",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "urushi-2-update: Escape during loading preserves its parent dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 650,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:31:21.163Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--bc1c9-preserves-its-parent-dialog-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-9b7264f002420b0f9852",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "urushi-3-update: Escape during loading preserves its parent dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 654,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:31:21.166Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--a6293-preserves-its-parent-dialog-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-fd389593d91e0ab32255",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-1-update: Escape during loading preserves its parent dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 860,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:31:21.162Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--df32c-preserves-its-parent-dialog-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-9f054021da3f668d9d6b",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-2-update: Escape during loading preserves its parent dialog",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 3586,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'Edit project', exact: true })\nExpected: visible\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Edit project', exact: true }) with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Edit project', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'Edit project', exact: true })\nExpected: visible\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Edit project', exact: true }) with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Edit project', exact: true })\u001b[22m\n\n    at /Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts:10:234",
+                    "location": {
+                      "file": "/Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts",
+                      "column": 234,
+                      "line": 10
+                    },
+                    "snippet": "   8 |    await page.goto(`/composition-sol-v2/${library}-settings-${trial}/${stage}/dist/`);await page.getByRole('button',{name:'Edit Atlas',exact:true}).click();const box=page.getByRole('combobox',{name:'Owner',exact:true});await box.fill('former');await expect.poll(()=>seen).toBe(true);\n   9 |    await test.info().attach('loading-state',{body:JSON.stringify({expanded:await box.getAttribute('aria-expanded'),loadingVisible:await page.getByText('Loading owners',{exact:true}).isVisible()}),contentType:'application/json'});\n> 10 |    await expect(page.getByText('Loading owners',{exact:true})).toBeVisible();await expect(box).toHaveAttribute('aria-expanded','true');await box.press('Escape');await expect(page.getByRole('dialog',{name:'Edit project',exact:true})).toBeVisible();\n     |                                                                                                                                                                                                                                          ^\n  11 |   }finally{release();}\n  12 |  });\n  13 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts",
+                        "column": 234,
+                        "line": 10
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'Edit project', exact: true })\nExpected: visible\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Edit project', exact: true }) with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Edit project', exact: true })\u001b[22m\n\n\n   8 |    await page.goto(`/composition-sol-v2/${library}-settings-${trial}/${stage}/dist/`);await page.getByRole('button',{name:'Edit Atlas',exact:true}).click();const box=page.getByRole('combobox',{name:'Owner',exact:true});await box.fill('former');await expect.poll(()=>seen).toBe(true);\n   9 |    await test.info().attach('loading-state',{body:JSON.stringify({expanded:await box.getAttribute('aria-expanded'),loadingVisible:await page.getByText('Loading owners',{exact:true}).isVisible()}),contentType:'application/json'});\n> 10 |    await expect(page.getByText('Loading owners',{exact:true})).toBeVisible();await expect(box).toHaveAttribute('aria-expanded','true');await box.press('Escape');await expect(page.getByRole('dialog',{name:'Edit project',exact:true})).toBeVisible();\n     |                                                                                                                                                                                                                                          ^\n  11 |   }finally{release();}\n  12 |  });\n  13 | }\n    at /Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts:10:234"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:31:22.130Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--f7777-preserves-its-parent-dialog-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--f7777-preserves-its-parent-dialog-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts",
+                    "column": 234,
+                    "line": 10
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-f36c5ce3d69cb5446049",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-2-update-repair: Escape during loading preserves its parent dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 598,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:31:22.132Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--f2d19-preserves-its-parent-dialog-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-596b0d613cf9d21ae788",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-3-update: Escape during loading preserves its parent dialog",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3557,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'Edit project', exact: true })\nExpected: visible\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Edit project', exact: true }) with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Edit project', exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'Edit project', exact: true })\nExpected: visible\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Edit project', exact: true }) with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Edit project', exact: true })\u001b[22m\n\n    at /Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts:10:234",
+                    "location": {
+                      "file": "/Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts",
+                      "column": 234,
+                      "line": 10
+                    },
+                    "snippet": "   8 |    await page.goto(`/composition-sol-v2/${library}-settings-${trial}/${stage}/dist/`);await page.getByRole('button',{name:'Edit Atlas',exact:true}).click();const box=page.getByRole('combobox',{name:'Owner',exact:true});await box.fill('former');await expect.poll(()=>seen).toBe(true);\n   9 |    await test.info().attach('loading-state',{body:JSON.stringify({expanded:await box.getAttribute('aria-expanded'),loadingVisible:await page.getByText('Loading owners',{exact:true}).isVisible()}),contentType:'application/json'});\n> 10 |    await expect(page.getByText('Loading owners',{exact:true})).toBeVisible();await expect(box).toHaveAttribute('aria-expanded','true');await box.press('Escape');await expect(page.getByRole('dialog',{name:'Edit project',exact:true})).toBeVisible();\n     |                                                                                                                                                                                                                                          ^\n  11 |   }finally{release();}\n  12 |  });\n  13 | }"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts",
+                        "column": 234,
+                        "line": 10
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('dialog', { name: 'Edit project', exact: true })\nExpected: visible\nTimeout: 3000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('dialog', { name: 'Edit project', exact: true }) with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Edit project', exact: true })\u001b[22m\n\n\n   8 |    await page.goto(`/composition-sol-v2/${library}-settings-${trial}/${stage}/dist/`);await page.getByRole('button',{name:'Edit Atlas',exact:true}).click();const box=page.getByRole('combobox',{name:'Owner',exact:true});await box.fill('former');await expect.poll(()=>seen).toBe(true);\n   9 |    await test.info().attach('loading-state',{body:JSON.stringify({expanded:await box.getAttribute('aria-expanded'),loadingVisible:await page.getByText('Loading owners',{exact:true}).isVisible()}),contentType:'application/json'});\n> 10 |    await expect(page.getByText('Loading owners',{exact:true})).toBeVisible();await expect(box).toHaveAttribute('aria-expanded','true');await box.press('Escape');await expect(page.getByRole('dialog',{name:'Edit project',exact:true})).toBeVisible();\n     |                                                                                                                                                                                                                                          ^\n  11 |   }finally{release();}\n  12 |  });\n  13 | }\n    at /Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts:10:234"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:31:22.164Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--920cc-preserves-its-parent-dialog-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--920cc-preserves-its-parent-dialog-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/rikuto/Developer/ui/evals/competition/composition-loading-audit.spec.ts",
+                    "column": 234,
+                    "line": 10
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-1c3a578ef3243a4fc347",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        },
+        {
+          "title": "base-3-update-repair: Escape during loading preserves its parent dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 547,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T03:31:22.336Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "loading-state",
+                      "contentType": "application/json",
+                      "body": "eyJleHBhbmRlZCI6InRydWUiLCJsb2FkaW5nVmlzaWJsZSI6dHJ1ZX0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/rikuto/Developer/ui/test-results/composition-loading-audit/composition-loading-audit--0dd60-preserves-its-parent-dialog-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "916191c04e47ca145ad0-c7b620e1c8b367b3f50c",
+          "file": "composition-loading-audit.spec.ts",
+          "line": 4,
+          "column": 2
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-29T03:31:20.326Z",
+    "duration": 5432.996999999999,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

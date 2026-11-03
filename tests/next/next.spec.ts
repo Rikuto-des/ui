@@ -47,7 +47,7 @@ for (const javaScriptEnabled of [true, false]) {
       await expect(page.getByRole("tabpanel", { name: "リスト" })).toBeVisible();
       await expect(page.locator("#views-panel-board")).toBeHidden();
       const items = page.getByTestId("faq").locator("details");
-      await page.getByText("部品のコードはブラウザに送られますか？").click();
+      await page.getByText("コンポーネントのコードはブラウザに送られますか？").click();
       await expect(items.nth(1)).toHaveAttribute("open", "");
       await expect(items.nth(0)).not.toHaveAttribute("open");
     });
@@ -80,7 +80,7 @@ test.describe("Next.js with the runtime", () => {
       expect(all, `component code "${marker}" was shipped`).not.toContain(marker);
     }
     // The runtime is there (its tabs behavior announces changes with this event).
-    expect(all).toContain("yl-tabs-change");
+    expect(all).toContain("ur-tabs-change");
   });
 
   test("the runtime adds tab and menu keyboard behavior to server-rendered markup", async ({ page }) => {

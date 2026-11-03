@@ -1,0 +1,19 @@
+{
+  "name": "button-group",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/button-group.json",
+  "files": [
+    {
+      "path": "button-group.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add button-group`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the ButtonGroup page of the design system.\nexport { ButtonGroup, type ButtonGroupProps } from \"@urushi/react/button-group\";\n",
+      "hash": "sha256-tRoc5alaEzGfpDzQ4E8RixdMVuuVOwRh2gcr2VpcYDs="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/button-group.css"
+  ]
+}

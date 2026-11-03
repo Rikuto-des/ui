@@ -1,0 +1,250 @@
+{
+  "measuredAt": "2026-10-27T14:54:49.647Z",
+  "run": "measured-v3",
+  "repairRun": "repair-v3",
+  "model": "gpt-6.1-sol",
+  "effort": "medium",
+  "trials": 2,
+  "commonCssGzip": 9703,
+  "commonCssSha256": "a7953dd54c15991f4e69e887303d654c38ad800f0f1bf74a32dbca71742b97fd",
+  "libraries": [
+    {
+      "id": "urushi",
+      "label": "Urushi",
+      "n": 2,
+      "generate": 2,
+      "generatedAfterRepair": 2,
+      "update": 2,
+      "final": 2,
+      "seededRepair": 2,
+      "internalClean": 2,
+      "sourceBytes": [
+        3154,
+        3323
+      ],
+      "jsGzip": [
+        73006,
+        73021
+      ],
+      "withoutReactGzip": [
+        4134,
+        4167
+      ],
+      "cssGzip": [
+        2414,
+        2414
+      ],
+      "totalGzip": [
+        85123,
+        85138
+      ],
+      "usage": {
+        "input": 65417,
+        "output": 4673,
+        "calls": 6
+      },
+      "samples": [
+        {
+          "id": "urushi-navigation-menu-1",
+          "stage": "update",
+          "sourceBytes": 3154,
+          "jsGzip": 73006,
+          "withoutReactGzip": 4134,
+          "cssGzip": 2414,
+          "totalGzip": 85123
+        },
+        {
+          "id": "urushi-navigation-menu-2",
+          "stage": "update",
+          "sourceBytes": 3323,
+          "jsGzip": 73021,
+          "withoutReactGzip": 4167,
+          "cssGzip": 2414,
+          "totalGzip": 85138
+        }
+      ]
+    },
+    {
+      "id": "base",
+      "label": "Base UI",
+      "n": 2,
+      "generate": 2,
+      "generatedAfterRepair": 2,
+      "update": 2,
+      "final": 2,
+      "seededRepair": 2,
+      "internalClean": null,
+      "sourceBytes": [
+        6459,
+        7006
+      ],
+      "jsGzip": [
+        108305,
+        108460
+      ],
+      "withoutReactGzip": [
+        39952,
+        40091
+      ],
+      "cssGzip": [
+        0,
+        0
+      ],
+      "totalGzip": [
+        118008,
+        118163
+      ],
+      "usage": {
+        "input": 124514,
+        "output": 8310,
+        "calls": 6
+      },
+      "samples": [
+        {
+          "id": "base-navigation-menu-1",
+          "stage": "update",
+          "sourceBytes": 7006,
+          "jsGzip": 108460,
+          "withoutReactGzip": 40091,
+          "cssGzip": 0,
+          "totalGzip": 118163
+        },
+        {
+          "id": "base-navigation-menu-2",
+          "stage": "update",
+          "sourceBytes": 6459,
+          "jsGzip": 108305,
+          "withoutReactGzip": 39952,
+          "cssGzip": 0,
+          "totalGzip": 118008
+        }
+      ]
+    },
+    {
+      "id": "radix",
+      "label": "Radix UI",
+      "n": 2,
+      "generate": 2,
+      "generatedAfterRepair": 2,
+      "update": 2,
+      "final": 2,
+      "seededRepair": 2,
+      "internalClean": null,
+      "sourceBytes": [
+        5008,
+        5453
+      ],
+      "jsGzip": [
+        83242,
+        83488
+      ],
+      "withoutReactGzip": [
+        14332,
+        14581
+      ],
+      "cssGzip": [
+        0,
+        0
+      ],
+      "totalGzip": [
+        92945,
+        93191
+      ],
+      "usage": {
+        "input": 61245,
+        "output": 7414,
+        "calls": 6
+      },
+      "samples": [
+        {
+          "id": "radix-navigation-menu-1",
+          "stage": "update",
+          "sourceBytes": 5008,
+          "jsGzip": 83242,
+          "withoutReactGzip": 14332,
+          "cssGzip": 0,
+          "totalGzip": 92945
+        },
+        {
+          "id": "radix-navigation-menu-2",
+          "stage": "update",
+          "sourceBytes": 5453,
+          "jsGzip": 83488,
+          "withoutReactGzip": 14581,
+          "cssGzip": 0,
+          "totalGzip": 93191
+        }
+      ]
+    },
+    {
+      "id": "shadcn",
+      "label": "shadcn/ui (Radix)",
+      "n": 2,
+      "generate": 0,
+      "generatedAfterRepair": 1,
+      "update": 1,
+      "final": 2,
+      "seededRepair": 0,
+      "internalClean": null,
+      "sourceBytes": [
+        3682,
+        4482
+      ],
+      "jsGzip": [
+        97015,
+        97080
+      ],
+      "withoutReactGzip": [
+        28003,
+        28058
+      ],
+      "cssGzip": [
+        0,
+        0
+      ],
+      "totalGzip": [
+        106718,
+        106783
+      ],
+      "usage": {
+        "input": 88500,
+        "output": 10068,
+        "calls": 9
+      },
+      "samples": [
+        {
+          "id": "shadcn-navigation-menu-1",
+          "stage": "update",
+          "sourceBytes": 4482,
+          "jsGzip": 97080,
+          "withoutReactGzip": 28058,
+          "cssGzip": 0,
+          "totalGzip": 106783
+        },
+        {
+          "id": "shadcn-navigation-menu-2",
+          "stage": "update-repair",
+          "sourceBytes": 3682,
+          "jsGzip": 97015,
+          "withoutReactGzip": 28003,
+          "cssGzip": 0,
+          "totalGzip": 106718
+        }
+      ]
+    }
+  ],
+  "previous": {
+    "id": "measured-v2",
+    "allGeneratedAndUpdatedPassed": true,
+    "urushiInitialAndUpdatedInternalClean": 0
+  },
+  "limitations": [
+    "One model, one header scenario, two independent trials.",
+    "Development comparison; earlier v2 passed all four libraries. Do not infer a general success-rate ranking.",
+    "Focus-sentinel-only axe findings are advisory; raw findings and redirect probes are retained. No screen-reader user study.",
+    "Seeded repair starts from successful final outputs and injects three identical semantic faults.",
+    "One shared Tailwind stylesheet; not separately optimized CSS per app.",
+    "Sizes sum gzip of each JS/CSS asset; no HTML, images, fonts or startup timing.",
+    "Urushi full optional runtime is included. shadcn is the Radix edition."
+  ]
+}

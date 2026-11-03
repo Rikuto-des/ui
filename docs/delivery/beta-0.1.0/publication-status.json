@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-30T09:09:44.915734+00:00",
+  "npm": {
+    "registry": "https://registry.npmjs.org/",
+    "whoamiStatus": 401,
+    "published": false,
+    "scopePermission": "unverified"
+  },
+  "github": {
+    "repository": "Rikuto-des/ui",
+    "releaseState": "draft",
+    "visibility": "PRIVATE",
+    "releaseUrl": "https://github.com/Rikuto-des/ui/releases/tag/untagged-0dba516a608da48fe648",
+    "sourceCommit": "ab60022b174f45cce3723bbed04d055543af554a"
+  },
+  "productionSite": {
+    "deployed": false,
+    "url": null
+  }
+}

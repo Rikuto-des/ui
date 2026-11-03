@@ -1,0 +1,19 @@
+{
+  "name": "collapsible",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/collapsible.json",
+  "files": [
+    {
+      "path": "collapsible.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add collapsible`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Collapsible page of the design system.\nexport { Collapsible, type CollapsibleProps } from \"@urushi/react/collapsible\";\n",
+      "hash": "sha256-HSxVkEE4cgF143iZ+Q3WaMWpuYl7J2mXI3+YpJIkplQ="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/collapsible.css"
+  ]
+}

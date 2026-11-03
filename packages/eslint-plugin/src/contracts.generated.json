@@ -32,12 +32,255 @@
     ],
     "props": [
       "title",
+      "description",
       "defaultOpen"
     ],
     "attributes": [
       "name"
     ],
     "omits": []
+  },
+  "AlertDialog": {
+    "contract": "alert-dialog",
+    "slot": "alert-dialog",
+    "element": "dialog",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": "alert-dialog",
+    "required": [
+      "id",
+      "title",
+      "description"
+    ],
+    "props": [
+      "id",
+      "title",
+      "description"
+    ],
+    "attributes": [
+      "onCancel",
+      "onClose"
+    ],
+    "omits": [
+      "role"
+    ]
+  },
+  "AlertDialog.Trigger": {
+    "contract": "alert-dialog",
+    "slot": "alert-dialog-trigger",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "alertDialog": "alert-dialog"
+    },
+    "provides": null,
+    "required": [
+      "alertDialog"
+    ],
+    "props": [
+      "alertDialog",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "AlertDialog.Cancel": {
+    "contract": "alert-dialog",
+    "slot": "alert-dialog-cancel",
+    "element": "button",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {
+      "alertDialog": "alert-dialog"
+    },
+    "provides": null,
+    "required": [
+      "alertDialog"
+    ],
+    "props": [
+      "alertDialog"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "size",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "AlertDialog.Action": {
+    "contract": "alert-dialog",
+    "slot": "alert-dialog-action",
+    "element": "button",
+    "overrides": [],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ]
+    },
+    "idrefs": {
+      "alertDialog": "alert-dialog"
+    },
+    "provides": null,
+    "required": [
+      "alertDialog"
+    ],
+    "props": [
+      "alertDialog",
+      "variant"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "size",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Alert": {
+    "contract": "alert",
+    "slot": "alert",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "tone": [
+        "neutral",
+        "accent",
+        "ok",
+        "warning",
+        "danger"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title"
+    ],
+    "props": [
+      "title",
+      "tone",
+      "action"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "AspectRatio": {
+    "contract": "aspect-ratio",
+    "slot": "aspect-ratio",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "ratio"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Avatar": {
+    "contract": "avatar",
+    "slot": "avatar",
+    "element": "span",
+    "overrides": [
+      "margin",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "status": [
+        "online",
+        "away",
+        "busy",
+        "offline"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "name"
+    ],
+    "props": [
+      "name",
+      "status",
+      "statusLabel",
+      "src",
+      "size"
+    ],
+    "attributes": [],
+    "omits": [
+      "children"
+    ]
   },
   "Badge": {
     "contract": "badge",
@@ -62,6 +305,71 @@
     "props": [
       "tone",
       "dot"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Breadcrumb": {
+    "contract": "breadcrumb",
+    "slot": "breadcrumb",
+    "element": "nav",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "label"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Breadcrumb.Item": {
+    "contract": "breadcrumb",
+    "slot": "breadcrumb-item",
+    "element": "li",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "href",
+      "current"
+    ],
+    "attributes": [
+      "value"
+    ],
+    "omits": []
+  },
+  "ButtonGroup": {
+    "contract": "button-group",
+    "slot": "button-group",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "orientation"
     ],
     "attributes": [],
     "omits": []
@@ -155,8 +463,46 @@
       "description",
       "footer",
       "headingLevel",
+      "selected",
       "padding"
     ],
+    "attributes": [],
+    "omits": []
+  },
+  "Carousel": {
+    "contract": "carousel",
+    "slot": "carousel",
+    "element": "section",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "previousLabel",
+      "nextLabel"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Carousel.Item": {
+    "contract": "carousel",
+    "slot": "carousel-item",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [],
     "attributes": [],
     "omits": []
   },
@@ -211,6 +557,751 @@
     ],
     "omits": []
   },
+  "Collapsible": {
+    "contract": "collapsible",
+    "slot": "collapsible",
+    "element": "details",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title"
+    ],
+    "props": [
+      "title",
+      "description",
+      "defaultOpen"
+    ],
+    "attributes": [
+      "name"
+    ],
+    "omits": []
+  },
+  "Combobox": {
+    "contract": "combobox",
+    "slot": "combobox",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "filter": [
+        "local",
+        "manual"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label",
+      "options"
+    ],
+    "props": [
+      "label",
+      "options",
+      "value",
+      "defaultValue",
+      "onValueChange",
+      "query",
+      "onQueryChange",
+      "filter",
+      "loadOptions",
+      "loadingText",
+      "errorText",
+      "retryLabel",
+      "loading",
+      "emptyText",
+      "renderPreview",
+      "previewLabel",
+      "previewActionLabel"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "src",
+      "step",
+      "width"
+    ],
+    "omits": [
+      "onChange"
+    ]
+  },
+  "Command": {
+    "contract": "command",
+    "slot": "command",
+    "element": "dialog",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label",
+      "open",
+      "onOpenChange",
+      "items"
+    ],
+    "props": [
+      "label",
+      "open",
+      "onOpenChange",
+      "items",
+      "placeholder",
+      "emptyText",
+      "closeLabel",
+      "navigationHint",
+      "actionHint"
+    ],
+    "attributes": [],
+    "omits": [
+      "about",
+      "accessKey",
+      "autoCapitalize",
+      "autoCorrect",
+      "autoFocus",
+      "autoSave",
+      "children",
+      "className",
+      "color",
+      "content",
+      "contentEditable",
+      "contextMenu",
+      "dangerouslySetInnerHTML",
+      "datatype",
+      "defaultChecked",
+      "defaultValue",
+      "dir",
+      "draggable",
+      "enterKeyHint",
+      "exportparts",
+      "hidden",
+      "id",
+      "inert",
+      "inlist",
+      "inputMode",
+      "is",
+      "itemID",
+      "itemProp",
+      "itemRef",
+      "itemScope",
+      "itemType",
+      "key",
+      "lang",
+      "nonce",
+      "onAbort",
+      "onAbortCapture",
+      "onAnimationEnd",
+      "onAnimationEndCapture",
+      "onAnimationIteration",
+      "onAnimationIterationCapture",
+      "onAnimationStart",
+      "onAnimationStartCapture",
+      "onAuxClick",
+      "onAuxClickCapture",
+      "onBeforeInput",
+      "onBeforeInputCapture",
+      "onBeforeToggle",
+      "onBlur",
+      "onBlurCapture",
+      "onCanPlay",
+      "onCanPlayCapture",
+      "onCanPlayThrough",
+      "onCanPlayThroughCapture",
+      "onChange",
+      "onChangeCapture",
+      "onClick",
+      "onClickCapture",
+      "onCompositionEnd",
+      "onCompositionEndCapture",
+      "onCompositionStart",
+      "onCompositionStartCapture",
+      "onCompositionUpdate",
+      "onCompositionUpdateCapture",
+      "onContextMenu",
+      "onContextMenuCapture",
+      "onCopy",
+      "onCopyCapture",
+      "onCut",
+      "onCutCapture",
+      "onDoubleClick",
+      "onDoubleClickCapture",
+      "onDrag",
+      "onDragCapture",
+      "onDragEnd",
+      "onDragEndCapture",
+      "onDragEnter",
+      "onDragEnterCapture",
+      "onDragExit",
+      "onDragExitCapture",
+      "onDragLeave",
+      "onDragLeaveCapture",
+      "onDragOver",
+      "onDragOverCapture",
+      "onDragStart",
+      "onDragStartCapture",
+      "onDrop",
+      "onDropCapture",
+      "onDurationChange",
+      "onDurationChangeCapture",
+      "onEmptied",
+      "onEmptiedCapture",
+      "onEncrypted",
+      "onEncryptedCapture",
+      "onEnded",
+      "onEndedCapture",
+      "onError",
+      "onErrorCapture",
+      "onFocus",
+      "onFocusCapture",
+      "onGotPointerCapture",
+      "onGotPointerCaptureCapture",
+      "onInput",
+      "onInputCapture",
+      "onInvalid",
+      "onInvalidCapture",
+      "onKeyDown",
+      "onKeyDownCapture",
+      "onKeyPress",
+      "onKeyPressCapture",
+      "onKeyUp",
+      "onKeyUpCapture",
+      "onLoad",
+      "onLoadCapture",
+      "onLoadStart",
+      "onLoadStartCapture",
+      "onLoadedData",
+      "onLoadedDataCapture",
+      "onLoadedMetadata",
+      "onLoadedMetadataCapture",
+      "onLostPointerCapture",
+      "onLostPointerCaptureCapture",
+      "onMouseDown",
+      "onMouseDownCapture",
+      "onMouseEnter",
+      "onMouseLeave",
+      "onMouseMove",
+      "onMouseMoveCapture",
+      "onMouseOut",
+      "onMouseOutCapture",
+      "onMouseOver",
+      "onMouseOverCapture",
+      "onMouseUp",
+      "onMouseUpCapture",
+      "onPaste",
+      "onPasteCapture",
+      "onPause",
+      "onPauseCapture",
+      "onPlay",
+      "onPlayCapture",
+      "onPlaying",
+      "onPlayingCapture",
+      "onPointerCancel",
+      "onPointerCancelCapture",
+      "onPointerDown",
+      "onPointerDownCapture",
+      "onPointerEnter",
+      "onPointerLeave",
+      "onPointerMove",
+      "onPointerMoveCapture",
+      "onPointerOut",
+      "onPointerOutCapture",
+      "onPointerOver",
+      "onPointerOverCapture",
+      "onPointerUp",
+      "onPointerUpCapture",
+      "onProgress",
+      "onProgressCapture",
+      "onRateChange",
+      "onRateChangeCapture",
+      "onReset",
+      "onResetCapture",
+      "onScroll",
+      "onScrollCapture",
+      "onScrollEnd",
+      "onScrollEndCapture",
+      "onSeeked",
+      "onSeekedCapture",
+      "onSeeking",
+      "onSeekingCapture",
+      "onSelect",
+      "onSelectCapture",
+      "onStalled",
+      "onStalledCapture",
+      "onSubmit",
+      "onSubmitCapture",
+      "onSuspend",
+      "onSuspendCapture",
+      "onTimeUpdate",
+      "onTimeUpdateCapture",
+      "onToggle",
+      "onTouchCancel",
+      "onTouchCancelCapture",
+      "onTouchEnd",
+      "onTouchEndCapture",
+      "onTouchMove",
+      "onTouchMoveCapture",
+      "onTouchStart",
+      "onTouchStartCapture",
+      "onTransitionCancel",
+      "onTransitionCancelCapture",
+      "onTransitionEnd",
+      "onTransitionEndCapture",
+      "onTransitionRun",
+      "onTransitionRunCapture",
+      "onTransitionStart",
+      "onTransitionStartCapture",
+      "onVolumeChange",
+      "onVolumeChangeCapture",
+      "onWaiting",
+      "onWaitingCapture",
+      "onWheel",
+      "onWheelCapture",
+      "part",
+      "popover",
+      "popoverTarget",
+      "popoverTargetAction",
+      "prefix",
+      "property",
+      "radioGroup",
+      "ref",
+      "rel",
+      "resource",
+      "results",
+      "rev",
+      "role",
+      "security",
+      "slot",
+      "spellCheck",
+      "style",
+      "suppressContentEditableWarning",
+      "suppressHydrationWarning",
+      "tabIndex",
+      "title",
+      "translate",
+      "typeof",
+      "unselectable",
+      "vocab"
+    ]
+  },
+  "DataTable": {
+    "contract": "data-table",
+    "slot": "data-table",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label",
+      "rows",
+      "columns",
+      "getRowId"
+    ],
+    "props": [
+      "label",
+      "rows",
+      "columns",
+      "getRowId",
+      "getRowLabel",
+      "selectedIds",
+      "onSelectionChange",
+      "locale",
+      "pageSize",
+      "loading",
+      "renderDetails",
+      "empty"
+    ],
+    "attributes": [],
+    "omits": [
+      "about",
+      "accessKey",
+      "autoCapitalize",
+      "autoCorrect",
+      "autoFocus",
+      "autoSave",
+      "children",
+      "color",
+      "content",
+      "contentEditable",
+      "contextMenu",
+      "dangerouslySetInnerHTML",
+      "datatype",
+      "defaultChecked",
+      "defaultValue",
+      "dir",
+      "draggable",
+      "enterKeyHint",
+      "exportparts",
+      "hidden",
+      "id",
+      "inert",
+      "inlist",
+      "inputMode",
+      "is",
+      "itemID",
+      "itemProp",
+      "itemRef",
+      "itemScope",
+      "itemType",
+      "key",
+      "lang",
+      "nonce",
+      "onAbort",
+      "onAbortCapture",
+      "onAnimationEnd",
+      "onAnimationEndCapture",
+      "onAnimationIteration",
+      "onAnimationIterationCapture",
+      "onAnimationStart",
+      "onAnimationStartCapture",
+      "onAuxClick",
+      "onAuxClickCapture",
+      "onBeforeInput",
+      "onBeforeInputCapture",
+      "onBeforeToggle",
+      "onBlur",
+      "onBlurCapture",
+      "onCanPlay",
+      "onCanPlayCapture",
+      "onCanPlayThrough",
+      "onCanPlayThroughCapture",
+      "onChange",
+      "onChangeCapture",
+      "onClick",
+      "onClickCapture",
+      "onCompositionEnd",
+      "onCompositionEndCapture",
+      "onCompositionStart",
+      "onCompositionStartCapture",
+      "onCompositionUpdate",
+      "onCompositionUpdateCapture",
+      "onContextMenu",
+      "onContextMenuCapture",
+      "onCopy",
+      "onCopyCapture",
+      "onCut",
+      "onCutCapture",
+      "onDoubleClick",
+      "onDoubleClickCapture",
+      "onDrag",
+      "onDragCapture",
+      "onDragEnd",
+      "onDragEndCapture",
+      "onDragEnter",
+      "onDragEnterCapture",
+      "onDragExit",
+      "onDragExitCapture",
+      "onDragLeave",
+      "onDragLeaveCapture",
+      "onDragOver",
+      "onDragOverCapture",
+      "onDragStart",
+      "onDragStartCapture",
+      "onDrop",
+      "onDropCapture",
+      "onDurationChange",
+      "onDurationChangeCapture",
+      "onEmptied",
+      "onEmptiedCapture",
+      "onEncrypted",
+      "onEncryptedCapture",
+      "onEnded",
+      "onEndedCapture",
+      "onError",
+      "onErrorCapture",
+      "onFocus",
+      "onFocusCapture",
+      "onGotPointerCapture",
+      "onGotPointerCaptureCapture",
+      "onInput",
+      "onInputCapture",
+      "onInvalid",
+      "onInvalidCapture",
+      "onKeyDown",
+      "onKeyDownCapture",
+      "onKeyPress",
+      "onKeyPressCapture",
+      "onKeyUp",
+      "onKeyUpCapture",
+      "onLoad",
+      "onLoadCapture",
+      "onLoadStart",
+      "onLoadStartCapture",
+      "onLoadedData",
+      "onLoadedDataCapture",
+      "onLoadedMetadata",
+      "onLoadedMetadataCapture",
+      "onLostPointerCapture",
+      "onLostPointerCaptureCapture",
+      "onMouseDown",
+      "onMouseDownCapture",
+      "onMouseEnter",
+      "onMouseLeave",
+      "onMouseMove",
+      "onMouseMoveCapture",
+      "onMouseOut",
+      "onMouseOutCapture",
+      "onMouseOver",
+      "onMouseOverCapture",
+      "onMouseUp",
+      "onMouseUpCapture",
+      "onPaste",
+      "onPasteCapture",
+      "onPause",
+      "onPauseCapture",
+      "onPlay",
+      "onPlayCapture",
+      "onPlaying",
+      "onPlayingCapture",
+      "onPointerCancel",
+      "onPointerCancelCapture",
+      "onPointerDown",
+      "onPointerDownCapture",
+      "onPointerEnter",
+      "onPointerLeave",
+      "onPointerMove",
+      "onPointerMoveCapture",
+      "onPointerOut",
+      "onPointerOutCapture",
+      "onPointerOver",
+      "onPointerOverCapture",
+      "onPointerUp",
+      "onPointerUpCapture",
+      "onProgress",
+      "onProgressCapture",
+      "onRateChange",
+      "onRateChangeCapture",
+      "onReset",
+      "onResetCapture",
+      "onScroll",
+      "onScrollCapture",
+      "onScrollEnd",
+      "onScrollEndCapture",
+      "onSeeked",
+      "onSeekedCapture",
+      "onSeeking",
+      "onSeekingCapture",
+      "onSelect",
+      "onSelectCapture",
+      "onStalled",
+      "onStalledCapture",
+      "onSubmit",
+      "onSubmitCapture",
+      "onSuspend",
+      "onSuspendCapture",
+      "onTimeUpdate",
+      "onTimeUpdateCapture",
+      "onToggle",
+      "onTouchCancel",
+      "onTouchCancelCapture",
+      "onTouchEnd",
+      "onTouchEndCapture",
+      "onTouchMove",
+      "onTouchMoveCapture",
+      "onTouchStart",
+      "onTouchStartCapture",
+      "onTransitionCancel",
+      "onTransitionCancelCapture",
+      "onTransitionEnd",
+      "onTransitionEndCapture",
+      "onTransitionRun",
+      "onTransitionRunCapture",
+      "onTransitionStart",
+      "onTransitionStartCapture",
+      "onVolumeChange",
+      "onVolumeChangeCapture",
+      "onWaiting",
+      "onWaitingCapture",
+      "onWheel",
+      "onWheelCapture",
+      "part",
+      "popover",
+      "popoverTarget",
+      "popoverTargetAction",
+      "prefix",
+      "property",
+      "radioGroup",
+      "ref",
+      "rel",
+      "resource",
+      "results",
+      "rev",
+      "role",
+      "security",
+      "slot",
+      "spellCheck",
+      "style",
+      "suppressContentEditableWarning",
+      "suppressHydrationWarning",
+      "tabIndex",
+      "title",
+      "translate",
+      "typeof",
+      "unselectable",
+      "vocab"
+    ]
+  },
+  "DateInput": {
+    "contract": "date-input",
+    "slot": "date-input",
+    "element": "input",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "type": [
+        "date",
+        "time",
+        "datetime-local",
+        "month"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "type",
+      "size",
+      "invalid"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "src",
+      "step",
+      "value",
+      "width"
+    ],
+    "omits": []
+  },
+  "DatePicker": {
+    "contract": "date-picker",
+    "slot": "date-picker",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "value",
+      "defaultValue",
+      "onValueChange",
+      "min",
+      "max",
+      "locale",
+      "presets"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "maxLength",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "size",
+      "src",
+      "step",
+      "width"
+    ],
+    "omits": [
+      "onChange"
+    ]
+  },
   "Dialog": {
     "contract": "dialog",
     "slot": "dialog",
@@ -230,7 +1321,10 @@
         "lg"
       ]
     },
-    "idrefs": {},
+    "idrefs": {
+      "initialFocus": null,
+      "returnFocus": null
+    },
     "provides": "dialog",
     "required": [
       "id",
@@ -240,6 +1334,8 @@
       "id",
       "title",
       "description",
+      "initialFocus",
+      "returnFocus",
       "dismissible",
       "size"
     ],
@@ -364,6 +1460,34 @@
     "attributes": [],
     "omits": []
   },
+  "Empty": {
+    "contract": "empty",
+    "slot": "empty",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "height",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title"
+    ],
+    "props": [
+      "title",
+      "description",
+      "action",
+      "icon"
+    ],
+    "attributes": [],
+    "omits": [
+      "children"
+    ]
+  },
   "Field": {
     "contract": "field",
     "slot": "field",
@@ -385,10 +1509,177 @@
       "id",
       "label",
       "description",
+      "success",
       "error",
       "required",
       "hideLabel"
     ],
+    "attributes": [],
+    "omits": []
+  },
+  "FileInput": {
+    "contract": "file-input",
+    "slot": "file-input",
+    "element": "input",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "default",
+        "dropzone"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "variant",
+      "invalid",
+      "showFiles",
+      "removeLabel"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "size",
+      "src",
+      "step",
+      "value",
+      "width"
+    ],
+    "omits": []
+  },
+  "HoverCard": {
+    "contract": "hover-card",
+    "slot": "hover-card",
+    "element": "div",
+    "overrides": [],
+    "enums": {
+      "side": [
+        "top",
+        "bottom",
+        "start",
+        "end"
+      ],
+      "align": [
+        "start",
+        "center",
+        "end"
+      ]
+    },
+    "idrefs": {},
+    "provides": "hover-card",
+    "required": [
+      "id"
+    ],
+    "props": [
+      "id",
+      "side",
+      "align"
+    ],
+    "attributes": [],
+    "omits": [
+      "popover"
+    ]
+  },
+  "HoverCard.Trigger": {
+    "contract": "hover-card",
+    "slot": "hover-card-trigger",
+    "element": "a",
+    "overrides": [
+      "margin",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {
+      "hoverCard": "hover-card"
+    },
+    "provides": null,
+    "required": [
+      "hoverCard",
+      "href"
+    ],
+    "props": [
+      "hoverCard",
+      "href"
+    ],
+    "attributes": [
+      "download",
+      "hrefLang",
+      "interestfor",
+      "media",
+      "ping",
+      "referrerPolicy",
+      "target",
+      "type"
+    ],
+    "omits": []
+  },
+  "InputGroup": {
+    "contract": "input-group",
+    "slot": "input-group",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "size"
+    ],
+    "attributes": [
+      "required"
+    ],
+    "omits": []
+  },
+  "InputGroup.Addon": {
+    "contract": "input-group",
+    "slot": "input-group-addon",
+    "element": "span",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [],
     "attributes": [],
     "omits": []
   },
@@ -449,6 +1740,23 @@
     ],
     "omits": []
   },
+  "Kbd": {
+    "contract": "kbd",
+    "slot": "kbd",
+    "element": "kbd",
+    "overrides": [
+      "margin"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "pressed"
+    ],
+    "attributes": [],
+    "omits": []
+  },
   "Link": {
     "contract": "link",
     "slot": "link",
@@ -478,6 +1786,7 @@
     "attributes": [
       "download",
       "hrefLang",
+      "interestfor",
       "media",
       "ping",
       "referrerPolicy",
@@ -590,7 +1899,9 @@
     "provides": null,
     "required": [],
     "props": [
-      "variant"
+      "variant",
+      "description",
+      "shortcut"
     ],
     "attributes": [
       "command",
@@ -628,6 +1939,7 @@
     "attributes": [
       "download",
       "hrefLang",
+      "interestfor",
       "media",
       "ping",
       "referrerPolicy",
@@ -652,6 +1964,196 @@
     "omits": [
       "children",
       "role"
+    ]
+  },
+  "Meter": {
+    "contract": "meter",
+    "slot": "meter",
+    "element": "meter",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label",
+      "value"
+    ],
+    "props": [
+      "label",
+      "value",
+      "min",
+      "max",
+      "low",
+      "high",
+      "optimum",
+      "valueText"
+    ],
+    "attributes": [
+      "form"
+    ],
+    "omits": [
+      "children"
+    ]
+  },
+  "NavigationMenu": {
+    "contract": "navigation-menu",
+    "slot": "navigation-menu",
+    "element": "nav",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "openOnHover"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "NavigationMenu.Group": {
+    "contract": "navigation-menu",
+    "slot": "navigation-menu-group",
+    "element": "details",
+    "overrides": [],
+    "enums": {
+      "submenu": [
+        "flyout",
+        "inline"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title"
+    ],
+    "props": [
+      "title",
+      "defaultOpen",
+      "columns",
+      "submenu"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "NavigationMenu.Link": {
+    "contract": "navigation-menu",
+    "slot": "navigation-menu-link",
+    "element": "a",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "href"
+    ],
+    "props": [
+      "href",
+      "current",
+      "description"
+    ],
+    "attributes": [
+      "download",
+      "hrefLang",
+      "interestfor",
+      "media",
+      "ping",
+      "referrerPolicy",
+      "target",
+      "type"
+    ],
+    "omits": []
+  },
+  "OTPInput": {
+    "contract": "otp-input",
+    "slot": "otp-input",
+    "element": "input",
+    "overrides": [
+      "margin",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "length",
+      "invalid"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "size",
+      "src",
+      "step",
+      "value",
+      "width"
+    ],
+    "omits": []
+  },
+  "Pagination": {
+    "contract": "pagination",
+    "slot": "pagination",
+    "element": "nav",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "page",
+      "total",
+      "href"
+    ],
+    "props": [
+      "page",
+      "total",
+      "href",
+      "siblings",
+      "label"
+    ],
+    "attributes": [],
+    "omits": [
+      "children"
     ]
   },
   "Popover": {
@@ -799,6 +2301,35 @@
     ],
     "omits": []
   },
+  "Progress": {
+    "contract": "progress",
+    "slot": "progress",
+    "element": "progress",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "value",
+      "max",
+      "milestones",
+      "valueText",
+      "showValue"
+    ],
+    "attributes": [],
+    "omits": [
+      "children"
+    ]
+  },
   "RadioGroup": {
     "contract": "radio-group",
     "slot": "radio-group",
@@ -813,6 +2344,10 @@
       "orientation": [
         "vertical",
         "horizontal"
+      ],
+      "variant": [
+        "default",
+        "cards"
       ]
     },
     "idrefs": {},
@@ -826,6 +2361,7 @@
       "legend",
       "defaultValue",
       "orientation",
+      "variant",
       "required"
     ],
     "attributes": [
@@ -879,6 +2415,36 @@
       "step",
       "width"
     ],
+    "omits": []
+  },
+  "ScrollArea": {
+    "contract": "scroll-area",
+    "slot": "scroll-area",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "height",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "orientation": [
+        "vertical",
+        "horizontal",
+        "both"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "orientation"
+    ],
+    "attributes": [],
     "omits": []
   },
   "Select": {
@@ -944,6 +2510,224 @@
     "attributes": [],
     "omits": []
   },
+  "Sheet": {
+    "contract": "sheet",
+    "slot": "sheet",
+    "element": "dialog",
+    "overrides": [],
+    "enums": {
+      "side": [
+        "start",
+        "end",
+        "top",
+        "bottom"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "dismissible": [
+        "any",
+        "closerequest",
+        "none"
+      ]
+    },
+    "idrefs": {},
+    "provides": "sheet",
+    "required": [
+      "id",
+      "title"
+    ],
+    "props": [
+      "id",
+      "title",
+      "description",
+      "side",
+      "size",
+      "dismissible"
+    ],
+    "attributes": [
+      "onCancel",
+      "onClose"
+    ],
+    "omits": []
+  },
+  "Sheet.Trigger": {
+    "contract": "sheet",
+    "slot": "sheet-trigger",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "sheet": "sheet"
+    },
+    "provides": null,
+    "required": [
+      "sheet"
+    ],
+    "props": [
+      "sheet",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Sheet.Close": {
+    "contract": "sheet",
+    "slot": "sheet-close",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "sheet": "sheet"
+    },
+    "provides": null,
+    "required": [
+      "sheet"
+    ],
+    "props": [
+      "sheet",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Sidebar": {
+    "contract": "sidebar",
+    "slot": "sidebar",
+    "element": "nav",
+    "overrides": [
+      "margin",
+      "width",
+      "height",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label"
+    ],
+    "attributes": [],
+    "omits": []
+  },
+  "Sidebar.Group": {
+    "contract": "sidebar",
+    "slot": "sidebar-group",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title"
+    ],
+    "props": [
+      "title",
+      "collapsible",
+      "defaultOpen"
+    ],
+    "attributes": [],
+    "omits": [
+      "key",
+      "ref"
+    ]
+  },
+  "Sidebar.Item": {
+    "contract": "sidebar",
+    "slot": "sidebar-item",
+    "element": "a",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "href"
+    ],
+    "props": [
+      "href",
+      "current",
+      "icon"
+    ],
+    "attributes": [
+      "download",
+      "hrefLang",
+      "interestfor",
+      "media",
+      "ping",
+      "referrerPolicy",
+      "target",
+      "type"
+    ],
+    "omits": []
+  },
   "Skeleton": {
     "contract": "skeleton",
     "slot": "skeleton",
@@ -972,38 +2756,10 @@
     "attributes": [],
     "omits": []
   },
-  "Spinner": {
-    "contract": "spinner",
-    "slot": "spinner",
-    "element": "span",
-    "overrides": [
-      "margin",
-      "layout",
-      "position"
-    ],
-    "enums": {
-      "size": [
-        "sm",
-        "md",
-        "lg"
-      ]
-    },
-    "idrefs": {},
-    "provides": null,
-    "required": [],
-    "props": [
-      "label",
-      "size"
-    ],
-    "attributes": [],
-    "omits": [
-      "children"
-    ]
-  },
-  "Switch": {
-    "contract": "switch",
-    "slot": "switch",
-    "element": "label",
+  "Slider": {
+    "contract": "slider",
+    "slot": "slider",
+    "element": "input",
     "overrides": [
       "margin",
       "width",
@@ -1015,7 +2771,9 @@
     "provides": null,
     "required": [],
     "props": [
-      "description"
+      "showValue",
+      "valueSuffix",
+      "marks"
     ],
     "attributes": [
       "accept",
@@ -1050,6 +2808,187 @@
     ],
     "omits": []
   },
+  "Spinner": {
+    "contract": "spinner",
+    "slot": "spinner",
+    "element": "span",
+    "overrides": [
+      "margin",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "label",
+      "showLabel",
+      "size"
+    ],
+    "attributes": [],
+    "omits": [
+      "children"
+    ]
+  },
+  "Steps": {
+    "contract": "steps",
+    "slot": "steps",
+    "element": "ol",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "orientation"
+    ],
+    "attributes": [
+      "reversed",
+      "start",
+      "type"
+    ],
+    "omits": []
+  },
+  "Steps.Item": {
+    "contract": "steps",
+    "slot": "steps-item",
+    "element": "li",
+    "overrides": [],
+    "enums": {
+      "status": [
+        "done",
+        "current",
+        "upcoming"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title"
+    ],
+    "props": [
+      "title",
+      "description",
+      "status"
+    ],
+    "attributes": [
+      "value"
+    ],
+    "omits": [
+      "children"
+    ]
+  },
+  "Switch": {
+    "contract": "switch",
+    "slot": "switch",
+    "element": "label",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "description",
+      "showState"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "size",
+      "src",
+      "step",
+      "value",
+      "width"
+    ],
+    "omits": []
+  },
+  "Table": {
+    "contract": "table",
+    "slot": "table",
+    "element": "table",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "density": [
+        "default",
+        "compact"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "caption"
+    ],
+    "props": [
+      "caption",
+      "hideCaption",
+      "density",
+      "striped"
+    ],
+    "attributes": [
+      "align",
+      "bgcolor",
+      "border",
+      "cellPadding",
+      "cellSpacing",
+      "frame",
+      "rules",
+      "summary",
+      "width"
+    ],
+    "omits": []
+  },
   "Tabs": {
     "contract": "tabs",
     "slot": "tabs",
@@ -1064,6 +3003,10 @@
       "orientation": [
         "horizontal",
         "vertical"
+      ],
+      "motion": [
+        "smooth",
+        "none"
       ]
     },
     "idrefs": {},
@@ -1077,7 +3020,8 @@
       "id",
       "label",
       "defaultValue",
-      "orientation"
+      "orientation",
+      "motion"
     ],
     "attributes": [],
     "omits": []
@@ -1125,6 +3069,58 @@
     ],
     "omits": []
   },
+  "Tabs.Activate": {
+    "contract": "tabs",
+    "slot": "tabs-activate",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "tabs": "tabs"
+    },
+    "provides": null,
+    "required": [
+      "tabs",
+      "value"
+    ],
+    "props": [
+      "tabs",
+      "value",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type"
+    ],
+    "omits": []
+  },
   "Tabs.Panel": {
     "contract": "tabs",
     "slot": "tabs-panel",
@@ -1160,6 +3156,7 @@
     "props": [
       "rows",
       "autoResize",
+      "showCount",
       "invalid"
     ],
     "attributes": [
@@ -1203,6 +3200,145 @@
       "children",
       "popover"
     ]
+  },
+  "ToggleGroup": {
+    "contract": "toggle-group",
+    "slot": "toggle-group",
+    "element": "fieldset",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "type": [
+        "single",
+        "multiple"
+      ],
+      "size": [
+        "sm",
+        "md"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "legend",
+      "name"
+    ],
+    "props": [
+      "legend",
+      "hideLegend",
+      "name",
+      "type",
+      "defaultValue",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form"
+    ],
+    "omits": []
+  },
+  "ToggleGroup.Item": {
+    "contract": "toggle-group",
+    "slot": "toggle-group-item",
+    "element": "input",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "value"
+    ],
+    "props": [
+      "value"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "size",
+      "src",
+      "step",
+      "width"
+    ],
+    "omits": []
+  },
+  "Toggle": {
+    "contract": "toggle",
+    "slot": "toggle",
+    "element": "input",
+    "overrides": [
+      "margin",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "size"
+    ],
+    "attributes": [
+      "accept",
+      "alt",
+      "autoComplete",
+      "capture",
+      "checked",
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "height",
+      "list",
+      "max",
+      "maxLength",
+      "min",
+      "minLength",
+      "multiple",
+      "name",
+      "pattern",
+      "placeholder",
+      "readOnly",
+      "required",
+      "src",
+      "step",
+      "value",
+      "width"
+    ],
+    "omits": []
   },
   "Tooltip": {
     "contract": "tooltip",

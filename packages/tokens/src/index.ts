@@ -5,14 +5,14 @@
  * fontWeight, number, shadow. Tokens without $type are emitted verbatim
  * (used for CSS-only values such as `corner-shape`).
  *
- * Dark-mode values live in `$extensions["dev.yourlib.dark"]` and are emitted
+ * Dark-mode values live in `$extensions["dev.urushi.dark"]` and are emitted
  * through `light-dark()`, so a pack switches with `color-scheme` alone.
  * `light-dark()` only accepts colors, so a dark shadow must keep the light
  * shadow's geometry: only its layer colors switch.
  */
 
-export const PREFIX = "yl";
-export const DARK_EXTENSION = "dev.yourlib.dark";
+export const PREFIX = "ur";
+export const DARK_EXTENSION = "dev.urushi.dark";
 
 type Json = null | boolean | number | string | Json[] | { [key: string]: Json };
 
@@ -43,7 +43,7 @@ export function varName(path: string[]): string {
   return `--${PREFIX}-${path.join("-")}`;
 }
 
-/** Resolves `{group.token}` aliases to `var(--yl-group-token)`. */
+/** Resolves `{group.token}` aliases to `var(--ur-group-token)`. */
 function alias(value: string): string | undefined {
   const match = /^\{([^}]+)\}$/.exec(value);
   return match ? `var(${varName(match[1].split("."))})` : undefined;

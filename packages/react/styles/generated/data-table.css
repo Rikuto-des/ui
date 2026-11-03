@@ -1,0 +1,256 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  :is([data-slot="checkbox"], [data-slot="switch"], [data-slot="radio"]) {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--ur-space-3);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  :is([data-slot="checkbox-text"], [data-slot="switch-text"], [data-slot="radio-text"]) {
+    display: grid;
+    gap: var(--ur-space-1);
+  }
+  :is([data-slot="checkbox-label"], [data-slot="switch-label"], [data-slot="radio-label"]) { font-weight: var(--ur-font-weight-control); }
+  :is([data-slot="checkbox-description"], [data-slot="switch-description"], [data-slot="radio-description"]) {
+    font-size: var(--ur-font-size-small);
+    color: var(--ur-color-text-muted);
+  }
+  :is([data-slot="checkbox-input"], [data-slot="switch-input"], [data-slot="radio-input"]) {
+    appearance: none;
+    flex: none;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    font: inherit;
+    line-height: inherit;
+    margin-block-start: calc((1lh - 16px) / 2);
+    inline-size: 16px;
+    block-size: 16px;
+    border: var(--ur-border-width) solid var(--ur-color-border-field);
+    background-color: var(--ur-color-field);
+    cursor: inherit;
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: var(--ur-motion-duration-fast);
+    transition-timing-function: var(--ur-motion-ease-out);
+  }
+  [data-slot="checkbox-input"] {
+    border-radius: var(--ur-radius-checkbox);
+  }
+  :is([data-slot="checkbox-input"], [data-slot="radio-input"])::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background-color: var(--ur-color-on-action);
+  }
+  [data-slot="checkbox-input"]::before {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path var(--ur-motion-duration-fast) var(--ur-motion-ease-out);
+  }
+  [data-slot="checkbox-input"]:is(:checked, :indeterminate)::before {
+    clip-path: inset(0 0 0 0);
+    transition-duration: var(--ur-motion-duration-fast);
+    transition-delay: 0s;
+  }
+  [data-slot="checkbox-input"]::before {
+    mask: /* phosphor:check */ url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M229.66%2C77.66l-128%2C128a8%2C8%2C0%2C0%2C1-11.32%2C0l-56-56a8%2C8%2C0%2C0%2C1%2C11.32-11.32L96%2C188.69%2C218.34%2C66.34a8%2C8%2C0%2C0%2C1%2C11.32%2C11.32Z%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
+  }
+  [data-slot="checkbox-input"]:indeterminate::before {
+    mask-image: /* phosphor:minus */ url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M224%2C128a8%2C8%2C0%2C0%2C1-8%2C8H40a8%2C8%2C0%2C0%2C1%2C0-16H216A8%2C8%2C0%2C0%2C1%2C224%2C128Z%22%2F%3E%3C%2Fsvg%3E");
+  }
+  :is([data-slot="checkbox-input"], [data-slot="radio-input"]):is(:checked, :indeterminate) {
+    border-color: transparent;
+    background-color: var(--ur-color-accent);
+  }
+  :is([data-slot="checkbox-input"], [data-slot="switch-input"], [data-slot="radio-input"]):focus-visible {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: var(--ur-focus-ring-offset);
+  }
+  :is([data-slot="checkbox-input"], [data-slot="switch-input"], [data-slot="radio-input"]):is([aria-invalid="true"], :user-invalid):not(:checked) {
+    border-color: var(--ur-color-danger);
+  }
+  :is([data-slot="checkbox"], [data-slot="switch"], [data-slot="radio"]):has(input:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"])::before {
+      clip-path: none;
+      scale: 1;
+      opacity: 0;
+      transition: opacity var(--ur-motion-duration-fast);
+    }
+    :is([data-slot="checkbox-input"]:is(:checked, :indeterminate), [data-slot="radio-input"]:checked)::before {
+      opacity: 1;
+    }
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"], [data-slot="switch-input"]) {
+      forced-color-adjust: none;
+      border-color: CanvasText;
+      background: Canvas;
+    }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"], [data-slot="switch-input"]):is(:checked, :indeterminate) {
+      border-color: Highlight;
+      background: Highlight;
+    }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"])::before { background: HighlightText; }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"], [data-slot="switch-input"]):disabled { border-color: GrayText; }
+    :is([data-slot="checkbox-input"], [data-slot="radio-input"], [data-slot="switch-input"]):disabled:is(:checked, :indeterminate) { background: GrayText; }
+  }
+}
+@layer urushi.components {
+  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"]) :focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:3px; }
+  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"]) :disabled { opacity:.5; cursor:not-allowed; }
+  [data-slot="data-table"] button { color:inherit; font:inherit; border:1px solid transparent; background:transparent; border-radius:calc(var(--ur-radius-control) - 2px); cursor:pointer; min-height:calc(var(--ur-control-md) - 4px); min-width:32px; }
+  [data-slot="data-table"] { min-width:0; width:100%; color:var(--ur-color-text); font-size:13px; }
+  [data-slot="data-table-scroll"] { position:relative; background:var(--ur-color-surface); overflow:auto; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-control); }
+  [data-slot="data-table"] table { width:100%; border-collapse:collapse; text-align:start; }
+  [data-slot="data-table"] caption { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  [data-slot="data-table"] :is(th,td) { padding:12px 16px; border-bottom:1px solid var(--ur-color-border); white-space:nowrap; text-align:start; }
+  [data-slot="data-table"] th { font-weight:500; color:var(--ur-color-text-muted); background:var(--ur-color-bg); height:44px; }
+  [data-slot="data-table"] th button { display:inline-flex; align-items:center; gap:12px; margin:-6px; padding:6px; }
+  [data-slot="data-table"] tbody tr:last-child td { border-bottom:0; }
+  [data-slot="data-table"] tr[data-selected] { background:var(--ur-color-ghost-hover); }
+  [data-slot="data-table-empty"] { height:180px; text-align:center !important; white-space:normal !important; color:var(--ur-color-text-muted); }
+  [data-slot="data-table-footer"] { display:flex; justify-content:space-between; gap:16px; align-items:center; padding-top:14px; color:var(--ur-color-text-muted); font-size:12px; }
+  [data-slot="data-table-footer"] > div { display:flex; align-items:center; gap:12px; }
+  [data-slot="data-table-footer"] button { border-color:var(--ur-color-border-control); }
+  @media (hover:hover) { [data-slot="data-table"] button:enabled:hover { background:var(--ur-color-ghost-hover); } }
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+@layer urushi.components {
+  [data-slot="checkbox"] { position:relative; }
+  [data-slot="checkbox-indicator"] { position:absolute; inset-inline-start:0; inset-block-start:calc((1lh - 16px) / 2); inline-size:16px; block-size:16px; pointer-events:none; color:var(--ur-color-on-action); overflow:visible; }
+  [data-slot="checkbox"]:has(> [data-slot="checkbox-indicator"]) > [data-slot="checkbox-input"]::before { content:none; }
+  [data-slot="checkbox-mark"], [data-slot="checkbox-mixed"] { stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1; opacity:0; transition:stroke-dashoffset 180ms cubic-bezier(.22,1,.36,1),opacity 100ms; }
+  [data-slot="checkbox-input"]:checked:not(:indeterminate) + [data-slot="checkbox-indicator"] [data-slot="checkbox-mark"],
+  [data-slot="checkbox-input"]:indeterminate + [data-slot="checkbox-indicator"] [data-slot="checkbox-mixed"] { stroke-dashoffset:0; opacity:1; }
+  [data-slot="checkbox-input"], [data-slot="checkbox-indicator"] { transition:scale 180ms cubic-bezier(.2,.8,.2,1),background-color 150ms,border-color 150ms,box-shadow 150ms; }
+  @media(prefers-reduced-motion:no-preference) {
+    [data-slot="checkbox-input"]:checked:not(:indeterminate) + [data-slot="checkbox-indicator"] [data-slot="checkbox-mark"], [data-slot="checkbox-input"]:indeterminate + [data-slot="checkbox-indicator"] [data-slot="checkbox-mixed"] { transition:stroke-dashoffset 260ms cubic-bezier(.22,1,.36,1) 30ms,opacity 70ms; }
+    [data-slot="checkbox"]:active:not(:has(:disabled)) > :is([data-slot="checkbox-input"],[data-slot="checkbox-indicator"]) { scale:.9; }
+  }
+  @media(prefers-reduced-motion:reduce) {
+    [data-slot="checkbox-mark"], [data-slot="checkbox-mixed"], [data-slot="checkbox-input"], [data-slot="checkbox-indicator"] { transition:none; }
+    [data-slot="checkbox"]:active > :is([data-slot="checkbox-input"],[data-slot="checkbox-indicator"]) { scale:1; }
+  }
+  @media(forced-colors:active) {
+    [data-slot="checkbox-indicator"] { forced-color-adjust:none; color:HighlightText; }
+  }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+}
+@layer urushi.components {
+  [data-slot="data-table-detail"] td { white-space:normal; background:var(--ur-color-bg); }
+  [data-slot="data-table-expand"] { display:grid; place-items:center; }
+  [data-slot="data-table-expand"] span { display:block; }
+  [data-slot="data-table-expand"][aria-expanded="true"] span { rotate:180deg; }
+  @media (prefers-reduced-motion:no-preference) {
+    [data-slot="data-table-expand"] span { transition:translate 160ms ease,rotate 180ms ease,background-color 180ms ease,border-color 180ms ease,box-shadow 180ms ease; }
+    [data-slot="data-table-detail"]:not([hidden]) td > * { animation:ur-context-enter 180ms ease-out; }
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}
+
+@layer urushi.components {
+  [data-slot="data-table-selection-target"] { display:grid; place-items:center; inline-size:44px; block-size:44px; }
+  [data-slot="data-table-selection-target"] > [data-slot="checkbox"] { padding:14px; line-height:16px; }
+  [data-slot="data-table-selection-target"] [data-slot="checkbox-indicator"] { inset-inline-start:14px; inset-block-start:14px; }
+}
+
+@layer urushi.components {
+  [data-slot="data-table-expand"] svg { display:block; }
+  [data-slot="data-table-expand"][aria-expanded="true"] svg { rotate:180deg; }
+  @media(prefers-reduced-motion:no-preference) { [data-slot="data-table-expand"] svg { transition:rotate 180ms ease; } }
+}

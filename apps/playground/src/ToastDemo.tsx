@@ -1,4 +1,4 @@
-import { Button, toast } from "@yourlib/react";
+import { Button, toast } from "@urushi/react";
 
 /** The client-only part of the gallery: toasts are shown from event handlers. */
 export function ToastDemo() {

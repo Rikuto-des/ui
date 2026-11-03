@@ -1,0 +1,418 @@
+[
+  {
+    "component": "accordion",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/accordion.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "alert",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/alert.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "alert-dialog",
+    "updatedThisRun": true,
+    "change": "操作前の確認、安全な初期フォーカス、操作後の復元",
+    "manualThisRun": true,
+    "source": "apps/site/examples/alert-dialog.tsx",
+    "screenshot": "alert-dialog.png"
+  },
+  {
+    "component": "aspect-ratio",
+    "updatedThisRun": true,
+    "change": "縦横比の連続変化、構図の移動",
+    "manualThisRun": true,
+    "source": "apps/site/examples/aspect-ratio.tsx",
+    "screenshot": "aspect-ratio.png"
+  },
+  {
+    "component": "avatar",
+    "updatedThisRun": true,
+    "change": "在席状態と読み上げ名、メンバー選択、絵文字の頭文字対応",
+    "manualThisRun": true,
+    "source": "apps/site/examples/avatar.tsx",
+    "screenshot": "avatar.png"
+  },
+  {
+    "component": "badge",
+    "updatedThisRun": true,
+    "change": "状態と件数の表示、一覧の絞り込み",
+    "manualThisRun": true,
+    "source": "apps/site/examples/badge.tsx",
+    "screenshot": "badge.png"
+  },
+  {
+    "component": "breadcrumb",
+    "updatedThisRun": true,
+    "change": "親・子の階層移動、移動先の見出しへのフォーカス",
+    "manualThisRun": true,
+    "source": "apps/site/examples/breadcrumb.tsx",
+    "screenshot": "breadcrumb.png"
+  },
+  {
+    "component": "button",
+    "updatedThisRun": true,
+    "change": "入力内容の保存、処理中の取消、完了のフィードバック",
+    "manualThisRun": true,
+    "source": "apps/site/examples/button.tsx",
+    "screenshot": "button.png"
+  },
+  {
+    "component": "button-group",
+    "updatedThisRun": true,
+    "change": "縮小・拡大・等倍と、実際のプレビューへの反映",
+    "manualThisRun": true,
+    "source": "apps/site/examples/button-group.tsx",
+    "screenshot": "button-group.png"
+  },
+  {
+    "component": "card",
+    "updatedThisRun": true,
+    "change": "選択状態、コレクションへの追加・解除、詳細の展開",
+    "manualThisRun": true,
+    "source": "apps/site/examples/card.tsx",
+    "screenshot": "card.png"
+  },
+  {
+    "component": "carousel",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/carousel.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "checkbox",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/checkbox.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "collapsible",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/collapsible.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "combobox",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/combobox.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "command",
+    "updatedThisRun": true,
+    "change": "複数語検索、候補の補足とプレビュー、設定への移動、編集内容の保持",
+    "manualThisRun": true,
+    "source": "apps/site/examples/command.tsx",
+    "screenshot": "command.png"
+  },
+  {
+    "component": "data-table",
+    "updatedThisRun": true,
+    "change": "行内の詳細、検索、一括アーカイブと復元、44pxの選択操作領域",
+    "manualThisRun": true,
+    "source": "apps/site/examples/data-table.tsx",
+    "screenshot": "data-table.png"
+  },
+  {
+    "component": "date-input",
+    "updatedThisRun": true,
+    "change": "開始日と終了日から期間を算出、逆転した日付の修正案内",
+    "manualThisRun": true,
+    "source": "apps/site/examples/date-input.tsx",
+    "screenshot": "date-input.png"
+  },
+  {
+    "component": "date-picker",
+    "updatedThisRun": true,
+    "change": "日付候補、範囲外・不正日付の無効化、選択後のフォーカス復帰",
+    "manualThisRun": true,
+    "source": "apps/site/examples/date-picker.tsx",
+    "screenshot": "date-picker.png"
+  },
+  {
+    "component": "dialog",
+    "updatedThisRun": true,
+    "change": "編集・確認・反映、戻ったときの入力保持、手順ごとのフォーカス",
+    "manualThisRun": true,
+    "source": "apps/site/examples/dialog.tsx",
+    "screenshot": "dialog.png"
+  },
+  {
+    "component": "empty",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/empty.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "field",
+    "updatedThisRun": true,
+    "change": "成功メッセージと説明の関連付け、エラーの優先、修正例",
+    "manualThisRun": true,
+    "source": "apps/site/examples/field.tsx",
+    "screenshot": "field.png"
+  },
+  {
+    "component": "file-input",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/file-input.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "hover-card",
+    "updatedThisRun": true,
+    "change": "フォーカスとホバーで概要、クリック・タップで詳細へ移動",
+    "manualThisRun": true,
+    "source": "apps/site/examples/hover-card.tsx",
+    "screenshot": "hover-card.png"
+  },
+  {
+    "component": "input",
+    "updatedThisRun": true,
+    "change": "表紙への即時反映、消去後の入力継続、デモ文字列の表示切替",
+    "manualThisRun": true,
+    "source": "apps/site/examples/input.tsx",
+    "screenshot": "input.png"
+  },
+  {
+    "component": "input-group",
+    "updatedThisRun": true,
+    "change": "アドレスの接頭辞・入力・反映を同じ場所に集約",
+    "manualThisRun": true,
+    "source": "apps/site/examples/input-group.tsx",
+    "screenshot": "input-group.png"
+  },
+  {
+    "component": "kbd",
+    "updatedThisRun": true,
+    "change": "キーの押下表現、フォーカスが外れたときの解除",
+    "manualThisRun": true,
+    "source": "apps/site/examples/kbd.tsx",
+    "screenshot": "kbd.png"
+  },
+  {
+    "component": "link",
+    "updatedThisRun": true,
+    "change": "実際のアンカー移動、到着先のフォーカス、下線の変化",
+    "manualThisRun": true,
+    "source": "apps/site/examples/link.tsx",
+    "screenshot": "link.png"
+  },
+  {
+    "component": "menu",
+    "updatedThisRun": true,
+    "change": "操作の補足とショートカット表示、複製・アーカイブ・復元",
+    "manualThisRun": true,
+    "source": "apps/site/examples/menu.tsx",
+    "screenshot": "menu.png"
+  },
+  {
+    "component": "meter",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/meter.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "navigation-menu",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/navigation-menu.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "otp-input",
+    "updatedThisRun": true,
+    "change": "貼り付け可能な単一入力、見本コードの照合、やり直し",
+    "manualThisRun": true,
+    "source": "apps/site/examples/otp-input.tsx",
+    "screenshot": "otp-input.png"
+  },
+  {
+    "component": "pagination",
+    "updatedThisRun": true,
+    "change": "一覧の実際の切替、ページ番号へのフォーカス、位置保持",
+    "manualThisRun": true,
+    "source": "apps/site/examples/pagination.tsx",
+    "screenshot": "pagination.png"
+  },
+  {
+    "component": "popover",
+    "updatedThisRun": true,
+    "change": "設定を開いたままキャンバスのグリッド・ガイドを調整",
+    "manualThisRun": true,
+    "source": "apps/site/examples/popover.tsx",
+    "screenshot": "popover.png"
+  },
+  {
+    "component": "progress",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/progress.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "radio-group",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/radio-group.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "scroll-area",
+    "updatedThisRun": true,
+    "change": "残りの内容を示す上下の影、末尾・先頭への移動",
+    "manualThisRun": true,
+    "source": "apps/site/examples/scroll-area.tsx",
+    "screenshot": "scroll-area.png"
+  },
+  {
+    "component": "select",
+    "updatedThisRun": true,
+    "change": "担当者に応じたプロフィールと次の作業の切替",
+    "manualThisRun": true,
+    "source": "apps/site/examples/select.tsx",
+    "screenshot": "select.png"
+  },
+  {
+    "component": "separator",
+    "updatedThisRun": true,
+    "change": "操作のグループ分け、文字揃え・太字の実用例",
+    "manualThisRun": true,
+    "source": "apps/site/examples/separator.tsx",
+    "screenshot": "separator.png"
+  },
+  {
+    "component": "sheet",
+    "updatedThisRun": true,
+    "change": "編集中のプレビュー、キャンセルで破棄、保存時に背面へ反映",
+    "manualThisRun": true,
+    "source": "apps/site/examples/sheet.tsx",
+    "screenshot": "sheet.png"
+  },
+  {
+    "component": "sidebar",
+    "updatedThisRun": true,
+    "change": "選択した内容の表示、現在地の表示、グループの折りたたみ",
+    "manualThisRun": true,
+    "source": "apps/site/examples/sidebar.tsx",
+    "screenshot": "sidebar.png"
+  },
+  {
+    "component": "skeleton",
+    "updatedThisRun": true,
+    "change": "読込前後の位置・高さの保持、内容への切替、再読み込み",
+    "manualThisRun": true,
+    "source": "apps/site/examples/skeleton.tsx",
+    "screenshot": "skeleton.png"
+  },
+  {
+    "component": "slider",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/slider.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "spinner",
+    "updatedThisRun": true,
+    "change": "見える処理ラベル、取消・完了・再試行",
+    "manualThisRun": true,
+    "source": "apps/site/examples/spinner.tsx",
+    "screenshot": "spinner.png"
+  },
+  {
+    "component": "steps",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/steps.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "switch",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/switch.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "table",
+    "updatedThisRun": true,
+    "change": "金額と合計の切替、数字の右寄せ、行の密度変更",
+    "manualThisRun": true,
+    "source": "apps/site/examples/table.tsx",
+    "screenshot": "table.png"
+  },
+  {
+    "component": "tabs",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/tabs.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "textarea",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/textarea.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "toast",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/toast.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "toggle",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/toggle.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "toggle-group",
+    "updatedThisRun": false,
+    "change": "既存の改善を保持。今回の全52種類の表示・アクセシビリティ・レスポンシブ監査対象。",
+    "manualThisRun": false,
+    "source": "apps/site/examples/toggle-group.tsx",
+    "screenshot": null
+  },
+  {
+    "component": "tooltip",
+    "updatedThisRun": true,
+    "change": "名前付きの保存・通知ボタン、操作結果に応じた補足",
+    "manualThisRun": true,
+    "source": "apps/site/examples/tooltip.tsx",
+    "screenshot": "tooltip.png"
+  }
+]

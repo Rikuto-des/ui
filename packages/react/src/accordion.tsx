@@ -14,18 +14,18 @@ export type AccordionItemProps = AccordionItemOwnProps &
   Omit<React.ComponentPropsWithRef<"details">, keyof AccordionItemOwnProps | "open" | "title">;
 
 /** One section: native <details>, so it opens with Enter/Space and works without JavaScript. */
-function AccordionItem({ title, defaultOpen = accordionItemDefaults.defaultOpen, children, ...rest }: AccordionItemProps) {
+function AccordionItem({ title, description, defaultOpen = accordionItemDefaults.defaultOpen, children, ...rest }: AccordionItemProps) {
   return (
     <details {...rest} open={defaultOpen || undefined} data-slot={accordionItemSlot}>
       <summary data-slot="accordion-trigger">
-        <span data-slot="accordion-title">{title}</span>
+        <span data-slot="accordion-heading"><span data-slot="accordion-title">{title}</span>{description ? <span data-slot="accordion-description">{description}</span> : null}</span>
         <span data-slot="accordion-icon" aria-hidden="true" />
       </summary>
       <div data-slot="accordion-content">{children}</div>
     </details>
   );
 }
-AccordionItem.ylPart = "accordion-item";
+AccordionItem.urPart = "accordion-item";
 
 /** With a name, items share it and the browser keeps only one open (exclusive accordion). */
 function AccordionRoot({ name, children, ...rest }: AccordionProps) {

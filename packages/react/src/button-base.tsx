@@ -62,4 +62,8 @@ declare module "react" {
     /** Interest invokers (Chromium): show the referenced popover on hover and focus. */
     interestfor?: string | undefined;
   }
+  interface AnchorHTMLAttributes<T> {
+    /** Interest invokers (Chromium): show the referenced popover on hover and focus. */
+    interestfor?: string | undefined;
+  }
 }

@@ -1,31 +1,62 @@
-# yourlib
+# urushi
 
 > Native-first React UI components with machine-readable contracts and runtime-switchable style packs.
 
 ## Components
 
 - [Accordion](docs/accordion.md): Collapsible sections built on native <details>/<summary>; a shared name makes them exclusive.
+- [AlertDialog](docs/alert-dialog.md): A modal confirmation (role=alertdialog) that only its buttons can close.
+- [Alert](docs/alert.md): A callout in the page: a title, supporting text and an optional action, in a tone.
+- [AspectRatio](docs/aspect-ratio.md): A box that keeps a ratio (CSS aspect-ratio); its media fills it.
+- [Avatar](docs/avatar.md): A person's picture, or their initial when there is no picture or it fails to load.
 - [Badge](docs/badge.md): A short status or count label.
+- [Breadcrumb](docs/breadcrumb.md): Where the page sits in the site: a nav with an ordered list of links.
+- [ButtonGroup](docs/button-group.md): Buttons that belong together, joined into one shape (role=group).
 - [Button](docs/button.md): A native <button> that runs or confirms an action.
 - [Card](docs/card.md): A surface that groups related content, with an optional title, description and footer.
+- [Carousel](docs/carousel.md): Slides in a horizontal scroll-snap strip; where CSS ::scroll-button and ::scroll-marker exist, the browser adds the buttons and dots.
 - [Checkbox](docs/checkbox.md): A native checkbox with its own label.
+- [Collapsible](docs/collapsible.md): One section that opens and closes: a native <details>.
+- [Combobox](docs/combobox.md): 検索して候補を絞り込み、1つの値を選択します。
+- [Command](docs/command.md): コマンドを検索し、キーボードで実行するダイアログです。
+- [DataTable](docs/data-table.md): 並び替え、ページ送り、行の選択に対応したテーブルです。
+- [DateInput](docs/date-input.md): A native date or time input with the browser's own picker, drawn like Input.
+- [DatePicker](docs/date-picker.md): 日付を直接入力するか、カレンダーから選択します。
 - [Dialog](docs/dialog.md): A modal native <dialog> that interrupts the user for a confirmation or a short task.
+- [Empty](docs/empty.md): What a list or page shows when there is nothing in it yet, and how to start.
 - [Field](docs/field.md): Labels a single form control and links its description and error message to it.
+- [FileInput](docs/file-input.md): A native <input type="file">; the dropzone variant is a large target that files can be dropped on (no JavaScript).
+- [HoverCard](docs/hover-card.md): A preview card for a link, shown on hover and keyboard focus (interestfor).
+- [InputGroup](docs/input-group.md): An Input with fixed text or a button attached before or after it, drawn as one field.
 - [Input](docs/input.md): A native single-line <input> styled by the pack.
+- [Kbd](docs/kbd.md): A key or keyboard shortcut, in a native <kbd>.
 - [Link](docs/link.md): A native <a> that navigates to another page or place.
 - [Menu](docs/menu.md): A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.
+- [Meter](docs/meter.md): A measurement within a known range, in a native <meter> that colors itself by low / high / optimum.
+- [NavigationMenu](docs/navigation-menu.md): Site navigation with native disclosures, pointer-intent hover, collision-aware flyouts and responsive inline layout.
+- [OTPInput](docs/otp-input.md): A one-time code field: one native input drawn as separate boxes, with one-time-code autofill.
+- [Pagination](docs/pagination.md): Links to the pages of a long list: previous, numbered pages with gaps, next.
 - [Popover](docs/popover.md): A non-modal panel in the top layer (native `popover`), positioned against its trigger with CSS anchor positioning.
+- [Progress](docs/progress.md): How far a task has got, in a native <progress> with a visible label.
 - [RadioGroup](docs/radio-group.md): A <fieldset> of native radio buttons: exactly one choice, arrow keys move between them.
+- [ScrollArea](docs/scroll-area.md): A scrolling region with pack-styled scrollbars, focusable and named so keyboards can scroll it.
 - [Select](docs/select.md): A native <select>; with appearance: base-select its picker follows the pack.
 - [Separator](docs/separator.md): A thin rule between groups of content.
+- [Sheet](docs/sheet.md): A modal <dialog> that slides in from an edge of the screen.
+- [Sidebar](docs/sidebar.md): An app's side navigation: groups of links, optionally collapsible with native <details>.
 - [Skeleton](docs/skeleton.md): A placeholder shape shown while content loads.
+- [Slider](docs/slider.md): A native range input with optional live value feedback and directly selectable labelled marks.
 - [Spinner](docs/spinner.md): An indeterminate progress indicator with a status message for screen readers.
+- [Steps](docs/steps.md): Where the user is in a fixed sequence: an ordered list with aria-current="step".
 - [Switch](docs/switch.md): A native checkbox with role="switch" for settings that take effect immediately.
+- [Table](docs/table.md): A native <table> styled by the pack. You write thead, tbody, th and td as usual.
 - [Tabs](docs/tabs.md): Switches between panels of equal weight. Server-rendered; the runtime adds clicking and arrow keys.
 - [Textarea](docs/textarea.md): A native <textarea> that grows with its content (field-sizing).
 - [Toaster](docs/toast.md): Brief notifications about the result of an action. Place one <Toaster /> per page and call toast() from client code.
+- [ToggleGroup](docs/toggle-group.md): A segmented control: native radios (one choice) or checkboxes (several) drawn as one row of buttons.
+- [Toggle](docs/toggle.md): A button-looking on/off control. It is a native checkbox, so it works in forms and without JavaScript.
 - [Tooltip](docs/tooltip.md): A short description shown on hover and keyboard focus: popover="hint" opened through interestfor.
 
 ## Agent rules
 
-- [SKILL.md](SKILL.md): composition rules enforced by @yourlib/eslint-plugin
+- [SKILL.md](SKILL.md): composition rules enforced by @urushi/eslint-plugin

@@ -1,10 +1,11 @@
-import { defineContract, idref, z } from "@yourlib/contract";
+import { defineContract, idref, z } from "@urushi/contract";
 import { buttonProps } from "./button.contract.ts";
 
 const { variant, size } = buttonProps;
 
 export default defineContract({
   name: "menu",
+  styleDependencies: ["button"],
   tier: 3,
   summary: "A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.",
   use: ["Secondary actions on an item (編集・複製・削除)"],
@@ -12,7 +13,7 @@ export default defineContract({
   rendering: "server",
   platform: {
     requires: ["popover", "anchor-positioning"],
-    enhances: [{ feature: "@yourlib/core menu behavior", fallback: "items are reachable with Tab" }],
+    enhances: [{ feature: "@urushi/core menu behavior", fallback: "items are reachable with Tab" }],
   },
   parts: [
     {
@@ -41,7 +42,7 @@ export default defineContract({
       slot: "menu-item",
       element: "button",
       description: "An action (role=menuitem). Activating it closes the menu.",
-      props: z.object({ variant: z.enum(["default", "danger"]).default("default") }),
+      props: z.object({ variant: z.enum(["default", "danger"]).default("default"), description: z.string().optional().describe("Secondary explanation of the action."), shortcut: z.string().optional().describe("Displayed hint; app registers the shortcut.") }),
       overrides: [],
     },
     { jsx: "Menu.Link", slot: "menu-link", element: "a", description: "A navigation item (role=menuitem).", props: z.object({ href: z.string().min(1) }), overrides: [] },

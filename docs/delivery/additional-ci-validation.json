@@ -1,0 +1,26 @@
+{
+  "run": 40809455996,
+  "revision": "1f6f43c70bd347f82a3026ec9725fb4701a6f830",
+  "conclusion": "success",
+  "jobs": 7,
+  "unit": {
+    "passed": 271
+  },
+  "components": {
+    "passed": 429,
+    "skipped": 12,
+    "browsers": 3
+  },
+  "site": {
+    "passed": 336,
+    "browsers": 3
+  },
+  "next": {
+    "passed": 36
+  },
+  "studio": {
+    "passed": 39
+  },
+  "source": "GitHub Actions job logs, retained in /tmp/urushi-ci-1f6-all.log",
+  "note": "This records the frozen comparison implementation; later report and diagnostic-rule additions are verified separately."
+}
