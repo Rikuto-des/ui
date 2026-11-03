@@ -20,6 +20,17 @@ const rules = [
   ["prefer-native", "warn", "div や span に onClick を付けて操作できるコンポーネントを自作していないか検査します。"],
 ] as const;
 
+const mcpTools = [
+  ["list_components", "全コンポーネントの名前・概要・使う場面・パーツを返します。", false],
+  ["describe_component", "1 つのコンポーネントの契約（props、パーツ、a11y の決まり、状態、トークン、例）を返します。", false],
+  ["get_authoring_context", "使うコンポーネントの契約に、デザインの規約とトークンを添えて返します。画面を書く前に読みます。", false],
+  ["check_project", "型と契約の lint を検査し、ファイル・行と直すための文脈を返します。", false],
+  ["project_info", "urushi.json の設定と、導入済みのコンポーネントと版を返します。", false],
+  ["add_components", "コンポーネントをプロジェクトにコピーし、urushi.lock に記録します。", true],
+  ["update_components", "新しい版を 3-way merge で取り込みます。既定はプレビューだけです。", true],
+  ["list_local_changes", "導入後に手で変えたファイルと、解決していない衝突を返します。", false],
+] as const;
+
 export default async function AiPage() {
   const proof = JSON.parse(await repoFile("generated/agent-proof.json")) as {
     before: { code: string; report: { summary: { errors: number }; issues: { source: string; code: string; message: string; line: number }[] } };
@@ -76,6 +87,31 @@ npx urushi update --dry-run --json`} lang="bash" />
             <CodeBlock code={proof.after.code} />
           </details>
           <p className="note">この合格は静的検査の範囲です。表示崩れ、実際の操作、動的な値、別ファイルをまたぐidの対応、スクリーンリーダーでの読み上げは別途確認します。診断による修正をAIに行わせるには、利用中のエージェントへこの手順を渡してください。</p>
+
+          <h2>MCP サーバーとして使う</h2>
+          <p><code>urushi mcp</code>は、上の CLI のコマンドを MCP（Model Context Protocol）のツールとして AI エージェントに渡します。Claude Code、Cursor、VS Code など、MCP に対応したエージェントの設定に 1 つ足すだけで使えます。起動したフォルダーのプロジェクトだけを扱い、その外のファイルには触れません。</p>
+          <CodeBlock code={JSON.stringify({ mcpServers: { urushi: { command: "npx", args: ["urushi", "mcp"] } } }, null, 2)} lang="json" />
+          <div className="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">ツール</th>
+                  <th scope="col">すること</th>
+                  <th scope="col">ファイル</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mcpTools.map(([name, text, writes]) => (
+                  <tr key={name}>
+                    <td><code>{name}</code></td>
+                    <td>{text}</td>
+                    <td>{writes ? <Badge tone="accent">書き込む</Badge> : "読むだけ"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>サーバーは最初に「書く前に<code>get_authoring_context</code>を読み、書いたら<code>check_project</code>で確かめる」という手順をエージェントに伝えます。<code>add_components</code>は利用者が変えたファイルを上書きしません。<code>update_components</code>は既定では差分を見せるだけで、<code>dryRun: false</code>のときにだけ書き込みます。</p>
 
           <h2>AI に渡すもの</h2>
           <ul>

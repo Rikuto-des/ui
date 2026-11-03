@@ -26,6 +26,7 @@ const HELP = `urushi <command>
                             take new registry versions, merging your local edits (3-way)
   diff                      list installed files you changed, and unresolved conflicts
   info [--json]             show config and installed components
+  mcp                       serve these commands to AI agents over MCP (stdio)
 `;
 
 function findRepoRoot(from: string): string {
@@ -64,6 +65,11 @@ async function main() {
   const cwd = resolve(values.cwd ?? process.cwd());
 
   switch (command) {
+    case "mcp": {
+      const { serve } = await import("./mcp.ts");
+      await serve(cwd);
+      return;
+    }
     case "workflow": {
       if(!values.config||!values.out)throw new Error("workflow requires --config and --out");
       const {workflow}=await import("./workflow.ts");

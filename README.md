@@ -87,6 +87,16 @@ npx urushi workflow --config workflow.json --out review/run-001 --repair --json
 
 実機確認用の手順と結果記録はStudioの`/device-check.html`にあります。結果は端末内に保存し、自動検査の結果とは分けて扱います。
 
+### MCPサーバー
+
+`urushi mcp`は、`context`・`describe`・`check`・`add`・`update`・`diff`・`info`をMCPのツールとしてAIエージェントに渡します。MCPに対応したエージェントの設定に次を足します。
+
+```json
+{"mcpServers":{"urushi":{"command":"npx","args":["urushi","mcp"]}}}
+```
+
+起動したフォルダーのプロジェクトだけを扱います。`add_components`は手で変えたファイルを上書きせず、`update_components`は`dryRun: false`を指定したときだけ書き込みます。
+
 ## 編集を残して更新する
 
 ```sh

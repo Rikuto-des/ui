@@ -39,6 +39,9 @@ try{
  await writeFile(join(project,"tsconfig.json"),JSON.stringify({compilerOptions:{target:"ES2022",lib:["DOM","ES2022"],module:"ESNext",moduleResolution:"Bundler",jsx:"react-jsx",strict:true,types:["vite/client"],skipLibCheck:true,noEmit:true,esModuleInterop:true},include:["src","components"]}));
  run("packed type declarations",process.execPath,[join(project,"node_modules/typescript/bin/tsc"),"--noEmit"]);
  run("strict contracts",process.execPath,[cli,"check","--strict","--json"]);
+ const mcpInput=[{jsonrpc:"2.0",id:1,method:"initialize",params:{protocolVersion:"2025-06-18",capabilities:{},clientInfo:{name:"release-smoke",version:"1"}}},{jsonrpc:"2.0",method:"notifications/initialized"},{jsonrpc:"2.0",id:2,method:"tools/call",params:{name:"project_info",arguments:{}}}].map(m=>JSON.stringify(m)).join("\n")+"\n";
+ const mcp=spawnSync(process.execPath,[cli,"mcp"],{cwd:project,encoding:"utf8",input:mcpInput});result.logs["packed MCP server"]=mcp.stdout+mcp.stderr;
+ const mcpReplies=mcp.stdout.trim().split("\n").map(line=>JSON.parse(line));assert.equal(mcp.status,0);assert.equal(mcpReplies.find(r=>r.id===1).result.serverInfo.name,"urushi");assert.ok(mcpReplies.find(r=>r.id===2).result.structuredContent.installed.combobox);result.checks.push("packed MCP server");
  await writeFile(join(project,"index.html"),`<!doctype html><html lang="en" data-pack="graphite" data-theme="light"><head><meta charset="utf-8"><title>Fresh Urushi</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>`);
  run("Vite production build",process.execPath,[join(project,"node_modules/vite/bin/vite.js"),"build"]);
  const server=spawn(process.execPath,[join(root,"scripts/serve-static.ts"),join(project,"dist"),"3306"],{stdio:"ignore"});
