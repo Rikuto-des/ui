@@ -29,7 +29,11 @@ import {
   Carousel,
   Checkbox,
   Collapsible,
+  Combobox,
+  Command,
+  DataTable,
   DateInput,
+  DatePicker,
   Dialog,
   Empty,
   Field,
@@ -41,6 +45,7 @@ import {
   Link,
   Menu,
   Meter,
+  NavigationMenu,
   OTPInput,
   Pagination,
   Popover,
@@ -433,6 +438,7 @@ const previewStyle = `<style>
   .ds-note { margin: 0; font-size: 12px; color: var(--ur-color-text-subtle); }
   /* Open samples sit in the page, not the top layer: the dialog's max-block-size (100% of a viewport) would shrink to the grid row. */
   :is(#ds-confirm-inline, #ds-alert-inline)[open] { position: static; margin: 0; max-block-size: none; }
+  .ds-command [data-slot="command"][open] { position: static; margin: 0; max-block-size: none; }
   .ds-scrim { position: fixed; inset: 0; background-color: var(--ur-color-backdrop); }
   .ds-wide { display: grid; gap: 16px; max-width: 460px; }
   .ds-stack { display: grid; justify-items: start; gap: 12px; }
@@ -591,7 +597,7 @@ const previews: Record<string, string> = {
     </>,
   ),
   Menu: preview(
-    `<!-- @dsCard group="操作" height=260 subtitle="popover=auto の中の menu。危険な操作は区切って最後に" -->`,
+    `<!-- @dsCard group="操作" height=280 subtitle="popover=auto の中の menu。サブメニューは横に出て、狭い画面ではその場で開く" -->`,
     <>
       <div className="ds-row">
         <Menu.Trigger menu="ds-menu" variant="ghost" aria-label="その他の操作">
@@ -601,12 +607,20 @@ const previews: Record<string, string> = {
       <Menu id="ds-menu" label="タスクの操作">
         <Menu.Item>編集する</Menu.Item>
         <Menu.Item>複製する</Menu.Item>
+        <Menu.Sub label="担当者を変える">
+          <Menu.Item>佐藤 美咲</Menu.Item>
+          <Menu.Item>鈴木 健太</Menu.Item>
+          <Menu.Item>担当者なし</Menu.Item>
+        </Menu.Sub>
         <Menu.Link href="#">履歴を見る</Menu.Link>
         <Menu.Separator />
         <Menu.Item variant="danger">削除する</Menu.Item>
       </Menu>
     </>,
-    `document.getElementById("ds-menu").showPopover();`,
+    // Show the menu and its submenu open; in an app the trigger and the item do this.
+    `document.getElementById("ds-menu").showPopover();
+const sub = document.querySelector('[data-slot="menu-sub"] > [data-slot="menu"]');
+sub.showPopover({ source: sub.previousElementSibling });`,
   ),
   Field: preview(
     `<!-- @dsCard group="入力" height=290 subtitle="ラベル・説明・エラーを入力欄に自動で結びつける" -->`,
@@ -1170,6 +1184,86 @@ const previews: Record<string, string> = {
       </HoverCard>
     </>,
     `document.getElementById("ds-person").showPopover();`,
+  ),
+  Combobox: preview(
+    `<!-- @dsCard group="入力" height=150 subtitle="入力して候補を絞り込み、1 つを選ぶ。非同期の検索にも対応" -->`,
+    <div className="ds-form">
+      <Combobox
+        label="担当者"
+        defaultValue="sato"
+        options={[
+          { value: "sato", label: "佐藤 美咲", description: "広報" },
+          { value: "suzuki", label: "鈴木 健太", description: "営業" },
+          { value: "takahashi", label: "高橋 陽菜", description: "開発" },
+        ]}
+      />
+    </div>,
+    // The input is disabled until the component hydrates; this static sample shows it ready.
+  ).replace(/(<input[^>]*data-slot="combobox-input"[^>]*?) disabled=""/, "$1"),
+  DatePicker: preview(
+    `<!-- @dsCard group="入力" height=150 subtitle="日付を直接入力するか、カレンダーから選ぶ" -->`,
+    <div className="ds-form">
+      <DatePicker label="期限" defaultValue="2026-10-30" locale="ja" />
+    </div>,
+  ),
+  DataTable: preview(
+    `<!-- @dsCard group="表示" height=300 subtitle="並べ替えと行の選択ができる表。選択には Checkbox を使う" -->`,
+    <DataTable
+      label="プロジェクト"
+      locale="ja"
+      rows={[
+        { id: "web", name: "サイトのリニューアル", owner: "佐藤 美咲", due: "2026-11-20" },
+        { id: "fair", name: "秋の採用イベント", owner: "鈴木 健太", due: "2026-11-08" },
+        { id: "app", name: "アプリの申し込み画面", owner: "高橋 陽菜", due: "2026-12-01" },
+      ]}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      columns={[
+        { id: "name", header: "名前", cell: (row) => row.name, sortValue: (row) => row.name },
+        { id: "owner", header: "担当", cell: (row) => row.owner },
+        { id: "due", header: "期限", cell: (row) => row.due, sortValue: (row) => row.due },
+      ]}
+    />,
+  ),
+  NavigationMenu: preview(
+    `<!-- @dsCard group="ナビゲーション" height=260 subtitle="details のグループで開くナビゲーション。広い画面では入れ子が横に出る" -->`,
+    <NavigationMenu label="メイン">
+      <NavigationMenu.Group title="製品" defaultOpen>
+        <NavigationMenu.Link href="#" current description="タスクと期限をまとめて見る">
+          タスク管理
+        </NavigationMenu.Link>
+        <NavigationMenu.Link href="#" description="チームの予定を共有する">
+          カレンダー
+        </NavigationMenu.Link>
+      </NavigationMenu.Group>
+      <NavigationMenu.Group title="資料">
+        <NavigationMenu.Link href="#">はじめかた</NavigationMenu.Link>
+      </NavigationMenu.Group>
+      <NavigationMenu.Link href="#">料金</NavigationMenu.Link>
+    </NavigationMenu>,
+  ),
+  Command: preview(
+    `<!-- @dsCard group="オーバーレイ" height=420 subtitle="コマンドを検索してキーボードで実行するダイアログ。下は開いた状態の見本" -->`,
+    renderToStaticMarkup(
+      <div className="ds-command">
+        <Command
+          label="コマンド"
+          open
+          onOpenChange={() => {}}
+          placeholder="コマンドを検索"
+          emptyText="一致するコマンドがありません"
+          closeLabel="閉じる"
+          navigationHint="選ぶ"
+          actionHint="実行"
+          items={[
+            { id: "new", label: "タスクを作る", group: "作成", shortcut: "N", onSelect: () => {} },
+            { id: "project", label: "プロジェクトを作る", group: "作成", onSelect: () => {} },
+            { id: "search", label: "メンバーを探す", group: "移動", onSelect: () => {} },
+            { id: "settings", label: "設定を開く", group: "移動", onSelect: () => {} },
+          ]}
+        />
+      </div>,
+    ).replace(/<dialog(?=[^>]*data-slot="command")/, "<dialog open"),
   ),
   Toaster: preview(
     `<!-- @dsCard group="オーバーレイ" height=230 subtitle="toast() で出す通知。モーダルの中では、そのダイアログの中に出る" -->`,
