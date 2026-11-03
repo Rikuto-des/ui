@@ -377,7 +377,7 @@ shadcn と互換にしないので、**最初から「後で更新できる」�
 |---|---|---|
 | **0. 実現性の確認** | **一番危ない部分（オーバーレイの a11y）がネイティブで成り立つか確かめる** | Button・Dialog・Popover の 3 つで、次の 6 点を満たす。①3 エンジン × スクリーンリーダーの検証表で重大な問題がない ②React Aria が挙げた 5 つの懸念それぞれに結論を出す ③契約から型・ドキュメント・lint・配布データを生成できる ④2 つのパックを実行時に切り替えられる ⑤`urushi add` でサンプルアプリ（Next.js と Vite）に入る ⑥サイズを計測する |
 | **1. MVP の公開** | 約 20 部品、3 パック、lint、Skill、lockfile、ドキュメント、デモ | 全部品が axe・キーボードテスト・見た目の回帰テストを通る。AI に画面を作らせたときに lint が通った割合を測って公開する |
-| **2. 拡張** | Menu の完成版（サブメニュー）、Combobox、DateField、MCP（`urushi update` は Phase 1 で実装済み） | — |
+| **2. 拡張** | Menu の完成版（サブメニュー）、Combobox、DateField、MCP（`urushi update` は Phase 1 で実装済み） | 2026-11-04 に済み。DateField は DatePicker で代えた（`docs/phase2/README.md`） |
 | **3. AI ネイティブ化と複雑な部品** | 生成 UI のカタログ書き出し、MCP Apps のホストへの対応、Figma 連携、Tree、データグリッド | — |
 
 ## 14. リスク
