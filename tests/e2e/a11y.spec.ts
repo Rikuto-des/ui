@@ -98,6 +98,17 @@ for (const pack of ["graphite", "lucent"]) {
         expect(await scan(page, "#tip-copy")).toEqual([]);
       });
 
+      test("a menu with its submenu open has no violations", async ({ page }) => {
+        await page.getByTestId("sub-menu-trigger").focus();
+        await page.keyboard.press("ArrowDown");
+        await expect(page.getByTestId("task-menu").getByRole("menuitem", { name: "編集する" })).toBeFocused();
+        await page.keyboard.press("ArrowDown");
+        await expect(page.getByRole("menuitem", { name: "担当者を変える" })).toBeFocused();
+        await page.keyboard.press("ArrowRight");
+        await expect(page.getByRole("menu", { name: "担当者を変える" })).toBeVisible();
+        expect(await scan(page, "#task-menu")).toEqual([]);
+      });
+
       test("an open alert dialog, sheet and hover card have no violations", async ({ page }) => {
         await page.getByTestId("open-delete").click();
         await expect(page.getByTestId("delete-dialog")).toBeVisible();

@@ -104,6 +104,14 @@ test.describe("component gallery with JavaScript disabled", () => {
     await expect.poll(async () => (await notes.boundingBox())!.height).toBeGreaterThan(before + 40);
   });
 
+  test("a submenu opens beside its item from a click, keeping the menu open", async ({ page }) => {
+    await page.getByTestId("sub-menu-trigger").click();
+    await expect(page.getByTestId("task-menu")).toBeVisible();
+    await page.getByRole("menuitem", { name: "担当者を変える" }).click();
+    await expect(page.getByRole("menu", { name: "担当者を変える" })).toBeVisible();
+    await expect(page.getByTestId("task-menu")).toBeVisible();
+  });
+
   test("toggles and toggle groups work as native checkboxes and radios", async ({ page }) => {
     await page.getByRole("checkbox", { name: "斜体" }).check();
     await expect(page.getByRole("checkbox", { name: "斜体" })).toBeChecked();

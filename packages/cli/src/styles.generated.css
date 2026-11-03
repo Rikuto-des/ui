@@ -128,6 +128,15 @@ SOFTWARE.
   :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="start"] { position-area: inline-end span-block-end; }
   :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="center"] { position-area: inline-end; }
   :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="end"] { position-area: inline-end span-block-start; }
+  /* A submenu flies out beside its item, its first row level with the item and
+     its edge just past the parent menu's. Near the bottom it grows upwards; at
+     the side it flips (the margins flip with it). */
+  [data-slot="menu"][data-sub] {
+    position-area: inline-end span-block-end;
+    margin-block-start: calc(-1 * var(--ur-space-2));
+    margin-inline-start: calc(var(--ur-space-2) - 2px);
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  }
 
   /* Hints must remain readable when the pointer moves onto their content. */
   [data-slot="tooltip"] {
@@ -1319,6 +1328,54 @@ SOFTWARE.
     block-size: var(--ur-border-width);
     margin: var(--ur-space-2) calc(-1 * var(--ur-space-2));
     background-color: var(--ur-color-border);
+  }
+  [data-slot="menu-sub-icon"] {
+    flex: none;
+    inline-size: 14px;
+    block-size: 14px;
+    margin-inline-start: auto;
+    background-color: var(--ur-color-text-muted);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='m5.5 3.5 3.5 3.5-3.5 3.5' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: rotate var(--ur-motion-duration-fast) var(--ur-motion-ease-out);
+  }
+  [data-slot="menu-sub-icon"]:dir(rtl) {
+    scale: -1 1;
+  }
+  /* The item stays marked while its submenu is open. */
+  [data-slot="menu-sub"]:has(> [data-slot="menu"]:is(:popover-open, [data-inline-open])) > [data-slot~="menu-sub-trigger"] {
+    background-color: var(--ur-color-ghost-hover);
+  }
+  /* In place (narrow screens, set by the runtime): an indented group under the item, its arrow pointing down. */
+  [data-slot="menu"][data-sub][data-inline-open] {
+    display: grid;
+    position: static;
+    inset: auto;
+    min-inline-size: 0;
+    max-inline-size: none;
+    margin: 0 0 0 calc(var(--ur-space-3) + 2px);
+    padding: 0 0 0 var(--ur-space-2);
+    border: 0;
+    border-inline-start: var(--ur-border-width) solid var(--ur-color-border);
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    opacity: 1;
+    scale: 1;
+    translate: none;
+    transition: opacity var(--ur-motion-duration-overlay) var(--ur-motion-ease-out);
+  }
+  @starting-style {
+    [data-slot="menu"][data-sub][data-inline-open] {
+      opacity: 0;
+    }
+  }
+  [data-slot="menu-sub"]:has(> [data-slot="menu"][data-inline-open]) [data-slot="menu-sub-icon"] {
+    rotate: 90deg;
+  }
+  [data-slot="menu-sub"]:has(> [data-slot="menu"][data-inline-open]) [data-slot="menu-sub-icon"]:dir(rtl) {
+    rotate: -90deg;
   }
 
   /* Tabs ------------------------------------------------------------------- */

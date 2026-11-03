@@ -137,7 +137,7 @@
   {
     "name": "menu",
     "version": "0.1.0-beta.1",
-    "summary": "A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead."
+    "summary": "A list of actions in a popover (menu button pattern), with optional submenus. Opens without JavaScript; the runtime adds arrow keys, typeahead and submenu hover."
   },
   {
     "name": "meter",

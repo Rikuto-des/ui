@@ -329,7 +329,8 @@ tester.run("valid-import", rules["valid-import"], {
     { code: `import { TextField } from "@urushi/react";`, errors: [{ message: /<Field id="…" label="…"> の中に <Input>/ }] },
     { code: `import { Radio } from "@urushi/react";`, errors: [{ message: /<RadioGroup name="…" legend="…"> の中に <RadioGroup\.Item value="…">/ }] },
     { code: `import { Modal } from "@urushi/react";`, errors: [{ message: /<Dialog id="…" title="…"> を使ってください。開くボタンは <Dialog\.Trigger dialog="…">/ }] },
-    { code: `import { MenuSub } from "@urushi/react";`, errors: [{ message: /<Menu id="…" label="…">・<Menu\.Trigger menu="…">・<Menu\.Item>・<Menu\.Link href="…">・<Menu\.Separator>/ }] },
+    // A submenu is a part of Menu, not its own export.
+    { code: `import { MenuSub } from "@urushi/react";`, errors: [{ message: /<Menu\.Sub label="…"> を使ってください。import するのは Menu です。/ }] },
     { code: `import { CardHeader, CardFooter } from "@urushi/react";`, errors: [{ message: /<Card title="…">/ }, { message: /<Card footer=\{…\}>/ }] },
     { code: `import { AccordionTrigger } from "@urushi/react";`, errors: [{ message: /<Accordion\.Item title="…">/ }] },
     { code: `import { DropdownMenuItem } from "@urushi/react";`, errors: [{ message: /<Menu\.Item>.*import するのは Menu です/ }] },

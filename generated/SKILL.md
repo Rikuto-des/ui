@@ -388,7 +388,7 @@ Not for: Running an action on the current page (use button).
 <p>詳しくは<Link href="/docs">使い方ガイド</Link>をご覧ください。</p>
 ```
 
-### Menu — A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.
+### Menu — A list of actions in a popover (menu button pattern), with optional submenus. Opens without JavaScript; the runtime adds arrow keys, typeahead and submenu hover.
 
 Use for: Secondary actions on an item (編集・複製・削除).
 Not for: Choosing a value (use select); Navigation (use link).
@@ -397,8 +397,10 @@ Not for: Choosing a value (use select); Navigation (use link).
 - `<Menu.Item>`; variant: default|danger.
 - `<Menu.Link>` requires `href`.
 - `<Menu.Separator>`.
+- `<Menu.Sub>` requires `label`.
 - Items are verbs (編集, 複製, 削除).
 - Put destructive items last, after a Menu.Separator.
+- Nest one level of Menu.Sub at most; deeper choices belong in a dialog.
 
 ```tsx
 <Menu.Trigger menu="row-actions" variant="ghost" aria-label="操作">…</Menu.Trigger>

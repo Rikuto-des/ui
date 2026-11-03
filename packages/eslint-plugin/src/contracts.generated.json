@@ -1966,6 +1966,25 @@
       "role"
     ]
   },
+  "Menu.Sub": {
+    "contract": "menu",
+    "slot": "menu-sub",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label"
+    ],
+    "attributes": [],
+    "omits": [
+      "role"
+    ]
+  },
   "Meter": {
     "contract": "meter",
     "slot": "meter",

@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Button, Menu } from "@urushi/react";
 export default function MenuExample() {
   const [copies, setCopies] = useState(1),
-    [archived, setArchived] = useState(false);
+    [archived, setArchived] = useState(false),
+    [folder, setFolder] = useState("仕事");
   return (
     <div className="interaction-study">
       <header>
@@ -15,7 +16,7 @@ export default function MenuExample() {
         <span aria-hidden="true"><NotebookIcon size={24} /></span>
         <div>
           <strong>Field notes</strong>
-          <p>{archived ? "アーカイブ済み" : `${copies}冊のノート`}</p>
+          <p>{archived ? "アーカイブ済み" : `${folder}・${copies}冊のノート`}</p>
         </div>
         <Menu.Trigger
           menu="study-menu"
@@ -35,6 +36,19 @@ export default function MenuExample() {
         >
           複製
         </Menu.Item>
+        <Menu.Sub label="フォルダーを移動">
+          {["仕事", "個人", "あとで読む"].map((name) => (
+            <Menu.Item
+              key={name}
+              onClick={() => {
+                setFolder(name);
+                setArchived(false);
+              }}
+            >
+              {name}
+            </Menu.Item>
+          ))}
+        </Menu.Sub>
         <Menu.Separator />
         <Menu.Item
           variant="danger"
@@ -50,6 +64,7 @@ export default function MenuExample() {
           onClick={() => {
             setCopies(1);
             setArchived(false);
+            setFolder("仕事");
           }}
         >
           元に戻す

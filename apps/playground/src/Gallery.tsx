@@ -321,6 +321,30 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
                 </Menu>
               </div>
             </Example>
+            <Example label="サブメニュー">
+              <div className="g-row">
+                <span className="g-row-label">申し込みページの画像を差し替える</span>
+                <Menu.Trigger menu="task-menu" variant="ghost" size="sm" aria-label="タスクの操作" data-testid="sub-menu-trigger">
+                  <IconMore />
+                </Menu.Trigger>
+                <Menu id="task-menu" label="タスクの操作" align="end" data-testid="task-menu">
+                  <Menu.Item>編集する</Menu.Item>
+                  <Menu.Sub label="担当者を変える" data-testid="assign-sub">
+                    <Menu.Item>佐藤 美咲</Menu.Item>
+                    <Menu.Item>鈴木 健太</Menu.Item>
+                    <Menu.Item>高橋 陽菜</Menu.Item>
+                    <Menu.Item>担当者なし</Menu.Item>
+                  </Menu.Sub>
+                  <Menu.Sub label="優先度" data-testid="priority-sub">
+                    <Menu.Item>高</Menu.Item>
+                    <Menu.Item>中</Menu.Item>
+                    <Menu.Item>低</Menu.Item>
+                  </Menu.Sub>
+                  <Menu.Separator />
+                  <Menu.Item variant="danger">削除する</Menu.Item>
+                </Menu>
+              </div>
+            </Example>
           </Section>
 
           <Section id="field" summary="ラベル・説明・エラーを入力欄に結びつけます。結びつけは Field が行うので、書き忘れがありません。">

@@ -47,3 +47,11 @@ export interface MenuSeparatorOwnProps {
 }
 export const menuSeparatorDefaults = {} as const;
 export const menuSeparatorSlot = "menu-separator";
+
+/** A submenu: an item (role=menuitem, aria-haspopup=menu) that opens a nested menu of its children. On wide screens it flies out beside the item and flips at the viewport edge; on narrow screens (640px and below) the runtime opens it in place, indented under the item. Without JavaScript a click opens the flyout. */
+export interface MenuSubOwnProps {
+  /** Required. The item text and the nested menu's accessible name. */
+  label: string;
+}
+export const menuSubDefaults = {} as const;
+export const menuSubSlot = "menu-sub";

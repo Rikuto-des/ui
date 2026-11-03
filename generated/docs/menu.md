@@ -1,6 +1,6 @@
 # Menu
 
-A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.
+A list of actions in a popover (menu button pattern), with optional submenus. Opens without JavaScript; the runtime adds arrow keys, typeahead and submenu hover.
 
 - Tier: 3
 - Rendering: server
@@ -71,6 +71,16 @@ A rule between groups of items. Renders `<div data-slot="menu-separator">`.
 
 className may only adjust: nothing (visuals come from the pack).
 
+### `<Menu.Sub>`
+
+A submenu: an item (role=menuitem, aria-haspopup=menu) that opens a nested menu of its children. On wide screens it flies out beside the item and flips at the viewport edge; on narrow screens (640px and below) the runtime opens it in place, indented under the item. Without JavaScript a click opens the flyout. Renders `<div data-slot="menu-sub">`.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | **required** | Required. The item text and the nested menu's accessible name. |
+
+className may only adjust: nothing (visuals come from the pack).
+
 ## Accessibility
 
 Pattern: menu button
@@ -80,11 +90,14 @@ Pattern: menu button
 | ↑ / ↓ | move between items |
 | Home / End | first / last item |
 | Letters | jump to the next item starting with them |
-| Escape | close and return focus to the trigger |
+| → / Enter / Space on a Menu.Sub | open the submenu on its first item |
+| ← in a submenu | close it and return to its item |
+| Escape | close the innermost menu and return focus to its trigger or item |
 | Tab | close |
 
 - Items are verbs (編集, 複製, 削除).
 - Put destructive items last, after a Menu.Separator.
+- Nest one level of Menu.Sub at most; deeper choices belong in a dialog.
 
 ## States
 
@@ -105,5 +118,17 @@ Pattern: menu button
   <Menu.Item>複製</Menu.Item>
   <Menu.Separator />
   <Menu.Item variant="danger">削除</Menu.Item>
+</Menu>
+```
+
+### Submenu
+
+```tsx
+<Menu id="task-actions" label="タスクの操作">
+  <Menu.Item>編集する</Menu.Item>
+  <Menu.Sub label="担当者を変える">
+    <Menu.Item>佐藤 美咲</Menu.Item>
+    <Menu.Item>鈴木 健太</Menu.Item>
+  </Menu.Sub>
 </Menu>
 ```

@@ -355,6 +355,7 @@
       "MenuLinkProps",
       "MenuProps",
       "MenuSeparatorProps",
+      "MenuSubProps",
       "MenuTriggerProps"
     ],
     "@urushi/react/meter": [

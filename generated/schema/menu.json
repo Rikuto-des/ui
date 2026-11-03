@@ -4,7 +4,7 @@
     "button"
   ],
   "tier": 3,
-  "summary": "A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.",
+  "summary": "A list of actions in a popover (menu button pattern), with optional submenus. Opens without JavaScript; the runtime adds arrow keys, typeahead and submenu hover.",
   "use": [
     "Secondary actions on an item (編集・複製・削除)"
   ],
@@ -188,6 +188,27 @@
         "properties": {}
       },
       "overrides": []
+    },
+    {
+      "jsx": "Menu.Sub",
+      "slot": "menu-sub",
+      "element": "div",
+      "description": "A submenu: an item (role=menuitem, aria-haspopup=menu) that opens a nested menu of its children. On wide screens it flies out beside the item and flips at the viewport edge; on narrow screens (640px and below) the runtime opens it in place, indented under the item. Without JavaScript a click opens the flyout.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. The item text and the nested menu's accessible name."
+          }
+        },
+        "required": [
+          "label"
+        ]
+      },
+      "overrides": []
     }
   ],
   "states": [
@@ -199,12 +220,15 @@
       "↑ / ↓": "move between items",
       "Home / End": "first / last item",
       "Letters": "jump to the next item starting with them",
-      "Escape": "close and return focus to the trigger",
+      "→ / Enter / Space on a Menu.Sub": "open the submenu on its first item",
+      "← in a submenu": "close it and return to its item",
+      "Escape": "close the innermost menu and return focus to its trigger or item",
       "Tab": "close"
     },
     "rules": [
       "Items are verbs (編集, 複製, 削除).",
-      "Put destructive items last, after a Menu.Separator."
+      "Put destructive items last, after a Menu.Separator.",
+      "Nest one level of Menu.Sub at most; deeper choices belong in a dialog."
     ]
   },
   "tokens": [
@@ -218,6 +242,10 @@
     {
       "title": "Row actions",
       "code": "<Menu.Trigger menu=\"row-actions\" variant=\"ghost\" aria-label=\"操作\">…</Menu.Trigger>\n<Menu id=\"row-actions\" label=\"タスクの操作\">\n  <Menu.Item>編集</Menu.Item>\n  <Menu.Item>複製</Menu.Item>\n  <Menu.Separator />\n  <Menu.Item variant=\"danger\">削除</Menu.Item>\n</Menu>"
+    },
+    {
+      "title": "Submenu",
+      "code": "<Menu id=\"task-actions\" label=\"タスクの操作\">\n  <Menu.Item>編集する</Menu.Item>\n  <Menu.Sub label=\"担当者を変える\">\n    <Menu.Item>佐藤 美咲</Menu.Item>\n    <Menu.Item>鈴木 健太</Menu.Item>\n  </Menu.Sub>\n</Menu>"
     }
   ]
 }

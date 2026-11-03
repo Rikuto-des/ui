@@ -139,6 +139,24 @@ for (const pack of packs) {
         await expect(page).toHaveScreenshot(["menu", `${name}-open.png`], { clip });
       });
 
+      test("menu: submenu open", async ({ page }) => {
+        const trigger = page.getByTestId("sub-menu-trigger");
+        await center(trigger);
+        await trigger.focus();
+        await page.keyboard.press("ArrowDown");
+        await expect(page.getByTestId("task-menu").getByRole("menuitem", { name: "編集する" })).toBeFocused();
+        const item = page.getByRole("menuitem", { name: "担当者を変える" });
+        await page.keyboard.press("ArrowDown");
+        await expect(item).toBeFocused();
+        await page.keyboard.press("ArrowRight");
+        const sub = page.getByRole("menu", { name: "担当者を変える" });
+        await expect(sub).toBeVisible();
+        await pointerAway(page);
+        await settle(page);
+        const clip = await around(page, [page.getByTestId("task-menu"), sub]);
+        await expect(page).toHaveScreenshot(["menu", `${name}-submenu.png`], { clip });
+      });
+
       test("tooltip: open", async ({ page }) => {
         const trigger = page.getByTestId("tip-trigger");
         await center(trigger);

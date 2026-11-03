@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "kind": "authored regression fixture, not an AI benchmark",
   "command": "pnpm proof:agent",
-  "catalogSha256": "9fb80602d67ad6ec47a315046aa0b8500039f4d8c35fe0f3ed323e91fd23ce85",
+  "catalogSha256": "07dd6ab0b7541c0a0424818aa77e7cb3471ef35607dba02cb649f49625fc19c2",
   "before": {
     "code": "import { Button, Dialog } from \"@urushi/react\";\n\nexport default function Confirm() {\n  return <>\n    <Button variant=\"destructive\" className=\"rounded-xl\">削除する</Button>\n    <Dialog id=\"confirm\" open onOpenChange={() => {}} />\n  </>;\n}\n",
     "sha256": "f98d28b71e5c8b1b01782f4a608426facc2c902400c608b4fb33adc8be2d1149",
@@ -285,6 +285,18 @@
                     "description": "Optional supporting text, linked with aria-describedby.",
                     "x-ts-type": "React.ReactNode"
                   },
+                  "initialFocus": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Id of the element inside the dialog to focus after opening. Requires UrushiRuntime. Use this for dynamic React content, where autoFocus alone can run before showModal().",
+                    "x-idref": true
+                  },
+                  "returnFocus": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Id of the element to focus after closing or removing an open dialog. Requires UrushiRuntime. Useful for programmatic opening and conditional rendering; native trigger restoration remains the default.",
+                    "x-idref": true
+                  },
                   "dismissible": {
                     "default": "any",
                     "description": "any: Escape or a click outside closes it. closerequest: Escape only. none: only explicit buttons.",
@@ -440,6 +452,7 @@
             },
             "rules": [
               "Install UrushiRuntime to restore the clicked invoker after closing on Safari too; without it, pointer focus follows browser settings.",
+              "For dynamically rendered React content, set initialFocus to an input or safe button id. React autoFocus can run before showModal(); initialFocus runs after the dialog opens. Set returnFocus to a stable trigger id when opening programmatically or unmounting the dialog.",
               "title is required; it becomes the accessible name through aria-labelledby.",
               "Every Dialog.Trigger and Dialog.Close must reference an existing Dialog id.",
               "Destructive confirmations should put focus on the safe action with autofocus.",

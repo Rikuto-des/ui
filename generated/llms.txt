@@ -31,7 +31,7 @@
 - [Input](docs/input.md): A native single-line <input> styled by the pack.
 - [Kbd](docs/kbd.md): A key or keyboard shortcut, in a native <kbd>.
 - [Link](docs/link.md): A native <a> that navigates to another page or place.
-- [Menu](docs/menu.md): A list of actions in a popover (menu button pattern). Opens without JavaScript; the runtime adds arrow keys and typeahead.
+- [Menu](docs/menu.md): A list of actions in a popover (menu button pattern), with optional submenus. Opens without JavaScript; the runtime adds arrow keys, typeahead and submenu hover.
 - [Meter](docs/meter.md): A measurement within a known range, in a native <meter> that colors itself by low / high / optimum.
 - [NavigationMenu](docs/navigation-menu.md): Site navigation with native disclosures, pointer-intent hover, collision-aware flyouts and responsive inline layout.
 - [OTPInput](docs/otp-input.md): A one-time code field: one native input drawn as separate boxes, with one-time-code autofill.
