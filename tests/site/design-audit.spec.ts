@@ -18,6 +18,8 @@ const settle = (page: Page) =>
       ),
   );
 const audit = async (page: Page, scope = "main", soft = false) => {
+  // Demos stay disabled until their chunk loads; axe would report that state.
+  await expect(page.locator(scope).locator(".demo-interaction-boundary:disabled")).toHaveCount(0);
   await settle(page);
   const { violations } = await new AxeBuilder({ page })
     .include(scope)

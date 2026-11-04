@@ -223,10 +223,20 @@ export function installNavigationMenus(doc: Document): () => void {
     };
     opening.set(group, setTimeout(attempt, delay));
   };
+  let lastPointer: Point | undefined;
+  /** The strip between a top-level trigger and its panel: a slow pointer crossing it keeps the panel. */
+  const onBridge = (group: HTMLDetailsElement) => {
+    if (!lastPointer || parent(group) || !group.open) return false;
+    const t = summary(group).getBoundingClientRect(), p = panel(group).getBoundingClientRect();
+    const top = Math.min(t.bottom, p.top), bottom = Math.max(t.bottom, p.top);
+    return lastPointer.y >= top - 1 && lastPointer.y <= bottom + 1 && lastPointer.x >= Math.min(t.left, p.left) && lastPointer.x <= Math.max(t.right, p.right);
+  };
   function scheduleClose(group: HTMLDetailsElement, delay = 300) {
     clear(closing, group);
     closing.set(group, setTimeout(() => {
-      closing.delete(group); corridors.delete(group);
+      closing.delete(group);
+      if (onBridge(group)) return scheduleClose(group, 100);
+      corridors.delete(group);
       if (!containsFocus(group)) close(group);
     }, delay));
   }
@@ -250,13 +260,18 @@ export function installNavigationMenus(doc: Document): () => void {
   };
   const pointermove = (event: PointerEvent) => {
     if (event.pointerType !== 'mouse') return;
+    const pointer = lastPointer = {x:event.clientX,y:event.clientY};
     for (const [group, corridor] of corridors) {
       if (group.contains(event.target as Node)) { clear(closing, group); corridors.delete(group); continue; }
       const r = panel(group).getBoundingClientRect(), x = group.dataset.side === 'left' ? r.right + 5 : r.left - 5;
-      if (Date.now() > corridor.expires || !inTriangle({x:event.clientX,y:event.clientY}, corridor.origin, {x,y:r.top-10}, {x,y:r.bottom+10})) {
+      if (Date.now() > corridor.expires || !inTriangle(pointer, corridor.origin, {x,y:r.top-10}, {x,y:r.bottom+10})) {
         corridors.delete(group); scheduleClose(group, 100);
         for (let ancestor = parent(group); ancestor; ancestor = parent(ancestor)) if (!ancestor.contains(event.target as Node)) scheduleClose(ancestor, 100);
+        continue;
       }
+      // Still heading for the flyout: a slow pointer keeps it while it makes progress.
+      corridors.set(group, {origin:pointer, expires:Date.now()+700}); scheduleClose(group, 700);
+      for (let ancestor = parent(group); ancestor; ancestor = parent(ancestor)) if (!ancestor.contains(event.target as Node)) scheduleClose(ancestor, 700);
     }
   };
   const pointerdown = (event: PointerEvent) => {

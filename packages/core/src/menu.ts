@@ -238,12 +238,18 @@ export function installMenus(doc: Document = document): () => void {
     }
     const r = sub.getBoundingClientRect();
     const x = r.left >= origin.x ? r.left : r.right;
-    if (Date.now() > expires || !inTriangle({ x: event.clientX, y: event.clientY }, origin, { x, y: r.top - 8 }, { x, y: r.bottom + 8 })) {
+    const point = { x: event.clientX, y: event.clientY };
+    const trigger = triggerOf(sub);
+    clearTimeout(closing);
+    if (Date.now() > expires || !inTriangle(point, origin, { x, y: r.top - 8 }, { x, y: r.bottom + 8 })) {
       corridor = undefined;
-      const trigger = triggerOf(sub);
-      clearTimeout(closing);
       if (trigger && !trigger.matches(":hover")) closing = setTimeout(() => closeSub(trigger), 100);
+      return;
     }
+    // Still heading for the flyout: a slow pointer keeps it as long as it makes progress,
+    // and the corridor narrows from where the pointer is now.
+    corridor = { sub, origin: point, expires: Date.now() + 500 };
+    if (trigger) closing = setTimeout(() => corridor?.sub === sub && closeSub(trigger), 500);
   };
 
   doc.addEventListener("toggle", onToggle, true);
