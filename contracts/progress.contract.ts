@@ -21,7 +21,7 @@ export default defineContract({
         label: node("Required visible label; it names the progress bar."),
         value: z.number().min(0).optional().describe("Current amount. Leave out while the total is unknown."),
         max: z.number().positive().default(100),
-        milestones: z.array(z.object({ value: z.number(), label: z.string() })).optional().describe("Labelled checkpoints in the same units as value and max."),
+        milestones: z.array(z.object({ value: z.number(), label: z.string() })).optional().describe("Labelled checkpoints in the same units as value and max.").meta({ "x-ts-type": "readonly { value: number; label: string }[]" }),
         valueText: z.string().optional().describe("Readable progress, e.g. 3 of 8 files. Also announced by assistive technology."),
         showValue: z.boolean().default(true).describe("Shows the percentage next to the label."),
       }),

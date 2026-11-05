@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "kind": "authored regression fixture, not an AI benchmark",
   "command": "pnpm proof:agent",
-  "catalogSha256": "da300a7ae107ddbf81fb25bfb5db9a516f7300d6f94c4a6c6ebd162569660779",
+  "catalogSha256": "3656e89946629941fe7fefa5938820cfe4fbca907b5cd2ae4b2ff25a466963d0",
   "before": {
     "code": "import { Button, Dialog } from \"@urushi/react\";\n\nexport default function Confirm() {\n  return <>\n    <Button variant=\"destructive\" className=\"rounded-xl\">削除する</Button>\n    <Dialog id=\"confirm\" open onOpenChange={() => {}} />\n  </>;\n}\n",
     "sha256": "f98d28b71e5c8b1b01782f4a608426facc2c902400c608b4fb33adc8be2d1149",

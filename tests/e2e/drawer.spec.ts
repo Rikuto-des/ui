@@ -90,3 +90,9 @@ test("Item rows: a list with one link row and its own controls", async ({ page }
   await list.getByRole("switch", { name: "締め切りの前日に知らせる" }).click();
   await expect(list.getByRole("switch", { name: "締め切りの前日に知らせる" })).not.toBeChecked();
 });
+
+test("a closing dialog keeps its column layout (display stays flex through the exit transition)", async ({ page }) => {
+  for (const id of ["g-drawer", "g-task-sheet", "g-delete"]) {
+    expect(await page.locator(`dialog#${id}`).evaluate((el) => getComputedStyle(el).flexDirection), id).toBe("column");
+  }
+});

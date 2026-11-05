@@ -1273,6 +1273,11 @@
               "description": "Written after each value in the tooltip and the table, e.g. \"万円\".",
               "type": "string"
             },
+            "hideTitle": {
+              "default": false,
+              "description": "Hide the title visually (it still names the figure and the table), for a chart under a heading that already says it.",
+              "type": "boolean"
+            },
             "height": {
               "default": 220,
               "description": "Height of the plot in px.",
@@ -2128,6 +2133,7 @@
             },
             "presets": {
               "description": "日付候補。valueはYYYY-MM-DD形式。範囲外は選択できません。",
+              "x-ts-type": "readonly { label: string; value: string }[]",
               "type": "array",
               "items": {
                 "type": "object",
@@ -4615,6 +4621,7 @@
             },
             "milestones": {
               "description": "Labelled checkpoints in the same units as value and max.",
+              "x-ts-type": "readonly { value: number; label: string }[]",
               "type": "array",
               "items": {
                 "type": "object",
@@ -6326,6 +6333,9 @@
   },
   {
     "name": "toast",
+    "runtimeSlots": [
+      "toast"
+    ],
     "tier": 2,
     "summary": "Brief notifications about the result of an action. Place one <Toaster /> per page and call toast() from client code.",
     "use": [

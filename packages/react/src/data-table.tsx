@@ -16,6 +16,8 @@ export interface DataTableColumn<T> {
   header: string;
   cell: (row: T) => ReactNode;
   sortValue?: (row: T) => string | number;
+  /** "end" for numbers and amounts, so their digits line up. */
+  align?: "start" | "end";
 }
 export interface DataTableProps<T> {
   label: string;
@@ -147,6 +149,7 @@ export function DataTable<T>({
                 <th
                   key={col.id}
                   scope="col"
+                  data-align={col.align === "end" ? "end" : undefined}
                   aria-sort={
                     col.sortValue
                       ? sort?.id === col.id
@@ -223,7 +226,9 @@ export function DataTable<T>({
                       </td>
                     )}
                     {columns.map((col) => (
-                      <td key={col.id}>{col.cell(row)}</td>
+                      <td key={col.id} data-align={col.align === "end" ? "end" : undefined}>
+                        {col.cell(row)}
+                      </td>
                     ))}
                     {renderDetails && (
                       <td>

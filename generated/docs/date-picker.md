@@ -29,7 +29,7 @@
 | `min` | `string` | — |  |
 | `max` | `string` | — |  |
 | `locale` | `string` | `"en"` |  |
-| `presets` | `unknown` | — | 日付候補。valueはYYYY-MM-DD形式。範囲外は選択できません。 |
+| `presets` | `readonly { label: string; value: string }[]` | — | 日付候補。valueはYYYY-MM-DD形式。範囲外は選択できません。 |
 
 className may only adjust: margin, width, layout, position.
 

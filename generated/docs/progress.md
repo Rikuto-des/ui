@@ -26,7 +26,7 @@ A label and a <progress>. Without value it is indeterminate. Renders `<progress 
 | `label` | `React.ReactNode` | **required** | Required visible label; it names the progress bar. |
 | `value` | `number` | — | Current amount. Leave out while the total is unknown. |
 | `max` | `number` | `100` |  |
-| `milestones` | `unknown` | — | Labelled checkpoints in the same units as value and max. |
+| `milestones` | `readonly { value: number; label: string }[]` | — | Labelled checkpoints in the same units as value and max. |
 | `valueText` | `string` | — | Readable progress, e.g. 3 of 8 files. Also announced by assistive technology. |
 | `showValue` | `boolean` | `true` | Shows the percentage next to the label. |
 

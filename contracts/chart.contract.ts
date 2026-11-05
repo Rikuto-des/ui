@@ -29,6 +29,7 @@ export default defineContract({
           .describe("Up to 5 series; each has one value per label. The first is the one to look at.")
           .meta({ "x-ts-type": "readonly { name: string; values: readonly number[] }[]" }),
         unit: z.string().optional().describe("Written after each value in the tooltip and the table, e.g. \"万円\"."),
+        hideTitle: z.boolean().default(false).describe("Hide the title visually (it still names the figure and the table), for a chart under a heading that already says it."),
         height: z.number().min(80).default(220).describe("Height of the plot in px."),
         palette: z.enum(["quiet", "multi"]).default("quiet").describe("quiet: accent and greys. multi: a color per series."),
       }),

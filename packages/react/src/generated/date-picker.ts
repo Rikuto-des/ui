@@ -13,7 +13,7 @@ export interface DatePickerOwnProps {
   max?: string;
   locale?: string;
   /** 日付候補。valueはYYYY-MM-DD形式。範囲外は選択できません。 */
-  presets?: unknown;
+  presets?: readonly { label: string; value: string }[];
 }
 export const datePickerDefaults = {"locale":"en"} as const;
 export const datePickerSlot = "date-picker";

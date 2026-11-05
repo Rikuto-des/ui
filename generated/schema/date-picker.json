@@ -58,6 +58,7 @@
           },
           "presets": {
             "description": "日付候補。valueはYYYY-MM-DD形式。範囲外は選択できません。",
+            "x-ts-type": "readonly { label: string; value: string }[]",
             "type": "array",
             "items": {
               "type": "object",

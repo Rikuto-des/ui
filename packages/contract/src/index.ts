@@ -36,6 +36,8 @@ export interface ContractInput {
   name: string;
   /** Styles rendered by this component through another component or shared slot. */
   styleDependencies?: string[];
+  /** Slots of elements the runtime creates (not JSX parts), whose styles ship with this component. */
+  runtimeSlots?: string[];
   tier: Tier;
   summary: string;
   use: string[];

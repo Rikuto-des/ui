@@ -9,7 +9,7 @@ export interface ProgressOwnProps {
   value?: number;
   max?: number;
   /** Labelled checkpoints in the same units as value and max. */
-  milestones?: unknown;
+  milestones?: readonly { value: number; label: string }[];
   /** Readable progress, e.g. 3 of 8 files. Also announced by assistive technology. */
   valueText?: string;
   /** Shows the percentage next to the label. */

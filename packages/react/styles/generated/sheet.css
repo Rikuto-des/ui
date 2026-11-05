@@ -277,10 +277,10 @@ SOFTWARE.
     padding: var(--ur-dialog-padding);
     border-radius: var(--ur-radius-dialog);
     box-shadow: var(--ur-shadow-dialog);
+    flex-direction: column;
   }
   [data-slot~="dialog"][open] {
     display: flex;
-    flex-direction: column;
   }
   [data-slot~="dialog"][data-size="sm"] {
     inline-size: min(100% - 2 * var(--ur-space-5), var(--ur-dialog-size-sm));

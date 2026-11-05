@@ -83,11 +83,14 @@ SOFTWARE.
   }
   :is([data-slot="progress-head"], [data-slot="meter-head"]) {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: var(--ur-space-4);
+    gap: var(--ur-space-1) var(--ur-space-4);
     font-size: var(--ur-font-size-control);
   }
   :is([data-slot="progress-label"], [data-slot="meter-label"]) {
+    flex: 1 0 auto;
+    max-inline-size: 100%;
     font-weight: 500;
   }
   :is([data-slot="progress-value"], [data-slot="meter-value"]) {

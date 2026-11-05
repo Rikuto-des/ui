@@ -2,6 +2,8 @@ import { defineContract, z } from "@urushi/contract";
 
 export default defineContract({
   name: "toast",
+  // toast() builds each notification (toast, toast-body, toast-close…) inside the Toaster.
+  runtimeSlots: ["toast"],
   tier: 2,
   summary: "Brief notifications about the result of an action. Place one <Toaster /> per page and call toast() from client code.",
   use: ["Confirming that an action finished (保存しました)", "Reporting a recoverable failure"],

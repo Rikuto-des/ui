@@ -26,6 +26,7 @@ export function Chart({
   labels,
   series,
   unit,
+  hideTitle = chartDefaults.hideTitle,
   height = chartDefaults.height,
   palette = chartDefaults.palette,
   style,
@@ -37,7 +38,9 @@ export function Chart({
   const withUnit = (v: number | undefined) => (v === undefined ? "—" : `${format(v)}${unit ?? ""}`);
   return (
     <figure {...rest} data-slot={chartSlot} data-type={type} data-palette={palette} style={{ "--_height": `${height}px`, "--_columns": n, ...style } as React.CSSProperties}>
-      <figcaption data-slot="chart-title">{title}</figcaption>
+      <figcaption data-slot="chart-title" data-hidden={hideTitle ? "" : undefined}>
+        {title}
+      </figcaption>
       <ul data-slot="chart-legend" aria-hidden="true">
         {series.map((s, k) => (
           <li key={s.name} data-series={k}>

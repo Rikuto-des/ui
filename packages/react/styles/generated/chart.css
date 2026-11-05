@@ -97,6 +97,15 @@ SOFTWARE.
     font-size: var(--ur-font-size-body);
     font-weight: var(--ur-font-weight-title);
   }
+  [data-slot="chart-title"][data-hidden] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
   [data-slot="chart-legend"] {
     display: flex;
     flex-wrap: wrap;

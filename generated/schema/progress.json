@@ -47,6 +47,7 @@
           },
           "milestones": {
             "description": "Labelled checkpoints in the same units as value and max.",
+            "x-ts-type": "readonly { value: number; label: string }[]",
             "type": "array",
             "items": {
               "type": "object",

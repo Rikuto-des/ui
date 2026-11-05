@@ -12,10 +12,12 @@ export interface ChartOwnProps {
   series: readonly { name: string; values: readonly number[] }[];
   /** Written after each value in the tooltip and the table, e.g. "万円". */
   unit?: string;
+  /** Hide the title visually (it still names the figure and the table), for a chart under a heading that already says it. */
+  hideTitle?: boolean;
   /** Height of the plot in px. */
   height?: number;
   /** quiet: accent and greys. multi: a color per series. */
   palette?: "quiet" | "multi";
 }
-export const chartDefaults = {"type":"bar","height":220,"palette":"quiet"} as const;
+export const chartDefaults = {"type":"bar","hideTitle":false,"height":220,"palette":"quiet"} as const;
 export const chartSlot = "chart";

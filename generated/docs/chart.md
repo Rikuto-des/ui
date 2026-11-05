@@ -28,6 +28,7 @@ The chart (<figure>): its title, a legend, the plot and a visually hidden table 
 | `labels` | `readonly string[]` | **required** | The labels along the bottom, one per value. |
 | `series` | `readonly { name: string; values: readonly number[] }[]` | **required** | Up to 5 series; each has one value per label. The first is the one to look at. |
 | `unit` | `string` | — | Written after each value in the tooltip and the table, e.g. "万円". |
+| `hideTitle` | `boolean` | `false` | Hide the title visually (it still names the figure and the table), for a chart under a heading that already says it. |
 | `height` | `number` | `220` | Height of the plot in px. |
 | `palette` | `"quiet" \| "multi"` | `"quiet"` | quiet: accent and greys. multi: a color per series. |
 

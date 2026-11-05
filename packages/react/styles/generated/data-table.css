@@ -188,6 +188,7 @@ SOFTWARE.
   :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"], [data-slot="calendar"]) :disabled { opacity:.5; cursor:not-allowed; }
   [data-slot="data-table"] button { color:inherit; font:inherit; border:1px solid transparent; background:transparent; border-radius:calc(var(--ur-radius-control) - 2px); cursor:pointer; min-height:calc(var(--ur-control-md) - 4px); min-width:32px; }
   [data-slot="data-table"] { min-width:0; width:100%; color:var(--ur-color-text); font-size:13px; }
+  [data-slot="data-table"] :is(th, td)[data-align="end"] { text-align: end; }
   [data-slot="data-table-scroll"] { position:relative; background:var(--ur-color-surface); overflow:auto; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-control); }
   [data-slot="data-table"] table { width:100%; border-collapse:collapse; text-align:start; }
   [data-slot="data-table"] caption { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }

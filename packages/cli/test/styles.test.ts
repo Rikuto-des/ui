@@ -46,6 +46,29 @@ test("every contract produces CSS and shared aliases are declared", async () => 
   assert.match(table, /stroke-dashoffset 180ms/);
 });
 
+test("the styles of elements the runtime creates ship with some component", async () => {
+  const root = resolve(import.meta.dirname, "../../..");
+  const contracts = await loadContracts(resolve(root, "contracts"));
+  const css = await readFile(resolve(root, "packages/react/styles/index.css"), "utf8");
+  const shipped = selectStyles(css, contracts.map((c) => c.name), contracts);
+  const { readdir } = await import("node:fs/promises");
+  const dir = resolve(root, "packages/core/src");
+  for (const file of await readdir(dir)) {
+    const source = await readFile(resolve(dir, file), "utf8");
+    for (const [, value] of source.matchAll(/dataset\.slot = "([^"]+)"/g)) {
+      for (const slot of value.split(" ")) {
+        if (!css.includes(`"${slot}"`)) continue;
+        // Each component's own CSS must carry it, not only the full stylesheet.
+        const owner = contracts.find((c) => selectStyles(css, [c.name], contracts).includes(`"${slot}"`));
+        assert.ok(owner, `${file}: no component's CSS styles data-slot="${slot}"`);
+      }
+    }
+  }
+  assert.ok(shipped.length > 0);
+  const toast = selectStyles(css, ["toast"], contracts);
+  for (const slot of ["toast", "toast-body", "toast-close", "toast-progress"]) assert.match(toast, new RegExp(`data-slot~?="${slot}"`));
+});
+
 test("standalone component CSS retains third-party license notices", async () => {
   const root = resolve(import.meta.dirname, "../../..");
   const css = await readFile(resolve(root, "packages/react/styles/index.css"), "utf8");
@@ -54,4 +77,13 @@ test("standalone component CSS retains third-party license notices", async () =>
   assert.match(selected, /Permission is hereby granted/);
   assert.match(selected, /THE SOFTWARE IS PROVIDED/);
   assert.match(selected, /mask.*data:image\/svg\+xml/);
+});
+
+test("no generated component prop is typed unknown (arrays and functions need x-ts-type)", async () => {
+  const { readdir } = await import("node:fs/promises");
+  const dir = resolve(import.meta.dirname, "../../react/src/generated");
+  for (const file of await readdir(dir)) {
+    const source = await readFile(resolve(dir, file), "utf8");
+    assert.doesNotMatch(source, /^\s+\w+\??: unknown;$/m, file);
+  }
 });

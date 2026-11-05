@@ -277,10 +277,10 @@ SOFTWARE.
     padding: var(--ur-dialog-padding);
     border-radius: var(--ur-radius-dialog);
     box-shadow: var(--ur-shadow-dialog);
+    flex-direction: column;
   }
   [data-slot~="dialog"][open] {
     display: flex;
-    flex-direction: column;
   }
   [data-slot~="dialog"][data-size="sm"] {
     inline-size: min(100% - 2 * var(--ur-space-5), var(--ur-dialog-size-sm));
@@ -410,6 +410,10 @@ SOFTWARE.
   [data-slot~="drawer"][data-side="bottom"] {
     --_sheet-radius: calc(var(--ur-radius-dialog) + 6px);
     padding-block-start: var(--ur-space-2);
+  }
+  [data-slot~="drawer"][data-side="bottom"][data-size] {
+    inline-size: min(100%, var(--ur-dialog-size-lg));
+    margin-inline: auto;
   }
   [data-slot="drawer-handle"] {
     box-sizing: content-box;

@@ -1,5 +1,8 @@
 {
   "name": "toast",
+  "runtimeSlots": [
+    "toast"
+  ],
   "tier": 2,
   "summary": "Brief notifications about the result of an action. Place one <Toaster /> per page and call toast() from client code.",
   "use": [

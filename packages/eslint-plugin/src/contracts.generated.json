@@ -572,6 +572,7 @@
       "labels",
       "series",
       "unit",
+      "hideTitle",
       "height",
       "palette"
     ],

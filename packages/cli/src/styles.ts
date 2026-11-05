@@ -1,6 +1,6 @@
 import postcss from "postcss";
 
-export interface StyleContract { name: string; parts: { slot: string }[]; styleDependencies?: string[] }
+export interface StyleContract { name: string; parts: { slot: string }[]; styleDependencies?: string[]; runtimeSlots?: string[] }
 
 /** Select by component contract, never by a DOM snapshot: all states and media rules survive. */
 export function selectStyles(source: string, names: string[], contracts: StyleContract[]): string {
@@ -14,6 +14,7 @@ export function selectStyles(source: string, names: string[], contracts: StyleCo
     if (!contract) throw new Error(`Unknown CSS component: ${name}`);
     selected.add(name);
     for (const part of contract.parts) slots.add(part.slot);
+    for (const slot of contract.runtimeSlots ?? []) slots.add(slot);
     for (const dependency of contract.styleDependencies ?? []) include(dependency);
   }
   names.forEach(include);
