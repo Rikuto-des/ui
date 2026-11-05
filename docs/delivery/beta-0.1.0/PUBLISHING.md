@@ -1,6 +1,6 @@
 # 0.1.0-beta.1を公開する手順
 
-2026年10月30日時点では、npmへの公開を行っていません。npmの認証確認は401で失敗し、`@urushi`スコープへの公開権限も未確認です。GitHubの`Rikuto-des/ui`は非公開です。
+2026年11月5日時点では、npmへの公開を行っていません。npmの認証確認は401で失敗し、`@urushi`スコープへの公開権限も未確認です。7つのパッケージ名はnpmにまだありません（404）。GitHubの`Rikuto-des/ui`は非公開です。
 
 ## 公開前に必要な操作
 
@@ -10,7 +10,7 @@ GitHubを公開する場合は、既存の履歴と比較資料も公開対象�
 
 ## 検証した配布物を使う
 
-最終コミットは`ab60022b174f45cce3723bbed04d055543af554a`です。CIは[Quality and distribution](https://github.com/Rikuto-des/ui/actions/runs/41032607879)で確認します。7ジョブが成功した実行から取得したtgzと`manifest.json`を使い、manifestの`sourceCommit`と各tgzのSHA-256を照合します。作業フォルダで作り直したファイルに置き換えないでください。
+最終コミットは`1af7d01e3806bf0931c2e9bc3fb3894f6b501746`です（55コンポーネント）。CIは[Quality and distribution](https://github.com/Rikuto-des/ui/actions/runs/41973337295)で確認します。7ジョブが成功した実行の`verification-and-packages`から取得したtgzと`manifest.json`を使い、manifestの`sourceCommit`と各tgzのSHA-256を照合します。照合済みのものを作業フォルダの`dist/release-ci-1af7d01/`（git管理外）に置いています。作業フォルダで作り直したファイルに置き換えないでください。
 
 7パッケージを`contract`、`tokens`、`core`、`packs`、`react`、`eslint-plugin`、`cli`の順に公開します。各ファイルに対して、次の形式で実行します。
 

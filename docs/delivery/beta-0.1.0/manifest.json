@@ -1,64 +1,64 @@
 {
   "version": "0.1.0-beta.1",
   "tag": "beta",
-  "sourceCommit": "ab60022b174f45cce3723bbed04d055543af554a",
-  "createdAt": "2026-10-30T09:25:40.194Z",
+  "sourceCommit": "1af7d01e3806bf0931c2e9bc3fb3894f6b501746",
+  "createdAt": "2026-11-05T05:26:30.310Z",
   "packages": [
     {
       "name": "@urushi/contract",
       "version": "0.1.0-beta.1",
       "file": "urushi-contract-0.1.0-beta.1.tgz",
-      "bytes": 9038,
-      "sha256": "ad502d1c136fda5757083eedccb04ec9911fcae372f45a830a17f3f9055f0e74",
+      "bytes": 9556,
+      "sha256": "fe090ddd2d190468f66a5b3726edbd582955c5e426023d8e25edd73c251679cd",
       "files": 10
     },
     {
       "name": "@urushi/tokens",
       "version": "0.1.0-beta.1",
       "file": "urushi-tokens-0.1.0-beta.1.tgz",
-      "bytes": 11162,
-      "sha256": "0392e0f2272b89f0447e76c2e1035e2b3a7154ed696f82520fde7025c667aca3",
+      "bytes": 12038,
+      "sha256": "4431e24395888960ad86c45eda1d08f47e56ad4e5613a6ebf729255db8a0aa85",
       "files": 10
     },
     {
       "name": "@urushi/core",
       "version": "0.1.0-beta.1",
       "file": "urushi-core-0.1.0-beta.1.tgz",
-      "bytes": 44581,
-      "sha256": "ba5100082faa765fc80a470078a0fb3b72cd6ad9f8372b55615421bdb0f23c7f",
-      "files": 62
+      "bytes": 52951,
+      "sha256": "5e450d6651ae706908de6d6f1f8077756ae2fa9985737009cdb0158f7502241f",
+      "files": 70
     },
     {
       "name": "@urushi/packs",
       "version": "0.1.0-beta.1",
       "file": "urushi-packs-0.1.0-beta.1.tgz",
-      "bytes": 9425,
-      "sha256": "8876cb263c95022c1d7f8b1cee1ed21e679b5375dc0ea0d845773c735802c4ac",
+      "bytes": 9936,
+      "sha256": "726a5abc6ce78c5fa7cba0ebd96405f32f962daa6a043217b9baea3bc7b875f1",
       "files": 9
     },
     {
       "name": "@urushi/react",
       "version": "0.1.0-beta.1",
       "file": "urushi-react-0.1.0-beta.1.tgz",
-      "bytes": 171202,
-      "sha256": "61cdad768dca11e6d973e299e79f15ddfbcdbae91f2587a3ef629a3caac02576",
-      "files": 495
+      "bytes": 182013,
+      "sha256": "cc2c0d00f0fb3ffb2c38f16d0c08a5e3d39f14ef2134ba966cd0a661357694e0",
+      "files": 522
     },
     {
       "name": "@urushi/eslint-plugin",
       "version": "0.1.0-beta.1",
       "file": "urushi-eslint-plugin-0.1.0-beta.1.tgz",
-      "bytes": 54523,
-      "sha256": "f7bc07571f0a7e080b8c028d2a55f3334160a3697d33b8d20e0f6892b9d5888a",
+      "bytes": 55273,
+      "sha256": "5a44f7a80b4449e329d3b449cdd48df2c8b1c79699087473cc5e767cbcbeb9e9",
       "files": 16
     },
     {
       "name": "@urushi/cli",
       "version": "0.1.0-beta.1",
       "file": "urushi-cli-0.1.0-beta.1.tgz",
-      "bytes": 129668,
-      "sha256": "4cf2d84c65af69e21174b925dd7b3964646908cd3ddc78a150d20049e1bed324",
-      "files": 102
+      "bytes": 141711,
+      "sha256": "1da1a196fd3363eb7b0a4874469b639c7eb515022210986d38ee7e0a769e75c6",
+      "files": 109
     }
   ]
 }
