@@ -12,8 +12,12 @@ import { tasks, protocol } from './tasks.ts';
 import { guide, type Library } from './guides.ts';
 
 const here=import.meta.dirname, root=resolve(here,'../..');
-const {values:args}=parseArgs({options:{id:{type:'string',default:'baseline'},trials:{type:'string',default:'2'},libraries:{type:'string',default:'urushi,base,radix,shadcn'},stage:{type:'string',default:'all'},'rescore':{type:'boolean',default:false}}});
+const {values:args}=parseArgs({options:{id:{type:'string',default:'baseline'},trials:{type:'string',default:'2'},libraries:{type:'string',default:'urushi,base,radix,shadcn'},stage:{type:'string',default:'all'},'rescore':{type:'boolean',default:false},provider:{type:'string',default:'codex'},model:{type:'string'}}});
 if(!/^[a-z0-9-]+$/.test(args.id!))throw Error('Invalid run id');
+if(!['codex','claude'].includes(args.provider!))throw Error('Unknown provider');
+// The Claude runs use Claude Code headless with every tool, MCP server and customization off.
+const claude=args.provider==='claude', claudeBin=process.env.CLAUDE_BIN??(spawnSync('sh',['-c','ls ~/.claude/local/claude']).status===0?join(process.env.HOME!,'.claude/local/claude'):'claude'), modelName=args.model??(claude?'claude-sonnet-5-5':protocol.model);
+const providerName=claude?`Claude Code ${spawnSync(claudeBin,['--version'],{encoding:'utf8'}).stdout.trim()} headless, --safe-mode --tools ""`:protocol.provider;
 const runDir=join(here,'runs',args.id!), libs=args.libraries!.split(',') as Library[], trials=Number(args.trials);
 const hash=(text:string)=>createHash('sha256').update(text).digest('hex');
 const exists=(p:string)=>access(p).then(()=>true,()=>false);
@@ -23,7 +27,7 @@ if(!await exists(join(runDir,'harness'))) {
   for(const name of ['run.ts','tasks.ts','guides.ts','workflows.spec.ts','playwright.config.ts','style.css','package.json','pnpm-lock.yaml','tsconfig.json'])await cp(join(here,name),join(runDir,'harness',name));
 }
 const manifestPath=join(runDir,'protocol.json');
-if(!await exists(manifestPath)) await writeFile(manifestPath,JSON.stringify({...protocol,trials,libraries:libs,startedAt:new Date().toISOString(),packageVersions:JSON.parse(await readFile(join(here,'package.json'),'utf8')).dependencies,tasks},null,2));
+if(!await exists(manifestPath)) await writeFile(manifestPath,JSON.stringify({...protocol,model:modelName,provider:providerName,trials,libraries:libs,startedAt:new Date().toISOString(),packageVersions:JSON.parse(await readFile(join(here,'package.json'),'utf8')).dependencies,tasks},null,2));
 // Archive the Urushi implementation that was tested, not just its Git HEAD (this tree has local edits).
 if(!await exists(join(runDir,'urushi-source'))) {
   await cp(join(root,'packages/react/src'),join(runDir,'urushi-source/react'),{recursive:true});
@@ -50,6 +54,7 @@ const stages:Stage[]=['generate','repair','update','update-repair'];
 const systemBase=`You are writing one React 19 + strict TypeScript screen for a controlled evaluation. Return only one complete TSX code block with default export App. You have no tools. Use the assigned library's documented primitive for the core dialog/tabs/menu, ordinary HTML or its controls elsewhere. Do not use other UI libraries or recreate the core primitive. No network calls, external assets, test manipulation, ts-ignore/ts-nocheck, or any type escapes. The harness mounts your component in a React client application; React hooks are allowed. It loads all library CSS and runtime, Tailwind v4, and a neutral base stylesheet. Use className=modal for an unstyled dialog popup/content, backdrop for an unstyled backdrop/overlay, menu for an unstyled menu popup/content; stack and row are layout helpers. These helpers are already defined. All libraries have the same viewport and tests. Use the exact accessible labels and messages requested. Do not assume passing typecheck means behavior is correct.`;
 
 async function model(system:string,prompt:string) {
+  if(claude)return claudeModel(system,prompt);
   const cwd=await mkdtemp(join(tmpdir(),'urushi-compare-model-'));
   const start=Date.now();
   await writeFile(join(cwd,'instructions.txt'),system);
@@ -69,6 +74,28 @@ async function model(system:string,prompt:string) {
         const text=messages.at(-1)?.item.text;
         if(code!==0||!completed||!text)throw Error(events.find((e)=>e.type==='error')?.message??`exit ${code}`);
         resolveReply({text,usage:completed.usage,costUsd:null,stopReason:'completed',elapsedMs:Date.now()-start,toolCalls:0,warnings:events.filter((e)=>e.type==='item.completed'&&e.item?.type==='error').map((e)=>e.item)});
+      }catch(e){reject(Error(`Model failed: ${String(e)} ${err.slice(-200)}`));}});
+      child.stdin.end(prompt);
+    });
+  } finally {await rm(cwd,{recursive:true,force:true});}
+}
+async function claudeModel(system:string,prompt:string) {
+  const cwd=await mkdtemp(join(tmpdir(),'urushi-compare-model-'));
+  const start=Date.now();
+  await writeFile(join(cwd,'instructions.txt'),system);
+  try {
+    return await new Promise<any>((resolveReply,reject)=>{
+      const child=spawn(claudeBin,['-p','--safe-mode','--strict-mcp-config','--tools','','--disable-slash-commands','--no-session-persistence','--model',modelName,'--effort',protocol.effort,'--system-prompt-file',join(cwd,'instructions.txt'),'--output-format','json'],{cwd,env:process.env,stdio:['pipe','pipe','pipe']});
+      let out='',err='';
+      const timer=setTimeout(()=>{child.kill('SIGTERM');reject(Error('Model timeout after 240s'));},240000);
+      child.stdout.on('data',(c)=>out+=c);child.stderr.on('data',(c)=>err=(err+c).slice(-1500));
+      child.on('error',(e)=>{clearTimeout(timer);reject(e);});
+      child.on('close',(code)=>{clearTimeout(timer);try{
+        const result=JSON.parse(out);
+        const tools=Object.values(result.usage?.server_tool_use??{}).reduce((a:number,b)=>a+Number(b),0);
+        if(tools)throw Error('Tool use invalidates this trial');
+        if(code!==0||result.is_error||!result.result)throw Error(result.result??`exit ${code}`);
+        resolveReply({text:result.result,usage:result.usage,costUsd:result.total_cost_usd??null,stopReason:result.stop_reason,elapsedMs:Date.now()-start,toolCalls:0,warnings:[]});
       }catch(e){reject(Error(`Model failed: ${String(e)} ${err.slice(-200)}`));}});
       child.stdin.end(prompt);
     });

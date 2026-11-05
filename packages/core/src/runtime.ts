@@ -6,6 +6,8 @@ import { installContextMenus } from "./context-menu.ts";
 import { installMenubars } from "./menubar.ts";
 import { installDrawers } from "./drawer.ts";
 import { installResizables } from "./resizable.ts";
+import { installTableScroll } from "./table-scroll.ts";
+import { installForms } from "./form.ts";
 import { installTabs } from "./tabs.ts";
 import { installSliders } from "./slider.ts";
 import { installCarousels } from "./carousel.ts";
@@ -25,7 +27,7 @@ let installed: (() => void) | undefined;
  */
 export function installRuntime(doc: Document = document): () => void {
   if (installed) return installed;
-  const cleanups = [installDialogInvokers(doc), installClosedByFallback(doc), installTooltips(doc), installMenus(doc), installContextMenus(doc), installMenubars(doc), installDrawers(doc), installResizables(doc), installNavigationMenus(doc), installTabs(doc), installSliders(doc), installCarousels(doc), installToasts(doc), installInputFeedback(doc), installSegmentedControls(doc)];
+  const cleanups = [installDialogInvokers(doc), installClosedByFallback(doc), installTooltips(doc), installMenus(doc), installContextMenus(doc), installMenubars(doc), installDrawers(doc), installResizables(doc), installTableScroll(doc), installForms(doc), installNavigationMenus(doc), installTabs(doc), installSliders(doc), installCarousels(doc), installToasts(doc), installInputFeedback(doc), installSegmentedControls(doc)];
   // Native HTML works before this point. Consumers can wait for the optional
   // keyboard/floating enhancements without relying on a load event or a delay.
   doc.documentElement.dataset.urushiRuntime = "ready";

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.rikuto-des/urushi",
+  "title": "Urushi",
+  "description": "Contracts, design rules and checks for building React UI with the Urushi components.",
+  "repository": { "url": "https://github.com/Rikuto-des/ui", "source": "github", "subfolder": "packages/cli" },
+  "version": "0.1.0-beta.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@urushi/cli",
+      "version": "0.1.0-beta.1",
+      "transport": { "type": "stdio" },
+      "packageArguments": [{ "type": "positional", "value": "mcp" }]
+    }
+  ]
+}

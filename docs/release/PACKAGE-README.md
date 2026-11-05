@@ -1,6 +1,6 @@
 # Urushi 0.1.0-beta.1
 
-UrushiはReactのUIコンポーネントと、AIによる実装を検査するCLIです。58コンポーネント、GraphiteとLucentのパック、型・静的検査・ブラウザ操作の検証を提供します。
+UrushiはReactのUIコンポーネントと、AIによる実装を検査するCLIです。60コンポーネント、GraphiteとLucentのパック、型・静的検査・ブラウザ操作の検証を提供します。
 
 この版はβ候補です。APIや見た目は変更する場合があります。対応環境と未検証の項目は、同梱の[COMPATIBILITY.md](COMPATIBILITY.md)で確認してください。npm公開前は、受け取った7つのtgzを同じフォルダに置いて導入します。
 

@@ -124,6 +124,8 @@
       "Carousel",
       "CarouselItemProps",
       "CarouselProps",
+      "Chart",
+      "ChartProps",
       "Checkbox",
       "CheckboxProps",
       "Collapsible",
@@ -160,6 +162,8 @@
       "FieldProps",
       "FileInput",
       "FileInputProps",
+      "Form",
+      "FormProps",
       "HoverCard",
       "HoverCardProps",
       "HoverCardTriggerProps",
@@ -519,6 +523,7 @@
     "@urushi/react/styles/calendar.css": [],
     "@urushi/react/styles/card.css": [],
     "@urushi/react/styles/carousel.css": [],
+    "@urushi/react/styles/chart.css": [],
     "@urushi/react/styles/checkbox.css": [],
     "@urushi/react/styles/collapsible.css": [],
     "@urushi/react/styles/combobox.css": [],
@@ -532,6 +537,7 @@
     "@urushi/react/styles/empty.css": [],
     "@urushi/react/styles/field.css": [],
     "@urushi/react/styles/file-input.css": [],
+    "@urushi/react/styles/form.css": [],
     "@urushi/react/styles/hover-card.css": [],
     "@urushi/react/styles/input-group.css": [],
     "@urushi/react/styles/input.css": [],
@@ -604,6 +610,14 @@
       "ResizableHandleProps",
       "ResizablePanelProps",
       "ResizableProps"
+    ],
+    "@urushi/react/form": [
+      "Form",
+      "FormProps"
+    ],
+    "@urushi/react/chart": [
+      "Chart",
+      "ChartProps"
     ],
     "@urushi/react/date-picker": [
       "DatePicker",

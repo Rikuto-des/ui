@@ -8,7 +8,7 @@ import { repoFile } from "@/lib/content";
 export const metadata: Metadata = { title: "AIによる実装の比較" };
 type Result = { id: string; label: string; n: number; generate: number; repaired: number; update: number; final: number; internalCleanGenerate: number | null; jsGzip: number[]; excludingReactGzip: number[]; libraryCssGzip: number[]; assetGzip: number[]; calls: number };
 type Lifecycle = { libraries: { id: string; label: string; n: number; before: number; after: number; regressions: number; afterTotalGzip: number[] }[]; css: { fullGzip: number[] }; currentUrushi: { cssGzip: number[]; totalGzip: number[]; withoutReactGzip: number[] } };
-type Run = { id: string; libraries: Result[] };
+type Run = { id: string; protocol: { model: string }; libraries: Result[] };
 type NavigationResult = { libraries: { id: string; label: string; generate: number; generatedAfterRepair: number; final: number; seededRepair: number; withoutReactGzip: number[]; totalGzip: number[]; sourceBytes: number[] }[] };
 type NavigationSizes = { libraries: Pick<NavigationResult["libraries"][number], "id" | "label" | "withoutReactGzip" | "totalGzip" | "sourceBytes">[] };
 type ProductResult = { completeModel: string; complete: { id: string; label: string; n: number; generate: number; afterRepair: number; update: number; afterUpdateRepair: number; sizes: { totalGzip: number; fullTotalGzip: number; cssGzip: number; fullCssGzip: number; pass: boolean }[] }[]; partial: { label: string; responses: number; pass: number; missing: number }[] };
@@ -24,10 +24,15 @@ export default async function ComparisonPage() {
   const composition = JSON.parse(await repoFile("generated/composition-summary.json")) as CompositionStudy;
   const labels: Record<string,string> = {urushi:"Urushi",base:"Base UI",radix:"Radix UI",shadcn:"shadcn/ui"};
   const final = runs.find(r => r.id === "measured-v4")!;
+  const second = runs.find(r => r.id === "claude-sonnet-v1")!;
   return <><SiteHeader section="docs" /><DocsShell current="/docs/comparison/"><article className="prose">
     <h1>AIによる実装の比較</h1>
     <p className="lede">同じ課題をAIに実装させ、生成・修正・仕様更新を検査しています。Urushi、Base UI、Radix UI、shadcn/uiの結果を、失敗や計測できなかった条件も含めて記録します。</p>
     <CompositionStudyResults study={composition} />
+    <h2>2つのモデルで同じ比較</h2>
+    <p>削除確認・タブ・行メニューの3課題（各2試行、各段階の修正は最大1回）を、gpt-6.1-solに加えて{second.protocol.model}でもやり直しました（2026年11月5日）。課題・資料・検査は同じで、モデルにはツールも検索も渡していません。</p>
+    <div className="table-scroll"><table><caption>初回生成で共通検査に合格した画面</caption><thead><tr><th scope="col">ライブラリ</th><th scope="col">gpt-6.1-sol</th><th scope="col">{second.protocol.model}</th><th scope="col">最終（gpt / Claude）</th></tr></thead><tbody>{final.libraries.map(l=>{const c=second.libraries.find(x=>x.id===l.id)!;return <tr key={l.id}><th scope="row">{l.label}</th><td>{l.generate} / {l.n}</td><td>{c.generate} / {c.n}</td><td>{l.final} / {l.n}・{c.final} / {c.n}</td></tr>;})}</tbody></table></div>
+    <p>どちらのモデルでも、初回生成で全件合格したのはUrushiだけでした。ほかのライブラリの初回の失敗は、メニューを開いたあとの読み上げ対象外の要素へのフォーカス、タブの色のコントラスト、無効項目へのフォーカスなどです。修正を挟んだあとの差は小さくなります。2モデル・3つの小さな課題の結果で、すべての画面への一般化はできません。</p>
     <h2>以前の比較：非同期検索と入れ子の画面を追加</h2>
     <p>2026年10月29日に以前の実生成コードへ入れ子の担当者選択、応答順が逆転する検索、独立した設定フォームを追加させました。gpt-6-lunaで各1試行、修正は最大1回です。型検査に加え、以前の操作を保つことも含めて7項目を同じ条件で確認しました。</p>
     <div className="table-scroll"><table><caption>既存コードへの仕様変更・各1試行</caption><thead><tr><th scope="col">ライブラリ</th><th scope="col">仕様変更直後</th><th scope="col">修正後の最終</th><th scope="col">AI応答数</th><th scope="col">AI応答待ち</th></tr></thead><tbody>{compound.libraries.map(row=><tr key={row.library}><th scope="row">{labels[row.library]}</th><td>{row.initialPass?1:0} / 1</td><td>{row.finalPass?1:0} / 1</td><td>{row.modelResponses}</td><td>{Math.round(row.stages.reduce((sum,stage)=>sum+stage.elapsedMs,0)/1000)}秒</td></tr>)}</tbody></table></div>

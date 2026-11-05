@@ -10,6 +10,7 @@
   "dependencies": {
     "@urushi/packs": "workspace:*",
     "@urushi/react": "workspace:*",
+    "@urushi/tokens": "workspace:*",
     "next": "16.4.3",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"

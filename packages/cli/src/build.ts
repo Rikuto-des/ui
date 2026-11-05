@@ -29,6 +29,8 @@ export interface BuildPaths {
   root: string;
   contracts: string;
   registrySource: string;
+  /** Whole screens built from components: <name>.tsx and <name>.css, listed in index.json. */
+  blocksSource: string;
   packsSource: string;
   out: string;
   reactGenerated: string;
@@ -47,6 +49,7 @@ export function defaultPaths(root: string): BuildPaths {
     root,
     contracts: join(root, "contracts"),
     registrySource: join(root, "registry"),
+    blocksSource: join(root, "blocks"),
     packsSource: join(root, "packages/packs"),
     out: join(root, "generated"),
     reactGenerated: join(root, "packages/react/src/generated"),
@@ -561,6 +564,39 @@ async function write(path: string, content: string, written: string[], root: str
   written.push(relative(root, path));
 }
 
+/**
+ * Blocks are registry items of type "block": a screen's TSX and CSS, installed
+ * into the blocks folder. The components a block imports from @urushi/react
+ * give its CSS list; an import that is not a component is a build error.
+ */
+async function loadBlocks(dir: string, componentNames: Set<string>) {
+  if (!existsSync(join(dir, "index.json"))) return [];
+  const list = JSON.parse(await readFile(join(dir, "index.json"), "utf8")) as { name: string; title: string; summary: string }[];
+  const blocks = [];
+  for (const { name, title, summary } of list) {
+    const files = [];
+    for (const path of [`${name}.tsx`, `${name}.css`]) {
+      const content = await readFile(join(dir, path), "utf8");
+      files.push({ path, target: "blocks", content, hash: sha256(content) });
+    }
+    const imported = [...files[0].content.matchAll(/import\s*\{([^}]*)\}\s*from\s*"@urushi\/react"/g)].flatMap((m) => m[1].split(","));
+    const components = [...new Set(imported.map((n) => n.trim()).filter(Boolean).map((n) => n.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()))].sort();
+    for (const c of components) if (!componentNames.has(c)) throw new Error(`blocks/${name}.tsx imports ${c}, which is not a component`);
+    blocks.push({
+      name,
+      version: REGISTRY_VERSION,
+      type: "block" as const,
+      title,
+      summary,
+      components,
+      files,
+      dependencies: { "@urushi/react": REGISTRY_VERSION },
+      css: components.map((c) => `@urushi/react/styles/${c}.css`),
+    });
+  }
+  return blocks;
+}
+
 export async function build(paths: BuildPaths): Promise<string[]> {
   const written: string[] = [];
   const contracts = await loadContracts(paths.contracts);
@@ -593,7 +629,12 @@ export async function build(paths: BuildPaths): Promise<string[]> {
     await write(join(paths.out, "registry", `${contract.name}.json`), JSON.stringify(item, null, 2) + "\n", written, paths.root);
   }
 
-  const index = contracts.map((c) => ({ name: c.name, version: REGISTRY_VERSION, summary: c.summary }));
+  const index: { name: string; version: string; summary: string; type?: "block"; title?: string; components?: string[] }[] = contracts.map((c) => ({ name: c.name, version: REGISTRY_VERSION, summary: c.summary }));
+  for (const block of await loadBlocks(paths.blocksSource, new Set(contracts.map((c) => c.name)))) {
+    const { components, title, summary, ...item } = block;
+    await write(join(paths.out, "registry", `${block.name}.json`), JSON.stringify({ ...item, title, summary, components }, null, 2) + "\n", written, paths.root);
+    index.push({ name: block.name, version: REGISTRY_VERSION, summary, type: "block", title, components });
+  }
   await write(paths.agentCatalog, JSON.stringify(catalog, null, 2) + "\n", written, paths.root);
   await write(join(paths.out, "registry", "index.json"), JSON.stringify(index, null, 2) + "\n", written, paths.root);
   // After the loop above: the components' props types import the files it generates.

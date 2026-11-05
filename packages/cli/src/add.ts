@@ -1,12 +1,14 @@
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { isAbsolute, join, resolve } from "node:path";
+import { dirname, isAbsolute, join, resolve } from "node:path";
 import { sha256 } from "./build.ts";
 import { projectPath, relativePath } from "./paths.ts";
 
 export interface Config {
   $schema?: string;
   components: string;
+  /** Where blocks (whole screens) go. Defaults to a blocks folder beside components. */
+  blocks?: string;
   pack: string;
   registry: string;
 }
@@ -19,6 +21,8 @@ export interface LockFile {
 export interface RegistryItem {
   name: string;
   version: string;
+  /** "block" is a whole screen built from components; it installs into the blocks folder. */
+  type?: "component" | "block";
   files: { path: string; target: string; content: string; hash: string }[];
   dependencies: Record<string, string>;
   css: string[];
@@ -33,8 +37,10 @@ export async function readConfig(cwd: string): Promise<Config> {
   const path = await projectPath(cwd, CONFIG_FILE);
   if (!existsSync(path)) throw new Error(`${CONFIG_FILE} not found in ${cwd}. Run \`urushi init\` first.`);
   const config = JSON.parse(await readFile(path, "utf8")) as Config;
-  relativePath(config.components);
-  if (config.components.split("/")[0] === ".urushi") throw new Error("components must not use the reserved .urushi directory");
+  for (const dir of [config.components, config.blocks ?? config.components]) {
+    relativePath(dir);
+    if (dir.split("/")[0] === ".urushi") throw new Error("components and blocks must not use the reserved .urushi directory");
+  }
   return config;
 }
 
@@ -49,6 +55,12 @@ export async function readLock(cwd: string): Promise<LockFile> {
     }
   }
   return lock;
+}
+
+/** The project path a registry file installs to: components, or blocks for a block's files. */
+export function destination(config: Config, file: { path: string; target: string }) {
+  if (file.target !== "blocks") return join(config.components, file.path);
+  return join(config.blocks ?? join(dirname(config.components), "blocks"), file.path);
 }
 
 export async function fetchItem(registry: string, name: string, cwd: string): Promise<RegistryItem> {
@@ -93,7 +105,7 @@ export async function prepareItems(cwd: string, config: Config, names: string[])
     for (const file of item.files) {
       relativePath(file.path);
       if (sha256(file.content) !== file.hash) throw new Error(`${name}/${file.path}: hash mismatch, refusing to install or update`);
-      const target = join(config.components, file.path);
+      const target = destination(config, file);
       if (targets.has(target)) throw new Error(`Duplicate registry destination: ${target}`);
       targets.add(target);
       await projectPath(cwd, target);
@@ -115,7 +127,7 @@ export async function add(cwd: string, names: string[], opts: { overwrite?: bool
     const files: Record<string, string> = { ...lock.items[name]?.files };
     for (const file of item.files) {
       if (sha256(file.content) !== file.hash) throw new Error(`${name}/${file.path}: hash mismatch, refusing to install`);
-      const target = join(config.components, file.path);
+      const target = destination(config, file);
       const abs = join(cwd, target);
       if (existsSync(abs) && !opts.overwrite) {
         const current = await readFile(abs, "utf8");

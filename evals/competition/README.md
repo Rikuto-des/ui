@@ -20,6 +20,7 @@
 | `runs/measured-v2` | `urushi context`と`Tabs.Activate`を追加。Urushiのみ6件 |
 | `runs/measured-v3` | Dialogの契約とCSSリセットとの併用を修正。4ライブラリ各6件を新しく生成 |
 | `runs/measured-v4` | 検査・資料・依存関係を固定後、4ライブラリ各6件の全工程を新しく実行。最終成績に使用 |
+| `runs/claude-sonnet-v1` | 2026年11月5日。measured-v4と同じ課題・資料・検査で、モデルだけをclaude-sonnet-5-5（推論設定medium）に替えて全工程を実行 |
 
 各試行に `request.json`、`reply.json`、AIが返した `App.tsx`、`score.json` を保存します。依頼文・コードにSHA-256を付け、回答のトークン数と実行時間も記録します。料金は従量課金APIから取得していないため、金額を推定していません。
 
@@ -44,7 +45,7 @@ Base UIは無効な項目にもフォーカスを移せるため、今回の「�
 
 JavaScript量は同じesbuildのproduction/minify設定でgzipした値です。React込みのビルドと、React・React DOMを外部化したビルドを分けています。後者にはUIライブラリ、ランタイム、アプリ処理が含まれます。共通のTailwind CSSやUrushiのCSS・トークンはJS量に含みません。実ページ全体の転送量や起動速度を示す指標ではありません。
 
-1モデル・3課題・各2試行です。スクリーンリーダー利用者による評価、主観的なデザイン評価、大規模アプリ、別モデル、依存ライブラリのバージョン更新への一般化はできません。
+2モデル（gpt-6.1-sol、claude-sonnet-5-5）・3課題・各2試行です。スクリーンリーダー利用者による評価、主観的なデザイン評価、大規模アプリ、別モデル、依存ライブラリのバージョン更新への一般化はできません。
 
 ## 再実行
 
@@ -57,6 +58,12 @@ node evals/competition/run.ts --id new-comparison --trials 2 --stage all
 ```
 
 `setup.ts`は公式資料を再取得します。過去と同じ資料での再検査では、保存済みの `sources` と `ui` を保持してください。
+
+Claudeでの実行は、Claude Code（`claude`）にログインした環境で `--provider claude` を付けます。Claude Codeをヘッドレスで呼び、ツール・MCP・CLAUDE.md・スキルなどの設定をすべて切ります（`--safe-mode --tools ""`）。
+
+```sh
+node evals/competition/run.ts --id new-claude-comparison --provider claude --trials 2 --stage all
+```
 
 ```sh
 node evals/competition/run.ts --id measured-v4 --stage all --rescore

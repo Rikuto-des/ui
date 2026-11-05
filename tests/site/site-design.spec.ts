@@ -14,7 +14,7 @@ test('catalog searches by name and purpose, filters categories and resets empty 
   await expect(page.locator('.catalog-grid')).toContainText('Input');
   await expect(page.locator('[data-component="navigation-menu"]')).toBeHidden();
   await search.fill('存在しないコンポーネント');await page.getByRole('button',{name:'条件をリセット'}).click();
-  await expect(search).toHaveValue('');await expect(page.locator('.catalog-grid > li:visible')).toHaveCount(58);
+  await expect(search).toHaveValue('');await expect(page.locator('.catalog-grid > li:visible')).toHaveCount(60);
 });
 
 test('component site and interactive study fit narrow viewports in both themes',async({page})=>{

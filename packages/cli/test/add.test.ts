@@ -50,3 +50,22 @@ test("add refuses an item whose content does not match its hash", async () => {
   await init(cwd, { registry: bad, pack: "graphite", components: "components/ui" });
   await assert.rejects(add(cwd, ["button"]), /hash mismatch/);
 });
+
+test("add installs a block's screen and stylesheet into the blocks folder beside components", async () => {
+  const cwd = await mkdtemp(join(tmpdir(), "urushi-add-block-"));
+  await init(cwd, { registry, pack: "graphite", components: "components/ui" });
+  const [result] = await add(cwd, ["login-01"]);
+  assert.deepEqual(result.written, ["components/blocks/login-01.tsx", "components/blocks/login-01.css"]);
+  // Its CSS list comes from the components it imports.
+  assert.ok(result.css.includes("@urushi/react/styles/field.css"));
+  assert.match(await readFile(join(cwd, "components/blocks/login-01.tsx"), "utf8"), /from "@urushi\/react"/);
+  assert.deepEqual((await diff(cwd)).map((e) => e.status), ["unmodified", "unmodified"]);
+
+  // A blocks folder set in urushi.json wins.
+  const other = await mkdtemp(join(tmpdir(), "urushi-add-block-"));
+  await init(other, { registry, pack: "graphite", components: "src/ui" });
+  const config = JSON.parse(await readFile(join(other, "urushi.json"), "utf8"));
+  await writeFile(join(other, "urushi.json"), JSON.stringify({ ...config, blocks: "src/screens" }));
+  const [placed] = await add(other, ["pricing-01"]);
+  assert.deepEqual(placed.written, ["src/screens/pricing-01.tsx", "src/screens/pricing-01.css"]);
+});

@@ -4,6 +4,8 @@ export { installContextMenus } from "./context-menu.ts";
 export { installMenubars } from "./menubar.ts";
 export { installDrawers } from "./drawer.ts";
 export { installResizables } from "./resizable.ts";
+export { installTableScroll } from "./table-scroll.ts";
+export { installForms } from "./form.ts";
 export { installTabs, selectTab } from "./tabs.ts";
 export { installSliders } from "./slider.ts";
 export { installCarousels } from "./carousel.ts";

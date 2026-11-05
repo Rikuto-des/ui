@@ -11,6 +11,7 @@ import {
   ButtonGroup,
   Card,
   Carousel,
+  Chart,
   Checkbox,
   Collapsible,
   ContextMenu,
@@ -20,6 +21,7 @@ import {
   Empty,
   Field,
   FileInput,
+  Form,
   HoverCard,
   Input,
   InputGroup,
@@ -81,6 +83,7 @@ const groups: { label: string; entries: Entry[] }[] = [
     label: "入力",
     entries: [
       { id: "field", name: "Field + Input", base: "<label> と aria-describedby", js: "不要" },
+      { id: "form", name: "Form", base: "<form> と制約の検証", js: "まとめて表示するのに必要" },
       { id: "input-group", name: "InputGroup", base: ":has() で 1 つの枠に", js: "不要" },
       { id: "textarea", name: "Textarea", base: "field-sizing: content", js: "不要" },
       { id: "select", name: "Select", base: "<select> と base-select", js: "不要" },
@@ -101,6 +104,7 @@ const groups: { label: string; entries: Entry[] }[] = [
       { id: "avatar", name: "Avatar", base: 'role="img" と <img>', js: "不要" },
       { id: "kbd", name: "Kbd", base: "<kbd>", js: "不要" },
       { id: "table", name: "Table", base: "<table> と <caption>", js: "不要" },
+      { id: "chart", name: "Chart", base: "HTML と CSS、数字は table", js: "不要" },
       { id: "item", name: "Item", base: "<ul> と <li>", js: "不要" },
       { id: "tabs", name: "Tabs", base: "ARIA tabs をサーバーで描画", js: "切り替えに必要" },
       { id: "accordion", name: "Accordion", base: "<details name>", js: "不要" },
@@ -453,6 +457,25 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
             </Example>
           </Section>
 
+          <Section id="form" summary="送信したときの入力エラーを、各欄の下と上のまとめに出します。まとめのリンクで欄に移れます。JavaScript がないときはブラウザの吹き出しになります。">
+            <Example label="登録">
+              <Form id="g-signup" data-testid="signup" onSubmit={(e) => { e.preventDefault(); e.currentTarget.dataset.sent = ""; }}>
+                <Field id="g-signup-name" label="名前" required>
+                  <Input autoComplete="name" />
+                </Field>
+                <Field id="g-signup-email" label="連絡先のメールアドレス" required>
+                  <Input type="email" autoComplete="email" />
+                </Field>
+                <Field id="g-signup-age" label="年齢" description="18 歳以上">
+                  <Input type="number" min={18} inputMode="numeric" />
+                </Field>
+                <div className="g-row">
+                  <Button type="submit" variant="primary">登録する</Button>
+                </div>
+              </Form>
+            </Example>
+          </Section>
+
           <Section id="input-group" summary="入力欄の前後に決まった文字やボタンをつなげます。Field の中に置けば、ラベルや説明は中の Input に結びつきます。">
             <Example label="前置きと単位">
               <div className="g-form">
@@ -730,6 +753,15 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
                   </tr>
                 </tbody>
               </Table>
+            </Example>
+          </Section>
+
+          <Section id="chart" summary="棒グラフと折れ線グラフ。見てほしい系列だけがアクセント色で、ほかは灰色です。数字は読み上げ用の表にもなり、列に乗せると値が出ます。">
+            <Example label="棒">
+              <Chart data-testid="sales-chart" title="月ごとの売上（万円）" unit="万円" labels={["6月", "7月", "8月", "9月", "10月", "11月"]} series={[{ name: "今年", values: [42, 51, 47, 63, 71, 78] }, { name: "去年", values: [38, 40, 45, 49, 52, 58] }]} />
+            </Example>
+            <Example label="折れ線">
+              <Chart type="line" title="週ごとの訪問者（千人）" unit="千人" labels={["1週", "2週", "3週", "4週", "5週"]} series={[{ name: "サイト", values: [12.4, 14.1, 13.2, 17.8, 19.5] }, { name: "アプリ", values: [6.1, 6.8, 8.4, 8.2, 9.9] }]} />
             </Example>
           </Section>
 

@@ -1,6 +1,6 @@
 # Urushi 0.1.0-beta.1
 
-Urushiの最初のβ候補です。Reactの58コンポーネント、Graphite・Lucentの2つのパック、実装を検査・更新するCLIを収録しています。β期間中はAPIや見た目を変更する場合があります。
+Urushiの最初のβ候補です。Reactの60コンポーネント、Graphite・Lucentの2つのパック、実装を検査・更新するCLIを収録しています。β期間中はAPIや見た目を変更する場合があります。
 
 Navigation Menuのホバー追従とパネル変形、非同期検索に対応したCombobox、Urushiのコンポーネントで作ったStudioのサンプルアプリを試せます。Lucentでは色だけでなく、角丸・余白・文字・動作時間も変わります。アイコンにはPhosphorを使っています。
 

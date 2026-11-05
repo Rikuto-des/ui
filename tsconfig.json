@@ -26,11 +26,13 @@
     "packages/*/test",
     "contracts",
     "registry",
+    "blocks",
     "scripts",
     "tests",
     "apps/playground/src"
   ],
   "exclude": [
-    "tests/lint-fixtures"
+    "tests/lint-fixtures",
+    "packages/cli/test/fixtures"
   ]
 }

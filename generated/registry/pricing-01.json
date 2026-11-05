@@ -1,0 +1,34 @@
+{
+  "name": "pricing-01",
+  "version": "0.1.0-beta.1",
+  "type": "block",
+  "files": [
+    {
+      "path": "pricing-01.tsx",
+      "target": "blocks",
+      "content": "// Installed by `urushi add pricing-01`. Three plans side by side, the recommended one marked in words as well as by its look.\nimport { Badge, Button, Card } from \"@urushi/react\";\nimport { CheckIcon } from \"@urushi/react/icons\";\nimport \"./pricing-01.css\";\n\nconst plans = [\n  { name: \"フリー\", price: \"¥0\", unit: \"ずっと無料\", features: [\"プロジェクト 3 件\", \"メンバー 2 人\", \"ファイル 1 GB\"], action: \"無料で始める\", recommended: false },\n  { name: \"チーム\", price: \"¥1,200\", unit: \"1 人あたり／月\", features: [\"プロジェクト無制限\", \"メンバー 50 人\", \"ファイル 100 GB\", \"権限の設定\"], action: \"14 日間試す\", recommended: true },\n  { name: \"エンタープライズ\", price: \"お見積もり\", unit: \"年間契約\", features: [\"メンバー無制限\", \"シングルサインオン\", \"操作ログの保存\", \"専任の窓口\"], action: \"相談する\", recommended: false },\n];\n\nexport default function Pricing01() {\n  return (\n    <main className=\"b-pricing\">\n      <header className=\"b-pricing-head\">\n        <h1>料金プラン</h1>\n        <p>どのプランも、いつでも変更・解約できます。表示は税込みです。</p>\n      </header>\n      <ul className=\"b-pricing-plans\">\n        {plans.map((plan) => (\n          <li key={plan.name}>\n            <Card\n              title={plan.name}\n              headingLevel=\"h2\"\n              padding=\"lg\"\n              selected={plan.recommended}\n              description={plan.recommended ? <Badge tone=\"accent\">おすすめ</Badge> : undefined}\n              footer={\n                <Button variant={plan.recommended ? \"primary\" : \"secondary\"} size=\"lg\" aria-label={`${plan.action}（${plan.name}）`}>\n                  {plan.action}\n                </Button>\n              }\n            >\n              <p className=\"b-pricing-price\">\n                {plan.price}\n                <span>{plan.unit}</span>\n              </p>\n              <ul className=\"b-pricing-features\">\n                {plan.features.map((feature) => (\n                  <li key={feature}>\n                    <CheckIcon size={16} />\n                    {feature}\n                  </li>\n                ))}\n              </ul>\n            </Card>\n          </li>\n        ))}\n      </ul>\n    </main>\n  );\n}\n",
+      "hash": "sha256-VAOXaXyl70nBVmQ+QSaMvfe7uY+vvp3fVfq+RMjUVSE="
+    },
+    {
+      "path": "pricing-01.css",
+      "target": "blocks",
+      "content": ".b-pricing { display: grid; gap: var(--ur-space-6); inline-size: min(1040px, 100%); box-sizing: border-box; margin-inline: auto; padding: calc(var(--ur-space-6) * 1.5) var(--ur-space-4); }\n.b-pricing-head { text-align: center; }\n.b-pricing-head h1 { margin: 0 0 var(--ur-space-2); font-size: calc(var(--ur-font-size-title) * 1.4); }\n.b-pricing-head p { margin: 0; color: var(--ur-color-text-muted); }\n.b-pricing-plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--ur-space-4); margin: 0; padding: 0; list-style: none; }\n.b-pricing-plans > li { display: grid; }\n.b-pricing-price { display: grid; gap: 2px; margin: 0 0 var(--ur-space-4); font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; }\n.b-pricing-price span { font-size: var(--ur-font-size-small); font-weight: 400; color: var(--ur-color-text-muted); }\n.b-pricing-features { display: grid; gap: var(--ur-space-2); margin: 0; padding: 0; list-style: none; font-size: var(--ur-font-size-control); }\n.b-pricing-features li { display: flex; align-items: center; gap: var(--ur-space-2); }\n.b-pricing-features svg { color: var(--ur-color-ok); }\n",
+      "hash": "sha256-7iWKq9lbtyhROHe6omMzcBvI1eL8bOG7As3VJXXuIMk="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/badge.css",
+    "@urushi/react/styles/button.css",
+    "@urushi/react/styles/card.css"
+  ],
+  "title": "料金プラン",
+  "summary": "3 つのプランを並べた料金表。おすすめは見た目と言葉の両方で示す。",
+  "components": [
+    "badge",
+    "button",
+    "card"
+  ]
+}

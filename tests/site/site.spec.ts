@@ -46,7 +46,7 @@ test("every page renders without errors and has one h1", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-// Give each page its own interaction budget; 58 navigations must not share 30s.
+// Give each page its own interaction budget; 60 navigations must not share 30s.
 for (const slug of slugs) {
   test(`${slug}: live example, source, install command and props`, async ({
     page,

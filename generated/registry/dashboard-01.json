@@ -1,0 +1,42 @@
+{
+  "name": "dashboard-01",
+  "version": "0.1.0-beta.1",
+  "type": "block",
+  "files": [
+    {
+      "path": "dashboard-01.tsx",
+      "target": "blocks",
+      "content": "// Installed by `urushi add dashboard-01`. An application dashboard: a sidebar, three figures, and the latest orders.\nimport { Badge, Button, Card, Meter, Progress, Sidebar, Table } from \"@urushi/react\";\nimport { GearSixIcon, HouseIcon, ListChecksIcon, PlusIcon, UsersIcon } from \"@urushi/react/icons\";\nimport \"./dashboard-01.css\";\n\nconst orders = [\n  { id: \"1042\", customer: \"株式会社みどり\", total: \"¥48,000\", status: \"支払い済み\", tone: \"ok\" },\n  { id: \"1041\", customer: \"青木 誠\", total: \"¥12,800\", status: \"発送待ち\", tone: \"accent\" },\n  { id: \"1040\", customer: \"合同会社ひかり\", total: \"¥96,500\", status: \"支払い済み\", tone: \"ok\" },\n  { id: \"1039\", customer: \"佐々木 真央\", total: \"¥7,200\", status: \"返金\", tone: \"danger\" },\n] as const;\n\nexport default function Dashboard01() {\n  return (\n    <div className=\"b-dash\">\n      <Sidebar label=\"メイン\">\n        <Sidebar.Group title=\"ストア\">\n          <Sidebar.Item href=\"/\" icon={<HouseIcon />} current>\n            ホーム\n          </Sidebar.Item>\n          <Sidebar.Item href=\"/orders\" icon={<ListChecksIcon />}>\n            注文\n          </Sidebar.Item>\n          <Sidebar.Item href=\"/customers\" icon={<UsersIcon />}>\n            顧客\n          </Sidebar.Item>\n          <Sidebar.Item href=\"/settings\" icon={<GearSixIcon />}>\n            設定\n          </Sidebar.Item>\n        </Sidebar.Group>\n      </Sidebar>\n      <main className=\"b-dash-main\">\n        <header className=\"b-dash-head\">\n          <div>\n            <h1>ホーム</h1>\n            <p>11 月 5 日（水）時点の数字です。</p>\n          </div>\n          <Button variant=\"primary\">\n            <PlusIcon size={16} />\n            商品を追加\n          </Button>\n        </header>\n        <div className=\"b-dash-figures\">\n          <Card title=\"今月の売上\" headingLevel=\"h2\">\n            <p className=\"b-dash-figure\">¥1,284,000</p>\n            <Progress label=\"月の目標\" value={64} valueText=\"目標の 64%\" showValue />\n          </Card>\n          <Card title=\"注文\" headingLevel=\"h2\">\n            <p className=\"b-dash-figure\">312 件</p>\n            <p className=\"b-dash-note\">先月の同じ日より 18 件多い</p>\n          </Card>\n          <Card title=\"在庫\" headingLevel=\"h2\">\n            <p className=\"b-dash-figure\">残り 42 点</p>\n            <Meter label=\"倉庫の空き\" value={18} max={100} low={20} high={60} optimum={100} valueText=\"残り 18%\" />\n          </Card>\n        </div>\n        <Card title=\"最近の注文\" headingLevel=\"h2\">\n          <Table caption=\"最近の注文\" hideCaption>\n            <thead>\n              <tr>\n                <th scope=\"col\">番号</th>\n                <th scope=\"col\">お客さま</th>\n                <th scope=\"col\">金額</th>\n                <th scope=\"col\">状態</th>\n              </tr>\n            </thead>\n            <tbody>\n              {orders.map((order) => (\n                <tr key={order.id}>\n                  <td>#{order.id}</td>\n                  <th scope=\"row\">{order.customer}</th>\n                  <td>{order.total}</td>\n                  <td>\n                    <Badge tone={order.tone}>{order.status}</Badge>\n                  </td>\n                </tr>\n              ))}\n            </tbody>\n          </Table>\n        </Card>\n      </main>\n    </div>\n  );\n}\n",
+      "hash": "sha256-SLuKGuLJzDESP7RGhU0+sKLogvBcSfWCcEv9OlpJz/8="
+    },
+    {
+      "path": "dashboard-01.css",
+      "target": "blocks",
+      "content": ".b-dash { display: grid; grid-template-columns: minmax(200px, 240px) minmax(0, 1fr); min-block-size: 100dvh; background: var(--ur-color-bg); }\n.b-dash > [data-slot=\"sidebar\"] { box-sizing: border-box; padding: var(--ur-space-5) var(--ur-space-3); border-inline-end: 1px solid var(--ur-color-border); background: var(--ur-color-surface); }\n.b-dash-main { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: var(--ur-space-5); min-inline-size: 0; padding: var(--ur-space-6) var(--ur-space-5); }\n.b-dash-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--ur-space-3); }\n.b-dash-head h1 { margin: 0 0 var(--ur-space-1); font-size: var(--ur-font-size-title); }\n.b-dash-head p { margin: 0; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); }\n.b-dash-figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--ur-space-4); }\n.b-dash-figure { margin: 0 0 var(--ur-space-3); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }\n.b-dash-note { margin: 0; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); }\n@media (max-width: 720px) {\n  .b-dash { grid-template-columns: minmax(0, 1fr); }\n  .b-dash > [data-slot=\"sidebar\"] { border-inline-end: 0; border-block-end: 1px solid var(--ur-color-border); }\n}\n",
+      "hash": "sha256-2mbEH+fjkVzUJZuRg1gx6x8gnrz5bvGM7dw7BsCjhwk="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/badge.css",
+    "@urushi/react/styles/button.css",
+    "@urushi/react/styles/card.css",
+    "@urushi/react/styles/meter.css",
+    "@urushi/react/styles/progress.css",
+    "@urushi/react/styles/sidebar.css",
+    "@urushi/react/styles/table.css"
+  ],
+  "title": "ダッシュボード",
+  "summary": "サイドバー、3 つの数字のカード、最近の注文の表。",
+  "components": [
+    "badge",
+    "button",
+    "card",
+    "meter",
+    "progress",
+    "sidebar",
+    "table"
+  ]
+}

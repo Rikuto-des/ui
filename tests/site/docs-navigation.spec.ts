@@ -132,7 +132,7 @@ test("the index is alphabetical and search restores its scroll position when cle
   await page.goto("/components/tooltip/");
   const nav = page.getByRole("navigation", { name: "ドキュメントの目次", exact: true });
   const names = await nav.locator('.docs-nav-group').last().getByRole("link").allTextContents();
-  expect(names).toHaveLength(58);
+  expect(names).toHaveLength(60);
   expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b, "en")));
   const before = await position(nav);
   await page.keyboard.press("Control+k");

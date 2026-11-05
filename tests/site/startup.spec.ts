@@ -88,7 +88,7 @@ test("catalog and theme controls accept input only after their handlers are read
     await expect(pack).toBeDisabled();
     await expect(theme).toBeDisabled();
     await expect(page.getByRole("group", { name: "コンポーネントの分類" }).getByRole("button").first()).toBeDisabled();
-    await expect(page.locator(".catalog-details")).toHaveCount(58);
+    await expect(page.locator(".catalog-details")).toHaveCount(60);
     release();
     await expect(search).toBeEnabled();
     await expect(page.locator("html")).toHaveAttribute("data-urushi-runtime", "ready");

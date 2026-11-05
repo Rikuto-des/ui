@@ -80,6 +80,10 @@ SOFTWARE.
     max-inline-size: 100%;
     overflow-x: auto;
   }
+  [data-slot="table-scroll"]:focus-visible {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: 2px;
+  }
   [data-slot="table"] {
     --_pad-block: var(--ur-space-3);
     inline-size: 100%;

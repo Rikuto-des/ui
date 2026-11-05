@@ -23,6 +23,7 @@ export const docsNavGroups: DocsNavGroup[] = [
       { href: "/docs/ai/", label: "AI と lint", keywords: "生成 検証 修正" },
       { href: "/docs/comparison/", label: "AIによる実装の比較" },
       { href: "/docs/cli/", label: "CLI", keywords: "コマンド 更新" },
+      { href: "/docs/migrate/", label: "shadcn/ui から移る", keywords: "migration shadcn 移行" },
       { href: "/docs/browsers/", label: "ブラウザの対応" },
     ],
   },
@@ -30,6 +31,8 @@ export const docsNavGroups: DocsNavGroup[] = [
     label: "Examples",
     items: [
       { href: "/examples/", label: "Examples", keywords: "サンプル アプリ" },
+      { href: "/blocks/", label: "Blocks", keywords: "ひな形 テンプレート 画面" },
+      { href: "/themes/", label: "パックを作る", keywords: "theme editor テーマ 色" },
       { href: "/examples/studio/", label: "Studio", keywords: "プロジェクト 管理 ボード" },
       { href: "/examples/studio/source/", label: "Studioの実装", keywords: "source コード" },
     ],

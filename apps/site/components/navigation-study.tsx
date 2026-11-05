@@ -6,7 +6,7 @@ export function NavigationStudy() {
     <div className="study-label"><span>Navigation Menu</span><span>Live preview</span></div>
     <NavigationMenu label="Urushiの機能">
       <NavigationMenu.Group title="つくる">
-        <NavigationMenu.Link href="/components/" description="58のコンポーネントから必要なものを探せます。">コンポーネント</NavigationMenu.Link>
+        <NavigationMenu.Link href="/components/" description="60のコンポーネントから必要なものを探せます。">コンポーネント</NavigationMenu.Link>
         <NavigationMenu.Group title="デザインを選ぶ">
           <NavigationMenu.Link href="/docs/packs/" description="GraphiteとLucentの見た目を比較できます。">パック</NavigationMenu.Link>
           <NavigationMenu.Link href="/docs/typesetting/" description="日本語の行間や改行、文字間隔を整えます。">日本語組版</NavigationMenu.Link>

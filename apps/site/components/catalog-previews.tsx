@@ -16,6 +16,7 @@ import {
   Breadcrumb,
   Button,
   Carousel,
+  Chart,
   Checkbox,
   Collapsible,
   ContextMenu,
@@ -24,6 +25,7 @@ import {
   Drawer,
   Field,
   FileInput,
+  Form,
   HoverCard,
   Input,
   InputGroup,
@@ -403,6 +405,23 @@ export function CatalogPreview({ slug }: { slug: string }) {
       return <CatalogLoading kind="skeleton" />;
     case "empty":
       return <CatalogEmpty />;
+    case "chart":
+      return (
+        <div className="catalog-item-group">
+          <Chart title="月ごとの売上（万円）" unit="万円" height={110} labels={["8月", "9月", "10月", "11月"]} series={[{ name: "今年", values: [47, 63, 71, 78] }, { name: "去年", values: [45, 49, 52, 58] }]} />
+        </div>
+      );
+    case "form":
+      return (
+        <div className="catalog-item-group">
+          <Form id="catalog-form" method="dialog">
+            <Field id="catalog-form-email" label="メールアドレス" required>
+              <Input type="email" />
+            </Field>
+            <Button type="submit">登録する</Button>
+          </Form>
+        </div>
+      );
     case "resizable":
       return (
         <div className="catalog-split">

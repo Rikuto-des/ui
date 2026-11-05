@@ -1,0 +1,11 @@
+.b-pricing { display: grid; gap: var(--ur-space-6); inline-size: min(1040px, 100%); box-sizing: border-box; margin-inline: auto; padding: calc(var(--ur-space-6) * 1.5) var(--ur-space-4); }
+.b-pricing-head { text-align: center; }
+.b-pricing-head h1 { margin: 0 0 var(--ur-space-2); font-size: calc(var(--ur-font-size-title) * 1.4); }
+.b-pricing-head p { margin: 0; color: var(--ur-color-text-muted); }
+.b-pricing-plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--ur-space-4); margin: 0; padding: 0; list-style: none; }
+.b-pricing-plans > li { display: grid; }
+.b-pricing-price { display: grid; gap: 2px; margin: 0 0 var(--ur-space-4); font-size: 30px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.b-pricing-price span { font-size: var(--ur-font-size-small); font-weight: 400; color: var(--ur-color-text-muted); }
+.b-pricing-features { display: grid; gap: var(--ur-space-2); margin: 0; padding: 0; list-style: none; font-size: var(--ur-font-size-control); }
+.b-pricing-features li { display: flex; align-items: center; gap: var(--ur-space-2); }
+.b-pricing-features svg { color: var(--ur-color-ok); }

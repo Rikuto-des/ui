@@ -1,0 +1,36 @@
+{
+  "name": "mail-01",
+  "version": "0.1.0-beta.1",
+  "type": "block",
+  "files": [
+    {
+      "path": "mail-01.tsx",
+      "target": "blocks",
+      "content": "\"use client\";\n// Installed by `urushi add mail-01`. A mail client: the list beside the message, split by a Resizable handle.\nimport { useState } from \"react\";\nimport { Badge, Button, ButtonGroup, Resizable } from \"@urushi/react\";\nimport { ArchiveIcon, ArrowBendDownLeftIcon, ShareNetworkIcon } from \"@urushi/react/icons\";\nimport \"./mail-01.css\";\n\nconst mails = [\n  { id: 1, from: \"佐藤 美咲\", subject: \"告知メールの文面\", time: \"10:42\", unread: true, body: \"最終版を共有します。件名だけもう一度確認させてください。差し替える場合は今日の 17 時までにお願いします。\" },\n  { id: 2, from: \"鈴木 健太\", subject: \"画像の差し替え\", time: \"9:15\", unread: true, body: \"申し込みページの画像を 3 点差し替えました。スマホでの見え方を確かめてもらえますか。\" },\n  { id: 3, from: \"高橋 陽子\", subject: \"来週の打ち合わせ\", time: \"昨日\", unread: false, body: \"火曜の 13:30 からでいかがでしょうか。会議室は 3 階を押さえています。\" },\n  { id: 4, from: \"経理チーム\", subject: \"10 月分の請求書\", time: \"月曜\", unread: false, body: \"10 月分の請求書を添付します。支払い期限は 11 月 30 日です。\" },\n];\n\nexport default function Mail01() {\n  const [current, setCurrent] = useState(mails[0].id);\n  const mail = mails.find((m) => m.id === current) ?? mails[0];\n  return (\n    <main className=\"b-mail\">\n      <Resizable defaultSize={34} min={24} max={55}>\n        <Resizable.Panel>\n          <h1 className=\"b-mail-title\">受信トレイ</h1>\n          <ul className=\"b-mail-list\" aria-label=\"受信したメール\">\n            {mails.map((m) => (\n              <li key={m.id}>\n                <button type=\"button\" aria-current={m.id === current} onClick={() => setCurrent(m.id)}>\n                  <span className=\"b-mail-from\">\n                    {m.from}\n                    {m.unread ? <Badge tone=\"accent\" dot>未読</Badge> : null}\n                  </span>\n                  <span className=\"b-mail-subject\">{m.subject}</span>\n                  <span className=\"b-mail-time\">{m.time}</span>\n                </button>\n              </li>\n            ))}\n          </ul>\n        </Resizable.Panel>\n        <Resizable.Handle label=\"一覧の幅\" />\n        <Resizable.Panel>\n          <article className=\"b-mail-body\" aria-labelledby=\"mail-subject\">\n            <header>\n              <ButtonGroup label=\"このメールの操作\">\n                <Button size=\"sm\"><ArrowBendDownLeftIcon size={16} />返信</Button>\n                <Button size=\"sm\"><ShareNetworkIcon size={16} />転送</Button>\n                <Button size=\"sm\"><ArchiveIcon size={16} />アーカイブ</Button>\n              </ButtonGroup>\n              <h2 id=\"mail-subject\">{mail.subject}</h2>\n              <p>{mail.from}・{mail.time}</p>\n            </header>\n            <p>{mail.body}</p>\n          </article>\n        </Resizable.Panel>\n      </Resizable>\n    </main>\n  );\n}\n",
+      "hash": "sha256-70j4MB0UuBFppfRFJ34I9bAB7qQ69AOsKTIUH4ebNbI="
+    },
+    {
+      "path": "mail-01.css",
+      "target": "blocks",
+      "content": ".b-mail { block-size: 100dvh; background: var(--ur-color-surface); }\n.b-mail > [data-slot=\"resizable\"] { block-size: 100%; }\n.b-mail-title { margin: 0; padding: var(--ur-space-4); font-size: var(--ur-font-size-body); font-weight: 600; border-block-end: 1px solid var(--ur-color-border); }\n.b-mail-list { margin: 0; padding: 0; list-style: none; }\n.b-mail-list button { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px var(--ur-space-2); inline-size: 100%; padding: var(--ur-space-3) var(--ur-space-4); border: 0; border-block-end: 1px solid var(--ur-color-border); background: transparent; color: inherit; font: inherit; text-align: start; cursor: pointer; }\n.b-mail-list button[aria-current=\"true\"] { background: var(--ur-color-ghost-hover); }\n.b-mail-list button:focus-visible { outline: 2px solid var(--ur-color-focus-ring); outline-offset: -2px; }\n.b-mail-from { display: flex; align-items: center; gap: var(--ur-space-2); font-size: var(--ur-font-size-control); font-weight: 500; }\n.b-mail-subject { grid-column: 1; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }\n.b-mail-time { grid-row: 1; grid-column: 2; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); }\n.b-mail-body { display: grid; align-content: start; gap: var(--ur-space-4); padding: var(--ur-space-4) var(--ur-space-5); line-height: 1.8; }\n.b-mail-body header { display: grid; gap: var(--ur-space-2); padding-block-end: var(--ur-space-4); border-block-end: 1px solid var(--ur-color-border); }\n.b-mail-body h2 { margin: var(--ur-space-2) 0 0; font-size: var(--ur-font-size-title); }\n.b-mail-body header p { margin: 0; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); }\n.b-mail-body > p { margin: 0; }\n@media (hover: hover) { .b-mail-list button:hover { background: var(--ur-color-ghost-hover); } }\n",
+      "hash": "sha256-kRDtaI4O1DTery9f7OWi8QmFUHxPqExoZcy4mW5QjmU="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/badge.css",
+    "@urushi/react/styles/button.css",
+    "@urushi/react/styles/button-group.css",
+    "@urushi/react/styles/resizable.css"
+  ],
+  "title": "メール",
+  "summary": "メールの一覧と本文を Resizable で分けた画面。",
+  "components": [
+    "badge",
+    "button",
+    "button-group",
+    "resizable"
+  ]
+}

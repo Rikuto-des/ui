@@ -15,7 +15,7 @@ export default [
   },
   {
     ...urushi.configs.recommended,
-    files: ["apps/**/*.tsx", "examples/**/*.tsx", "scripts/**/*.tsx"],
+    files: ["apps/**/*.tsx", "examples/**/*.tsx", "scripts/**/*.tsx", "blocks/**/*.tsx"],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: { ecmaFeatures: { jsx: true } },

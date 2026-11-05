@@ -45,6 +45,8 @@ import {
   Item,
   Drawer,
   Resizable,
+  Chart,
+  Form,
   Kbd,
   Link,
   Menu,
@@ -1150,6 +1152,22 @@ trigger.nextElementSibling.showPopover({ source: trigger });`,
         </Resizable.Panel>
       </Resizable>
     </div>,
+  ),
+  Chart: preview(
+    `<!-- @dsCard group="表示" height=320 subtitle="棒と折れ線。見てほしい系列だけアクセント色、数字は table" -->`,
+    <Chart title="月ごとの売上（万円）" unit="万円" height={180} labels={["6月", "7月", "8月", "9月", "10月", "11月"]} series={[{ name: "今年", values: [42, 51, 47, 63, 71, 78] }, { name: "去年", values: [38, 40, 45, 49, 52, 58] }]} />,
+  ),
+  Form: preview(
+    `<!-- @dsCard group="入力" height=330 subtitle="送信時のエラーを各欄と上のまとめに出す" -->`,
+    <Form id="ds-form">
+      <Field id="ds-form-email" label="メールアドレス" required error="メールアドレスを入力してください。">
+        <Input type="email" />
+      </Field>
+      <Field id="ds-form-age" label="年齢" description="18 歳以上">
+        <Input type="number" defaultValue={20} />
+      </Field>
+      <Button type="submit" variant="primary">登録する</Button>
+    </Form>,
   ),
   Breadcrumb: preview(
     `<!-- @dsCard group="ナビゲーション" height=80 subtitle="nav と ol。区切りは CSS で描き、読み上げない" -->`,

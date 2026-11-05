@@ -60,6 +60,11 @@
     "summary": "Slides in a horizontal scroll-snap strip; where CSS ::scroll-button and ::scroll-marker exist, the browser adds the buttons and dots."
   },
   {
+    "name": "chart",
+    "version": "0.1.0-beta.1",
+    "summary": "A bar or line chart drawn with HTML and CSS on the server, with the numbers as a table for screen readers. The first series takes the accent color and the others are greys, so the series to look at stands out; palette=\"multi\" gives each series its own color. Hovering a column shows its values (CSS only). Values start at zero."
+  },
+  {
     "name": "checkbox",
     "version": "0.1.0-beta.1",
     "summary": "A native checkbox with its own label."
@@ -123,6 +128,11 @@
     "name": "file-input",
     "version": "0.1.0-beta.1",
     "summary": "A native <input type=\"file\">; the dropzone variant is a large target that files can be dropped on (no JavaScript)."
+  },
+  {
+    "name": "form",
+    "version": "0.1.0-beta.1",
+    "summary": "A native <form> whose errors are shown in the page instead of the browser's bubbles. On submit the runtime checks every control (the constraints you write: required, type, min, pattern…), writes each message under its Field, lists them in a summary at the top with links to the controls, and moves focus to the summary. Fixing a control clears its message. Without the runtime the browser's own validation still runs."
   },
   {
     "name": "hover-card",
@@ -288,5 +298,76 @@
     "name": "tooltip",
     "version": "0.1.0-beta.1",
     "summary": "A short description shown on hover and keyboard focus: popover=\"hint\" opened through interestfor."
+  },
+  {
+    "name": "login-01",
+    "version": "0.1.0-beta.1",
+    "summary": "メールアドレスとパスワードのログイン画面。ログインしたままにする選択と、パスワードなしで入る方法つき。",
+    "type": "block",
+    "title": "ログイン",
+    "components": [
+      "button",
+      "card",
+      "checkbox",
+      "field",
+      "input",
+      "link",
+      "separator"
+    ]
+  },
+  {
+    "name": "settings-01",
+    "version": "0.1.0-beta.1",
+    "summary": "Item の行で並べた設定画面。通知のスイッチと、確認を挟むアカウントの削除。",
+    "type": "block",
+    "title": "アカウントの設定",
+    "components": [
+      "alert-dialog",
+      "avatar",
+      "button",
+      "item",
+      "switch"
+    ]
+  },
+  {
+    "name": "dashboard-01",
+    "version": "0.1.0-beta.1",
+    "summary": "サイドバー、3 つの数字のカード、最近の注文の表。",
+    "type": "block",
+    "title": "ダッシュボード",
+    "components": [
+      "badge",
+      "button",
+      "card",
+      "meter",
+      "progress",
+      "sidebar",
+      "table"
+    ]
+  },
+  {
+    "name": "mail-01",
+    "version": "0.1.0-beta.1",
+    "summary": "メールの一覧と本文を Resizable で分けた画面。",
+    "type": "block",
+    "title": "メール",
+    "components": [
+      "badge",
+      "button",
+      "button-group",
+      "resizable"
+    ]
+  },
+  {
+    "name": "pricing-01",
+    "version": "0.1.0-beta.1",
+    "summary": "3 つのプランを並べた料金表。おすすめは見た目と言葉の両方で示す。",
+    "type": "block",
+    "title": "料金プラン",
+    "components": [
+      "badge",
+      "button",
+      "card"
+    ]
   }
 ]

@@ -1,0 +1,7 @@
+.b-login { display: grid; grid-template-columns: minmax(0, 400px); justify-content: center; align-content: center; gap: var(--ur-space-4); min-block-size: 100dvh; box-sizing: border-box; padding: var(--ur-space-6) var(--ur-space-4); background: var(--ur-color-bg); }
+.b-login-head { margin-block-end: var(--ur-space-5); }
+.b-login-head h1 { margin: 0 0 var(--ur-space-1); font-size: var(--ur-font-size-title); }
+.b-login-head p { margin: 0; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); }
+.b-login-form { display: grid; gap: var(--ur-space-4); }
+.b-login-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ur-space-2); font-size: var(--ur-font-size-small); }
+.b-login-note { margin: 0; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); text-align: center; }

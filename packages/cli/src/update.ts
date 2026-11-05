@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { BASE_DIR, CONFLICT_MARKER, prepareItems, readConfig, readLock, writeBase, writeLock } from "./add.ts";
+import { BASE_DIR, CONFLICT_MARKER, prepareItems, readConfig, readLock, writeBase, writeLock, destination } from "./add.ts";
 import { sha256 } from "./build.ts";
 
 export type UpdateStatus =
@@ -70,7 +70,7 @@ export async function update(cwd: string, names: string[] = [], opts: { dryRun?:
 
     for (const file of item.files) {
       if (sha256(file.content) !== file.hash) throw new Error(`${name}/${file.path}: hash mismatch, refusing to update`);
-      const target = join(config.components, file.path);
+      const target = destination(config, file);
       shipped.add(target);
       const abs = join(cwd, target);
       const lockedHash = installed.files[target];

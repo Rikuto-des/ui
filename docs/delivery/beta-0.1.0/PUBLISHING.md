@@ -25,3 +25,13 @@ npm publish ./urushi-contract-0.1.0-beta.1.tgz --tag beta --access public --igno
 全7パッケージの`beta`タグ、バージョン、配布integrityを確認します。その後、空のプロジェクトでnpmから導入し、`init`、`add`、型検査、ビルド、ブラウザ操作を再確認します。tgzからの導入成功だけでは、npm公開の成功とは扱いません。
 
 GitHub Releaseとサイトには、導入コマンド、変更履歴、対応範囲、不具合報告先を載せます。「npm公開前」という案内は、公開と新規導入の確認が終わってから更新します。実機とスクリーンリーダーは、実際の検証が終わるまで未検証と記載します。
+
+## MCP の登録先に載せる（npm 公開のあと）
+
+AI ツールが MCP サーバーを探す公式の登録先（registry.modelcontextprotocol.io）に、`urushi mcp` を載せます。登録先はメタデータだけを持ち、npm の `@urushi/cli` の `package.json` にある `mcpName` と、`packages/cli/server.json` の `name`（`io.github.rikuto-des/urushi`）が一致することで持ち主を確かめます。
+
+1. `@urushi/cli` を npm に公開します（上の手順）。登録先は、そのバージョンが npm にあることを確かめます。
+2. GitHub のリポジトリを公開にするか、`io.github.rikuto-des/` の名前空間を使える GitHub アカウントで認証できる状態にします。
+3. 利用者本人がターミナルで `mcp-publisher login github` を実行し、`packages/cli` で `mcp-publisher validate` と `mcp-publisher publish` を実行します。認証の操作は利用者が行います。
+
+`server.json` のスキーマの日付（2025-12-11）は、公開する時点の公式の手順で確かめてから使ってください。

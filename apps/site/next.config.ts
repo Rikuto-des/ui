@@ -5,7 +5,7 @@ const config: NextConfig = {
   output: "export",
   trailingSlash: true,
   // The workspace packages ship TypeScript source.
-  transpilePackages: ["@urushi/react", "@urushi/core"],
+  transpilePackages: ["@urushi/react", "@urushi/core", "@urushi/tokens"],
 };
 
 export default config;

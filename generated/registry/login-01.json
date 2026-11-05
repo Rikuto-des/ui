@@ -1,0 +1,42 @@
+{
+  "name": "login-01",
+  "version": "0.1.0-beta.1",
+  "type": "block",
+  "files": [
+    {
+      "path": "login-01.tsx",
+      "target": "blocks",
+      "content": "// Installed by `urushi add login-01`. A sign-in screen: email and password, a remembered session, and a way back in without the password.\nimport { Button, Card, Checkbox, Field, Input, Link, Separator } from \"@urushi/react\";\nimport \"./login-01.css\";\n\nexport default function Login01() {\n  return (\n    <main className=\"b-login\">\n      <Card padding=\"lg\">\n        <header className=\"b-login-head\">\n          <h1>ログイン</h1>\n          <p>登録したメールアドレスでログインします。</p>\n        </header>\n        <form className=\"b-login-form\" method=\"post\">\n          <Field id=\"login-email\" label=\"メールアドレス\" required>\n            <Input type=\"email\" name=\"email\" autoComplete=\"email\" />\n          </Field>\n          <Field id=\"login-password\" label=\"パスワード\" required>\n            <Input type=\"password\" name=\"password\" autoComplete=\"current-password\" />\n          </Field>\n          <div className=\"b-login-row\">\n            <Checkbox name=\"remember\">ログインしたままにする</Checkbox>\n            <Link href=\"/forgot-password\">パスワードを忘れた</Link>\n          </div>\n          <Button type=\"submit\" variant=\"primary\" size=\"lg\">\n            ログイン\n          </Button>\n          <Separator decorative />\n          <Button type=\"button\" size=\"lg\">\n            メールでリンクを受け取る\n          </Button>\n        </form>\n      </Card>\n      <p className=\"b-login-note\">\n        アカウントがない場合は <Link href=\"/signup\">新しく登録</Link> できます。\n      </p>\n    </main>\n  );\n}\n",
+      "hash": "sha256-8VXa7MxCM3r1oIdtQ2EOgBBocarseyHrNuVGw938bHM="
+    },
+    {
+      "path": "login-01.css",
+      "target": "blocks",
+      "content": ".b-login { display: grid; grid-template-columns: minmax(0, 400px); justify-content: center; align-content: center; gap: var(--ur-space-4); min-block-size: 100dvh; box-sizing: border-box; padding: var(--ur-space-6) var(--ur-space-4); background: var(--ur-color-bg); }\n.b-login-head { margin-block-end: var(--ur-space-5); }\n.b-login-head h1 { margin: 0 0 var(--ur-space-1); font-size: var(--ur-font-size-title); }\n.b-login-head p { margin: 0; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); }\n.b-login-form { display: grid; gap: var(--ur-space-4); }\n.b-login-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--ur-space-2); font-size: var(--ur-font-size-small); }\n.b-login-note { margin: 0; font-size: var(--ur-font-size-small); color: var(--ur-color-text-muted); text-align: center; }\n",
+      "hash": "sha256-2UhCCYPbitYtHWLF1GrFw3E5y4Wrp5NntAnUT09gk7E="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/button.css",
+    "@urushi/react/styles/card.css",
+    "@urushi/react/styles/checkbox.css",
+    "@urushi/react/styles/field.css",
+    "@urushi/react/styles/input.css",
+    "@urushi/react/styles/link.css",
+    "@urushi/react/styles/separator.css"
+  ],
+  "title": "ログイン",
+  "summary": "メールアドレスとパスワードのログイン画面。ログインしたままにする選択と、パスワードなしで入る方法つき。",
+  "components": [
+    "button",
+    "card",
+    "checkbox",
+    "field",
+    "input",
+    "link",
+    "separator"
+  ]
+}

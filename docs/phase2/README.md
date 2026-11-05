@@ -97,3 +97,14 @@ shadcn/ui と比べて残っていた部品のうち、よく使う 2 つを足�
 ## 見た目の回帰テストを CI に入れた（2026-11-05）
 
 `pnpm test:visual` は macOS の基準画像しかなく、CI で動いていなかった。CI に「Visual (chromium)」のジョブを足し、Playwright の公式イメージ（`mcr.microsoft.com/playwright:v1.64.1-noble`）の中で動かす。Linux の基準画像は `tests/visual/__screenshots__/linux` に置き、手元では `sh scripts/visual-linux.sh` で同じイメージ（linux/amd64。Apple silicon ではエミュレーション）を使って撮る。作業ツリーをコンテナの中にコピーするので、手元の node_modules は書き換えない。2 回撮って同じ画像になることを確かめた。macOS の基準画像（`darwin`）は今までどおり手元の確認用に残す。
+
+## shadcn/ui に勝つための追加（2026-11-05）
+
+ユーザーの「あと何があれば shadcn に勝てるか」への答え（2 比較実験の強化 → 3 ひな形 → 4 パックを作る画面 → 5 Chart と Form → 6 移行 → 7 実機とスクリーンリーダー）の順に進めた。
+
+- **比較実験に 2 つ目のモデル**：`evals/competition/run.ts` に `--provider claude` を足した（Claude Code をヘッドレスで、`--safe-mode --tools ""` で呼ぶ）。measured-v4 と同じ課題・資料・検査で claude-sonnet-5-5 を回し（`runs/claude-sonnet-v1`、63 応答、監査済み）、初回生成は Urushi 6/6、shadcn/ui・Radix・Base UI は 2/6 だった。REPORT.md とサイトの /docs/comparison/ に載せた。
+- **Blocks**：`blocks/` に 5 つの画面（login-01・settings-01・dashboard-01・mail-01・pricing-01）。レジストリの `type: "block"` で、ファイルは `blocks` フォルダ（`urushi.json` の `blocks`、既定は components の隣）に入る。CSS の一覧は block が `@urushi/react` から読み込む部品から作る。サイトの /blocks/ で枠の中に表示し、各画面は /blocks/<name>/view/ で単独に開ける（axe と 320px のテストつき）。
+- **パックを作る画面**（/themes/）：元のパック（Graphite・Lucent）の tokens.json に、色（アクセント・主ボタン・背景・面・文字のライトとダーク）、角の丸み、密度、文字の大きさ、動き、影を当て、`@urushi/tokens` の `packCss` でその場で CSS にする。主ボタンの文字色は読みやすい方を自動で選ぶ。WCAG のコントラスト（文字 4.5:1、フォーカスの輪 3:1）を 10 組確かめ、CSS と tokens.json を書き出す。
+- **Form**：`<form data-slot="form">` にエラーのまとめ（Alert の見た目）を置き、ランタイム（`installForms`）が noValidate にして、送信時に欄ごとの文（`<id>-error`）・まとめのリンク・フォーカス移動を行う。直すとその場で消える。アプリの onSubmit は正しいときだけ届く（document の capture で止める）。
+- **Chart**：見た目は比較ページ（`/proposals/chart.html`）の A「静か」（ユーザーの選択）。SVG を 1 枚に描くと狭い画面で文字が縮むので、棒は HTML の列、折れ線は `preserveAspectRatio="none"` と `vector-effect: non-scaling-stroke` の SVG を重ね、目盛りと文字は HTML にした。列の値は CSS の :hover だけで出す。数字は visually hidden の table。
+- 途中で見つけた不具合：Table の横スクロール領域にキーボードで移れなかった（Safari）。ランタイム（`installTableScroll`）が、はみ出している間だけ tabindex と名前を付ける。サイトのヘッダーは 6 項目になり、860px 以下で 2 段にした。

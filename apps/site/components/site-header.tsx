@@ -3,7 +3,9 @@ import { PackSwitcher } from "./pack-switcher";
 const nav = [
   { href: "/docs/", label: "Docs", section: "docs" },
   { href: "/components/", label: "Components", section: "components" },
+  { href: "/blocks/", label: "Blocks", section: "blocks" },
   { href: "/examples/", label: "Examples", section: "examples" },
+  { href: "/themes/", label: "Themes", section: "themes" },
   { href: "/docs/design/", label: "Design", section: "design" },
 ];
 

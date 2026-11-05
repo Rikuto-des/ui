@@ -192,6 +192,19 @@ Not for: Content most people must see (use a list or grid).
 </Carousel>
 ```
 
+### Chart — A bar or line chart drawn with HTML and CSS on the server, with the numbers as a table for screen readers. The first series takes the accent color and the others are greys, so the series to look at stands out; palette="multi" gives each series its own color. Hovering a column shows its values (CSS only). Values start at zero.
+
+Use for: A few series over a short range of labels: months, weeks, categories.
+Not for: Exact values people compare or copy (use table); Progress toward one goal (use progress).
+- `<Chart>` requires `title`, `labels`, `series`; type: bar|line; palette: quiet|multi.
+- title is required; it names the figure and the table.
+- The plot is hidden from assistive technology; the table carries the numbers.
+- Do not tell series apart by color alone in the text around the chart; name them.
+
+```tsx
+<Chart title="月ごとの売上（万円）" unit="万円" labels={["6月", "7月", "8月"]} series={[{ name: "今年", values: [42, 51, 47] }, { name: "去年", values: [38, 40, 45] }]} />
+```
+
 ### Checkbox — A native checkbox with its own label.
 
 Use for: Choosing any number of options; Confirming a single statement (agree to terms).
@@ -377,6 +390,23 @@ Not for: Uploading in the background with progress (use your own uploader with P
 
 ```tsx
 <Field id="files" label="添付ファイル"><FileInput variant="dropzone" multiple /></Field>
+```
+
+### Form — A native <form> whose errors are shown in the page instead of the browser's bubbles. On submit the runtime checks every control (the constraints you write: required, type, min, pattern…), writes each message under its Field, lists them in a summary at the top with links to the controls, and moves focus to the summary. Fixing a control clears its message. Without the runtime the browser's own validation still runs.
+
+Use for: Any form with more than one or two fields; Forms where several errors can happen at once.
+Not for: A single search box (use input).
+- `<Form>`.
+- Put every control in a Field with an id, so its message has a place and the summary can link to it.
+- Write the constraints on the controls (required, type, min, maxLength, pattern); call setCustomValidity for rules the browser cannot check.
+- Errors from the server go in Field's error prop; they are shown as they are.
+
+```tsx
+<Form onSubmit={save}>
+  <Field id="signup-email" label="メールアドレス" required><Input type="email" /></Field>
+  <Field id="signup-age" label="年齢"><Input type="number" min={18} /></Field>
+  <Button type="submit" variant="primary">登録する</Button>
+</Form>
 ```
 
 ### HoverCard — A preview card for a link, shown on hover and keyboard focus (interestfor).

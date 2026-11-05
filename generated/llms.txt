@@ -16,6 +16,7 @@
 - [Calendar](docs/calendar.md): A month of days to pick a date from, always on the page (a booking or schedule view). DatePicker uses the same calendar in its dialog.
 - [Card](docs/card.md): A surface that groups related content, with an optional title, description and footer.
 - [Carousel](docs/carousel.md): Slides in a horizontal scroll-snap strip; where CSS ::scroll-button and ::scroll-marker exist, the browser adds the buttons and dots.
+- [Chart](docs/chart.md): A bar or line chart drawn with HTML and CSS on the server, with the numbers as a table for screen readers. The first series takes the accent color and the others are greys, so the series to look at stands out; palette="multi" gives each series its own color. Hovering a column shows its values (CSS only). Values start at zero.
 - [Checkbox](docs/checkbox.md): A native checkbox with its own label.
 - [Collapsible](docs/collapsible.md): One section that opens and closes: a native <details>.
 - [Combobox](docs/combobox.md): 検索して候補を絞り込み、1つの値を選択します。
@@ -29,6 +30,7 @@
 - [Empty](docs/empty.md): What a list or page shows when there is nothing in it yet, and how to start.
 - [Field](docs/field.md): Labels a single form control and links its description and error message to it.
 - [FileInput](docs/file-input.md): A native <input type="file">; the dropzone variant is a large target that files can be dropped on (no JavaScript).
+- [Form](docs/form.md): A native <form> whose errors are shown in the page instead of the browser's bubbles. On submit the runtime checks every control (the constraints you write: required, type, min, pattern…), writes each message under its Field, lists them in a summary at the top with links to the controls, and moves focus to the summary. Fixing a control clears its message. Without the runtime the browser's own validation still runs.
 - [HoverCard](docs/hover-card.md): A preview card for a link, shown on hover and keyboard focus (interestfor).
 - [InputGroup](docs/input-group.md): An Input with fixed text or a button attached before or after it, drawn as one field.
 - [Input](docs/input.md): A native single-line <input> styled by the pack.

@@ -1,0 +1,38 @@
+{
+  "name": "settings-01",
+  "version": "0.1.0-beta.1",
+  "type": "block",
+  "files": [
+    {
+      "path": "settings-01.tsx",
+      "target": "blocks",
+      "content": "// Installed by `urushi add settings-01`. An account settings screen: rows of Item, notification switches, and a guarded delete.\nimport { AlertDialog, Avatar, Button, Item, Switch } from \"@urushi/react\";\nimport \"./settings-01.css\";\n\nexport default function Settings01() {\n  return (\n    <main className=\"b-settings\">\n      <header className=\"b-settings-head\">\n        <h1>設定</h1>\n        <p>アカウントと通知の設定です。変更はすぐに保存されます。</p>\n      </header>\n      <section aria-labelledby=\"settings-account\">\n        <h2 id=\"settings-account\">アカウント</h2>\n        <Item.Group>\n          <Item icon={<Avatar name=\"山田 花子\" size=\"sm\" />} title=\"山田 花子\" description=\"表示名と写真\" action={<Button size=\"sm\">編集</Button>} />\n          <Item title=\"メールアドレス\" description=\"hanako@example.jp\" action={<Button size=\"sm\">変更</Button>} />\n          <Item title=\"パスワードと二段階認証\" description=\"最後の変更は 3 か月前\" href=\"/settings/security\" />\n        </Item.Group>\n      </section>\n      <section aria-labelledby=\"settings-notify\">\n        <h2 id=\"settings-notify\">通知</h2>\n        <Item.Group>\n          <Item title=\"コメント\" description=\"自分のタスクにコメントが付いたとき\" action={<Switch aria-label=\"コメント\" defaultChecked />} />\n          <Item title=\"締め切りの前日\" description=\"担当のタスクの締め切りが近いとき\" action={<Switch aria-label=\"締め切りの前日\" defaultChecked />} />\n          <Item title=\"週のまとめ\" description=\"月曜の朝に、先週の動きをまとめて送ります\" action={<Switch aria-label=\"週のまとめ\" />} />\n        </Item.Group>\n      </section>\n      <section aria-labelledby=\"settings-danger\">\n        <h2 id=\"settings-danger\">アカウントの削除</h2>\n        <Item.Group>\n          <Item\n            title=\"アカウントを削除する\"\n            description=\"すべてのプロジェクトとファイルが消え、元に戻せません。\"\n            action={\n              <AlertDialog.Trigger alertDialog=\"settings-delete\" variant=\"danger\" size=\"sm\">\n                削除\n              </AlertDialog.Trigger>\n            }\n          />\n        </Item.Group>\n        <AlertDialog id=\"settings-delete\" title=\"アカウントを削除しますか？\" description=\"すべてのプロジェクトとファイルが消え、元に戻せません。\">\n          <AlertDialog.Cancel alertDialog=\"settings-delete\">やめる</AlertDialog.Cancel>\n          <AlertDialog.Action alertDialog=\"settings-delete\" variant=\"danger\">\n            削除する\n          </AlertDialog.Action>\n        </AlertDialog>\n      </section>\n    </main>\n  );\n}\n",
+      "hash": "sha256-Umop/RKu7kLgieX98tbKrdZ0zWnhKvr3sfKF9zhhuhE="
+    },
+    {
+      "path": "settings-01.css",
+      "target": "blocks",
+      "content": ".b-settings { display: grid; gap: var(--ur-space-6); inline-size: min(720px, 100%); box-sizing: border-box; margin-inline: auto; padding: var(--ur-space-6) var(--ur-space-4); }\n.b-settings-head h1 { margin: 0 0 var(--ur-space-2); font-size: var(--ur-font-size-title); }\n.b-settings-head p { margin: 0; color: var(--ur-color-text-muted); }\n.b-settings section { display: grid; gap: var(--ur-space-3); }\n.b-settings h2 { margin: 0; font-size: var(--ur-font-size-body); font-weight: 600; }\n",
+      "hash": "sha256-o3cu8HQ+3wf22NMgtvAbn+ND2d/Kd5HwEqByPcDZJro="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/alert-dialog.css",
+    "@urushi/react/styles/avatar.css",
+    "@urushi/react/styles/button.css",
+    "@urushi/react/styles/item.css",
+    "@urushi/react/styles/switch.css"
+  ],
+  "title": "アカウントの設定",
+  "summary": "Item の行で並べた設定画面。通知のスイッチと、確認を挟むアカウントの削除。",
+  "components": [
+    "alert-dialog",
+    "avatar",
+    "button",
+    "item",
+    "switch"
+  ]
+}

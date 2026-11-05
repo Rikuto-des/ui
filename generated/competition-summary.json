@@ -7292,6 +7292,2174 @@
           ]
         }
       ]
+    },
+    {
+      "id": "claude-sonnet-v1",
+      "startedAt": "2026-11-05T08:25:42.922Z",
+      "protocol": {
+        "version": 2,
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "provider": "Claude Code 2.1.296 (Claude Code) headless, --safe-mode --tools \"\"",
+        "maxSecondsPerResponse": 240,
+        "trials": 2,
+        "libraries": [
+          "urushi",
+          "base",
+          "radix",
+          "shadcn"
+        ],
+        "generationAttempts": 1,
+        "repairAttempts": 1,
+        "updateAttempts": 1,
+        "updateRepairAttempts": 1,
+        "commonGate": [
+          "TypeScript strict",
+          "required library primitive usage",
+          "keyboard and state behavior",
+          "axe WCAG A/AA",
+          "320px overflow"
+        ],
+        "secondary": [
+          "wall time",
+          "reported tokens and cost",
+          "bundle gzip",
+          "authored source bytes",
+          "library-specific diagnostics"
+        ],
+        "ordering": "rotated library order per task and trial; at most 4 simultaneous requests",
+        "context": "same task and system template; version-specific API references per library; no tools, no prior history; repair gets code and diagnostic output",
+        "scoringRevision": "Wait for finite animations before axe; hidden rows count as removed; verify restored row order; wait for menu initial focus and two animation frames after arrow navigation before negative focus assertions. This is an exploratory development evaluation, not a preregistered benchmark. measured-v4 freezes these checks before every model response.",
+        "scoring": "all common gates must pass; failures and missing responses remain in denominator; internal library lint is additional repair feedback, never a competitor scoring rule",
+        "updateMeaning": "application specification change; no claim about real dependency-version migrations",
+        "limitations": [
+          "one model",
+          "three small workflows",
+          "no free browsing or tool use by model",
+          "authored reference extracts",
+          "no screen reader user study",
+          "no subjective design superiority score"
+        ],
+        "startedAt": "2026-11-05T08:25:42.922Z",
+        "packageVersions": {
+          "@base-ui/react": "1.9.0",
+          "@tailwindcss/cli": "4.3.3",
+          "@types/react": "19.3.0",
+          "@types/react-dom": "19.3.0",
+          "class-variance-authority": "0.7.1",
+          "cn": "0.5.0",
+          "lucide-react": "1.61.0",
+          "radix-ui": "1.8.1",
+          "react": "19.3.1",
+          "react-dom": "19.3.1",
+          "tailwindcss": "4.3.3",
+          "tw-animate-css": "1.4.0"
+        },
+        "tasks": [
+          {
+            "id": "dialog",
+            "prompt": "Build a project deletion screen. Export default App. The page has h1 \"Projects\", a paragraph \"Atlas project\", and a button \"Delete Atlas\". Clicking it opens a modal dialog named \"Delete project\" with a description, a Cancel button and a \"Confirm delete\" button. Focus Cancel first. Escape and Cancel close it, preserve the project and return focus to Delete Atlas. Confirm removes Atlas and closes the dialog; announce \"Project deleted\" in role=status. There must be exactly one deletion per confirmation. Use the assigned library's dialog primitive. Support keyboard and a 320px screen. Do not implement your own dialog, focus trap or tab primitive.",
+            "update": "Update this screen without losing any existing behavior: confirmation now simulates a server request of 1200ms. While pending, show \"Deleting…\", disable duplicate confirmation and cancellation, and prevent Escape or backdrop dismissal. The first attempt fails: keep the modal open, announce \"Deletion failed\" with role=alert and retain Atlas. A second confirmation succeeds, closes the modal and announces Project deleted. Cancel outside a pending request still works. This is an application specification update, not a dependency-version migration."
+          },
+          {
+            "id": "tabs",
+            "prompt": "Build an account screen. Export default App. h1 \"Account\". Use the assigned library's tabs with an accessible tablist named \"Account sections\", tabs Profile, Security, Billing. Profile starts active and contains a labelled textbox \"Display name\" initially Alex. Security contains text \"Security settings\". Billing is disabled. ArrowRight from Profile selects Security, skips Billing and wraps to Profile. Store the display name so editing it, visiting Security and returning to Profile retains the edit. A button \"Refresh\" outside the tabs increments a visible \"Refresh count: N\" without changing the active tab or the name. Support a 320px screen, keyboard and accessible names. Do not recreate tab behavior with raw HTML.",
+            "update": "Preserve all behavior. Add a button \"Open security\" outside the tablist that selects Security. Add a button \"Open profile\" outside the tablist that selects Profile. These must work repeatedly even after the user has changed tabs by clicking and using arrows. Add \"Save name\" to Profile: it announces \"Saved: <current display name>\" with role=status without resetting selection or input. Billing remains disabled. This is an application specification update."
+          },
+          {
+            "id": "menu",
+            "prompt": "Build a task list. Export default App. h1 \"Tasks\". Two rows contain text \"Atlas task\" and \"Boreal task\". Each has a button named \"Actions for Atlas\" or \"Actions for Boreal\" opening the assigned library's menu. Menu items: \"Rename\" (disabled) and \"Archive\". Arrow keys skip disabled Rename; Escape closes and returns focus to the opening button. Archive removes only the corresponding row, closes the menu and announces \"Archived Atlas\" or \"Archived Boreal\" in role=status. Keep the other row unchanged. Use the library's menu primitive, not a custom menu. Support a 320px screen, keyboard and accessible names.",
+            "update": "Preserve all behavior. After archiving, show a button \"Undo archive\" outside the menu that restores the most recently archived task to its original row position and announces \"Restored Atlas\" or \"Restored Boreal\" in role=status. The restored row's menu must work again, by keyboard as well as pointer. A second archive then undo must also work. Hide Undo archive when nothing can be undone. This is an application specification update."
+          }
+        ]
+      },
+      "sharedCssGzip": 9321,
+      "resultSha256": "cbe4bfc5ff4cf5d213289997d5d7ee6d49a82a02a8962c97a165c8c016e779f7",
+      "libraries": [
+        {
+          "id": "urushi",
+          "label": "Urushi",
+          "n": 6,
+          "generate": 6,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": 5,
+          "internalCleanFinal": 6,
+          "jsGzip": [
+            85186,
+            85875
+          ],
+          "excludingReactGzip": [
+            16359,
+            17047
+          ],
+          "libraryCssGzip": [
+            21079,
+            21079
+          ],
+          "assetGzip": [
+            115586,
+            116275
+          ],
+          "sourceBytes": [
+            2356,
+            3420
+          ],
+          "calls": 12,
+          "inputTokens": 24,
+          "outputTokens": 18358,
+          "elapsedMs": 204051,
+          "source": [
+            {
+              "sample": "urushi-dialog-1",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "d6aad3e502f5c2145a01e41275ea8ffd227b50ebc65469bf832f8f545bc45b40",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": [
+                {
+                  "source": "contract",
+                  "severity": "warning",
+                  "code": "urushi/valid-idref",
+                  "file": "App.tsx",
+                  "line": 36,
+                  "column": 7,
+                  "message": "returnFocus=\"delete-atlas-trigger\" に対応する id=\"delete-atlas-trigger\" の要素 がこのファイルにありません。id の綴りを確認してください（別のファイルにある場合は、この警告を無視してかまいません）。",
+                  "excerpt": "      <Dialog"
+                }
+              ]
+            },
+            {
+              "sample": "urushi-dialog-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "bd4e9fd39218bfed852e117d53421ddf90d48a4477e592179e547fd65eb27266",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-tabs-1",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "6a74b6665c3dfcbab84709ed95a793e527b94582646a4714ab26344458aadd2c",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-tabs-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "1a5dc18b62b02392c81e392497ff39fe14f19e2ba3eacccd71f04cb202240d1b",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-menu-1",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "40084269689056361bf8a790777af071fa55b7284021fcb38bca6e83587d8fff",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-menu-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "afb558853e4043a6d3012824fd083c8f3a2758a2caecf7ce03f128ae3f104b4b",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-dialog-2",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "dcca7a925227f3c7d69d450a791c13ef40173deb73af18b139144fd97f00e2f5",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-dialog-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "120c3fe115f814ad5cc53ec973d4a74b278fee4ba851e5cd260ea20d5c7bb5cd",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-tabs-2",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "e74e10ff6c7ef118328887bb031fb2268147dfce1b8d304ca2b446ec219bca81",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-tabs-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "6b528d2a2be9cb1f68ce0d340564606eca26dc57c5779fe25e940b7053ceb1eb",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-menu-2",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "7becf80b1c91d588e35ea53b8c4d59acd526a8ba47b57856e23e6d2e9f82b41c",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "urushi-menu-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "ec8f0a476d69ed93ce07c138a1083346c15d8ceb0da0a781aac9ac20b3a84f3a",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            }
+          ]
+        },
+        {
+          "id": "base",
+          "label": "Base UI",
+          "n": 6,
+          "generate": 2,
+          "repaired": 6,
+          "update": 3,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            82831,
+            130926
+          ],
+          "excludingReactGzip": [
+            14549,
+            62501
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            92152,
+            140247
+          ],
+          "sourceBytes": [
+            3558,
+            4995
+          ],
+          "calls": 19,
+          "inputTokens": 38,
+          "outputTokens": 42165,
+          "elapsedMs": 385632,
+          "source": [
+            {
+              "sample": "base-dialog-1",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "de7f5e0aab26621740996c4b00b90741331a7d2bd79f4d44bb084a4c5a75c18a",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-dialog-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "2ada95a2e2bb70d0bfef1c4304eb6d050ec5163e9076f4af9b01ca45e3ea3452",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-tabs-1",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "5c758578dd8f3cdd29d4928b5a34cf784167712fb5387b2064a4c7ca3cc09af8",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByRole('tab', { name: 'Profile', exact: true })\nExpected: \"true\"\nReceived: \"false\"\nTimeout:  3000ms\n\nCall log:\n  - Expect \"toHaveAttribute\" getByRole('tab', { name: 'Profile', exact: true }) with timeout 3000ms\n  - waiting for getByRole('tab', { name: 'Profile', exact: true })\n    10 × locator resolved to <button role=\"tab\" type=\"button\" tabindex=\"-1\" id=\"base-ui-_r_0_\" aria-disabled=\"false\" aria-selected=\"false\" data-orientation=\"horizontal\" data-activation-direction=\"right\" class=\"px-3 py-2 text-sm border border-gray-300 rounded-t bg-white cursor-pointer data-[active]:bg-blue-600 data-[active]:text-white data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600\">Profile</button>\n       - unexpected value \"false\"\n\n\n  18 |       await expect(page.getByRole('tablist',{name:'Account sections'})).toBeVisible();await expect(profile).toHaveAttribute('aria-selected','true');\n  19 |       await profile.focus();await page.keyboard.press('ArrowRight');await expect(security).toHaveAttribute('aria-selected','true');\n> 20 |       await page.keyboard.press('ArrowRight');await expect(profile).toHaveAttribute('aria-selected','true');\n     |                                                                     ^\n  21 |       await expect(page.getByRole('tab',{name:'Billing',exact:true})).toBeDisabled();\n  22 |     }else{\n  23 |       const trigger=page.getByRole('button',{name:'Actions for Atlas',exact:true});await trigger.focus();await page.keyboard.press('ArrowDown');\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:20:69"
+                  ]
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-tabs-1",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "c1fad6a673021ff90981e454654aac1097f3b8dd9310788327c9e9cfaae77b9c",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-tabs-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "8a240924562dc6c499299fae6167c00cf06ba214cc926daa825f5622e877b463",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-menu-1",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "c7194f97225e8e0f753168b44606f9bdac8e7ebb2e88e3629570362bd8f1694d",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(locator).not.toBeFocused() failed\n\nLocator:  getByRole('menuitem', { name: 'Rename', exact: true })\nExpected: not focused\nReceived: focused\nTimeout:  3000ms\n\nCall log:\n  - Expect \"not toBeFocused\" getByRole('menuitem', { name: 'Rename', exact: true }) with timeout 3000ms\n  - waiting for getByRole('menuitem', { name: 'Rename', exact: true })\n    10 × locator resolved to <div tabindex=\"0\" role=\"menuitem\" data-disabled=\"\" id=\"base-ui-_r_b_\" data-highlighted=\"\" aria-disabled=\"true\">Rename</div>\n       - unexpected value \"focused\"\n\n\n  28 |       // Allow deferred focus effects to run before a negative assertion can pass.\n  29 |       await page.evaluate(() => new Promise<void>(done => requestAnimationFrame(() => requestAnimationFrame(() => done()))));\n> 30 |       await expect(rename).not.toBeFocused();\n     |                                ^\n  31 |       await page.keyboard.press('Escape');await expect(page.getByRole('menu')).toBeHidden();await expect(trigger).toBeFocused();\n  32 |     }\n  33 |   });\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:30:32"
+                  ]
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-menu-1",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "448397c9bbdff5220166d86c9eb0997dbcd204b8c9cef05654e7ddbe5818c659",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-menu-1",
+              "stage": "update",
+              "pass": false,
+              "sha256": "10c18e6eca46d1cde428beb7feaccfe1f474c79a95589c7c84f7fcde6cd07b49",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(locator).not.toBeFocused() failed\n\nLocator:  getByRole('menuitem', { name: 'Rename', exact: true })\nExpected: not focused\nReceived: focused\nTimeout:  3000ms\n\nCall log:\n  - Expect \"not toBeFocused\" getByRole('menuitem', { name: 'Rename', exact: true }) with timeout 3000ms\n  - waiting for getByRole('menuitem', { name: 'Rename', exact: true })\n    10 × locator resolved to <div tabindex=\"0\" role=\"menuitem\" data-disabled=\"\" id=\"base-ui-_r_b_\" data-highlighted=\"\" aria-disabled=\"true\">Rename</div>\n       - unexpected value \"focused\"\n\n\n  28 |       // Allow deferred focus effects to run before a negative assertion can pass.\n  29 |       await page.evaluate(() => new Promise<void>(done => requestAnimationFrame(() => requestAnimationFrame(() => done()))));\n> 30 |       await expect(rename).not.toBeFocused();\n     |                                ^\n  31 |       await page.keyboard.press('Escape');await expect(page.getByRole('menu')).toBeHidden();await expect(trigger).toBeFocused();\n  32 |     }\n  33 |   });\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:30:32"
+                  ]
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-menu-1",
+              "stage": "update-repair",
+              "pass": true,
+              "sha256": "14d683d2a69059c55c0b6ef1084b47222e3a2bc0bf2e539ada8126e80f9077c1",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-dialog-2",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "d01b6d5ebc4847d832621e747dc39fc787e1b77374c5dedd35a9c07ff971e795",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-dialog-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "1a99a05b9345efee291f03834fa11fa7040462378f5a713040a70ceff17820ba",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-tabs-2",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "dbe9c14c27cfbded85756aea96828fb377dacd19560118c48a28d040778f20ce",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByRole('tab', { name: 'Profile', exact: true })\nExpected: \"true\"\nReceived: \"false\"\nTimeout:  3000ms\n\nCall log:\n  - Expect \"toHaveAttribute\" getByRole('tab', { name: 'Profile', exact: true }) with timeout 3000ms\n  - waiting for getByRole('tab', { name: 'Profile', exact: true })\n    10 × locator resolved to <button role=\"tab\" type=\"button\" tabindex=\"-1\" class=\"acct-tab\" id=\"base-ui-_r_0_\" aria-disabled=\"false\" aria-selected=\"false\" data-orientation=\"horizontal\" aria-controls=\"base-ui-_r_3_\" data-activation-direction=\"right\">Profile</button>\n       - unexpected value \"false\"\n\n\n  18 |       await expect(page.getByRole('tablist',{name:'Account sections'})).toBeVisible();await expect(profile).toHaveAttribute('aria-selected','true');\n  19 |       await profile.focus();await page.keyboard.press('ArrowRight');await expect(security).toHaveAttribute('aria-selected','true');\n> 20 |       await page.keyboard.press('ArrowRight');await expect(profile).toHaveAttribute('aria-selected','true');\n     |                                                                     ^\n  21 |       await expect(page.getByRole('tab',{name:'Billing',exact:true})).toBeDisabled();\n  22 |     }else{\n  23 |       const trigger=page.getByRole('button',{name:'Actions for Atlas',exact:true});await trigger.focus();await page.keyboard.press('ArrowDown');\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:20:69"
+                  ]
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"id\": \"color-contrast\",\n+     \"impact\": \"serious\",\n+     \"nodes\": Array [\n+       Object {\n+         \"html\": \"<button type=\\\"button\\\" data-active=\\\"\\\" data-orientation=\\\"horizontal\\\" data-activation-direction=\\\"none\\\" aria-disabled=\\\"false\\\" tabindex=\\\"0\\\" role=\\\"tab\\\" aria-selected=\\\"true\\\" id=\\\"base-ui-_r_0_\\\" data-composite-item-active=\\\"\\\" class=\\\"acct-tab\\\" aria-controls=\\\"base-ui-_r_3_\\\">Profile</button>\",\n+         \"summary\": \"Fix any of the following:\n+   Element has insufficient color contrast of 1.07 (foreground color: #ffffff, background color: #f6f7f9, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\",\n+       },\n+     ],\n+   },\n+ ]\n\n  76 |     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity));\n  77 |     const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 78 |     expect(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))}))).toEqual([]);expect(errors).toEqual([]);\n     |                                                                                                                                   ^\n  79 |   });\n  80 |   test(title('mobile'),async({page})=>{\n  81 |     await page.setViewportSize({width:320,height:740});await page.goto(e.url);\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:78:131"
+                  ]
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-tabs-2",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "c603f3ef6f9ed36a6a4c4fb02c8e13009df6c318280a37ab53c1859d99ad265f",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-tabs-2",
+              "stage": "update",
+              "pass": false,
+              "sha256": "9312b7abffaae33953774e0a05967d8b164b71de65939c0df7dbe0f84b65623e",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(locator).toHaveAttribute(expected) failed\n\nLocator:  getByRole('tab', { name: 'Profile', exact: true })\nExpected: \"true\"\nReceived: \"false\"\nTimeout:  3000ms\n\nCall log:\n  - Expect \"toHaveAttribute\" getByRole('tab', { name: 'Profile', exact: true }) with timeout 3000ms\n  - waiting for getByRole('tab', { name: 'Profile', exact: true })\n    10 × locator resolved to <button role=\"tab\" type=\"button\" tabindex=\"-1\" class=\"acct-tab\" id=\"base-ui-_r_0_\" aria-disabled=\"false\" aria-selected=\"false\" data-orientation=\"horizontal\" aria-controls=\"base-ui-_r_3_\" data-activation-direction=\"right\">Profile</button>\n       - unexpected value \"false\"\n\n\n  18 |       await expect(page.getByRole('tablist',{name:'Account sections'})).toBeVisible();await expect(profile).toHaveAttribute('aria-selected','true');\n  19 |       await profile.focus();await page.keyboard.press('ArrowRight');await expect(security).toHaveAttribute('aria-selected','true');\n> 20 |       await page.keyboard.press('ArrowRight');await expect(profile).toHaveAttribute('aria-selected','true');\n     |                                                                     ^\n  21 |       await expect(page.getByRole('tab',{name:'Billing',exact:true})).toBeDisabled();\n  22 |     }else{\n  23 |       const trigger=page.getByRole('button',{name:'Actions for Atlas',exact:true});await trigger.focus();await page.keyboard.press('ArrowDown');\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:20:69"
+                  ]
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-tabs-2",
+              "stage": "update-repair",
+              "pass": true,
+              "sha256": "e853d733b8088b15a4f513f899685ae02475287ea22fda90f1fc37621bf3cf8d",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-menu-2",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "ae2fd600d43c39856fbf71545490eafec6e7ce2be5e7d5116e6526e54f9baf98",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(locator).not.toBeFocused() failed\n\nLocator:  getByRole('menuitem', { name: 'Rename', exact: true })\nExpected: not focused\nReceived: focused\nTimeout:  3000ms\n\nCall log:\n  - Expect \"not toBeFocused\" getByRole('menuitem', { name: 'Rename', exact: true }) with timeout 3000ms\n  - waiting for getByRole('menuitem', { name: 'Rename', exact: true })\n    10 × locator resolved to <div tabindex=\"0\" role=\"menuitem\" data-disabled=\"\" id=\"base-ui-_r_b_\" data-highlighted=\"\" aria-disabled=\"true\">Rename</div>\n       - unexpected value \"focused\"\n\n\n  28 |       // Allow deferred focus effects to run before a negative assertion can pass.\n  29 |       await page.evaluate(() => new Promise<void>(done => requestAnimationFrame(() => requestAnimationFrame(() => done()))));\n> 30 |       await expect(rename).not.toBeFocused();\n     |                                ^\n  31 |       await page.keyboard.press('Escape');await expect(page.getByRole('menu')).toBeHidden();await expect(trigger).toBeFocused();\n  32 |     }\n  33 |   });\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:30:32"
+                  ]
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-menu-2",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "b32baea84fb39cb9975369aa2883d133f9ba11a20ce6125e4be0cdaebd10221d",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-menu-2",
+              "stage": "update",
+              "pass": false,
+              "sha256": "07df8349518ac0f5ff405500701cd33d9633ac9ed5d597c0b14cf9960ccde6b1",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(locator).not.toBeFocused() failed\n\nLocator:  getByRole('menuitem', { name: 'Rename', exact: true })\nExpected: not focused\nReceived: focused\nTimeout:  3000ms\n\nCall log:\n  - Expect \"not toBeFocused\" getByRole('menuitem', { name: 'Rename', exact: true }) with timeout 3000ms\n  - waiting for getByRole('menuitem', { name: 'Rename', exact: true })\n    10 × locator resolved to <div tabindex=\"0\" role=\"menuitem\" data-disabled=\"\" id=\"base-ui-_r_b_\" data-highlighted=\"\" aria-disabled=\"true\">Rename</div>\n       - unexpected value \"focused\"\n\n\n  28 |       // Allow deferred focus effects to run before a negative assertion can pass.\n  29 |       await page.evaluate(() => new Promise<void>(done => requestAnimationFrame(() => requestAnimationFrame(() => done()))));\n> 30 |       await expect(rename).not.toBeFocused();\n     |                                ^\n  31 |       await page.keyboard.press('Escape');await expect(page.getByRole('menu')).toBeHidden();await expect(trigger).toBeFocused();\n  32 |     }\n  33 |   });\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:30:32"
+                  ]
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "base-menu-2",
+              "stage": "update-repair",
+              "pass": true,
+              "sha256": "ccc626155d4c665c9f743757fd5c36987821977d1c5c90d40d187ede92fed7de",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            }
+          ]
+        },
+        {
+          "id": "radix",
+          "label": "Radix UI",
+          "n": 6,
+          "generate": 2,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            79364,
+            101929
+          ],
+          "excludingReactGzip": [
+            10476,
+            33003
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            88685,
+            111250
+          ],
+          "sourceBytes": [
+            3197,
+            4817
+          ],
+          "calls": 16,
+          "inputTokens": 32,
+          "outputTokens": 27837,
+          "elapsedMs": 261753,
+          "source": [
+            {
+              "sample": "radix-dialog-1",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "c8bea73d66803b7989f690ef3deff8f6dfc394d8978fdfe779972862c6797075",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-dialog-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "e61cf82bcb2741834bedd3ac5390d512acc34721257ca64b850b28117d780983",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-tabs-1",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "09326df678f400b2677f5eb886c31d80e59af4e37c4fd39f826c45c8b8839d86",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-tabs-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "c14e013265d062638752eeed3d0a3998440a334300ab11d48e21555af6e8b1e2",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-menu-1",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "89b162415f7b323ed38ddddc34673f64d5903fb33bbc2a07d08d3886e6e3c3d0",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"id\": \"aria-hidden-focus\",\n+     \"impact\": \"serious\",\n+     \"nodes\": Array [\n+       Object {\n+         \"html\": \"<main id=\\\"root\\\" data-aria-hidden=\\\"true\\\" aria-hidden=\\\"true\\\">\",\n+         \"summary\": \"Fix all of the following:\n+   Focusable content should be disabled, be removed from the DOM, or not be hidden with aria-hidden\",\n+       },\n+     ],\n+   },\n+ ]\n\n  76 |     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity));\n  77 |     const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 78 |     expect(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))}))).toEqual([]);expect(errors).toEqual([]);\n     |                                                                                                                                   ^\n  79 |   });\n  80 |   test(title('mobile'),async({page})=>{\n  81 |     await page.setViewportSize({width:320,height:740});await page.goto(e.url);\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:78:131"
+                  ]
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-menu-1",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "35514727213ce31912d804cf94ddd147b8241eca8b421b5df4ce7ffd23079457",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-menu-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "db904fac5fffee3c9cf37f6c2c4827f0dacc910219096e3f22ed8b50332b485e",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-dialog-2",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "93083a02c7d31b9d144afa5bc70780e92c5beaba753e3f05336af55fd603e550",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(locator).toBeFocused() failed\n\nLocator:  getByRole('button', { name: 'Delete Atlas', exact: true })\nExpected: focused\nReceived: inactive\nTimeout:  3000ms\n\nCall log:\n  - Expect \"toBeFocused\" getByRole('button', { name: 'Delete Atlas', exact: true }) with timeout 3000ms\n  - waiting for getByRole('button', { name: 'Delete Atlas', exact: true })\n    10 × locator resolved to <button type=\"button\">Delete Atlas</button>\n       - unexpected value \"inactive\"\n\n\n  12 |       const dialog=page.getByRole('dialog',{name:'Delete project',exact:true});await expect(dialog).toBeVisible();\n  13 |       await expect(dialog.getByRole('button',{name:'Cancel',exact:true})).toBeFocused();\n> 14 |       await page.keyboard.press('Escape');await expect(dialog).toBeHidden();await expect(trigger).toBeFocused();\n     |                                                                                                   ^\n  15 |       await trigger.click();await dialog.getByRole('button',{name:'Cancel',exact:true}).click();await expect(dialog).toBeHidden();await expect(page.getByText('Atlas project',{exact:true})).toBeVisible();await expect(trigger).toBeFocused();\n  16 |     }else if(e.task==='tabs'){\n  17 |       const profile=page.getByRole('tab',{name:'Profile',exact:true}), security=page.getByRole('tab',{name:'Security',exact:true});\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:14:99"
+                  ]
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 0\nReceived:    -128\n\n  84 |     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);\n  85 |     if(e.task==='dialog'){\n> 86 |       const box=await page.getByRole('dialog').boundingBox();expect(box).not.toBeNull();expect(box!.x).toBeGreaterThanOrEqual(0);expect(box!.x+box!.width).toBeLessThanOrEqual(321);\n     |                                                                                                        ^\n  87 |     }\n  88 |   });\n  89 | }\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:86:104"
+                  ]
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-dialog-2",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "4f02b3f687cf941571f441d6bc85594fb2ae0e6aed33a18e52ad00f5aad377cf",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-dialog-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "5d4d834be86a84c352dbcda6b03298b3fb117ecba93a96ecee99c0ea619f25c1",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-tabs-2",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "3ad70147196cf79237dd191812a8050e8f6a2c85af02b1cae13ca7b7cc02b2a3",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"id\": \"color-contrast\",\n+     \"impact\": \"serious\",\n+     \"nodes\": Array [\n+       Object {\n+         \"html\": \"<button type=\\\"button\\\" role=\\\"tab\\\" aria-selected=\\\"true\\\" aria-controls=\\\"radix-_r_0_-content-...\\\" data-state=\\\"active\\\" id=\\\"radix-_r_0_-trigger-...\\\" tabindex=\\\"-1\\\" data-orientation=\\\"horizontal\\\" data-radix-collectio...=\\\"\\\" style=\\\"padding: 8px 12px; b...\\\">\",\n+         \"summary\": \"Fix any of the following:\n+   Element has insufficient color contrast of 1.14 (foreground color: #ffffff, background color: #eeeeff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\",\n+       },\n+     ],\n+   },\n+ ]\n\n  76 |     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity));\n  77 |     const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 78 |     expect(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))}))).toEqual([]);expect(errors).toEqual([]);\n     |                                                                                                                                   ^\n  79 |   });\n  80 |   test(title('mobile'),async({page})=>{\n  81 |     await page.setViewportSize({width:320,height:740});await page.goto(e.url);\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:78:131"
+                  ]
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-tabs-2",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "12861001325989400b2f1109c6627a5feb7c1e4303a227c39c5505fadeecec96",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-tabs-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "d4164b42d1be5bd573720927d655b63e82539d386d45e6a826f2089f74fa11f3",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-menu-2",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "4b3b167016f4fc557a085ea1890a929703abbf46d14c089f52ab1becd036cfa0",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"id\": \"aria-hidden-focus\",\n+     \"impact\": \"serious\",\n+     \"nodes\": Array [\n+       Object {\n+         \"html\": \"<ul class=\\\"stack\\\" style=\\\"list-style: none; margin: 0px; padding: 0px;\\\" data-aria-hidden=\\\"true\\\" aria-hidden=\\\"true\\\">\",\n+         \"summary\": \"Fix all of the following:\n+   Focusable content should be disabled, be removed from the DOM, or not be hidden with aria-hidden\",\n+       },\n+     ],\n+   },\n+ ]\n\n  76 |     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity));\n  77 |     const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 78 |     expect(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))}))).toEqual([]);expect(errors).toEqual([]);\n     |                                                                                                                                   ^\n  79 |   });\n  80 |   test(title('mobile'),async({page})=>{\n  81 |     await page.setViewportSize({width:320,height:740});await page.goto(e.url);\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:78:131"
+                  ]
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-menu-2",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "9a0284ca9f07f13fe4cd0f1a141a26b967340935142b4e83c4380fdae23474e8",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "radix-menu-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "a07ba4991ea98727e2b1a54a8b1524c5bcaa530a664fb467e6bc7c48350a56ae",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            }
+          ]
+        },
+        {
+          "id": "shadcn",
+          "label": "shadcn/ui",
+          "n": 6,
+          "generate": 2,
+          "repaired": 6,
+          "update": 6,
+          "final": 6,
+          "internalCleanGenerate": null,
+          "internalCleanFinal": null,
+          "jsGzip": [
+            91617,
+            113617
+          ],
+          "excludingReactGzip": [
+            22459,
+            44456
+          ],
+          "libraryCssGzip": [
+            0,
+            0
+          ],
+          "assetGzip": [
+            100938,
+            122938
+          ],
+          "sourceBytes": [
+            3196,
+            4727
+          ],
+          "calls": 16,
+          "inputTokens": 32,
+          "outputTokens": 26140,
+          "elapsedMs": 250284,
+          "source": [
+            {
+              "sample": "shadcn-dialog-1",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "1d04979317392b6c3792dec140a01465c11fc8542ab42d1e4fa5a157b544b833",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-dialog-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "b16648083065cc9931bf0d5890717ec27f0483c1f916003babe2fb72927757df",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-tabs-1",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "05806105c6d93fe8e2c23edc77f61ca5dea71e6885f79b32e8148e0949125f8e",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"id\": \"color-contrast\",\n+     \"impact\": \"serious\",\n+     \"nodes\": Array [\n+       Object {\n+         \"html\": \"<button type=\\\"button\\\" role=\\\"tab\\\" aria-selected=\\\"false\\\" aria-controls=\\\"radix-_r_0_-content-...\\\" data-state=\\\"inactive\\\" id=\\\"radix-_r_0_-trigger-...\\\" data-slot=\\\"tabs-trigger\\\" class=\\\"relative inline-flex...\\\" tabindex=\\\"-1\\\" data-orientation=\\\"horizontal\\\" data-radix-collectio...=\\\"\\\">\",\n+         \"summary\": \"Fix any of the following:\n+   Element has insufficient color contrast of 4.34 (foreground color: #747a80, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1\",\n+       },\n+     ],\n+   },\n+ ]\n\n  76 |     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity));\n  77 |     const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 78 |     expect(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))}))).toEqual([]);expect(errors).toEqual([]);\n     |                                                                                                                                   ^\n  79 |   });\n  80 |   test(title('mobile'),async({page})=>{\n  81 |     await page.setViewportSize({width:320,height:740});await page.goto(e.url);\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:78:131"
+                  ]
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-tabs-1",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "8a4ef01838eefe589f8175d3f7596bfe4507a0e0ffc2ac42ca8ada5b3d35e801",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-tabs-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "17d28c4ed5f062ffdfce1d6fe9ed62f2a87d71020306b4fe653655773dd14540",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-menu-1",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "62282f53e679718da6b5ab80dcf9f4846dd1de13c42dd3576131b32a9e767a6d",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"id\": \"aria-hidden-focus\",\n+     \"impact\": \"serious\",\n+     \"nodes\": Array [\n+       Object {\n+         \"html\": \"<ul class=\\\"stack\\\" style=\\\"list-style: none; margin: 0px; padding: 0px; display: flex; flex-direction: column; gap: 8px;\\\" data-aria-hidden=\\\"true\\\" aria-hidden=\\\"true\\\">\",\n+         \"summary\": \"Fix all of the following:\n+   Focusable content should be disabled, be removed from the DOM, or not be hidden with aria-hidden\",\n+       },\n+     ],\n+   },\n+ ]\n\n  76 |     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity));\n  77 |     const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 78 |     expect(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))}))).toEqual([]);expect(errors).toEqual([]);\n     |                                                                                                                                   ^\n  79 |   });\n  80 |   test(title('mobile'),async({page})=>{\n  81 |     await page.setViewportSize({width:320,height:740});await page.goto(e.url);\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:78:131"
+                  ]
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-menu-1",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "1876a2b76808aee66885de47b8ffb5ed46238769caffc994f72926316a6975cb",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-menu-1",
+              "stage": "update",
+              "pass": true,
+              "sha256": "6c695540ffc5d42243b71f93552657cf8d760a475f4fff10b61eb01e9b47f886",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-dialog-2",
+              "stage": "generate",
+              "pass": true,
+              "sha256": "3e653bdbed00a13157386650f4e4429c8cb9b83a5e6eff1f639795db0524e1c1",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-dialog-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "3100135f8156342aa708202a456b706e064b817653b1fb0187af6818ada9d993",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-tabs-2",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "5a54b953b273364ee2581a6d71c71a37064c1de8801761b47636e1b1e9ccf33b",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"id\": \"color-contrast\",\n+     \"impact\": \"serious\",\n+     \"nodes\": Array [\n+       Object {\n+         \"html\": \"<button type=\\\"button\\\" role=\\\"tab\\\" aria-selected=\\\"false\\\" aria-controls=\\\"radix-_r_0_-content-...\\\" data-state=\\\"inactive\\\" id=\\\"radix-_r_0_-trigger-...\\\" data-slot=\\\"tabs-trigger\\\" class=\\\"relative inline-flex...\\\" tabindex=\\\"-1\\\" data-orientation=\\\"horizontal\\\" data-radix-collectio...=\\\"\\\">\",\n+         \"summary\": \"Fix any of the following:\n+   Element has insufficient color contrast of 4.34 (foreground color: #747a80, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1\",\n+       },\n+     ],\n+   },\n+ ]\n\n  76 |     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity));\n  77 |     const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 78 |     expect(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))}))).toEqual([]);expect(errors).toEqual([]);\n     |                                                                                                                                   ^\n  79 |   });\n  80 |   test(title('mobile'),async({page})=>{\n  81 |     await page.setViewportSize({width:320,height:740});await page.goto(e.url);\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:78:131"
+                  ]
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-tabs-2",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "06ed44b6392dfb2fc997ca4d7841b52837f9508231e23c6ed4c6b9bf20fe5f71",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-tabs-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "45001f05afa7a4d4d95dbd27f53b61e4424e69304bcd88dd00942015ff163282",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-menu-2",
+              "stage": "generate",
+              "pass": false,
+              "sha256": "d46dcab4524bbfa1773ad9289111c6c0bcec692aee03cb968b4673f6ea1140ec",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": false,
+                  "errors": [
+                    "Error: expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 13\n\n- Array []\n+ Array [\n+   Object {\n+     \"id\": \"aria-hidden-focus\",\n+     \"impact\": \"serious\",\n+     \"nodes\": Array [\n+       Object {\n+         \"html\": \"<ul class=\\\"stack\\\" style=\\\"list-style: none; margin: 0px; padding: 0px; gap: 8px;\\\" data-aria-hidden=\\\"true\\\" aria-hidden=\\\"true\\\">\",\n+         \"summary\": \"Fix all of the following:\n+   Focusable content should be disabled, be removed from the DOM, or not be hidden with aria-hidden\",\n+       },\n+     ],\n+   },\n+ ]\n\n  76 |     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity));\n  77 |     const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();\n> 78 |     expect(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))}))).toEqual([]);expect(errors).toEqual([]);\n     |                                                                                                                                   ^\n  79 |   });\n  80 |   test(title('mobile'),async({page})=>{\n  81 |     await page.setViewportSize({width:320,height:740});await page.goto(e.url);\n    at /Users/rikuto/Developer/ui/evals/competition/workflows.spec.ts:78:131"
+                  ]
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-menu-2",
+              "stage": "repair",
+              "pass": true,
+              "sha256": "c0067c0a37f0a53971836963bc79b331636651bf091c9a706e45211f82b7807d",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            },
+            {
+              "sample": "shadcn-menu-2",
+              "stage": "update",
+              "pass": true,
+              "sha256": "b5c017cdfaddf8d478045325d7c0392dc9acd33f7dec0719d28635eb8fe9eb94",
+              "errors": [],
+              "browser": [
+                {
+                  "name": "keyboard",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "state and update",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "accessibility",
+                  "pass": true,
+                  "errors": []
+                },
+                {
+                  "name": "mobile",
+                  "pass": true,
+                  "errors": []
+                }
+              ],
+              "libraryDiagnostics": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

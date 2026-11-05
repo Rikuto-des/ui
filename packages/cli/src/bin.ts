@@ -6,6 +6,7 @@ import { parseArgs } from "node:util";
 import { add, diff, init, readConfig, readLock } from "./add.ts";
 import { build, defaultPaths, REGISTRY_VERSION } from "./build.ts";
 import { conflictHelp, update } from "./update.ts";
+import { migrateShadcn } from "./migrate.ts";
 
 const HELP = `urushi <command>
 
@@ -26,6 +27,8 @@ const HELP = `urushi <command>
                             take new registry versions, merging your local edits (3-way)
   diff                      list installed files you changed, and unresolved conflicts
   info [--json]             show config and installed components
+  migrate shadcn [--json]   list the shadcn/ui components this project imports, the Urushi
+                            component for each and what changes (reads only)
   mcp                       serve these commands to AI agents over MCP (stdio)
 `;
 
@@ -169,6 +172,21 @@ async function main() {
       const entries = await diff(cwd);
       if (values.json) return console.log(JSON.stringify(entries, null, 2));
       for (const e of entries) console.log(`${e.status.padEnd(10)} ${e.file} (${e.item})`);
+      return;
+    }
+    case "migrate": {
+      if (rest[0] !== "shadcn") throw new Error("migrate supports one source: `urushi migrate shadcn`");
+      const report = await migrateShadcn(cwd);
+      if (values.json) return console.log(JSON.stringify(report, null, 2));
+      if (!report.uses.length) return console.log(`No imports from ${report.alias}/… were found.`);
+      let file = "";
+      for (const use of report.uses) {
+        if (use.file !== file) console.log(`\n${(file = use.file)}`);
+        console.log(`  ${use.line}: ${use.shadcn} (${use.names.join(", ")}) → ${use.urushi ?? "no equivalent"}\n      ${use.note}`);
+      }
+      console.log(`\n${report.uses.length} imports in ${new Set(report.uses.map((u) => u.file)).size} files.`);
+      if (report.add.length) console.log(`Add the Urushi components: urushi add ${report.add.join(" ")}`);
+      console.log("Move one screen at a time, then run `urushi check`.");
       return;
     }
     case "info": {

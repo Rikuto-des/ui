@@ -77,6 +77,7 @@ test("mcp: initializes, lists tools with schemas, and answers a contract lookup"
     "describe_component",
     "get_authoring_context",
     "check_project",
+    "plan_shadcn_migration",
     "project_info",
     "add_components",
     "update_components",

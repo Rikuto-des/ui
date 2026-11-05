@@ -62,6 +62,17 @@ const tools = {
       return check(cwd, { project: project === undefined ? undefined : relativePath(project), strict });
     },
   },
+  plan_shadcn_migration: {
+    title: "Plan a migration from shadcn/ui",
+    description:
+      "Every shadcn/ui component the project imports (file, line, imported names), the Urushi component that replaces it and what changes in its API, plus the components to add. Read-only: move one screen at a time, then call check_project.",
+    input: z.object({}),
+    annotations: { readOnlyHint: true, openWorldHint: false },
+    run: async (_: object, cwd: string) => {
+      const { migrateShadcn } = await import("./migrate.ts");
+      return migrateShadcn(cwd);
+    },
+  },
   project_info: {
     title: "Project info",
     description: "The project's urushi.json (pack, components folder, registry) and the installed components with versions.",

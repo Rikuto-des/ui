@@ -1,0 +1,5 @@
+.b-settings { display: grid; gap: var(--ur-space-6); inline-size: min(720px, 100%); box-sizing: border-box; margin-inline: auto; padding: var(--ur-space-6) var(--ur-space-4); }
+.b-settings-head h1 { margin: 0 0 var(--ur-space-2); font-size: var(--ur-font-size-title); }
+.b-settings-head p { margin: 0; color: var(--ur-color-text-muted); }
+.b-settings section { display: grid; gap: var(--ur-space-3); }
+.b-settings h2 { margin: 0; font-size: var(--ur-font-size-body); font-weight: 600; }

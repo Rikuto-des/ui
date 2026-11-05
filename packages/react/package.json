@@ -67,6 +67,8 @@
     "./item": "./src/item.tsx",
     "./drawer": "./src/drawer.tsx",
     "./resizable": "./src/resizable.tsx",
+    "./form": "./src/form.tsx",
+    "./chart": "./src/chart.tsx",
     "./date-picker": "./src/date-picker.tsx",
     "./command": "./src/command.tsx",
     "./icons": "./src/icons.tsx"

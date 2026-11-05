@@ -2,7 +2,7 @@
 
 ReactのUIコンポーネントと、AIによる実装を確認・修正するためのツールです。コンポーネントのAPI、用途、キーボード操作をcontractにまとめ、型・ドキュメント・静的検査へ反映します。
 
-58コンポーネントを収録しています。HTML標準で動くコンポーネントはServer Componentsとして使えます。Combobox、DataTable、DatePicker、Calendar、Commandなど、状態を扱うコンポーネントはClient Componentsです。すべてがJavaScriptなしで動くわけではありません。
+60コンポーネントを収録しています。HTML標準で動くコンポーネントはServer Componentsとして使えます。Combobox、DataTable、DatePicker、Calendar、Commandなど、状態を扱うコンポーネントはClient Componentsです。すべてがJavaScriptなしで動くわけではありません。
 
 現在は `0.1.0-beta.1` の配布候補を検証しています。npm公開はまだ行っていません。APIや見た目はβ期間中に変わる場合があります。比較結果は測定した課題・モデル・試行数の範囲に限られます。
 

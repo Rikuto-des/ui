@@ -1,0 +1,137 @@
+{
+  "name": "chart",
+  "tier": 2,
+  "summary": "A bar or line chart drawn with HTML and CSS on the server, with the numbers as a table for screen readers. The first series takes the accent color and the others are greys, so the series to look at stands out; palette=\"multi\" gives each series its own color. Hovering a column shows its values (CSS only). Values start at zero.",
+  "use": [
+    "A few series over a short range of labels: months, weeks, categories"
+  ],
+  "avoid": [
+    {
+      "case": "Exact values people compare or copy",
+      "instead": "table"
+    },
+    {
+      "case": "Progress toward one goal",
+      "instead": "progress"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": []
+  },
+  "parts": [
+    {
+      "jsx": "Chart",
+      "slot": "chart",
+      "element": "figure",
+      "description": "The chart (<figure>): its title, a legend, the plot and a visually hidden table of the same numbers.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "type": {
+            "default": "bar",
+            "type": "string",
+            "enum": [
+              "bar",
+              "line"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. Says what is measured and in what unit, e.g. \"月ごとの売上（万円）\"."
+          },
+          "labels": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The labels along the bottom, one per value.",
+            "x-ts-type": "readonly string[]"
+          },
+          "series": {
+            "minItems": 1,
+            "maxItems": 5,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "values"
+              ]
+            },
+            "description": "Up to 5 series; each has one value per label. The first is the one to look at.",
+            "x-ts-type": "readonly { name: string; values: readonly number[] }[]"
+          },
+          "unit": {
+            "description": "Written after each value in the tooltip and the table, e.g. \"万円\".",
+            "type": "string"
+          },
+          "height": {
+            "default": 220,
+            "description": "Height of the plot in px.",
+            "type": "number",
+            "minimum": 80
+          },
+          "palette": {
+            "default": "quiet",
+            "description": "quiet: accent and greys. multi: a color per series.",
+            "type": "string",
+            "enum": [
+              "quiet",
+              "multi"
+            ]
+          }
+        },
+        "required": [
+          "title",
+          "labels",
+          "series"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "hover"
+  ],
+  "a11y": {
+    "rules": [
+      "title is required; it names the figure and the table.",
+      "The plot is hidden from assistive technology; the table carries the numbers.",
+      "Do not tell series apart by color alone in the text around the chart; name them."
+    ]
+  },
+  "tokens": [
+    "color.accent",
+    "color.text",
+    "color.border",
+    "color.surface-overlay"
+  ],
+  "examples": [
+    {
+      "title": "Monthly sales",
+      "code": "<Chart title=\"月ごとの売上（万円）\" unit=\"万円\" labels={[\"6月\", \"7月\", \"8月\"]} series={[{ name: \"今年\", values: [42, 51, 47] }, { name: \"去年\", values: [38, 40, 45] }]} />"
+    }
+  ]
+}

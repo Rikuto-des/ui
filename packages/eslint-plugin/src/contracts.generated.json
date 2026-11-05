@@ -539,6 +539,47 @@
     "attributes": [],
     "omits": []
   },
+  "Chart": {
+    "contract": "chart",
+    "slot": "chart",
+    "element": "figure",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "type": [
+        "bar",
+        "line"
+      ],
+      "palette": [
+        "quiet",
+        "multi"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title",
+      "labels",
+      "series"
+    ],
+    "props": [
+      "type",
+      "title",
+      "labels",
+      "series",
+      "unit",
+      "height",
+      "palette"
+    ],
+    "attributes": [],
+    "omits": [
+      "children"
+    ]
+  },
   "Checkbox": {
     "contract": "checkbox",
     "slot": "checkbox",
@@ -1785,6 +1826,35 @@
       "step",
       "value",
       "width"
+    ],
+    "omits": []
+  },
+  "Form": {
+    "contract": "form",
+    "slot": "form",
+    "element": "form",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "summaryTitle"
+    ],
+    "attributes": [
+      "acceptCharset",
+      "action",
+      "autoComplete",
+      "encType",
+      "method",
+      "name",
+      "noValidate",
+      "target"
     ],
     "omits": []
   },
