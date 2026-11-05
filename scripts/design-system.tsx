@@ -42,6 +42,9 @@ import {
   HoverCard,
   Input,
   InputGroup,
+  Item,
+  Drawer,
+  Resizable,
   Kbd,
   Link,
   Menu,
@@ -1123,6 +1126,31 @@ trigger.nextElementSibling.showPopover({ source: trigger });`,
       action={<Button variant="primary">タスクを追加</Button>}
     />,
   ),
+  Item: preview(
+    `<!-- @dsCard group="表示" height=260 subtitle="一覧の 1 行。題・説明と操作 1 つ。href で行全体がリンク" -->`,
+    <Item.Group label="アカウントの設定">
+      <Item title="メールアドレス" description="hanako@example.jp" action={<Button size="sm" variant="secondary">変更</Button>} />
+      <Item title="お知らせメール" description="締め切りの前日に送ります" action={<Switch aria-label="お知らせメール" defaultChecked />} />
+      <Item title="パスワードと二段階認証" description="最後の変更は 3 か月前" href="#" />
+    </Item.Group>,
+  ),
+  Resizable: preview(
+    `<!-- @dsCard group="表示" height=230 subtitle="2 つの区画と区切り。ドラッグか矢印キーで幅を変える" -->`,
+    <div style={{ blockSize: 180, border: "1px solid var(--ur-color-border)", borderRadius: "var(--ur-radius-panel)", background: "var(--ur-color-surface)", overflow: "clip" }}>
+      <Resizable defaultSize={38} style={{ blockSize: "100%" }}>
+        <Resizable.Panel>
+          <div className="ds-form" style={{ padding: 14 }}>
+            <b>佐藤 美咲</b>
+            <span>告知メールの文面</span>
+          </div>
+        </Resizable.Panel>
+        <Resizable.Handle label="一覧の幅" grip />
+        <Resizable.Panel>
+          <p className="ds-p" style={{ padding: 14, margin: 0 }}>最終版を共有します。件名だけもう一度確認させてください。</p>
+        </Resizable.Panel>
+      </Resizable>
+    </div>,
+  ),
   Breadcrumb: preview(
     `<!-- @dsCard group="ナビゲーション" height=80 subtitle="nav と ol。区切りは CSS で描き、読み上げない" -->`,
     <Breadcrumb>
@@ -1219,6 +1247,28 @@ trigger.nextElementSibling.showPopover({ source: trigger });`,
       </Sheet>
     </>,
   ).replace(/<dialog([^>]*id="ds-sheet")/, "<dialog open$1"),
+  Drawer: preview(
+    `<!-- @dsCard group="オーバーレイ" height=330 subtitle="下から出る dialog。つまみか見出しを下に引くと閉じる" -->`,
+    <>
+      <div className="ds-row">
+        <Drawer.Trigger drawer="ds-drawer" variant="primary">予定を追加</Drawer.Trigger>
+      </div>
+      <div className="ds-scrim" />
+      <Drawer id="ds-drawer" title="予定を追加" description="あとから変更できます。">
+        <div className="ds-form">
+          <Field id="ds-drawer-event" label="題名">
+            <Input defaultValue="デザインの確認" />
+          </Field>
+          <div className="ds-row" style={{ justifyContent: "flex-end" }}>
+            <Drawer.Close drawer="ds-drawer" variant="ghost">
+              やめる
+            </Drawer.Close>
+            <Button variant="primary">追加する</Button>
+          </div>
+        </div>
+      </Drawer>
+    </>,
+  ).replace(/<dialog([^>]*id="ds-drawer")/, "<dialog open$1"),
   HoverCard: preview(
     `<!-- @dsCard group="オーバーレイ" height=160 subtitle="リンクの先をのぞくカード。ホバーかフォーカスで出る（interestfor）" -->`,
     <>

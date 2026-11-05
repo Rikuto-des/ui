@@ -1873,6 +1873,84 @@ SOFTWARE.
     margin-block-start: var(--ur-space-3);
   }
 
+  /* Item --------------------------------------------------------------------- */
+  [data-slot="item-group"] {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  [data-slot="item-group"][data-variant="outline"] {
+    border: var(--ur-border-width) solid var(--ur-color-border);
+    border-radius: var(--ur-radius-panel);
+    background-color: var(--ur-color-surface);
+    overflow: clip;
+  }
+  [data-slot="item"] + [data-slot="item"] {
+    border-block-start: var(--ur-border-width) solid var(--ur-color-border);
+  }
+  :is([data-slot="item-row"], [data-slot="item-link"]) {
+    display: flex;
+    align-items: center;
+    gap: var(--ur-space-3);
+    box-sizing: border-box;
+    min-block-size: 56px;
+    padding: var(--ur-space-3) var(--ur-space-4);
+    color: inherit;
+    text-decoration: none;
+  }
+  [data-slot="item-group"][data-variant="plain"] :is([data-slot="item-row"], [data-slot="item-link"]) {
+    padding-inline: 0;
+  }
+  [data-slot="item-icon"] {
+    display: inline-flex;
+    flex: none;
+    color: var(--ur-color-text-muted);
+  }
+  [data-slot="item-text"] {
+    display: grid;
+    flex: 1;
+    gap: 2px;
+    min-inline-size: 0;
+  }
+  [data-slot="item-title"] {
+    font-size: var(--ur-font-size-control);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+  [data-slot="item-description"] {
+    font-size: var(--ur-font-size-small);
+    line-height: 1.5;
+    color: var(--ur-color-text-muted);
+    overflow-wrap: anywhere;
+  }
+  [data-slot="item-action"] {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: var(--ur-space-2);
+  }
+  [data-slot="item-chevron"] {
+    flex: none;
+    color: var(--ur-color-text-muted);
+  }
+  [data-slot="item-chevron"]:dir(rtl) {
+    scale: -1 1;
+  }
+  [data-slot="item-link"]:focus-visible {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: calc(var(--ur-focus-ring-width) * -1);
+  }
+  @media (hover: hover) {
+    [data-slot="item-group"][data-variant="outline"] [data-slot="item-link"]:hover {
+      background-color: var(--ur-color-ghost-hover);
+    }
+    [data-slot="item-group"][data-variant="plain"] [data-slot="item-link"]:hover [data-slot="item-title"] {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
   /* AspectRatio --------------------------------------------------------------- */
   [data-slot="aspect-ratio"] {
     position: relative;
@@ -2598,6 +2676,119 @@ SOFTWARE.
     inset-block: 0 auto;
     border-end-start-radius: var(--_sheet-radius, var(--ur-radius-dialog));
     border-end-end-radius: var(--_sheet-radius, var(--ur-radius-dialog));
+  }
+
+  /* Drawer (a bottom Sheet with a handle; drag it down to close) ------------------- */
+  [data-slot~="drawer"][data-side="bottom"] {
+    --_sheet-radius: calc(var(--ur-radius-dialog) + 6px);
+    padding-block-start: var(--ur-space-2);
+  }
+  [data-slot="drawer-handle"] {
+    box-sizing: content-box;
+    inline-size: 40px;
+    block-size: 5px;
+    /* The visible bar is small; the padding makes it easier to grab. */
+    margin: calc(var(--ur-space-2) * -1) auto var(--ur-space-2);
+    padding: var(--ur-space-2) var(--ur-space-5);
+    border-radius: 999px;
+    background-color: var(--ur-color-border-strong);
+    background-clip: content-box;
+    cursor: grab;
+  }
+  [data-slot~="drawer"] > :is([data-slot="drawer-handle"], [data-slot="dialog-title"], [data-slot="dialog-description"]) {
+    touch-action: none;
+  }
+  [data-slot~="drawer"][data-dragging] {
+    transition: none;
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  /* Resizable (two panes and a handle; the runtime moves --_size) ---------------- */
+  [data-slot="resizable"] {
+    display: grid;
+    grid-template-columns: minmax(0, calc(var(--_size, 50) * 1%)) auto minmax(0, 1fr);
+    min-inline-size: 0;
+    min-block-size: 0;
+  }
+  [data-slot="resizable"][data-orientation="vertical"] {
+    grid-template-columns: none;
+    grid-template-rows: minmax(0, calc(var(--_size, 50) * 1%)) auto minmax(0, 1fr);
+  }
+  [data-slot="resizable-panel"] {
+    min-inline-size: 0;
+    min-block-size: 0;
+    overflow: auto;
+  }
+  [data-slot="resizable-handle"] {
+    position: relative;
+    inline-size: var(--ur-border-width);
+    background-color: var(--ur-color-border);
+    cursor: col-resize;
+    touch-action: none;
+    outline: none;
+  }
+  [data-orientation="vertical"] > [data-slot="resizable-handle"] {
+    inline-size: auto;
+    block-size: var(--ur-border-width);
+    cursor: row-resize;
+  }
+  /* The line is 1px; the area that takes the pointer is 9px. */
+  [data-slot="resizable-handle"]::before {
+    content: "";
+    position: absolute;
+    inset: 0 -4px;
+    z-index: 1;
+  }
+  [data-orientation="vertical"] > [data-slot="resizable-handle"]::before {
+    inset: -4px 0;
+  }
+  [data-slot="resizable-handle"]::after {
+    content: "";
+    position: absolute;
+    inset: 0 -1px;
+    background-color: var(--ur-color-focus-ring);
+    opacity: 0;
+    transition: opacity var(--ur-motion-duration-fast) var(--ur-motion-ease-out);
+  }
+  [data-orientation="vertical"] > [data-slot="resizable-handle"]::after {
+    inset: -1px 0;
+  }
+  [data-slot="resizable-handle"]:is(:focus-visible, [data-dragging])::after {
+    opacity: 1;
+  }
+  @media (hover: hover) {
+    [data-slot="resizable-handle"]:hover::after {
+      opacity: 1;
+    }
+  }
+  [data-slot="resizable-grip"] {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    z-index: 2;
+    inline-size: 12px;
+    block-size: 22px;
+    translate: -50% -50%;
+    box-sizing: border-box;
+    border: var(--ur-border-width) solid var(--ur-color-border-strong);
+    border-radius: 4px;
+    background: var(--ur-color-surface) radial-gradient(circle, var(--ur-color-text-muted) 1px, transparent 1.2px) 1px 1px / 5px 5px;
+  }
+  [data-slot="resizable-grip"]:dir(rtl) {
+    translate: 50% -50%;
+  }
+  [data-orientation="vertical"] > [data-slot="resizable-handle"] > [data-slot="resizable-grip"] {
+    inline-size: 22px;
+    block-size: 12px;
+  }
+  @media (forced-colors: active) {
+    [data-slot="resizable-handle"] {
+      background-color: CanvasText;
+    }
+    [data-slot="resizable-handle"]::after {
+      background-color: Highlight;
+    }
   }
 
   /* HoverCard ---------------------------------------------------------------- */
@@ -4279,3 +4470,14 @@ body {
 .g-sidebar {
   inline-size: 240px;
 }
+
+/* Resizable: the frame and the sample mail list. */
+.g-split { block-size: 220px; border: 1px solid var(--ur-color-border); border-radius: var(--ur-radius-panel); background: var(--ur-color-surface); overflow: clip; }
+.g-split > [data-slot="resizable"] { block-size: 100%; }
+.g-split-tall { block-size: 260px; }
+.g-mails { margin: 0; padding: 0; list-style: none; }
+.g-mails li { display: grid; gap: 2px; padding: 10px 14px; border-block-end: 1px solid var(--ur-color-border); font-size: 13px; }
+.g-mails li[aria-current] { background: var(--ur-color-ghost-hover); }
+.g-mails span { color: var(--ur-color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.g-mail-body { padding: 14px 16px; font-size: 14px; line-height: 1.8; }
+.g-mail-body p { margin: 4px 0 0; color: var(--ur-color-text-muted); }

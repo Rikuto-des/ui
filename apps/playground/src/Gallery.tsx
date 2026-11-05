@@ -16,12 +16,14 @@ import {
   ContextMenu,
   DateInput,
   Dialog,
+  Drawer,
   Empty,
   Field,
   FileInput,
   HoverCard,
   Input,
   InputGroup,
+  Item,
   Kbd,
   Link,
   Menu,
@@ -32,6 +34,7 @@ import {
   Popover,
   Progress,
   RadioGroup,
+  Resizable,
   ScrollArea,
   Select,
   Separator,
@@ -98,12 +101,14 @@ const groups: { label: string; entries: Entry[] }[] = [
       { id: "avatar", name: "Avatar", base: 'role="img" と <img>', js: "不要" },
       { id: "kbd", name: "Kbd", base: "<kbd>", js: "不要" },
       { id: "table", name: "Table", base: "<table> と <caption>", js: "不要" },
+      { id: "item", name: "Item", base: "<ul> と <li>", js: "不要" },
       { id: "tabs", name: "Tabs", base: "ARIA tabs をサーバーで描画", js: "切り替えに必要" },
       { id: "accordion", name: "Accordion", base: "<details name>", js: "不要" },
       { id: "collapsible", name: "Collapsible", base: "<details>", js: "不要" },
       { id: "separator", name: "Separator", base: "<hr>", js: "不要" },
       { id: "aspect-ratio", name: "AspectRatio", base: "aspect-ratio", js: "不要" },
       { id: "scroll-area", name: "ScrollArea", base: 'role="region"', js: "不要" },
+      { id: "resizable", name: "Resizable", base: 'role="separator" と grid', js: "幅を変えるのに必要" },
       { id: "carousel", name: "Carousel", base: "::scroll-marker", js: "不要" },
     ],
   },
@@ -133,6 +138,7 @@ const groups: { label: string; entries: Entry[] }[] = [
       { id: "dialog", name: "Dialog", base: "<dialog> と command", js: "不要" },
       { id: "alert-dialog", name: "AlertDialog", base: 'role="alertdialog"', js: "不要" },
       { id: "sheet", name: "Sheet", base: "<dialog> と command", js: "不要" },
+      { id: "drawer", name: "Drawer", base: "<dialog> と command", js: "引いて閉じるのに必要" },
       { id: "popover", name: "Popover", base: "popover とアンカー配置", js: "不要" },
       { id: "hover-card", name: "HoverCard", base: "popover と interestfor", js: "Chromium 以外で必要" },
       { id: "tooltip", name: "Tooltip", base: 'popover="hint" と interestfor', js: "Chromium 以外で必要" },
@@ -727,6 +733,24 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
             </Example>
           </Section>
 
+          <Section id="item" summary="一覧の 1 行。アイコン・題・説明と、操作を 1 つ置きます。href を渡すと行全体がリンクになります。">
+            <Example label="設定">
+              <Item.Group label="アカウントの設定" data-testid="item-group">
+                <Item icon={<IconPeople />} title="表示名" description="山田 花子" action={<Button size="sm" variant="secondary">変更</Button>} />
+                <Item icon={<IconCalendar />} title="締め切りの前日に知らせる" description="メールとアプリの通知で送ります" action={<Switch aria-label="締め切りの前日に知らせる" defaultChecked />} />
+                <Item icon={<IconTasks />} title="完了したタスク" description="128 件" href="#item" data-testid="item-link" />
+              </Item.Group>
+            </Example>
+            <Example label="Card の中（plain）">
+              <Card title="メンバー" headingLevel="h3">
+                <Item.Group label="メンバー" variant="plain">
+                  <Item title="佐藤 美咲" description="管理者" action={<Badge>オーナー</Badge>} />
+                  <Item title="鈴木 健太" description="編集者" action={<Button size="sm" variant="ghost">外す</Button>} />
+                </Item.Group>
+              </Card>
+            </Example>
+          </Section>
+
           <Section id="tabs" summary="同じ場所で内容を切り替える。選ばれたタブはサーバーで決まり、切り替えと矢印キーはランタイムが担います。">
             <Example label="基本">
               <Tabs id="project-tabs" label="プロジェクト" defaultValue="overview">
@@ -831,6 +855,42 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
                   ))}
                 </ul>
               </ScrollArea>
+            </Example>
+          </Section>
+
+          <Section id="resizable" summary="2 つの区画を区切りで分け、区切りをドラッグするか ← → で幅を変えます。JavaScript がないときは最初の幅のままです。">
+            <Example label="一覧と本文">
+              <div className="g-split" data-testid="split">
+                <Resizable defaultSize={38} min={25} max={70}>
+                  <Resizable.Panel>
+                    <ul className="g-mails">
+                      <li aria-current="true"><b>佐藤 美咲</b><span>告知メールの文面</span></li>
+                      <li><b>鈴木 健太</b><span>画像の差し替え</span></li>
+                      <li><b>高橋 陽子</b><span>来週の打ち合わせ</span></li>
+                    </ul>
+                  </Resizable.Panel>
+                  <Resizable.Handle label="一覧の幅" />
+                  <Resizable.Panel>
+                    <div className="g-mail-body">
+                      <b>告知メールの文面</b>
+                      <p>最終版を共有します。件名だけもう一度確認させてください。</p>
+                    </div>
+                  </Resizable.Panel>
+                </Resizable>
+              </div>
+            </Example>
+            <Example label="上下（grip）">
+              <div className="g-split g-split-tall">
+                <Resizable orientation="vertical" defaultSize={55}>
+                  <Resizable.Panel>
+                    <div className="g-mail-body"><b>エディター</b><p>ここに本文を書きます。</p></div>
+                  </Resizable.Panel>
+                  <Resizable.Handle label="エディターの高さ" grip />
+                  <Resizable.Panel>
+                    <div className="g-mail-body"><b>プレビュー</b><p>書いた内容がここに出ます。</p></div>
+                  </Resizable.Panel>
+                </Resizable>
+              </div>
             </Example>
           </Section>
 
@@ -1071,6 +1131,29 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
                   </Sidebar.Group>
                 </Sidebar>
               </Sheet>
+            </Example>
+          </Section>
+
+          <Section id="drawer" summary="下から出るシート。つまみか見出しを下に引くと閉じます。Esc・外側・閉じるボタンでも閉じます。">
+            <Example label="スマホ向けのフォーム">
+              <Drawer.Trigger drawer="g-drawer" variant="primary" data-testid="open-drawer">
+                予定を追加
+              </Drawer.Trigger>
+              <Drawer id="g-drawer" title="予定を追加" description="あとから変更できます。" data-testid="drawer">
+                <form method="dialog" className="g-dialog-form">
+                  <Field id="g-drawer-event" label="題名" required>
+                    <Input defaultValue="デザインの確認" />
+                  </Field>
+                  <Dialog.Actions>
+                    <Drawer.Close drawer="g-drawer" variant="ghost">
+                      やめる
+                    </Drawer.Close>
+                    <Button variant="primary" type="submit">
+                      追加する
+                    </Button>
+                  </Dialog.Actions>
+                </form>
+              </Drawer>
             </Example>
           </Section>
 

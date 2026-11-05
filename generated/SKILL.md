@@ -324,6 +324,25 @@ Not for: Showing supplementary information next to a control (use popover); Repo
 </Dialog>
 ```
 
+### Drawer — A modal <dialog> that slides up from the bottom with a handle, and closes when dragged down. A bottom Sheet for phones: the runtime adds the drag; without it, Escape, the backdrop and Drawer.Close still close it.
+
+Use for: A short form or a choice on a phone; Details of a list row on small screens.
+Not for: A panel beside a list on large screens (use sheet); A short confirmation (use alert-dialog).
+- `<Drawer>` requires `id`, `title`; dismissible: any|closerequest|none.
+- `<Drawer.Trigger>` requires `drawer`; variant: primary|secondary|ghost|danger; size: sm|md|lg.
+- `<Drawer.Close>` requires `drawer`; variant: primary|secondary|ghost|danger; size: sm|md|lg.
+- title is required.
+- The handle is decorative: give every drawer a visible way to close it (a Drawer.Close, or an action that closes it).
+- Every trigger and close button references an existing Drawer id.
+
+```tsx
+<Drawer.Trigger drawer="add-event" variant="primary">予定を追加</Drawer.Trigger>
+<Drawer id="add-event" title="予定を追加">
+  <Field label="題名"><Input /></Field>
+  <Drawer.Close drawer="add-event">やめる</Drawer.Close>
+</Drawer>
+```
+
 ### Empty — What a list or page shows when there is nothing in it yet, and how to start.
 
 Use for: An empty list, no search results, a first-run screen.
@@ -397,6 +416,25 @@ Not for: Several lines of text (use textarea); Picking from a known list (use se
 
 ```tsx
 <Field id="email" label="メールアドレス"><Input type="email" name="email" autoComplete="email" /></Field>
+```
+
+### Item — A row of a list: an icon, a title, a description and one action, like the rows of a settings screen. Item.Group is the list (a bordered panel with lines between the rows); a row with href is one link.
+
+Use for: Settings screens; Lists of accounts, files or members with one action per row.
+Not for: Rows compared by column (use table); Many rows to sort or filter (use data-table); Actions in a popup (use menu).
+- `<Item>` requires `title`.
+- `<Item.Group>`; variant: outline|plain.
+- Put Item only inside Item.Group.
+- A row with href has no action: a link cannot contain another control.
+- A Switch in action needs its own aria-label (the row title is not its label).
+- The icon is decorative (aria-hidden); the title carries the meaning.
+
+```tsx
+<Item.Group label="アカウント">
+  <Item title="メールアドレス" description="hanako@example.jp" action={<Button size="sm" variant="secondary">変更</Button>} />
+  <Item title="お知らせメール" description="締め切りの前日に送ります" action={<Switch aria-label="お知らせメール" defaultChecked />} />
+  <Item title="パスワードと二段階認証" description="最後の変更は 3 か月前" href="/settings/security" />
+</Item.Group>
 ```
 
 ### Kbd — A key or keyboard shortcut, in a native <kbd>.
@@ -569,6 +607,25 @@ Not for: Many options or a long list (use select); Any number of choices (use ch
   <RadioGroup.Item value="free">無料</RadioGroup.Item>
   <RadioGroup.Item value="team" description="5 人まで">チーム</RadioGroup.Item>
 </RadioGroup>
+```
+
+### Resizable — Two panes split by a handle that changes their sizes, like a mail list beside the message. Drag the handle, or focus it and use the arrow keys (WAI-ARIA window splitter). Without the runtime the split stays at defaultSize.
+
+Use for: A list beside its details in an application; An editor beside its preview.
+Not for: A page layout that should follow the screen size (use CSS grid); Showing or hiding a side panel (use sheet).
+- `<Resizable>`; orientation: horizontal|vertical.
+- `<Resizable.Panel>`.
+- `<Resizable.Handle>` requires `label`.
+- label is required; it names the handle.
+- Put exactly two Resizable.Panel and one Resizable.Handle between them.
+- Keep min large enough that the first pane stays usable.
+
+```tsx
+<Resizable defaultSize={35} min={25} max={60}>
+  <Resizable.Panel>…一覧…</Resizable.Panel>
+  <Resizable.Handle label="一覧の幅" />
+  <Resizable.Panel>…本文…</Resizable.Panel>
+</Resizable>
 ```
 
 ### ScrollArea — A scrolling region with pack-styled scrollbars, focusable and named so keyboards can scroll it.

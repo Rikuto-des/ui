@@ -337,3 +337,14 @@
 .g-sidebar {
   inline-size: 240px;
 }
+
+/* Resizable: the frame and the sample mail list. */
+.g-split { block-size: 220px; border: 1px solid var(--ur-color-border); border-radius: var(--ur-radius-panel); background: var(--ur-color-surface); overflow: clip; }
+.g-split > [data-slot="resizable"] { block-size: 100%; }
+.g-split-tall { block-size: 260px; }
+.g-mails { margin: 0; padding: 0; list-style: none; }
+.g-mails li { display: grid; gap: 2px; padding: 10px 14px; border-block-end: 1px solid var(--ur-color-border); font-size: 13px; }
+.g-mails li[aria-current] { background: var(--ur-color-ghost-hover); }
+.g-mails span { color: var(--ur-color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.g-mail-body { padding: 14px 16px; font-size: 14px; line-height: 1.8; }
+.g-mail-body p { margin: 4px 0 0; color: var(--ur-color-text-muted); }

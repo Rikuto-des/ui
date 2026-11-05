@@ -407,6 +407,9 @@ SOFTWARE.
     border-end-start-radius: var(--_sheet-radius, var(--ur-radius-dialog));
     border-end-end-radius: var(--_sheet-radius, var(--ur-radius-dialog));
   }
+  [data-slot~="drawer"] > :is([data-slot="drawer-handle"], [data-slot="dialog-title"], [data-slot="dialog-description"]) {
+    touch-action: none;
+  }
   @supports (corner-shape: squircle) {
     [data-slot~="button"],
     [data-slot~="dialog"] {

@@ -25,12 +25,14 @@
 - [DateInput](docs/date-input.md): A native date or time input with the browser's own picker, drawn like Input.
 - [DatePicker](docs/date-picker.md): 日付を直接入力するか、カレンダーから選択します。
 - [Dialog](docs/dialog.md): A modal native <dialog> that interrupts the user for a confirmation or a short task.
+- [Drawer](docs/drawer.md): A modal <dialog> that slides up from the bottom with a handle, and closes when dragged down. A bottom Sheet for phones: the runtime adds the drag; without it, Escape, the backdrop and Drawer.Close still close it.
 - [Empty](docs/empty.md): What a list or page shows when there is nothing in it yet, and how to start.
 - [Field](docs/field.md): Labels a single form control and links its description and error message to it.
 - [FileInput](docs/file-input.md): A native <input type="file">; the dropzone variant is a large target that files can be dropped on (no JavaScript).
 - [HoverCard](docs/hover-card.md): A preview card for a link, shown on hover and keyboard focus (interestfor).
 - [InputGroup](docs/input-group.md): An Input with fixed text or a button attached before or after it, drawn as one field.
 - [Input](docs/input.md): A native single-line <input> styled by the pack.
+- [Item](docs/item.md): A row of a list: an icon, a title, a description and one action, like the rows of a settings screen. Item.Group is the list (a bordered panel with lines between the rows); a row with href is one link.
 - [Kbd](docs/kbd.md): A key or keyboard shortcut, in a native <kbd>.
 - [Link](docs/link.md): A native <a> that navigates to another page or place.
 - [Menu](docs/menu.md): A list of actions in a popover (menu button pattern), with optional submenus. Opens without JavaScript; the runtime adds arrow keys, typeahead and submenu hover.
@@ -42,6 +44,7 @@
 - [Popover](docs/popover.md): A non-modal panel in the top layer (native `popover`), positioned against its trigger with CSS anchor positioning.
 - [Progress](docs/progress.md): How far a task has got, in a native <progress> with a visible label.
 - [RadioGroup](docs/radio-group.md): A <fieldset> of native radio buttons: exactly one choice, arrow keys move between them.
+- [Resizable](docs/resizable.md): Two panes split by a handle that changes their sizes, like a mail list beside the message. Drag the handle, or focus it and use the arrow keys (WAI-ARIA window splitter). Without the runtime the split stays at defaultSize.
 - [ScrollArea](docs/scroll-area.md): A scrolling region with pack-styled scrollbars, focusable and named so keyboards can scroll it.
 - [Select](docs/select.md): A native <select>; with appearance: base-select its picker follows the pack.
 - [Separator](docs/separator.md): A thin rule between groups of content.

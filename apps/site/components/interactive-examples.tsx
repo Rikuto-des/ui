@@ -54,6 +54,9 @@ export const CollapsibleExample = dynamic(
 );
 export const DateInputExample = dynamic(() => import("@/examples/date-input").then(withInteractionReady));
 export const DialogExample = dynamic(() => import("@/examples/dialog").then(withInteractionReady));
+export const ResizableExample = dynamic(() => import("@/examples/resizable").then(withInteractionReady));
+export const ItemExample = dynamic(() => import("@/examples/item").then(withInteractionReady));
+export const DrawerExample = dynamic(() => import("@/examples/drawer").then(withInteractionReady));
 export const EmptyExample = dynamic(() => import("@/examples/empty").then(withInteractionReady));
 export const FieldExample = dynamic(() => import("@/examples/field").then(withInteractionReady));
 export const FileInputExample = dynamic(() => import("@/examples/file-input").then(withInteractionReady));

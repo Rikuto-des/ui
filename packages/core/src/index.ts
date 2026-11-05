@@ -2,6 +2,8 @@ export { installClosedByFallback, supportsClosedBy } from "./closedby.ts";
 export { installMenus } from "./menu.ts";
 export { installContextMenus } from "./context-menu.ts";
 export { installMenubars } from "./menubar.ts";
+export { installDrawers } from "./drawer.ts";
+export { installResizables } from "./resizable.ts";
 export { installTabs, selectTab } from "./tabs.ts";
 export { installSliders } from "./slider.ts";
 export { installCarousels } from "./carousel.ts";

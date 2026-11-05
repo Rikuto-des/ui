@@ -76,3 +76,24 @@ shadcn/ui と比べて足りなかった部品のうち、よく使われる 3 �
 - **サイトの Calendar の例**：WebKit の `Intl` は月日と曜日のあいだに空白を入れる（「12日 木曜日」）ため、サーバーと WebKit で文が食い違い、ハイドレーションが失敗していた。部品から文を組み立てる。
 - **テスト**：`urushi mcp` のテストは、失敗したときにサーバーの子プロセスが残ってテストのファイルが終わらなかった。各テストのあとに止める。Studio の axe 検査は、テーマを切り替えた直後の色の遷移の途中を測っていたので、遷移が終わるのを待つ。
 - **CI**：main の直近 3 回の CI は、Linux の WebKit で毎回別の、タイミングに左右されるテストが 1 件ずつ落ちていた（ダイアログのコントラスト、NavigationMenu の矢印キー、サブメニューのホバー）。`playwright.next.config.ts` と同じく、CI の WebKit だけ 1 回の再試行を付けた（再試行で通ったものは flaky として報告に残る）。
+
+## Item と Drawer（2026-11-05）
+
+shadcn/ui と比べて残っていた部品のうち、よく使う 2 つを足した（57 部品）。見た目は比較ページ（`/proposals/item-drawer.html`、`tsx scripts/proposal-item.tsx`）の 3 案ずつから、どちらも A に決めた（ユーザーの選択）。
+
+- **Item**：`Item.Group`（`<ul role="list">`）に `Item`（`<li>`）を並べる。行はアイコン・題・説明と、終わりに操作 1 つ（小さい Button・Switch・Badge）。`href` を渡すと行全体が 1 つのリンクになり、矢印が付く（リンクの中に操作は置けないので `action` とは併用しない）。見た目は A の「囲んで区切る」（枠と角丸、行の間に線）が標準で、Card の中では `variant="plain"`（線だけ）。JavaScript は使わない。
+- **Drawer**：下から出る Sheet（`data-slot="drawer sheet dialog"`）に、つまみ（`drawer-handle`、飾り）と、引いて閉じる動きを足した。ランタイム（`installDrawers`）は、つまみ・見出し・説明から始まったドラッグだけを追い、6px 動くまではクリックとして扱う。高さの 4 分の 1 を超えるか 0.5px/ms より速く払うと `requestClose()` で閉じ（cancel で止められる）、届かなければ元の位置に戻す。戻る・閉じる動きは Sheet の transition のままで、ドラッグ中だけ inline の translate を置く。`dismissible="none"` ではドラッグも効かない。フォームの中から引いても動かない。見た目は A の「つまみ付き」（B の後ろの画面が下がる演出は入れていない）。
+- テスト：`tests/e2e/drawer.spec.ts`（3 エンジン。開閉とフォーカス、ドラッグで閉じる、短いドラッグで戻る、フォームから引いても動かない、Item の一覧とリンクとスイッチ。3 回繰り返して安定）、開いた Drawer の axe、見た目の回帰テスト（Item の節と、開いた Drawer）。
+- まだしていないこと：実機のタッチでの確認（Playwright ではマウスで確かめた。タッチは `touch-action: none` をつまみ・見出し・説明に付けて、ブラウザのスクロールに取られないようにしている）。
+
+## Resizable（2026-11-05）
+
+見た目は比較ページ（`/proposals/resizable.html`、`tsx scripts/proposal-resizable.tsx`）の 3 案から A の「線だけ（触ると太る）」に決めた（ユーザーの選択）。B のつまみは `grip` で出せる。
+
+- 作り：`Resizable` は grid で、最初の区画の割合をカスタムプロパティ `--_size`（%）に持つ。区切りは `role="separator"`・`tabindex=0`・`aria-valuenow/min/max` をサーバーの HTML に出す（フックを使わず、`Resizable` が `cloneElement` で区切りに値を渡す）。ランタイム（`installResizables`）がドラッグとキー（← → か ↑ ↓、Shift で 10%、Home・End）で `--_size` と `aria-valuenow` を動かす。右から左の文字では左右が逆。
+- 区画は 2 つまで（3 つ以上や、閉じられる区画は入れていない）。幅は保存しない。
+- テスト：`tests/e2e/resizable.spec.ts`（3 エンジン。サーバーの値、キー、ドラッグと範囲の端、右から左、上下。3 回繰り返して安定）、見た目の回帰テスト。
+
+## 見た目の回帰テストを CI に入れた（2026-11-05）
+
+`pnpm test:visual` は macOS の基準画像しかなく、CI で動いていなかった。CI に「Visual (chromium)」のジョブを足し、Playwright の公式イメージ（`mcr.microsoft.com/playwright:v1.64.1-noble`）の中で動かす。Linux の基準画像は `tests/visual/__screenshots__/linux` に置き、手元では `sh scripts/visual-linux.sh` で同じイメージ（linux/amd64。Apple silicon ではエミュレーション）を使って撮る。作業ツリーをコンテナの中にコピーするので、手元の node_modules は書き換えない。2 回撮って同じ画像になることを確かめた。macOS の基準画像（`darwin`）は今までどおり手元の確認用に残す。

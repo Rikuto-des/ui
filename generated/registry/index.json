@@ -105,6 +105,11 @@
     "summary": "A modal native <dialog> that interrupts the user for a confirmation or a short task."
   },
   {
+    "name": "drawer",
+    "version": "0.1.0-beta.1",
+    "summary": "A modal <dialog> that slides up from the bottom with a handle, and closes when dragged down. A bottom Sheet for phones: the runtime adds the drag; without it, Escape, the backdrop and Drawer.Close still close it."
+  },
+  {
     "name": "empty",
     "version": "0.1.0-beta.1",
     "summary": "What a list or page shows when there is nothing in it yet, and how to start."
@@ -133,6 +138,11 @@
     "name": "input",
     "version": "0.1.0-beta.1",
     "summary": "A native single-line <input> styled by the pack."
+  },
+  {
+    "name": "item",
+    "version": "0.1.0-beta.1",
+    "summary": "A row of a list: an icon, a title, a description and one action, like the rows of a settings screen. Item.Group is the list (a bordered panel with lines between the rows); a row with href is one link."
   },
   {
     "name": "kbd",
@@ -188,6 +198,11 @@
     "name": "radio-group",
     "version": "0.1.0-beta.1",
     "summary": "A <fieldset> of native radio buttons: exactly one choice, arrow keys move between them."
+  },
+  {
+    "name": "resizable",
+    "version": "0.1.0-beta.1",
+    "summary": "Two panes split by a handle that changes their sizes, like a mail list beside the message. Drag the handle, or focus it and use the arrow keys (WAI-ARIA window splitter). Without the runtime the split stays at defaultSize."
   },
   {
     "name": "scroll-area",

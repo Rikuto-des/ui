@@ -1541,6 +1541,138 @@
     "attributes": [],
     "omits": []
   },
+  "Drawer": {
+    "contract": "drawer",
+    "slot": "drawer",
+    "element": "dialog",
+    "overrides": [],
+    "enums": {
+      "dismissible": [
+        "any",
+        "closerequest",
+        "none"
+      ]
+    },
+    "idrefs": {},
+    "provides": "drawer",
+    "required": [
+      "id",
+      "title"
+    ],
+    "props": [
+      "id",
+      "title",
+      "description",
+      "dismissible"
+    ],
+    "attributes": [
+      "onCancel",
+      "onClose"
+    ],
+    "omits": []
+  },
+  "Drawer.Trigger": {
+    "contract": "drawer",
+    "slot": "drawer-trigger",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "drawer": "drawer"
+    },
+    "provides": null,
+    "required": [
+      "drawer"
+    ],
+    "props": [
+      "drawer",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
+  "Drawer.Close": {
+    "contract": "drawer",
+    "slot": "drawer-close",
+    "element": "button",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg"
+      ]
+    },
+    "idrefs": {
+      "drawer": "drawer"
+    },
+    "provides": null,
+    "required": [
+      "drawer"
+    ],
+    "props": [
+      "drawer",
+      "variant",
+      "size"
+    ],
+    "attributes": [
+      "disabled",
+      "form",
+      "formAction",
+      "formEncType",
+      "formMethod",
+      "formNoValidate",
+      "formTarget",
+      "interestfor",
+      "loading",
+      "name",
+      "type",
+      "value"
+    ],
+    "omits": []
+  },
   "Empty": {
     "contract": "empty",
     "slot": "empty",
@@ -1819,6 +1951,57 @@
       "value",
       "width"
     ],
+    "omits": []
+  },
+  "Item": {
+    "contract": "item",
+    "slot": "item",
+    "element": "li",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "title"
+    ],
+    "props": [
+      "title",
+      "description",
+      "icon",
+      "action",
+      "href"
+    ],
+    "attributes": [
+      "value"
+    ],
+    "omits": [
+      "children"
+    ]
+  },
+  "Item.Group": {
+    "contract": "item",
+    "slot": "item-group",
+    "element": "ul",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "variant": [
+        "outline",
+        "plain"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "label",
+      "variant"
+    ],
+    "attributes": [],
     "omits": []
   },
   "Kbd": {
@@ -2559,6 +2742,72 @@
       "width"
     ],
     "omits": []
+  },
+  "Resizable": {
+    "contract": "resizable",
+    "slot": "resizable",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "height",
+      "layout",
+      "position"
+    ],
+    "enums": {
+      "orientation": [
+        "horizontal",
+        "vertical"
+      ]
+    },
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [
+      "orientation",
+      "defaultSize",
+      "min",
+      "max"
+    ],
+    "attributes": [],
+    "omits": [
+      "defaultValue"
+    ]
+  },
+  "Resizable.Panel": {
+    "contract": "resizable",
+    "slot": "resizable-panel",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [],
+    "props": [],
+    "attributes": [],
+    "omits": []
+  },
+  "Resizable.Handle": {
+    "contract": "resizable",
+    "slot": "resizable-handle",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "grip"
+    ],
+    "attributes": [
+      "split"
+    ],
+    "omits": [
+      "children"
+    ]
   },
   "ScrollArea": {
     "contract": "scroll-area",

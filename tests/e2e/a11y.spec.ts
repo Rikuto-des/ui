@@ -126,7 +126,7 @@ for (const pack of ["graphite", "lucent"]) {
         expect(await scan(page, '[data-testid="file-area"]')).toEqual([]);
       });
 
-      test("an open alert dialog, sheet and hover card have no violations", async ({ page }) => {
+      test("an open alert dialog, sheet, drawer and hover card have no violations", async ({ page }) => {
         await page.getByTestId("open-delete").click();
         await expect(page.getByTestId("delete-dialog")).toBeVisible();
         expect(await scan(page, "dialog#g-delete")).toEqual([]);
@@ -136,6 +136,11 @@ for (const pack of ["graphite", "lucent"]) {
         expect(await scan(page, "dialog#g-task-sheet")).toEqual([]);
         await page.keyboard.press("Escape");
         await expect(page.getByTestId("task-sheet")).toBeHidden();
+        await page.getByTestId("open-drawer").click();
+        await expect(page.getByTestId("drawer")).toBeVisible();
+        expect(await scan(page, "dialog#g-drawer")).toEqual([]);
+        await page.keyboard.press("Escape");
+        await expect(page.getByTestId("drawer")).toBeHidden();
         await page.getByTestId("hc-trigger").hover();
         await expect(page.getByTestId("hc-card")).toBeVisible({ timeout: 3000 });
         expect(await scan(page, "#g-person")).toEqual([]);

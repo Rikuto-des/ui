@@ -1,0 +1,205 @@
+{
+  "name": "drawer",
+  "styleDependencies": [
+    "sheet"
+  ],
+  "tier": 2,
+  "summary": "A modal <dialog> that slides up from the bottom with a handle, and closes when dragged down. A bottom Sheet for phones: the runtime adds the drag; without it, Escape, the backdrop and Drawer.Close still close it.",
+  "use": [
+    "A short form or a choice on a phone",
+    "Details of a list row on small screens"
+  ],
+  "avoid": [
+    {
+      "case": "A panel beside a list on large screens",
+      "instead": "sheet"
+    },
+    {
+      "case": "A short confirmation",
+      "instead": "alert-dialog"
+    }
+  ],
+  "rendering": "server",
+  "platform": {
+    "requires": [
+      "dialog",
+      "invoker-commands"
+    ],
+    "enhances": [
+      {
+        "feature": "dialog-closedby",
+        "fallback": "@urushi/core/closedby (loaded by <UrushiRuntime />)"
+      },
+      {
+        "feature": "@urushi/core drawer behavior",
+        "fallback": "no drag; it closes with Escape, the backdrop or Drawer.Close"
+      }
+    ]
+  },
+  "parts": [
+    {
+      "jsx": "Drawer",
+      "slot": "drawer",
+      "element": "dialog",
+      "description": "The <dialog>, along the bottom edge, with a handle above the title. Drag the handle or the title down to close it.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. Triggers and close buttons reference it."
+          },
+          "title": {
+            "description": "Required heading and accessible name.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "description": {
+            "description": "Optional supporting text.",
+            "x-ts-type": "React.ReactNode"
+          },
+          "dismissible": {
+            "default": "any",
+            "description": "none also turns off closing by drag.",
+            "type": "string",
+            "enum": [
+              "any",
+              "closerequest",
+              "none"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ]
+      },
+      "overrides": []
+    },
+    {
+      "jsx": "Drawer.Trigger",
+      "slot": "drawer-trigger",
+      "element": "button",
+      "description": "A Button that opens the drawer.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "drawer": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the drawer to open.",
+            "x-idref": "drawer"
+          },
+          "variant": {
+            "default": "secondary",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "description": "Control height. Density comes from the pack, not from this prop.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "drawer"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    },
+    {
+      "jsx": "Drawer.Close",
+      "slot": "drawer-close",
+      "element": "button",
+      "description": "A Button that closes the drawer.",
+      "props": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "drawer": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Id of the drawer to close.",
+            "x-idref": "drawer"
+          },
+          "variant": {
+            "default": "secondary",
+            "description": "primary is the single main action of a view. danger is for destructive actions.",
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "size": {
+            "default": "md",
+            "description": "Control height. Density comes from the pack, not from this prop.",
+            "type": "string",
+            "enum": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          }
+        },
+        "required": [
+          "drawer"
+        ]
+      },
+      "overrides": [
+        "margin",
+        "width",
+        "layout",
+        "position"
+      ]
+    }
+  ],
+  "states": [
+    "open",
+    "modal"
+  ],
+  "a11y": {
+    "apg": "dialog-modal",
+    "keyboard": {
+      "Escape": "close (unless dismissible=\"none\")",
+      "Tab": "moves focus within the drawer only"
+    },
+    "rules": [
+      "title is required.",
+      "The handle is decorative: give every drawer a visible way to close it (a Drawer.Close, or an action that closes it).",
+      "Every trigger and close button references an existing Drawer id."
+    ]
+  },
+  "tokens": [
+    "color.surface-overlay",
+    "color.border-strong",
+    "shadow.dialog",
+    "motion.overlay"
+  ],
+  "examples": [
+    {
+      "title": "Add an event",
+      "code": "<Drawer.Trigger drawer=\"add-event\" variant=\"primary\">予定を追加</Drawer.Trigger>\n<Drawer id=\"add-event\" title=\"予定を追加\">\n  <Field label=\"題名\"><Input /></Field>\n  <Drawer.Close drawer=\"add-event\">やめる</Drawer.Close>\n</Drawer>"
+    }
+  ]
+}

@@ -34,12 +34,14 @@ const sections = [
   "avatar",
   "kbd",
   "table",
+  "item",
   "tabs",
   "accordion",
   "collapsible",
   "separator",
   "aspect-ratio",
   "scroll-area",
+  "resizable",
   "carousel",
   "alert",
   "progress",
@@ -54,6 +56,7 @@ const sections = [
   "dialog",
   "alert-dialog",
   "sheet",
+  "drawer",
   "popover",
   "hover-card",
   "tooltip",
@@ -184,6 +187,15 @@ for (const pack of packs) {
         await settle(page);
         const clip = await around(page, [bar, menu]);
         await expect(page).toHaveScreenshot(["menubar", `${name}-open.png`], { clip });
+      });
+
+      test("drawer: open", async ({ page }) => {
+        await page.getByTestId("open-drawer").click();
+        const drawer = page.getByTestId("drawer");
+        await expect(drawer).toBeVisible();
+        await pointerAway(page);
+        await settle(page);
+        await expect(page).toHaveScreenshot(["drawer", `${name}-open.png`]);
       });
 
       test("tooltip: open", async ({ page }) => {

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja" data-pack="graphite" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resizable の見た目 — 比較</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="./resizable.css">
+</head>
+<body>
+<div class="review" role="toolbar" aria-label="表示の切り替え">
+  <b>Resizable の比較</b>
+  <div class="seg" role="group" aria-label="パック">
+    <button type="button" data-set-pack="graphite" aria-pressed="true">Graphite</button>
+    <button type="button" data-set-pack="lucent" aria-pressed="false">Lucent</button>
+  </div>
+  <div class="seg" role="group" aria-label="テーマ">
+    <button type="button" data-set-theme="light" aria-pressed="true">ライト</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">ダーク</button>
+  </div>
+</div>
+<div class="site s">
+<header class="s-head wrap">
+  <h1>Resizable の見た目</h1>
+  <p class="lede">メールの一覧と本文を、ドラッグで幅を変えられる区切りで分けました。区切りをドラッグするか、Tab でフォーカスして ← → で動かせます（20%〜80%）。3 つの違いは区切りの見た目だけです。</p>
+  <p class="s-reco"><b>おすすめは A です。</b>普段は静かで、アプリの画面に溶け込みます。動かせることを強く見せたい場面のために、B のつまみを指定で出せるようにします。</p>
+</header>
+<div class="s-grid wrap">
+<section class="s-col" aria-labelledby="s-a-title">
+  <h2 id="s-a-title">A 線だけ（触ると太る）</h2>
+  <div class="s-stage"><div class="r-group" data-option="a" style="--_size:40%">
+  <div class="r-panel r-list">
+    <div class="r-mail is-current"><b>佐藤 美咲</b><span>告知メールの文面</span></div><div class="r-mail"><b>鈴木 健太</b><span>画像の差し替え</span></div><div class="r-mail"><b>高橋 陽子</b><span>来週の打ち合わせ</span></div>
+  </div>
+  <div class="r-handle" role="separator" tabindex="0" aria-orientation="vertical" aria-label="一覧の幅" aria-valuemin="20" aria-valuemax="80" aria-valuenow="40"><span class="r-grip" aria-hidden="true"></span></div>
+  <div class="r-panel r-body">
+    <h3>告知メールの文面</h3>
+    <p class="r-from">佐藤 美咲</p>
+    <p>最終版を共有します。件名だけもう一度確認させてください。</p>
+  </div>
+</div></div>
+  <dl class="s-notes">
+    <div><dt>良い点</dt><dd>普段は区切り線にしか見えず、画面が静か。ポインタを乗せるかフォーカスすると線が太くなり、動かせると分かる。VS Code・Figma・Linear と同じ。</dd></div>
+    <div><dt>気になる点</dt><dd>動かせることに、乗せるまで気づかない。</dd></div>
+    <div><dt>作り</dt><dd>1px の線。左右 4px ずつを掴める範囲にし、ホバー・フォーカス・ドラッグ中は 3px のアクセント色の線にする。</dd></div>
+  </dl>
+</section>
+<section class="s-col" aria-labelledby="s-b-title">
+  <h2 id="s-b-title">B 線＋つまみ</h2>
+  <div class="s-stage"><div class="r-group" data-option="b" style="--_size:40%">
+  <div class="r-panel r-list">
+    <div class="r-mail is-current"><b>佐藤 美咲</b><span>告知メールの文面</span></div><div class="r-mail"><b>鈴木 健太</b><span>画像の差し替え</span></div><div class="r-mail"><b>高橋 陽子</b><span>来週の打ち合わせ</span></div>
+  </div>
+  <div class="r-handle" role="separator" tabindex="0" aria-orientation="vertical" aria-label="一覧の幅" aria-valuemin="20" aria-valuemax="80" aria-valuenow="40"><span class="r-grip" aria-hidden="true"></span></div>
+  <div class="r-panel r-body">
+    <h3>告知メールの文面</h3>
+    <p class="r-from">佐藤 美咲</p>
+    <p>最終版を共有します。件名だけもう一度確認させてください。</p>
+  </div>
+</div></div>
+  <dl class="s-notes">
+    <div><dt>良い点</dt><dd>線の真ん中に小さなつまみがあり、動かせることが最初から分かる。shadcn/ui の withHandle と同じ形。</dd></div>
+    <div><dt>気になる点</dt><dd>つまみが一覧の行と重なると、少しうるさい。</dd></div>
+    <div><dt>作り</dt><dd>A の線に、縦長の小さなつまみ（枠付き、点 2 列）を重ねる。</dd></div>
+  </dl>
+</section>
+<section class="s-col" aria-labelledby="s-c-title">
+  <h2 id="s-c-title">C 溝</h2>
+  <div class="s-stage"><div class="r-group" data-option="c" style="--_size:40%">
+  <div class="r-panel r-list">
+    <div class="r-mail is-current"><b>佐藤 美咲</b><span>告知メールの文面</span></div><div class="r-mail"><b>鈴木 健太</b><span>画像の差し替え</span></div><div class="r-mail"><b>高橋 陽子</b><span>来週の打ち合わせ</span></div>
+  </div>
+  <div class="r-handle" role="separator" tabindex="0" aria-orientation="vertical" aria-label="一覧の幅" aria-valuemin="20" aria-valuemax="80" aria-valuenow="40"><span class="r-grip" aria-hidden="true"></span></div>
+  <div class="r-panel r-body">
+    <h3>告知メールの文面</h3>
+    <p class="r-from">佐藤 美咲</p>
+    <p>最終版を共有します。件名だけもう一度確認させてください。</p>
+  </div>
+</div></div>
+  <dl class="s-notes">
+    <div><dt>良い点</dt><dd>パネルの間に 8px の溝があり、パネルが独立したカードに見える。掴む場所がはっきりしている。</dd></div>
+    <div><dt>気になる点</dt><dd>溝の分だけ幅を使う。パネルに枠が要るので、置ける場所を選ぶ。</dd></div>
+    <div><dt>作り</dt><dd>パネルを角丸の枠で囲み、間の溝を掴む範囲にする。ホバーで溝の中央に線が出る。</dd></div>
+  </dl>
+</section>
+</div>
+</div>
+<script src="./resizable.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+/*! Phosphor Icons — @phosphor-icons/core 2.1.1
+MIT License
+
+Copyright (c) 2023 Phosphor Icons
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+@layer urushi.base, urushi.components;
+
+@layer urushi.base {
+  :root {
+    color-scheme: light dark;
+  }
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+  [data-slot="visually-hidden"] {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  @keyframes ur-sweep {
+    from { background-position: -40% 0; }
+    to { background-position: 140% 0; }
+  }
+}
+
+@layer urushi.components {
+  [data-pack] {
+    background-color: var(--ur-color-bg);
+    color: var(--ur-color-text);
+    font-family: var(--ur-font-family-ui);
+    font-size: var(--ur-font-size-body);
+    line-height: var(--ur-font-line-height-body);
+    letter-spacing: var(--ur-font-tracking-body);
+    font-variant-numeric: var(--ur-font-numeric);
+    -webkit-font-smoothing: antialiased;
+    line-break: strict;
+    text-autospace: normal;
+  }
+  @keyframes ur-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  @keyframes ur-shimmer {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+  [data-slot="item-group"] {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  [data-slot="item-group"][data-variant="outline"] {
+    border: var(--ur-border-width) solid var(--ur-color-border);
+    border-radius: var(--ur-radius-panel);
+    background-color: var(--ur-color-surface);
+    overflow: clip;
+  }
+  [data-slot="item"] + [data-slot="item"] {
+    border-block-start: var(--ur-border-width) solid var(--ur-color-border);
+  }
+  :is([data-slot="item-row"], [data-slot="item-link"]) {
+    display: flex;
+    align-items: center;
+    gap: var(--ur-space-3);
+    box-sizing: border-box;
+    min-block-size: 56px;
+    padding: var(--ur-space-3) var(--ur-space-4);
+    color: inherit;
+    text-decoration: none;
+  }
+  [data-slot="item-group"][data-variant="plain"] :is([data-slot="item-row"], [data-slot="item-link"]) {
+    padding-inline: 0;
+  }
+  [data-slot="item-icon"] {
+    display: inline-flex;
+    flex: none;
+    color: var(--ur-color-text-muted);
+  }
+  [data-slot="item-text"] {
+    display: grid;
+    flex: 1;
+    gap: 2px;
+    min-inline-size: 0;
+  }
+  [data-slot="item-title"] {
+    font-size: var(--ur-font-size-control);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+  [data-slot="item-description"] {
+    font-size: var(--ur-font-size-small);
+    line-height: 1.5;
+    color: var(--ur-color-text-muted);
+    overflow-wrap: anywhere;
+  }
+  [data-slot="item-action"] {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: var(--ur-space-2);
+  }
+  [data-slot="item-chevron"] {
+    flex: none;
+    color: var(--ur-color-text-muted);
+  }
+  [data-slot="item-chevron"]:dir(rtl) {
+    scale: -1 1;
+  }
+  [data-slot="item-link"]:focus-visible {
+    outline: var(--ur-focus-ring-width) solid var(--ur-color-focus-ring);
+    outline-offset: calc(var(--ur-focus-ring-width) * -1);
+  }
+  @media (hover: hover) {
+    [data-slot="item-group"][data-variant="outline"] [data-slot="item-link"]:hover {
+      background-color: var(--ur-color-ghost-hover);
+    }
+    [data-slot="item-group"][data-variant="plain"] [data-slot="item-link"]:hover [data-slot="item-title"] {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+}
+@layer urushi.components {
+  @media (forced-colors: active) {
+    [data-slot]:focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+    }
+  }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) { @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
+}
+@layer urushi.components {
+  @keyframes ur-toast-pending { to { rotate:360deg; } }
+  @keyframes ur-combobox-preview { from { transform:translateY(5px); } to { transform:translateY(0); } }
+}
+@layer urushi.components {
+  @keyframes ur-file-arrive { from { opacity:0; translate:0 5px; } to { opacity:1; translate:0 0; } }
+  @keyframes ur-step-check { from { scale:.5; opacity:0; } to { scale:1; opacity:1; } }
+}
+@layer urushi.components {
+  @media (prefers-reduced-motion:no-preference) {
+    @keyframes ur-context-enter { from { opacity:0; translate:0 3px; } to { opacity:1; translate:0 0; } }
+  }
+}

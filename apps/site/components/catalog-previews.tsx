@@ -21,11 +21,13 @@ import {
   ContextMenu,
   DateInput,
   Dialog,
+  Drawer,
   Field,
   FileInput,
   HoverCard,
   Input,
   InputGroup,
+  Item,
   Link,
   Menu,
   Menubar,
@@ -34,6 +36,7 @@ import {
   OTPInput,
   Popover,
   RadioGroup,
+  Resizable,
   ScrollArea,
   Select,
   Separator,
@@ -400,6 +403,29 @@ export function CatalogPreview({ slug }: { slug: string }) {
       return <CatalogLoading kind="skeleton" />;
     case "empty":
       return <CatalogEmpty />;
+    case "resizable":
+      return (
+        <div className="catalog-split">
+          <Resizable defaultSize={40}>
+            <Resizable.Panel>
+              <p className="catalog-split-pane">一覧</p>
+            </Resizable.Panel>
+            <Resizable.Handle label="一覧の幅" />
+            <Resizable.Panel>
+              <p className="catalog-split-pane">本文</p>
+            </Resizable.Panel>
+          </Resizable>
+        </div>
+      );
+    case "item":
+      return (
+        <div className="catalog-item-group">
+        <Item.Group label="設定">
+          <Item title="お知らせメール" description="締め切りの前日に送ります" action={<Switch aria-label="お知らせメール" defaultChecked />} />
+          <Item title="パスワード" description="最後の変更は 3 か月前" href="/components/item/" />
+        </Item.Group>
+        </div>
+      );
     case "breadcrumb":
       return (
         <Breadcrumb>
@@ -520,6 +546,20 @@ export function CatalogPreview({ slug }: { slug: string }) {
               削除する
             </AlertDialog.Action>
           </AlertDialog>
+        </>
+      );
+    case "drawer":
+      return (
+        <>
+          <Drawer.Trigger drawer="catalog-drawer">予定を追加</Drawer.Trigger>
+          <Drawer id="catalog-drawer" title="予定を追加" description="下に引くと閉じます。">
+            <div className="preview-stack">
+              <Field id="catalog-drawer-event" label="題名">
+                <Input defaultValue="デザインの確認" />
+              </Field>
+              <Drawer.Close drawer="catalog-drawer">閉じる</Drawer.Close>
+            </div>
+          </Drawer>
         </>
       );
     case "sheet":

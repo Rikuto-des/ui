@@ -1,0 +1,19 @@
+{
+  "name": "item",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/item.json",
+  "files": [
+    {
+      "path": "item.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add item`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Item page of the design system.\nexport { Item, type ItemProps, type ItemGroupProps } from \"@urushi/react/item\";\n",
+      "hash": "sha256-fDMZU8N66hdD6/IFoeOunHMahmXEByf136P2MntbSNo="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/item.css"
+  ]
+}

@@ -64,6 +64,9 @@
     "./combobox": "./src/combobox.tsx",
     "./data-table": "./src/data-table.tsx",
     "./calendar": "./src/calendar.tsx",
+    "./item": "./src/item.tsx",
+    "./drawer": "./src/drawer.tsx",
+    "./resizable": "./src/resizable.tsx",
     "./date-picker": "./src/date-picker.tsx",
     "./command": "./src/command.tsx",
     "./icons": "./src/icons.tsx"

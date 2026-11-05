@@ -1,0 +1,19 @@
+{
+  "name": "drawer",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/drawer.json",
+  "files": [
+    {
+      "path": "drawer.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add drawer`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Drawer page of the design system.\nexport { Drawer, type DrawerProps } from \"@urushi/react/drawer\";\n",
+      "hash": "sha256-ObJn+KgPMJ4Rj9YVasrHjTIjQhBXghW6Q84i/CWEAHs="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/drawer.css"
+  ]
+}

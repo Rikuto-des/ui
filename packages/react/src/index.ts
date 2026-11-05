@@ -51,5 +51,8 @@ export { NavigationMenu, type NavigationMenuProps, type NavigationMenuGroupProps
 export { Combobox, type ComboboxProps, type ComboboxOption, type ComboboxLoader } from "./combobox.tsx";
 export { DataTable, type DataTableProps, type DataTableColumn } from "./data-table.tsx";
 export { Calendar, type CalendarProps } from "./calendar.tsx";
+export { Item, type ItemProps, type ItemGroupProps } from "./item.tsx";
+export { Resizable, type ResizableProps, type ResizablePanelProps, type ResizableHandleProps } from "./resizable.tsx";
+export { Drawer, type DrawerProps, type DrawerTriggerProps, type DrawerCloseProps } from "./drawer.tsx";
 export { DatePicker, type DatePickerProps } from "./date-picker.tsx";
 export { Command, type CommandProps, type CommandItem } from "./command.tsx";
