@@ -45,6 +45,8 @@ test('pointer preview, disabled entries, narrow screens and axe',async({page})=>
 
 test('preview text keeps its contrast throughout entry motion',async({page})=>{
   await page.emulateMedia({reducedMotion:'no-preference'});
+  // Hold the entry motion at its start: a slow runner could otherwise finish it before the samples are taken.
+  await page.addStyleTag({content:'[data-slot="combobox-preview-body"]{animation-play-state:paused !important}'});
   await page.getByRole('combobox',{name:'Owner'}).click();
   const samples=await page.locator('[data-slot="combobox-preview-body"]').evaluate(element=>{
     const animation=element.getAnimations().find(a=>(a as CSSAnimation).animationName==='ur-combobox-preview')!;
