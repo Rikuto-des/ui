@@ -23,7 +23,9 @@ test.beforeEach(async ({ page }) => {
   await noWebFonts(page);
   await page.goto("/components.html");
   // Arrow keys and hover come from the runtime; a key pressed before it installs does nothing.
-  await expect(page.locator("html")).toHaveAttribute("data-urushi-runtime", "ready");
+  // A cold Vite module graph on Linux WebKit (CI) can take longer than 5s to load the runtime.
+  // This is a page-load budget only; the interaction assertions keep the default timeout.
+  await expect(page.locator("html")).toHaveAttribute("data-urushi-runtime", "ready", { timeout: 20_000 });
 });
 
 test.describe("wide screens", () => {

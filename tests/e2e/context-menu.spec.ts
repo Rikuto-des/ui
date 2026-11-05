@@ -12,7 +12,9 @@ const file = (page: Page, name: string) => page.getByTestId("file-area").getByRo
 test.beforeEach(async ({ page }) => {
   await noWebFonts(page);
   await page.goto("/components.html");
-  await expect(page.locator("html")).toHaveAttribute("data-urushi-runtime", "ready");
+  // A cold Vite module graph on Linux WebKit (CI) can take longer than 5s to load the runtime.
+  // This is a page-load budget only; the interaction assertions keep the default timeout.
+  await expect(page.locator("html")).toHaveAttribute("data-urushi-runtime", "ready", { timeout: 20_000 });
 });
 
 test("a right-click opens it at the pointer on its first item, and Menu's keys work inside", async ({ page }) => {

@@ -12,7 +12,9 @@ const menu = (page: Page, name: string) => page.getByRole("menu", { name, exact:
 test.beforeEach(async ({ page }) => {
   await noWebFonts(page);
   await page.goto("/components.html");
-  await expect(page.locator("html")).toHaveAttribute("data-urushi-runtime", "ready");
+  // A cold Vite module graph on Linux WebKit (CI) can take longer than 5s to load the runtime.
+  // This is a page-load budget only; the interaction assertions keep the default timeout.
+  await expect(page.locator("html")).toHaveAttribute("data-urushi-runtime", "ready", { timeout: 20_000 });
 });
 
 test("the bar is one Tab stop, and ← → Home End move between its menus", async ({ page }) => {
