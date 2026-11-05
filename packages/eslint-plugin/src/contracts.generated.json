@@ -432,6 +432,39 @@
     ],
     "omits": []
   },
+  "Calendar": {
+    "contract": "calendar",
+    "slot": "calendar",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label",
+      "value",
+      "defaultValue",
+      "onValueChange",
+      "min",
+      "max",
+      "locale",
+      "defaultFocusedDate",
+      "autoFocus"
+    ],
+    "attributes": [],
+    "omits": [
+      "onChange",
+      "onSelect"
+    ]
+  },
   "Card": {
     "contract": "card",
     "slot": "card",
@@ -917,6 +950,54 @@
       "unselectable",
       "vocab"
     ]
+  },
+  "ContextMenu": {
+    "contract": "context-menu",
+    "slot": "context-menu",
+    "element": "div",
+    "overrides": [
+      "width"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": "context-menu",
+    "required": [
+      "id",
+      "label"
+    ],
+    "props": [
+      "id",
+      "label"
+    ],
+    "attributes": [],
+    "omits": [
+      "popover",
+      "role"
+    ]
+  },
+  "ContextMenu.Area": {
+    "contract": "context-menu",
+    "slot": "context-menu-area",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {
+      "menu": "context-menu"
+    },
+    "provides": null,
+    "required": [
+      "menu"
+    ],
+    "props": [
+      "menu"
+    ],
+    "attributes": [],
+    "omits": []
   },
   "DataTable": {
     "contract": "data-table",
@@ -1969,6 +2050,49 @@
   "Menu.Sub": {
     "contract": "menu",
     "slot": "menu-sub",
+    "element": "div",
+    "overrides": [],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label"
+    ],
+    "attributes": [],
+    "omits": [
+      "role"
+    ]
+  },
+  "Menubar": {
+    "contract": "menubar",
+    "slot": "menubar",
+    "element": "div",
+    "overrides": [
+      "margin",
+      "width",
+      "layout",
+      "position"
+    ],
+    "enums": {},
+    "idrefs": {},
+    "provides": null,
+    "required": [
+      "label"
+    ],
+    "props": [
+      "label"
+    ],
+    "attributes": [],
+    "omits": [
+      "role"
+    ]
+  },
+  "Menubar.Menu": {
+    "contract": "menubar",
+    "slot": "menubar-menu",
     "element": "div",
     "overrides": [],
     "enums": {},

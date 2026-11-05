@@ -1,6 +1,7 @@
 import { SquaresFourIcon, NotebookIcon, PlusIcon, PencilSimpleIcon, SlidersHorizontalIcon, CaretDownIcon, InfoIcon, TextBIcon, TextItalicIcon, TextUnderlineIcon } from "@urushi/react/icons";
 import {
   ComboboxExample,
+  CalendarExample,
   DatePickerExample,
   DataTableExample,
   CommandExample,
@@ -17,6 +18,7 @@ import {
   Carousel,
   Checkbox,
   Collapsible,
+  ContextMenu,
   DateInput,
   Dialog,
   Field,
@@ -26,6 +28,7 @@ import {
   InputGroup,
   Link,
   Menu,
+  Menubar,
   Meter,
   NavigationMenu,
   OTPInput,
@@ -76,6 +79,8 @@ export function CatalogPreview({ slug }: { slug: string }) {
   switch (slug) {
     case "combobox":
       return <ComboboxExample />;
+    case "calendar":
+      return <CalendarExample compact />;
     case "date-picker":
       return <DatePickerExample compact />;
     case "data-table":
@@ -569,6 +574,29 @@ export function CatalogPreview({ slug }: { slug: string }) {
             <Menu.Item disabled>実行できない操作</Menu.Item>
           </Menu>
         </>
+      );
+    case "context-menu":
+      return (
+        <>
+          <ContextMenu.Area menu="catalog-context-menu">
+            <button type="button" className="catalog-context-target">右クリックして操作</button>
+          </ContextMenu.Area>
+          <ContextMenu id="catalog-context-menu" label="一覧プレビューの操作">
+            <Menu.Link href="/components/context-menu/">APIを見る</Menu.Link>
+            <Menu.Link href="/docs/cli/">インストール方法</Menu.Link>
+          </ContextMenu>
+        </>
+      );
+    case "menubar":
+      return (
+        <Menubar label="一覧プレビューのメニュー">
+          <Menubar.Menu label="ファイル">
+            <Menu.Link href="/components/menubar/">APIを見る</Menu.Link>
+          </Menubar.Menu>
+          <Menubar.Menu label="ヘルプ">
+            <Menu.Link href="/docs/cli/">インストール方法</Menu.Link>
+          </Menubar.Menu>
+        </Menubar>
       );
     case "hover-card":
       return (

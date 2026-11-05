@@ -15,6 +15,7 @@ export const groups = ["操作", "入力", "表示", "状態", "ナビゲーシ�
 
 export const components: ComponentEntry[] = [
   { slug: "combobox", name: "Combobox", guide: "Combobox", group: "入力", base: "検索可能なリストボックス", js: "必要" },
+  { slug: "calendar", name: "Calendar", guide: "Calendar", group: "入力", base: "日付ボタンの grid", js: "必要" },
   { slug: "date-picker", name: "DatePicker", guide: "DatePicker", group: "入力", base: "日付入力とカレンダー", js: "カレンダーに必要" },
   { slug: "data-table", name: "DataTable", guide: "DataTable", group: "表示", base: "並び替えと選択に対応したtable", js: "必要" },
   { slug: "command", name: "Command", guide: "Command", group: "操作", base: "検索ダイアログ", js: "必要" },
@@ -24,6 +25,8 @@ export const components: ComponentEntry[] = [
   { slug: "toggle", name: "Toggle", guide: "Toggle", group: "操作", base: '<input type="checkbox">', js: "不要" },
   { slug: "toggle-group", name: "ToggleGroup", guide: "ToggleGroup", group: "操作", base: "radio と checkbox", js: "追従する選択表示に使用" },
   { slug: "menu", name: "Menu", guide: "Menu", group: "操作", base: 'popover="auto"', js: "矢印キーとタイプアヘッドだけ" },
+  { slug: "context-menu", name: "ContextMenu", guide: "ContextMenu", group: "操作", base: 'popover="auto"', js: "右クリックで開くのに必要" },
+  { slug: "menubar", name: "Menubar", guide: "Menubar", group: "操作", base: 'role="menubar" と popover="auto"', js: "矢印キーとホバーでの切り替えだけ" },
   { slug: "field", name: "Field", guide: "Field", group: "入力", base: "<label> と aria-describedby", js: "不要" },
   { slug: "input", name: "Input", guide: "Input", group: "入力", base: "<input>", js: "不要" },
   { slug: "input-group", name: "InputGroup", guide: "InputGroup", group: "入力", base: ":has() で 1 つの枠に", js: "不要" },

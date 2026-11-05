@@ -185,7 +185,7 @@ SOFTWARE.
 }
 @layer urushi.components {
   :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"]) :focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:3px; }
-  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"]) :disabled { opacity:.5; cursor:not-allowed; }
+  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"], [data-slot="calendar"]) :disabled { opacity:.5; cursor:not-allowed; }
   [data-slot="data-table"] button { color:inherit; font:inherit; border:1px solid transparent; background:transparent; border-radius:calc(var(--ur-radius-control) - 2px); cursor:pointer; min-height:calc(var(--ur-control-md) - 4px); min-width:32px; }
   [data-slot="data-table"] { min-width:0; width:100%; color:var(--ur-color-text); font-size:13px; }
   [data-slot="data-table-scroll"] { position:relative; background:var(--ur-color-surface); overflow:auto; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-control); }

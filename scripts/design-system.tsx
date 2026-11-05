@@ -33,6 +33,7 @@ import {
   Command,
   DataTable,
   DateInput,
+  Calendar,
   DatePicker,
   Dialog,
   Empty,
@@ -44,6 +45,8 @@ import {
   Kbd,
   Link,
   Menu,
+  ContextMenu,
+  Menubar,
   Meter,
   NavigationMenu,
   OTPInput,
@@ -435,6 +438,9 @@ const previewStyle = `<style>
   body { margin: 0; }
   .ds-root { box-sizing: border-box; min-height: 100vh; padding: 20px 24px; display: grid; gap: 14px; align-content: start; }
   .ds-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .ds-context-area { display: grid; gap: 2px; padding: 8px; border: 1px dashed var(--ur-color-border-strong); border-radius: 10px; max-inline-size: 360px; }
+  .ds-context-area p { margin: 0; padding: 8px 10px; border-radius: 6px; font-size: 14px; }
+  .ds-context-area p:nth-child(2) { background: var(--ur-color-ghost-hover); }
   .ds-note { margin: 0; font-size: 12px; color: var(--ur-color-text-subtle); }
   /* Open samples sit in the page, not the top layer: the dialog's max-block-size (100% of a viewport) would shrink to the grid row. */
   :is(#ds-confirm-inline, #ds-alert-inline)[open] { position: static; margin: 0; max-block-size: none; }
@@ -621,6 +627,56 @@ const previews: Record<string, string> = {
     `document.getElementById("ds-menu").showPopover();
 const sub = document.querySelector('[data-slot="menu-sub"] > [data-slot="menu"]');
 sub.showPopover({ source: sub.previousElementSibling });`,
+  ),
+  ContextMenu: preview(
+    `<!-- @dsCard group="操作" height=300 subtitle="右クリック・長押し・Shift+F10 で、押した場所に出る Menu" -->`,
+    <>
+      <ContextMenu.Area menu="ds-context-menu">
+        <div className="ds-context-area">
+          <p>企画書.pdf</p>
+          <p>見積もり.xlsx</p>
+          <p>打ち合わせメモ.md</p>
+        </div>
+      </ContextMenu.Area>
+      <ContextMenu id="ds-context-menu" label="ファイルの操作">
+        <Menu.Item>開く</Menu.Item>
+        <Menu.Item shortcut="F2">名前を変更</Menu.Item>
+        <Menu.Item>複製</Menu.Item>
+        <Menu.Separator />
+        <Menu.Item variant="danger">削除</Menu.Item>
+      </ContextMenu>
+    </>,
+    // Open it where a right-click on the second file would; in an app the runtime does this.
+    `const row = document.querySelectorAll(".ds-context-area p")[1].getBoundingClientRect();
+const anchor = document.querySelector('[data-slot="context-menu-anchor"]');
+anchor.style.setProperty("--_x", row.left + 48 + "px");
+anchor.style.setProperty("--_y", row.top + row.height / 2 + "px");
+document.getElementById("ds-context-menu").showPopover();`,
+  ),
+  Menubar: preview(
+    `<!-- @dsCard group="操作" height=300 subtitle="アプリの上に並ぶメニュー。開いたまま左右に動くと切り替わる" -->`,
+    <Menubar label="ノートのメニュー">
+      <Menubar.Menu label="ファイル">
+        <Menu.Item shortcut="⌘N">新しいノート</Menu.Item>
+        <Menu.Item shortcut="⌘O">開く…</Menu.Item>
+      </Menubar.Menu>
+      <Menubar.Menu label="編集">
+        <Menu.Item shortcut="⌘Z">元に戻す</Menu.Item>
+        <Menu.Item shortcut="⇧⌘Z">やり直す</Menu.Item>
+        <Menu.Separator />
+        <Menu.Item shortcut="⌘C">コピー</Menu.Item>
+        <Menu.Item shortcut="⌘V">貼り付け</Menu.Item>
+      </Menubar.Menu>
+      <Menubar.Menu label="表示">
+        <Menu.Item>目次を表示</Menu.Item>
+      </Menubar.Menu>
+      <Menubar.Menu label="ヘルプ">
+        <Menu.Item>ショートカット一覧</Menu.Item>
+      </Menubar.Menu>
+    </Menubar>,
+    // Show the 編集 menu open; in an app the trigger does this.
+    `const trigger = document.querySelectorAll('[data-slot~="menubar-trigger"]')[1];
+trigger.nextElementSibling.showPopover({ source: trigger });`,
   ),
   Field: preview(
     `<!-- @dsCard group="入力" height=290 subtitle="ラベル・説明・エラーを入力欄に自動で結びつける" -->`,
@@ -1200,6 +1256,10 @@ sub.showPopover({ source: sub.previousElementSibling });`,
     </div>,
     // The input is disabled until the component hydrates; this static sample shows it ready.
   ).replace(/(<input[^>]*data-slot="combobox-input"[^>]*?) disabled=""/, "$1"),
+  Calendar: preview(
+    `<!-- @dsCard group="入力" height=420 subtitle="月を見ながら日付を選ぶ。DatePicker のダイアログと同じカレンダー" -->`,
+    <Calendar label="配達日" defaultValue="2026-11-12" min="2026-11-05" locale="ja" />,
+  ),
   DatePicker: preview(
     `<!-- @dsCard group="入力" height=150 subtitle="日付を直接入力するか、カレンダーから選ぶ" -->`,
     <div className="ds-form">

@@ -45,6 +45,11 @@
     "summary": "A native <button> that runs or confirms an action."
   },
   {
+    "name": "calendar",
+    "version": "0.1.0-beta.1",
+    "summary": "A month of days to pick a date from, always on the page (a booking or schedule view). DatePicker uses the same calendar in its dialog."
+  },
+  {
     "name": "card",
     "version": "0.1.0-beta.1",
     "summary": "A surface that groups related content, with an optional title, description and footer."
@@ -73,6 +78,11 @@
     "name": "command",
     "version": "0.1.0-beta.1",
     "summary": "コマンドを検索し、キーボードで実行するダイアログです。"
+  },
+  {
+    "name": "context-menu",
+    "version": "0.1.0-beta.1",
+    "summary": "A menu of actions that opens where the user right-clicks an area, long-presses it on touch, or presses Shift+F10 inside it. Its items are Menu's (Menu.Item, Menu.Separator, Menu.Sub) and behave the same way."
   },
   {
     "name": "data-table",
@@ -138,6 +148,11 @@
     "name": "menu",
     "version": "0.1.0-beta.1",
     "summary": "A list of actions in a popover (menu button pattern), with optional submenus. Opens without JavaScript; the runtime adds arrow keys, typeahead and submenu hover."
+  },
+  {
+    "name": "menubar",
+    "version": "0.1.0-beta.1",
+    "summary": "A row of menus for an application (ファイル・編集・表示), like a desktop menu bar. Each Menubar.Menu is a trigger and its menu; the items are Menu's (Menu.Item, Menu.Separator, Menu.Sub). Opens without JavaScript; the runtime adds the menubar keyboard model and hover switching."
   },
   {
     "name": "meter",

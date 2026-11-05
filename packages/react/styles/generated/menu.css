@@ -33,7 +33,7 @@ SOFTWARE.
   [data-theme="dark"] {
     color-scheme: dark;
   }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
     opacity: 0;
     scale: var(--ur-motion-enter-scale, 1);
     transition-property: opacity, scale, display, overlay;
@@ -41,40 +41,40 @@ SOFTWARE.
     transition-timing-function: var(--ur-motion-ease-overlay, ease-out);
     transition-behavior: allow-discrete;
   }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
     opacity: 1;
     scale: 1;
     transition-duration: var(--ur-motion-duration-overlay, 0s);
   }
   @starting-style {
-    :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
+    :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
       opacity: 0;
       scale: var(--ur-motion-enter-scale, 1);
     }
   }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
     --_offset: var(--ur-popover-offset, 4px);
     inset: auto;
     margin: 0;
     position-try-fallbacks: flip-block, flip-inline;
   }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"] { margin-block-start: var(--_offset); }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"] { margin-block-end: var(--_offset); }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"] { margin-inline-end: var(--_offset); }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"] { margin-inline-start: var(--_offset); }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="start"] { position-area: block-end span-inline-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="center"] { position-area: block-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="end"] { position-area: block-end span-inline-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="start"] { position-area: block-start span-inline-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="center"] { position-area: block-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="end"] { position-area: block-start span-inline-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="start"] { position-area: inline-start span-block-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="center"] { position-area: inline-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="end"] { position-area: inline-start span-block-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="start"] { position-area: inline-end span-block-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="center"] { position-area: inline-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="end"] { position-area: inline-end span-block-start; }
-  [data-slot="menu"][data-sub] {
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"] { margin-block-start: var(--_offset); }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"] { margin-block-end: var(--_offset); }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"] { margin-inline-end: var(--_offset); }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"] { margin-inline-start: var(--_offset); }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="start"] { position-area: block-end span-inline-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="center"] { position-area: block-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="end"] { position-area: block-end span-inline-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="start"] { position-area: block-start span-inline-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="center"] { position-area: block-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="end"] { position-area: block-start span-inline-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="start"] { position-area: inline-start span-block-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="center"] { position-area: inline-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="end"] { position-area: inline-start span-block-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="start"] { position-area: inline-end span-block-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="center"] { position-area: inline-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="end"] { position-area: inline-end span-block-start; }
+  [data-slot~="menu"][data-sub] {
     position-area: inline-end span-block-end;
     margin-block-start: calc(-1 * var(--ur-space-2));
     margin-inline-start: calc(var(--ur-space-2) - 2px);
@@ -100,11 +100,11 @@ SOFTWARE.
   }
 
   @media (prefers-reduced-motion: reduce) {
-    :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"]) {
+    :is([data-slot="popover"], [data-slot~="menu"], [data-slot="hover-card"]) {
       scale: 1;
     }
     @starting-style {
-      :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"]):popover-open {
+      :is([data-slot="popover"], [data-slot~="menu"], [data-slot="hover-card"]):popover-open {
         scale: 1;
       }
     }
@@ -242,7 +242,7 @@ SOFTWARE.
       }
     }
   }
-  [data-slot="menu"] {
+  [data-slot~="menu"] {
     box-sizing: border-box;
     color: var(--ur-color-text);
     background-color: var(--ur-color-surface-overlay);
@@ -256,7 +256,7 @@ SOFTWARE.
       background-position: 200% 0;
     }
   }
-  [data-slot="menu"] {
+  [data-slot~="menu"] {
     min-inline-size: 180px;
     max-inline-size: min(320px, 100vw - 16px);
     padding: var(--ur-space-2);
@@ -318,10 +318,10 @@ SOFTWARE.
   [data-slot="menu-sub-icon"]:dir(rtl) {
     scale: -1 1;
   }
-  [data-slot="menu-sub"]:has(> [data-slot="menu"]:is(:popover-open, [data-inline-open])) > [data-slot~="menu-sub-trigger"] {
+  [data-slot="menu-sub"]:has(> [data-slot~="menu"]:is(:popover-open, [data-inline-open])) > [data-slot~="menu-sub-trigger"] {
     background-color: var(--ur-color-ghost-hover);
   }
-  [data-slot="menu"][data-sub][data-inline-open] {
+  [data-slot~="menu"][data-sub][data-inline-open] {
     display: grid;
     position: static;
     inset: auto;
@@ -342,15 +342,18 @@ SOFTWARE.
     transition: opacity var(--ur-motion-duration-overlay) var(--ur-motion-ease-out);
   }
   @starting-style {
-    [data-slot="menu"][data-sub][data-inline-open] {
+    [data-slot~="menu"][data-sub][data-inline-open] {
       opacity: 0;
     }
   }
-  [data-slot="menu-sub"]:has(> [data-slot="menu"][data-inline-open]) [data-slot="menu-sub-icon"] {
+  [data-slot="menu-sub"]:has(> [data-slot~="menu"][data-inline-open]) [data-slot="menu-sub-icon"] {
     rotate: 90deg;
   }
-  [data-slot="menu-sub"]:has(> [data-slot="menu"][data-inline-open]) [data-slot="menu-sub-icon"]:dir(rtl) {
+  [data-slot="menu-sub"]:has(> [data-slot~="menu"][data-inline-open]) [data-slot="menu-sub-icon"]:dir(rtl) {
     rotate: -90deg;
+  }
+  [data-slot="menubar-menu"]:has(> [data-slot~="menu"]:popover-open) > [data-slot~="menubar-trigger"] {
+    background-color: var(--ur-color-ghost-hover);
   }
   [data-slot="button-group"] {
     display: inline-flex;
@@ -392,20 +395,20 @@ SOFTWARE.
   }
   @supports (corner-shape: squircle) {
     [data-slot~="button"],
-    [data-slot="menu"] {
+    [data-slot~="menu"] {
       corner-shape: var(--ur-corner-shape);
     }
     [data-slot~="button"] {
       border-radius: var(--ur-radius-squircle-control);
     }
-    :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"], [data-slot="toast"]) {
+    :is([data-slot="popover"], [data-slot~="menu"], [data-slot="hover-card"], [data-slot="toast"]) {
       border-radius: var(--ur-radius-squircle-overlay);
     }
   }
 }
 @layer urushi.components {
   @media (forced-colors: active) {
-    [data-slot~="button"], [data-slot="menu"] {
+    [data-slot~="button"], [data-slot~="menu"] {
       border: 1px solid CanvasText;
     }
     [data-slot]:focus-visible, [data-slot~="button"]:focus-visible {

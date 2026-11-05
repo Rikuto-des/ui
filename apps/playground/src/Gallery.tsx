@@ -13,6 +13,7 @@ import {
   Carousel,
   Checkbox,
   Collapsible,
+  ContextMenu,
   DateInput,
   Dialog,
   Empty,
@@ -24,6 +25,7 @@ import {
   Kbd,
   Link,
   Menu,
+  Menubar,
   Meter,
   OTPInput,
   Pagination,
@@ -68,6 +70,8 @@ const groups: { label: string; entries: Entry[] }[] = [
       { id: "toggle", name: "Toggle", base: '<input type="checkbox">', js: "不要" },
       { id: "toggle-group", name: "ToggleGroup", base: "radio と checkbox", js: "不要" },
       { id: "menu", name: "Menu", base: 'popover="auto"', js: "矢印キーとタイプアヘッドだけ" },
+      { id: "context-menu", name: "ContextMenu", base: 'popover="auto"', js: "右クリックで開くのに必要" },
+      { id: "menubar", name: "Menubar", base: 'role="menubar" と popover="auto"', js: "矢印キーとホバーでの切り替えだけ" },
     ],
   },
   {
@@ -344,6 +348,69 @@ export function Gallery({ toastDemo }: { toastDemo: ReactNode }) {
                   <Menu.Item variant="danger">削除する</Menu.Item>
                 </Menu>
               </div>
+            </Example>
+          </Section>
+
+          <Section id="context-menu" summary="右クリック・長押し・Shift+F10 で、押した場所に出る操作の一覧。中身は Menu と同じで、同じ操作はほかの方法でもできるようにします。">
+            <Example label="ファイルの操作">
+              <ContextMenu.Area menu="file-menu" data-testid="file-area">
+                <div className="g-files">
+                  <p className="g-files-hint">ファイルを右クリックするか、選んで Shift+F10 を押します。</p>
+                  <ul>
+                    {["企画書.pdf", "見積もり.xlsx", "打ち合わせメモ.md"].map((name) => (
+                      <li key={name}>
+                        <button type="button">{name}</button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ContextMenu.Area>
+              <ContextMenu id="file-menu" label="ファイルの操作" data-testid="file-menu">
+                <Menu.Item>開く</Menu.Item>
+                <Menu.Item shortcut="F2">名前を変更</Menu.Item>
+                <Menu.Item>複製</Menu.Item>
+                <Menu.Sub label="移動" data-testid="move-sub">
+                  <Menu.Item>仕事</Menu.Item>
+                  <Menu.Item>個人</Menu.Item>
+                  <Menu.Item>アーカイブ</Menu.Item>
+                </Menu.Sub>
+                <Menu.Separator />
+                <Menu.Item variant="danger">削除</Menu.Item>
+              </ContextMenu>
+            </Example>
+          </Section>
+
+          <Section id="menubar" summary="アプリの上に並ぶメニュー（ファイル・編集・表示）。左右の矢印でメニューを移り、開いたまま隣に動くと切り替わります。">
+            <Example label="ノートアプリ">
+              <Menubar label="ノートのメニュー" data-testid="menubar">
+                <Menubar.Menu label="ファイル">
+                  <Menu.Item shortcut="⌘N">新しいノート</Menu.Item>
+                  <Menu.Item shortcut="⌘O">開く…</Menu.Item>
+                  <Menu.Sub label="書き出す">
+                    <Menu.Item>PDF</Menu.Item>
+                    <Menu.Item>Markdown</Menu.Item>
+                  </Menu.Sub>
+                  <Menu.Separator />
+                  <Menu.Item shortcut="⌘P">印刷…</Menu.Item>
+                </Menubar.Menu>
+                <Menubar.Menu label="編集">
+                  <Menu.Item shortcut="⌘Z">元に戻す</Menu.Item>
+                  <Menu.Item shortcut="⇧⌘Z">やり直す</Menu.Item>
+                  <Menu.Separator />
+                  <Menu.Item shortcut="⌘X">切り取り</Menu.Item>
+                  <Menu.Item shortcut="⌘C">コピー</Menu.Item>
+                  <Menu.Item shortcut="⌘V">貼り付け</Menu.Item>
+                </Menubar.Menu>
+                <Menubar.Menu label="表示">
+                  <Menu.Item>目次を表示</Menu.Item>
+                  <Menu.Item shortcut="⌘+">文字を大きく</Menu.Item>
+                  <Menu.Item shortcut="⌘−">文字を小さく</Menu.Item>
+                </Menubar.Menu>
+                <Menubar.Menu label="ヘルプ">
+                  <Menu.Item shortcut="?">ショートカット一覧</Menu.Item>
+                  <Menu.Link href="#menubar">使い方のガイド</Menu.Link>
+                </Menubar.Menu>
+              </Menubar>
             </Example>
           </Section>
 

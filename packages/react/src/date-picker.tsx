@@ -1,14 +1,13 @@
 "use client";
-import { CalendarBlankIcon, CaretLeftIcon, CaretRightIcon } from "./icons.tsx";
+import { Calendar, isoDate as iso, parseDate as parse } from "./calendar.tsx";
+import { CalendarBlankIcon } from "./icons.tsx";
 
 import {
   useEffect,
-  useLayoutEffect,
   useId,
   useRef,
   useState,
   type ComponentPropsWithRef,
-  type KeyboardEvent,
 } from "react";
 
 export interface DatePickerProps
@@ -26,26 +25,6 @@ export interface DatePickerProps
   /** Explicit ISO dates keep presets deterministic across time zones and server renders. */
   presets?: readonly { label: string; value: string }[];
 }
-function parse(value: string) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-  if (!match) return undefined;
-  const date = new Date(+match[1], +match[2] - 1, +match[3], 12);
-  return iso(date) === value ? date : undefined;
-}
-function iso(date: Date) {
-  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
-}
-function shiftMonth(date: Date, amount: number) {
-  const result = new Date(date.getFullYear(), date.getMonth() + amount, 1, 12);
-  result.setDate(
-    Math.min(
-      date.getDate(),
-      new Date(result.getFullYear(), result.getMonth() + 1, 0).getDate(),
-    ),
-  );
-  return result;
-}
-
 /** Native date entry plus an optional, keyboard-operable calendar dialog. ISO date values have no time zone. */
 export function DatePicker({
   label,
@@ -66,13 +45,12 @@ export function DatePicker({
   const [local, setLocal] = useState(defaultValue);
   const value = controlled ?? local;
   const [calendarOpen, setCalendarOpen] = useState(false);
-  const [focused, setFocused] = useState(() => iso(new Date()));
-  // Pointer focus must not replace the clicked day before its click is delivered.
-  const [viewed, setViewed] = useState(() => iso(new Date()));
+  // Where the calendar opens; "今日" reopens the grid there.
+  const [start, setStart] = useState(() => iso(new Date()));
+  const [round, setRound] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
-  const date = parse(viewed) ?? new Date();
   const clamp = (candidate: string) =>
     min && candidate < min ? min : max && candidate > max ? max : candidate;
   const choose = (next: string) => {
@@ -85,62 +63,11 @@ export function DatePicker({
     trigger.current?.focus();
   };
   function open() {
-    const next = clamp(parse(value) ? value : iso(new Date()));
-    setFocused(next);
-    setViewed(next);
+    setStart(clamp(parse(value) ? value : iso(new Date())));
+    setRound(round + 1);
     trigger.current?.focus();
     setCalendarOpen(true);
-  }
-  function move(next: Date) {
-    const nextValue = clamp(iso(next));
-    setFocused(nextValue);
-    setViewed(nextValue);
-  }
-  useLayoutEffect(() => {
-    if (!calendarOpen || !dialog.current) return;
-    if (!dialog.current.open) dialog.current.showModal();
-    dialog.current
-      .querySelector<HTMLButtonElement>(`[data-date="${focused}"]`)
-      ?.focus();
-  }, [calendarOpen, focused]);
-  function keyboard(event: KeyboardEvent) {
-    const date = parse(focused) ?? new Date();
-    const next = new Date(date);
-    let handled = true;
-    switch (event.key) {
-      case "ArrowLeft":
-        next.setDate(date.getDate() - 1);
-        break;
-      case "ArrowRight":
-        next.setDate(date.getDate() + 1);
-        break;
-      case "ArrowUp":
-        next.setDate(date.getDate() - 7);
-        break;
-      case "ArrowDown":
-        next.setDate(date.getDate() + 7);
-        break;
-      case "Home":
-        next.setDate(date.getDate() - date.getDay());
-        break;
-      case "End":
-        next.setDate(date.getDate() + 6 - date.getDay());
-        break;
-      case "PageUp":
-        event.preventDefault();
-        move(shiftMonth(date, event.shiftKey ? -12 : -1));
-        return;
-      case "PageDown":
-        event.preventDefault();
-        move(shiftMonth(date, event.shiftKey ? 12 : 1));
-        return;
-      default:
-        handled = false;
-    }
-    if (handled) {
-      event.preventDefault();
-      move(next);
-    }
+    dialog.current?.showModal();
   }
   useEffect(() => {
     const form = input.current?.form;
@@ -148,17 +75,6 @@ export function DatePicker({
     form?.addEventListener("reset", reset);
     return () => form?.removeEventListener("reset", reset);
   }, [defaultValue]);
-  const start = new Date(date.getFullYear(), date.getMonth(), 1, 12);
-  start.setDate(1 - start.getDay());
-  const days = Array.from(
-    { length: 42 },
-    (_, i) =>
-      new Date(start.getFullYear(), start.getMonth(), start.getDate() + i, 12),
-  );
-  const monthLabel = new Intl.DateTimeFormat(locale, {
-    year: "numeric",
-    month: "long",
-  }).format(date);
   return (
     <div data-slot="date-picker">
       <label htmlFor={id} data-slot="date-picker-label">
@@ -237,96 +153,28 @@ export function DatePicker({
                 ))}
               </div>
             ) : null}
-            <header>
-              <button
-                type="button"
-                aria-label={japanese ? "前の月" : "Previous month"}
-                disabled={
-                  !!min &&
-                  iso(new Date(date.getFullYear(), date.getMonth(), 0)) < min
-                }
-                onClick={() => move(shiftMonth(date, -1))}
-              >
-                <CaretLeftIcon size={16} />
-              </button>
-              <h2 aria-live="polite" id={`${id}-month`}>
-                {monthLabel}
-              </h2>
-              <button
-                type="button"
-                aria-label={japanese ? "次の月" : "Next month"}
-                disabled={
-                  !!max &&
-                  iso(new Date(date.getFullYear(), date.getMonth() + 1, 1)) >
-                    max
-                }
-                onClick={() => move(shiftMonth(date, 1))}
-              >
-                <CaretRightIcon size={16} />
-              </button>
-            </header>
-            <table
-              role="grid"
-              aria-labelledby={`${id}-month`}
-              onKeyDown={keyboard}
-            >
-              <thead>
-                <tr>
-                  {days.slice(0, 7).map((day) => (
-                    <th
-                      key={day.getDay()}
-                      scope="col"
-                      abbr={new Intl.DateTimeFormat(locale, {
-                        weekday: "long",
-                      }).format(day)}
-                    >
-                      {new Intl.DateTimeFormat(locale, {
-                        weekday: "short",
-                      }).format(day)}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {Array.from({ length: 6 }, (_, week) => (
-                  <tr key={week}>
-                    {days.slice(week * 7, week * 7 + 7).map((day) => {
-                      const key = iso(day);
-                      return (
-                        <td key={key} aria-selected={value === key}>
-                          <button
-                            type="button"
-                            data-date={key}
-                            data-outside={
-                              day.getMonth() !== date.getMonth() || undefined
-                            }
-                            aria-label={new Intl.DateTimeFormat(locale, {
-                              dateStyle: "full",
-                            }).format(day)}
-                            aria-current={
-                              key === iso(new Date()) ? "date" : undefined
-                            }
-                            disabled={
-                              !!((min && key < min) || (max && key > max))
-                            }
-                            tabIndex={focused === key ? 0 : -1}
-                            onFocus={() => setFocused(key)}
-                            onClick={() => {
-                              choose(key);
-                              close();
-                            }}
-                          >
-                            {day.getDate()}
-                          </button>
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <Calendar
+              key={round}
+              label={`${label}: ${japanese ? "カレンダー" : "calendar"}`}
+              value={value}
+              onValueChange={(next) => {
+                choose(next);
+                close();
+              }}
+              min={min}
+              max={max}
+              locale={locale}
+              defaultFocusedDate={start}
+              autoFocus
+            />
             <footer>
-              <button type="button" onClick={() => move(new Date())}>
+              <button
+                type="button"
+                onClick={() => {
+                  setStart(clamp(iso(new Date())));
+                  setRound(round + 1);
+                }}
+              >
                 {japanese ? "今日" : "Today"}
               </button>
               <button type="button" onClick={close}>

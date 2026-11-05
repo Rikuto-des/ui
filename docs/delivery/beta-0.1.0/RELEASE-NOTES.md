@@ -1,8 +1,10 @@
 # Urushi 0.1.0-beta.1
 
-Urushiの最初のβ候補です。Reactの52コンポーネント、Graphite・Lucentの2つのパック、実装を検査・更新するCLIを収録しています。β期間中はAPIや見た目を変更する場合があります。
+Urushiの最初のβ候補です。Reactの55コンポーネント、Graphite・Lucentの2つのパック、実装を検査・更新するCLIを収録しています。β期間中はAPIや見た目を変更する場合があります。
 
 Navigation Menuのホバー追従とパネル変形、非同期検索に対応したCombobox、Urushiのコンポーネントで作ったStudioのサンプルアプリを試せます。Lucentでは色だけでなく、角丸・余白・文字・動作時間も変わります。アイコンにはPhosphorを使っています。
+
+右クリックで開くContextMenu、アプリの上に並ぶMenubar、ページに置けるCalendar、Menuのサブメニュー（`Menu.Sub`）も収録しました。`urushi mcp`で、CLIのコマンドをMCPのツールとしてAIエージェントに渡せます。
 
 公開前の検証で見つかった、デモの最初の入力が読み込み中に失われる問題を修正しました。Comboboxのプレビューでは、登場アニメーション中も文字の濃さを保つようにしました。
 

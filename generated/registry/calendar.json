@@ -1,0 +1,19 @@
+{
+  "name": "calendar",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/calendar.json",
+  "files": [
+    {
+      "path": "calendar.tsx",
+      "target": "components",
+      "content": "// Installed by urushi add calendar. This wrapper belongs to your application.\nexport { Calendar, type CalendarProps } from \"@urushi/react/calendar\";\n",
+      "hash": "sha256-d0gF7AGV0qI/XK1D0Dx9+UE2dprbVA+vwUpJ4YFR63g="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/calendar.css"
+  ]
+}

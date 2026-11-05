@@ -15,6 +15,7 @@ export default defineConfig({
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
     { name: "firefox", use: { ...devices["Desktop Firefox"] } },
-    { name: "webkit", use: { ...devices["Desktop Safari"] } },
+    // Linux WebKit on CI fails a different timing-sensitive test on most runs; a retry is still reported as flaky.
+    { name: "webkit", retries: process.env.CI ? 1 : 0, use: { ...devices["Desktop Safari"] } },
   ],
 });

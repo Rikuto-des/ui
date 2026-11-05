@@ -117,6 +117,8 @@
       "ButtonGroup",
       "ButtonGroupProps",
       "ButtonProps",
+      "Calendar",
+      "CalendarProps",
       "Card",
       "CardProps",
       "Carousel",
@@ -133,6 +135,9 @@
       "Command",
       "CommandItem",
       "CommandProps",
+      "ContextMenu",
+      "ContextMenuAreaProps",
+      "ContextMenuProps",
       "DataTable",
       "DataTableColumn",
       "DataTableProps",
@@ -169,6 +174,9 @@
       "MenuProps",
       "MenuSeparatorProps",
       "MenuTriggerProps",
+      "Menubar",
+      "MenubarMenuProps",
+      "MenubarProps",
       "Meter",
       "MeterProps",
       "NavigationMenu",
@@ -304,6 +312,11 @@
       "Collapsible",
       "CollapsibleProps"
     ],
+    "@urushi/react/context-menu": [
+      "ContextMenu",
+      "ContextMenuAreaProps",
+      "ContextMenuProps"
+    ],
     "@urushi/react/date-input": [
       "DateInput",
       "DateInputProps"
@@ -357,6 +370,11 @@
       "MenuSeparatorProps",
       "MenuSubProps",
       "MenuTriggerProps"
+    ],
+    "@urushi/react/menubar": [
+      "Menubar",
+      "MenubarMenuProps",
+      "MenubarProps"
     ],
     "@urushi/react/meter": [
       "Meter",
@@ -487,12 +505,14 @@
     "@urushi/react/styles/breadcrumb.css": [],
     "@urushi/react/styles/button-group.css": [],
     "@urushi/react/styles/button.css": [],
+    "@urushi/react/styles/calendar.css": [],
     "@urushi/react/styles/card.css": [],
     "@urushi/react/styles/carousel.css": [],
     "@urushi/react/styles/checkbox.css": [],
     "@urushi/react/styles/collapsible.css": [],
     "@urushi/react/styles/combobox.css": [],
     "@urushi/react/styles/command.css": [],
+    "@urushi/react/styles/context-menu.css": [],
     "@urushi/react/styles/data-table.css": [],
     "@urushi/react/styles/date-input.css": [],
     "@urushi/react/styles/date-picker.css": [],
@@ -506,6 +526,7 @@
     "@urushi/react/styles/kbd.css": [],
     "@urushi/react/styles/link.css": [],
     "@urushi/react/styles/menu.css": [],
+    "@urushi/react/styles/menubar.css": [],
     "@urushi/react/styles/meter.css": [],
     "@urushi/react/styles/navigation-menu.css": [],
     "@urushi/react/styles/otp-input.css": [],
@@ -546,6 +567,12 @@
       "DataTable",
       "DataTableColumn",
       "DataTableProps"
+    ],
+    "@urushi/react/calendar": [
+      "Calendar",
+      "CalendarProps",
+      "isoDate",
+      "parseDate"
     ],
     "@urushi/react/date-picker": [
       "DatePicker",

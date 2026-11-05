@@ -90,29 +90,30 @@ SOFTWARE.
   :is([data-slot="combobox-label"], [data-slot="date-picker-label"]) { font-size:var(--ur-font-size-control); font-weight:var(--ur-font-weight-control); color:var(--ur-color-text); }
   :is([data-slot="combobox-control"], [data-slot="date-picker-control"]) { position:relative; display:flex; align-items:center; }
   :is([data-slot="combobox-input"], [data-slot="date-picker-input"]) { box-sizing:border-box; width:100%; min-width:0; height:var(--ur-control-md); border:1px solid var(--ur-color-border-field); border-radius:var(--ur-radius-control); padding:0 var(--ur-control-padding-md); background:var(--ur-color-field); color:var(--ur-color-text); font:inherit; font-size:var(--ur-font-size-control); box-shadow:var(--ur-shadow-control); }
-  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"]) :focus-visible, [data-slot="date-picker-dialog"] :focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:3px; }
-  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"]) :disabled { opacity:.5; cursor:not-allowed; }
+  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"]) :focus-visible, [data-slot="date-picker-dialog"] :focus-visible, [data-slot="calendar"] :focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:3px; }
+  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"], [data-slot="calendar"]) :disabled { opacity:.5; cursor:not-allowed; }
   [data-slot="date-picker-input"] { padding-inline-end:42px; }
   [data-slot="date-picker-input"]::-webkit-calendar-picker-indicator { display:none; }
   [data-slot="date-picker-trigger"] { position:absolute; inset-inline-end:3px; width:calc(var(--ur-control-md) - 4px); height:calc(100% - 6px); border:0; border-radius:calc(var(--ur-radius-control) - 3px); display:grid; place-items:center; background:transparent; color:var(--ur-color-text-muted); }
   [data-slot="date-picker-dialog"] { box-sizing:border-box; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-panel); background:var(--ur-color-surface-overlay); color:var(--ur-color-text); box-shadow:var(--ur-shadow-dialog); font:inherit; font-size:var(--ur-font-size-control); padding:var(--ur-space-5); max-width:calc(100vw - 32px); max-height:calc(100dvh - 32px); overflow:auto; }
   :is([data-slot="date-picker-dialog"], [data-slot="command"])::backdrop { background:var(--ur-color-backdrop); backdrop-filter:var(--ur-material-backdrop); }
   [data-slot="date-picker-dialog"] { width:320px; }
-  [data-slot="date-picker-dialog"] header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-  [data-slot="date-picker-dialog"] h2 { font-size:var(--ur-font-size-control); font-weight:var(--ur-font-weight-title); margin:0; }
-  [data-slot="date-picker-dialog"] table { border-collapse:collapse; width:100%; table-layout:fixed; }
-  [data-slot="date-picker-dialog"] :is(th,td) { padding:2px; text-align:center; border:0; }
-  [data-slot="date-picker-dialog"] th { font-size:11px; font-weight:400; color:var(--ur-color-text-muted); height:30px; }
-  [data-slot="date-picker-dialog"] button { color:inherit; font:inherit; border:1px solid transparent; background:transparent; border-radius:calc(var(--ur-radius-control) - 2px); cursor:pointer; min-height:calc(var(--ur-control-md) - 4px); min-width:32px; }
-  [data-slot="date-picker-dialog"] td button { width:100%; height:calc(var(--ur-control-md) - 4px); padding:0; }
-  [data-slot="date-picker-dialog"] button[data-outside] { color:var(--ur-color-text-muted); }
-  [data-slot="date-picker-dialog"] button[aria-current="date"] { border-color:var(--ur-color-border-field); }
-  [data-slot="date-picker-dialog"] td[aria-selected="true"] button { background:var(--ur-color-action); color:var(--ur-color-on-action); }
+  [data-slot="calendar"] header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  [data-slot="calendar"] h2 { font-size:var(--ur-font-size-control); font-weight:var(--ur-font-weight-title); margin:0; }
+  [data-slot="calendar"] table { border-collapse:collapse; width:100%; table-layout:fixed; }
+  [data-slot="calendar"] :is(th,td) { padding:2px; text-align:center; border:0; }
+  [data-slot="calendar"] th { font-size:11px; font-weight:400; color:var(--ur-color-text-muted); height:30px; }
+  [data-slot="date-picker-dialog"] button, [data-slot="calendar"] button { color:inherit; font:inherit; border:1px solid transparent; background:transparent; border-radius:calc(var(--ur-radius-control) - 2px); cursor:pointer; min-height:calc(var(--ur-control-md) - 4px); min-width:32px; }
+  [data-slot="calendar"] td button { width:100%; height:calc(var(--ur-control-md) - 4px); padding:0; min-width:24px; }
+  [data-slot="calendar"] button[data-outside] { color:var(--ur-color-text-muted); }
+  [data-slot="calendar"] button[aria-current="date"] { border-color:var(--ur-color-border-field); }
+  [data-slot="calendar"] td[aria-selected="true"] button { background:var(--ur-color-action); color:var(--ur-color-on-action); }
+  [data-slot="calendar"]:not([data-slot="date-picker-dialog"] *) { box-sizing:border-box; inline-size:100%; max-inline-size:320px; padding:var(--ur-space-5); border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-panel); background:var(--ur-color-surface); color:var(--ur-color-text); font-size:var(--ur-font-size-control); }
   [data-slot="date-picker-dialog"] footer { display:flex; justify-content:space-between; border-top:1px solid var(--ur-color-border); padding-top:12px; margin-top:12px; }
-  @media (hover:hover) { [data-slot="date-picker-trigger"]:hover, [data-slot="date-picker-dialog"] button:enabled:hover { background:var(--ur-color-ghost-hover); } }
+  @media (hover:hover) { [data-slot="date-picker-trigger"]:hover, [data-slot="date-picker-dialog"] button:enabled:hover, [data-slot="calendar"] button:enabled:hover { background:var(--ur-color-ghost-hover); } }
   @media (pointer:coarse) { :is([data-slot="combobox-input"], [data-slot="date-picker-input"]) { height:44px; font-size:16px; } }
   @media (prefers-reduced-motion:no-preference) { [data-slot="date-picker-dialog"][open] { animation:ur-client-enter var(--ur-motion-duration-overlay) var(--ur-motion-ease-overlay); } @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
-  @media (forced-colors:active) { [data-slot="date-picker-dialog"] td[aria-selected="true"] button { outline:2px solid Highlight; outline-offset:-2px; } }
+  @media (forced-colors:active) { [data-slot="calendar"] td[aria-selected="true"] button { outline:2px solid Highlight; outline-offset:-2px; } }
 }
 @layer urushi.components {
   @keyframes ur-toast-pending { to { rotate:360deg; } }

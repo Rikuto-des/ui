@@ -13,12 +13,14 @@
 - [Breadcrumb](docs/breadcrumb.md): Where the page sits in the site: a nav with an ordered list of links.
 - [ButtonGroup](docs/button-group.md): Buttons that belong together, joined into one shape (role=group).
 - [Button](docs/button.md): A native <button> that runs or confirms an action.
+- [Calendar](docs/calendar.md): A month of days to pick a date from, always on the page (a booking or schedule view). DatePicker uses the same calendar in its dialog.
 - [Card](docs/card.md): A surface that groups related content, with an optional title, description and footer.
 - [Carousel](docs/carousel.md): Slides in a horizontal scroll-snap strip; where CSS ::scroll-button and ::scroll-marker exist, the browser adds the buttons and dots.
 - [Checkbox](docs/checkbox.md): A native checkbox with its own label.
 - [Collapsible](docs/collapsible.md): One section that opens and closes: a native <details>.
 - [Combobox](docs/combobox.md): 検索して候補を絞り込み、1つの値を選択します。
 - [Command](docs/command.md): コマンドを検索し、キーボードで実行するダイアログです。
+- [ContextMenu](docs/context-menu.md): A menu of actions that opens where the user right-clicks an area, long-presses it on touch, or presses Shift+F10 inside it. Its items are Menu's (Menu.Item, Menu.Separator, Menu.Sub) and behave the same way.
 - [DataTable](docs/data-table.md): 並び替え、ページ送り、行の選択に対応したテーブルです。
 - [DateInput](docs/date-input.md): A native date or time input with the browser's own picker, drawn like Input.
 - [DatePicker](docs/date-picker.md): 日付を直接入力するか、カレンダーから選択します。
@@ -32,6 +34,7 @@
 - [Kbd](docs/kbd.md): A key or keyboard shortcut, in a native <kbd>.
 - [Link](docs/link.md): A native <a> that navigates to another page or place.
 - [Menu](docs/menu.md): A list of actions in a popover (menu button pattern), with optional submenus. Opens without JavaScript; the runtime adds arrow keys, typeahead and submenu hover.
+- [Menubar](docs/menubar.md): A row of menus for an application (ファイル・編集・表示), like a desktop menu bar. Each Menubar.Menu is a trigger and its menu; the items are Menu's (Menu.Item, Menu.Separator, Menu.Sub). Opens without JavaScript; the runtime adds the menubar keyboard model and hover switching.
 - [Meter](docs/meter.md): A measurement within a known range, in a native <meter> that colors itself by low / high / optimum.
 - [NavigationMenu](docs/navigation-menu.md): Site navigation with native disclosures, pointer-intent hover, collision-aware flyouts and responsive inline layout.
 - [OTPInput](docs/otp-input.md): A one-time code field: one native input drawn as separate boxes, with one-time-code autofill.

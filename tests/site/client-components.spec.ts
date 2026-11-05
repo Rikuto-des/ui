@@ -18,6 +18,31 @@ test('DatePicker detail supports keyboard selection and focus restoration',async
   await expect(page.getByLabel('公開日',{exact:true})).toHaveValue('2026-10-31');
   await expect(page.getByRole('button',{name:'公開日: 2026-10-31'})).toBeFocused();
 });
+test('Calendar detail moves with the keyboard, skips days before min and does not steal focus',async({page})=>{
+  await page.goto('/components/calendar/');
+  const calendar=page.locator('main [data-slot="calendar"]').first();
+  await expect(calendar.getByRole('heading',{name:'2026年11月'})).toBeVisible();
+  // Loading the page leaves focus alone.
+  await expect(calendar.locator(':focus')).toHaveCount(0);
+  const selected=calendar.getByRole('button',{name:/2026年11月12日\s*木曜日/});
+  await expect(selected).toHaveAttribute('tabindex','0');
+  await selected.focus();await page.keyboard.press('ArrowDown');
+  await expect(calendar.getByRole('button',{name:/2026年11月19日/})).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('status').filter({hasText:'11月19日'})).toBeVisible();
+  await expect(calendar.locator('td[aria-selected="true"]')).toHaveText('19');
+  await expect(calendar.getByRole('button',{name:/2026年11月4日/})).toBeDisabled();
+  await page.keyboard.press('PageDown');
+  await expect(calendar.getByRole('heading',{name:'2026年12月'})).toBeVisible();
+  await expect(calendar.getByRole('button',{name:/2026年12月19日/})).toBeFocused();
+  // A month button keeps focus, unless the move disables it: then the day takes focus.
+  await calendar.getByRole('button',{name:'前の月'}).click();
+  await expect(calendar.getByRole('heading',{name:'2026年11月'})).toBeVisible();
+  await expect(calendar.getByRole('button',{name:'前の月'})).toBeDisabled();
+  await expect(calendar.getByRole('button',{name:/2026年11月19日/})).toBeFocused();
+  const results=await new AxeBuilder({page}).include('main [data-slot="calendar"]').analyze();
+  expect(results.violations).toEqual([]);
+});
 test('DataTable detail supports mixed selection, sorting and pagination',async({page})=>{
   await page.goto('/components/data-table/');await page.getByRole('checkbox',{name:'Websiteを選択',exact:true}).check();
   await expect(page.getByRole('checkbox',{name:'このページを選択'})).toHaveJSProperty('indeterminate',true);

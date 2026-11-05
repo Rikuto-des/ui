@@ -21,6 +21,7 @@
     "./carousel": "./src/carousel.tsx",
     "./checkbox": "./src/checkbox.tsx",
     "./collapsible": "./src/collapsible.tsx",
+    "./context-menu": "./src/context-menu.tsx",
     "./date-input": "./src/date-input.tsx",
     "./dialog": "./src/dialog.tsx",
     "./empty": "./src/empty.tsx",
@@ -32,6 +33,7 @@
     "./kbd": "./src/kbd.tsx",
     "./link": "./src/link.tsx",
     "./menu": "./src/menu.tsx",
+    "./menubar": "./src/menubar.tsx",
     "./meter": "./src/meter.tsx",
     "./otp-input": "./src/otp-input.tsx",
     "./pagination": "./src/pagination.tsx",
@@ -61,6 +63,7 @@
     "./navigation-menu": "./src/navigation-menu.tsx",
     "./combobox": "./src/combobox.tsx",
     "./data-table": "./src/data-table.tsx",
+    "./calendar": "./src/calendar.tsx",
     "./date-picker": "./src/date-picker.tsx",
     "./command": "./src/command.tsx",
     "./icons": "./src/icons.tsx"

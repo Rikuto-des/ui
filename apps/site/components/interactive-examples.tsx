@@ -26,6 +26,7 @@ function withInteractionReady<Props extends object>({ default: Demo }: { default
 export const InputExample = dynamic(() => import("@/examples/input").then(withInteractionReady));
 export const ButtonExample = dynamic(() => import("@/examples/button").then(withInteractionReady));
 export const ComboboxExample = dynamic(() => import("@/examples/combobox").then(withInteractionReady));
+export const CalendarExample = dynamic(() => import("@/examples/calendar").then(withInteractionReady));
 export const DatePickerExample = dynamic(
   () => import("@/examples/date-picker").then(withInteractionReady),
 );
@@ -56,6 +57,8 @@ export const DialogExample = dynamic(() => import("@/examples/dialog").then(with
 export const EmptyExample = dynamic(() => import("@/examples/empty").then(withInteractionReady));
 export const FieldExample = dynamic(() => import("@/examples/field").then(withInteractionReady));
 export const FileInputExample = dynamic(() => import("@/examples/file-input").then(withInteractionReady));
+export const ContextMenuExample = dynamic(() => import("@/examples/context-menu").then(withInteractionReady));
+export const MenubarExample = dynamic(() => import("@/examples/menubar").then(withInteractionReady));
 export const HoverCardExample = dynamic(() => import("@/examples/hover-card").then(withInteractionReady));
 export const InputGroupExample = dynamic(
   () => import("@/examples/input-group").then(withInteractionReady),

@@ -54,7 +54,7 @@ SOFTWARE.
   /* Top-layer enter/exit. `overlay` keeps the element in the top layer while it
      animates out; browsers without it simply close instantly. */
   [data-slot~="dialog"],
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
     opacity: 0;
     scale: var(--ur-motion-enter-scale, 1);
     transition-property: opacity, scale, display, overlay;
@@ -63,14 +63,14 @@ SOFTWARE.
     transition-behavior: allow-discrete;
   }
   [data-slot~="dialog"][open],
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
     opacity: 1;
     scale: 1;
     transition-duration: var(--ur-motion-duration-overlay, 0s);
   }
   @starting-style {
     [data-slot~="dialog"][open],
-    :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
+    :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"]):popover-open {
       opacity: 0;
       scale: var(--ur-motion-enter-scale, 1);
     }
@@ -103,7 +103,7 @@ SOFTWARE.
   /* Placement of popovers, menus and tooltips: CSS anchor positioning against
      the trigger's anchor-name. Logical sides, so start/end follow the writing
      direction. Fallbacks flip to the opposite side when there is no room. */
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"]) {
     --_offset: var(--ur-popover-offset, 4px);
     inset: auto;
     margin: 0;
@@ -112,30 +112,53 @@ SOFTWARE.
   [data-slot="tooltip"] {
     --_offset: calc(var(--ur-popover-offset, 4px) + 2px);
   }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"] { margin-block-start: var(--_offset); }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"] { margin-block-end: var(--_offset); }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"] { margin-inline-end: var(--_offset); }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"] { margin-inline-start: var(--_offset); }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="start"] { position-area: block-end span-inline-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="center"] { position-area: block-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="end"] { position-area: block-end span-inline-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="start"] { position-area: block-start span-inline-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="center"] { position-area: block-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="end"] { position-area: block-start span-inline-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="start"] { position-area: inline-start span-block-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="center"] { position-area: inline-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="end"] { position-area: inline-start span-block-start; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="start"] { position-area: inline-end span-block-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="center"] { position-area: inline-end; }
-  :is([data-slot="popover"], [data-slot="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="end"] { position-area: inline-end span-block-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"] { margin-block-start: var(--_offset); }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"] { margin-block-end: var(--_offset); }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"] { margin-inline-end: var(--_offset); }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"] { margin-inline-start: var(--_offset); }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="start"] { position-area: block-end span-inline-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="center"] { position-area: block-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="bottom"][data-align="end"] { position-area: block-end span-inline-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="start"] { position-area: block-start span-inline-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="center"] { position-area: block-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="top"][data-align="end"] { position-area: block-start span-inline-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="start"] { position-area: inline-start span-block-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="center"] { position-area: inline-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="start"][data-align="end"] { position-area: inline-start span-block-start; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="start"] { position-area: inline-end span-block-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="center"] { position-area: inline-end; }
+  :is([data-slot="popover"], [data-slot~="menu"], [data-slot="tooltip"], [data-slot="hover-card"])[data-side="end"][data-align="end"] { position-area: inline-end span-block-start; }
   /* A submenu flies out beside its item, its first row level with the item and
      its edge just past the parent menu's. Near the bottom it grows upwards; at
      the side it flips (the margins flip with it). */
-  [data-slot="menu"][data-sub] {
+  [data-slot~="menu"][data-sub] {
     position-area: inline-end span-block-end;
     margin-block-start: calc(-1 * var(--ur-space-2));
     margin-inline-start: calc(var(--ur-space-2) - 2px);
     position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  }
+  /* A context menu hangs from an empty point that the runtime moves to the
+     pointer. Near the bottom or the end edge it flips to the other side. */
+  [data-slot="context-menu-anchor"] {
+    position: fixed;
+    left: var(--_x, 0px);
+    top: var(--_y, 0px);
+    inline-size: 0;
+    block-size: 0;
+    pointer-events: none;
+  }
+  [data-slot~="context-menu"] {
+    --_offset: 2px;
+    margin-inline-start: 2px;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  }
+  /* A menubar's menu hangs below its trigger, lined up with the trigger's start. */
+  [data-slot~="menubar-content"] {
+    --_offset: 6px;
+  }
+  /* A long press opens the menu, not the system's callout. */
+  [data-slot~="context-menu-area"] {
+    -webkit-touch-callout: none;
   }
 
   /* Hints must remain readable when the pointer moves onto their content. */
@@ -351,12 +374,12 @@ SOFTWARE.
 
   @media (prefers-reduced-motion: reduce) {
     [data-slot~="dialog"],
-    :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"]) {
+    :is([data-slot="popover"], [data-slot~="menu"], [data-slot="hover-card"]) {
       scale: 1;
     }
     @starting-style {
       [data-slot~="dialog"][open],
-      :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"]):popover-open {
+      :is([data-slot="popover"], [data-slot~="menu"], [data-slot="hover-card"]):popover-open {
         scale: 1;
       }
       [data-slot="toast"] {
@@ -519,7 +542,7 @@ SOFTWARE.
      Solid surfaces keep form text clear. The pack controls color and depth. */
   [data-slot~="dialog"],
   [data-slot="popover"],
-  [data-slot="menu"],
+  [data-slot~="menu"],
   [data-slot="hover-card"],
   [data-slot="toast"] {
     box-sizing: border-box;
@@ -1279,7 +1302,7 @@ SOFTWARE.
   }
 
   /* Menu ------------------------------------------------------------------- */
-  [data-slot="menu"] {
+  [data-slot~="menu"] {
     min-inline-size: 180px;
     max-inline-size: min(320px, 100vw - 16px);
     padding: var(--ur-space-2);
@@ -1342,11 +1365,11 @@ SOFTWARE.
     scale: -1 1;
   }
   /* The item stays marked while its submenu is open. */
-  [data-slot="menu-sub"]:has(> [data-slot="menu"]:is(:popover-open, [data-inline-open])) > [data-slot~="menu-sub-trigger"] {
+  [data-slot="menu-sub"]:has(> [data-slot~="menu"]:is(:popover-open, [data-inline-open])) > [data-slot~="menu-sub-trigger"] {
     background-color: var(--ur-color-ghost-hover);
   }
   /* In place (narrow screens, set by the runtime): an indented group under the item, its arrow pointing down. */
-  [data-slot="menu"][data-sub][data-inline-open] {
+  [data-slot~="menu"][data-sub][data-inline-open] {
     display: grid;
     position: static;
     inset: auto;
@@ -1367,15 +1390,44 @@ SOFTWARE.
     transition: opacity var(--ur-motion-duration-overlay) var(--ur-motion-ease-out);
   }
   @starting-style {
-    [data-slot="menu"][data-sub][data-inline-open] {
+    [data-slot~="menu"][data-sub][data-inline-open] {
       opacity: 0;
     }
   }
-  [data-slot="menu-sub"]:has(> [data-slot="menu"][data-inline-open]) [data-slot="menu-sub-icon"] {
+  [data-slot="menu-sub"]:has(> [data-slot~="menu"][data-inline-open]) [data-slot="menu-sub-icon"] {
     rotate: 90deg;
   }
-  [data-slot="menu-sub"]:has(> [data-slot="menu"][data-inline-open]) [data-slot="menu-sub-icon"]:dir(rtl) {
+  [data-slot="menu-sub"]:has(> [data-slot~="menu"][data-inline-open]) [data-slot="menu-sub-icon"]:dir(rtl) {
     rotate: -90deg;
+  }
+
+  /* Menubar ---------------------------------------------------------------- */
+  /* A framed row of small ghost buttons; the open menu's trigger stays pressed. */
+  [data-slot="menubar"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    box-sizing: border-box;
+    padding: 3px;
+    border: var(--ur-border-width) solid var(--ur-color-border);
+    border-radius: var(--ur-radius-control);
+    background-color: var(--ur-color-surface);
+  }
+  [data-slot="menubar-menu"] {
+    display: contents;
+  }
+  [data-slot~="menubar-trigger"][data-size="sm"] {
+    block-size: calc(var(--ur-control-sm) - 2px);
+    border-radius: calc(var(--ur-radius-control) - 3px);
+    font-weight: inherit;
+  }
+  [data-slot~="menubar-trigger"]:active:not(:disabled) {
+    scale: none;
+  }
+  [data-slot="menubar-menu"]:has(> [data-slot~="menu"]:popover-open) > [data-slot~="menubar-trigger"] {
+    background-color: var(--ur-color-ghost-hover);
   }
 
   /* Tabs ------------------------------------------------------------------- */
@@ -2625,7 +2677,7 @@ SOFTWARE.
     [data-slot="card"],
     [data-slot~="dialog"],
     [data-slot="popover"],
-    [data-slot="menu"],
+    [data-slot~="menu"],
     [data-slot="hover-card"],
     [data-slot="toast"],
     [data-slot="alert"],
@@ -2655,7 +2707,7 @@ SOFTWARE.
     [data-slot~="sheet"] {
       --_sheet-radius: var(--ur-radius-squircle-dialog);
     }
-    :is([data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"], [data-slot="toast"]) {
+    :is([data-slot="popover"], [data-slot~="menu"], [data-slot="hover-card"], [data-slot="toast"]) {
       border-radius: var(--ur-radius-squircle-overlay);
     }
   }
@@ -2732,7 +2784,7 @@ SOFTWARE.
   @media (forced-colors: active) {
     [data-slot~="button"], [data-slot~="input"], [data-slot="textarea"], [data-slot="select"],
     [data-slot="input-group"], [data-slot="otp-input"], [data-slot="file-input"],
-    [data-slot~="dialog"], [data-slot="popover"], [data-slot="menu"], [data-slot="hover-card"],
+    [data-slot~="dialog"], [data-slot="popover"], [data-slot~="menu"], [data-slot="hover-card"],
     [data-slot="tooltip"], [data-slot="toast"], [data-slot="card"], [data-slot="alert"] {
       border: 1px solid CanvasText;
     }
@@ -2778,8 +2830,8 @@ SOFTWARE.
   [data-slot="combobox-input"] { padding-inline-end:32px; }
   [data-slot="combobox-chevron"] { position:absolute; inset-inline-end:12px; pointer-events:none; color:var(--ur-color-text-muted); }
   :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"]) :focus-visible,
-  [data-slot="date-picker-dialog"] :focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:3px; }
-  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"]) :disabled { opacity:.5; cursor:not-allowed; }
+  [data-slot="date-picker-dialog"] :focus-visible, [data-slot="calendar"] :focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:3px; }
+  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"], [data-slot="calendar"]) :disabled { opacity:.5; cursor:not-allowed; }
   [data-slot="combobox-popup"] { box-sizing:border-box; position:fixed; inset:auto; margin:0; padding:4px; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-overlay); background:var(--ur-color-surface-overlay); color:var(--ur-color-text); box-shadow:var(--ur-shadow-overlay); overflow:auto; overscroll-behavior:contain; font:inherit; font-size:13px; }
   [data-slot="combobox-retry"] { display:block; margin:0 auto 8px; min-height:32px; padding:4px 12px; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-control); background:var(--ur-color-surface-overlay); color:var(--ur-color-text); font:inherit; cursor:pointer; }
   [data-slot="combobox-retry"]:hover { background:var(--ur-color-ghost-hover); }
@@ -2795,16 +2847,18 @@ SOFTWARE.
   [data-slot="date-picker-dialog"], [data-slot="command"] { box-sizing:border-box; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-panel); background:var(--ur-color-surface-overlay); color:var(--ur-color-text); box-shadow:var(--ur-shadow-dialog); font:inherit; font-size:var(--ur-font-size-control); padding:var(--ur-space-5); max-width:calc(100vw - 32px); max-height:calc(100dvh - 32px); overflow:auto; }
   :is([data-slot="date-picker-dialog"], [data-slot="command"])::backdrop { background:var(--ur-color-backdrop); backdrop-filter:var(--ur-material-backdrop); }
   [data-slot="date-picker-dialog"] { width:320px; }
-  [data-slot="date-picker-dialog"] header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-  [data-slot="date-picker-dialog"] h2 { font-size:var(--ur-font-size-control); font-weight:var(--ur-font-weight-title); margin:0; }
-  [data-slot="date-picker-dialog"] table { border-collapse:collapse; width:100%; table-layout:fixed; }
-  [data-slot="date-picker-dialog"] :is(th,td) { padding:2px; text-align:center; border:0; }
-  [data-slot="date-picker-dialog"] th { font-size:11px; font-weight:400; color:var(--ur-color-text-muted); height:30px; }
-  [data-slot="date-picker-dialog"] button, [data-slot="data-table"] button { color:inherit; font:inherit; border:1px solid transparent; background:transparent; border-radius:calc(var(--ur-radius-control) - 2px); cursor:pointer; min-height:calc(var(--ur-control-md) - 4px); min-width:32px; }
-  [data-slot="date-picker-dialog"] td button { width:100%; height:calc(var(--ur-control-md) - 4px); padding:0; }
-  [data-slot="date-picker-dialog"] button[data-outside] { color:var(--ur-color-text-muted); }
-  [data-slot="date-picker-dialog"] button[aria-current="date"] { border-color:var(--ur-color-border-field); }
-  [data-slot="date-picker-dialog"] td[aria-selected="true"] button { background:var(--ur-color-action); color:var(--ur-color-on-action); }
+  [data-slot="calendar"] header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  [data-slot="calendar"] h2 { font-size:var(--ur-font-size-control); font-weight:var(--ur-font-weight-title); margin:0; }
+  [data-slot="calendar"] table { border-collapse:collapse; width:100%; table-layout:fixed; }
+  [data-slot="calendar"] :is(th,td) { padding:2px; text-align:center; border:0; }
+  [data-slot="calendar"] th { font-size:11px; font-weight:400; color:var(--ur-color-text-muted); height:30px; }
+  [data-slot="date-picker-dialog"] button, [data-slot="calendar"] button, [data-slot="data-table"] button { color:inherit; font:inherit; border:1px solid transparent; background:transparent; border-radius:calc(var(--ur-radius-control) - 2px); cursor:pointer; min-height:calc(var(--ur-control-md) - 4px); min-width:32px; }
+  [data-slot="calendar"] td button { width:100%; height:calc(var(--ur-control-md) - 4px); padding:0; min-width:24px; }
+  [data-slot="calendar"] button[data-outside] { color:var(--ur-color-text-muted); }
+  [data-slot="calendar"] button[aria-current="date"] { border-color:var(--ur-color-border-field); }
+  [data-slot="calendar"] td[aria-selected="true"] button { background:var(--ur-color-action); color:var(--ur-color-on-action); }
+  /* On its own, the calendar is a panel like the DatePicker dialog, without the dialog's shadow. */
+  [data-slot="calendar"]:not([data-slot="date-picker-dialog"] *) { box-sizing:border-box; inline-size:100%; max-inline-size:320px; padding:var(--ur-space-5); border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-panel); background:var(--ur-color-surface); color:var(--ur-color-text); font-size:var(--ur-font-size-control); }
   [data-slot="date-picker-dialog"] footer { display:flex; justify-content:space-between; border-top:1px solid var(--ur-color-border); padding-top:12px; margin-top:12px; }
   [data-slot="data-table"] { min-width:0; width:100%; color:var(--ur-color-text); font-size:13px; }
   [data-slot="data-table-scroll"] { position:relative; background:var(--ur-color-surface); overflow:auto; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-control); }
@@ -2827,10 +2881,10 @@ SOFTWARE.
   [data-slot="command-item"] kbd { color:var(--ur-color-text-muted); font:inherit; font-size:11px; }
   [data-slot="command"] footer { border-top:1px solid var(--ur-color-border); padding:10px 16px; color:var(--ur-color-text-muted); font-size:11px; }
   [data-slot="command"] footer span { margin-inline:4px 16px; }
-  @media (hover:hover) { [data-slot="date-picker-trigger"]:hover, [data-slot="date-picker-dialog"] button:enabled:hover, [data-slot="data-table"] button:enabled:hover { background:var(--ur-color-ghost-hover); } }
+  @media (hover:hover) { [data-slot="date-picker-trigger"]:hover, [data-slot="date-picker-dialog"] button:enabled:hover, [data-slot="calendar"] button:enabled:hover, [data-slot="data-table"] button:enabled:hover { background:var(--ur-color-ghost-hover); } }
   @media (pointer:coarse) { :is([data-slot="combobox-input"], [data-slot="date-picker-input"]) { height:44px; font-size:16px; } :is([data-slot="combobox-option"], [data-slot="command-item"]) { min-height:44px; } }
   @media (prefers-reduced-motion:no-preference) { [data-slot="command"][open], [data-slot="date-picker-dialog"][open] { animation:ur-client-enter var(--ur-motion-duration-overlay) var(--ur-motion-ease-overlay); } @keyframes ur-client-enter { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } } }
-  @media (forced-colors:active) { [data-slot="combobox-option"][data-active], [data-slot="command-item"][aria-selected="true"], [data-slot="date-picker-dialog"] td[aria-selected="true"] button { outline:2px solid Highlight; outline-offset:-2px; } }
+  @media (forced-colors:active) { [data-slot="combobox-option"][data-active], [data-slot="command-item"][aria-selected="true"], [data-slot="calendar"] td[aria-selected="true"] button { outline:2px solid Highlight; outline-offset:-2px; } }
 }
 
 /* Context previews and continuous feedback. No animation dependency. */
@@ -4066,6 +4120,44 @@ body {
 .g-row-label {
   flex: 1;
   font-size: 14px;
+}
+.g-files {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px dashed var(--ur-color-border);
+  border-radius: var(--ur-radius-control, 8px);
+}
+.g-files-hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ur-color-text-muted);
+}
+.g-files ul {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.g-files button {
+  inline-size: 100%;
+  min-block-size: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ur-color-text);
+  font: inherit;
+  font-size: 14px;
+  text-align: start;
+}
+.g-files button:hover {
+  background: var(--ur-color-ghost-hover);
+}
+.g-files button:focus-visible {
+  outline: 2px solid var(--ur-color-focus-ring);
+  outline-offset: -2px;
 }
 .g-stack {
   display: grid;

@@ -15,8 +15,9 @@
  */
 const ITEM = '[data-slot~="menu-item"]';
 const SUB_TRIGGER = '[data-slot~="menu-sub-trigger"]';
-const MENU = '[data-slot="menu"]';
-const ROOT_MENU = '[data-slot="menu"]:not([data-sub])';
+// "~=": a ContextMenu is a menu too (data-slot="context-menu menu").
+const MENU = '[data-slot~="menu"]';
+const ROOT_MENU = '[data-slot~="menu"]:not([data-sub])';
 type Point = { x: number; y: number };
 
 /** The items of this menu only, not those of its submenus. */
@@ -89,7 +90,7 @@ export function installMenus(doc: Document = document): () => void {
 
   const onToggle = (event: Event) => {
     const menu = event.target;
-    if (!(menu instanceof HTMLElement) || menu.dataset.slot !== "menu") return;
+    if (!(menu instanceof HTMLElement) || !menu.matches(MENU)) return;
     const open = (event as ToggleEvent).newState === "open";
     if (menu.hasAttribute("data-sub")) {
       if (!open && corridor?.sub === menu) corridor = undefined;
@@ -107,7 +108,7 @@ export function installMenus(doc: Document = document): () => void {
 
   const onTriggerKey = (event: KeyboardEvent, trigger: HTMLElement) => {
     const menu = doc.getElementById(trigger.getAttribute("popovertarget") ?? "");
-    if (!menu || menu.dataset.slot !== "menu") return;
+    if (!menu?.matches(MENU)) return;
     event.preventDefault();
     const last = event.key === "ArrowUp";
     if (menu.matches(":popover-open")) {

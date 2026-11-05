@@ -87,7 +87,7 @@ SOFTWARE.
 }
 @layer urushi.components {
   :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"]) :focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:3px; }
-  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"]) :disabled { opacity:.5; cursor:not-allowed; }
+  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"], [data-slot="calendar"]) :disabled { opacity:.5; cursor:not-allowed; }
   :is([data-slot="combobox-option"], [data-slot="command-item"]) { display:flex; align-items:center; justify-content:space-between; gap:var(--ur-space-5); min-height:var(--ur-control-md); padding:7px var(--ur-space-4); border-radius:calc(var(--ur-radius-control) - 3px); cursor:default; }
   :is([data-slot="combobox-option"], [data-slot="command-item"]) small { display:block; color:var(--ur-color-text-muted); font-size:12px; margin-top:3px; }
   [data-slot="command-item"][aria-selected="true"] { background:var(--ur-color-ghost-hover); outline:1px solid var(--ur-color-border); outline-offset:-1px; }

@@ -1,0 +1,19 @@
+{
+  "name": "menubar",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/menubar.json",
+  "files": [
+    {
+      "path": "menubar.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add menubar`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the Menubar page of the design system.\n// Its items are Menu's (Menu.Item, Menu.Separator, Menu.Sub), so Menu comes with it.\nexport { Menubar, type MenubarMenuProps, type MenubarProps } from \"@urushi/react/menubar\";\nexport { Menu } from \"@urushi/react/menu\";\n",
+      "hash": "sha256-PZsCikfrpziFzVhyrChn4rUMEfaRJtyrQWnc4XQ6Hu0="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/menubar.css"
+  ]
+}

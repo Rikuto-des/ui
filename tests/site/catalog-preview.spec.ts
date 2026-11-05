@@ -7,8 +7,8 @@ test.beforeEach(async({page})=>{
 });
 const item=(page:import('@playwright/test').Page,slug:string)=>page.locator(`.catalog-grid > li[data-component="${slug}"]`);
 
-test('all 52 entries contain real previews without nested interactive links or duplicate IDs',async({page})=>{
-  await expect(page.locator('.catalog-grid > li')).toHaveCount(52);
+test('all 55 entries contain real previews without nested interactive links or duplicate IDs',async({page})=>{
+  await expect(page.locator('.catalog-grid > li')).toHaveCount(55);
   const result=await page.locator('.catalog-grid').evaluate(el=>({
     missing:[...el.querySelectorAll(':scope > li')].filter(li=>!li.querySelector('.catalog-preview [data-slot]')).map(li=>li.getAttribute('data-component')),
     nested:el.querySelectorAll('.catalog-details :is(button,input,select,textarea,a)').length,

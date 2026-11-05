@@ -4,16 +4,24 @@ import { mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createInterface } from "node:readline";
-import { test } from "node:test";
+import { afterEach, test } from "node:test";
 import { init } from "../src/add.ts";
 import { SUPPORTED_PROTOCOL_VERSIONS } from "../src/mcp.ts";
 
 const bin = join(import.meta.dirname, "../src/bin.ts");
 const registry = join(import.meta.dirname, "../../../generated/registry");
 
+// A failed assertion skips close(): a server left running would keep the test file from ending.
+const running = new Set<ReturnType<typeof spawn>>();
+afterEach(() => {
+  for (const child of running) child.kill();
+  running.clear();
+});
+
 /** Starts `urushi mcp` as a real process and talks to it over stdio, as an MCP client does. */
 function client(cwd: string) {
   const child = spawn(process.execPath, [bin, "mcp", "--cwd", cwd], { stdio: ["pipe", "pipe", "pipe"] });
+  running.add(child);
   const waiting = new Map<number | string | null, (reply: Record<string, unknown>) => void>();
   const stdout: string[] = [];
   createInterface({ input: child.stdout }).on("line", (line) => {
@@ -109,9 +117,9 @@ test("mcp: negotiates the protocol version, and reports bad input the right way"
   assert.equal(((await c.raw("{not json", null)) as { error: { code: number } }).error.code, -32700);
 
   // A tool that fails is a result the model can read, not a protocol error.
-  const missing = (await c.request("tools/call", { name: "describe_component", arguments: { name: "Calendar" } })) as { result: ToolResult };
+  const missing = (await c.request("tools/call", { name: "describe_component", arguments: { name: "Stepper" } })) as { result: ToolResult };
   assert.equal(missing.result.isError, true);
-  assert.match(missing.result.content[0].text, /Unknown component "Calendar"\. Available: accordion/);
+  assert.match(missing.result.content[0].text, /Unknown component "Stepper"\. Available: accordion/);
 
   // check_project paths stay inside the project.
   const escape = (await c.request("tools/call", { name: "check_project", arguments: { project: "../elsewhere/tsconfig.json" } })) as { result: ToolResult };

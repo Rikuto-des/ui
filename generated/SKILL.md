@@ -153,6 +153,18 @@ Not for: Navigating to another page (use link); Toggling a setting on and off (u
 <Button variant="primary" type="submit">Save</Button>
 ```
 
+### Calendar — A month of days to pick a date from, always on the page (a booking or schedule view). DatePicker uses the same calendar in its dialog.
+
+Use for: Choosing a date while the month stays in view (予約日・配達日を選ぶ).
+Not for: A date field in a form (use date-picker); A date the user already knows and types (use date-input).
+- `<Calendar>` requires `label`.
+- Give a label that says what the date is for.
+- Show the chosen date in words next to the calendar as well; a highlighted day alone is easy to miss.
+
+```tsx
+<Calendar label="配達日" defaultValue="2026-11-12" min="2026-11-05" locale="ja" />
+```
+
 ### Card — A surface that groups related content, with an optional title, description and footer.
 
 Use for: A self-contained group of content or settings.
@@ -226,6 +238,28 @@ Not for: 検索や複雑な操作が不要な場合 (use menu).
 
 ```tsx
 <Command label="コマンド" open={open} onOpenChange={setOpen} items={[{id:"new",label:"作成",onSelect: createProject}]} />
+```
+
+### ContextMenu — A menu of actions that opens where the user right-clicks an area, long-presses it on touch, or presses Shift+F10 inside it. Its items are Menu's (Menu.Item, Menu.Separator, Menu.Sub) and behave the same way.
+
+Use for: Shortcuts for actions on an item in a list, a file or a canvas (名前を変更・複製・削除).
+Not for: The only way to reach an action (use menu); Actions on a button the user clicks (use menu).
+- `<ContextMenu>` requires `id`, `label`.
+- `<ContextMenu.Area>` requires `menu`.
+- A context menu is hidden: every action in it must also be reachable another way (a Menu.Trigger, a button or a shortcut).
+- Items are verbs (名前を変更, 複製, 削除).
+- Put destructive items last, after a Menu.Separator.
+
+```tsx
+<ContextMenu.Area menu="file-actions">
+  <ul>…</ul>
+</ContextMenu.Area>
+<ContextMenu id="file-actions" label="ファイルの操作">
+  <Menu.Item shortcut="F2">名前を変更</Menu.Item>
+  <Menu.Item>複製</Menu.Item>
+  <Menu.Separator />
+  <Menu.Item variant="danger">削除</Menu.Item>
+</ContextMenu>
 ```
 
 ### DataTable — 並び替え、ページ送り、行の選択に対応したテーブルです。
@@ -410,6 +444,29 @@ Not for: Choosing a value (use select); Navigation (use link).
   <Menu.Separator />
   <Menu.Item variant="danger">削除</Menu.Item>
 </Menu>
+```
+
+### Menubar — A row of menus for an application (ファイル・編集・表示), like a desktop menu bar. Each Menubar.Menu is a trigger and its menu; the items are Menu's (Menu.Item, Menu.Separator, Menu.Sub). Opens without JavaScript; the runtime adds the menubar keyboard model and hover switching.
+
+Use for: The command menus of an editor or a tool that works like a desktop application.
+Not for: Site navigation (use navigation-menu); A few actions on one item (use menu).
+- `<Menubar>` requires `label`.
+- `<Menubar.Menu>` requires `label`.
+- Name each menu with one short noun (ファイル, 編集, 表示).
+- Keep the bar to the menus of one application; links between pages belong in NavigationMenu.
+- Show shortcuts with Menu.Item's shortcut; the app registers them.
+
+```tsx
+<Menubar label="ノートのメニュー">
+  <Menubar.Menu label="ファイル">
+    <Menu.Item shortcut="⌘N">新しいノート</Menu.Item>
+    <Menu.Item shortcut="⌘O">開く…</Menu.Item>
+  </Menubar.Menu>
+  <Menubar.Menu label="編集">
+    <Menu.Item shortcut="⌘Z">元に戻す</Menu.Item>
+    <Menu.Item shortcut="⇧⌘Z">やり直す</Menu.Item>
+  </Menubar.Menu>
+</Menubar>
 ```
 
 ### Meter — A measurement within a known range, in a native <meter> that colors itself by low / high / optimum.

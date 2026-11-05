@@ -3,6 +3,7 @@ import {
   ButtonExample,
   InputExample,
   ComboboxExample,
+  CalendarExample,
   DatePickerExample,
   DataTableExample,
   CommandExample,
@@ -23,6 +24,8 @@ import {
   EmptyExample,
   FieldExample,
   FileInputExample,
+  ContextMenuExample,
+  MenubarExample,
   HoverCardExample,
   InputGroupExample,
   KbdExample,
@@ -57,6 +60,7 @@ import {
 /** The live example of each component page; its source file is shown below it. */
 export const examples: Record<string, ComponentType> = {
   combobox: ComboboxExample,
+  calendar: CalendarExample,
   "date-picker": DatePickerExample,
   "data-table": DataTableExample,
   command: CommandExample,
@@ -79,6 +83,8 @@ export const examples: Record<string, ComponentType> = {
   empty: EmptyExample,
   field: FieldExample,
   "file-input": FileInputExample,
+  "context-menu": ContextMenuExample,
+  menubar: MenubarExample,
   "hover-card": HoverCardExample,
   input: InputExample,
   "input-group": InputGroupExample,

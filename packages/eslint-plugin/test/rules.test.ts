@@ -338,7 +338,7 @@ tester.run("valid-import", rules["valid-import"], {
     { code: `import { TextArea } from "@urushi/react";`, errors: [{ message: /Textarea のことですか/ }] },
     { code: `import { TextField, Stack } from "@urushi/react";`, errors: [{ message: /<Field id="…" label="…"> の中に <Input>/ }, { message: /HTML の要素/ }] },
     { code: `import { UrushiRuntime } from "@urushi/react";`, errors: [{ message: /"@urushi\/react\/runtime" から import/ }] },
-    { code: `import { Calendar } from "@urushi/react";`, errors: [{ message: /コンポーネントは Accordion・AlertDialog・Alert/ }] },
+    { code: `import { Stepper } from "@urushi/react";`, errors: [{ message: /コンポーネントは Accordion・AlertDialog・Alert/ }] },
     { code: `import { Tab, TabList, TabPanel } from "@urushi/react";`, errors: [{ message: /<Tabs\.Tab value="…">/ }, { message: /<Tabs\.List>/ }, { message: /<Tabs\.Panel value="…">/ }] },
     { code: `import { Tabs } from "@urushi/react"; const x = <Tabs.Trigger value="a">A</Tabs.Trigger>;`, errors: [{ message: /<Tabs\.Trigger> はありません。<Tabs\.Tab value="…"> を使ってください。/ }] },
     { code: `import { Dialog as D } from "@urushi/react"; const x = <D.Content />;`, errors: [{ message: /<D\.Content> はありません。<Dialog id="…" title="…"> そのものが入れ物です/ }] },

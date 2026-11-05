@@ -179,6 +179,44 @@
   flex: 1;
   font-size: 14px;
 }
+.g-files {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px dashed var(--ur-color-border);
+  border-radius: var(--ur-radius-control, 8px);
+}
+.g-files-hint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ur-color-text-muted);
+}
+.g-files ul {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.g-files button {
+  inline-size: 100%;
+  min-block-size: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ur-color-text);
+  font: inherit;
+  font-size: 14px;
+  text-align: start;
+}
+.g-files button:hover {
+  background: var(--ur-color-ghost-hover);
+}
+.g-files button:focus-visible {
+  outline: 2px solid var(--ur-color-focus-ring);
+  outline-offset: -2px;
+}
 .g-stack {
   display: grid;
   justify-items: start;

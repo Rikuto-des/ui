@@ -9,7 +9,7 @@ export async function Example({ slug }: { slug: string }) {
   const Demo = examples[slug];
   const source = await readFile(join(process.cwd(), "examples", `${slug}.tsx`), "utf8");
   const layout = ["dialog", "alert-dialog", "sheet", "popover", "menu", "tooltip", "hover-card", "avatar", "badge", "spinner", "toggle", "toggle-group", "button-group", "kbd"].includes(slug) ? "compact" : ["navigation-menu", "data-table", "table", "carousel", "sidebar", "button"].includes(slug) ? "wide" : "standard";
-  const guidance = ["checkbox", "switch", "toggle"].includes(slug) ? "Tabで移動し、Spaceで切り替えられます。" : ["tabs", "radio-group", "toggle-group"].includes(slug) ? "Tabで移動し、矢印キーで選択できます。" : ["dialog", "sheet", "popover", "menu", "tooltip", "hover-card", "navigation-menu"].includes(slug) ? "キーボードでも操作できます。Escapeで閉じられます。" : undefined;
+  const guidance = ["checkbox", "switch", "toggle"].includes(slug) ? "Tabで移動し、Spaceで切り替えられます。" : ["tabs", "radio-group", "toggle-group"].includes(slug) ? "Tabで移動し、矢印キーで選択できます。" : ["context-menu"].includes(slug) ? "Shift+F10 か Menu キーでも開けます。Escapeで閉じられます。" : ["menubar"].includes(slug) ? "左右の矢印でメニューを移り、↓で開きます。Escapeで閉じられます。" : ["dialog", "sheet", "popover", "menu", "tooltip", "hover-card", "navigation-menu"].includes(slug) ? "キーボードでも操作できます。Escapeで閉じられます。" : undefined;
   return (
     <div className="example" data-layout={layout}>
       <Tabs id={`example-${slug}`} label={`${slug} example`} defaultValue="preview">

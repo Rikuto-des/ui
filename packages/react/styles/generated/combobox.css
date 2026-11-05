@@ -93,7 +93,7 @@ SOFTWARE.
   [data-slot="combobox-input"] { padding-inline-end:32px; }
   [data-slot="combobox-chevron"] { position:absolute; inset-inline-end:12px; pointer-events:none; color:var(--ur-color-text-muted); }
   :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"]) :focus-visible { outline:2px solid var(--ur-color-focus-ring); outline-offset:3px; }
-  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"]) :disabled { opacity:.5; cursor:not-allowed; }
+  :is([data-slot="combobox"], [data-slot="date-picker"], [data-slot="data-table"], [data-slot="command"], [data-slot="date-picker-dialog"], [data-slot="calendar"]) :disabled { opacity:.5; cursor:not-allowed; }
   [data-slot="combobox-popup"] { box-sizing:border-box; position:fixed; inset:auto; margin:0; padding:4px; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-overlay); background:var(--ur-color-surface-overlay); color:var(--ur-color-text); box-shadow:var(--ur-shadow-overlay); overflow:auto; overscroll-behavior:contain; font:inherit; font-size:13px; }
   [data-slot="combobox-retry"] { display:block; margin:0 auto 8px; min-height:32px; padding:4px 12px; border:1px solid var(--ur-color-border); border-radius:var(--ur-radius-control); background:var(--ur-color-surface-overlay); color:var(--ur-color-text); font:inherit; cursor:pointer; }
   [data-slot="combobox-retry"]:hover { background:var(--ur-color-ghost-hover); }

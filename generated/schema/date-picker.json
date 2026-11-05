@@ -1,5 +1,8 @@
 {
   "name": "date-picker",
+  "styleDependencies": [
+    "calendar"
+  ],
   "tier": 3,
   "summary": "日付を直接入力するか、カレンダーから選択します。",
   "use": [

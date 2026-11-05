@@ -109,6 +109,23 @@ for (const pack of ["graphite", "lucent"]) {
         expect(await scan(page, "#task-menu")).toEqual([]);
       });
 
+      test("a menubar with a menu open has no violations", async ({ page }) => {
+        const bar = page.getByRole("menubar", { name: "ノートのメニュー" });
+        await bar.getByRole("menuitem", { name: "編集", exact: true }).focus();
+        await page.keyboard.press("ArrowDown");
+        await expect(page.getByRole("menuitem", { name: "元に戻す" })).toBeFocused();
+        expect(await scan(page, '[data-testid="menubar"]')).toEqual([]);
+      });
+
+      test("an open context menu has no violations", async ({ page }) => {
+        const file = page.getByTestId("file-area").getByRole("button", { name: "企画書.pdf" });
+        await file.focus();
+        await page.keyboard.press("Shift+F10");
+        await expect(page.getByTestId("file-menu").getByRole("menuitem", { name: "開く" })).toBeFocused();
+        expect(await scan(page, "#file-menu")).toEqual([]);
+        expect(await scan(page, '[data-testid="file-area"]')).toEqual([]);
+      });
+
       test("an open alert dialog, sheet and hover card have no violations", async ({ page }) => {
         await page.getByTestId("open-delete").click();
         await expect(page.getByTestId("delete-dialog")).toBeVisible();

@@ -18,7 +18,7 @@ export default async function Home() {
           <div className="hero-text">
             <a className="hero-announcement" href="/components/navigation-menu/">Navigation Menuのパネルがなめらかに切り替わります<span aria-hidden="true">→</span></a>
             <h1 id="hero-title">Beautiful UI.<br />Built to evolve.</h1>
-            <p className="lede">52のReactコンポーネントでUIを作れます。<br />デザインを整えながら、AIが書いたコードを仕様に照らして検証できます。</p>
+            <p className="lede">55のReactコンポーネントでUIを作れます。<br />デザインを整えながら、AIが書いたコードを仕様に照らして検証できます。</p>
             <div className="cta">
               <a className="cta-primary" href="/docs/">Get Started <span aria-hidden="true">→</span></a>
               <a className="cta-secondary" href="/components/">View Components</a>

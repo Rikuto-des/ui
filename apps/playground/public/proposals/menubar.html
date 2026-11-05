@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja" data-pack="graphite" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menubar の見た目 — 比較</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="./menubar.css">
+</head>
+<body>
+<div class="review" role="toolbar" aria-label="表示の切り替え">
+  <b>Menubar の比較</b>
+  <div class="seg" role="group" aria-label="パック">
+    <button type="button" data-set-pack="graphite" aria-pressed="true">Graphite</button>
+    <button type="button" data-set-pack="lucent" aria-pressed="false">Lucent</button>
+  </div>
+  <div class="seg" role="group" aria-label="テーマ">
+    <button type="button" data-set-theme="light" aria-pressed="true">ライト</button>
+    <button type="button" data-set-theme="dark" aria-pressed="false">ダーク</button>
+  </div>
+</div>
+<div class="site s">
+<header class="s-head wrap">
+  <h1>Menubar の見た目</h1>
+  <p class="lede">同じノートアプリのメニューバーを 3 つの形で作りました。「ファイル」などを押してメニューを開き、開いたまま隣の項目にポインタを動かすと、メニューが切り替わります。中のメニューは今の Menu と同じです。</p>
+  <p class="s-reco"><b>おすすめは A です。</b>置く場所を選ばず、ほかの部品と押し心地がそろいます。上端の帯（B）にしたいときは、バーの枠を消す指定で近い見た目にできます。</p>
+</header>
+<div class="s-grid wrap">
+<section class="s-col" aria-labelledby="s-a-title">
+  <h2 id="s-a-title">A 囲んだバー</h2>
+  <div class="s-stage"><div class="m-window" data-option="a">
+  <div role="menubar" aria-label="ノートのメニュー" class="m-bar"><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="0" popovertarget="a-file" style="anchor-name:--a-file">ファイル</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="a-edit" style="anchor-name:--a-edit">編集</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="a-view" style="anchor-name:--a-view">表示</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="a-help" style="anchor-name:--a-help">ヘルプ</button></div>
+  <div id="a-file" popover="auto" role="menu" aria-label="ファイル" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--a-file"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">新しいノート</span><kbd aria-hidden="true">⌘N</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">開く…</span><kbd aria-hidden="true">⌘O</kbd></button><div role="separator" data-slot="menu-separator"></div><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">書き出す…</span></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">印刷…</span><kbd aria-hidden="true">⌘P</kbd></button></div><div id="a-edit" popover="auto" role="menu" aria-label="編集" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--a-edit"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">元に戻す</span><kbd aria-hidden="true">⌘Z</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">やり直す</span><kbd aria-hidden="true">⇧⌘Z</kbd></button><div role="separator" data-slot="menu-separator"></div><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">切り取り</span><kbd aria-hidden="true">⌘X</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">コピー</span><kbd aria-hidden="true">⌘C</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">貼り付け</span><kbd aria-hidden="true">⌘V</kbd></button></div><div id="a-view" popover="auto" role="menu" aria-label="表示" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--a-view"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">目次を表示</span></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">文字を大きく</span><kbd aria-hidden="true">⌘+</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">文字を小さく</span><kbd aria-hidden="true">⌘−</kbd></button></div><div id="a-help" popover="auto" role="menu" aria-label="ヘルプ" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--a-help"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">ショートカット一覧</span><kbd aria-hidden="true">?</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">使い方のガイド</span></button></div>
+  <div class="m-doc">
+    <h3>週次レポート</h3>
+    <p>今週は申し込みページの画像を差し替え、告知メールの文面を確定しました。</p>
+    <p>来週は問い合わせフォームの見直しに入ります。</p>
+  </div>
+</div></div>
+  <dl class="s-notes">
+    <div><dt>良い点</dt><dd>どこに置いてもメニューのまとまりだと分かる。Button の ghost と同じ押し心地で、ほかの部品と見た目がそろう。shadcn/ui や Radix と同じ形で、見慣れている。</dd></div>
+    <div><dt>気になる点</dt><dd>アプリの上端に置くと、枠の中にさらに枠があるように見えることがある。</dd></div>
+    <div><dt>作り</dt><dd>バーに面の色・枠線・角丸を付け、項目は小さい ghost ボタンの見た目。開いている項目は押した状態の色になる。</dd></div>
+  </dl>
+</section>
+<section class="s-col" aria-labelledby="s-b-title">
+  <h2 id="s-b-title">B 上端の帯</h2>
+  <div class="s-stage"><div class="m-window" data-option="b">
+  <div role="menubar" aria-label="ノートのメニュー" class="m-bar"><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="0" popovertarget="b-file" style="anchor-name:--b-file">ファイル</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="b-edit" style="anchor-name:--b-edit">編集</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="b-view" style="anchor-name:--b-view">表示</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="b-help" style="anchor-name:--b-help">ヘルプ</button></div>
+  <div id="b-file" popover="auto" role="menu" aria-label="ファイル" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--b-file"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">新しいノート</span><kbd aria-hidden="true">⌘N</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">開く…</span><kbd aria-hidden="true">⌘O</kbd></button><div role="separator" data-slot="menu-separator"></div><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">書き出す…</span></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">印刷…</span><kbd aria-hidden="true">⌘P</kbd></button></div><div id="b-edit" popover="auto" role="menu" aria-label="編集" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--b-edit"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">元に戻す</span><kbd aria-hidden="true">⌘Z</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">やり直す</span><kbd aria-hidden="true">⇧⌘Z</kbd></button><div role="separator" data-slot="menu-separator"></div><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">切り取り</span><kbd aria-hidden="true">⌘X</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">コピー</span><kbd aria-hidden="true">⌘C</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">貼り付け</span><kbd aria-hidden="true">⌘V</kbd></button></div><div id="b-view" popover="auto" role="menu" aria-label="表示" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--b-view"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">目次を表示</span></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">文字を大きく</span><kbd aria-hidden="true">⌘+</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">文字を小さく</span><kbd aria-hidden="true">⌘−</kbd></button></div><div id="b-help" popover="auto" role="menu" aria-label="ヘルプ" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--b-help"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">ショートカット一覧</span><kbd aria-hidden="true">?</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">使い方のガイド</span></button></div>
+  <div class="m-doc">
+    <h3>週次レポート</h3>
+    <p>今週は申し込みページの画像を差し替え、告知メールの文面を確定しました。</p>
+    <p>来週は問い合わせフォームの見直しに入ります。</p>
+  </div>
+</div></div>
+  <dl class="s-notes">
+    <div><dt>良い点</dt><dd>デスクトップのアプリと同じで、画面の上端に溶け込む。エディターや管理画面のように、ページ全体がアプリになっている場面に合う。</dd></div>
+    <div><dt>気になる点</dt><dd>ページの途中に置くと、ただの区切り線に見えて、メニューだと気づきにくい。</dd></div>
+    <div><dt>作り</dt><dd>バーは下の線だけで、角丸も面の色もない。項目は低めで、開いている項目だけ背景が付く。</dd></div>
+  </dl>
+</section>
+<section class="s-col" aria-labelledby="s-c-title">
+  <h2 id="s-c-title">C 文字だけ</h2>
+  <div class="s-stage"><div class="m-window" data-option="c">
+  <div role="menubar" aria-label="ノートのメニュー" class="m-bar"><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="0" popovertarget="c-file" style="anchor-name:--c-file">ファイル</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="c-edit" style="anchor-name:--c-edit">編集</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="c-view" style="anchor-name:--c-view">表示</button><button type="button" role="menuitem" class="m-trigger" aria-haspopup="menu" tabindex="-1" popovertarget="c-help" style="anchor-name:--c-help">ヘルプ</button></div>
+  <div id="c-file" popover="auto" role="menu" aria-label="ファイル" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--c-file"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">新しいノート</span><kbd aria-hidden="true">⌘N</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">開く…</span><kbd aria-hidden="true">⌘O</kbd></button><div role="separator" data-slot="menu-separator"></div><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">書き出す…</span></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">印刷…</span><kbd aria-hidden="true">⌘P</kbd></button></div><div id="c-edit" popover="auto" role="menu" aria-label="編集" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--c-edit"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">元に戻す</span><kbd aria-hidden="true">⌘Z</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">やり直す</span><kbd aria-hidden="true">⇧⌘Z</kbd></button><div role="separator" data-slot="menu-separator"></div><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">切り取り</span><kbd aria-hidden="true">⌘X</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">コピー</span><kbd aria-hidden="true">⌘C</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">貼り付け</span><kbd aria-hidden="true">⌘V</kbd></button></div><div id="c-view" popover="auto" role="menu" aria-label="表示" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--c-view"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">目次を表示</span></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">文字を大きく</span><kbd aria-hidden="true">⌘+</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">文字を小さく</span><kbd aria-hidden="true">⌘−</kbd></button></div><div id="c-help" popover="auto" role="menu" aria-label="ヘルプ" data-slot="menu" data-side="bottom" data-align="start" style="position-anchor:--c-help"><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">ショートカット一覧</span><kbd aria-hidden="true">?</kbd></button><button type="button" role="menuitem" data-slot="menu-item" data-variant="default" tabindex="-1"><span data-slot="menu-item-label">使い方のガイド</span></button></div>
+  <div class="m-doc">
+    <h3>週次レポート</h3>
+    <p>今週は申し込みページの画像を差し替え、告知メールの文面を確定しました。</p>
+    <p>来週は問い合わせフォームの見直しに入ります。</p>
+  </div>
+</div></div>
+  <dl class="s-notes">
+    <div><dt>良い点</dt><dd>一番軽い。ヘッダーの中にリンクのように並べられる。</dd></div>
+    <div><dt>気になる点</dt><dd>押せる場所の大きさが見えず、ナビゲーションのリンクと見分けにくい。キーボードで動いたときの位置も追いにくい。</dd></div>
+    <div><dt>作り</dt><dd>バーにも項目にも面を付けず、開いている項目は文字の色と下線で示す。</dd></div>
+  </dl>
+</section>
+</div>
+</div>
+<script src="./menubar.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "context-menu",
+  "version": "0.1.0-beta.1",
+  "contract": "schema/context-menu.json",
+  "files": [
+    {
+      "path": "context-menu.tsx",
+      "target": "components",
+      "content": "// Installed by `urushi add context-menu`. This file is yours: change defaults or wrap behavior here.\n// Visuals come from the pack; see the ContextMenu page of the design system.\n// Its items are Menu's (Menu.Item, Menu.Separator, Menu.Sub), so Menu comes with it.\nexport { ContextMenu, type ContextMenuAreaProps, type ContextMenuProps } from \"@urushi/react/context-menu\";\nexport { Menu } from \"@urushi/react/menu\";\n",
+      "hash": "sha256-hxcOsWMac8TOGcmleK+Dal6fB67F5clYMsdTsxbIod8="
+    }
+  ],
+  "dependencies": {
+    "@urushi/react": "0.1.0-beta.1"
+  },
+  "css": [
+    "@urushi/react/styles/context-menu.css"
+  ]
+}

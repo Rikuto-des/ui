@@ -16,6 +16,8 @@ const sections = [
   "toggle",
   "toggle-group",
   "menu",
+  "context-menu",
+  "menubar",
   "field",
   "input-group",
   "textarea",
@@ -155,6 +157,33 @@ for (const pack of packs) {
         await settle(page);
         const clip = await around(page, [page.getByTestId("task-menu"), sub]);
         await expect(page).toHaveScreenshot(["menu", `${name}-submenu.png`], { clip });
+      });
+
+      test("context-menu: open", async ({ page }) => {
+        const file = page.getByTestId("file-area").getByRole("button", { name: "見積もり.xlsx" });
+        await center(file);
+        await file.focus();
+        await page.keyboard.press("Shift+F10");
+        const menu = page.getByTestId("file-menu");
+        await expect(menu.getByRole("menuitem", { name: "開く" })).toBeFocused();
+        await pointerAway(page);
+        await settle(page);
+        const clip = await around(page, [page.getByTestId("file-area"), menu]);
+        await expect(page).toHaveScreenshot(["context-menu", `${name}-open.png`], { clip });
+      });
+
+      test("menubar: open", async ({ page }) => {
+        const bar = page.getByTestId("menubar");
+        const edit = bar.getByRole("menuitem", { name: "編集", exact: true });
+        await center(bar);
+        await edit.focus();
+        await page.keyboard.press("ArrowDown");
+        const menu = page.getByRole("menu", { name: "編集", exact: true });
+        await expect(menu.getByRole("menuitem", { name: "元に戻す" })).toBeFocused();
+        await pointerAway(page);
+        await settle(page);
+        const clip = await around(page, [bar, menu]);
+        await expect(page).toHaveScreenshot(["menubar", `${name}-open.png`], { clip });
       });
 
       test("tooltip: open", async ({ page }) => {

@@ -43,7 +43,7 @@ test.beforeEach(async ({ page }) => {
 
 for (const pack of ["graphite", "lucent"])
   for (const theme of ["light", "dark"]) {
-    test(`all 52 detail previews: accessibility and reflow — ${pack}/${theme}`, async ({
+    test(`all 55 detail previews: accessibility and reflow — ${pack}/${theme}`, async ({
       page,
     }) => {
       test.setTimeout(180000);

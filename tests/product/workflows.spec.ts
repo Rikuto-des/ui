@@ -76,7 +76,8 @@ test('pending save locks the draft and long names fit a narrow viewport',async({
  release();await expect(page.getByRole('dialog',{name:'プロジェクトを編集',exact:true})).not.toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(page.getByRole('button',{name:long.trim()+' PRJ-001',exact:true})).toBeVisible();
 });
 for(const theme of ['light','dark'])test(`axe and responsive layout: ${theme}`,async({page})=>{
- await page.evaluate(theme=>{document.documentElement.dataset.theme=theme;},theme);
+ // Colors transition to the new theme: measure contrast once they have settled (spinners loop forever).
+ await page.evaluate(async theme=>{document.documentElement.dataset.theme=theme;await Promise.allSettled(document.getAnimations().filter(animation=>animation.effect?.getTiming().iterations!==Infinity).map(animation=>animation.finished));},theme);
  expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
  await page.getByRole('button',{name:'Website redesign PRJ-001',exact:true}).click();await page.locator('dialog[open]').last().evaluate(async el=>{await Promise.all(el.getAnimations({subtree:true}).map(animation=>animation.finished));});expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
  await page.getByRole('button',{name:'期限: 2026-11-06',exact:true}).click();await page.locator('dialog[open]').last().evaluate(async el=>{await Promise.all(el.getAnimations({subtree:true}).map(animation=>animation.finished));});expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze()).violations).toEqual([]);
